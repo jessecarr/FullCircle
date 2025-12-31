@@ -38,6 +38,11 @@ export default function Home() {
     setViewMode('form')
   }
 
+  const handleCancel = () => {
+    setEditingItem(null)
+    setViewMode('list')
+  }
+
   const getFormTitle = () => {
     switch (activeTab) {
       case 'special-order':
@@ -116,6 +121,7 @@ export default function Home() {
               <SpecialOrderForm
                 initialData={editingItem}
                 onSuccess={handleFormSuccess}
+                onCancel={handleCancel}
               />
             ) : (
               <FormsList

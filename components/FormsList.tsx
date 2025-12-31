@@ -76,7 +76,7 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger }: 
       case 'special_orders':
         return {
           primary: item.customer_name,
-          secondary: `${item.manufacturer} ${item.model}`,
+          secondary: `${item.sku} - ${item.description}`,
           tertiary: `Status: ${item.status}`,
         }
       case 'inbound_transfers':
