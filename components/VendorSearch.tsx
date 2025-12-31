@@ -4,8 +4,8 @@ import { useState, useEffect } from 'react'
 import { supabase } from '@/lib/supabase'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
-import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/dialog'
 import { useToast } from '@/components/ui/use-toast'
+import VendorDialog from './VendorDialog'
 
 interface Vendor {
   id: string
@@ -67,7 +67,10 @@ export default function VendorSearch({ value, onSelect, placeholder = "Search or
     setShowResults(false)
   }
 
-  const handleAddVendor = async () => {
+  const [showVerificationDialog, setShowVerificationDialog] = useState(false)
+  const [verifiedVendorName, setVerifiedVendorName] = useState('')
+
+  const handleAddVendor = () => {
     if (!newVendorName.trim()) {
       toast({
         title: 'Error',
@@ -77,11 +80,18 @@ export default function VendorSearch({ value, onSelect, placeholder = "Search or
       return
     }
 
+    const uppercaseName = newVendorName.trim().toUpperCase()
+    setVerifiedVendorName(uppercaseName)
+    setShowResults(false)
+    setShowVerificationDialog(true)
+  }
+
+  const handleConfirmAddVendor = async () => {
     setIsAdding(true)
     try {
       const { data, error } = await supabase
         .from('vendors')
-        .insert([{ name: newVendorName.trim().toUpperCase() }])
+        .insert([{ name: verifiedVendorName }])
         .select()
         .single()
 
@@ -105,7 +115,9 @@ export default function VendorSearch({ value, onSelect, placeholder = "Search or
 
       handleSelect(data.name)
       setShowAddDialog(false)
+      setShowVerificationDialog(false)
       setNewVendorName('')
+      setVerifiedVendorName('')
     } catch (error) {
       toast({
         title: 'Error',
@@ -135,7 +147,7 @@ export default function VendorSearch({ value, onSelect, placeholder = "Search or
           className="text-base"
         />
         
-        {showResults && results.length > 0 && (
+        {showResults && results.length > 0 && !showAddDialog && !showVerificationDialog && (
           <div className="absolute z-50 w-full mt-1 bg-white border border-gray-300 rounded-md shadow-lg max-h-60 overflow-y-auto">
             {results.map((vendor) => (
               <div
@@ -149,7 +161,7 @@ export default function VendorSearch({ value, onSelect, placeholder = "Search or
           </div>
         )}
 
-        {showResults && query && results.length === 0 && (
+        {showResults && query && results.length === 0 && !showAddDialog && !showVerificationDialog && (
           <div className="absolute z-50 w-full mt-1 bg-white border border-gray-300 rounded-md shadow-lg">
             <div className="px-4 py-2 text-gray-500">No vendors found</div>
             <div className="px-4 py-2 border-t">
@@ -159,8 +171,8 @@ export default function VendorSearch({ value, onSelect, placeholder = "Search or
                 size="sm"
                 onClick={() => {
                   setNewVendorName(query)
-                  setShowAddDialog(true)
                   setShowResults(false)
+                  setShowAddDialog(true)
                 }}
                 className="w-full"
               >
@@ -171,48 +183,37 @@ export default function VendorSearch({ value, onSelect, placeholder = "Search or
         )}
       </div>
 
-      <Dialog open={showAddDialog} onOpenChange={setShowAddDialog}>
-        <DialogContent>
-          <DialogHeader>
-            <DialogTitle>Add New Vendor</DialogTitle>
-            <DialogDescription>
-              Enter the vendor name to add to your list
-            </DialogDescription>
-          </DialogHeader>
-          <div className="space-y-4 py-4">
-            <Input
-              value={newVendorName}
-              onChange={(e) => setNewVendorName(e.target.value)}
-              placeholder="Vendor name"
-              onKeyDown={(e) => {
-                if (e.key === 'Enter') {
-                  e.preventDefault()
-                  handleAddVendor()
-                }
-              }}
-            />
-          </div>
-          <DialogFooter>
-            <Button
-              type="button"
-              variant="outline"
-              onClick={() => {
-                setShowAddDialog(false)
-                setNewVendorName('')
-              }}
-            >
-              Cancel
-            </Button>
-            <Button
-              type="button"
-              onClick={handleAddVendor}
-              disabled={isAdding}
-            >
-              {isAdding ? 'Adding...' : 'Add Vendor'}
-            </Button>
-          </DialogFooter>
-        </DialogContent>
-      </Dialog>
+<VendorDialog
+        isOpen={showAddDialog}
+        title="Add New Vendor"
+        description="Enter the vendor name to add to your list"
+        value={newVendorName}
+        onChange={setNewVendorName}
+        onSubmit={handleAddVendor}
+        onCancel={() => {
+          setShowAddDialog(false)
+          setNewVendorName('')
+        }}
+        submitText="Next"
+        isSubmitting={isAdding}
+      />
+
+      <VendorDialog
+        isOpen={showVerificationDialog}
+        title="Verify Vendor Name"
+        description="Please confirm the vendor name before adding it to the list"
+        value=""
+        onChange={() => {}}
+        onSubmit={handleConfirmAddVendor}
+        onCancel={() => {
+          setShowVerificationDialog(false)
+          setShowAddDialog(true)
+        }}
+        submitText="Confirm & Add Vendor"
+        isSubmitting={isAdding}
+        showVerification={true}
+        verifiedValue={verifiedVendorName}
+      />
     </>
   )
 }

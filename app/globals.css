@@ -23,3 +23,25 @@ form, .form-container {
   padding: 1.5rem;
   border-radius: 0.5rem;
 }
+
+/* Dialog visibility fixes */
+[data-radix-dialog-content] {
+  background-color: white !important;
+  opacity: 1 !important;
+  color: #111827 !important;
+  border: 1px solid #e5e7eb !important;
+}
+
+[data-radix-dialog-title] {
+  color: #111827 !important;
+}
+
+[data-radix-dialog-description] {
+  color: #6b7280 !important;
+}
+
+/* Force dialog overlay to be visible */
+[data-radix-dialog-overlay] {
+  background-color: rgba(0, 0, 0, 0.9) !important;
+  opacity: 1 !important;
+}
