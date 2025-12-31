@@ -16,6 +16,7 @@ import { lookupZipCode, isValidZipCode } from '@/lib/zipLookup'
 interface SpecialOrderFormProps {
   initialData?: SpecialOrderFormType
   onSuccess?: () => void
+  onCancel?: () => void
 }
 
 interface ProductLine {
@@ -27,19 +28,34 @@ interface ProductLine {
   total_price: number
 }
 
-export function SpecialOrderForm({ initialData, onSuccess }: SpecialOrderFormProps) {
+export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOrderFormProps) {
   const { toast } = useToast()
   const [loading, setLoading] = useState(false)
-  const [productLines, setProductLines] = useState<ProductLine[]>([{
-    sku: initialData?.sku || '',
-    description: initialData?.description || '',
-    vendor: initialData?.vendor || '',
-    quantity: initialData?.quantity || 1,
-    unit_price: initialData?.unit_price || 0,
-    total_price: initialData?.total_price || 0,
-  }])
+  const [productLines, setProductLines] = useState<ProductLine[]>(() => {
+    // If editing existing form with product_lines, use those
+    if (initialData?.product_lines && Array.isArray(initialData.product_lines)) {
+      return initialData.product_lines.map((line: any) => ({
+        sku: line.sku || '',
+        description: line.description || '',
+        vendor: line.vendor || '',
+        quantity: line.quantity || 1,
+        unit_price: line.unit_price || 0,
+        total_price: line.total_price || 0,
+      }))
+    }
+    // Otherwise, create a single line from initialData or empty
+    return [{
+      sku: initialData?.sku || '',
+      description: initialData?.description || '',
+      vendor: initialData?.vendor || '',
+      quantity: initialData?.quantity || 1,
+      unit_price: initialData?.unit_price || 0,
+      total_price: initialData?.total_price || 0,
+    }]
+  })
   const [rowHeights, setRowHeights] = useState<{[key: number]: string}>({})
   const [isClient, setIsClient] = useState(false)
+  const [showUpdateDialog, setShowUpdateDialog] = useState(false)
 
   useEffect(() => {
     setIsClient(true)
@@ -161,16 +177,35 @@ export function SpecialOrderForm({ initialData, onSuccess }: SpecialOrderFormPro
       return
     }
 
+    // Show confirmation dialog for updates
+    if (initialData) {
+      setShowUpdateDialog(true)
+      return
+    }
+
+    // For new orders, proceed directly
+    await performSubmission()
+  }
+
+  const performSubmission = async () => {
     setLoading(true)
 
     try {
       // Calculate total price for all product lines
       const totalAmount = productLines.reduce((acc, line) => acc + line.total_price, 0);
 
-      // Save single order with all product lines
-      const { error } = await supabase
-        .from('special_orders')
-        .insert([{
+      if (initialData) {
+        // Update existing order
+        console.log('Initial data:', initialData);
+        console.log('Initial data ID:', initialData.id);
+        
+        if (!initialData.id) {
+          console.error('No ID found in initialData');
+          throw new Error('Cannot update order: No ID provided');
+        }
+
+        console.log('Updating order with ID:', initialData.id);
+        console.log('Update data:', {
           customer_name: formData.customer_name,
           customer_email: formData.customer_email,
           customer_phone: formData.customer_phone,
@@ -183,18 +218,90 @@ export function SpecialOrderForm({ initialData, onSuccess }: SpecialOrderFormPro
           delivery_method: formData.delivery_method,
           special_requests: formData.special_requests,
           status: formData.status
-        }])
-
-      if (error) {
-        console.error('Supabase error:', {
-          message: error.message,
-          details: error.details,
-          code: error.code
         });
-        throw error;
+
+        try {
+          const { data, error } = await supabase
+            .from('special_orders')
+            .update({
+              customer_name: formData.customer_name,
+              customer_email: formData.customer_email,
+              customer_phone: formData.customer_phone,
+              customer_street: formData.customer_street,
+              customer_city: formData.customer_city,
+              customer_state: formData.customer_state,
+              customer_zip: formData.customer_zip,
+              product_lines: productLines,
+              total_price: totalAmount,
+              delivery_method: formData.delivery_method,
+              special_requests: formData.special_requests,
+              status: formData.status
+            })
+            .eq('id', initialData.id)
+            .select();
+
+          console.log('Supabase update completed');
+          console.log('Update response data:', data);
+          console.log('Update response error:', error);
+
+          if (error) {
+            console.error('Supabase error object:', error);
+            console.error('Supabase error details:', {
+              message: error.message,
+              details: error.details,
+              code: error.code,
+              hint: error.hint
+            });
+            throw new Error(`Update failed: ${error.message || 'Unknown error'}`);
+          }
+
+          if (!data) {
+            console.error('No data returned from update - data is null/undefined');
+            throw new Error('No data returned from update operation');
+          }
+
+          if (Array.isArray(data) && data.length === 0) {
+            console.error('Empty array returned from update');
+            throw new Error('No records were updated');
+          }
+
+          console.log('Order updated successfully:', data);
+          toast({ title: 'Success', description: 'Order updated successfully' });
+        } catch (supabaseError) {
+          console.error('Supabase operation failed:', supabaseError);
+          throw supabaseError;
+        }
+      } else {
+        // Create new order
+        const { error } = await supabase
+          .from('special_orders')
+          .insert([{
+            customer_name: formData.customer_name,
+            customer_email: formData.customer_email,
+            customer_phone: formData.customer_phone,
+            customer_street: formData.customer_street,
+            customer_city: formData.customer_city,
+            customer_state: formData.customer_state,
+            customer_zip: formData.customer_zip,
+            product_lines: productLines,
+            total_price: totalAmount,
+            delivery_method: formData.delivery_method,
+            special_requests: formData.special_requests,
+            status: formData.status
+          }])
+
+        if (error) {
+          console.error('Supabase error:', {
+            message: error.message,
+            details: error.details,
+            code: error.code
+          });
+          throw error;
+        }
+
+        toast({ title: 'Success', description: 'Order created successfully' });
       }
 
-      toast({ title: 'Success', description: 'Order saved successfully' });
       onSuccess?.();
     } catch (error) {
       toast({
@@ -204,6 +311,7 @@ export function SpecialOrderForm({ initialData, onSuccess }: SpecialOrderFormPro
       });
     } finally {
       setLoading(false);
+      setShowUpdateDialog(false);
     }
   }
 
@@ -215,12 +323,13 @@ export function SpecialOrderForm({ initialData, onSuccess }: SpecialOrderFormPro
   };
 
   return (
-    <Card>
-      <CardHeader className="text-center">
-        <CardTitle className="font-bold underline text-5xl">Special Order Form</CardTitle>
-      </CardHeader>
-      <CardContent>
-        <form onSubmit={handleSubmit} className="space-y-6">
+    <>
+      <Card>
+        <CardHeader className="text-center">
+          <CardTitle className="font-bold underline text-5xl">Special Order Form</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <form onSubmit={handleSubmit} className="space-y-6">
           <div className="border rounded-lg p-6 mb-6">
             <div className="space-y-4">
               <h3 className="text-lg font-semibold">Customer Information</h3>
@@ -511,11 +620,109 @@ export function SpecialOrderForm({ initialData, onSuccess }: SpecialOrderFormPro
             />
           </div>
 
-          <Button type="submit" disabled={loading} className="w-full">
-            {loading ? 'Saving...' : initialData ? 'Update Order' : 'Create Order'}
-          </Button>
+          <div className="grid grid-cols-2 gap-4">
+            <Button 
+              type="button" 
+              variant="outline" 
+              onClick={() => onCancel ? onCancel() : window.history.back()}
+              disabled={loading}
+              className="w-full"
+            >
+              Cancel
+            </Button>
+            <Button type="submit" disabled={loading} className="w-full border border-input">
+              {loading ? 'Saving...' : initialData ? 'Update Order' : 'Create Order'}
+            </Button>
+          </div>
         </form>
       </CardContent>
     </Card>
+    
+    {/* Update Confirmation Dialog */}
+    {showUpdateDialog && (
+      <div 
+        style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          backgroundColor: 'rgba(0, 0, 0, 0.3)',
+          zIndex: 999999,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          padding: '20px'
+        }}
+        onClick={() => setShowUpdateDialog(false)}
+      >
+        <div
+          style={{
+            backgroundColor: '#ffffff',
+            padding: '24px',
+            borderRadius: '8px',
+            boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
+            maxWidth: '400px',
+            width: '100%',
+            border: '2px solid #d1d5db',
+            position: 'relative'
+          }}
+          onClick={(e) => e.stopPropagation()}
+        >
+          <h3 style={{ 
+            fontSize: '18px', 
+            fontWeight: '600', 
+            color: '#111827',
+            margin: '0 0 16px 0'
+          }}>
+            Confirm Update
+          </h3>
+          <p style={{ 
+            fontSize: '14px', 
+            color: '#6b7280',
+            margin: '0 0 24px 0',
+            lineHeight: '1.5'
+          }}>
+            Are you sure you want to accept the changes to this order? This action cannot be undone.
+          </p>
+          <div style={{ display: 'flex', gap: '12px', justifyContent: 'flex-end' }}>
+            <button
+              onClick={() => setShowUpdateDialog(false)}
+              style={{
+                padding: '8px 16px',
+                border: '1px solid #d1d5db',
+                borderRadius: '6px',
+                backgroundColor: '#ffffff',
+                color: '#374151',
+                cursor: 'pointer',
+                fontSize: '14px',
+                fontWeight: '500'
+              }}
+              onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#f9fafb'}
+              onMouseOut={(e) => e.currentTarget.style.backgroundColor = '#ffffff'}
+            >
+              Cancel
+            </button>
+            <button
+              onClick={() => performSubmission()}
+              disabled={loading}
+              style={{
+                padding: '8px 16px',
+                border: '1px solid #2563eb',
+                borderRadius: '6px',
+                backgroundColor: loading ? '#9ca3af' : '#2563eb',
+                color: '#ffffff',
+                cursor: loading ? 'not-allowed' : 'pointer',
+                fontSize: '14px',
+                fontWeight: '500'
+              }}
+            >
+              {loading ? 'Updating...' : 'Accept Changes'}
+            </button>
+          </div>
+        </div>
+      </div>
+    )}
+    </>
   )
 }
