@@ -10,6 +10,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { supabase, type SpecialOrderForm as SpecialOrderFormType } from '@/lib/supabase'
 import { useToast } from '@/components/ui/use-toast'
 import CustomerSearch from '../CustomerSearch'
+import VendorSearch from '../VendorSearch'
 import { lookupZipCode, isValidZipCode } from '@/lib/zipLookup'
 
 interface SpecialOrderFormProps {
@@ -20,6 +21,7 @@ interface SpecialOrderFormProps {
 interface ProductLine {
   sku: string
   description: string
+  vendor: string
   quantity: number
   unit_price: number
   total_price: number
@@ -31,6 +33,7 @@ export function SpecialOrderForm({ initialData, onSuccess }: SpecialOrderFormPro
   const [productLines, setProductLines] = useState<ProductLine[]>([{
     sku: initialData?.sku || '',
     description: initialData?.description || '',
+    vendor: initialData?.vendor || '',
     quantity: initialData?.quantity || 1,
     unit_price: initialData?.unit_price || 0,
     total_price: initialData?.total_price || 0,
@@ -53,6 +56,7 @@ export function SpecialOrderForm({ initialData, onSuccess }: SpecialOrderFormPro
     setProductLines([...productLines, {
       sku: '',
       description: '',
+      vendor: '',
       quantity: 1,
       unit_price: 0,
       total_price: 0
@@ -281,17 +285,18 @@ export function SpecialOrderForm({ initialData, onSuccess }: SpecialOrderFormPro
 
           <div className="border rounded-lg p-6 mb-6">
             <h3 className="text-xl underline font-bold mb-4">Items</h3>
-            <div className="grid grid-cols-12 gap-4 items-end">
+            <div className="grid grid-cols-12 gap-4 items-end mb-2">
               <div className="col-span-1"><Label className="text-lg">SKU *</Label></div>
-              <div className="col-span-7"><Label className="text-lg">Description *</Label></div>
+              <div className="col-span-4"><Label className="text-lg">Description *</Label></div>
+              <div className="col-span-2"><Label className="text-lg">Vendor</Label></div>
               <div className="col-span-1"><Label className="text-lg">Qty *</Label></div>
               <div className="col-span-1"><Label className="text-lg">Price *</Label></div>
-              <div className="col-span-1"><Label className="text-lg">Total *</Label></div>
+              <div className="col-span-2"><Label className="text-lg">Total *</Label></div>
               <div className="col-span-1"></div> {/* Delete button */}
             </div>
             
             {productLines.map((line, index) => (
-              <div key={index} className="grid grid-cols-12 gap-4 items-end">
+              <div key={index} className="grid grid-cols-12 gap-4 items-end mb-2">
                 <div className="col-span-1">
                   <Input
                     id={`sku-${index}`}
@@ -306,13 +311,21 @@ export function SpecialOrderForm({ initialData, onSuccess }: SpecialOrderFormPro
                   />
                 </div>
 
-                <div className="col-span-7">
+                <div className="col-span-4">
                   <Input
                     id={`description-${index}`}
                     value={line.description}
                     onChange={(e) => updateProductLine(index, 'description', e.target.value)}
                     required
                     className="whitespace-normal min-h-[40px] w-full text-base"
+                  />
+                </div>
+
+                <div className="col-span-2">
+                  <VendorSearch
+                    value={line.vendor}
+                    onSelect={(vendorName) => updateProductLine(index, 'vendor', vendorName)}
+                    placeholder="Select vendor"
                   />
                 </div>
 
@@ -341,7 +354,7 @@ export function SpecialOrderForm({ initialData, onSuccess }: SpecialOrderFormPro
                   />
                 </div>
 
-                <div className="col-span-1">
+                <div className="col-span-2">
                   <Input
                     id={`total_price-${index}`}
                     type="number"
@@ -349,7 +362,7 @@ export function SpecialOrderForm({ initialData, onSuccess }: SpecialOrderFormPro
                     step="0.01"
                     value={line.total_price}
                     readOnly
-                    className="w-24 text-base"
+                    className="w-full text-base"
                   />
                 </div>
 
