@@ -38,6 +38,12 @@ export function SpecialOrderForm({ initialData, onSuccess }: SpecialOrderFormPro
     unit_price: initialData?.unit_price || 0,
     total_price: initialData?.total_price || 0,
   }])
+  const [rowHeights, setRowHeights] = useState<{[key: number]: string}>({})
+  const [isClient, setIsClient] = useState(false)
+
+  useEffect(() => {
+    setIsClient(true)
+  }, [])
   
   const [formData, setFormData] = useState({
     customer_name: initialData?.customer_name || '',
@@ -86,6 +92,40 @@ export function SpecialOrderForm({ initialData, onSuccess }: SpecialOrderFormPro
 
   const handleInputChange = (field: string, value: string | number) => {
     setFormData(prev => ({ ...prev, [field]: value }))
+  }
+
+  const handleFieldHeightChange = (rowIndex: number, fieldId: string, height: string) => {
+    if (!isClient) return
+    
+    setRowHeights(prev => {
+      const newHeight = `${Math.max(48, parseInt(height.replace('px', '')))}px`
+      
+      // Update all fields in this row to the new height
+      return {
+        ...prev,
+        [rowIndex]: newHeight
+      }
+    })
+  }
+
+  const recalculateRowHeight = (rowIndex: number) => {
+    if (!isClient) return
+    
+    // Get all textarea elements in this row and find the max height
+    const skuField = document.getElementById(`sku-${rowIndex}`) as HTMLTextAreaElement
+    const descField = document.getElementById(`description-${rowIndex}`) as HTMLTextAreaElement
+    const vendorField = document.querySelector(`[data-vendor-row="${rowIndex}"]`) as HTMLTextAreaElement
+    
+    let maxHeight = 48
+    
+    if (skuField) maxHeight = Math.max(maxHeight, skuField.scrollHeight)
+    if (descField) maxHeight = Math.max(maxHeight, descField.scrollHeight)
+    if (vendorField) maxHeight = Math.max(maxHeight, vendorField.scrollHeight)
+    
+    setRowHeights(prev => ({
+      ...prev,
+      [rowIndex]: `${maxHeight}px`
+    }))
   }
 
   const handleZipCodeChange = async (zip: string) => {
@@ -285,20 +325,20 @@ export function SpecialOrderForm({ initialData, onSuccess }: SpecialOrderFormPro
 
           <div className="border rounded-lg p-6 mb-6">
             <h3 className="text-xl underline font-bold mb-4">Items</h3>
-            <div className="grid grid-cols-12 gap-4 items-end mb-2">
-              <div className="col-span-1"><Label className="text-lg">SKU *</Label></div>
-              <div className="col-span-4"><Label className="text-lg">Description *</Label></div>
-              <div className="col-span-2"><Label className="text-lg">Vendor</Label></div>
+            <div className="grid grid-cols-13 gap-4 items-end mb-2">
+              <div className="col-span-2"><Label className="text-lg">SKU *</Label></div>
+              <div className="col-span-5"><Label className="text-lg">Description *</Label></div>
               <div className="col-span-1"><Label className="text-lg">Qty *</Label></div>
               <div className="col-span-1"><Label className="text-lg">Price *</Label></div>
-              <div className="col-span-2"><Label className="text-lg">Total *</Label></div>
+              <div className="col-span-1"><Label className="text-lg">Total *</Label></div>
+              <div className="col-span-2"><Label className="text-lg">Vendor</Label></div>
               <div className="col-span-1"></div> {/* Delete button */}
             </div>
             
             {productLines.map((line, index) => (
-              <div key={index} className="grid grid-cols-12 gap-4 items-end mb-2">
-                <div className="col-span-1">
-                  <Input
+              <div key={index} className="grid grid-cols-13 gap-4 items-end mb-2">
+                <div className="col-span-2">
+                  <Textarea
                     id={`sku-${index}`}
                     value={line.sku}
                     onChange={(e) => {
@@ -306,26 +346,46 @@ export function SpecialOrderForm({ initialData, onSuccess }: SpecialOrderFormPro
                       updateProductLine(index, 'sku', e.target.value);
                     }}
                     required
-                    className="text-base w-full"
+                    className="text-base w-full min-h-[48px] resize-none overflow-hidden"
+                    rows={1}
+                    style={{
+                      height: isClient ? (rowHeights[index] || '48px') : '48px',
+                      minHeight: '48px'
+                    }}
+                    onInput={(e) => {
+                      const target = e.target as HTMLTextAreaElement;
+                      target.style.height = 'auto';
+                      const newHeight = `${target.scrollHeight}px`;
+                      target.style.height = newHeight;
+                      handleFieldHeightChange(index, `sku-${index}`, newHeight);
+                      // Recalculate after a short delay to ensure proper shrinking
+                      setTimeout(() => recalculateRowHeight(index), 10);
+                    }}
                     data-testid={`sku-input-${index}`}
                   />
                 </div>
 
-                <div className="col-span-4">
-                  <Input
+                <div className="col-span-5">
+                  <Textarea
                     id={`description-${index}`}
                     value={line.description}
                     onChange={(e) => updateProductLine(index, 'description', e.target.value)}
                     required
-                    className="whitespace-normal min-h-[40px] w-full text-base"
-                  />
-                </div>
-
-                <div className="col-span-2">
-                  <VendorSearch
-                    value={line.vendor}
-                    onSelect={(vendorName) => updateProductLine(index, 'vendor', vendorName)}
-                    placeholder="Select vendor"
+                    className="min-h-[48px] w-full text-base resize-none overflow-hidden"
+                    rows={1}
+                    style={{
+                      height: isClient ? (rowHeights[index] || '48px') : '48px',
+                      minHeight: '48px'
+                    }}
+                    onInput={(e) => {
+                      const target = e.target as HTMLTextAreaElement;
+                      target.style.height = 'auto';
+                      const newHeight = `${target.scrollHeight}px`;
+                      target.style.height = newHeight;
+                      handleFieldHeightChange(index, `description-${index}`, newHeight);
+                      // Recalculate after a short delay to ensure proper shrinking
+                      setTimeout(() => recalculateRowHeight(index), 10);
+                    }}
                   />
                 </div>
 
@@ -338,6 +398,7 @@ export function SpecialOrderForm({ initialData, onSuccess }: SpecialOrderFormPro
                     onChange={(e) => updateProductLine(index, 'quantity', parseInt(e.target.value))}
                     required
                     className="w-20 text-base"
+                    style={{ height: isClient ? (rowHeights[index] || '48px') : '48px' }}
                   />
                 </div>
 
@@ -351,10 +412,11 @@ export function SpecialOrderForm({ initialData, onSuccess }: SpecialOrderFormPro
                     onChange={(e) => updateProductLine(index, 'unit_price', parseFloat(e.target.value))}
                     required
                     className="w-24 text-base"
+                    style={{ height: isClient ? (rowHeights[index] || '48px') : '48px' }}
                   />
                 </div>
 
-                <div className="col-span-2">
+                <div className="col-span-1">
                   <Input
                     id={`total_price-${index}`}
                     type="number"
@@ -362,7 +424,19 @@ export function SpecialOrderForm({ initialData, onSuccess }: SpecialOrderFormPro
                     step="0.01"
                     value={line.total_price}
                     readOnly
-                    className="w-full text-base"
+                    className="w-24 text-base"
+                    style={{ height: isClient ? (rowHeights[index] || '48px') : '48px' }}
+                  />
+                </div>
+
+                <div className="col-span-2">
+                  <VendorSearch
+                    value={line.vendor}
+                    onSelect={(vendorName) => updateProductLine(index, 'vendor', vendorName)}
+                    placeholder="Select vendor"
+                    height={rowHeights[index]}
+                    onHeightChange={(newHeight) => handleFieldHeightChange(index, `vendor-${index}`, newHeight)}
+                    rowIndex={index}
                   />
                 </div>
 
@@ -373,9 +447,9 @@ export function SpecialOrderForm({ initialData, onSuccess }: SpecialOrderFormPro
                     size="icon"
                     onClick={() => removeProductLine(index)}
                     disabled={productLines.length <= 1}
-                    className="h-10 w-10 text-red-600 hover:text-red-800"
+                    className="h-14 w-14 text-red-600 hover:text-red-800"
                   >
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                       <path d="M3 6h18"></path>
                       <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path>
                       <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path>

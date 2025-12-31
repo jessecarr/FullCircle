@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import { supabase } from '@/lib/supabase'
 import { Input } from '@/components/ui/input'
+import { Textarea } from '@/components/ui/textarea'
 import { Button } from '@/components/ui/button'
 import { useToast } from '@/components/ui/use-toast'
 import VendorDialog from './VendorDialog'
@@ -16,16 +17,24 @@ interface VendorSearchProps {
   value?: string
   onSelect: (vendorName: string) => void
   placeholder?: string
+  height?: string
+  onHeightChange?: (height: string) => void
+  rowIndex?: number
 }
 
-export default function VendorSearch({ value, onSelect, placeholder = "Search or add vendor" }: VendorSearchProps) {
+export default function VendorSearch({ value, onSelect, placeholder = "Search or add vendor", height, onHeightChange, rowIndex }: VendorSearchProps) {
   const { toast } = useToast()
+  const [isClient, setIsClient] = useState(false)
   const [query, setQuery] = useState(value || '')
   const [results, setResults] = useState<Vendor[]>([])
   const [showResults, setShowResults] = useState(false)
   const [showAddDialog, setShowAddDialog] = useState(false)
   const [newVendorName, setNewVendorName] = useState('')
   const [isAdding, setIsAdding] = useState(false)
+
+  useEffect(() => {
+    setIsClient(true)
+  }, [])
 
   useEffect(() => {
     setQuery(value || '')
@@ -129,7 +138,7 @@ export default function VendorSearch({ value, onSelect, placeholder = "Search or
     }
   }
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const newValue = e.target.value
     setQuery(newValue)
     onSelect(newValue)
@@ -138,13 +147,34 @@ export default function VendorSearch({ value, onSelect, placeholder = "Search or
   return (
     <>
       <div className="relative">
-        <Input
-          type="text"
+        <Textarea
           value={query}
           onChange={handleInputChange}
           onFocus={() => query && setShowResults(true)}
           placeholder={placeholder}
-          className="text-base"
+          className="text-base min-h-[48px] resize-none overflow-hidden"
+          rows={1}
+          data-vendor-row={rowIndex}
+          style={{
+            height: height || '48px',
+            minHeight: '48px'
+          }}
+          onInput={(e) => {
+            if (!isClient) return
+            const target = e.target as HTMLTextAreaElement;
+            target.style.height = 'auto';
+            const newHeight = `${target.scrollHeight}px`;
+            target.style.height = newHeight;
+            if (onHeightChange) {
+              onHeightChange(newHeight);
+            }
+            // Trigger recalculation after a short delay for proper shrinking
+            setTimeout(() => {
+              if (onHeightChange) {
+                onHeightChange(newHeight);
+              }
+            }, 10);
+          }}
         />
         
         {showResults && results.length > 0 && !showAddDialog && !showVerificationDialog && (
