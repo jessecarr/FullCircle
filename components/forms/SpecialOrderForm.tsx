@@ -10,7 +10,6 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { supabase, type SpecialOrderForm as SpecialOrderFormType } from '@/lib/supabase'
 import { useToast } from '@/components/ui/use-toast'
 import CustomerSearch from '../CustomerSearch'
-import { createCustomer } from '@/lib/api/customers'
 
 interface SpecialOrderFormProps {
   initialData?: SpecialOrderFormType
@@ -99,35 +98,18 @@ export function SpecialOrderForm({ initialData, onSuccess }: SpecialOrderFormPro
     setLoading(true)
 
     try {
-      // Save/update customer
-      const customer = await createCustomer({
-        name: formData.customer_name,
-        email: formData.customer_email,
-        phone: formData.customer_phone,
-        street: formData.customer_street,
-        city: formData.customer_city,
-        state: formData.customer_state,
-        zip: formData.customer_zip
-      });
-
-      if (!customer) {
-        throw new Error('Failed to save customer data')
-      }
-
-      // Show message if customer was updated
-      if (formData.customer_email !== customer.email || formData.customer_phone !== customer.phone) {
-        toast({
-          title: 'Customer Updated',
-          description: 'Existing customer record was updated with new information',
-        })
-      }
-
-      // Save orders for each product line
+      // Save orders for each product line with customer data
       for (const line of productLines) {
         const { error } = await supabase
           .from('special_orders')
           .insert([{
-            customer_id: customer.id,
+            customer_name: formData.customer_name,
+            customer_email: formData.customer_email,
+            customer_phone: formData.customer_phone,
+            customer_street: formData.customer_street,
+            customer_city: formData.customer_city,
+            customer_state: formData.customer_state,
+            customer_zip: formData.customer_zip,
             sku: line.sku,
             description: line.description,
             quantity: line.quantity,

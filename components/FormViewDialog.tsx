@@ -1,6 +1,6 @@
 'use client'
 
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog'
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogPortal, DialogOverlay } from '@/components/ui/dialog'
 import { Button } from '@/components/ui/button'
 import { Edit } from 'lucide-react'
 
@@ -20,29 +20,25 @@ export function FormViewDialog({ open, onOpenChange, data, title, onEdit }: Form
     
     return (
       <div className="grid grid-cols-3 gap-4 py-2 border-b">
-        <dt className="font-semibold text-sm text-muted-foreground">{label}</dt>
-        <dd className="col-span-2 text-sm">{String(value)}</dd>
+        <dt className="font-semibold text-sm text-gray-700">{label}</dt>
+        <dd className="col-span-2 text-sm text-black">{String(value)}</dd>
       </div>
     )
   }
 
-  return (
-    <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-3xl max-h-[80vh] overflow-y-auto">
-        <DialogHeader>
-          <div className="flex items-center justify-between">
-            <DialogTitle>{title}</DialogTitle>
-            {onEdit && (
-              <Button variant="outline" size="sm" onClick={onEdit}>
-                <Edit className="h-4 w-4 mr-2" />
-                Edit
-              </Button>
-            )}
-          </div>
-        </DialogHeader>
+  const renderSection = (sectionTitle: string, fields: Record<string, any>) => {
+    const hasData = Object.values(fields).some(value => 
+      value !== null && value !== undefined && value !== ''
+    )
+    
+    if (!hasData) return null
+    
+    return (
+      <div className="mb-6">
+        <h4 className="text-lg font-semibold mb-3 text-black">{sectionTitle}</h4>
         <dl className="space-y-1">
-          {Object.entries(data).map(([key, value]) => {
-            if (key === 'id' || key === 'created_at' || key === 'updated_at') return null
+          {Object.entries(fields).map(([key, value]) => {
+            if (value === null || value === undefined || value === '') return null
             
             const label = key
               .split('_')
@@ -56,7 +52,143 @@ export function FormViewDialog({ open, onOpenChange, data, title, onEdit }: Form
             )
           })}
         </dl>
+      </div>
+    )
+  }
+
+  // Group fields by section
+  const customerFields = {
+    customer_name: data.customer_name,
+    customer_email: data.customer_email,
+    customer_phone: data.customer_phone,
+    customer_street: data.customer_street,
+    customer_city: data.customer_city,
+    customer_state: data.customer_state,
+    customer_zip: data.customer_zip,
+  }
+
+  const orderFields = {
+    sku: data.sku,
+    description: data.description,
+    quantity: data.quantity,
+    unit_price: data.unit_price,
+    total_price: data.total_price,
+    special_requests: data.special_requests,
+    status: data.status,
+  }
+
+  // Handle different form types
+  const getFormSections = () => {
+    // Check if it's a special order by looking for customer fields
+    if (data.customer_name || data.customer_email || data.customer_phone) {
+      // Special Order form - has customer fields
+      return [
+        { title: 'Customer Information', fields: customerFields },
+        { title: 'Order Details', fields: orderFields }
+      ]
+    } else if (data.transferor_name) {
+      // Inbound Transfer form
+      const transferFields = {
+        transferor_name: data.transferor_name,
+        transferor_ffl: data.transferor_ffl,
+        transferor_address: data.transferor_address,
+        transferor_city: data.transferor_city,
+        transferor_state: data.transferor_state,
+        transferor_zip: data.transferor_zip,
+        firearm_type: data.firearm_type,
+        manufacturer: data.manufacturer,
+        model: data.model,
+        caliber: data.caliber,
+        serial_number: data.serial_number,
+        transfer_date: data.transfer_date,
+        atf_form_type: data.atf_form_type,
+        tracking_number: data.tracking_number,
+        notes: data.notes,
+        status: data.status,
+      }
+      return [{ title: 'Transfer Details', fields: transferFields }]
+    } else if (data.suppressor_manufacturer) {
+      // Suppressor Approval form
+      const suppressorFields = {
+        customer_name: data.customer_name,
+        customer_email: data.customer_email,
+        customer_phone: data.customer_phone,
+        customer_address: data.customer_address,
+        customer_city: data.customer_city,
+        customer_state: data.customer_state,
+        customer_zip: data.customer_zip,
+        suppressor_manufacturer: data.suppressor_manufacturer,
+        suppressor_model: data.suppressor_model,
+        suppressor_caliber: data.suppressor_caliber,
+        suppressor_serial_number: data.suppressor_serial_number,
+        trust_name: data.trust_name,
+        form_type: data.form_type,
+        submission_date: data.submission_date,
+        approval_date: data.approval_date,
+        tax_stamp_number: data.tax_stamp_number,
+        examiner_name: data.examiner_name,
+        status: data.status,
+        notes: data.notes,
+      }
+      return [
+        { title: 'Customer Information', fields: customerFields },
+        { title: 'Suppressor Details', fields: suppressorFields }
+      ]
+    } else if (data.transferee_name) {
+      // Outbound Transfer form
+      const outboundFields = {
+        transferee_name: data.transferee_name,
+        transferee_ffl: data.transferee_ffl,
+        transferee_address: data.transferee_address,
+        transferee_city: data.transferee_city,
+        transferee_state: data.transferee_state,
+        transferee_zip: data.transferee_zip,
+        firearm_type: data.firearm_type,
+        manufacturer: data.manufacturer,
+        model: data.model,
+        caliber: data.caliber,
+        serial_number: data.serial_number,
+        transfer_date: data.transfer_date,
+        atf_form_type: data.atf_form_type,
+        tracking_number: data.tracking_number,
+        carrier: data.carrier,
+        notes: data.notes,
+        status: data.status,
+      }
+      return [{ title: 'Transfer Details', fields: outboundFields }]
+    }
+    
+    // Fallback - show all fields
+    return [{ title: 'Form Details', fields: data }]
+  }
+
+  const sections = getFormSections()
+
+  return (
+    <Dialog open={open} onOpenChange={onOpenChange}>
+      <DialogPortal>
+        <DialogOverlay className="z-50" />
+        <DialogContent className="max-w-3xl max-h-[80vh] overflow-y-auto z-50 bg-white text-black">
+        <DialogHeader>
+          <div className="flex items-center justify-between">
+            <DialogTitle>{title}</DialogTitle>
+            {onEdit && (
+              <Button variant="outline" size="sm" onClick={onEdit}>
+                <Edit className="h-4 w-4 mr-2" />
+                Edit
+              </Button>
+            )}
+          </div>
+        </DialogHeader>
+        <div className="space-y-4">
+          {sections.map((section, index) => (
+            <div key={index}>
+              {renderSection(section.title, section.fields)}
+            </div>
+          ))}
+        </div>
       </DialogContent>
+      </DialogPortal>
     </Dialog>
   )
 }

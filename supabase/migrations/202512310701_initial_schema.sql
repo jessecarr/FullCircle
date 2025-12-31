@@ -25,7 +25,13 @@ CREATE TABLE customers (
 -- Create special_orders table
 CREATE TABLE special_orders (
   id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
-  customer_id UUID REFERENCES customers(id),
+  customer_name TEXT NOT NULL,
+  customer_email TEXT NOT NULL,
+  customer_phone TEXT NOT NULL,
+  customer_street TEXT,
+  customer_city TEXT,
+  customer_state TEXT,
+  customer_zip TEXT,
   sku TEXT NOT NULL,
   description TEXT NOT NULL,
   quantity INTEGER NOT NULL DEFAULT 1,
