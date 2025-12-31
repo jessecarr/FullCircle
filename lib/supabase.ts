@@ -59,11 +59,9 @@ export interface SpecialOrderForm {
   customer_city?: string
   customer_state?: string
   customer_zip?: string
-  sku: string
-  description: string
-  quantity: number
-  unit_price: number
+  product_lines: any[]
   total_price: number
+  delivery_method: 'in_store_pickup' | 'ship_to_customer'
   special_requests?: string
   status: 'pending' | 'ordered' | 'received' | 'completed' | 'cancelled'
   created_at: string

@@ -56,6 +56,40 @@ export function FormViewDialog({ open, onOpenChange, data, title, onEdit }: Form
     )
   }
 
+  const renderProductLines = (productLines: any[]) => {
+    if (!productLines || productLines.length === 0) return null
+    
+    return (
+      <div className="mb-6">
+        <h4 className="text-lg font-semibold mb-3 text-black">Items</h4>
+        <div className="space-y-3">
+          {productLines.map((line, index) => (
+            <div key={index} className="border rounded-lg p-4 bg-gray-50">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div>
+                  <span className="text-xs text-gray-500">SKU</span>
+                  <p className="font-medium text-black">{line.sku}</p>
+                </div>
+                <div>
+                  <span className="text-xs text-gray-500">Description</span>
+                  <p className="font-medium text-black">{line.description}</p>
+                </div>
+                <div>
+                  <span className="text-xs text-gray-500">Qty/Price</span>
+                  <p className="font-medium text-black">{line.quantity} × ${line.unit_price}</p>
+                </div>
+                <div>
+                  <span className="text-xs text-gray-500">Total</span>
+                  <p className="font-medium text-black">${line.total_price}</p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    )
+  }
+
   // Group fields by section
   const customerFields = {
     customer_name: data.customer_name,
@@ -68,13 +102,10 @@ export function FormViewDialog({ open, onOpenChange, data, title, onEdit }: Form
   }
 
   const orderFields = {
-    sku: data.sku,
-    description: data.description,
-    quantity: data.quantity,
-    unit_price: data.unit_price,
-    total_price: data.total_price,
+    delivery_method: data.delivery_method === 'in_store_pickup' ? 'In-Store Pickup' : 'Ship to Customer',
     special_requests: data.special_requests,
     status: data.status,
+    total_price: data.total_price,
   }
 
   // Handle different form types
@@ -82,10 +113,17 @@ export function FormViewDialog({ open, onOpenChange, data, title, onEdit }: Form
     // Check if it's a special order by looking for customer fields
     if (data.customer_name || data.customer_email || data.customer_phone) {
       // Special Order form - has customer fields
-      return [
+      const sections = [
         { title: 'Customer Information', fields: customerFields },
         { title: 'Order Details', fields: orderFields }
       ]
+      
+      // Add product lines if they exist
+      if (data.product_lines && Array.isArray(data.product_lines)) {
+        sections.push({ title: 'Items', fields: {}, productLines: data.product_lines } as any)
+      }
+      
+      return sections
     } else if (data.transferor_name) {
       // Inbound Transfer form
       const transferFields = {
@@ -183,7 +221,11 @@ export function FormViewDialog({ open, onOpenChange, data, title, onEdit }: Form
         <div className="space-y-4">
           {sections.map((section, index) => (
             <div key={index}>
-              {renderSection(section.title, section.fields)}
+              {(section as any).productLines ? (
+                renderProductLines((section as any).productLines)
+              ) : (
+                renderSection(section.title, section.fields)
+              )}
             </div>
           ))}
         </div>

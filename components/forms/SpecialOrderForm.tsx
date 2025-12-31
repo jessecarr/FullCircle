@@ -10,6 +10,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { supabase, type SpecialOrderForm as SpecialOrderFormType } from '@/lib/supabase'
 import { useToast } from '@/components/ui/use-toast'
 import CustomerSearch from '../CustomerSearch'
+import { lookupZipCode, isValidZipCode } from '@/lib/zipLookup'
 
 interface SpecialOrderFormProps {
   initialData?: SpecialOrderFormType
@@ -43,6 +44,7 @@ export function SpecialOrderForm({ initialData, onSuccess }: SpecialOrderFormPro
     customer_city: initialData?.customer_city || '',
     customer_state: initialData?.customer_state || '',
     customer_zip: initialData?.customer_zip || '',
+    delivery_method: initialData?.delivery_method || 'in_store_pickup',
     special_requests: initialData?.special_requests || '',
     status: initialData?.status || 'pending' as const
   })
@@ -82,6 +84,26 @@ export function SpecialOrderForm({ initialData, onSuccess }: SpecialOrderFormPro
     setFormData(prev => ({ ...prev, [field]: value }))
   }
 
+  const handleZipCodeChange = async (zip: string) => {
+    setFormData(prev => ({ ...prev, customer_zip: zip }))
+    
+    // Auto-fill city and state if valid zip code
+    if (isValidZipCode(zip)) {
+      try {
+        const zipData = await lookupZipCode(zip)
+        if (zipData) {
+          setFormData(prev => ({
+            ...prev,
+            customer_city: zipData.city,
+            customer_state: zipData.state
+          }))
+        }
+      } catch (error) {
+        console.error('Failed to lookup zip code:', error)
+      }
+    }
+  }
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     
@@ -98,35 +120,34 @@ export function SpecialOrderForm({ initialData, onSuccess }: SpecialOrderFormPro
     setLoading(true)
 
     try {
-      // Save orders for each product line with customer data
-      for (const line of productLines) {
-        const { error } = await supabase
-          .from('special_orders')
-          .insert([{
-            customer_name: formData.customer_name,
-            customer_email: formData.customer_email,
-            customer_phone: formData.customer_phone,
-            customer_street: formData.customer_street,
-            customer_city: formData.customer_city,
-            customer_state: formData.customer_state,
-            customer_zip: formData.customer_zip,
-            sku: line.sku,
-            description: line.description,
-            quantity: line.quantity,
-            unit_price: line.unit_price,
-            total_price: line.total_price,
-            special_requests: formData.special_requests,
-            status: formData.status
-          }])
+      // Calculate total price for all product lines
+      const totalAmount = productLines.reduce((acc, line) => acc + line.total_price, 0);
 
-        if (error) {
-          console.error('Supabase error:', {
-            message: error.message,
-            details: error.details,
-            code: error.code
-          });
-          throw error;
-        }
+      // Save single order with all product lines
+      const { error } = await supabase
+        .from('special_orders')
+        .insert([{
+          customer_name: formData.customer_name,
+          customer_email: formData.customer_email,
+          customer_phone: formData.customer_phone,
+          customer_street: formData.customer_street,
+          customer_city: formData.customer_city,
+          customer_state: formData.customer_state,
+          customer_zip: formData.customer_zip,
+          product_lines: productLines,
+          total_price: totalAmount,
+          delivery_method: formData.delivery_method,
+          special_requests: formData.special_requests,
+          status: formData.status
+        }])
+
+      if (error) {
+        console.error('Supabase error:', {
+          message: error.message,
+          details: error.details,
+          code: error.code
+        });
+        throw error;
       }
 
       toast({ title: 'Success', description: 'Order saved successfully' });
@@ -223,11 +244,13 @@ export function SpecialOrderForm({ initialData, onSuccess }: SpecialOrderFormPro
                 </div>
                 <div className="grid grid-cols-1 gap-4">
                   <div className="space-y-2">
-                    <Label className="text-lg" htmlFor="customer_city">City</Label>
+                    <Label className="text-lg" htmlFor="customer_zip">Zip</Label>
                     <Input
-                      id="customer_city"
-                      value={formData.customer_city}
-                      onChange={(e) => handleInputChange('customer_city', e.target.value)}
+                      id="customer_zip"
+                      value={formData.customer_zip}
+                      onChange={(e) => handleZipCodeChange(e.target.value)}
+                      placeholder="Enter 5-digit zip code"
+                      maxLength={5}
                       className="text-base"
                     />
                   </div>
@@ -243,11 +266,11 @@ export function SpecialOrderForm({ initialData, onSuccess }: SpecialOrderFormPro
                   </div>
 
                   <div className="space-y-2">
-                    <Label className="text-lg" htmlFor="customer_zip">ZIP Code</Label>
+                    <Label className="text-lg" htmlFor="customer_city">City</Label>
                     <Input
-                      id="customer_zip"
-                      value={formData.customer_zip}
-                      onChange={(e) => handleInputChange('customer_zip', e.target.value)}
+                      id="customer_city"
+                      value={formData.customer_city}
+                      onChange={(e) => handleInputChange('customer_city', e.target.value)}
                       className="text-base"
                     />
                   </div>
@@ -363,17 +386,29 @@ export function SpecialOrderForm({ initialData, onSuccess }: SpecialOrderFormPro
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="space-y-2">
-              <Label htmlFor="status">Status *</Label>
-              <Select value={formData.status} onValueChange={(value) => handleInputChange('status', value)}>
-                <SelectTrigger className="bg-[#7e7e7e] text-white">
+              <Label htmlFor="delivery_method">Delivery Method *</Label>
+              <Select value={formData.delivery_method} onValueChange={(value) => handleInputChange('delivery_method', value)}>
+                <SelectTrigger className="bg-white text-black border border-gray-300">
                   <SelectValue />
                 </SelectTrigger>
-                <SelectContent className="bg-[#7e7e7e] border border-gray-200 text-white">
-                  <SelectItem value="pending" className="hover:bg-[#6e6e6e]">Pending</SelectItem>
-                  <SelectItem value="ordered" className="hover:bg-[#6e6e6e]">Ordered</SelectItem>
-                  <SelectItem value="received" className="hover:bg-[#6e6e6e]">Received</SelectItem>
-                  <SelectItem value="completed" className="hover:bg-[#6e6e6e]">Completed</SelectItem>
-                  <SelectItem value="cancelled" className="hover:bg-[#6e6e6e]">Cancelled</SelectItem>
+                <SelectContent className="bg-white border border-gray-300 text-black">
+                  <SelectItem value="in_store_pickup" className="hover:bg-gray-100">In-Store Pickup</SelectItem>
+                  <SelectItem value="ship_to_customer" className="hover:bg-gray-100">Ship to Customer</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="status">Status *</Label>
+              <Select value={formData.status} onValueChange={(value) => handleInputChange('status', value)}>
+                <SelectTrigger className="bg-white text-black border border-gray-300">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent className="bg-white border border-gray-300 text-black">
+                  <SelectItem value="pending" className="hover:bg-gray-100">Pending</SelectItem>
+                  <SelectItem value="ordered" className="hover:bg-gray-100">Ordered</SelectItem>
+                  <SelectItem value="received" className="hover:bg-gray-100">Received</SelectItem>
+                  <SelectItem value="completed" className="hover:bg-gray-100">Completed</SelectItem>
+                  <SelectItem value="cancelled" className="hover:bg-gray-100">Cancelled</SelectItem>
                 </SelectContent>
               </Select>
             </div>
