@@ -1,8 +1,7 @@
 'use client'
 
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogPortal, DialogOverlay } from '@/components/ui/dialog'
 import { Button } from '@/components/ui/button'
-import { Edit } from 'lucide-react'
+import { Edit, X } from 'lucide-react'
 
 interface FormViewDialogProps {
   open: boolean
@@ -202,23 +201,77 @@ export function FormViewDialog({ open, onOpenChange, data, title, onEdit }: Form
 
   const sections = getFormSections()
 
+  if (!open) return null
+
   return (
-    <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogPortal>
-        <DialogOverlay className="z-50" />
-        <DialogContent className="max-w-3xl max-h-[80vh] overflow-y-auto z-50 bg-white text-black">
-        <DialogHeader>
-          <div className="flex items-center justify-between">
-            <DialogTitle>{title}</DialogTitle>
+    <div 
+      style={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        backgroundColor: 'rgba(0, 0, 0, 0.3)',
+        zIndex: 999999,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: '20px'
+      }}
+      onClick={() => onOpenChange(false)}
+    >
+      <div
+        style={{
+          backgroundColor: '#ffffff',
+          padding: '24px',
+          borderRadius: '8px',
+          boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
+          maxWidth: '768px',
+          width: '100%',
+          maxHeight: '80vh',
+          overflowY: 'auto',
+          border: '2px solid #d1d5db',
+          position: 'relative'
+        }}
+        onClick={(e) => e.stopPropagation()}
+      >
+        <div style={{ marginBottom: '24px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+          <h2 style={{ 
+            fontSize: '24px', 
+            fontWeight: '600', 
+            color: '#111827',
+            margin: 0
+          }}>
+            {title}
+          </h2>
+          <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
             {onEdit && (
               <Button variant="outline" size="sm" onClick={onEdit}>
                 <Edit className="h-4 w-4 mr-2" />
                 Edit
               </Button>
             )}
+            <button
+              onClick={() => onOpenChange(false)}
+              style={{
+                background: 'none',
+                border: 'none',
+                cursor: 'pointer',
+                padding: '8px',
+                borderRadius: '4px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center'
+              }}
+              onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#f3f4f6'}
+              onMouseOut={(e) => e.currentTarget.style.backgroundColor = 'transparent'}
+            >
+              <X className="h-5 w-5" style={{ color: '#6b7280' }} />
+            </button>
           </div>
-        </DialogHeader>
-        <div className="space-y-4">
+        </div>
+        
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
           {sections.map((section, index) => (
             <div key={index}>
               {(section as any).productLines ? (
@@ -229,8 +282,7 @@ export function FormViewDialog({ open, onOpenChange, data, title, onEdit }: Form
             </div>
           ))}
         </div>
-      </DialogContent>
-      </DialogPortal>
-    </Dialog>
+      </div>
+    </div>
   )
 }
