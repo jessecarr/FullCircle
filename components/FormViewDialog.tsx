@@ -49,7 +49,11 @@ export function FormViewDialog({ open, onOpenChange, data, title, onEdit }: Form
               .map(word => word.charAt(0).toUpperCase() + word.slice(1))
               .join(' ')
             
-            return renderField(label, value)
+            return (
+              <div key={key}>
+                {renderField(label, value)}
+              </div>
+            )
           })}
         </dl>
       </DialogContent>

@@ -9,6 +9,8 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { supabase, type SpecialOrderForm as SpecialOrderFormType } from '@/lib/supabase'
 import { useToast } from '@/components/ui/use-toast'
+import CustomerSearch from '../CustomerSearch'
+import { createCustomer } from '@/lib/api/customers'
 
 interface SpecialOrderFormProps {
   initialData?: SpecialOrderFormType
@@ -42,11 +44,6 @@ export function SpecialOrderForm({ initialData, onSuccess }: SpecialOrderFormPro
     customer_city: initialData?.customer_city || '',
     customer_state: initialData?.customer_state || '',
     customer_zip: initialData?.customer_zip || '',
-    sku: initialData?.sku || '',
-    description: initialData?.description || '',
-    quantity: initialData?.quantity || 1,
-    unit_price: initialData?.unit_price || 0,
-    total_price: initialData?.total_price || 0,
     special_requests: initialData?.special_requests || '',
     status: initialData?.status || 'pending' as const
   })
@@ -62,6 +59,7 @@ export function SpecialOrderForm({ initialData, onSuccess }: SpecialOrderFormPro
   }
 
   const updateProductLine = (index: number, field: keyof ProductLine, value: any) => {
+    console.log('Updating product line:', { index, field, value });
     const updated = [...productLines]
     updated[index] = { ...updated[index], [field]: value }
     if (field === 'quantity' || field === 'unit_price') {
@@ -87,74 +85,78 @@ export function SpecialOrderForm({ initialData, onSuccess }: SpecialOrderFormPro
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    
+    // Validate required fields
+    if (!formData.customer_name || !formData.customer_email || !formData.customer_phone) {
+      toast({
+        title: 'Validation Error',
+        description: 'Please fill in all required customer fields',
+        variant: 'destructive',
+      })
+      return
+    }
+
     setLoading(true)
 
     try {
-      const orderData = {
-        ...formData,
-        products: productLines,
-        total_price: productLines.reduce((sum, line) => sum + line.total_price, 0)
+      // Save/update customer
+      const customer = await createCustomer({
+        name: formData.customer_name,
+        email: formData.customer_email,
+        phone: formData.customer_phone,
+        street: formData.customer_street,
+        city: formData.customer_city,
+        state: formData.customer_state,
+        zip: formData.customer_zip
+      });
+
+      if (!customer) {
+        throw new Error('Failed to save customer data')
       }
 
-      if (initialData?.id) {
-        const { error } = await supabase
-          .from('special_orders')
-          .update(orderData)
-          .eq('id', initialData.id)
-
-        if (error) throw error
-
+      // Show message if customer was updated
+      if (formData.customer_email !== customer.email || formData.customer_phone !== customer.phone) {
         toast({
-          title: 'Success',
-          description: 'Special order updated successfully',
-        })
-      } else {
-        const { error } = await supabase
-          .from('special_orders')
-          .insert([orderData])
-
-        if (error) throw error
-
-        toast({
-          title: 'Success',
-          description: 'Special order created successfully',
-        })
-
-        // Reset form
-        setProductLines([{
-          sku: '',
-          description: '',
-          quantity: 1,
-          unit_price: 0,
-          total_price: 0
-        }])
-        setFormData({
-          customer_name: '',
-          customer_email: '',
-          customer_phone: '',
-          customer_street: '',
-          customer_city: '',
-          customer_state: '',
-          customer_zip: '',
-          sku: '',
-          description: '',
-          quantity: 1,
-          unit_price: 0,
-          total_price: 0,
-          special_requests: '',
-          status: 'pending',
+          title: 'Customer Updated',
+          description: 'Existing customer record was updated with new information',
         })
       }
 
-      onSuccess?.()
+      // Save orders for each product line
+      for (const line of productLines) {
+        const { error } = await supabase
+          .from('special_orders')
+          .insert([{
+            customer_id: customer.id,
+            sku: line.sku,
+            description: line.description,
+            quantity: line.quantity,
+            unit_price: line.unit_price,
+            total_price: line.total_price,
+            special_requests: formData.special_requests,
+            status: formData.status
+          }])
+
+        if (error) {
+          console.error('Supabase error:', {
+            message: error.message,
+            details: error.details,
+            code: error.code
+          });
+          throw error;
+        }
+      }
+
+      toast({ title: 'Success', description: 'Order saved successfully' });
+      onSuccess?.();
     } catch (error) {
       toast({
         title: 'Error',
-        description: error instanceof Error ? error.message : 'Failed to save special order',
+        description: error instanceof Error ? error.message : 'Failed to save order',
         variant: 'destructive',
-      })
+      });
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
   }
 
@@ -173,88 +175,100 @@ export function SpecialOrderForm({ initialData, onSuccess }: SpecialOrderFormPro
       <CardContent>
         <form onSubmit={handleSubmit} className="space-y-6">
           <div className="border rounded-lg p-6 mb-6">
-            <h3 className="text-2xl underline font-bold mb-4">Customer Information</h3>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <div className="space-y-2">
-                <Label className="text-lg" htmlFor="customer_name">Customer Name *</Label>
-                <Input
-                  id="customer_name"
-                  value={formData.customer_name}
-                  onChange={(e) => handleInputChange('customer_name', e.target.value)}
-                  required
-                  className="text-base"
-                />
-              </div>
-
-              <div className="space-y-2">
-                <Label className="text-lg" htmlFor="customer_email">Customer Email *</Label>
-                <Input
-                  id="customer_email"
-                  type="email"
-                  value={formData.customer_email}
-                  onChange={(e) => handleInputChange('customer_email', e.target.value)}
-                  required
-                  className="text-base"
-                />
-              </div>
-
-              <div className="space-y-2">
-                <Label className="text-lg" htmlFor="customer_phone">Customer Phone *</Label>
-                <Input
-                  id="customer_phone"
-                  type="tel"
-                  value={formatPhoneNumber(formData.customer_phone)}
-                  onChange={(e) => {
-                    const digits = e.target.value.replace(/\D/g, '');
-                    handleInputChange('customer_phone', digits);
-                  }}
-                  required
-                  maxLength={14}
-                  placeholder="(123) 456-7890"
-                  className="text-base"
-                />
-              </div>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
-              <div className="space-y-2">
-                <Label className="text-lg" htmlFor="customer_street">Street Address</Label>
-                <Textarea
-                  id="customer_street"
-                  value={formData.customer_street}
-                  onChange={(e) => handleInputChange('customer_street', e.target.value)}
-                  className="min-h-[192px] text-base"
-                />
-              </div>
-              <div className="grid grid-cols-1 gap-4">
+            <div className="space-y-4">
+              <h3 className="text-lg font-semibold">Customer Information</h3>
+              <CustomerSearch 
+                onSelect={(customer) => {
+                  setFormData({
+                    ...formData,
+                    customer_name: customer.name,
+                    customer_email: customer.email,
+                    customer_phone: customer.phone,
+                    customer_street: customer.street || '',
+                    customer_city: customer.city || '',
+                    customer_state: customer.state || '',
+                    customer_zip: customer.zip || ''
+                  });
+                }}
+              />
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="space-y-2">
-                  <Label className="text-lg" htmlFor="customer_city">City</Label>
+                  <Label htmlFor="customer_name">Customer Name *</Label>
                   <Input
-                    id="customer_city"
-                    value={formData.customer_city}
-                    onChange={(e) => handleInputChange('customer_city', e.target.value)}
-                    className="text-base"
+                    id="customer_name"
+                    value={formData.customer_name}
+                    onChange={(e) => handleInputChange('customer_name', e.target.value)}
+                    required
                   />
                 </div>
 
                 <div className="space-y-2">
-                  <Label className="text-lg" htmlFor="customer_state">State</Label>
+                  <Label htmlFor="customer_email">Customer Email *</Label>
                   <Input
-                    id="customer_state"
-                    value={formData.customer_state}
-                    onChange={(e) => handleInputChange('customer_state', e.target.value)}
-                    className="text-base"
+                    id="customer_email"
+                    type="email"
+                    value={formData.customer_email}
+                    onChange={(e) => handleInputChange('customer_email', e.target.value)}
+                    required
                   />
                 </div>
 
                 <div className="space-y-2">
-                  <Label className="text-lg" htmlFor="customer_zip">ZIP Code</Label>
+                  <Label htmlFor="customer_phone">Customer Phone *</Label>
                   <Input
-                    id="customer_zip"
-                    value={formData.customer_zip}
-                    onChange={(e) => handleInputChange('customer_zip', e.target.value)}
-                    className="text-base"
+                    id="customer_phone"
+                    type="tel"
+                    value={formatPhoneNumber(formData.customer_phone)}
+                    onChange={(e) => {
+                      const digits = e.target.value.replace(/\D/g, '');
+                      handleInputChange('customer_phone', digits);
+                    }}
+                    required
+                    maxLength={14}
+                    placeholder="(123) 456-7890"
                   />
+                </div>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+                <div className="space-y-2">
+                  <Label className="text-lg" htmlFor="customer_street">Street Address</Label>
+                  <Textarea
+                    id="customer_street"
+                    value={formData.customer_street}
+                    onChange={(e) => handleInputChange('customer_street', e.target.value)}
+                    className="min-h-[192px] text-base"
+                  />
+                </div>
+                <div className="grid grid-cols-1 gap-4">
+                  <div className="space-y-2">
+                    <Label className="text-lg" htmlFor="customer_city">City</Label>
+                    <Input
+                      id="customer_city"
+                      value={formData.customer_city}
+                      onChange={(e) => handleInputChange('customer_city', e.target.value)}
+                      className="text-base"
+                    />
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label className="text-lg" htmlFor="customer_state">State</Label>
+                    <Input
+                      id="customer_state"
+                      value={formData.customer_state}
+                      onChange={(e) => handleInputChange('customer_state', e.target.value)}
+                      className="text-base"
+                    />
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label className="text-lg" htmlFor="customer_zip">ZIP Code</Label>
+                    <Input
+                      id="customer_zip"
+                      value={formData.customer_zip}
+                      onChange={(e) => handleInputChange('customer_zip', e.target.value)}
+                      className="text-base"
+                    />
+                  </div>
                 </div>
               </div>
             </div>
@@ -277,9 +291,13 @@ export function SpecialOrderForm({ initialData, onSuccess }: SpecialOrderFormPro
                   <Input
                     id={`sku-${index}`}
                     value={line.sku}
-                    onChange={(e) => updateProductLine(index, 'sku', e.target.value)}
+                    onChange={(e) => {
+                      console.log('SKU input changed:', e.target.value);
+                      updateProductLine(index, 'sku', e.target.value);
+                    }}
                     required
-                    className="text-base"
+                    className="text-base w-full"
+                    data-testid={`sku-input-${index}`}
                   />
                 </div>
 

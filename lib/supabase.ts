@@ -8,6 +8,11 @@ export const supabase = createClient(supabaseUrl, supabaseAnonKey)
 export type Database = {
   public: {
     Tables: {
+      customers: {
+        Row: Customer
+        Insert: Omit<Customer, 'id' | 'created_at' | 'updated_at'>
+        Update: Partial<Omit<Customer, 'id' | 'created_at'>>
+      }
       special_orders: {
         Row: SpecialOrderForm
         Insert: Omit<SpecialOrderForm, 'id' | 'created_at' | 'updated_at'>
@@ -30,6 +35,19 @@ export type Database = {
       }
     }
   }
+}
+
+export interface Customer {
+  id: string
+  name: string
+  email: string
+  phone: string
+  street?: string
+  city?: string
+  state?: string
+  zip?: string
+  created_at: string
+  updated_at: string
 }
 
 export interface SpecialOrderForm {
