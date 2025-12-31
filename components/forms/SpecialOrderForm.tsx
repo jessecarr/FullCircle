@@ -43,14 +43,14 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
         total_price: line.total_price || 0,
       }))
     }
-    // Otherwise, create a single line from initialData or empty
+    // Otherwise, create a single empty line for new orders
     return [{
-      sku: initialData?.sku || '',
-      description: initialData?.description || '',
-      vendor: initialData?.vendor || '',
-      quantity: initialData?.quantity || 1,
-      unit_price: initialData?.unit_price || 0,
-      total_price: initialData?.total_price || 0,
+      sku: '',
+      description: '',
+      vendor: '',
+      quantity: 1,
+      unit_price: 0,
+      total_price: 0,
     }]
   })
   const [rowHeights, setRowHeights] = useState<{[key: number]: string}>({})
