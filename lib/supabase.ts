@@ -41,17 +41,11 @@ export interface SpecialOrderForm {
   customer_city?: string
   customer_state?: string
   customer_zip?: string
-  firearm_type: string
-  manufacturer: string
-  model: string
-  caliber: string
-  serial_number?: string
   sku: string
   description: string
   quantity: number
   unit_price: number
   total_price: number
-  deposit_amount?: number
   special_requests?: string
   status: 'pending' | 'ordered' | 'received' | 'completed' | 'cancelled'
   created_at: string
