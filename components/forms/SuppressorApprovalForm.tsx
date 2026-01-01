@@ -903,18 +903,16 @@ export function SuppressorApprovalForm({ initialData, onSuccess, onCancel }: Spe
               />
             </div>
 
-            <div className="grid grid-cols-13 gap-4 items-end mb-1">
+            <div className="grid grid-cols-9 gap-4 items-end mb-1">
               <div className="col-span-2"><Label className="text-lg">Control # *</Label></div>
               <div className="col-span-2"><Label className="text-lg">Manufacturer *</Label></div>
               <div className="col-span-2"><Label className="text-lg">Model *</Label></div>
               <div className="col-span-2"><Label className="text-lg">Serial # *</Label></div>
-              <div className="col-span-2"><Label className="text-lg">Order Type *</Label></div>
-              <div className="col-span-1"><Label className="text-lg">Price *</Label></div>
               <div className="col-span-1"><Label className="text-lg"></Label></div> {/* Delete button header */}
             </div>
             
             {productLines.map((line, index) => (
-              <div key={index} className="grid grid-cols-13 gap-4 items-end mb-2">
+              <div key={index} className="grid grid-cols-9 gap-4 items-end mb-2">
                 <div className="col-span-2">
                   <Textarea
                     id={`control_number-${index}`}
@@ -1029,60 +1027,6 @@ export function SuppressorApprovalForm({ initialData, onSuccess, onCancel }: Spe
                   />
                 </div>
 
-                <div className="col-span-2">
-                  <Select 
-                    value={line.order_type} 
-                    onValueChange={(value) => {
-                    // Calculate new price based on order type
-                    const newPrice = value === 'Transfer' ? 40 : 0
-                    // Update all fields in a single state update
-                    const updated = [...productLines]
-                    updated[index] = {
-                      ...updated[index],
-                      order_type: value,
-                      unit_price: newPrice
-                    }
-                    setProductLines(updated)
-                    // Recalculate row height after value change to sync all fields
-                    setTimeout(() => recalculateRowHeight(index), 10)
-                  }}
-                  >
-                    <SelectTrigger 
-                      className="bg-white text-black border" 
-                      suppressHydrationWarning
-                      style={{ 
-                        height: isClient ? (rowHeights[index] || '48px') : '48px',
-                        minHeight: '48px',
-                        whiteSpace: 'normal',
-                        wordWrap: 'break-word'
-                      }}
-                      data-order-type-row={index}
-                    >
-                      <div style={{ whiteSpace: 'normal', wordWrap: 'break-word', width: '100%' }}>
-                        <SelectValue placeholder="Select order type" />
-                      </div>
-                    </SelectTrigger>
-                    <SelectContent className="bg-white border border-gray-300 text-black" style={{ maxWidth: '200px' }}>
-                      <SelectItem value="Transfer" className="hover:bg-gray-100" style={{ whiteSpace: 'normal', wordWrap: 'break-word' }}>TRANSFER</SelectItem>
-                      <SelectItem value="Purchased From FCR" className="hover:bg-gray-100" style={{ whiteSpace: 'normal', wordWrap: 'break-word' }}>PURCHASED FROM FCR</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-
-                <div className="col-span-1">
-                  <Input
-                    id={`unit_price-${index}`}
-                    type="number"
-                    min="0"
-                    step="0.01"
-                    value={line.unit_price}
-                    onChange={(e) => updateProductLine(index, 'unit_price', parseFloat(e.target.value))}
-                    required
-                    className="w-24 text-base text-center text-left"
-                    style={{ height: isClient ? (rowHeights[index] || '48px') : '48px' }}
-                  />
-                </div>
-
                 <div className="col-span-1">
                   <Button
                     type="button"
@@ -1101,8 +1045,6 @@ export function SuppressorApprovalForm({ initialData, onSuccess, onCancel }: Spe
                     </svg>
                   </Button>
                 </div>
-
-                <div className="col-span-2"></div> {/* Extra space */}
               </div>
             ))}
             
@@ -1114,20 +1056,6 @@ export function SuppressorApprovalForm({ initialData, onSuccess, onCancel }: Spe
             >
               + Add Product Line
             </Button>
-            
-            {/* Order Total Summary */}
-            <div className="mt-6 p-4 bg-gray-50 rounded-lg border">
-              <div className="space-y-2">
-                <div className="flex justify-between text-lg">
-                  <span className="font-semibold">Subtotal:</span>
-                  <span>${productLines.reduce((acc, line) => acc + line.unit_price, 0).toFixed(2)}</span>
-                </div>
-                <div className="flex justify-between text-xl font-bold border-t pt-2">
-                  <span>Total:</span>
-                  <span>${productLines.reduce((acc, line) => acc + line.unit_price, 0).toFixed(2)}</span>
-                </div>
-              </div>
-            </div>
           </div>
 
           
