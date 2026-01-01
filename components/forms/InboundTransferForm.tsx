@@ -608,14 +608,6 @@ export function InboundTransferForm({ initialData, onSuccess, onCancel }: Specia
           ` : ''}
         </div>
 
-        <div class="print-footer">
-          <div>Generated on ${new Date().toLocaleDateString('en-US', {
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric'
-          })}</div>
-          <div>Form ID: ${initialData?.id || 'temp-' + Date.now()}</div>
-        </div>
       </body>
       </html>
     `;
