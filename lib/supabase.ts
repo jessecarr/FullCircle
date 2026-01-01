@@ -160,21 +160,25 @@ export interface OutboundTransferForm {
   customer_city?: string
   customer_state?: string
   customer_zip?: string
-  transferee_name: string
+  transferee_name?: string
+  transferee_phone?: string
+  transferee_ffl_name?: string
+  transferee_ffl_phone?: string
+  transferee_ffl_address?: string
   transferee_ffl?: string
-  transferee_address: string
-  transferee_city: string
-  transferee_state: string
-  transferee_zip: string
-  firearm_type: string
-  manufacturer: string
-  model: string
-  caliber: string
-  serial_number: string
+  transferee_address?: string
+  transferee_city?: string
+  transferee_state?: string
+  transferee_zip?: string
+  firearm_type?: string
+  manufacturer?: string
+  model?: string
+  caliber?: string
+  serial_number?: string
   product_lines?: any[]
   special_requests?: string
-  transfer_date: string
-  atf_form_type: string
+  transfer_date?: string
+  atf_form_type?: string
   tracking_number?: string
   carrier?: string
   notes?: string

@@ -7,7 +7,7 @@ import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { supabase, type SpecialOrderForm as SpecialOrderFormType } from '@/lib/supabase'
+import { supabase, type OutboundTransferForm as OutboundTransferFormType } from '@/lib/supabase'
 import { useToast } from '@/components/ui/use-toast'
 import CustomerSearch from '../CustomerSearch'
 import { lookupZipCode, isValidZipCode } from '@/lib/zipLookup'
@@ -27,8 +27,8 @@ interface FastBoundInventoryItem {
   price: number | null
 }
 
-interface SpecialOrderFormProps {
-  initialData?: SpecialOrderFormType
+interface OutboundTransferFormProps {
+  initialData?: OutboundTransferFormType
   onSuccess?: () => void
   onCancel?: () => void
 }
@@ -45,7 +45,7 @@ interface ProductLine {
   caliber?: string
 }
 
-export function OutboundTransferForm({ initialData, onSuccess, onCancel }: SpecialOrderFormProps) {
+export function OutboundTransferForm({ initialData, onSuccess, onCancel }: OutboundTransferFormProps) {
   const { toast } = useToast()
   const [loading, setLoading] = useState(false)
   const [productLines, setProductLines] = useState<ProductLine[]>(() => {
@@ -97,6 +97,11 @@ export function OutboundTransferForm({ initialData, onSuccess, onCancel }: Speci
     customer_city: initialData?.customer_city || '',
     customer_state: initialData?.customer_state || '',
     customer_zip: initialData?.customer_zip || '',
+    transferee_name: initialData?.transferee_name || '',
+    transferee_phone: initialData?.transferee_phone || '',
+    transferee_ffl_name: initialData?.transferee_ffl_name || '',
+    transferee_ffl_phone: initialData?.transferee_ffl_phone || '',
+    transferee_ffl_address: initialData?.transferee_ffl_address || '',
     special_requests: initialData?.special_requests || ''
   })
 
@@ -252,7 +257,17 @@ export function OutboundTransferForm({ initialData, onSuccess, onCancel }: Speci
     if (!formData.customer_name || !formData.customer_phone || !formData.customer_street || !formData.customer_city || !formData.customer_state || !formData.customer_zip) {
       toast({
         title: 'Validation Error',
-        description: 'Please fill in all required customer fields',
+        description: 'Please fill in all required transferor fields',
+        variant: 'destructive',
+      })
+      return
+    }
+
+    // Validate transferee required fields
+    if (!formData.transferee_name || !formData.transferee_phone || !formData.transferee_ffl_name || !formData.transferee_ffl_phone || !formData.transferee_ffl_address) {
+      toast({
+        title: 'Validation Error',
+        description: 'Please fill in all required transferee fields',
         variant: 'destructive',
       })
       return
@@ -626,7 +641,7 @@ export function OutboundTransferForm({ initialData, onSuccess, onCancel }: Speci
           <form onSubmit={handleSubmit} className="space-y-6">
           <div className="border rounded-lg p-6 mb-6">
             <div className="space-y-4">
-              <h3 className="text-lg font-semibold">Customer Information</h3>
+              <h3 className="text-lg font-semibold">Transferor</h3>
               <CustomerSearch 
                 onSelect={(customer) => {
                   setFormData({
@@ -791,6 +806,102 @@ export function OutboundTransferForm({ initialData, onSuccess, onCancel }: Speci
                     />
                   </div>
                 </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="border rounded-lg p-6 mb-6">
+            <div className="space-y-4">
+              <h3 className="text-lg font-semibold">Transferee</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="space-y-2">
+                  <Label htmlFor="transferee_name">Transferee Name *</Label>
+                  <Input
+                    id="transferee_name"
+                    value={formData.transferee_name}
+                    onChange={(e) => handleInputChange('transferee_name', e.target.value.toUpperCase())}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter') {
+                        e.preventDefault();
+                        document.getElementById('transferee_phone')?.focus();
+                      }
+                    }}
+                    required
+                    className="uppercase"
+                  />
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="transferee_phone">Transferee Phone *</Label>
+                  <Input
+                    id="transferee_phone"
+                    type="tel"
+                    value={formatPhoneNumber(formData.transferee_phone)}
+                    onChange={(e) => {
+                      const digits = e.target.value.replace(/\D/g, '');
+                      handleInputChange('transferee_phone', digits);
+                    }}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter') {
+                        e.preventDefault();
+                        document.getElementById('transferee_ffl_name')?.focus();
+                      }
+                    }}
+                    required
+                    maxLength={14}
+                    placeholder="(123) 456-7890"
+                  />
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="transferee_ffl_name">Transferee FFL Name *</Label>
+                  <Input
+                    id="transferee_ffl_name"
+                    value={formData.transferee_ffl_name}
+                    onChange={(e) => handleInputChange('transferee_ffl_name', e.target.value.toUpperCase())}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter') {
+                        e.preventDefault();
+                        document.getElementById('transferee_ffl_phone')?.focus();
+                      }
+                    }}
+                    required
+                    className="uppercase"
+                  />
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="transferee_ffl_phone">Transferee FFL Phone *</Label>
+                  <Input
+                    id="transferee_ffl_phone"
+                    type="tel"
+                    value={formatPhoneNumber(formData.transferee_ffl_phone)}
+                    onChange={(e) => {
+                      const digits = e.target.value.replace(/\D/g, '');
+                      handleInputChange('transferee_ffl_phone', digits);
+                    }}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter') {
+                        e.preventDefault();
+                        document.getElementById('transferee_ffl_address')?.focus();
+                      }
+                    }}
+                    required
+                    maxLength={14}
+                    placeholder="(123) 456-7890"
+                  />
+                </div>
+              </div>
+
+              <div className="space-y-2">
+                <Label className="text-lg" htmlFor="transferee_ffl_address">Transferee FFL Address *</Label>
+                <Textarea
+                  id="transferee_ffl_address"
+                  value={formData.transferee_ffl_address}
+                  onChange={(e) => handleInputChange('transferee_ffl_address', e.target.value.toUpperCase())}
+                  className="min-h-[96px] text-base uppercase"
+                  required
+                />
               </div>
             </div>
           </div>
