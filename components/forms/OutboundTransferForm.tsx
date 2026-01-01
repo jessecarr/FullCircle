@@ -681,7 +681,7 @@ export function OutboundTransferForm({ initialData, onSuccess, onCancel }: Outbo
               />
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="space-y-2">
-                  <Label htmlFor="customer_name">Customer Name *</Label>
+                  <Label className="text-lg" htmlFor="customer_name">Customer Name *</Label>
                   <Input
                     id="customer_name"
                     value={formData.customer_name}
@@ -698,7 +698,7 @@ export function OutboundTransferForm({ initialData, onSuccess, onCancel }: Outbo
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="customer_phone">Customer Phone *</Label>
+                  <Label className="text-lg" htmlFor="customer_phone">Customer Phone *</Label>
                   <Input
                     id="customer_phone"
                     type="tel"
@@ -722,7 +722,7 @@ export function OutboundTransferForm({ initialData, onSuccess, onCancel }: Outbo
               
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
                 <div className="space-y-2">
-                  <Label htmlFor="drivers_license">Driver's License</Label>
+                  <Label className="text-lg" htmlFor="drivers_license">Driver's License</Label>
                   <Input
                     id="drivers_license"
                     value={formData.drivers_license}
@@ -738,7 +738,7 @@ export function OutboundTransferForm({ initialData, onSuccess, onCancel }: Outbo
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="license_expiration">Expiration Date</Label>
+                  <Label className="text-lg" htmlFor="license_expiration">Expiration Date</Label>
                   <Input
                     id="license_expiration"
                     type="date"
@@ -754,7 +754,7 @@ export function OutboundTransferForm({ initialData, onSuccess, onCancel }: Outbo
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="customer_email">Customer Email</Label>
+                  <Label className="text-lg" htmlFor="customer_email">Customer Email</Label>
                   <Input
                     id="customer_email"
                     type="email"
@@ -838,7 +838,7 @@ export function OutboundTransferForm({ initialData, onSuccess, onCancel }: Outbo
               <h3 className="text-lg font-semibold">Transferee</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="space-y-2">
-                  <Label htmlFor="transferee_name">Transferee Name *</Label>
+                  <Label className="text-lg" htmlFor="transferee_name">Transferee Name *</Label>
                   <Input
                     id="transferee_name"
                     value={formData.transferee_name}
@@ -855,7 +855,7 @@ export function OutboundTransferForm({ initialData, onSuccess, onCancel }: Outbo
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="transferee_phone">Transferee Phone *</Label>
+                  <Label className="text-lg" htmlFor="transferee_phone">Transferee Phone *</Label>
                   <Input
                     id="transferee_phone"
                     type="tel"
@@ -877,7 +877,7 @@ export function OutboundTransferForm({ initialData, onSuccess, onCancel }: Outbo
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="transferee_ffl_name">Transferee FFL Name *</Label>
+                  <Label className="text-lg" htmlFor="transferee_ffl_name">Transferee FFL Name *</Label>
                   <Input
                     id="transferee_ffl_name"
                     value={formData.transferee_ffl_name}
@@ -894,7 +894,7 @@ export function OutboundTransferForm({ initialData, onSuccess, onCancel }: Outbo
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="transferee_ffl_phone">Transferee FFL Phone *</Label>
+                  <Label className="text-lg" htmlFor="transferee_ffl_phone">Transferee FFL Phone *</Label>
                   <Input
                     id="transferee_ffl_phone"
                     type="tel"
@@ -1195,7 +1195,7 @@ export function OutboundTransferForm({ initialData, onSuccess, onCancel }: Outbo
           
           <div className="grid grid-cols-9 gap-4">
             <div className="col-span-2 space-y-2">
-              <Label htmlFor="disposition_date">Disposition Date</Label>
+              <Label className="text-lg" htmlFor="disposition_date">Disposition Date</Label>
               <Input
                 id="disposition_date"
                 type="date"

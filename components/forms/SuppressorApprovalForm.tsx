@@ -784,7 +784,7 @@ export function SuppressorApprovalForm({ initialData, onSuccess, onCancel }: Spe
               />
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="space-y-2">
-                  <Label htmlFor="customer_name">Customer Name *</Label>
+                  <Label className="text-lg" htmlFor="customer_name">Customer Name *</Label>
                   <Input
                     id="customer_name"
                     value={formData.customer_name}
@@ -801,7 +801,7 @@ export function SuppressorApprovalForm({ initialData, onSuccess, onCancel }: Spe
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="customer_phone">Customer Phone *</Label>
+                  <Label className="text-lg" htmlFor="customer_phone">Customer Phone *</Label>
                   <Input
                     id="customer_phone"
                     type="tel"
@@ -825,7 +825,7 @@ export function SuppressorApprovalForm({ initialData, onSuccess, onCancel }: Spe
               
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
                 <div className="space-y-2">
-                  <Label htmlFor="drivers_license">Driver's License</Label>
+                  <Label className="text-lg" htmlFor="drivers_license">Driver's License</Label>
                   <Input
                     id="drivers_license"
                     value={formData.drivers_license}
@@ -841,7 +841,7 @@ export function SuppressorApprovalForm({ initialData, onSuccess, onCancel }: Spe
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="license_expiration">Expiration Date</Label>
+                  <Label className="text-lg" htmlFor="license_expiration">Expiration Date</Label>
                   <Input
                     id="license_expiration"
                     type="date"
@@ -857,7 +857,7 @@ export function SuppressorApprovalForm({ initialData, onSuccess, onCancel }: Spe
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="customer_email">Customer Email</Label>
+                  <Label className="text-lg" htmlFor="customer_email">Customer Email</Label>
                   <Input
                     id="customer_email"
                     type="email"
@@ -1147,7 +1147,7 @@ export function SuppressorApprovalForm({ initialData, onSuccess, onCancel }: Spe
 
           
           <div className="space-y-2">
-            <Label htmlFor="special_requests">Special Requests</Label>
+            <Label className="text-lg" htmlFor="special_requests">Special Requests</Label>
             <Textarea
               id="special_requests"
               value={formData.special_requests}
