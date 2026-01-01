@@ -34,6 +34,7 @@ export default function FastBoundSearch({
   const [results, setResults] = useState<FastBoundItem[]>([])
   const [isOpen, setIsOpen] = useState(false)
   const [loading, setLoading] = useState(false)
+  const [highlightedIndex, setHighlightedIndex] = useState(-1)
   const wrapperRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -76,6 +77,7 @@ export default function FastBoundSearch({
       } else {
         setResults(data || [])
         setIsOpen(true)
+        setHighlightedIndex(-1) // Reset highlighted index when new results arrive
       }
     } catch (err) {
       console.error('FastBound search error:', err)
@@ -87,9 +89,42 @@ export default function FastBoundSearch({
 
   const handleSelect = (item: FastBoundItem) => {
     onSelect(item)
-    setQuery(`${item.manufacturer} ${item.model} - ${item.serial_number || 'N/A'}`)
+    setQuery('') // Clear the search field
     setIsOpen(false)
     setResults([])
+    setHighlightedIndex(-1)
+  }
+
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (!isOpen || results.length === 0) return
+
+    switch (e.key) {
+      case 'ArrowDown':
+        e.preventDefault()
+        setHighlightedIndex(prev => {
+          const newIndex = prev < results.length - 1 ? prev + 1 : 0
+          return newIndex
+        })
+        break
+      case 'ArrowUp':
+        e.preventDefault()
+        setHighlightedIndex(prev => {
+          const newIndex = prev > 0 ? prev - 1 : results.length - 1
+          return newIndex
+        })
+        break
+      case 'Enter':
+        e.preventDefault()
+        if (highlightedIndex >= 0 && highlightedIndex < results.length) {
+          handleSelect(results[highlightedIndex])
+        }
+        break
+      case 'Escape':
+        e.preventDefault()
+        setIsOpen(false)
+        setHighlightedIndex(-1)
+        break
+    }
   }
 
   return (
@@ -99,6 +134,7 @@ export default function FastBoundSearch({
         value={query}
         onChange={(e) => handleSearch(e.target.value)}
         onFocus={() => results.length > 0 && setIsOpen(true)}
+        onKeyDown={handleKeyDown}
         placeholder={placeholder}
         className="w-full text-base"
       />
@@ -111,11 +147,15 @@ export default function FastBoundSearch({
 
       {isOpen && results.length > 0 && (
         <div className="absolute z-50 w-full mt-1 bg-white border border-gray-200 rounded-md shadow-lg max-h-60 overflow-auto">
-          {results.map((item) => (
+          {results.map((item, index) => (
             <div
               key={item.id}
               onClick={() => handleSelect(item)}
-              className="px-4 py-3 hover:bg-gray-100 cursor-pointer border-b last:border-b-0"
+              className={`px-4 py-3 cursor-pointer border-b last:border-b-0 ${
+                index === highlightedIndex 
+                  ? 'bg-blue-100 border-blue-200' 
+                  : 'hover:bg-gray-100'
+              }`}
             >
               <div className="font-medium text-sm">
                 {item.manufacturer} {item.model}

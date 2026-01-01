@@ -10,7 +10,6 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { supabase, type SpecialOrderForm as SpecialOrderFormType } from '@/lib/supabase'
 import { useToast } from '@/components/ui/use-toast'
 import CustomerSearch from '../CustomerSearch'
-import VendorSearch from '../VendorSearch'
 import { lookupZipCode, isValidZipCode } from '@/lib/zipLookup'
 import { Printer, Search } from 'lucide-react'
 import FastBoundSearch from '../FastBoundSearch'
@@ -36,13 +35,12 @@ interface SpecialOrderFormProps {
 
 interface ProductLine {
   control_number: string
-  description: string
-  vendor: string
-  quantity: number
+  manufacturer: string
+  model: string
+  serial_number: string
+  order_type: string
   unit_price: number
-  total_price: number
   fastbound_item_id?: string
-  serial_number?: string
   firearm_type?: string
   caliber?: string
 }
@@ -55,21 +53,21 @@ export function InboundTransferForm({ initialData, onSuccess, onCancel }: Specia
     if (initialData?.product_lines && Array.isArray(initialData.product_lines)) {
       return initialData.product_lines.map((line: any) => ({
         control_number: line.control_number || '',
-        description: line.description || '',
-        vendor: line.vendor || '',
-        quantity: line.quantity || 1,
+        manufacturer: line.manufacturer || '',
+        model: line.model || '',
+        serial_number: line.serial_number || '',
+        order_type: line.order_type || '',
         unit_price: line.unit_price || 0,
-        total_price: line.total_price || 0,
       }))
     }
     // Otherwise, create a single empty line for new orders
     return [{
       control_number: '',
-      description: '',
-      vendor: '',
-      quantity: 1,
+      manufacturer: '',
+      model: '',
+      serial_number: '',
+      order_type: '',
       unit_price: 0,
-      total_price: 0,
     }]
   })
   const [rowHeights, setRowHeights] = useState<{[key: number]: string}>({})
@@ -79,6 +77,15 @@ export function InboundTransferForm({ initialData, onSuccess, onCancel }: Specia
   useEffect(() => {
     setIsClient(true)
   }, [])
+
+  // Trigger height recalculation when productLines change
+  useEffect(() => {
+    if (isClient) {
+      productLines.forEach((_, index) => {
+        setTimeout(() => recalculateRowHeight(index), 100)
+      })
+    }
+  }, [productLines, isClient])
   
   const [formData, setFormData] = useState({
     customer_name: initialData?.customer_name || '',
@@ -88,21 +95,18 @@ export function InboundTransferForm({ initialData, onSuccess, onCancel }: Specia
     customer_city: initialData?.customer_city || '',
     customer_state: initialData?.customer_state || '',
     customer_zip: initialData?.customer_zip || '',
-    delivery_method: initialData?.delivery_method || 'in_store_pickup',
-    special_requests: initialData?.special_requests || '',
-    status: initialData?.status || 'pending' as const
+    special_requests: initialData?.special_requests || ''
   })
 
   const addProductLine = () => {
     setProductLines([...productLines, {
       control_number: '',
-      description: '',
-      vendor: '',
-      quantity: 1,
-      unit_price: 0,
-      total_price: 0,
-      fastbound_item_id: '',
+      manufacturer: '',
+      model: '',
       serial_number: '',
+      order_type: '',
+      unit_price: 0,
+      fastbound_item_id: '',
       firearm_type: '',
       caliber: ''
     }])
@@ -113,24 +117,60 @@ export function InboundTransferForm({ initialData, onSuccess, onCancel }: Specia
     updated[index] = {
       ...updated[index],
       control_number: item.control_number || item.serial_number || '',
-      description: `${item.manufacturer || ''} ${item.model || ''} - ${item.caliber || ''}`.trim(),
-      unit_price: item.price || 0,
-      total_price: (item.price || 0) * updated[index].quantity,
-      fastbound_item_id: item.fastbound_item_id,
+      manufacturer: item.manufacturer || '',
+      model: item.model || '',
       serial_number: item.serial_number || '',
+      // Don't override price - let it be determined by order type
+      fastbound_item_id: item.fastbound_item_id,
       firearm_type: item.firearm_type || '',
       caliber: item.caliber || ''
     }
     setProductLines(updated)
   }
 
+  const handleControlNumberSearch = async (index: number, controlNumber: string) => {
+    if (!controlNumber.trim()) return
+    
+    try {
+      const response = await fetch(`/api/control-number?controlNumber=${encodeURIComponent(controlNumber.trim())}`)
+      if (!response.ok) {
+        if (response.status === 404) {
+          // Control number not found, don't show error to user, just don't auto-fill
+          return
+        }
+        throw new Error('Search failed')
+      }
+      
+      const item = await response.json()
+      if (item) {
+        // Auto-fill the fields with the found item data
+        const updated = [...productLines]
+        updated[index] = {
+          ...updated[index],
+          manufacturer: item.manufacturer || '',
+          model: item.model || '',
+          serial_number: item.serial_number || '',
+          fastbound_item_id: item.fastbound_item_id,
+          firearm_type: item.firearm_type || '',
+          caliber: item.caliber || ''
+        }
+        setProductLines(updated)
+        
+        toast({
+          title: 'Item Found',
+          description: 'Auto-filled manufacturer, model, and serial number',
+        })
+      }
+    } catch (error) {
+      console.error('Error searching control number:', error)
+      // Don't show error to user for failed searches, just log it
+    }
+  }
+
   const updateProductLine = (index: number, field: keyof ProductLine, value: any) => {
     console.log('Updating product line:', { index, field, value });
     const updated = [...productLines]
     updated[index] = { ...updated[index], [field]: value }
-    if (field === 'quantity' || field === 'unit_price') {
-      updated[index].total_price = updated[index].quantity * updated[index].unit_price
-    }
     setProductLines(updated)
   }
 
@@ -140,11 +180,7 @@ export function InboundTransferForm({ initialData, onSuccess, onCancel }: Specia
     }
   }
 
-  useEffect(() => {
-    const total = productLines.reduce((acc, line) => acc + line.total_price, 0)
-    setFormData(prev => ({ ...prev, total_price: total }))
-  }, [productLines])
-
+  
   const handleInputChange = (field: string, value: string | number) => {
     setFormData(prev => ({ ...prev, [field]: value }))
   }
@@ -168,14 +204,18 @@ export function InboundTransferForm({ initialData, onSuccess, onCancel }: Specia
     
     // Get all textarea elements in this row and find the max height
     const controlNumberField = document.getElementById(`control_number-${rowIndex}`) as HTMLTextAreaElement
-    const descField = document.getElementById(`description-${rowIndex}`) as HTMLTextAreaElement
-    const vendorField = document.querySelector(`[data-vendor-row="${rowIndex}"]`) as HTMLTextAreaElement
+    const manufacturerField = document.getElementById(`manufacturer-${rowIndex}`) as HTMLTextAreaElement
+    const modelField = document.getElementById(`model-${rowIndex}`) as HTMLTextAreaElement
+    const serialNumberField = document.getElementById(`serial_number-${rowIndex}`) as HTMLTextAreaElement
+    const orderTypeField = document.querySelector(`[data-order-type-row="${rowIndex}"]`) as HTMLElement
     
     let maxHeight = 48
     
     if (controlNumberField) maxHeight = Math.max(maxHeight, controlNumberField.scrollHeight)
-    if (descField) maxHeight = Math.max(maxHeight, descField.scrollHeight)
-    if (vendorField) maxHeight = Math.max(maxHeight, vendorField.scrollHeight)
+    if (manufacturerField) maxHeight = Math.max(maxHeight, manufacturerField.scrollHeight)
+    if (modelField) maxHeight = Math.max(maxHeight, modelField.scrollHeight)
+    if (serialNumberField) maxHeight = Math.max(maxHeight, serialNumberField.scrollHeight)
+    if (orderTypeField) maxHeight = Math.max(maxHeight, orderTypeField.scrollHeight || orderTypeField.offsetHeight)
     
     setRowHeights(prev => ({
       ...prev,
@@ -231,7 +271,7 @@ export function InboundTransferForm({ initialData, onSuccess, onCancel }: Specia
 
     try {
       // Calculate total price for all product lines
-      const totalAmount = productLines.reduce((acc, line) => acc + line.total_price, 0);
+      const totalAmount = productLines.reduce((acc, line) => acc + line.unit_price, 0);
 
       if (initialData) {
         // Update existing order
@@ -254,9 +294,7 @@ export function InboundTransferForm({ initialData, onSuccess, onCancel }: Specia
           customer_zip: formData.customer_zip,
           product_lines: productLines,
           total_price: totalAmount,
-          delivery_method: formData.delivery_method,
-          special_requests: formData.special_requests,
-          status: formData.status
+          special_requests: formData.special_requests
         });
 
         try {
@@ -272,9 +310,7 @@ export function InboundTransferForm({ initialData, onSuccess, onCancel }: Specia
               customer_zip: formData.customer_zip,
               product_lines: productLines,
               total_price: totalAmount,
-              delivery_method: formData.delivery_method,
-              special_requests: formData.special_requests,
-              status: formData.status
+              special_requests: formData.special_requests
             })
             .eq('id', initialData.id)
             .select();
@@ -324,9 +360,7 @@ export function InboundTransferForm({ initialData, onSuccess, onCancel }: Specia
             customer_zip: formData.customer_zip,
             product_lines: productLines,
             total_price: totalAmount,
-            delivery_method: formData.delivery_method,
-            special_requests: formData.special_requests,
-            status: formData.status
+            special_requests: formData.special_requests
           }])
 
         if (error) {
@@ -363,9 +397,9 @@ export function InboundTransferForm({ initialData, onSuccess, onCancel }: Specia
 
   const handlePrint = () => {
     // Calculate totals
-    const subtotal = productLines.reduce((acc, line) => acc + line.total_price, 0);
-    const tax = subtotal * 0.0795;
-    const total = subtotal * 1.0795;
+    const subtotal = productLines.reduce((acc, line) => acc + line.unit_price, 0);
+    const tax = 0; // No tax as requested
+    const total = subtotal;
 
     // Create print content
     const printContent = `
@@ -526,23 +560,23 @@ export function InboundTransferForm({ initialData, onSuccess, onCancel }: Specia
           <table class="print-table">
             <thead>
               <tr>
-                <th style="width: 15%">Control Number</th>
-                <th style="width: 35%">Description</th>
-                <th style="width: 20%">Vendor</th>
-                <th style="width: 10%">Qty</th>
+                <th style="width: 15%">Control #</th>
+                <th style="width: 30%">Manufacturer</th>
+                <th style="width: 15%">Model</th>
+                <th style="width: 15%">Serial #</th>
+                <th style="width: 15%">Order Type</th>
                 <th style="width: 10%">Unit Price</th>
-                <th style="width: 10%">Total</th>
               </tr>
             </thead>
             <tbody>
               ${productLines.map((line, index) => `
                 <tr key="${index}">
                   <td>${line.control_number || '-'}</td>
-                  <td>${line.description || '-'}</td>
-                  <td>${line.vendor || '-'}</td>
-                  <td>${line.quantity || 1}</td>
+                  <td>${line.manufacturer || '-'}</td>
+                  <td>${line.model || '-'}</td>
+                  <td>${line.serial_number || '-'}</td>
+                  <td>${line.order_type || '-'}</td>
                   <td>$${(line.unit_price || 0).toFixed(2)}</td>
-                  <td>$${(line.total_price || 0).toFixed(2)}</td>
                 </tr>
               `).join('')}
             </tbody>
@@ -554,7 +588,7 @@ export function InboundTransferForm({ initialData, onSuccess, onCancel }: Specia
               <span>$${subtotal.toFixed(2)}</span>
             </div>
             <div class="print-total-row">
-              <span style="font-weight: bold">Tax (7.95%):</span>
+              <span style="font-weight: bold">Tax:</span>
               <span>$${tax.toFixed(2)}</span>
             </div>
             <div class="print-total-row final">
@@ -566,16 +600,6 @@ export function InboundTransferForm({ initialData, onSuccess, onCancel }: Specia
 
         <div class="print-section">
           <div class="print-section-title">Order Details</div>
-          <div class="print-field">
-            <div class="print-label">Delivery Method:</div>
-            <div class="print-value">
-              ${formData.delivery_method === 'in_store_pickup' ? 'In-Store Pickup' : 'Ship to Customer'}
-            </div>
-          </div>
-          <div class="print-field">
-            <div class="print-label">Status:</div>
-            <div class="print-value">${formData.status.charAt(0).toUpperCase() + formData.status.slice(1)}</div>
-          </div>
           ${formData.special_requests ? `
             <div class="print-field">
               <div class="print-label">Special Requests:</div>
@@ -758,7 +782,7 @@ export function InboundTransferForm({ initialData, onSuccess, onCancel }: Specia
             <h3 className="text-xl underline font-bold mb-4">Items</h3>
             
             {/* FastBound Inventory Search */}
-            <div className="mb-6 p-4 bg-blue-50 rounded-lg border border-blue-200">
+            <div className="mb-2 p-4 bg-blue-50 rounded-lg border border-blue-200">
               <Label className="text-lg font-semibold flex items-center gap-2 mb-2">
                 <Search className="h-5 w-5" />
                 Search FastBound Inventory
@@ -771,30 +795,34 @@ export function InboundTransferForm({ initialData, onSuccess, onCancel }: Specia
                   // Add a new line with the FastBound item data
                   const newLine: ProductLine = {
                     control_number: item.control_number || item.serial_number || '',
-                    description: `${item.manufacturer || ''} ${item.model || ''} - ${item.caliber || ''}`.trim(),
-                    vendor: '',
-                    quantity: 1,
-                    unit_price: item.price || 0,
-                    total_price: item.price || 0,
-                    fastbound_item_id: item.fastbound_item_id,
+                    manufacturer: item.manufacturer || '',
+                    model: item.model || '',
                     serial_number: item.serial_number || '',
+                    order_type: '',
+                    unit_price: 0, // Will be updated when order type is selected
+                    fastbound_item_id: item.fastbound_item_id,
                     firearm_type: item.firearm_type || '',
                     caliber: item.caliber || ''
                   }
                   setProductLines([...productLines, newLine])
+                  // Recalculate height for the newly added row after a short delay
+                  setTimeout(() => {
+                    const newIndex = productLines.length
+                    recalculateRowHeight(newIndex)
+                  }, 100)
                 }}
                 placeholder="Search by serial number, manufacturer, or model..."
               />
             </div>
 
-            <div className="grid grid-cols-13 gap-4 items-end mb-2">
-              <div className="col-span-2"><Label className="text-lg">Serial / Control # *</Label></div>
-              <div className="col-span-5"><Label className="text-lg">Description *</Label></div>
-              <div className="col-span-1"><Label className="text-lg">Qty *</Label></div>
+            <div className="grid grid-cols-13 gap-4 items-end mb-1">
+              <div className="col-span-2"><Label className="text-lg">Control # *</Label></div>
+              <div className="col-span-2"><Label className="text-lg">Manufacturer *</Label></div>
+              <div className="col-span-2"><Label className="text-lg">Model *</Label></div>
+              <div className="col-span-2"><Label className="text-lg">Serial # *</Label></div>
+              <div className="col-span-2"><Label className="text-lg">Order Type *</Label></div>
               <div className="col-span-1"><Label className="text-lg">Price *</Label></div>
-              <div className="col-span-1"><Label className="text-lg">Total *</Label></div>
-              <div className="col-span-2"><Label className="text-lg">Vendor</Label></div>
-              <div className="col-span-1"></div> {/* Delete button */}
+              <div className="col-span-1"><Label className="text-lg"></Label></div> {/* Delete button header */}
             </div>
             
             {productLines.map((line, index) => (
@@ -807,8 +835,21 @@ export function InboundTransferForm({ initialData, onSuccess, onCancel }: Specia
                       console.log('Control Number input changed:', e.target.value);
                       updateProductLine(index, 'control_number', e.target.value.toUpperCase());
                     }}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter') {
+                        e.preventDefault();
+                        // Move focus to manufacturer field
+                        const manufacturerField = document.getElementById(`manufacturer-${index}`) as HTMLTextAreaElement;
+                        if (manufacturerField) {
+                          manufacturerField.focus();
+                        }
+                      }
+                    }}
+                    onBlur={(e) => {
+                      handleControlNumberSearch(index, e.target.value);
+                    }}
                     required
-                    className="text-base w-full min-h-[48px] resize-none overflow-hidden uppercase"
+                    className="text-base w-full min-h-[48px] resize-none overflow-hidden uppercase text-center text-left"
                     rows={1}
                     style={{
                       height: isClient ? (rowHeights[index] || '48px') : '48px',
@@ -824,16 +865,17 @@ export function InboundTransferForm({ initialData, onSuccess, onCancel }: Specia
                       setTimeout(() => recalculateRowHeight(index), 10);
                     }}
                     data-testid={`control-number-input-${index}`}
+                    placeholder="ENTER CONTROL #"
                   />
                 </div>
 
-                <div className="col-span-5">
+                <div className="col-span-2">
                   <Textarea
-                    id={`description-${index}`}
-                    value={line.description}
-                    onChange={(e) => updateProductLine(index, 'description', e.target.value.toUpperCase())}
+                    id={`manufacturer-${index}`}
+                    value={line.manufacturer}
+                    onChange={(e) => updateProductLine(index, 'manufacturer', e.target.value.toUpperCase())}
                     required
-                    className="min-h-[48px] w-full text-base resize-none overflow-hidden uppercase"
+                    className="min-h-[48px] w-full text-base resize-none overflow-hidden uppercase text-left"
                     rows={1}
                     style={{
                       height: isClient ? (rowHeights[index] || '48px') : '48px',
@@ -844,24 +886,99 @@ export function InboundTransferForm({ initialData, onSuccess, onCancel }: Specia
                       target.style.height = 'auto';
                       const newHeight = `${target.scrollHeight}px`;
                       target.style.height = newHeight;
-                      handleFieldHeightChange(index, `description-${index}`, newHeight);
+                      handleFieldHeightChange(index, `manufacturer-${index}`, newHeight);
                       // Recalculate after a short delay to ensure proper shrinking
                       setTimeout(() => recalculateRowHeight(index), 10);
                     }}
                   />
                 </div>
 
-                <div className="col-span-1">
-                  <Input
-                    id={`quantity-${index}`}
-                    type="number"
-                    min="1"
-                    value={line.quantity}
-                    onChange={(e) => updateProductLine(index, 'quantity', parseInt(e.target.value))}
+                <div className="col-span-2">
+                  <Textarea
+                    id={`model-${index}`}
+                    value={line.model}
+                    onChange={(e) => updateProductLine(index, 'model', e.target.value.toUpperCase())}
                     required
-                    className="w-20 text-base"
-                    style={{ height: isClient ? (rowHeights[index] || '48px') : '48px' }}
+                    className="min-h-[48px] w-full text-base resize-none overflow-hidden uppercase text-left"
+                    rows={1}
+                    style={{
+                      height: isClient ? (rowHeights[index] || '48px') : '48px',
+                      minHeight: '48px'
+                    }}
+                    onInput={(e) => {
+                      const target = e.target as HTMLTextAreaElement;
+                      target.style.height = 'auto';
+                      const newHeight = `${target.scrollHeight}px`;
+                      target.style.height = newHeight;
+                      handleFieldHeightChange(index, `model-${index}`, newHeight);
+                      // Recalculate after a short delay to ensure proper shrinking
+                      setTimeout(() => recalculateRowHeight(index), 10);
+                    }}
                   />
+                </div>
+
+                <div className="col-span-2">
+                  <Textarea
+                    id={`serial_number-${index}`}
+                    value={line.serial_number}
+                    onChange={(e) => updateProductLine(index, 'serial_number', e.target.value.toUpperCase())}
+                    required
+                    className="min-h-[48px] w-full text-base resize-none overflow-hidden uppercase text-left"
+                    rows={1}
+                    style={{
+                      height: isClient ? (rowHeights[index] || '48px') : '48px',
+                      minHeight: '48px'
+                    }}
+                    onInput={(e) => {
+                      const target = e.target as HTMLTextAreaElement;
+                      target.style.height = 'auto';
+                      const newHeight = `${target.scrollHeight}px`;
+                      target.style.height = newHeight;
+                      handleFieldHeightChange(index, `serial_number-${index}`, newHeight);
+                      // Recalculate after a short delay to ensure proper shrinking
+                      setTimeout(() => recalculateRowHeight(index), 10);
+                    }}
+                  />
+                </div>
+
+                <div className="col-span-2">
+                  <Select 
+                    value={line.order_type} 
+                    onValueChange={(value) => {
+                    // Calculate new price based on order type
+                    const newPrice = value === 'Transfer' ? 40 : 0
+                    // Update all fields in a single state update
+                    const updated = [...productLines]
+                    updated[index] = {
+                      ...updated[index],
+                      order_type: value,
+                      unit_price: newPrice
+                    }
+                    setProductLines(updated)
+                    // Recalculate row height after value change to sync all fields
+                    setTimeout(() => recalculateRowHeight(index), 10)
+                  }}
+                  >
+                    <SelectTrigger 
+                      className="bg-white text-black border" 
+                      suppressHydrationWarning
+                      style={{ 
+                        height: isClient ? (rowHeights[index] || '48px') : '48px',
+                        minHeight: '48px',
+                        whiteSpace: 'normal',
+                        wordWrap: 'break-word'
+                      }}
+                      data-order-type-row={index}
+                    >
+                      <div style={{ whiteSpace: 'normal', wordWrap: 'break-word', width: '100%' }}>
+                        <SelectValue placeholder="Select order type" />
+                      </div>
+                    </SelectTrigger>
+                    <SelectContent className="bg-white border border-gray-300 text-black" style={{ maxWidth: '200px' }}>
+                      <SelectItem value="Transfer" className="hover:bg-gray-100" style={{ whiteSpace: 'normal', wordWrap: 'break-word' }}>TRANSFER</SelectItem>
+                      <SelectItem value="Purchased From FCR" className="hover:bg-gray-100" style={{ whiteSpace: 'normal', wordWrap: 'break-word' }}>PURCHASED FROM FCR</SelectItem>
+                    </SelectContent>
+                  </Select>
                 </div>
 
                 <div className="col-span-1">
@@ -873,32 +990,8 @@ export function InboundTransferForm({ initialData, onSuccess, onCancel }: Specia
                     value={line.unit_price}
                     onChange={(e) => updateProductLine(index, 'unit_price', parseFloat(e.target.value))}
                     required
-                    className="w-24 text-base"
+                    className="w-24 text-base text-center text-left"
                     style={{ height: isClient ? (rowHeights[index] || '48px') : '48px' }}
-                  />
-                </div>
-
-                <div className="col-span-1">
-                  <Input
-                    id={`total_price-${index}`}
-                    type="number"
-                    min="0"
-                    step="0.01"
-                    value={line.total_price}
-                    readOnly
-                    className="w-24 text-base"
-                    style={{ height: isClient ? (rowHeights[index] || '48px') : '48px' }}
-                  />
-                </div>
-
-                <div className="col-span-2">
-                  <VendorSearch
-                    value={line.vendor}
-                    onSelect={(vendorName) => updateProductLine(index, 'vendor', vendorName)}
-                    placeholder="Select vendor"
-                    height={rowHeights[index]}
-                    onHeightChange={(newHeight) => handleFieldHeightChange(index, `vendor-${index}`, newHeight)}
-                    rowIndex={index}
                   />
                 </div>
 
@@ -920,6 +1013,8 @@ export function InboundTransferForm({ initialData, onSuccess, onCancel }: Specia
                     </svg>
                   </Button>
                 </div>
+
+                <div className="col-span-2"></div> {/* Extra space */}
               </div>
             ))}
             
@@ -937,50 +1032,17 @@ export function InboundTransferForm({ initialData, onSuccess, onCancel }: Specia
               <div className="space-y-2">
                 <div className="flex justify-between text-lg">
                   <span className="font-semibold">Subtotal:</span>
-                  <span>${productLines.reduce((acc, line) => acc + line.total_price, 0).toFixed(2)}</span>
-                </div>
-                <div className="flex justify-between text-lg">
-                  <span className="font-semibold">Tax (7.95%):</span>
-                  <span>${(productLines.reduce((acc, line) => acc + line.total_price, 0) * 0.0795).toFixed(2)}</span>
+                  <span>${productLines.reduce((acc, line) => acc + line.unit_price, 0).toFixed(2)}</span>
                 </div>
                 <div className="flex justify-between text-xl font-bold border-t pt-2">
                   <span>Total:</span>
-                  <span>${(productLines.reduce((acc, line) => acc + line.total_price, 0) * 1.0795).toFixed(2)}</span>
+                  <span>${productLines.reduce((acc, line) => acc + line.unit_price, 0).toFixed(2)}</span>
                 </div>
               </div>
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="space-y-2">
-              <Label htmlFor="delivery_method">Delivery Method *</Label>
-              <Select value={formData.delivery_method} onValueChange={(value) => handleInputChange('delivery_method', value)}>
-                <SelectTrigger className="bg-white text-black border border-gray-300" suppressHydrationWarning>
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent className="bg-white border border-gray-300 text-black">
-                  <SelectItem value="in_store_pickup" className="hover:bg-gray-100">In-Store Pickup</SelectItem>
-                  <SelectItem value="ship_to_customer" className="hover:bg-gray-100">Ship to Customer</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="status">Status *</Label>
-              <Select value={formData.status} onValueChange={(value) => handleInputChange('status', value)}>
-                <SelectTrigger className="bg-white text-black border border-gray-300" suppressHydrationWarning>
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent className="bg-white border border-gray-300 text-black">
-                  <SelectItem value="pending" className="hover:bg-gray-100">Pending</SelectItem>
-                  <SelectItem value="ordered" className="hover:bg-gray-100">Ordered</SelectItem>
-                  <SelectItem value="received" className="hover:bg-gray-100">Received</SelectItem>
-                  <SelectItem value="completed" className="hover:bg-gray-100">Completed</SelectItem>
-                  <SelectItem value="cancelled" className="hover:bg-gray-100">Cancelled</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-          </div>
-
+          
           <div className="space-y-2">
             <Label htmlFor="special_requests">Special Requests</Label>
             <Textarea
