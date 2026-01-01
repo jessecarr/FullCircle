@@ -39,7 +39,6 @@ interface ProductLine {
   order_type: string
   model: string
   unit_price: number
-  total_price: number
   fastbound_item_id?: string
   serial_number?: string
   firearm_type?: string
@@ -58,7 +57,6 @@ export function InboundTransferForm({ initialData, onSuccess, onCancel }: Specia
         order_type: line.order_type || '',
         model: line.model || '',
         unit_price: line.unit_price || 0,
-        total_price: line.total_price || 0,
       }))
     }
     // Otherwise, create a single empty line for new orders
@@ -68,7 +66,6 @@ export function InboundTransferForm({ initialData, onSuccess, onCancel }: Specia
       order_type: '',
       model: '',
       unit_price: 0,
-      total_price: 0,
     }]
   })
   const [rowHeights, setRowHeights] = useState<{[key: number]: string}>({})
@@ -99,7 +96,6 @@ export function InboundTransferForm({ initialData, onSuccess, onCancel }: Specia
       order_type: '',
       model: '',
       unit_price: 0,
-      total_price: 0,
       fastbound_item_id: '',
       serial_number: '',
       firearm_type: '',
@@ -114,8 +110,7 @@ export function InboundTransferForm({ initialData, onSuccess, onCancel }: Specia
       control_number: item.control_number || item.serial_number || '',
       manufacturer: item.manufacturer || '',
       model: item.model || '',
-      unit_price: item.price || 0,
-      total_price: (item.price || 0),
+      // Don't override price - let it be determined by order type
       fastbound_item_id: item.fastbound_item_id,
       serial_number: item.serial_number || '',
       firearm_type: item.firearm_type || '',
@@ -137,11 +132,7 @@ export function InboundTransferForm({ initialData, onSuccess, onCancel }: Specia
     }
   }
 
-  useEffect(() => {
-    const total = productLines.reduce((acc, line) => acc + line.total_price, 0)
-    setFormData(prev => ({ ...prev, total_price: total }))
-  }, [productLines])
-
+  
   const handleInputChange = (field: string, value: string | number) => {
     setFormData(prev => ({ ...prev, [field]: value }))
   }
@@ -230,7 +221,7 @@ export function InboundTransferForm({ initialData, onSuccess, onCancel }: Specia
 
     try {
       // Calculate total price for all product lines
-      const totalAmount = productLines.reduce((acc, line) => acc + line.total_price, 0);
+      const totalAmount = productLines.reduce((acc, line) => acc + line.unit_price, 0);
 
       if (initialData) {
         // Update existing order
@@ -362,9 +353,9 @@ export function InboundTransferForm({ initialData, onSuccess, onCancel }: Specia
 
   const handlePrint = () => {
     // Calculate totals
-    const subtotal = productLines.reduce((acc, line) => acc + line.total_price, 0);
-    const tax = subtotal * 0.0795;
-    const total = subtotal * 1.0795;
+    const subtotal = productLines.reduce((acc, line) => acc + line.unit_price, 0);
+    const tax = 0; // No tax as requested
+    const total = subtotal;
 
     // Create print content
     const printContent = `
@@ -527,10 +518,9 @@ export function InboundTransferForm({ initialData, onSuccess, onCancel }: Specia
               <tr>
                 <th style="width: 15%">Control #</th>
                 <th style="width: 35%">Manufacturer</th>
-                <th style="width: 20%">Order Type</th>
                 <th style="width: 10%">Model</th>
-                <th style="width: 10%">Unit Price</th>
-                <th style="width: 10%">Total</th>
+                <th style="width: 20%">Order Type</th>
+                <th style="width: 20%">Unit Price</th>
               </tr>
             </thead>
             <tbody>
@@ -538,10 +528,9 @@ export function InboundTransferForm({ initialData, onSuccess, onCancel }: Specia
                 <tr key="${index}">
                   <td>${line.control_number || '-'}</td>
                   <td>${line.manufacturer || '-'}</td>
-                  <td>${line.order_type || '-'}</td>
                   <td>${line.model || '-'}</td>
+                  <td>${line.order_type || '-'}</td>
                   <td>$${(line.unit_price || 0).toFixed(2)}</td>
-                  <td>$${(line.total_price || 0).toFixed(2)}</td>
                 </tr>
               `).join('')}
             </tbody>
@@ -553,7 +542,7 @@ export function InboundTransferForm({ initialData, onSuccess, onCancel }: Specia
               <span>$${subtotal.toFixed(2)}</span>
             </div>
             <div class="print-total-row">
-              <span style="font-weight: bold">Tax (7.95%):</span>
+              <span style="font-weight: bold">Tax:</span>
               <span>$${tax.toFixed(2)}</span>
             </div>
             <div class="print-total-row final">
@@ -773,14 +762,18 @@ export function InboundTransferForm({ initialData, onSuccess, onCancel }: Specia
                     manufacturer: item.manufacturer || '',
                     order_type: '',
                     model: item.model || '',
-                    unit_price: item.price || 0,
-                    total_price: item.price || 0,
+                    unit_price: 0, // Will be updated when order type is selected
                     fastbound_item_id: item.fastbound_item_id,
                     serial_number: item.serial_number || '',
                     firearm_type: item.firearm_type || '',
                     caliber: item.caliber || ''
                   }
                   setProductLines([...productLines, newLine])
+                  // Recalculate height for the newly added row after a short delay
+                  setTimeout(() => {
+                    const newIndex = productLines.length
+                    recalculateRowHeight(newIndex)
+                  }, 100)
                 }}
                 placeholder="Search by serial number, manufacturer, or model..."
               />
@@ -789,12 +782,11 @@ export function InboundTransferForm({ initialData, onSuccess, onCancel }: Specia
             <div className="grid grid-cols-13 gap-4 items-end mb-2">
               <div className="col-span-2"><Label className="text-lg">Control # *</Label></div>
               <div className="col-span-3"><Label className="text-lg">Manufacturer *</Label></div>
-              <div className="col-span-2"><Label className="text-lg">Model *</Label></div>
+              <div className="col-span-3"><Label className="text-lg">Model *</Label></div>
+              <div className="col-span-2"><Label className="text-lg">Order Type *</Label></div>
               <div className="col-span-1"><Label className="text-lg">Price *</Label></div>
-              <div className="col-span-1"><Label className="text-lg">Total *</Label></div>
-              <div className="col-span-2"><Label className="text-lg">Order Type</Label></div>
-              <div className="col-span-1"></div> {/* Extra space */}
-              <div className="col-span-1"></div> {/* Delete button */}
+              <div className="col-span-1"><Label className="text-lg"></Label></div> {/* Delete button header */}
+              <div className="col-span-2"></div> {/* Extra space */}
             </div>
             
             {productLines.map((line, index) => (
@@ -851,7 +843,7 @@ export function InboundTransferForm({ initialData, onSuccess, onCancel }: Specia
                   />
                 </div>
 
-                <div className="col-span-2">
+                <div className="col-span-3">
                   <Textarea
                     id={`model-${index}`}
                     value={line.model}
@@ -875,6 +867,46 @@ export function InboundTransferForm({ initialData, onSuccess, onCancel }: Specia
                   />
                 </div>
 
+                <div className="col-span-2">
+                  <Select 
+                    value={line.order_type} 
+                    onValueChange={(value) => {
+                    // Calculate new price based on order type
+                    const newPrice = value === 'Transfer' ? 40 : 0
+                    // Update all fields in a single state update
+                    const updated = [...productLines]
+                    updated[index] = {
+                      ...updated[index],
+                      order_type: value,
+                      unit_price: newPrice
+                    }
+                    setProductLines(updated)
+                    // Recalculate row height after value change to sync all fields
+                    setTimeout(() => recalculateRowHeight(index), 10)
+                  }}
+                  >
+                    <SelectTrigger 
+                      className="bg-white text-black border" 
+                      suppressHydrationWarning
+                      style={{ 
+                        height: 'auto',
+                        minHeight: isClient ? (rowHeights[index] || '48px') : '48px',
+                        whiteSpace: 'normal',
+                        wordWrap: 'break-word'
+                      }}
+                      data-order-type-row={index}
+                    >
+                      <div style={{ whiteSpace: 'normal', wordWrap: 'break-word', width: '100%' }}>
+                        <SelectValue placeholder="Select order type" />
+                      </div>
+                    </SelectTrigger>
+                    <SelectContent className="bg-white border border-gray-300 text-black" style={{ maxWidth: '200px' }}>
+                      <SelectItem value="Transfer" className="hover:bg-gray-100" style={{ whiteSpace: 'normal', wordWrap: 'break-word' }}>TRANSFER</SelectItem>
+                      <SelectItem value="Purchased From FCR" className="hover:bg-gray-100" style={{ whiteSpace: 'normal', wordWrap: 'break-word' }}>PURCHASED FROM FCR</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+
                 <div className="col-span-1">
                   <Input
                     id={`unit_price-${index}`}
@@ -888,41 +920,6 @@ export function InboundTransferForm({ initialData, onSuccess, onCancel }: Specia
                     style={{ height: isClient ? (rowHeights[index] || '48px') : '48px' }}
                   />
                 </div>
-
-                <div className="col-span-1">
-                  <Input
-                    id={`total_price-${index}`}
-                    type="number"
-                    min="0"
-                    step="0.01"
-                    value={line.total_price}
-                    readOnly
-                    className="w-24 text-base"
-                    style={{ height: isClient ? (rowHeights[index] || '48px') : '48px' }}
-                  />
-                </div>
-
-                <div className="col-span-2">
-                  <Select 
-                    value={line.order_type} 
-                    onValueChange={(value) => updateProductLine(index, 'order_type', value)}
-                  >
-                    <SelectTrigger 
-                      className="bg-white text-black border" 
-                      suppressHydrationWarning
-                      style={{ height: isClient ? (rowHeights[index] || '48px') : '48px' }}
-                      data-order-type-row={index}
-                    >
-                      <SelectValue placeholder="Select order type" />
-                    </SelectTrigger>
-                    <SelectContent className="bg-white border border-gray-300 text-black">
-                      <SelectItem value="Transfer" className="hover:bg-gray-100">Transfer</SelectItem>
-                      <SelectItem value="Ordered through FCR" className="hover:bg-gray-100">Ordered through FCR</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-
-                <div className="col-span-1"></div> {/* Extra space */}
 
                 <div className="col-span-1">
                   <Button
@@ -942,6 +939,8 @@ export function InboundTransferForm({ initialData, onSuccess, onCancel }: Specia
                     </svg>
                   </Button>
                 </div>
+
+                <div className="col-span-2"></div> {/* Extra space */}
               </div>
             ))}
             
@@ -959,15 +958,11 @@ export function InboundTransferForm({ initialData, onSuccess, onCancel }: Specia
               <div className="space-y-2">
                 <div className="flex justify-between text-lg">
                   <span className="font-semibold">Subtotal:</span>
-                  <span>${productLines.reduce((acc, line) => acc + line.total_price, 0).toFixed(2)}</span>
-                </div>
-                <div className="flex justify-between text-lg">
-                  <span className="font-semibold">Tax (7.95%):</span>
-                  <span>${(productLines.reduce((acc, line) => acc + line.total_price, 0) * 0.0795).toFixed(2)}</span>
+                  <span>${productLines.reduce((acc, line) => acc + line.unit_price, 0).toFixed(2)}</span>
                 </div>
                 <div className="flex justify-between text-xl font-bold border-t pt-2">
                   <span>Total:</span>
-                  <span>${(productLines.reduce((acc, line) => acc + line.total_price, 0) * 1.0795).toFixed(2)}</span>
+                  <span>${productLines.reduce((acc, line) => acc + line.unit_price, 0).toFixed(2)}</span>
                 </div>
               </div>
             </div>
