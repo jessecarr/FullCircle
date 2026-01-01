@@ -26,13 +26,23 @@ export default function CustomerSearch({ onSelect }: CustomerSearchProps) {
     }
   };
 
+  const handleQueryChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newQuery = e.target.value;
+    setQuery(newQuery);
+    
+    // Clear results when search box is emptied
+    if (!newQuery.trim()) {
+      setResults([]);
+    }
+  };
+
   return (
     <div className="space-y-2">
       <div className="flex gap-2">
         <input
           type="text"
           value={query}
-          onChange={(e) => setQuery(e.target.value)}
+          onChange={handleQueryChange}
           placeholder="Search by email, phone, or name"
           className="flex-1 p-2 border rounded"
         />
