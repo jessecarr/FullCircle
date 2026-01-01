@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react'
 import { supabase } from '@/lib/supabase'
+import { printForm } from '@/lib/printUtils'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Eye, Edit, Trash2, Printer, Download, RefreshCw, ChevronDown } from 'lucide-react'
@@ -60,6 +61,27 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger }: 
   const [newStatus, setNewStatus] = useState('')
   const { toast } = useToast()
   const printRef = useRef<HTMLDivElement>(null)
+  const formTypeRef = useRef<HTMLDivElement>(null)
+  const statusRef = useRef<HTMLDivElement>(null)
+  const vendorRef = useRef<HTMLDivElement>(null)
+
+  // Close dropdowns when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (formTypeRef.current && !formTypeRef.current.contains(event.target as Node)) {
+        setShowFormTypeDropdown(false)
+      }
+      if (statusRef.current && !statusRef.current.contains(event.target as Node)) {
+        setShowStatusDropdown(false)
+      }
+      if (vendorRef.current && !vendorRef.current.contains(event.target as Node)) {
+        setShowVendorDropdown(false)
+      }
+    }
+
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => document.removeEventListener('mousedown', handleClickOutside)
+  }, [])
 
   const fetchAllItems = async () => {
     setLoading(true)
@@ -191,19 +213,13 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger }: 
   }
 
   const handlePrint = (item: any) => {
-    // Store the item data and trigger print via the parent component
-    if (onView) {
-      onView(item, item._formType)
-      // Delay to allow dialog to open, then trigger print
-      setTimeout(() => {
-        window.print()
-      }, 500)
-    }
+    // Use the print utility to generate proper print layout for each form type
+    printForm(item, item._formType)
   }
 
   const handleDownloadPDF = async (item: any) => {
-    // For now, use print to PDF functionality
-    handlePrint(item)
+    // Use print to PDF functionality - same as print but user saves as PDF
+    printForm(item, item._formType)
     toast({
       title: 'Download PDF',
       description: 'Use your browser\'s "Save as PDF" option in the print dialog',
@@ -307,8 +323,8 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger }: 
         <CardContent className="p-4">
           <div className="flex flex-wrap gap-6">
             {/* Form Type Filter */}
-            <div className="space-y-2 relative">
-              <Label className="text-lg">Form Type</Label>
+            <div className="flex flex-col space-y-2 relative" ref={formTypeRef}>
+              <Label className="text-lg block">Form Type</Label>
               <Button
                 variant="outline"
                 onClick={() => setShowFormTypeDropdown(!showFormTypeDropdown)}
@@ -338,8 +354,8 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger }: 
             </div>
 
             {/* Status Multi-Select Filter as Dropdown */}
-            <div className="space-y-2 relative">
-              <Label className="text-lg">Status Filter</Label>
+            <div className="flex flex-col space-y-2 relative" ref={statusRef}>
+              <Label className="text-lg block">Status Filter</Label>
               <Button
                 variant="outline"
                 onClick={() => setShowStatusDropdown(!showStatusDropdown)}
@@ -369,8 +385,8 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger }: 
             </div>
 
             {/* Vendor Filter */}
-            <div className="space-y-2 relative">
-              <Label className="text-lg">Vendor Filter</Label>
+            <div className="flex flex-col space-y-2 relative" ref={vendorRef}>
+              <Label className="text-lg block">Vendor Filter</Label>
               <Button
                 variant="outline"
                 onClick={() => setShowVendorDropdown(!showVendorDropdown)}

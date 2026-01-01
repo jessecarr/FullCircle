@@ -980,10 +980,8 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
                     onKeyDown={(e) => {
                       if (e.key === 'Enter') {
                         e.preventDefault();
-                        const nextIndex = index + 1;
-                        if (nextIndex < productLines.length) {
-                          document.getElementById(`sku-${nextIndex}`)?.focus();
-                        }
+                        // Move to total price field
+                        document.getElementById(`total_price-${index}`)?.focus();
                       }
                     }}
                     required
@@ -1000,6 +998,14 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
                     step="0.01"
                     value={line.total_price}
                     readOnly
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter') {
+                        e.preventDefault();
+                        // Move to vendor field (find by data attribute)
+                        const vendorField = document.querySelector(`[data-vendor-row="${index}"]`) as HTMLElement;
+                        vendorField?.focus();
+                      }
+                    }}
                     className="w-24 text-base"
                     style={{ height: isClient ? (rowHeights[index] || '48px') : '48px' }}
                   />
