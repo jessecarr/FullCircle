@@ -1,22 +1,41 @@
 'use client'
 
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { useAuth } from '@/hooks/useAuth'
 import { Header } from '@/components/Header'
-import { FileText, Users, ArrowRight, Package, Shield } from 'lucide-react'
+import { supabase } from '@/lib/supabase'
+import { FileText, Users, ArrowRight, Package, Shield, List } from 'lucide-react'
 
 export default function LandingPage() {
   const { user, loading } = useAuth()
   const router = useRouter()
+  const [activeOrdersCount, setActiveOrdersCount] = useState(0)
 
   useEffect(() => {
     if (!loading && !user) {
       router.push('/login')
     }
   }, [user, loading, router])
+
+  useEffect(() => {
+    const fetchActiveOrdersCount = async () => {
+      const { count, error } = await supabase
+        .from('special_orders')
+        .select('*', { count: 'exact', head: true })
+        .in('status', ['pending', 'ordered', 'received'])
+      
+      if (!error && count !== null) {
+        setActiveOrdersCount(count)
+      }
+    }
+    
+    if (user) {
+      fetchActiveOrdersCount()
+    }
+  }, [user])
 
   const formOptions = [
     {
@@ -50,6 +69,14 @@ export default function LandingPage() {
       href: '/?tab=suppressor-approval',
       color: 'bg-red-500',
       hoverColor: 'hover:bg-red-600'
+    },
+    {
+      title: 'View All Forms',
+      description: 'Browse and manage all submitted forms',
+      icon: List,
+      href: '/?tab=view-all',
+      color: 'bg-green-500',
+      hoverColor: 'hover:bg-green-600'
     },
     {
       title: 'Dashboard',
@@ -104,7 +131,7 @@ export default function LandingPage() {
                   onClick={() => router.push(option.href)}
                 >
                   <CardHeader className="flex flex-row items-center space-y-0 pb-4">
-                    <div className={`p-3 rounded-lg ${option.color} ${option.hoverColor} transition-colors`}>
+                    <div className={`p-3 rounded-lg ${option.color} ${option.hoverColor} transition-colors mr-3`}>
                       <Icon className="h-6 w-6 text-white" />
                     </div>
                     <div className="flex-1">
@@ -135,26 +162,8 @@ export default function LandingPage() {
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
               <Card>
                 <CardContent className="p-4">
-                  <div className="text-2xl font-bold text-blue-600">0</div>
-                  <p className="text-sm text-gray-600">Special Orders</p>
-                </CardContent>
-              </Card>
-              <Card>
-                <CardContent className="p-4">
-                  <div className="text-2xl font-bold text-green-600">0</div>
-                  <p className="text-sm text-gray-600">Customers</p>
-                </CardContent>
-              </Card>
-              <Card>
-                <CardContent className="p-4">
-                  <div className="text-2xl font-bold text-purple-600">0</div>
-                  <p className="text-sm text-gray-600">Pending Transfers</p>
-                </CardContent>
-              </Card>
-              <Card>
-                <CardContent className="p-4">
-                  <div className="text-2xl font-bold text-red-600">0</div>
-                  <p className="text-sm text-gray-600">NFA Applications</p>
+                  <div className="text-2xl font-bold text-blue-600">{activeOrdersCount}</div>
+                  <p className="text-sm text-gray-600">Active Special Orders</p>
                 </CardContent>
               </Card>
             </div>

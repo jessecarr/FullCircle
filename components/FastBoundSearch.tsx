@@ -77,7 +77,7 @@ export default function FastBoundSearch({
       } else {
         setResults(data || [])
         setIsOpen(true)
-        setHighlightedIndex(-1) // Reset highlighted index when new results arrive
+        setHighlightedIndex(0) // Auto-highlight first result when new results arrive
       }
     } catch (err) {
       console.error('FastBound search error:', err)

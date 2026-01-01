@@ -91,6 +91,8 @@ export function SuppressorApprovalForm({ initialData, onSuccess, onCancel }: Spe
     customer_name: initialData?.customer_name || '',
     customer_email: initialData?.customer_email || '',
     customer_phone: initialData?.customer_phone || '',
+    drivers_license: initialData?.drivers_license || '',
+    license_expiration: initialData?.license_expiration || '',
     customer_street: initialData?.customer_street || '',
     customer_city: initialData?.customer_city || '',
     customer_state: initialData?.customer_state || '',
@@ -247,7 +249,7 @@ export function SuppressorApprovalForm({ initialData, onSuccess, onCancel }: Spe
     e.preventDefault()
     
     // Validate required fields
-    if (!formData.customer_name || !formData.customer_email || !formData.customer_phone) {
+    if (!formData.customer_name || !formData.customer_phone) {
       toast({
         title: 'Validation Error',
         description: 'Please fill in all required customer fields',
@@ -299,7 +301,7 @@ export function SuppressorApprovalForm({ initialData, onSuccess, onCancel }: Spe
 
         try {
           const { data, error } = await supabase
-            .from('special_orders')
+            .from('suppressor_approvals')
             .update({
               customer_name: formData.customer_name,
               customer_email: formData.customer_email,
@@ -349,7 +351,7 @@ export function SuppressorApprovalForm({ initialData, onSuccess, onCancel }: Spe
       } else {
         // Create new order
         const { error } = await supabase
-          .from('special_orders')
+          .from('suppressor_approvals')
           .insert([{
             customer_name: formData.customer_name,
             customer_email: formData.customer_email,
@@ -401,7 +403,20 @@ export function SuppressorApprovalForm({ initialData, onSuccess, onCancel }: Spe
     const tax = 0; // No tax as requested
     const total = subtotal;
 
-    // Create print content
+    // Determine scale factor based on number of items
+    const itemCount = productLines.length;
+    let scaleFactor = 1.0;
+    if (itemCount > 3) {
+      scaleFactor = 0.85;
+    }
+    if (itemCount > 5) {
+      scaleFactor = 0.75;
+    }
+    if (itemCount > 7) {
+      scaleFactor = 0.65;
+    }
+
+    // Create print content with two copies on one page
     const printContent = `
       <!DOCTYPE html>
       <html>
@@ -410,74 +425,98 @@ export function SuppressorApprovalForm({ initialData, onSuccess, onCancel }: Spe
         <style>
           @page {
             size: portrait;
-            margin: 0.5in;
+            margin: 0.25in;
           }
           
           body {
             font-family: 'Arial', sans-serif;
             color: #000;
             background: white;
-            padding: 20px;
+            padding: 10px;
             max-width: 8in;
             margin: 0 auto;
+            transform: scale(${scaleFactor});
+            transform-origin: top center;
+          }
+          
+          .print-copy {
+            border: 1px solid #000;
+            padding: 15px;
+            margin-bottom: 20px;
+            page-break-inside: avoid;
+          }
+          
+          .print-copy:last-child {
+            margin-bottom: 0;
+          }
+          
+          .copy-label {
+            text-align: center;
+            font-size: 10px;
+            color: #666;
+            margin-bottom: 5px;
+            font-weight: bold;
           }
           
           .print-header {
             text-align: center;
             border-bottom: 2px solid #000;
-            padding-bottom: 20px;
-            margin-bottom: 30px;
+            padding-bottom: 15px;
+            margin-bottom: 20px;
           }
           
           .print-title {
-            font-size: 24px;
+            font-size: 20px;
             font-weight: bold;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
           }
           
           .print-subtitle {
-            font-size: 14px;
+            font-size: 12px;
             color: #666;
           }
           
           .print-section {
-            margin-bottom: 25px;
+            margin-bottom: 20px;
           }
           
           .print-section-title {
-            font-size: 16px;
+            font-size: 14px;
             font-weight: bold;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             border-bottom: 1px solid #ccc;
-            padding-bottom: 5px;
+            padding-bottom: 3px;
           }
           
           .print-field {
-            margin-bottom: 8px;
+            margin-bottom: 6px;
             display: flex;
           }
           
           .print-label {
             font-weight: bold;
-            width: 150px;
+            width: 120px;
             flex-shrink: 0;
+            font-size: 12px;
           }
           
           .print-value {
             flex: 1;
+            font-size: 12px;
           }
           
           .print-table {
             width: 100%;
             border-collapse: collapse;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
           }
           
           .print-table th,
           .print-table td {
             border: 1px solid #000;
-            padding: 8px;
+            padding: 6px;
             text-align: left;
+            font-size: 11px;
           }
           
           .print-table th {
@@ -486,8 +525,8 @@ export function SuppressorApprovalForm({ initialData, onSuccess, onCancel }: Spe
           }
           
           .print-total-summary {
-            margin-top: 20px;
-            padding: 10px;
+            margin-top: 15px;
+            padding: 8px;
             background-color: #f5f5f5;
             border: 1px solid #000;
           }
@@ -495,126 +534,178 @@ export function SuppressorApprovalForm({ initialData, onSuccess, onCancel }: Spe
           .print-total-row {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 5px;
-            font-size: 14px;
+            margin-bottom: 3px;
+            font-size: 12px;
           }
           
           .print-total-row.final {
-            font-size: 16px;
+            font-size: 14px;
             font-weight: bold;
             border-top: 1px solid #000;
-            padding-top: 5px;
+            padding-top: 3px;
             margin-bottom: 0;
-          }
-          
-          .print-footer {
-            margin-top: 40px;
-            padding-top: 20px;
-            border-top: 1px solid #ccc;
-            font-size: 12px;
-            color: #666;
           }
         </style>
       </head>
       <body>
-        <div class="print-header">
-          <div class="print-title">Suppressor Approval Form</div>
-          <div class="print-subtitle">
-            Order ID: ${initialData?.id || 'temp-' + Date.now()} | Date: ${new Date().toLocaleDateString('en-US', {
+        <!-- Customer Copy (Top) -->
+        <div class="print-copy">
+          <div style="text-align: left; font-size: 10px; margin-bottom: 10px;">
+            ${new Date().toLocaleDateString('en-US', {
               year: 'numeric',
               month: 'long',
               day: 'numeric'
             })}
           </div>
-        </div>
+          <div class="print-header">
+            <div class="print-title">Suppressor Approval Form</div>
+          </div>
 
-        <div class="print-section">
-          <div class="print-section-title">Customer Information</div>
-          <div class="print-field">
-            <div class="print-label">Name:</div>
-            <div class="print-value">${formData.customer_name}</div>
-          </div>
-          <div class="print-field">
-            <div class="print-label">Email:</div>
-            <div class="print-value">${formData.customer_email}</div>
-          </div>
-          <div class="print-field">
-            <div class="print-label">Phone:</div>
-            <div class="print-value">${formatPhoneNumber(formData.customer_phone)}</div>
-          </div>
-          ${formData.customer_street ? `
+          <div class="print-section">
+            <div class="print-section-title">Customer Information</div>
             <div class="print-field">
-              <div class="print-label">Address:</div>
-              <div class="print-value">
-                ${formData.customer_street}
-                ${formData.customer_city ? `, ${formData.customer_city}` : ''}
-                ${formData.customer_state ? ` ${formData.customer_state}` : ''}
-                ${formData.customer_zip ? ` ${formData.customer_zip}` : ''}
+              <div class="print-label">Name:</div>
+              <div class="print-value">${formData.customer_name}</div>
+            </div>
+            <div class="print-field">
+              <div class="print-label">Phone:</div>
+              <div class="print-value">${formatPhoneNumber(formData.customer_phone)}</div>
+            </div>
+            ${formData.customer_street ? `
+              <div class="print-field">
+                <div class="print-label">Address:</div>
+                <div class="print-value">
+                  ${formData.customer_street}
+                  ${formData.customer_city ? `, ${formData.customer_city}` : ''}
+                  ${formData.customer_state ? ` ${formData.customer_state}` : ''}
+                  ${formData.customer_zip ? ` ${formData.customer_zip}` : ''}
+                </div>
+              </div>
+            ` : ''}
+          </div>
+
+          <div class="print-section">
+            <div class="print-section-title">Order Items</div>
+            <table class="print-table">
+              <thead>
+                <tr>
+                  <th style="width: 15%">Control #</th>
+                  <th style="width: 30%">Manufacturer</th>
+                  <th style="width: 15%">Model</th>
+                  <th style="width: 15%">Serial #</th>
+                  <th style="width: 15%">Order Type</th>
+                  <th style="width: 10%">Unit Price</th>
+                </tr>
+              </thead>
+              <tbody>
+                ${productLines.map((line, index) => `
+                  <tr key="${index}">
+                    <td>${line.control_number || '-'}</td>
+                    <td>${line.manufacturer || '-'}</td>
+                    <td>${line.model || '-'}</td>
+                    <td>${line.serial_number || '-'}</td>
+                    <td>${line.order_type || '-'}</td>
+                    <td>$${(line.unit_price || 0).toFixed(2)}</td>
+                  </tr>
+                `).join('')}
+              </tbody>
+            </table>
+            
+            <div class="print-total-summary">
+              <div class="print-total-row">
+                <span style="font-weight: bold">Subtotal:</span>
+                <span>$${subtotal.toFixed(2)}</span>
+              </div>
+              <div class="print-total-row">
+                <span style="font-weight: bold">Tax:</span>
+                <span>$${tax.toFixed(2)}</span>
+              </div>
+              <div class="print-total-row final">
+                <span>Total:</span>
+                <span>$${total.toFixed(2)}</span>
               </div>
             </div>
-          ` : ''}
-        </div>
-
-        <div class="print-section">
-          <div class="print-section-title">Order Items</div>
-          <table class="print-table">
-            <thead>
-              <tr>
-                <th style="width: 15%">Control #</th>
-                <th style="width: 30%">Manufacturer</th>
-                <th style="width: 15%">Model</th>
-                <th style="width: 15%">Serial #</th>
-                <th style="width: 15%">Order Type</th>
-                <th style="width: 10%">Unit Price</th>
-              </tr>
-            </thead>
-            <tbody>
-              ${productLines.map((line, index) => `
-                <tr key="${index}">
-                  <td>${line.control_number || '-'}</td>
-                  <td>${line.manufacturer || '-'}</td>
-                  <td>${line.model || '-'}</td>
-                  <td>${line.serial_number || '-'}</td>
-                  <td>${line.order_type || '-'}</td>
-                  <td>$${(line.unit_price || 0).toFixed(2)}</td>
-                </tr>
-              `).join('')}
-            </tbody>
-          </table>
-          
-          <div class="print-total-summary">
-            <div class="print-total-row">
-              <span style="font-weight: bold">Subtotal:</span>
-              <span>$${subtotal.toFixed(2)}</span>
-            </div>
-            <div class="print-total-row">
-              <span style="font-weight: bold">Tax:</span>
-              <span>$${tax.toFixed(2)}</span>
-            </div>
-            <div class="print-total-row final">
-              <span>Total:</span>
-              <span>$${total.toFixed(2)}</span>
-            </div>
           </div>
         </div>
 
-        <div class="print-section">
-          <div class="print-section-title">Order Details</div>
-          ${formData.special_requests ? `
-            <div class="print-field">
-              <div class="print-label">Special Requests:</div>
-              <div class="print-value">${formData.special_requests}</div>
-            </div>
-          ` : ''}
-        </div>
+        <!-- Merchant Copy (Bottom) -->
+        <div class="print-copy">
+          <div style="text-align: left; font-size: 10px; margin-bottom: 10px;">
+            ${new Date().toLocaleDateString('en-US', {
+              year: 'numeric',
+              month: 'long',
+              day: 'numeric'
+            })}
+          </div>
+          <div class="print-header">
+            <div class="print-title">Suppressor Approval Form</div>
+          </div>
 
-        <div class="print-footer">
-          <div>Generated on ${new Date().toLocaleDateString('en-US', {
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric'
-          })}</div>
-          <div>Form ID: ${initialData?.id || 'temp-' + Date.now()}</div>
+          <div class="print-section">
+            <div class="print-section-title">Customer Information</div>
+            <div class="print-field">
+              <div class="print-label">Name:</div>
+              <div class="print-value">${formData.customer_name}</div>
+            </div>
+            <div class="print-field">
+              <div class="print-label">Phone:</div>
+              <div class="print-value">${formatPhoneNumber(formData.customer_phone)}</div>
+            </div>
+            ${formData.customer_street ? `
+              <div class="print-field">
+                <div class="print-label">Address:</div>
+                <div class="print-value">
+                  ${formData.customer_street}
+                  ${formData.customer_city ? `, ${formData.customer_city}` : ''}
+                  ${formData.customer_state ? ` ${formData.customer_state}` : ''}
+                  ${formData.customer_zip ? ` ${formData.customer_zip}` : ''}
+                </div>
+              </div>
+            ` : ''}
+          </div>
+
+          <div class="print-section">
+            <div class="print-section-title">Order Items</div>
+            <table class="print-table">
+              <thead>
+                <tr>
+                  <th style="width: 15%">Control #</th>
+                  <th style="width: 30%">Manufacturer</th>
+                  <th style="width: 15%">Model</th>
+                  <th style="width: 15%">Serial #</th>
+                  <th style="width: 15%">Order Type</th>
+                  <th style="width: 10%">Unit Price</th>
+                </tr>
+              </thead>
+              <tbody>
+                ${productLines.map((line, index) => `
+                  <tr key="${index}">
+                    <td>${line.control_number || '-'}</td>
+                    <td>${line.manufacturer || '-'}</td>
+                    <td>${line.model || '-'}</td>
+                    <td>${line.serial_number || '-'}</td>
+                    <td>${line.order_type || '-'}</td>
+                    <td>$${(line.unit_price || 0).toFixed(2)}</td>
+                  </tr>
+                `).join('')}
+              </tbody>
+            </table>
+            
+            <div class="print-total-summary">
+              <div class="print-total-row">
+                <span style="font-weight: bold">Subtotal:</span>
+                <span>$${subtotal.toFixed(2)}</span>
+              </div>
+              <div class="print-total-row">
+                <span style="font-weight: bold">Tax:</span>
+                <span>$${tax.toFixed(2)}</span>
+              </div>
+              <div class="print-total-row final">
+                <span>Total:</span>
+                <span>$${total.toFixed(2)}</span>
+              </div>
+            </div>
+          </div>
         </div>
       </body>
       </html>
@@ -676,7 +767,7 @@ export function SuppressorApprovalForm({ initialData, onSuccess, onCancel }: Spe
           <form onSubmit={handleSubmit} className="space-y-6">
           <div className="border rounded-lg p-6 mb-6">
             <div className="space-y-4">
-              <h3 className="text-lg font-semibold">Customer Information</h3>
+              <h3 className="text-xl font-bold underline mb-4">Customer Information</h3>
               <CustomerSearch 
                 onSelect={(customer) => {
                   setFormData({
@@ -693,30 +784,24 @@ export function SuppressorApprovalForm({ initialData, onSuccess, onCancel }: Spe
               />
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="space-y-2">
-                  <Label htmlFor="customer_name">Customer Name *</Label>
+                  <Label className="text-lg" htmlFor="customer_name">Customer Name *</Label>
                   <Input
                     id="customer_name"
                     value={formData.customer_name}
                     onChange={(e) => handleInputChange('customer_name', e.target.value.toUpperCase())}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter') {
+                        e.preventDefault();
+                        document.getElementById('customer_phone')?.focus();
+                      }
+                    }}
                     required
                     className="uppercase"
                   />
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="customer_email">Customer Email *</Label>
-                  <Input
-                    id="customer_email"
-                    type="email"
-                    value={formData.customer_email}
-                    onChange={(e) => handleInputChange('customer_email', e.target.value.toUpperCase())}
-                    required
-                    className="uppercase"
-                  />
-                </div>
-
-                <div className="space-y-2">
-                  <Label htmlFor="customer_phone">Customer Phone *</Label>
+                  <Label className="text-lg" htmlFor="customer_phone">Customer Phone *</Label>
                   <Input
                     id="customer_phone"
                     type="tel"
@@ -725,9 +810,66 @@ export function SuppressorApprovalForm({ initialData, onSuccess, onCancel }: Spe
                       const digits = e.target.value.replace(/\D/g, '');
                       handleInputChange('customer_phone', digits);
                     }}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter') {
+                        e.preventDefault();
+                        document.getElementById('drivers_license')?.focus();
+                      }
+                    }}
                     required
                     maxLength={14}
                     placeholder="(123) 456-7890"
+                  />
+                </div>
+              </div>
+              
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
+                <div className="space-y-2">
+                  <Label className="text-lg" htmlFor="drivers_license">Driver's License</Label>
+                  <Input
+                    id="drivers_license"
+                    value={formData.drivers_license}
+                    onChange={(e) => handleInputChange('drivers_license', e.target.value.toUpperCase())}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter') {
+                        e.preventDefault();
+                        document.getElementById('license_expiration')?.focus();
+                      }
+                    }}
+                    className="uppercase"
+                  />
+                </div>
+
+                <div className="space-y-2">
+                  <Label className="text-lg" htmlFor="license_expiration">Expiration Date</Label>
+                  <Input
+                    id="license_expiration"
+                    type="date"
+                    value={formData.license_expiration}
+                    onChange={(e) => handleInputChange('license_expiration', e.target.value)}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter') {
+                        e.preventDefault();
+                        document.getElementById('customer_email')?.focus();
+                      }
+                    }}
+                  />
+                </div>
+
+                <div className="space-y-2">
+                  <Label className="text-lg" htmlFor="customer_email">Customer Email</Label>
+                  <Input
+                    id="customer_email"
+                    type="email"
+                    value={formData.customer_email}
+                    onChange={(e) => handleInputChange('customer_email', e.target.value.toUpperCase())}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter') {
+                        e.preventDefault();
+                        document.getElementById('customer_street')?.focus();
+                      }
+                    }}
+                    className="uppercase"
                   />
                 </div>
               </div>
@@ -748,6 +890,12 @@ export function SuppressorApprovalForm({ initialData, onSuccess, onCancel }: Spe
                       id="customer_zip"
                       value={formData.customer_zip}
                       onChange={(e) => handleZipCodeChange(e.target.value.toUpperCase())}
+                      onKeyDown={(e) => {
+                        if (e.key === 'Enter') {
+                          e.preventDefault();
+                          document.getElementById('customer_state')?.focus();
+                        }
+                      }}
                       placeholder="Enter 5-digit zip code"
                       maxLength={5}
                       className="text-base uppercase"
@@ -760,6 +908,12 @@ export function SuppressorApprovalForm({ initialData, onSuccess, onCancel }: Spe
                       id="customer_state"
                       value={formData.customer_state}
                       onChange={(e) => handleInputChange('customer_state', e.target.value.toUpperCase())}
+                      onKeyDown={(e) => {
+                        if (e.key === 'Enter') {
+                          e.preventDefault();
+                          document.getElementById('customer_city')?.focus();
+                        }
+                      }}
                       className="text-base uppercase"
                     />
                   </div>
@@ -792,7 +946,7 @@ export function SuppressorApprovalForm({ initialData, onSuccess, onCancel }: Spe
               </p>
               <FastBoundSearch
                 onSelect={(item) => {
-                  // Add a new line with the FastBound item data
+                  // Create new line data from FastBound item
                   const newLine: ProductLine = {
                     control_number: item.control_number || item.serial_number || '',
                     manufacturer: item.manufacturer || '',
@@ -804,29 +958,43 @@ export function SuppressorApprovalForm({ initialData, onSuccess, onCancel }: Spe
                     firearm_type: item.firearm_type || '',
                     caliber: item.caliber || ''
                   }
-                  setProductLines([...productLines, newLine])
-                  // Recalculate height for the newly added row after a short delay
-                  setTimeout(() => {
-                    const newIndex = productLines.length
-                    recalculateRowHeight(newIndex)
-                  }, 100)
+                  
+                  // Check if first line is empty - if so, fill it instead of adding new line
+                  const isFirstLineEmpty = productLines.length > 0 && 
+                    !productLines[0].control_number && 
+                    !productLines[0].manufacturer && 
+                    !productLines[0].model && 
+                    !productLines[0].serial_number
+                  
+                  if (isFirstLineEmpty) {
+                    // Fill the first empty line
+                    const updatedLines = [...productLines]
+                    updatedLines[0] = newLine
+                    setProductLines(updatedLines)
+                    setTimeout(() => recalculateRowHeight(0), 100)
+                  } else {
+                    // Add a new line
+                    setProductLines([...productLines, newLine])
+                    setTimeout(() => {
+                      const newIndex = productLines.length
+                      recalculateRowHeight(newIndex)
+                    }, 100)
+                  }
                 }}
                 placeholder="Search by serial number, manufacturer, or model..."
               />
             </div>
 
-            <div className="grid grid-cols-13 gap-4 items-end mb-1">
+            <div className="grid grid-cols-9 gap-4 items-end mb-1">
               <div className="col-span-2"><Label className="text-lg">Control # *</Label></div>
               <div className="col-span-2"><Label className="text-lg">Manufacturer *</Label></div>
               <div className="col-span-2"><Label className="text-lg">Model *</Label></div>
               <div className="col-span-2"><Label className="text-lg">Serial # *</Label></div>
-              <div className="col-span-2"><Label className="text-lg">Order Type *</Label></div>
-              <div className="col-span-1"><Label className="text-lg">Price *</Label></div>
               <div className="col-span-1"><Label className="text-lg"></Label></div> {/* Delete button header */}
             </div>
             
             {productLines.map((line, index) => (
-              <div key={index} className="grid grid-cols-13 gap-4 items-end mb-2">
+              <div key={index} className="grid grid-cols-9 gap-4 items-end mb-2">
                 <div className="col-span-2">
                   <Textarea
                     id={`control_number-${index}`}
@@ -874,6 +1042,12 @@ export function SuppressorApprovalForm({ initialData, onSuccess, onCancel }: Spe
                     id={`manufacturer-${index}`}
                     value={line.manufacturer}
                     onChange={(e) => updateProductLine(index, 'manufacturer', e.target.value.toUpperCase())}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter') {
+                        e.preventDefault();
+                        document.getElementById(`model-${index}`)?.focus();
+                      }
+                    }}
                     required
                     className="min-h-[48px] w-full text-base resize-none overflow-hidden uppercase text-left"
                     rows={1}
@@ -898,6 +1072,12 @@ export function SuppressorApprovalForm({ initialData, onSuccess, onCancel }: Spe
                     id={`model-${index}`}
                     value={line.model}
                     onChange={(e) => updateProductLine(index, 'model', e.target.value.toUpperCase())}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter') {
+                        e.preventDefault();
+                        document.getElementById(`serial_number-${index}`)?.focus();
+                      }
+                    }}
                     required
                     className="min-h-[48px] w-full text-base resize-none overflow-hidden uppercase text-left"
                     rows={1}
@@ -922,6 +1102,15 @@ export function SuppressorApprovalForm({ initialData, onSuccess, onCancel }: Spe
                     id={`serial_number-${index}`}
                     value={line.serial_number}
                     onChange={(e) => updateProductLine(index, 'serial_number', e.target.value.toUpperCase())}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter') {
+                        e.preventDefault();
+                        const nextIndex = index + 1;
+                        if (nextIndex < productLines.length) {
+                          document.getElementById(`control_number-${nextIndex}`)?.focus();
+                        }
+                      }
+                    }}
                     required
                     className="min-h-[48px] w-full text-base resize-none overflow-hidden uppercase text-left"
                     rows={1}
@@ -938,60 +1127,6 @@ export function SuppressorApprovalForm({ initialData, onSuccess, onCancel }: Spe
                       // Recalculate after a short delay to ensure proper shrinking
                       setTimeout(() => recalculateRowHeight(index), 10);
                     }}
-                  />
-                </div>
-
-                <div className="col-span-2">
-                  <Select 
-                    value={line.order_type} 
-                    onValueChange={(value) => {
-                    // Calculate new price based on order type
-                    const newPrice = value === 'Transfer' ? 40 : 0
-                    // Update all fields in a single state update
-                    const updated = [...productLines]
-                    updated[index] = {
-                      ...updated[index],
-                      order_type: value,
-                      unit_price: newPrice
-                    }
-                    setProductLines(updated)
-                    // Recalculate row height after value change to sync all fields
-                    setTimeout(() => recalculateRowHeight(index), 10)
-                  }}
-                  >
-                    <SelectTrigger 
-                      className="bg-white text-black border" 
-                      suppressHydrationWarning
-                      style={{ 
-                        height: isClient ? (rowHeights[index] || '48px') : '48px',
-                        minHeight: '48px',
-                        whiteSpace: 'normal',
-                        wordWrap: 'break-word'
-                      }}
-                      data-order-type-row={index}
-                    >
-                      <div style={{ whiteSpace: 'normal', wordWrap: 'break-word', width: '100%' }}>
-                        <SelectValue placeholder="Select order type" />
-                      </div>
-                    </SelectTrigger>
-                    <SelectContent className="bg-white border border-gray-300 text-black" style={{ maxWidth: '200px' }}>
-                      <SelectItem value="Transfer" className="hover:bg-gray-100" style={{ whiteSpace: 'normal', wordWrap: 'break-word' }}>TRANSFER</SelectItem>
-                      <SelectItem value="Purchased From FCR" className="hover:bg-gray-100" style={{ whiteSpace: 'normal', wordWrap: 'break-word' }}>PURCHASED FROM FCR</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-
-                <div className="col-span-1">
-                  <Input
-                    id={`unit_price-${index}`}
-                    type="number"
-                    min="0"
-                    step="0.01"
-                    value={line.unit_price}
-                    onChange={(e) => updateProductLine(index, 'unit_price', parseFloat(e.target.value))}
-                    required
-                    className="w-24 text-base text-center text-left"
-                    style={{ height: isClient ? (rowHeights[index] || '48px') : '48px' }}
                   />
                 </div>
 
@@ -1013,8 +1148,6 @@ export function SuppressorApprovalForm({ initialData, onSuccess, onCancel }: Spe
                     </svg>
                   </Button>
                 </div>
-
-                <div className="col-span-2"></div> {/* Extra space */}
               </div>
             ))}
             
@@ -1026,25 +1159,11 @@ export function SuppressorApprovalForm({ initialData, onSuccess, onCancel }: Spe
             >
               + Add Product Line
             </Button>
-            
-            {/* Order Total Summary */}
-            <div className="mt-6 p-4 bg-gray-50 rounded-lg border">
-              <div className="space-y-2">
-                <div className="flex justify-between text-lg">
-                  <span className="font-semibold">Subtotal:</span>
-                  <span>${productLines.reduce((acc, line) => acc + line.unit_price, 0).toFixed(2)}</span>
-                </div>
-                <div className="flex justify-between text-xl font-bold border-t pt-2">
-                  <span>Total:</span>
-                  <span>${productLines.reduce((acc, line) => acc + line.unit_price, 0).toFixed(2)}</span>
-                </div>
-              </div>
-            </div>
           </div>
 
           
           <div className="space-y-2">
-            <Label htmlFor="special_requests">Special Requests</Label>
+            <Label className="text-lg" htmlFor="special_requests">Special Requests</Label>
             <Textarea
               id="special_requests"
               value={formData.special_requests}

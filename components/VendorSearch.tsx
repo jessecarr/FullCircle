@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { supabase } from '@/lib/supabase'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
@@ -31,6 +31,9 @@ export default function VendorSearch({ value, onSelect, placeholder = "Search or
   const [showAddDialog, setShowAddDialog] = useState(false)
   const [newVendorName, setNewVendorName] = useState('')
   const [isAdding, setIsAdding] = useState(false)
+  const [highlightedIndex, setHighlightedIndex] = useState(0)
+  const containerRef = useRef<HTMLDivElement>(null)
+  const inputRef = useRef<HTMLTextAreaElement>(null)
 
   useEffect(() => {
     setIsClient(true)
@@ -39,6 +42,23 @@ export default function VendorSearch({ value, onSelect, placeholder = "Search or
   useEffect(() => {
     setQuery(value || '')
   }, [value])
+
+  // Reset highlighted index when results change
+  useEffect(() => {
+    setHighlightedIndex(0)
+  }, [results])
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
+        setShowResults(false)
+      }
+    }
+
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => document.removeEventListener('mousedown', handleClickOutside)
+  }, [])
 
   useEffect(() => {
     const searchVendors = async () => {
@@ -74,6 +94,59 @@ export default function VendorSearch({ value, onSelect, placeholder = "Search or
     setQuery(vendorName)
     onSelect(vendorName)
     setShowResults(false)
+    setHighlightedIndex(0)
+  }
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    if (!showResults || results.length === 0) {
+      // If no results showing and Enter is pressed, move to next field
+      if (e.key === 'Enter') {
+        e.preventDefault()
+        // Find the next field to focus (will be handled by parent form)
+        const nextFieldId = rowIndex !== undefined ? `sku-${rowIndex + 1}` : null
+        if (nextFieldId) {
+          const nextField = document.getElementById(nextFieldId)
+          if (nextField) {
+            nextField.focus()
+          }
+        }
+      }
+      return
+    }
+
+    switch (e.key) {
+      case 'ArrowDown':
+        e.preventDefault()
+        setHighlightedIndex(prev => 
+          prev < results.length - 1 ? prev + 1 : prev
+        )
+        break
+      case 'ArrowUp':
+        e.preventDefault()
+        setHighlightedIndex(prev => 
+          prev > 0 ? prev - 1 : prev
+        )
+        break
+      case 'Enter':
+        e.preventDefault()
+        if (results[highlightedIndex]) {
+          handleSelect(results[highlightedIndex].name)
+          // Move to next row's SKU field after selection
+          if (rowIndex !== undefined) {
+            setTimeout(() => {
+              const nextField = document.getElementById(`sku-${rowIndex + 1}`)
+              if (nextField) {
+                nextField.focus()
+              }
+            }, 50)
+          }
+        }
+        break
+      case 'Escape':
+        e.preventDefault()
+        setShowResults(false)
+        break
+    }
   }
 
   const [showVerificationDialog, setShowVerificationDialog] = useState(false)
@@ -146,11 +219,13 @@ export default function VendorSearch({ value, onSelect, placeholder = "Search or
 
   return (
     <>
-      <div className="relative">
+      <div className="relative" ref={containerRef}>
         <Textarea
+          ref={inputRef}
           value={query}
           onChange={handleInputChange}
           onFocus={() => query && setShowResults(true)}
+          onKeyDown={handleKeyDown}
           placeholder={placeholder}
           className="text-base min-h-[48px] resize-none overflow-hidden"
           rows={1}
@@ -179,11 +254,16 @@ export default function VendorSearch({ value, onSelect, placeholder = "Search or
         
         {showResults && results.length > 0 && !showAddDialog && !showVerificationDialog && (
           <div className="absolute z-50 w-full mt-1 bg-white border border-gray-300 rounded-md shadow-lg max-h-60 overflow-y-auto">
-            {results.map((vendor) => (
+            {results.map((vendor, index) => (
               <div
                 key={vendor.id}
-                className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                className={`px-4 py-2 cursor-pointer ${
+                  index === highlightedIndex 
+                    ? 'bg-blue-100 text-blue-900' 
+                    : 'hover:bg-gray-100'
+                }`}
                 onClick={() => handleSelect(vendor.name)}
+                onMouseEnter={() => setHighlightedIndex(index)}
               >
                 {vendor.name}
               </div>
