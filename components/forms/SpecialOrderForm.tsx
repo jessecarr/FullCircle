@@ -883,6 +883,12 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
                       console.log('SKU input changed:', e.target.value);
                       updateProductLine(index, 'sku', e.target.value.toUpperCase());
                     }}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter') {
+                        e.preventDefault();
+                        document.getElementById(`description-${index}`)?.focus();
+                      }
+                    }}
                     required
                     className="text-base w-full min-h-[48px] resize-none overflow-hidden uppercase"
                     rows={1}
@@ -908,6 +914,12 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
                     id={`description-${index}`}
                     value={line.description}
                     onChange={(e) => updateProductLine(index, 'description', e.target.value.toUpperCase())}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter') {
+                        e.preventDefault();
+                        document.getElementById(`quantity-${index}`)?.focus();
+                      }
+                    }}
                     required
                     className="min-h-[48px] w-full text-base resize-none overflow-hidden uppercase"
                     rows={1}
@@ -934,6 +946,12 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
                     min="1"
                     value={line.quantity}
                     onChange={(e) => updateProductLine(index, 'quantity', parseInt(e.target.value))}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter') {
+                        e.preventDefault();
+                        document.getElementById(`unit_price-${index}`)?.focus();
+                      }
+                    }}
                     required
                     className="w-20 text-base"
                     style={{ height: isClient ? (rowHeights[index] || '48px') : '48px' }}
@@ -948,6 +966,15 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
                     step="0.01"
                     value={line.unit_price}
                     onChange={(e) => updateProductLine(index, 'unit_price', parseFloat(e.target.value))}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter') {
+                        e.preventDefault();
+                        const nextIndex = index + 1;
+                        if (nextIndex < productLines.length) {
+                          document.getElementById(`sku-${nextIndex}`)?.focus();
+                        }
+                      }
+                    }}
                     required
                     className="w-24 text-base"
                     style={{ height: isClient ? (rowHeights[index] || '48px') : '48px' }}

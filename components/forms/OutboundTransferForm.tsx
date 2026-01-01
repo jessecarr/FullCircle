@@ -889,6 +889,12 @@ export function OutboundTransferForm({ initialData, onSuccess, onCancel }: Speci
                     id={`manufacturer-${index}`}
                     value={line.manufacturer}
                     onChange={(e) => updateProductLine(index, 'manufacturer', e.target.value.toUpperCase())}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter') {
+                        e.preventDefault();
+                        document.getElementById(`model-${index}`)?.focus();
+                      }
+                    }}
                     required
                     className="min-h-[48px] w-full text-base resize-none overflow-hidden uppercase text-left"
                     rows={1}
@@ -913,6 +919,12 @@ export function OutboundTransferForm({ initialData, onSuccess, onCancel }: Speci
                     id={`model-${index}`}
                     value={line.model}
                     onChange={(e) => updateProductLine(index, 'model', e.target.value.toUpperCase())}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter') {
+                        e.preventDefault();
+                        document.getElementById(`serial_number-${index}`)?.focus();
+                      }
+                    }}
                     required
                     className="min-h-[48px] w-full text-base resize-none overflow-hidden uppercase text-left"
                     rows={1}
@@ -937,6 +949,15 @@ export function OutboundTransferForm({ initialData, onSuccess, onCancel }: Speci
                     id={`serial_number-${index}`}
                     value={line.serial_number}
                     onChange={(e) => updateProductLine(index, 'serial_number', e.target.value.toUpperCase())}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter') {
+                        e.preventDefault();
+                        const nextIndex = index + 1;
+                        if (nextIndex < productLines.length) {
+                          document.getElementById(`control_number-${nextIndex}`)?.focus();
+                        }
+                      }
+                    }}
                     required
                     className="min-h-[48px] w-full text-base resize-none overflow-hidden uppercase text-left"
                     rows={1}
