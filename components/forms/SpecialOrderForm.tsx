@@ -180,6 +180,17 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
       return
     }
 
+    // Validate vendor is filled for all product lines
+    const missingVendor = productLines.some(line => !line.vendor || line.vendor.trim() === '')
+    if (missingVendor) {
+      toast({
+        title: 'Validation Error',
+        description: 'Please select a vendor for all product lines',
+        variant: 'destructive',
+      })
+      return
+    }
+
     // Show confirmation dialog for updates
     if (initialData) {
       setShowUpdateDialog(true)
@@ -869,7 +880,7 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
               <div className="col-span-1"><Label className="text-lg">Qty *</Label></div>
               <div className="col-span-1"><Label className="text-lg">Price *</Label></div>
               <div className="col-span-1"><Label className="text-lg">Total *</Label></div>
-              <div className="col-span-2"><Label className="text-lg">Vendor</Label></div>
+              <div className="col-span-2"><Label className="text-lg">Vendor *</Label></div>
               <div className="col-span-1"></div> {/* Delete button */}
             </div>
             

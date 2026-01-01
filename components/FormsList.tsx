@@ -48,9 +48,13 @@ const ALL_STATUSES = ['pending', 'ordered', 'received', 'completed', 'cancelled'
 export function FormsList({ tableName, title, onEdit, onView, refreshTrigger }: FormsListProps) {
   const [items, setItems] = useState<any[]>([])
   const [loading, setLoading] = useState(true)
-  const [selectedFormType, setSelectedFormType] = useState<FormType>('special_orders')
+  const [selectedFormTypes, setSelectedFormTypes] = useState<FormType[]>(['special_orders'])
+  const [showFormTypeDropdown, setShowFormTypeDropdown] = useState(false)
   const [showStatusDropdown, setShowStatusDropdown] = useState(false)
+  const [showVendorDropdown, setShowVendorDropdown] = useState(false)
   const [selectedStatuses, setSelectedStatuses] = useState<string[]>(['pending', 'ordered'])
+  const [selectedVendors, setSelectedVendors] = useState<string[]>([])
+  const [availableVendors, setAvailableVendors] = useState<string[]>([])
   const [statusUpdateItem, setStatusUpdateItem] = useState<any>(null)
   const [showStatusDialog, setShowStatusDialog] = useState(false)
   const [newStatus, setNewStatus] = useState('')
@@ -61,51 +65,59 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger }: 
     setLoading(true)
     try {
       let allItems: any[] = []
+      const vendors = new Set<string>()
       
-      if (selectedFormType === 'all') {
-        // Fetch from all tables
-        const tables: Array<'special_orders' | 'inbound_transfers' | 'suppressor_approvals' | 'outbound_transfers'> = [
-          'special_orders',
-          'inbound_transfers',
-          'suppressor_approvals',
-          'outbound_transfers'
-        ]
-        
-        for (const table of tables) {
-          const { data, error } = await supabase
-            .from(table)
-            .select('*')
-            .order('created_at', { ascending: false })
-          
-          if (!error && data) {
-            const itemsWithType = data.map(item => ({
-              ...item,
-              _formType: table
-            }))
-            allItems = [...allItems, ...itemsWithType]
-          }
-        }
-        
-        // Sort by created_at
-        allItems.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime())
-      } else {
+      // Determine which tables to fetch from
+      const tablesToFetch: Array<'special_orders' | 'inbound_transfers' | 'suppressor_approvals' | 'outbound_transfers'> = 
+        selectedFormTypes.includes('all')
+          ? ['special_orders', 'inbound_transfers', 'suppressor_approvals', 'outbound_transfers']
+          : selectedFormTypes.filter(t => t !== 'all') as Array<'special_orders' | 'inbound_transfers' | 'suppressor_approvals' | 'outbound_transfers'>
+      
+      for (const table of tablesToFetch) {
         const { data, error } = await supabase
-          .from(selectedFormType)
+          .from(table)
           .select('*')
           .order('created_at', { ascending: false })
-
-        if (error) throw error
         
-        allItems = (data || []).map(item => ({
-          ...item,
-          _formType: selectedFormType
-        }))
+        if (!error && data) {
+          const itemsWithType = data.map(item => {
+            // Extract vendor from product_lines
+            if (item.product_lines && Array.isArray(item.product_lines)) {
+              item.product_lines.forEach((line: any) => {
+                const vendor = line.vendor_name || line.vendor
+                if (vendor) vendors.add(vendor)
+              })
+            }
+            return {
+              ...item,
+              _formType: table
+            }
+          })
+          allItems = [...allItems, ...itemsWithType]
+        }
       }
       
+      // Sort by created_at
+      allItems.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime())
+      
+      // Update available vendors list (sorted alphabetically)
+      setAvailableVendors(Array.from(vendors).sort())
+      
       // Filter by selected statuses
-      const filteredData = allItems.filter(item => 
+      let filteredData = allItems.filter(item => 
         selectedStatuses.length === 0 || selectedStatuses.includes(item.status)
       )
+      
+      // Filter by selected vendors
+      if (selectedVendors.length > 0) {
+        filteredData = filteredData.filter(item => {
+          if (!item.product_lines || !Array.isArray(item.product_lines)) return false
+          return item.product_lines.some((line: any) => {
+            const vendor = line.vendor_name || line.vendor
+            return vendor && selectedVendors.includes(vendor)
+          })
+        })
+      }
       
       setItems(filteredData)
     } catch (error) {
@@ -121,7 +133,7 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger }: 
 
   useEffect(() => {
     fetchAllItems()
-  }, [selectedFormType, selectedStatuses, refreshTrigger])
+  }, [selectedFormTypes, selectedStatuses, selectedVendors, refreshTrigger])
 
   const handleDelete = async (item: any) => {
     if (!confirm('Are you sure you want to delete this item?')) return
@@ -204,11 +216,41 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger }: 
     setShowStatusDialog(true)
   }
 
+  const toggleFormType = (formType: FormType) => {
+    setSelectedFormTypes(prev => {
+      if (formType === 'all') {
+        // If 'all' is selected, select all form types
+        return prev.includes('all') ? [] : ['all', 'special_orders', 'inbound_transfers', 'suppressor_approvals', 'outbound_transfers']
+      } else {
+        // Toggle individual form type
+        const newTypes = prev.includes(formType)
+          ? prev.filter(t => t !== formType && t !== 'all')
+          : [...prev.filter(t => t !== 'all'), formType]
+        
+        // If all individual types are selected, also select 'all'
+        const allIndividualTypes = ['special_orders', 'inbound_transfers', 'suppressor_approvals', 'outbound_transfers']
+        if (allIndividualTypes.every(t => newTypes.includes(t as FormType))) {
+          return ['all', ...allIndividualTypes] as FormType[]
+        }
+        
+        return newTypes.length > 0 ? newTypes : ['special_orders']
+      }
+    })
+  }
+
   const toggleStatus = (status: string) => {
     setSelectedStatuses(prev => 
       prev.includes(status)
         ? prev.filter(s => s !== status)
         : [...prev, status]
+    )
+  }
+
+  const toggleVendor = (vendor: string) => {
+    setSelectedVendors(prev => 
+      prev.includes(vendor)
+        ? prev.filter(v => v !== vendor)
+        : [...prev, vendor]
     )
   }
 
@@ -263,25 +305,36 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger }: 
       {/* Filters */}
       <Card>
         <CardContent className="p-4">
-          <div className="flex flex-wrap gap-4 items-end">
+          <div className="flex flex-wrap gap-6">
             {/* Form Type Filter */}
-            <div className="space-y-2">
+            <div className="space-y-2 relative">
               <Label className="text-lg">Form Type</Label>
-              <Select 
-                value={selectedFormType} 
-                onValueChange={(value) => setSelectedFormType(value as FormType)}
+              <Button
+                variant="outline"
+                onClick={() => setShowFormTypeDropdown(!showFormTypeDropdown)}
+                className="w-[200px] justify-between bg-white"
               >
-                <SelectTrigger className="w-[200px] bg-white">
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent className="bg-white">
-                  <SelectItem value="all">All Forms</SelectItem>
-                  <SelectItem value="special_orders">Special Order</SelectItem>
-                  <SelectItem value="inbound_transfers">Inbound Transfer</SelectItem>
-                  <SelectItem value="suppressor_approvals">Suppressor Approval</SelectItem>
-                  <SelectItem value="outbound_transfers">Outbound Transfer</SelectItem>
-                </SelectContent>
-              </Select>
+                <span>{selectedFormTypes.length} selected</span>
+                <ChevronDown className="h-4 w-4" />
+              </Button>
+              {showFormTypeDropdown && (
+                <div className="absolute top-full mt-1 w-[200px] bg-white border border-gray-200 rounded-md shadow-lg z-50 p-2 max-h-[300px] overflow-y-auto">
+                  {(['all', 'inbound_transfers', 'outbound_transfers', 'special_orders', 'suppressor_approvals'] as FormType[]).map(formType => (
+                    <label
+                      key={formType}
+                      className="flex items-center gap-2 p-2 hover:bg-gray-100 cursor-pointer rounded"
+                    >
+                      <input
+                        type="checkbox"
+                        checked={selectedFormTypes.includes(formType)}
+                        onChange={() => toggleFormType(formType)}
+                        className="w-4 h-4"
+                      />
+                      <span>{FORM_TYPE_LABELS[formType]}</span>
+                    </label>
+                  ))}
+                </div>
+              )}
             </div>
 
             {/* Status Multi-Select Filter as Dropdown */}
@@ -296,7 +349,7 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger }: 
                 <ChevronDown className="h-4 w-4" />
               </Button>
               {showStatusDropdown && (
-                <div className="absolute top-full mt-1 w-[200px] bg-white border border-gray-200 rounded-md shadow-lg z-50 p-2">
+                <div className="absolute top-full mt-1 w-[200px] bg-white border border-gray-200 rounded-md shadow-lg z-50 p-2 max-h-[300px] overflow-y-auto">
                   {ALL_STATUSES.map(status => (
                     <label
                       key={status}
@@ -314,13 +367,48 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger }: 
                 </div>
               )}
             </div>
+
+            {/* Vendor Filter */}
+            <div className="space-y-2 relative">
+              <Label className="text-lg">Vendor Filter</Label>
+              <Button
+                variant="outline"
+                onClick={() => setShowVendorDropdown(!showVendorDropdown)}
+                className="w-[200px] justify-between bg-white"
+              >
+                <span>{selectedVendors.length > 0 ? `${selectedVendors.length} selected` : 'All vendors'}</span>
+                <ChevronDown className="h-4 w-4" />
+              </Button>
+              {showVendorDropdown && (
+                <div className="absolute top-full mt-1 w-[200px] bg-white border border-gray-200 rounded-md shadow-lg z-50 p-2 max-h-[300px] overflow-y-auto">
+                  {availableVendors.length === 0 ? (
+                    <p className="text-sm text-muted-foreground p-2">No vendors found</p>
+                  ) : (
+                    availableVendors.map(vendor => (
+                      <label
+                        key={vendor}
+                        className="flex items-center gap-2 p-2 hover:bg-gray-100 cursor-pointer rounded"
+                      >
+                        <input
+                          type="checkbox"
+                          checked={selectedVendors.includes(vendor)}
+                          onChange={() => toggleVendor(vendor)}
+                          className="w-4 h-4"
+                        />
+                        <span>{vendor}</span>
+                      </label>
+                    ))
+                  )}
+                </div>
+              )}
+            </div>
           </div>
         </CardContent>
       </Card>
 
       {/* Results Count */}
       <p className="text-base text-muted-foreground">
-        Showing {items.length} {FORM_TYPE_LABELS[selectedFormType]}{items.length !== 1 ? 's' : ''}
+        Showing {items.length} form{items.length !== 1 ? 's' : ''}
       </p>
 
       {/* Items List */}
