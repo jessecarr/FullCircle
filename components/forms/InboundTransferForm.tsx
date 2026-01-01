@@ -95,9 +95,7 @@ export function InboundTransferForm({ initialData, onSuccess, onCancel }: Specia
     customer_city: initialData?.customer_city || '',
     customer_state: initialData?.customer_state || '',
     customer_zip: initialData?.customer_zip || '',
-    delivery_method: initialData?.delivery_method || 'in_store_pickup',
-    special_requests: initialData?.special_requests || '',
-    status: initialData?.status || 'pending' as const
+    special_requests: initialData?.special_requests || ''
   })
 
   const addProductLine = () => {
@@ -296,9 +294,7 @@ export function InboundTransferForm({ initialData, onSuccess, onCancel }: Specia
           customer_zip: formData.customer_zip,
           product_lines: productLines,
           total_price: totalAmount,
-          delivery_method: formData.delivery_method,
-          special_requests: formData.special_requests,
-          status: formData.status
+          special_requests: formData.special_requests
         });
 
         try {
@@ -314,9 +310,7 @@ export function InboundTransferForm({ initialData, onSuccess, onCancel }: Specia
               customer_zip: formData.customer_zip,
               product_lines: productLines,
               total_price: totalAmount,
-              delivery_method: formData.delivery_method,
-              special_requests: formData.special_requests,
-              status: formData.status
+              special_requests: formData.special_requests
             })
             .eq('id', initialData.id)
             .select();
@@ -366,9 +360,7 @@ export function InboundTransferForm({ initialData, onSuccess, onCancel }: Specia
             customer_zip: formData.customer_zip,
             product_lines: productLines,
             total_price: totalAmount,
-            delivery_method: formData.delivery_method,
-            special_requests: formData.special_requests,
-            status: formData.status
+            special_requests: formData.special_requests
           }])
 
         if (error) {
@@ -608,16 +600,6 @@ export function InboundTransferForm({ initialData, onSuccess, onCancel }: Specia
 
         <div class="print-section">
           <div class="print-section-title">Order Details</div>
-          <div class="print-field">
-            <div class="print-label">Delivery Method:</div>
-            <div class="print-value">
-              ${formData.delivery_method === 'in_store_pickup' ? 'In-Store Pickup' : 'Ship to Customer'}
-            </div>
-          </div>
-          <div class="print-field">
-            <div class="print-label">Status:</div>
-            <div class="print-value">${formData.status.charAt(0).toUpperCase() + formData.status.slice(1)}</div>
-          </div>
           ${formData.special_requests ? `
             <div class="print-field">
               <div class="print-label">Special Requests:</div>
@@ -1060,36 +1042,7 @@ export function InboundTransferForm({ initialData, onSuccess, onCancel }: Specia
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="space-y-2">
-              <Label htmlFor="delivery_method">Delivery Method *</Label>
-              <Select value={formData.delivery_method} onValueChange={(value) => handleInputChange('delivery_method', value)}>
-                <SelectTrigger className="bg-white text-black border border-gray-300" suppressHydrationWarning>
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent className="bg-white border border-gray-300 text-black">
-                  <SelectItem value="in_store_pickup" className="hover:bg-gray-100">In-Store Pickup</SelectItem>
-                  <SelectItem value="ship_to_customer" className="hover:bg-gray-100">Ship to Customer</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="status">Status *</Label>
-              <Select value={formData.status} onValueChange={(value) => handleInputChange('status', value)}>
-                <SelectTrigger className="bg-white text-black border border-gray-300" suppressHydrationWarning>
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent className="bg-white border border-gray-300 text-black">
-                  <SelectItem value="pending" className="hover:bg-gray-100">Pending</SelectItem>
-                  <SelectItem value="ordered" className="hover:bg-gray-100">Ordered</SelectItem>
-                  <SelectItem value="received" className="hover:bg-gray-100">Received</SelectItem>
-                  <SelectItem value="completed" className="hover:bg-gray-100">Completed</SelectItem>
-                  <SelectItem value="cancelled" className="hover:bg-gray-100">Cancelled</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-          </div>
-
+          
           <div className="space-y-2">
             <Label htmlFor="special_requests">Special Requests</Label>
             <Textarea
