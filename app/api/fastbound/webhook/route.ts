@@ -230,20 +230,25 @@ async function handleItemDeleted(payload: any) {
 }
 
 // Helper: Upsert items to Supabase
+// FastBound API field mapping:
+// - serial (not serialNumber)
+// - itemNumber (control number)
+// - acquire_Date (acquisition date)
+// - disposed (boolean for disposal status)
 async function upsertItems(items: any[], defaultStatus: string) {
   const mappedItems = items.map(item => ({
     fastbound_item_id: item.id,
-    fastbound_acquisition_id: item.acquisitionId || null,
-    control_number: item.externalId || item.sku || null,
+    fastbound_acquisition_id: item.acquisitionContactId || null,
+    control_number: item.itemNumber || item.externalId || item.sku || null,
     firearm_type: item.type || '',
     manufacturer: item.manufacturer || '',
     model: item.model || '',
     caliber: item.caliber || '',
-    serial_number: item.serialNumber || '',
-    date_acquired: item.acquisitionDate || null,
-    status: item.isDisposed ? 'disposed' : defaultStatus,
+    serial_number: item.serial || '',
+    date_acquired: item.acquire_Date || null,
+    status: item.disposed ? 'disposed' : defaultStatus,
     price: item.price || item.cost || null,
-    notes: item.note || null,
+    notes: null,
     metadata: {
       condition: item.condition,
       location: item.location,
@@ -251,6 +256,11 @@ async function upsertItems(items: any[], defaultStatus: string) {
       upc: item.upc,
       countryOfManufacture: item.countryOfManufacture,
       importer: item.importer,
+      itemNumber: item.itemNumber,
+      ttsn: item.ttsn,
+      otsn: item.otsn,
+      acquisitionType: item.acquisitionType,
+      dispositionType: item.dispositionType,
     }
   }))
 

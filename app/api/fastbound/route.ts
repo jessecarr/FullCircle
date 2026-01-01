@@ -120,16 +120,16 @@ async function syncToSupabase(body: { fullSync?: boolean }) {
   try {
     const client = getFastBoundClient()
     
-    // Fetch all non-disposed items from FastBound
-    const allItems: FastBoundItem[] = []
+    // Fetch only non-disposed items from FastBound
+    const allItems: any[] = []
     let skip = 0
-    const take = 100
+    const take = 500
     
     while (true) {
       const items = await client.getItems({ 
         take, 
-        skip, 
-        isDisposed: false 
+        skip,
+        isDisposed: false  // Only get items that haven't been disposed
       })
       
       if (items.length === 0) break
@@ -137,8 +137,8 @@ async function syncToSupabase(body: { fullSync?: boolean }) {
       allItems.push(...items)
       skip += take
       
-      // Safety limit
-      if (skip > 10000) break
+      // Safety limit - 50000 items max
+      if (skip > 50000) break
     }
 
     // Upsert all items to Supabase
@@ -160,20 +160,26 @@ async function syncToSupabase(body: { fullSync?: boolean }) {
 }
 
 // Helper: Upsert items to Supabase
-async function upsertItemsToSupabase(items: FastBoundItem[]) {
-  const mappedItems = items.map(item => ({
+// FastBound API field mapping:
+// - serial (not serialNumber)
+// - itemNumber (control number)
+// - acquire_Date (acquisition date)
+// - disposed (boolean for disposal status)
+// - acquisitionContactId (acquisition contact)
+async function upsertItemsToSupabase(items: any[]) {
+  const mappedItems = items.map((item: any) => ({
     fastbound_item_id: item.id,
-    fastbound_acquisition_id: item.acquisitionId || null,
-    control_number: item.externalId || item.sku || null,
+    fastbound_acquisition_id: item.acquisitionContactId || null,
+    control_number: item.itemNumber || item.externalId || item.sku || null,
     firearm_type: item.type,
     manufacturer: item.manufacturer,
     model: item.model,
     caliber: item.caliber,
-    serial_number: item.serialNumber,
-    date_acquired: item.acquisitionDate || null,
-    status: item.isDisposed ? 'disposed' : 'in_stock',
+    serial_number: item.serial || null,
+    date_acquired: item.acquire_Date || null,
+    status: item.disposed ? 'disposed' : 'in_stock',
     price: item.price || item.cost || null,
-    notes: item.note || null,
+    notes: null,
     metadata: {
       condition: item.condition,
       location: item.location,
@@ -181,6 +187,13 @@ async function upsertItemsToSupabase(items: FastBoundItem[]) {
       upc: item.upc,
       countryOfManufacture: item.countryOfManufacture,
       importer: item.importer,
+      itemNumber: item.itemNumber,
+      ttsn: item.ttsn,
+      otsn: item.otsn,
+      acquisitionType: item.acquisitionType,
+      dispositionType: item.dispositionType,
+      barrelLength: item.barrelLength,
+      overallLength: item.overallLength,
     }
   }))
 
