@@ -329,6 +329,19 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
     const tax = subtotal * 0.0795;
     const total = subtotal * 1.0795;
 
+    // Determine scale factor based on number of items
+    const itemCount = productLines.length;
+    let scaleFactor = 1.0;
+    if (itemCount > 3) {
+      scaleFactor = 0.85;
+    }
+    if (itemCount > 5) {
+      scaleFactor = 0.75;
+    }
+    if (itemCount > 7) {
+      scaleFactor = 0.65;
+    }
+
     // Create print content with two copies on one page
     const printContent = `
       <!DOCTYPE html>
@@ -348,6 +361,8 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
             padding: 10px;
             max-width: 8in;
             margin: 0 auto;
+            transform: scale(${scaleFactor});
+            transform-origin: top center;
           }
           
           .print-copy {
@@ -461,16 +476,15 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
       <body>
         <!-- Customer Copy (Top) -->
         <div class="print-copy">
-          <div class="copy-label">CUSTOMER COPY</div>
+          <div style="text-align: left; font-size: 10px; margin-bottom: 10px;">
+            ${new Date().toLocaleDateString('en-US', {
+              year: 'numeric',
+              month: 'long',
+              day: 'numeric'
+            })}
+          </div>
           <div class="print-header">
             <div class="print-title">Special Order Form</div>
-            <div class="print-subtitle">
-              Order ID: ${initialData?.id || 'temp-' + Date.now()} | Date: ${new Date().toLocaleDateString('en-US', {
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric'
-              })}
-            </div>
           </div>
 
           <div class="print-section">
@@ -478,10 +492,6 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
             <div class="print-field">
               <div class="print-label">Name:</div>
               <div class="print-value">${formData.customer_name}</div>
-            </div>
-            <div class="print-field">
-              <div class="print-label">Email:</div>
-              <div class="print-value">${formData.customer_email}</div>
             </div>
             <div class="print-field">
               <div class="print-label">Phone:</div>
@@ -541,35 +551,20 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
                 <span>$${total.toFixed(2)}</span>
               </div>
             </div>
-          </div>
-
-          <div class="print-section">
-            <div class="print-section-title">Order Details</div>
-            <div class="print-field">
-              <div class="print-label">Status:</div>
-              <div class="print-value">${formData.status.charAt(0).toUpperCase() + formData.status.slice(1)}</div>
-            </div>
-            ${formData.special_requests ? `
-              <div class="print-field">
-                <div class="print-label">Special Requests:</div>
-                <div class="print-value">${formData.special_requests}</div>
-              </div>
-            ` : ''}
           </div>
         </div>
 
         <!-- Merchant Copy (Bottom) -->
         <div class="print-copy">
-          <div class="copy-label">MERCHANT COPY</div>
+          <div style="text-align: left; font-size: 10px; margin-bottom: 10px;">
+            ${new Date().toLocaleDateString('en-US', {
+              year: 'numeric',
+              month: 'long',
+              day: 'numeric'
+            })}
+          </div>
           <div class="print-header">
             <div class="print-title">Special Order Form</div>
-            <div class="print-subtitle">
-              Order ID: ${initialData?.id || 'temp-' + Date.now()} | Date: ${new Date().toLocaleDateString('en-US', {
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric'
-              })}
-            </div>
           </div>
 
           <div class="print-section">
@@ -577,10 +572,6 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
             <div class="print-field">
               <div class="print-label">Name:</div>
               <div class="print-value">${formData.customer_name}</div>
-            </div>
-            <div class="print-field">
-              <div class="print-label">Email:</div>
-              <div class="print-value">${formData.customer_email}</div>
             </div>
             <div class="print-field">
               <div class="print-label">Phone:</div>
@@ -640,20 +631,6 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
                 <span>$${total.toFixed(2)}</span>
               </div>
             </div>
-          </div>
-
-          <div class="print-section">
-            <div class="print-section-title">Order Details</div>
-            <div class="print-field">
-              <div class="print-label">Status:</div>
-              <div class="print-value">${formData.status.charAt(0).toUpperCase() + formData.status.slice(1)}</div>
-            </div>
-            ${formData.special_requests ? `
-              <div class="print-field">
-                <div class="print-label">Special Requests:</div>
-                <div class="print-value">${formData.special_requests}</div>
-              </div>
-            ` : ''}
           </div>
         </div>
 

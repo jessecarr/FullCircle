@@ -401,6 +401,19 @@ export function SuppressorApprovalForm({ initialData, onSuccess, onCancel }: Spe
     const tax = 0; // No tax as requested
     const total = subtotal;
 
+    // Determine scale factor based on number of items
+    const itemCount = productLines.length;
+    let scaleFactor = 1.0;
+    if (itemCount > 3) {
+      scaleFactor = 0.85;
+    }
+    if (itemCount > 5) {
+      scaleFactor = 0.75;
+    }
+    if (itemCount > 7) {
+      scaleFactor = 0.65;
+    }
+
     // Create print content with two copies on one page
     const printContent = `
       <!DOCTYPE html>
@@ -420,6 +433,8 @@ export function SuppressorApprovalForm({ initialData, onSuccess, onCancel }: Spe
             padding: 10px;
             max-width: 8in;
             margin: 0 auto;
+            transform: scale(${scaleFactor});
+            transform-origin: top center;
           }
           
           .print-copy {
@@ -533,16 +548,15 @@ export function SuppressorApprovalForm({ initialData, onSuccess, onCancel }: Spe
       <body>
         <!-- Customer Copy (Top) -->
         <div class="print-copy">
-          <div class="copy-label">CUSTOMER COPY</div>
+          <div style="text-align: left; font-size: 10px; margin-bottom: 10px;">
+            ${new Date().toLocaleDateString('en-US', {
+              year: 'numeric',
+              month: 'long',
+              day: 'numeric'
+            })}
+          </div>
           <div class="print-header">
             <div class="print-title">Suppressor Approval Form</div>
-            <div class="print-subtitle">
-              Order ID: ${initialData?.id || 'temp-' + Date.now()} | Date: ${new Date().toLocaleDateString('en-US', {
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric'
-              })}
-            </div>
           </div>
 
           <div class="print-section">
@@ -550,10 +564,6 @@ export function SuppressorApprovalForm({ initialData, onSuccess, onCancel }: Spe
             <div class="print-field">
               <div class="print-label">Name:</div>
               <div class="print-value">${formData.customer_name}</div>
-            </div>
-            <div class="print-field">
-              <div class="print-label">Email:</div>
-              <div class="print-value">${formData.customer_email}</div>
             </div>
             <div class="print-field">
               <div class="print-label">Phone:</div>
@@ -613,31 +623,20 @@ export function SuppressorApprovalForm({ initialData, onSuccess, onCancel }: Spe
                 <span>$${total.toFixed(2)}</span>
               </div>
             </div>
-          </div>
-
-          <div class="print-section">
-            <div class="print-section-title">Order Details</div>
-            ${formData.special_requests ? `
-              <div class="print-field">
-                <div class="print-label">Special Requests:</div>
-                <div class="print-value">${formData.special_requests}</div>
-              </div>
-            ` : ''}
           </div>
         </div>
 
         <!-- Merchant Copy (Bottom) -->
         <div class="print-copy">
-          <div class="copy-label">MERCHANT COPY</div>
+          <div style="text-align: left; font-size: 10px; margin-bottom: 10px;">
+            ${new Date().toLocaleDateString('en-US', {
+              year: 'numeric',
+              month: 'long',
+              day: 'numeric'
+            })}
+          </div>
           <div class="print-header">
             <div class="print-title">Suppressor Approval Form</div>
-            <div class="print-subtitle">
-              Order ID: ${initialData?.id || 'temp-' + Date.now()} | Date: ${new Date().toLocaleDateString('en-US', {
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric'
-              })}
-            </div>
           </div>
 
           <div class="print-section">
@@ -645,10 +644,6 @@ export function SuppressorApprovalForm({ initialData, onSuccess, onCancel }: Spe
             <div class="print-field">
               <div class="print-label">Name:</div>
               <div class="print-value">${formData.customer_name}</div>
-            </div>
-            <div class="print-field">
-              <div class="print-label">Email:</div>
-              <div class="print-value">${formData.customer_email}</div>
             </div>
             <div class="print-field">
               <div class="print-label">Phone:</div>
@@ -708,16 +703,6 @@ export function SuppressorApprovalForm({ initialData, onSuccess, onCancel }: Spe
                 <span>$${total.toFixed(2)}</span>
               </div>
             </div>
-          </div>
-
-          <div class="print-section">
-            <div class="print-section-title">Order Details</div>
-            ${formData.special_requests ? `
-              <div class="print-field">
-                <div class="print-label">Special Requests:</div>
-                <div class="print-value">${formData.special_requests}</div>
-              </div>
-            ` : ''}
           </div>
         </div>
       </body>
