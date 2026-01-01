@@ -158,7 +158,7 @@ function HomeContent() {
           <div className="flex items-center justify-between mb-6">
             <Button
               variant="outline"
-              onClick={() => router.push('/dashboard')}
+              onClick={() => router.push('/landing')}
             >
               <ArrowLeft className="h-4 w-4 mr-2" />
               Return to Dashboard
