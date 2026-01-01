@@ -102,6 +102,9 @@ export function OutboundTransferForm({ initialData, onSuccess, onCancel }: Outbo
     transferee_ffl_name: initialData?.transferee_ffl_name || '',
     transferee_ffl_phone: initialData?.transferee_ffl_phone || '',
     transferee_ffl_address: initialData?.transferee_ffl_address || '',
+    transferee_ffl_zip: initialData?.transferee_ffl_zip || '',
+    transferee_ffl_state: initialData?.transferee_ffl_state || '',
+    transferee_ffl_city: initialData?.transferee_ffl_city || '',
     special_requests: initialData?.special_requests || ''
   })
 
@@ -250,6 +253,26 @@ export function OutboundTransferForm({ initialData, onSuccess, onCancel }: Outbo
     }
   }
 
+  const handleTransfereeZipCodeChange = async (zip: string) => {
+    setFormData(prev => ({ ...prev, transferee_ffl_zip: zip }))
+    
+    // Auto-fill city and state if valid zip code
+    if (isValidZipCode(zip)) {
+      try {
+        const zipData = await lookupZipCode(zip)
+        if (zipData) {
+          setFormData(prev => ({
+            ...prev,
+            transferee_ffl_city: zipData.city,
+            transferee_ffl_state: zipData.state
+          }))
+        }
+      } catch (error) {
+        console.error('Failed to lookup zip code:', error)
+      }
+    }
+  }
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     
@@ -264,7 +287,7 @@ export function OutboundTransferForm({ initialData, onSuccess, onCancel }: Outbo
     }
 
     // Validate transferee required fields
-    if (!formData.transferee_name || !formData.transferee_phone || !formData.transferee_ffl_name || !formData.transferee_ffl_phone || !formData.transferee_ffl_address) {
+    if (!formData.transferee_name || !formData.transferee_phone || !formData.transferee_ffl_name || !formData.transferee_ffl_phone || !formData.transferee_ffl_address || !formData.transferee_ffl_zip || !formData.transferee_ffl_state || !formData.transferee_ffl_city) {
       toast({
         title: 'Validation Error',
         description: 'Please fill in all required transferee fields',
@@ -893,15 +916,65 @@ export function OutboundTransferForm({ initialData, onSuccess, onCancel }: Outbo
                 </div>
               </div>
 
-              <div className="space-y-2">
-                <Label className="text-lg" htmlFor="transferee_ffl_address">Transferee FFL Address *</Label>
-                <Textarea
-                  id="transferee_ffl_address"
-                  value={formData.transferee_ffl_address}
-                  onChange={(e) => handleInputChange('transferee_ffl_address', e.target.value.toUpperCase())}
-                  className="min-h-[96px] text-base uppercase"
-                  required
-                />
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+                <div className="space-y-2">
+                  <Label className="text-lg" htmlFor="transferee_ffl_address">Street Address *</Label>
+                  <Textarea
+                    id="transferee_ffl_address"
+                    value={formData.transferee_ffl_address}
+                    onChange={(e) => handleInputChange('transferee_ffl_address', e.target.value.toUpperCase())}
+                    className="min-h-[192px] text-base uppercase"
+                    required
+                  />
+                </div>
+                <div className="grid grid-cols-1 gap-4">
+                  <div className="space-y-2">
+                    <Label className="text-lg" htmlFor="transferee_ffl_zip">Zip *</Label>
+                    <Input
+                      id="transferee_ffl_zip"
+                      value={formData.transferee_ffl_zip}
+                      onChange={(e) => handleTransfereeZipCodeChange(e.target.value.toUpperCase())}
+                      onKeyDown={(e) => {
+                        if (e.key === 'Enter') {
+                          e.preventDefault();
+                          document.getElementById('transferee_ffl_state')?.focus();
+                        }
+                      }}
+                      placeholder="Enter 5-digit zip code"
+                      maxLength={5}
+                      className="text-base uppercase"
+                      required
+                    />
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label className="text-lg" htmlFor="transferee_ffl_state">State *</Label>
+                    <Input
+                      id="transferee_ffl_state"
+                      value={formData.transferee_ffl_state}
+                      onChange={(e) => handleInputChange('transferee_ffl_state', e.target.value.toUpperCase())}
+                      onKeyDown={(e) => {
+                        if (e.key === 'Enter') {
+                          e.preventDefault();
+                          document.getElementById('transferee_ffl_city')?.focus();
+                        }
+                      }}
+                      className="text-base uppercase"
+                      required
+                    />
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label className="text-lg" htmlFor="transferee_ffl_city">City *</Label>
+                    <Input
+                      id="transferee_ffl_city"
+                      value={formData.transferee_ffl_city}
+                      onChange={(e) => handleInputChange('transferee_ffl_city', e.target.value.toUpperCase())}
+                      className="text-base uppercase"
+                      required
+                    />
+                  </div>
+                </div>
               </div>
             </div>
           </div>

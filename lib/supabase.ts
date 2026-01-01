@@ -165,6 +165,9 @@ export interface OutboundTransferForm {
   transferee_ffl_name?: string
   transferee_ffl_phone?: string
   transferee_ffl_address?: string
+  transferee_ffl_zip?: string
+  transferee_ffl_state?: string
+  transferee_ffl_city?: string
   transferee_ffl?: string
   transferee_address?: string
   transferee_city?: string
