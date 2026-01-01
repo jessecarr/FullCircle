@@ -1,5 +1,6 @@
 'use client'
 
+// Debug login page for testing authentication flow
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { Button } from '@/components/ui/button'
