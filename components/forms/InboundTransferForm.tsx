@@ -401,7 +401,7 @@ export function InboundTransferForm({ initialData, onSuccess, onCancel }: Specia
     const tax = 0; // No tax as requested
     const total = subtotal;
 
-    // Create print content
+    // Create print content with two copies on one page
     const printContent = `
       <!DOCTYPE html>
       <html>
@@ -410,74 +410,96 @@ export function InboundTransferForm({ initialData, onSuccess, onCancel }: Specia
         <style>
           @page {
             size: portrait;
-            margin: 0.5in;
+            margin: 0.25in;
           }
           
           body {
             font-family: 'Arial', sans-serif;
             color: #000;
             background: white;
-            padding: 20px;
+            padding: 10px;
             max-width: 8in;
             margin: 0 auto;
+          }
+          
+          .print-copy {
+            border: 1px solid #000;
+            padding: 15px;
+            margin-bottom: 20px;
+            page-break-inside: avoid;
+          }
+          
+          .print-copy:last-child {
+            margin-bottom: 0;
+          }
+          
+          .copy-label {
+            text-align: center;
+            font-size: 10px;
+            color: #666;
+            margin-bottom: 5px;
+            font-weight: bold;
           }
           
           .print-header {
             text-align: center;
             border-bottom: 2px solid #000;
-            padding-bottom: 20px;
-            margin-bottom: 30px;
+            padding-bottom: 15px;
+            margin-bottom: 20px;
           }
           
           .print-title {
-            font-size: 24px;
+            font-size: 20px;
             font-weight: bold;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
           }
           
           .print-subtitle {
-            font-size: 14px;
+            font-size: 12px;
             color: #666;
           }
           
           .print-section {
-            margin-bottom: 25px;
+            margin-bottom: 20px;
           }
           
           .print-section-title {
-            font-size: 16px;
+            font-size: 14px;
             font-weight: bold;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             border-bottom: 1px solid #ccc;
-            padding-bottom: 5px;
+            padding-bottom: 3px;
           }
           
           .print-field {
-            margin-bottom: 8px;
+            margin-bottom: 6px;
             display: flex;
           }
           
           .print-label {
             font-weight: bold;
-            width: 150px;
+            width: 120px;
             flex-shrink: 0;
+            font-size: 12px;
           }
           
           .print-value {
             flex: 1;
+            font-size: 12px;
           }
           
           .print-table {
             width: 100%;
             border-collapse: collapse;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
           }
           
           .print-table th,
           .print-table td {
             border: 1px solid #000;
-            padding: 8px;
+            padding: 6px;
             text-align: left;
+            font-size: 11px;
           }
           
           .print-table th {
@@ -486,8 +508,8 @@ export function InboundTransferForm({ initialData, onSuccess, onCancel }: Specia
           }
           
           .print-total-summary {
-            margin-top: 20px;
-            padding: 10px;
+            margin-top: 15px;
+            padding: 8px;
             background-color: #f5f5f5;
             border: 1px solid #000;
           }
@@ -495,119 +517,209 @@ export function InboundTransferForm({ initialData, onSuccess, onCancel }: Specia
           .print-total-row {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 5px;
-            font-size: 14px;
+            margin-bottom: 3px;
+            font-size: 12px;
           }
           
           .print-total-row.final {
-            font-size: 16px;
+            font-size: 14px;
             font-weight: bold;
             border-top: 1px solid #000;
-            padding-top: 5px;
+            padding-top: 3px;
             margin-bottom: 0;
-          }
-          
-          .print-footer {
-            margin-top: 40px;
-            padding-top: 20px;
-            border-top: 1px solid #ccc;
-            font-size: 12px;
-            color: #666;
           }
         </style>
       </head>
       <body>
-        <div class="print-header">
-          <div class="print-title">Inbound Transfer Form</div>
-          <div class="print-subtitle">
-            Order ID: ${initialData?.id || 'temp-' + Date.now()} | Date: ${new Date().toLocaleDateString('en-US', {
-              year: 'numeric',
-              month: 'long',
-              day: 'numeric'
-            })}
+        <!-- Customer Copy (Top) -->
+        <div class="print-copy">
+          <div class="copy-label">CUSTOMER COPY</div>
+          <div class="print-header">
+            <div class="print-title">Inbound Transfer Form</div>
+            <div class="print-subtitle">
+              Order ID: ${initialData?.id || 'temp-' + Date.now()} | Date: ${new Date().toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+              })}
+            </div>
           </div>
-        </div>
 
-        <div class="print-section">
-          <div class="print-section-title">Customer Information</div>
-          <div class="print-field">
-            <div class="print-label">Name:</div>
-            <div class="print-value">${formData.customer_name}</div>
-          </div>
-          <div class="print-field">
-            <div class="print-label">Email:</div>
-            <div class="print-value">${formData.customer_email}</div>
-          </div>
-          <div class="print-field">
-            <div class="print-label">Phone:</div>
-            <div class="print-value">${formatPhoneNumber(formData.customer_phone)}</div>
-          </div>
-          ${formData.customer_street ? `
+          <div class="print-section">
+            <div class="print-section-title">Customer Information</div>
             <div class="print-field">
-              <div class="print-label">Address:</div>
-              <div class="print-value">
-                ${formData.customer_street}
-                ${formData.customer_city ? `, ${formData.customer_city}` : ''}
-                ${formData.customer_state ? ` ${formData.customer_state}` : ''}
-                ${formData.customer_zip ? ` ${formData.customer_zip}` : ''}
+              <div class="print-label">Name:</div>
+              <div class="print-value">${formData.customer_name}</div>
+            </div>
+            <div class="print-field">
+              <div class="print-label">Email:</div>
+              <div class="print-value">${formData.customer_email}</div>
+            </div>
+            <div class="print-field">
+              <div class="print-label">Phone:</div>
+              <div class="print-value">${formatPhoneNumber(formData.customer_phone)}</div>
+            </div>
+            ${formData.customer_street ? `
+              <div class="print-field">
+                <div class="print-label">Address:</div>
+                <div class="print-value">
+                  ${formData.customer_street}
+                  ${formData.customer_city ? `, ${formData.customer_city}` : ''}
+                  ${formData.customer_state ? ` ${formData.customer_state}` : ''}
+                  ${formData.customer_zip ? ` ${formData.customer_zip}` : ''}
+                </div>
+              </div>
+            ` : ''}
+          </div>
+
+          <div class="print-section">
+            <div class="print-section-title">Order Items</div>
+            <table class="print-table">
+              <thead>
+                <tr>
+                  <th style="width: 15%">Control #</th>
+                  <th style="width: 30%">Manufacturer</th>
+                  <th style="width: 15%">Model</th>
+                  <th style="width: 15%">Serial #</th>
+                  <th style="width: 15%">Order Type</th>
+                  <th style="width: 10%">Unit Price</th>
+                </tr>
+              </thead>
+              <tbody>
+                ${productLines.map((line, index) => `
+                  <tr key="${index}">
+                    <td>${line.control_number || '-'}</td>
+                    <td>${line.manufacturer || '-'}</td>
+                    <td>${line.model || '-'}</td>
+                    <td>${line.serial_number || '-'}</td>
+                    <td>${line.order_type || '-'}</td>
+                    <td>$${(line.unit_price || 0).toFixed(2)}</td>
+                  </tr>
+                `).join('')}
+              </tbody>
+            </table>
+            
+            <div class="print-total-summary">
+              <div class="print-total-row">
+                <span style="font-weight: bold">Subtotal:</span>
+                <span>$${subtotal.toFixed(2)}</span>
+              </div>
+              <div class="print-total-row">
+                <span style="font-weight: bold">Tax:</span>
+                <span>$${tax.toFixed(2)}</span>
+              </div>
+              <div class="print-total-row final">
+                <span>Total:</span>
+                <span>$${total.toFixed(2)}</span>
               </div>
             </div>
-          ` : ''}
-        </div>
+          </div>
 
-        <div class="print-section">
-          <div class="print-section-title">Order Items</div>
-          <table class="print-table">
-            <thead>
-              <tr>
-                <th style="width: 15%">Control #</th>
-                <th style="width: 30%">Manufacturer</th>
-                <th style="width: 15%">Model</th>
-                <th style="width: 15%">Serial #</th>
-                <th style="width: 15%">Order Type</th>
-                <th style="width: 10%">Unit Price</th>
-              </tr>
-            </thead>
-            <tbody>
-              ${productLines.map((line, index) => `
-                <tr key="${index}">
-                  <td>${line.control_number || '-'}</td>
-                  <td>${line.manufacturer || '-'}</td>
-                  <td>${line.model || '-'}</td>
-                  <td>${line.serial_number || '-'}</td>
-                  <td>${line.order_type || '-'}</td>
-                  <td>$${(line.unit_price || 0).toFixed(2)}</td>
-                </tr>
-              `).join('')}
-            </tbody>
-          </table>
-          
-          <div class="print-total-summary">
-            <div class="print-total-row">
-              <span style="font-weight: bold">Subtotal:</span>
-              <span>$${subtotal.toFixed(2)}</span>
-            </div>
-            <div class="print-total-row">
-              <span style="font-weight: bold">Tax:</span>
-              <span>$${tax.toFixed(2)}</span>
-            </div>
-            <div class="print-total-row final">
-              <span>Total:</span>
-              <span>$${total.toFixed(2)}</span>
-            </div>
+          <div class="print-section">
+            <div class="print-section-title">Order Details</div>
+            ${formData.special_requests ? `
+              <div class="print-field">
+                <div class="print-label">Special Requests:</div>
+                <div class="print-value">${formData.special_requests}</div>
+              </div>
+            ` : ''}
           </div>
         </div>
 
-        <div class="print-section">
-          <div class="print-section-title">Order Details</div>
-          ${formData.special_requests ? `
-            <div class="print-field">
-              <div class="print-label">Special Requests:</div>
-              <div class="print-value">${formData.special_requests}</div>
+        <!-- Merchant Copy (Bottom) -->
+        <div class="print-copy">
+          <div class="copy-label">MERCHANT COPY</div>
+          <div class="print-header">
+            <div class="print-title">Inbound Transfer Form</div>
+            <div class="print-subtitle">
+              Order ID: ${initialData?.id || 'temp-' + Date.now()} | Date: ${new Date().toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+              })}
             </div>
-          ` : ''}
-        </div>
+          </div>
 
+          <div class="print-section">
+            <div class="print-section-title">Customer Information</div>
+            <div class="print-field">
+              <div class="print-label">Name:</div>
+              <div class="print-value">${formData.customer_name}</div>
+            </div>
+            <div class="print-field">
+              <div class="print-label">Email:</div>
+              <div class="print-value">${formData.customer_email}</div>
+            </div>
+            <div class="print-field">
+              <div class="print-label">Phone:</div>
+              <div class="print-value">${formatPhoneNumber(formData.customer_phone)}</div>
+            </div>
+            ${formData.customer_street ? `
+              <div class="print-field">
+                <div class="print-label">Address:</div>
+                <div class="print-value">
+                  ${formData.customer_street}
+                  ${formData.customer_city ? `, ${formData.customer_city}` : ''}
+                  ${formData.customer_state ? ` ${formData.customer_state}` : ''}
+                  ${formData.customer_zip ? ` ${formData.customer_zip}` : ''}
+                </div>
+              </div>
+            ` : ''}
+          </div>
+
+          <div class="print-section">
+            <div class="print-section-title">Order Items</div>
+            <table class="print-table">
+              <thead>
+                <tr>
+                  <th style="width: 15%">Control #</th>
+                  <th style="width: 30%">Manufacturer</th>
+                  <th style="width: 15%">Model</th>
+                  <th style="width: 15%">Serial #</th>
+                  <th style="width: 15%">Order Type</th>
+                  <th style="width: 10%">Unit Price</th>
+                </tr>
+              </thead>
+              <tbody>
+                ${productLines.map((line, index) => `
+                  <tr key="${index}">
+                    <td>${line.control_number || '-'}</td>
+                    <td>${line.manufacturer || '-'}</td>
+                    <td>${line.model || '-'}</td>
+                    <td>${line.serial_number || '-'}</td>
+                    <td>${line.order_type || '-'}</td>
+                    <td>$${(line.unit_price || 0).toFixed(2)}</td>
+                  </tr>
+                `).join('')}
+              </tbody>
+            </table>
+            
+            <div class="print-total-summary">
+              <div class="print-total-row">
+                <span style="font-weight: bold">Subtotal:</span>
+                <span>$${subtotal.toFixed(2)}</span>
+              </div>
+              <div class="print-total-row">
+                <span style="font-weight: bold">Tax:</span>
+                <span>$${tax.toFixed(2)}</span>
+              </div>
+              <div class="print-total-row final">
+                <span>Total:</span>
+                <span>$${total.toFixed(2)}</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="print-section">
+            <div class="print-section-title">Order Details</div>
+            ${formData.special_requests ? `
+              <div class="print-field">
+                <div class="print-label">Special Requests:</div>
+                <div class="print-value">${formData.special_requests}</div>
+              </div>
+            ` : ''}
+          </div>
+        </div>
       </body>
       </html>
     `;
