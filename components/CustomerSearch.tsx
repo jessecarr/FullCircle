@@ -23,30 +23,30 @@ export default function CustomerSearch({ onSelect }: CustomerSearchProps) {
     return () => document.removeEventListener('mousedown', handleClickOutside)
   }, []);
 
-  const handleSearch = async () => {
-    if (!query.trim()) return;
-    
-    setIsSearching(true);
-    try {
-      const customers = await searchCustomers(query);
-      setResults(customers);
-      setHighlightedIndex(-1); // Reset highlighted index when new results arrive
-    } catch (error) {
-      console.error('Search error:', error);
-      setResults([]);
-    } finally {
-      setIsSearching(false);
-    }
-  };
-
-  const handleQueryChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  
+  const handleQueryChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const newQuery = e.target.value;
     setQuery(newQuery);
-    setHighlightedIndex(-1); // Reset highlighted index when typing
     
     // Clear results when search box is emptied
     if (!newQuery.trim()) {
       setResults([]);
+      setHighlightedIndex(-1);
+      return;
+    }
+    
+    // Perform real-time search
+    setIsSearching(true);
+    try {
+      const customers = await searchCustomers(newQuery);
+      setResults(customers);
+      setHighlightedIndex(customers.length > 0 ? 0 : -1); // Auto-highlight first result if any
+    } catch (error) {
+      console.error('Search error:', error);
+      setResults([]);
+      setHighlightedIndex(-1);
+    } finally {
+      setIsSearching(false);
     }
   };
 
@@ -91,22 +91,15 @@ export default function CustomerSearch({ onSelect }: CustomerSearchProps) {
 
   return (
     <div ref={wrapperRef} className="space-y-2">
-      <div className="flex gap-2">
+      <div>
         <input
           type="text"
           value={query}
           onChange={handleQueryChange}
           onKeyDown={handleKeyDown}
           placeholder="Search by email, phone, or name"
-          className="flex-1 p-2 border rounded"
+          className="w-full p-2 border rounded"
         />
-        <button 
-          onClick={handleSearch}
-          disabled={isSearching}
-          className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 disabled:bg-gray-400"
-        >
-          {isSearching ? 'Searching...' : 'Search'}
-        </button>
       </div>
       
       {results.length > 0 && (
