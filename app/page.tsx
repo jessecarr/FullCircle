@@ -2,7 +2,7 @@
 
 import { useState, useEffect, Suspense } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
+import { Tabs, TabsContent } from '@/components/ui/tabs'
 import { SpecialOrderForm } from '@/components/forms/SpecialOrderForm'
 import { InboundTransferForm } from '@/components/forms/InboundTransferForm'
 import { SuppressorApprovalForm } from '@/components/forms/SuppressorApprovalForm'
@@ -10,9 +10,25 @@ import { OutboundTransferForm } from '@/components/forms/OutboundTransferForm'
 import { FormsList } from '@/components/FormsList'
 import { FormViewDialog } from '@/components/FormViewDialog'
 import { Button } from '@/components/ui/button'
-import { Plus, List } from 'lucide-react'
+import { ChevronDown, List, ArrowLeft } from 'lucide-react'
 import { useAuth } from '@/hooks/useAuth'
 import { Header } from '@/components/Header'
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu'
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from '@/components/ui/alert-dialog'
 
 function HomeContent() {
   const { user, loading } = useAuth()
@@ -36,6 +52,8 @@ function HomeContent() {
   const [editingItem, setEditingItem] = useState<any>(null)
   const [viewingItem, setViewingItem] = useState<any>(null)
   const [refreshTrigger, setRefreshTrigger] = useState(0)
+  const [pendingFormSwitch, setPendingFormSwitch] = useState<string | null>(null)
+  const [showConfirmDialog, setShowConfirmDialog] = useState(false)
 
   const handleFormSuccess = () => {
     setRefreshTrigger(prev => prev + 1)
@@ -55,6 +73,26 @@ function HomeContent() {
   const handleNewForm = () => {
     setEditingItem(null)
     setViewMode('form')
+  }
+
+  const handleFormSelect = (formType: string) => {
+    setPendingFormSwitch(formType)
+    setShowConfirmDialog(true)
+  }
+
+  const confirmFormSwitch = () => {
+    if (pendingFormSwitch) {
+      setActiveTab(pendingFormSwitch)
+      setViewMode('form')
+      setEditingItem(null)
+    }
+    setShowConfirmDialog(false)
+    setPendingFormSwitch(null)
+  }
+
+  const cancelFormSwitch = () => {
+    setShowConfirmDialog(false)
+    setPendingFormSwitch(null)
   }
 
   const handleCancel = () => {
@@ -118,21 +156,49 @@ function HomeContent() {
           setEditingItem(null)
         }}>
           <div className="flex items-center justify-between mb-6">
-            <TabsList className="grid w-full max-w-2xl grid-cols-4">
-              <TabsTrigger value="special-order">Special Order</TabsTrigger>
-              <TabsTrigger value="inbound-transfer">Inbound Transfer</TabsTrigger>
-              <TabsTrigger value="suppressor-approval">Suppressor</TabsTrigger>
-              <TabsTrigger value="outbound-transfer">Outbound Transfer</TabsTrigger>
-            </TabsList>
+            <Button
+              variant="outline"
+              onClick={() => router.push('/dashboard')}
+            >
+              <ArrowLeft className="h-4 w-4 mr-2" />
+              Return to Dashboard
+            </Button>
 
             <div className="flex gap-2">
-              <Button
-                variant={viewMode === 'form' ? 'default' : 'outline'}
-                onClick={handleNewForm}
-              >
-                <Plus className="h-4 w-4 mr-2" />
-                New Form
-              </Button>
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant={viewMode === 'form' ? 'default' : 'outline'}>
+                    New Form
+                    <ChevronDown className="h-4 w-4 ml-2" />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent className="bg-white border border-gray-200 shadow-lg z-50">
+                  <DropdownMenuItem 
+                    onClick={() => handleFormSelect('special-order')}
+                    className="cursor-pointer hover:bg-gray-100"
+                  >
+                    Special Order
+                  </DropdownMenuItem>
+                  <DropdownMenuItem 
+                    onClick={() => handleFormSelect('inbound-transfer')}
+                    className="cursor-pointer hover:bg-gray-100"
+                  >
+                    Inbound Transfer
+                  </DropdownMenuItem>
+                  <DropdownMenuItem 
+                    onClick={() => handleFormSelect('suppressor-approval')}
+                    className="cursor-pointer hover:bg-gray-100"
+                  >
+                    Suppressor Approval
+                  </DropdownMenuItem>
+                  <DropdownMenuItem 
+                    onClick={() => handleFormSelect('outbound-transfer')}
+                    className="cursor-pointer hover:bg-gray-100"
+                  >
+                    Outbound Transfer
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
               <Button
                 variant={viewMode === 'list' ? 'default' : 'outline'}
                 onClick={() => setViewMode('list')}
@@ -224,6 +290,21 @@ function HomeContent() {
           setViewingItem(null)
         }}
       />
+
+      <AlertDialog open={showConfirmDialog} onOpenChange={setShowConfirmDialog}>
+        <AlertDialogContent className="bg-white">
+          <AlertDialogHeader>
+            <AlertDialogTitle>Switch Form?</AlertDialogTitle>
+            <AlertDialogDescription>
+              The current form will not be saved. Are you sure you want to continue?
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel onClick={cancelFormSwitch}>Cancel</AlertDialogCancel>
+            <AlertDialogAction onClick={confirmFormSwitch}>Continue</AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </div>
   )
 }
