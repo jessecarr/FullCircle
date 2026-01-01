@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from 'react'
 import { supabase } from '@/lib/supabase'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
-import { Eye, Edit, Trash2, Printer, Download, RefreshCw } from 'lucide-react'
+import { Eye, Edit, Trash2, Printer, Download, RefreshCw, ChevronDown } from 'lucide-react'
 import { useToast } from '@/components/ui/use-toast'
 import { Label } from '@/components/ui/label'
 import {
@@ -33,9 +33,10 @@ interface FormsListProps {
   refreshTrigger?: number
 }
 
-type FormType = 'special_orders' | 'inbound_transfers' | 'suppressor_approvals' | 'outbound_transfers'
+type FormType = 'all' | 'special_orders' | 'inbound_transfers' | 'suppressor_approvals' | 'outbound_transfers'
 
 const FORM_TYPE_LABELS: Record<FormType, string> = {
+  all: 'All Forms',
   special_orders: 'Special Order',
   inbound_transfers: 'Inbound Transfer',
   suppressor_approvals: 'Suppressor Approval',
@@ -48,6 +49,7 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger }: 
   const [items, setItems] = useState<any[]>([])
   const [loading, setLoading] = useState(true)
   const [selectedFormType, setSelectedFormType] = useState<FormType>('special_orders')
+  const [showStatusDropdown, setShowStatusDropdown] = useState(false)
   const [selectedStatuses, setSelectedStatuses] = useState<string[]>(['pending', 'ordered'])
   const [statusUpdateItem, setStatusUpdateItem] = useState<any>(null)
   const [showStatusDialog, setShowStatusDialog] = useState(false)
@@ -58,25 +60,54 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger }: 
   const fetchAllItems = async () => {
     setLoading(true)
     try {
-      const { data, error } = await supabase
-        .from(selectedFormType)
-        .select('*')
-        .order('created_at', { ascending: false })
+      let allItems: any[] = []
+      
+      if (selectedFormType === 'all') {
+        // Fetch from all tables
+        const tables: Array<'special_orders' | 'inbound_transfers' | 'suppressor_approvals' | 'outbound_transfers'> = [
+          'special_orders',
+          'inbound_transfers',
+          'suppressor_approvals',
+          'outbound_transfers'
+        ]
+        
+        for (const table of tables) {
+          const { data, error } = await supabase
+            .from(table)
+            .select('*')
+            .order('created_at', { ascending: false })
+          
+          if (!error && data) {
+            const itemsWithType = data.map(item => ({
+              ...item,
+              _formType: table
+            }))
+            allItems = [...allItems, ...itemsWithType]
+          }
+        }
+        
+        // Sort by created_at
+        allItems.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime())
+      } else {
+        const { data, error } = await supabase
+          .from(selectedFormType)
+          .select('*')
+          .order('created_at', { ascending: false })
 
-      if (error) throw error
+        if (error) throw error
+        
+        allItems = (data || []).map(item => ({
+          ...item,
+          _formType: selectedFormType
+        }))
+      }
       
       // Filter by selected statuses
-      const filteredData = (data || []).filter(item => 
+      const filteredData = allItems.filter(item => 
         selectedStatuses.length === 0 || selectedStatuses.includes(item.status)
       )
       
-      // Add form type to each item for reference
-      const itemsWithType = filteredData.map(item => ({
-        ...item,
-        _formType: selectedFormType
-      }))
-      
-      setItems(itemsWithType)
+      setItems(filteredData)
     } catch (error) {
       toast({
         title: 'Error',
@@ -244,6 +275,7 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger }: 
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent className="bg-white">
+                  <SelectItem value="all">All Forms</SelectItem>
                   <SelectItem value="special_orders">Special Order</SelectItem>
                   <SelectItem value="inbound_transfers">Inbound Transfer</SelectItem>
                   <SelectItem value="suppressor_approvals">Suppressor Approval</SelectItem>
@@ -252,30 +284,43 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger }: 
               </Select>
             </div>
 
-            {/* Status Multi-Select Filter */}
-            <div className="space-y-2">
+            {/* Status Multi-Select Filter as Dropdown */}
+            <div className="space-y-2 relative">
               <Label className="text-lg">Status Filter</Label>
-              <div className="flex flex-wrap gap-2">
-                {ALL_STATUSES.map(status => (
-                  <Button
-                    key={status}
-                    variant={selectedStatuses.includes(status) ? 'default' : 'outline'}
-                    size="sm"
-                    onClick={() => toggleStatus(status)}
-                    className="capitalize"
-                  >
-                    {status}
-                  </Button>
-                ))}
-              </div>
+              <Button
+                variant="outline"
+                onClick={() => setShowStatusDropdown(!showStatusDropdown)}
+                className="w-[200px] justify-between bg-white"
+              >
+                <span>{selectedStatuses.length} selected</span>
+                <ChevronDown className="h-4 w-4" />
+              </Button>
+              {showStatusDropdown && (
+                <div className="absolute top-full mt-1 w-[200px] bg-white border border-gray-200 rounded-md shadow-lg z-50 p-2">
+                  {ALL_STATUSES.map(status => (
+                    <label
+                      key={status}
+                      className="flex items-center gap-2 p-2 hover:bg-gray-100 cursor-pointer rounded capitalize"
+                    >
+                      <input
+                        type="checkbox"
+                        checked={selectedStatuses.includes(status)}
+                        onChange={() => toggleStatus(status)}
+                        className="w-4 h-4"
+                      />
+                      <span>{status}</span>
+                    </label>
+                  ))}
+                </div>
+              )}
             </div>
           </div>
         </CardContent>
       </Card>
 
       {/* Results Count */}
-      <p className="text-sm text-muted-foreground">
-        Showing {items.length} {FORM_TYPE_LABELS[selectedFormType]}(s)
+      <p className="text-base text-muted-foreground">
+        Showing {items.length} {FORM_TYPE_LABELS[selectedFormType]}{items.length !== 1 ? 's' : ''}
       </p>
 
       {/* Items List */}
@@ -290,11 +335,12 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger }: 
           <Card key={`${item._formType}-${item.id}`}>
             <CardHeader>
               <div className="flex items-start justify-between">
-                <div className="space-y-1">
-                  <CardTitle className="text-lg">{getCustomerName(item)}</CardTitle>
-                  <div className="flex flex-wrap gap-4 text-sm text-muted-foreground">
+                <div className="space-y-2">
+                  <CardTitle className="text-2xl">{getCustomerName(item)}</CardTitle>
+                  <div className="flex flex-wrap gap-4 text-base text-muted-foreground">
+                    <span><strong>Form Type:</strong> {FORM_TYPE_LABELS[item._formType as FormType]}</span>
                     <span><strong>Created:</strong> {formatDate(item.created_at)}</span>
-                    <span className={`px-2 py-0.5 rounded-full text-xs font-medium ${getStatusColor(item.status)}`}>
+                    <span className={`px-3 py-1 rounded-full text-sm font-medium ${getStatusColor(item.status)}`}>
                       {item.status?.charAt(0).toUpperCase() + item.status?.slice(1) || 'N/A'}
                     </span>
                     {getVendor(item) && (
