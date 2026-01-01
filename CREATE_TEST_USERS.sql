@@ -1,0 +1,82 @@
+-- Create test users in Supabase Auth
+-- Run this in your Supabase SQL Editor
+
+-- You'll need to create these users manually in Supabase Auth first:
+-- 1. Go to Supabase Dashboard -> Authentication -> Users
+-- 2. Click "Add user" for each test account
+
+-- Test Account 1: Admin
+-- Email: Admin@fullcircle.com
+-- Password: Admin123!
+-- After creating, copy the user ID and use it in the INSERT below
+
+-- Test Account 2: Manager  
+-- Email: Manager@fullcircle.com
+-- Password: Manager123!
+
+-- Test Account 3: Employee
+-- Email: Employee@fullcircle.com
+-- Password: Employee123!
+
+-- Once you have the user IDs from Supabase Auth, run these INSERT statements:
+-- Replace 'USER_ID_HERE' with the actual IDs from the Auth users table
+
+-- INSERT INTO employees (
+--   id,
+--   email,
+--   password_hash,
+--   name,
+--   role,
+--   is_active,
+--   created_at,
+--   updated_at
+-- ) VALUES (
+--   'ADMIN_USER_ID_HERE', -- Replace with actual user ID
+--   'Admin@fullcircle.com',
+--   'test_hash_admin',
+--   'System Administrator',
+--   'admin',
+--   true,
+--   NOW(),
+--   NOW()
+-- );
+
+-- INSERT INTO employees (
+--   id,
+--   email,
+--   password_hash,
+--   name,
+--   role,
+--   is_active,
+--   created_at,
+--   updated_at
+-- ) VALUES (
+--   'MANAGER_USER_ID_HERE', -- Replace with actual user ID
+--   'Manager@fullcircle.com',
+--   'test_hash_manager',
+--   'Store Manager',
+--   'manager',
+--   true,
+--   NOW(),
+--   NOW()
+-- );
+
+-- INSERT INTO employees (
+--   id,
+--   email,
+--   password_hash,
+--   name,
+--   role,
+--   is_active,
+--   created_at,
+--   updated_at
+-- ) VALUES (
+--   'EMPLOYEE_USER_ID_HERE', -- Replace with actual user ID
+--   'Employee@fullcircle.com',
+--   'test_hash_employee',
+--   'Sales Employee',
+--   'employee',
+--   true,
+--   NOW(),
+--   NOW()
+-- );
