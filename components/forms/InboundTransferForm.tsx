@@ -91,6 +91,8 @@ export function InboundTransferForm({ initialData, onSuccess, onCancel }: Specia
     customer_name: initialData?.customer_name || '',
     customer_email: initialData?.customer_email || '',
     customer_phone: initialData?.customer_phone || '',
+    drivers_license: initialData?.drivers_license || '',
+    license_expiration: initialData?.license_expiration || '',
     customer_street: initialData?.customer_street || '',
     customer_city: initialData?.customer_city || '',
     customer_state: initialData?.customer_state || '',
@@ -793,17 +795,6 @@ export function InboundTransferForm({ initialData, onSuccess, onCancel }: Specia
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="customer_email">Customer Email</Label>
-                  <Input
-                    id="customer_email"
-                    type="email"
-                    value={formData.customer_email}
-                    onChange={(e) => handleInputChange('customer_email', e.target.value.toUpperCase())}
-                    className="uppercase"
-                  />
-                </div>
-
-                <div className="space-y-2">
                   <Label htmlFor="customer_phone">Customer Phone *</Label>
                   <Input
                     id="customer_phone"
@@ -816,6 +807,37 @@ export function InboundTransferForm({ initialData, onSuccess, onCancel }: Specia
                     required
                     maxLength={14}
                     placeholder="(123) 456-7890"
+                  />
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="customer_email">Customer Email</Label>
+                  <Input
+                    id="customer_email"
+                    type="email"
+                    value={formData.customer_email}
+                    onChange={(e) => handleInputChange('customer_email', e.target.value.toUpperCase())}
+                    className="uppercase"
+                  />
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="drivers_license">Driver's License</Label>
+                  <Input
+                    id="drivers_license"
+                    value={formData.drivers_license}
+                    onChange={(e) => handleInputChange('drivers_license', e.target.value.toUpperCase())}
+                    className="uppercase"
+                  />
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="license_expiration">Expiration Date</Label>
+                  <Input
+                    id="license_expiration"
+                    type="date"
+                    value={formData.license_expiration}
+                    onChange={(e) => handleInputChange('license_expiration', e.target.value)}
                   />
                 </div>
               </div>

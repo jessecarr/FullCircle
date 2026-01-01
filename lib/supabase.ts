@@ -71,6 +71,8 @@ export interface SpecialOrderForm {
   customer_name: string
   customer_email: string
   customer_phone: string
+  drivers_license?: string
+  license_expiration?: string
   customer_street?: string
   customer_city?: string
   customer_state?: string
@@ -86,6 +88,15 @@ export interface SpecialOrderForm {
 
 export interface InboundTransferForm {
   id: string
+  customer_name?: string
+  customer_email?: string
+  customer_phone?: string
+  drivers_license?: string
+  license_expiration?: string
+  customer_street?: string
+  customer_city?: string
+  customer_state?: string
+  customer_zip?: string
   transferor_name: string
   transferor_ffl?: string
   transferor_address: string
@@ -101,6 +112,8 @@ export interface InboundTransferForm {
   atf_form_type: string
   tracking_number?: string
   notes?: string
+  product_lines?: any[]
+  special_requests?: string
   status: 'pending' | 'in_transit' | 'received' | 'completed'
   created_at: string
   updated_at: string
@@ -111,6 +124,9 @@ export interface SuppressorApprovalForm {
   customer_name: string
   customer_email: string
   customer_phone: string
+  drivers_license?: string
+  license_expiration?: string
+  customer_street?: string
   customer_address: string
   customer_city: string
   customer_state: string
@@ -119,6 +135,8 @@ export interface SuppressorApprovalForm {
   suppressor_model: string
   suppressor_caliber: string
   suppressor_serial_number: string
+  product_lines?: any[]
+  special_requests?: string
   trust_name?: string
   form_type: 'Form 1' | 'Form 4'
   submission_date: string
@@ -133,6 +151,15 @@ export interface SuppressorApprovalForm {
 
 export interface OutboundTransferForm {
   id: string
+  customer_name?: string
+  customer_email?: string
+  customer_phone?: string
+  drivers_license?: string
+  license_expiration?: string
+  customer_street?: string
+  customer_city?: string
+  customer_state?: string
+  customer_zip?: string
   transferee_name: string
   transferee_ffl?: string
   transferee_address: string
@@ -144,6 +171,8 @@ export interface OutboundTransferForm {
   model: string
   caliber: string
   serial_number: string
+  product_lines?: any[]
+  special_requests?: string
   transfer_date: string
   atf_form_type: string
   tracking_number?: string
