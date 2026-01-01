@@ -13,6 +13,11 @@ export type Database = {
         Insert: Omit<Customer, 'id' | 'created_at' | 'updated_at'>
         Update: Partial<Omit<Customer, 'id' | 'created_at'>>
       }
+      employees: {
+        Row: Employee
+        Insert: Omit<Employee, 'id' | 'created_at' | 'updated_at'>
+        Update: Partial<Omit<Employee, 'id' | 'created_at'>>
+      }
       special_orders: {
         Row: SpecialOrderForm
         Insert: Omit<SpecialOrderForm, 'id' | 'created_at' | 'updated_at'>
@@ -46,6 +51,17 @@ export interface Customer {
   city?: string
   state?: string
   zip?: string
+  created_at: string
+  updated_at: string
+}
+
+export interface Employee {
+  id: string
+  email: string
+  password_hash: string
+  name: string
+  role: 'admin' | 'manager' | 'employee'
+  is_active: boolean
   created_at: string
   updated_at: string
 }

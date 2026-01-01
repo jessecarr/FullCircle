@@ -12,6 +12,7 @@ import { useToast } from '@/components/ui/use-toast'
 import CustomerSearch from '../CustomerSearch'
 import VendorSearch from '../VendorSearch'
 import { lookupZipCode, isValidZipCode } from '@/lib/zipLookup'
+import { Printer } from 'lucide-react'
 
 interface SpecialOrderFormProps {
   initialData?: SpecialOrderFormType
@@ -322,6 +323,287 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
     return `(${digits.slice(0,3)}) ${digits.slice(3,6)}-${digits.slice(6,10)}`;
   };
 
+  const handlePrint = () => {
+    // Calculate totals
+    const subtotal = productLines.reduce((acc, line) => acc + line.total_price, 0);
+    const tax = subtotal * 0.0795;
+    const total = subtotal * 1.0795;
+
+    // Create print content
+    const printContent = `
+      <!DOCTYPE html>
+      <html>
+      <head>
+        <title>Special Order Form</title>
+        <style>
+          @page {
+            size: portrait;
+            margin: 0.5in;
+          }
+          
+          body {
+            font-family: 'Arial', sans-serif;
+            color: #000;
+            background: white;
+            padding: 20px;
+            max-width: 8in;
+            margin: 0 auto;
+          }
+          
+          .print-header {
+            text-align: center;
+            border-bottom: 2px solid #000;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+          }
+          
+          .print-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+          }
+          
+          .print-subtitle {
+            font-size: 14px;
+            color: #666;
+          }
+          
+          .print-section {
+            margin-bottom: 25px;
+          }
+          
+          .print-section-title {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 5px;
+          }
+          
+          .print-field {
+            margin-bottom: 8px;
+            display: flex;
+          }
+          
+          .print-label {
+            font-weight: bold;
+            width: 150px;
+            flex-shrink: 0;
+          }
+          
+          .print-value {
+            flex: 1;
+          }
+          
+          .print-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+          }
+          
+          .print-table th,
+          .print-table td {
+            border: 1px solid #000;
+            padding: 8px;
+            text-align: left;
+          }
+          
+          .print-table th {
+            background-color: #f5f5f5;
+            font-weight: bold;
+          }
+          
+          .print-total-summary {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #f5f5f5;
+            border: 1px solid #000;
+          }
+          
+          .print-total-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 14px;
+          }
+          
+          .print-total-row.final {
+            font-size: 16px;
+            font-weight: bold;
+            border-top: 1px solid #000;
+            padding-top: 5px;
+            margin-bottom: 0;
+          }
+          
+          .print-footer {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #ccc;
+            font-size: 12px;
+            color: #666;
+          }
+        </style>
+      </head>
+      <body>
+        <div class="print-header">
+          <div class="print-title">Special Order Form</div>
+          <div class="print-subtitle">
+            Order ID: ${initialData?.id || 'temp-' + Date.now()} | Date: ${new Date().toLocaleDateString('en-US', {
+              year: 'numeric',
+              month: 'long',
+              day: 'numeric'
+            })}
+          </div>
+        </div>
+
+        <div class="print-section">
+          <div class="print-section-title">Customer Information</div>
+          <div class="print-field">
+            <div class="print-label">Name:</div>
+            <div class="print-value">${formData.customer_name}</div>
+          </div>
+          <div class="print-field">
+            <div class="print-label">Email:</div>
+            <div class="print-value">${formData.customer_email}</div>
+          </div>
+          <div class="print-field">
+            <div class="print-label">Phone:</div>
+            <div class="print-value">${formatPhoneNumber(formData.customer_phone)}</div>
+          </div>
+          ${formData.customer_street ? `
+            <div class="print-field">
+              <div class="print-label">Address:</div>
+              <div class="print-value">
+                ${formData.customer_street}
+                ${formData.customer_city ? `, ${formData.customer_city}` : ''}
+                ${formData.customer_state ? ` ${formData.customer_state}` : ''}
+                ${formData.customer_zip ? ` ${formData.customer_zip}` : ''}
+              </div>
+            </div>
+          ` : ''}
+        </div>
+
+        <div class="print-section">
+          <div class="print-section-title">Order Items</div>
+          <table class="print-table">
+            <thead>
+              <tr>
+                <th style="width: 15%">SKU</th>
+                <th style="width: 35%">Description</th>
+                <th style="width: 20%">Vendor</th>
+                <th style="width: 10%">Qty</th>
+                <th style="width: 10%">Unit Price</th>
+                <th style="width: 10%">Total</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${productLines.map((line, index) => `
+                <tr key="${index}">
+                  <td>${line.sku || '-'}</td>
+                  <td>${line.description || '-'}</td>
+                  <td>${line.vendor || '-'}</td>
+                  <td>${line.quantity || 1}</td>
+                  <td>$${(line.unit_price || 0).toFixed(2)}</td>
+                  <td>$${(line.total_price || 0).toFixed(2)}</td>
+                </tr>
+              `).join('')}
+            </tbody>
+          </table>
+          
+          <div class="print-total-summary">
+            <div class="print-total-row">
+              <span style="font-weight: bold">Subtotal:</span>
+              <span>$${subtotal.toFixed(2)}</span>
+            </div>
+            <div class="print-total-row">
+              <span style="font-weight: bold">Tax (7.95%):</span>
+              <span>$${tax.toFixed(2)}</span>
+            </div>
+            <div class="print-total-row final">
+              <span>Total:</span>
+              <span>$${total.toFixed(2)}</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="print-section">
+          <div class="print-section-title">Order Details</div>
+          <div class="print-field">
+            <div class="print-label">Delivery Method:</div>
+            <div class="print-value">
+              ${formData.delivery_method === 'in_store_pickup' ? 'In-Store Pickup' : 'Ship to Customer'}
+            </div>
+          </div>
+          <div class="print-field">
+            <div class="print-label">Status:</div>
+            <div class="print-value">${formData.status.charAt(0).toUpperCase() + formData.status.slice(1)}</div>
+          </div>
+          ${formData.special_requests ? `
+            <div class="print-field">
+              <div class="print-label">Special Requests:</div>
+              <div class="print-value">${formData.special_requests}</div>
+            </div>
+          ` : ''}
+        </div>
+
+        <div class="print-footer">
+          <div>Generated on ${new Date().toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+          })}</div>
+          <div>Form ID: ${initialData?.id || 'temp-' + Date.now()}</div>
+        </div>
+      </body>
+      </html>
+    `;
+
+    // Create a hidden iframe for printing
+    const iframe = document.createElement('iframe');
+    iframe.style.position = 'absolute';
+    iframe.style.left = '-9999px';
+    iframe.style.top = '-9999px';
+    iframe.style.width = '0px';
+    iframe.style.height = '0px';
+    document.body.appendChild(iframe);
+
+    // Write content to iframe
+    const iframeDoc = iframe.contentDocument || iframe.contentWindow?.document;
+    if (iframeDoc) {
+      iframeDoc.open();
+      iframeDoc.write(printContent);
+      iframeDoc.close();
+
+      // Wait for content to load, then print
+      iframe.onload = () => {
+        setTimeout(() => {
+          iframe.contentWindow?.print();
+          // Remove iframe after printing
+          setTimeout(() => {
+            document.body.removeChild(iframe);
+          }, 1000);
+        }, 500);
+      };
+    } else {
+      // Fallback: try popup method
+      const printWindow = window.open('', '_blank');
+      if (printWindow) {
+        printWindow.document.write(printContent);
+        printWindow.document.close();
+        printWindow.onload = () => {
+          printWindow.print();
+          printWindow.close();
+        };
+      } else {
+        toast({
+          title: 'Error',
+          description: 'Please allow pop-ups for this site to print',
+          variant: 'destructive',
+        });
+      }
+    }
+  };
+
   return (
     <>
       <Card>
@@ -353,8 +635,9 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
                   <Input
                     id="customer_name"
                     value={formData.customer_name}
-                    onChange={(e) => handleInputChange('customer_name', e.target.value)}
+                    onChange={(e) => handleInputChange('customer_name', e.target.value.toUpperCase())}
                     required
+                    className="uppercase"
                   />
                 </div>
 
@@ -364,8 +647,9 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
                     id="customer_email"
                     type="email"
                     value={formData.customer_email}
-                    onChange={(e) => handleInputChange('customer_email', e.target.value)}
+                    onChange={(e) => handleInputChange('customer_email', e.target.value.toUpperCase())}
                     required
+                    className="uppercase"
                   />
                 </div>
 
@@ -391,8 +675,8 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
                   <Textarea
                     id="customer_street"
                     value={formData.customer_street}
-                    onChange={(e) => handleInputChange('customer_street', e.target.value)}
-                    className="min-h-[192px] text-base"
+                    onChange={(e) => handleInputChange('customer_street', e.target.value.toUpperCase())}
+                    className="min-h-[192px] text-base uppercase"
                   />
                 </div>
                 <div className="grid grid-cols-1 gap-4">
@@ -401,10 +685,10 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
                     <Input
                       id="customer_zip"
                       value={formData.customer_zip}
-                      onChange={(e) => handleZipCodeChange(e.target.value)}
+                      onChange={(e) => handleZipCodeChange(e.target.value.toUpperCase())}
                       placeholder="Enter 5-digit zip code"
                       maxLength={5}
-                      className="text-base"
+                      className="text-base uppercase"
                     />
                   </div>
 
@@ -413,8 +697,8 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
                     <Input
                       id="customer_state"
                       value={formData.customer_state}
-                      onChange={(e) => handleInputChange('customer_state', e.target.value)}
-                      className="text-base"
+                      onChange={(e) => handleInputChange('customer_state', e.target.value.toUpperCase())}
+                      className="text-base uppercase"
                     />
                   </div>
 
@@ -423,8 +707,8 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
                     <Input
                       id="customer_city"
                       value={formData.customer_city}
-                      onChange={(e) => handleInputChange('customer_city', e.target.value)}
-                      className="text-base"
+                      onChange={(e) => handleInputChange('customer_city', e.target.value.toUpperCase())}
+                      className="text-base uppercase"
                     />
                   </div>
                 </div>
@@ -452,10 +736,10 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
                     value={line.sku}
                     onChange={(e) => {
                       console.log('SKU input changed:', e.target.value);
-                      updateProductLine(index, 'sku', e.target.value);
+                      updateProductLine(index, 'sku', e.target.value.toUpperCase());
                     }}
                     required
-                    className="text-base w-full min-h-[48px] resize-none overflow-hidden"
+                    className="text-base w-full min-h-[48px] resize-none overflow-hidden uppercase"
                     rows={1}
                     style={{
                       height: isClient ? (rowHeights[index] || '48px') : '48px',
@@ -478,9 +762,9 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
                   <Textarea
                     id={`description-${index}`}
                     value={line.description}
-                    onChange={(e) => updateProductLine(index, 'description', e.target.value)}
+                    onChange={(e) => updateProductLine(index, 'description', e.target.value.toUpperCase())}
                     required
-                    className="min-h-[48px] w-full text-base resize-none overflow-hidden"
+                    className="min-h-[48px] w-full text-base resize-none overflow-hidden uppercase"
                     rows={1}
                     style={{
                       height: isClient ? (rowHeights[index] || '48px') : '48px',
@@ -578,13 +862,31 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
             >
               + Add Product Line
             </Button>
+            
+            {/* Order Total Summary */}
+            <div className="mt-6 p-4 bg-gray-50 rounded-lg border">
+              <div className="space-y-2">
+                <div className="flex justify-between text-lg">
+                  <span className="font-semibold">Subtotal:</span>
+                  <span>${productLines.reduce((acc, line) => acc + line.total_price, 0).toFixed(2)}</span>
+                </div>
+                <div className="flex justify-between text-lg">
+                  <span className="font-semibold">Tax (7.95%):</span>
+                  <span>${(productLines.reduce((acc, line) => acc + line.total_price, 0) * 0.0795).toFixed(2)}</span>
+                </div>
+                <div className="flex justify-between text-xl font-bold border-t pt-2">
+                  <span>Total:</span>
+                  <span>${(productLines.reduce((acc, line) => acc + line.total_price, 0) * 1.0795).toFixed(2)}</span>
+                </div>
+              </div>
+            </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="space-y-2">
               <Label htmlFor="delivery_method">Delivery Method *</Label>
               <Select value={formData.delivery_method} onValueChange={(value) => handleInputChange('delivery_method', value)}>
-                <SelectTrigger className="bg-white text-black border border-gray-300">
+                <SelectTrigger className="bg-white text-black border border-gray-300" suppressHydrationWarning>
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent className="bg-white border border-gray-300 text-black">
@@ -596,7 +898,7 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
             <div className="space-y-2">
               <Label htmlFor="status">Status *</Label>
               <Select value={formData.status} onValueChange={(value) => handleInputChange('status', value)}>
-                <SelectTrigger className="bg-white text-black border border-gray-300">
+                <SelectTrigger className="bg-white text-black border border-gray-300" suppressHydrationWarning>
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent className="bg-white border border-gray-300 text-black">
@@ -615,22 +917,36 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
             <Textarea
               id="special_requests"
               value={formData.special_requests}
-              onChange={(e) => handleInputChange('special_requests', e.target.value)}
+              onChange={(e) => handleInputChange('special_requests', e.target.value.toUpperCase())}
               rows={4}
+              suppressHydrationWarning
+              className="uppercase"
             />
           </div>
 
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-3 gap-4">
             <Button 
               type="button" 
               variant="outline" 
               onClick={() => onCancel ? onCancel() : window.history.back()}
               disabled={loading}
               className="w-full"
+              suppressHydrationWarning
             >
               Cancel
             </Button>
-            <Button type="submit" disabled={loading} className="w-full border border-input">
+            <Button 
+              type="button" 
+              variant="outline" 
+              onClick={handlePrint}
+              disabled={loading}
+              className="w-full"
+              suppressHydrationWarning
+            >
+              <Printer className="h-4 w-4 mr-2" />
+              Print
+            </Button>
+            <Button type="submit" disabled={loading} className="w-full border border-input" suppressHydrationWarning>
               {loading ? 'Saving...' : initialData ? 'Update Order' : 'Create Order'}
             </Button>
           </div>
