@@ -809,18 +809,9 @@ export function SuppressorApprovalForm({ initialData, onSuccess, onCancel }: Spe
                     placeholder="(123) 456-7890"
                   />
                 </div>
-
-                <div className="space-y-2">
-                  <Label htmlFor="customer_email">Customer Email</Label>
-                  <Input
-                    id="customer_email"
-                    type="email"
-                    value={formData.customer_email}
-                    onChange={(e) => handleInputChange('customer_email', e.target.value.toUpperCase())}
-                    className="uppercase"
-                  />
-                </div>
-
+              </div>
+              
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
                 <div className="space-y-2">
                   <Label htmlFor="drivers_license">Driver's License</Label>
                   <Input
@@ -838,6 +829,17 @@ export function SuppressorApprovalForm({ initialData, onSuccess, onCancel }: Spe
                     type="date"
                     value={formData.license_expiration}
                     onChange={(e) => handleInputChange('license_expiration', e.target.value)}
+                  />
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="customer_email">Customer Email</Label>
+                  <Input
+                    id="customer_email"
+                    type="email"
+                    value={formData.customer_email}
+                    onChange={(e) => handleInputChange('customer_email', e.target.value.toUpperCase())}
+                    className="uppercase"
                   />
                 </div>
               </div>
