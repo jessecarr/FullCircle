@@ -61,13 +61,23 @@ function HomeContent() {
     setEditingItem(null)
   }
 
-  const handleEdit = (item: any) => {
+  const handleEdit = (item: any, formType?: string) => {
     setEditingItem(item)
+    if (formType) {
+      // Convert table name to tab value
+      const tabMap: Record<string, string> = {
+        'special_orders': 'special-order',
+        'inbound_transfers': 'inbound-transfer',
+        'suppressor_approvals': 'suppressor-approval',
+        'outbound_transfers': 'outbound-transfer'
+      }
+      setActiveTab(tabMap[formType] || 'special-order')
+    }
     setViewMode('form')
   }
 
-  const handleView = (item: any) => {
-    setViewingItem(item)
+  const handleView = (item: any, formType?: string) => {
+    setViewingItem({ ...item, _formType: formType })
   }
 
   const handleNewForm = () => {
@@ -209,74 +219,44 @@ function HomeContent() {
             </div>
           </div>
 
-          <TabsContent value="special-order">
-            {viewMode === 'form' ? (
-              <SpecialOrderForm
-                initialData={editingItem}
-                onSuccess={handleFormSuccess}
-                onCancel={handleCancel}
-              />
-            ) : (
-              <FormsList
-                tableName="special_orders"
-                title="Special Orders"
-                onEdit={handleEdit}
-                onView={handleView}
-                refreshTrigger={refreshTrigger}
-              />
-            )}
-          </TabsContent>
+          {viewMode === 'list' ? (
+            <FormsList
+              onEdit={handleEdit}
+              onView={handleView}
+              refreshTrigger={refreshTrigger}
+            />
+          ) : (
+            <>
+              <TabsContent value="special-order">
+                <SpecialOrderForm
+                  initialData={editingItem}
+                  onSuccess={handleFormSuccess}
+                  onCancel={handleCancel}
+                />
+              </TabsContent>
 
-          <TabsContent value="inbound-transfer">
-            {viewMode === 'form' ? (
-              <InboundTransferForm
-                initialData={editingItem}
-                onSuccess={handleFormSuccess}
-              />
-            ) : (
-              <FormsList
-                tableName="inbound_transfers"
-                title="Inbound Transfers"
-                onEdit={handleEdit}
-                onView={handleView}
-                refreshTrigger={refreshTrigger}
-              />
-            )}
-          </TabsContent>
+              <TabsContent value="inbound-transfer">
+                <InboundTransferForm
+                  initialData={editingItem}
+                  onSuccess={handleFormSuccess}
+                />
+              </TabsContent>
 
-          <TabsContent value="suppressor-approval">
-            {viewMode === 'form' ? (
-              <SuppressorApprovalForm
-                initialData={editingItem}
-                onSuccess={handleFormSuccess}
-              />
-            ) : (
-              <FormsList
-                tableName="suppressor_approvals"
-                title="Suppressor Approvals"
-                onEdit={handleEdit}
-                onView={handleView}
-                refreshTrigger={refreshTrigger}
-              />
-            )}
-          </TabsContent>
+              <TabsContent value="suppressor-approval">
+                <SuppressorApprovalForm
+                  initialData={editingItem}
+                  onSuccess={handleFormSuccess}
+                />
+              </TabsContent>
 
-          <TabsContent value="outbound-transfer">
-            {viewMode === 'form' ? (
-              <OutboundTransferForm
-                initialData={editingItem}
-                onSuccess={handleFormSuccess}
-              />
-            ) : (
-              <FormsList
-                tableName="outbound_transfers"
-                title="Outbound Transfers"
-                onEdit={handleEdit}
-                onView={handleView}
-                refreshTrigger={refreshTrigger}
-              />
-            )}
-          </TabsContent>
+              <TabsContent value="outbound-transfer">
+                <OutboundTransferForm
+                  initialData={editingItem}
+                  onSuccess={handleFormSuccess}
+                />
+              </TabsContent>
+            </>
+          )}
         </Tabs>
       </main>
 
@@ -286,7 +266,7 @@ function HomeContent() {
         data={viewingItem}
         title={getFormTitle()}
         onEdit={() => {
-          handleEdit(viewingItem)
+          handleEdit(viewingItem, viewingItem?._formType)
           setViewingItem(null)
         }}
       />
