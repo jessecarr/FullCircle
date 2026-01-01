@@ -23,23 +23,15 @@ export default function LandingPage() {
       title: 'Special Order Form',
       description: 'Create and manage special customer orders',
       icon: FileText,
-      href: '/',
+      href: '/?tab=special-order',
       color: 'bg-blue-500',
       hoverColor: 'hover:bg-blue-600'
-    },
-    {
-      title: 'Customer Management',
-      description: 'Add and manage customer information',
-      icon: Users,
-      href: '/customers',
-      color: 'bg-green-500',
-      hoverColor: 'hover:bg-green-600'
     },
     {
       title: 'Inbound Transfer',
       description: 'Process incoming firearm transfers',
       icon: Package,
-      href: '/inbound-transfer',
+      href: '/?tab=inbound-transfer',
       color: 'bg-purple-500',
       hoverColor: 'hover:bg-purple-600'
     },
@@ -47,7 +39,7 @@ export default function LandingPage() {
       title: 'Outbound Transfer',
       description: 'Process outgoing firearm transfers',
       icon: Package,
-      href: '/outbound-transfer',
+      href: '/?tab=outbound-transfer',
       color: 'bg-orange-500',
       hoverColor: 'hover:bg-orange-600'
     },
@@ -55,14 +47,14 @@ export default function LandingPage() {
       title: 'Suppressor Approval',
       description: 'Manage NFA suppressor applications',
       icon: Shield,
-      href: '/suppressor-approval',
+      href: '/?tab=suppressor-approval',
       color: 'bg-red-500',
       hoverColor: 'hover:bg-red-600'
     },
     {
       title: 'Dashboard',
       description: 'View system overview and analytics',
-      icon: FileText,
+      icon: Users,
       href: '/dashboard',
       color: 'bg-gray-500',
       hoverColor: 'hover:bg-gray-600'

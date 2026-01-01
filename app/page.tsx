@@ -1,6 +1,7 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { useSearchParams } from 'next/navigation'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { SpecialOrderForm } from '@/components/forms/SpecialOrderForm'
 import { InboundTransferForm } from '@/components/forms/InboundTransferForm'
@@ -12,7 +13,15 @@ import { Button } from '@/components/ui/button'
 import { Plus, List } from 'lucide-react'
 
 export default function Home() {
-  const [activeTab, setActiveTab] = useState('special-order')
+  const searchParams = useSearchParams()
+  const tabParam = searchParams.get('tab')
+  const [activeTab, setActiveTab] = useState(tabParam || 'special-order')
+
+  useEffect(() => {
+    if (tabParam) {
+      setActiveTab(tabParam)
+    }
+  }, [tabParam])
   const [viewMode, setViewMode] = useState<'form' | 'list'>('form')
   const [editingItem, setEditingItem] = useState<any>(null)
   const [viewingItem, setViewingItem] = useState<any>(null)
