@@ -31,7 +31,7 @@ export default function DebugLoginPage() {
         .eq('email', email.toLowerCase())
         .single()
 
-      setDebugInfo(prev => ({ ...prev, step1: { employeeData, employeeError } }))
+      setDebugInfo((prev: any) => ({ ...prev, step1: { employeeData, employeeError } }))
 
       if (employeeError || !employeeData) {
         console.log('Employee not found:', employeeError)
@@ -59,7 +59,7 @@ export default function DebugLoginPage() {
         }
       })
 
-      setDebugInfo(prev => ({ ...prev, step2: { signUpData, signUpError } }))
+      setDebugInfo((prev: any) => ({ ...prev, step2: { signUpData, signUpError } }))
 
       if (signUpError && !signUpError.message.includes('already registered')) {
         console.log('Signup error:', signUpError)
@@ -78,7 +78,7 @@ export default function DebugLoginPage() {
         password: password,
       })
 
-      setDebugInfo(prev => ({ ...prev, step3: { authData, authError } }))
+      setDebugInfo((prev: any) => ({ ...prev, step3: { authData, authError } }))
 
       if (authError) {
         console.log('Auth error:', authError)
@@ -100,7 +100,7 @@ export default function DebugLoginPage() {
       router.push('/dashboard')
     } catch (error) {
       console.error('Login error:', error)
-      setDebugInfo(prev => ({ ...prev, error: error.message }))
+      setDebugInfo((prev: any) => ({ ...prev, error: error.message }))
       toast({
         title: 'Error',
         description: error.message,
