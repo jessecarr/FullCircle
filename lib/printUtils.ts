@@ -1,7 +1,5 @@
 'use client'
 
-import html2pdf from 'html2pdf.js'
-
 interface ProductLine {
   sku?: string
   description?: string
@@ -849,7 +847,7 @@ function downloadOutboundTransferPDF(data: any) {
   generatePDF(content, `Outbound_Transfer_${data.customer_name || 'Form'}_${new Date().toISOString().split('T')[0]}.pdf`)
 }
 
-function generatePDF(htmlContent: string, filename: string) {
+async function generatePDF(htmlContent: string, filename: string) {
   const element = document.createElement('div')
   element.innerHTML = htmlContent
   document.body.appendChild(element)
@@ -862,6 +860,8 @@ function generatePDF(htmlContent: string, filename: string) {
     jsPDF: { unit: 'in' as const, format: 'letter' as const, orientation: 'portrait' as const }
   }
 
+  // Dynamic import to avoid SSR issues
+  const html2pdf = (await import('html2pdf.js')).default
   html2pdf().set(opt).from(element).save().then(() => {
     document.body.removeChild(element)
   })
