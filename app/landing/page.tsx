@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { useAuth } from '@/hooks/useAuth'
 import { Header } from '@/components/Header'
-import { FileText, Users, ArrowRight, Package, Shield } from 'lucide-react'
+import { FileText, Users, ArrowRight, Package, Shield, List } from 'lucide-react'
 
 export default function LandingPage() {
   const { user, loading } = useAuth()
@@ -50,6 +50,14 @@ export default function LandingPage() {
       href: '/?tab=suppressor-approval',
       color: 'bg-red-500',
       hoverColor: 'hover:bg-red-600'
+    },
+    {
+      title: 'View All Forms',
+      description: 'Browse and manage all submitted forms',
+      icon: List,
+      href: '/?tab=view-all',
+      color: 'bg-green-500',
+      hoverColor: 'hover:bg-green-600'
     },
     {
       title: 'Dashboard',

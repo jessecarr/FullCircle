@@ -1,5 +1,7 @@
 'use client'
 
+import html2pdf from 'html2pdf.js'
+
 interface ProductLine {
   sku?: string
   description?: string
@@ -593,4 +595,274 @@ export function printForm(data: any, formType: string) {
     default:
       console.error('Unknown form type:', formType)
   }
+}
+
+export function downloadFormPDF(data: any, formType: string) {
+  switch (formType) {
+    case 'special_orders':
+      downloadSpecialOrderPDF(data)
+      break
+    case 'inbound_transfers':
+      downloadInboundTransferPDF(data)
+      break
+    case 'suppressor_approvals':
+      downloadSuppressorApprovalPDF(data)
+      break
+    case 'outbound_transfers':
+      downloadOutboundTransferPDF(data)
+      break
+    default:
+      console.error('Unknown form type:', formType)
+  }
+}
+
+function downloadSpecialOrderPDF(data: any) {
+  const productLines: ProductLine[] = data.product_lines || []
+  const subtotal = productLines.reduce((acc, line) => acc + (line.total_price || 0), 0)
+  const tax = subtotal * 0.0795
+  const total = subtotal * 1.0795
+
+  const content = `
+    <div style="font-family: Arial, sans-serif; padding: 20px; max-width: 800px; margin: 0 auto;">
+      <div style="text-align: center; border-bottom: 2px solid #000; padding-bottom: 15px; margin-bottom: 20px;">
+        <h1 style="margin: 0; font-size: 24px;">Special Order Form</h1>
+        <p style="margin: 5px 0 0 0; color: #666;">${new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+      </div>
+
+      <div style="margin-bottom: 20px;">
+        <h3 style="border-bottom: 1px solid #ccc; padding-bottom: 5px;">Customer Information</h3>
+        <p><strong>Name:</strong> ${data.customer_name || ''}</p>
+        <p><strong>Phone:</strong> ${formatPhoneNumber(data.customer_phone || '')}</p>
+        <p><strong>Email:</strong> ${data.customer_email || ''}</p>
+        ${data.customer_street ? `<p><strong>Address:</strong> ${data.customer_street}, ${data.customer_city || ''} ${data.customer_state || ''} ${data.customer_zip || ''}</p>` : ''}
+      </div>
+
+      <div style="margin-bottom: 20px;">
+        <h3 style="border-bottom: 1px solid #ccc; padding-bottom: 5px;">Order Items</h3>
+        <table style="width: 100%; border-collapse: collapse;">
+          <thead>
+            <tr style="background-color: #f5f5f5;">
+              <th style="border: 1px solid #000; padding: 8px; text-align: left;">SKU</th>
+              <th style="border: 1px solid #000; padding: 8px; text-align: left;">Description</th>
+              <th style="border: 1px solid #000; padding: 8px; text-align: left;">Vendor</th>
+              <th style="border: 1px solid #000; padding: 8px; text-align: center;">Qty</th>
+              <th style="border: 1px solid #000; padding: 8px; text-align: right;">Unit Price</th>
+              <th style="border: 1px solid #000; padding: 8px; text-align: right;">Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${productLines.map(line => `
+              <tr>
+                <td style="border: 1px solid #000; padding: 8px;">${line.sku || '-'}</td>
+                <td style="border: 1px solid #000; padding: 8px;">${line.description || '-'}</td>
+                <td style="border: 1px solid #000; padding: 8px;">${line.vendor || '-'}</td>
+                <td style="border: 1px solid #000; padding: 8px; text-align: center;">${line.quantity || 0}</td>
+                <td style="border: 1px solid #000; padding: 8px; text-align: right;">$${(line.unit_price || 0).toFixed(2)}</td>
+                <td style="border: 1px solid #000; padding: 8px; text-align: right;">$${((line.unit_price || 0) * (line.quantity || 0)).toFixed(2)}</td>
+              </tr>
+            `).join('')}
+          </tbody>
+        </table>
+        
+        <div style="margin-top: 15px; padding: 10px; background-color: #f5f5f5; border: 1px solid #000;">
+          <p style="margin: 5px 0;"><strong>Subtotal:</strong> $${subtotal.toFixed(2)}</p>
+          <p style="margin: 5px 0;"><strong>Tax (7.95%):</strong> $${tax.toFixed(2)}</p>
+          <p style="margin: 5px 0; font-size: 18px; border-top: 1px solid #000; padding-top: 5px;"><strong>Total:</strong> $${total.toFixed(2)}</p>
+        </div>
+      </div>
+
+      ${data.delivery_method ? `<p><strong>Delivery Method:</strong> ${data.delivery_method === 'in_store_pickup' ? 'In-Store Pickup' : 'Ship to Customer'}</p>` : ''}
+      ${data.status ? `<p><strong>Status:</strong> ${data.status.charAt(0).toUpperCase() + data.status.slice(1)}</p>` : ''}
+      ${data.special_requests ? `<div style="margin-top: 20px;"><h3>Special Requests</h3><p>${data.special_requests}</p></div>` : ''}
+    </div>
+  `
+
+  generatePDF(content, `Special_Order_${data.customer_name || 'Form'}_${new Date().toISOString().split('T')[0]}.pdf`)
+}
+
+function downloadInboundTransferPDF(data: any) {
+  const productLines: ProductLine[] = data.product_lines || []
+  
+  const content = `
+    <div style="font-family: Arial, sans-serif; padding: 20px; max-width: 800px; margin: 0 auto;">
+      <div style="text-align: center; border-bottom: 2px solid #000; padding-bottom: 15px; margin-bottom: 20px;">
+        <h1 style="margin: 0; font-size: 24px;">Inbound Transfer Form</h1>
+        <p style="margin: 5px 0 0 0; color: #666;">${new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+      </div>
+
+      <div style="margin-bottom: 20px;">
+        <h3 style="border-bottom: 1px solid #ccc; padding-bottom: 5px;">Transferor Information</h3>
+        <p><strong>Name:</strong> ${data.customer_name || ''}</p>
+        <p><strong>Phone:</strong> ${formatPhoneNumber(data.customer_phone || '')}</p>
+        ${data.customer_street ? `<p><strong>Address:</strong> ${data.customer_street}, ${data.customer_city || ''} ${data.customer_state || ''} ${data.customer_zip || ''}</p>` : ''}
+      </div>
+
+      <div style="margin-bottom: 20px;">
+        <h3 style="border-bottom: 1px solid #ccc; padding-bottom: 5px;">Items</h3>
+        <table style="width: 100%; border-collapse: collapse;">
+          <thead>
+            <tr style="background-color: #f5f5f5;">
+              <th style="border: 1px solid #000; padding: 8px;">Control #</th>
+              <th style="border: 1px solid #000; padding: 8px;">Manufacturer</th>
+              <th style="border: 1px solid #000; padding: 8px;">Model</th>
+              <th style="border: 1px solid #000; padding: 8px;">Serial #</th>
+              <th style="border: 1px solid #000; padding: 8px;">Type</th>
+              <th style="border: 1px solid #000; padding: 8px;">Price</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${productLines.map(line => `
+              <tr>
+                <td style="border: 1px solid #000; padding: 8px;">${line.control_number || '-'}</td>
+                <td style="border: 1px solid #000; padding: 8px;">${line.manufacturer || '-'}</td>
+                <td style="border: 1px solid #000; padding: 8px;">${line.model || '-'}</td>
+                <td style="border: 1px solid #000; padding: 8px;">${line.serial_number || '-'}</td>
+                <td style="border: 1px solid #000; padding: 8px;">${line.order_type || '-'}</td>
+                <td style="border: 1px solid #000; padding: 8px;">$${(line.unit_price || 0).toFixed(2)}</td>
+              </tr>
+            `).join('')}
+          </tbody>
+        </table>
+      </div>
+
+      ${data.status ? `<p><strong>Status:</strong> ${data.status.charAt(0).toUpperCase() + data.status.slice(1)}</p>` : ''}
+      ${data.special_requests ? `<div style="margin-top: 20px;"><h3>Special Requests</h3><p>${data.special_requests}</p></div>` : ''}
+    </div>
+  `
+
+  generatePDF(content, `Inbound_Transfer_${data.customer_name || 'Form'}_${new Date().toISOString().split('T')[0]}.pdf`)
+}
+
+function downloadSuppressorApprovalPDF(data: any) {
+  const productLines: ProductLine[] = data.product_lines || []
+  
+  const content = `
+    <div style="font-family: Arial, sans-serif; padding: 20px; max-width: 800px; margin: 0 auto;">
+      <div style="text-align: center; border-bottom: 2px solid #000; padding-bottom: 15px; margin-bottom: 20px;">
+        <h1 style="margin: 0; font-size: 24px;">Suppressor Approval Form</h1>
+        <p style="margin: 5px 0 0 0; color: #666;">${new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+      </div>
+
+      <div style="margin-bottom: 20px;">
+        <h3 style="border-bottom: 1px solid #ccc; padding-bottom: 5px;">Customer Information</h3>
+        <p><strong>Name:</strong> ${data.customer_name || ''}</p>
+        <p><strong>Phone:</strong> ${formatPhoneNumber(data.customer_phone || '')}</p>
+        ${data.customer_street ? `<p><strong>Address:</strong> ${data.customer_street}, ${data.customer_city || ''} ${data.customer_state || ''} ${data.customer_zip || ''}</p>` : ''}
+      </div>
+
+      <div style="margin-bottom: 20px;">
+        <h3 style="border-bottom: 1px solid #ccc; padding-bottom: 5px;">Items</h3>
+        <table style="width: 100%; border-collapse: collapse;">
+          <thead>
+            <tr style="background-color: #f5f5f5;">
+              <th style="border: 1px solid #000; padding: 8px;">Control #</th>
+              <th style="border: 1px solid #000; padding: 8px;">Manufacturer</th>
+              <th style="border: 1px solid #000; padding: 8px;">Model</th>
+              <th style="border: 1px solid #000; padding: 8px;">Serial #</th>
+              <th style="border: 1px solid #000; padding: 8px;">Type</th>
+              <th style="border: 1px solid #000; padding: 8px;">Price</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${productLines.map(line => `
+              <tr>
+                <td style="border: 1px solid #000; padding: 8px;">${line.control_number || '-'}</td>
+                <td style="border: 1px solid #000; padding: 8px;">${line.manufacturer || '-'}</td>
+                <td style="border: 1px solid #000; padding: 8px;">${line.model || '-'}</td>
+                <td style="border: 1px solid #000; padding: 8px;">${line.serial_number || '-'}</td>
+                <td style="border: 1px solid #000; padding: 8px;">${line.order_type || '-'}</td>
+                <td style="border: 1px solid #000; padding: 8px;">$${(line.unit_price || 0).toFixed(2)}</td>
+              </tr>
+            `).join('')}
+          </tbody>
+        </table>
+      </div>
+
+      ${data.status ? `<p><strong>Status:</strong> ${data.status.charAt(0).toUpperCase() + data.status.slice(1)}</p>` : ''}
+      ${data.special_requests ? `<div style="margin-top: 20px;"><h3>Special Requests</h3><p>${data.special_requests}</p></div>` : ''}
+    </div>
+  `
+
+  generatePDF(content, `Suppressor_Approval_${data.customer_name || 'Form'}_${new Date().toISOString().split('T')[0]}.pdf`)
+}
+
+function downloadOutboundTransferPDF(data: any) {
+  const productLines: ProductLine[] = data.product_lines || []
+  
+  const content = `
+    <div style="font-family: Arial, sans-serif; padding: 20px; max-width: 800px; margin: 0 auto;">
+      <div style="text-align: center; border-bottom: 2px solid #000; padding-bottom: 15px; margin-bottom: 20px;">
+        <h1 style="margin: 0; font-size: 24px;">Outbound Transfer Form</h1>
+        <p style="margin: 5px 0 0 0; color: #666;">${new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+      </div>
+
+      <div style="margin-bottom: 20px;">
+        <h3 style="border-bottom: 1px solid #ccc; padding-bottom: 5px;">Transferor Information</h3>
+        <p><strong>Name:</strong> ${data.customer_name || ''}</p>
+        <p><strong>Phone:</strong> ${formatPhoneNumber(data.customer_phone || '')}</p>
+        ${data.customer_street ? `<p><strong>Address:</strong> ${data.customer_street}, ${data.customer_city || ''} ${data.customer_state || ''} ${data.customer_zip || ''}</p>` : ''}
+      </div>
+
+      ${data.transferee_name ? `
+        <div style="margin-bottom: 20px;">
+          <h3 style="border-bottom: 1px solid #ccc; padding-bottom: 5px;">Transferee Information</h3>
+          <p><strong>Name:</strong> ${data.transferee_name}</p>
+          ${data.transferee_phone ? `<p><strong>Phone:</strong> ${formatPhoneNumber(data.transferee_phone)}</p>` : ''}
+          ${data.transferee_ffl_name ? `<p><strong>FFL Name:</strong> ${data.transferee_ffl_name}</p>` : ''}
+          ${data.transferee_ffl_address ? `<p><strong>FFL Address:</strong> ${data.transferee_ffl_address}, ${data.transferee_ffl_city || ''} ${data.transferee_ffl_state || ''} ${data.transferee_ffl_zip || ''}</p>` : ''}
+        </div>
+      ` : ''}
+
+      <div style="margin-bottom: 20px;">
+        <h3 style="border-bottom: 1px solid #ccc; padding-bottom: 5px;">Items</h3>
+        <table style="width: 100%; border-collapse: collapse;">
+          <thead>
+            <tr style="background-color: #f5f5f5;">
+              <th style="border: 1px solid #000; padding: 8px;">Control #</th>
+              <th style="border: 1px solid #000; padding: 8px;">Manufacturer</th>
+              <th style="border: 1px solid #000; padding: 8px;">Model</th>
+              <th style="border: 1px solid #000; padding: 8px;">Serial #</th>
+              <th style="border: 1px solid #000; padding: 8px;">Type</th>
+              <th style="border: 1px solid #000; padding: 8px;">Price</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${productLines.map(line => `
+              <tr>
+                <td style="border: 1px solid #000; padding: 8px;">${line.control_number || '-'}</td>
+                <td style="border: 1px solid #000; padding: 8px;">${line.manufacturer || '-'}</td>
+                <td style="border: 1px solid #000; padding: 8px;">${line.model || '-'}</td>
+                <td style="border: 1px solid #000; padding: 8px;">${line.serial_number || '-'}</td>
+                <td style="border: 1px solid #000; padding: 8px;">${line.order_type || '-'}</td>
+                <td style="border: 1px solid #000; padding: 8px;">$${(line.unit_price || 0).toFixed(2)}</td>
+              </tr>
+            `).join('')}
+          </tbody>
+        </table>
+      </div>
+
+      ${data.disposition_date ? `<p><strong>Disposition Date:</strong> ${new Date(data.disposition_date).toLocaleDateString()}</p>` : ''}
+      ${data.status ? `<p><strong>Status:</strong> ${data.status.charAt(0).toUpperCase() + data.status.slice(1)}</p>` : ''}
+    </div>
+  `
+
+  generatePDF(content, `Outbound_Transfer_${data.customer_name || 'Form'}_${new Date().toISOString().split('T')[0]}.pdf`)
+}
+
+function generatePDF(htmlContent: string, filename: string) {
+  const element = document.createElement('div')
+  element.innerHTML = htmlContent
+  document.body.appendChild(element)
+
+  const opt = {
+    margin: 0.5,
+    filename: filename,
+    image: { type: 'jpeg' as const, quality: 0.98 },
+    html2canvas: { scale: 2 },
+    jsPDF: { unit: 'in' as const, format: 'letter' as const, orientation: 'portrait' as const }
+  }
+
+  html2pdf().set(opt).from(element).save().then(() => {
+    document.body.removeChild(element)
+  })
 }

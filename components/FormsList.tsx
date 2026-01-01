@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react'
 import { supabase } from '@/lib/supabase'
-import { printForm } from '@/lib/printUtils'
+import { printForm, downloadFormPDF } from '@/lib/printUtils'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Eye, Edit, Trash2, Printer, Download, RefreshCw, ChevronDown } from 'lucide-react'
@@ -218,11 +218,11 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger }: 
   }
 
   const handleDownloadPDF = async (item: any) => {
-    // Use print to PDF functionality - same as print but user saves as PDF
-    printForm(item, item._formType)
+    // Generate and download PDF file
+    downloadFormPDF(item, item._formType)
     toast({
-      title: 'Download PDF',
-      description: 'Use your browser\'s "Save as PDF" option in the print dialog',
+      title: 'Downloading PDF',
+      description: 'Your PDF is being generated and will download shortly.',
     })
   }
 
@@ -280,13 +280,17 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger }: 
     })
   }
 
-  const getVendor = (item: any) => {
-    // Check product_lines for vendor info
+  const getVendors = (item: any): string[] => {
+    // Get all unique vendors from product_lines
     if (item.product_lines && Array.isArray(item.product_lines) && item.product_lines.length > 0) {
-      const vendor = item.product_lines[0]?.vendor_name || item.product_lines[0]?.vendor
-      if (vendor) return vendor
+      const vendors = new Set<string>()
+      item.product_lines.forEach((line: any) => {
+        const vendor = line.vendor_name || line.vendor
+        if (vendor) vendors.add(vendor)
+      })
+      return Array.from(vendors)
     }
-    return null
+    return []
   }
 
   const getCustomerName = (item: any) => {
@@ -330,7 +334,11 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger }: 
                 onClick={() => setShowFormTypeDropdown(!showFormTypeDropdown)}
                 className="w-[200px] justify-between bg-white"
               >
-                <span>{selectedFormTypes.length} selected</span>
+                <span>
+                  {selectedFormTypes.length === 1 
+                    ? FORM_TYPE_LABELS[selectedFormTypes[0]] 
+                    : `${selectedFormTypes.length} selected`}
+                </span>
                 <ChevronDown className="h-4 w-4" />
               </Button>
               {showFormTypeDropdown && (
@@ -361,7 +369,11 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger }: 
                 onClick={() => setShowStatusDropdown(!showStatusDropdown)}
                 className="w-[200px] justify-between bg-white"
               >
-                <span>{selectedStatuses.length} selected</span>
+                <span>
+                  {selectedStatuses.length === 1 
+                    ? selectedStatuses[0].charAt(0).toUpperCase() + selectedStatuses[0].slice(1) 
+                    : `${selectedStatuses.length} selected`}
+                </span>
                 <ChevronDown className="h-4 w-4" />
               </Button>
               {showStatusDropdown && (
@@ -392,7 +404,13 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger }: 
                 onClick={() => setShowVendorDropdown(!showVendorDropdown)}
                 className="w-[200px] justify-between bg-white"
               >
-                <span>{selectedVendors.length > 0 ? `${selectedVendors.length} selected` : 'All vendors'}</span>
+                <span>
+                  {selectedVendors.length === 0 
+                    ? 'All vendors' 
+                    : selectedVendors.length === 1 
+                      ? selectedVendors[0] 
+                      : `${selectedVendors.length} selected`}
+                </span>
                 <ChevronDown className="h-4 w-4" />
               </Button>
               {showVendorDropdown && (
@@ -447,8 +465,8 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger }: 
                     <span className={`px-3 py-1 rounded-full text-sm font-medium ${getStatusColor(item.status)}`}>
                       {item.status?.charAt(0).toUpperCase() + item.status?.slice(1) || 'N/A'}
                     </span>
-                    {getVendor(item) && (
-                      <span><strong>Vendor:</strong> {getVendor(item)}</span>
+                    {getVendors(item).length > 0 && (
+                      <span><strong>Vendor{getVendors(item).length > 1 ? 's' : ''}:</strong> {getVendors(item).join(', ')}</span>
                     )}
                   </div>
                 </div>

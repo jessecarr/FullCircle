@@ -301,7 +301,7 @@ export function SuppressorApprovalForm({ initialData, onSuccess, onCancel }: Spe
 
         try {
           const { data, error } = await supabase
-            .from('special_orders')
+            .from('suppressor_approvals')
             .update({
               customer_name: formData.customer_name,
               customer_email: formData.customer_email,
@@ -351,7 +351,7 @@ export function SuppressorApprovalForm({ initialData, onSuccess, onCancel }: Spe
       } else {
         // Create new order
         const { error } = await supabase
-          .from('special_orders')
+          .from('suppressor_approvals')
           .insert([{
             customer_name: formData.customer_name,
             customer_email: formData.customer_email,
@@ -946,7 +946,7 @@ export function SuppressorApprovalForm({ initialData, onSuccess, onCancel }: Spe
               </p>
               <FastBoundSearch
                 onSelect={(item) => {
-                  // Add a new line with the FastBound item data
+                  // Create new line data from FastBound item
                   const newLine: ProductLine = {
                     control_number: item.control_number || item.serial_number || '',
                     manufacturer: item.manufacturer || '',
@@ -958,12 +958,28 @@ export function SuppressorApprovalForm({ initialData, onSuccess, onCancel }: Spe
                     firearm_type: item.firearm_type || '',
                     caliber: item.caliber || ''
                   }
-                  setProductLines([...productLines, newLine])
-                  // Recalculate height for the newly added row after a short delay
-                  setTimeout(() => {
-                    const newIndex = productLines.length
-                    recalculateRowHeight(newIndex)
-                  }, 100)
+                  
+                  // Check if first line is empty - if so, fill it instead of adding new line
+                  const isFirstLineEmpty = productLines.length > 0 && 
+                    !productLines[0].control_number && 
+                    !productLines[0].manufacturer && 
+                    !productLines[0].model && 
+                    !productLines[0].serial_number
+                  
+                  if (isFirstLineEmpty) {
+                    // Fill the first empty line
+                    const updatedLines = [...productLines]
+                    updatedLines[0] = newLine
+                    setProductLines(updatedLines)
+                    setTimeout(() => recalculateRowHeight(0), 100)
+                  } else {
+                    // Add a new line
+                    setProductLines([...productLines, newLine])
+                    setTimeout(() => {
+                      const newIndex = productLines.length
+                      recalculateRowHeight(newIndex)
+                    }, 100)
+                  }
                 }}
                 placeholder="Search by serial number, manufacturer, or model..."
               />

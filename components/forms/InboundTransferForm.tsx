@@ -301,7 +301,7 @@ export function InboundTransferForm({ initialData, onSuccess, onCancel }: Specia
 
         try {
           const { data, error } = await supabase
-            .from('special_orders')
+            .from('inbound_transfers')
             .update({
               customer_name: formData.customer_name,
               customer_email: formData.customer_email,
@@ -351,7 +351,7 @@ export function InboundTransferForm({ initialData, onSuccess, onCancel }: Specia
       } else {
         // Create new order
         const { error } = await supabase
-          .from('special_orders')
+          .from('inbound_transfers')
           .insert([{
             customer_name: formData.customer_name,
             customer_email: formData.customer_email,

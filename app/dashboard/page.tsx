@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button'
 import { useToast } from '@/components/ui/use-toast'
 import { useAuth } from '@/hooks/useAuth'
 import { Header } from '@/components/Header'
-import { Users, FileText, Package, ArrowRight } from 'lucide-react'
+import { Users, FileText, Package, ArrowRight, ArrowLeft } from 'lucide-react'
 
 export default function DashboardPage() {
   const { user, loading } = useAuth()
@@ -42,6 +42,18 @@ export default function DashboardPage() {
       {/* Main Content */}
       <main className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
         <div className="px-4 py-6 sm:px-0">
+          {/* Return Button */}
+          <div className="mb-4">
+            <Button 
+              variant="outline" 
+              onClick={() => router.push('/landing')}
+              className="flex items-center gap-2"
+            >
+              <ArrowLeft className="h-4 w-4" />
+              Return to Home
+            </Button>
+          </div>
+
           {/* Welcome Section */}
           <div className="mb-8">
             <h2 className="text-3xl font-bold text-gray-900">
