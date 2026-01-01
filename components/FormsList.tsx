@@ -2,7 +2,6 @@
 
 import { useState, useEffect, useRef } from 'react'
 import { supabase } from '@/lib/supabase'
-import { printForm, downloadFormPDF } from '@/lib/printUtils'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Eye, Edit, Trash2, Printer, Download, RefreshCw, ChevronDown } from 'lucide-react'
@@ -212,13 +211,15 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger }: 
     }
   }
 
-  const handlePrint = (item: any) => {
-    // Use the print utility to generate proper print layout for each form type
+  const handlePrint = async (item: any) => {
+    // Dynamic import to avoid SSR issues
+    const { printForm } = await import('@/lib/printUtils')
     printForm(item, item._formType)
   }
 
   const handleDownloadPDF = async (item: any) => {
-    // Generate and download PDF file
+    // Dynamic import to avoid SSR issues
+    const { downloadFormPDF } = await import('@/lib/printUtils')
     downloadFormPDF(item, item._formType)
     toast({
       title: 'Downloading PDF',
