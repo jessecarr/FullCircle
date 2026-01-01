@@ -169,7 +169,7 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
     e.preventDefault()
     
     // Validate required fields
-    if (!formData.customer_name || !formData.customer_email || !formData.customer_phone) {
+    if (!formData.customer_name || !formData.customer_phone) {
       toast({
         title: 'Validation Error',
         description: 'Please fill in all required customer fields',
@@ -642,13 +642,12 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="customer_email">Customer Email *</Label>
+                  <Label htmlFor="customer_email">Customer Email</Label>
                   <Input
                     id="customer_email"
                     type="email"
                     value={formData.customer_email}
                     onChange={(e) => handleInputChange('customer_email', e.target.value.toUpperCase())}
-                    required
                     className="uppercase"
                   />
                 </div>
