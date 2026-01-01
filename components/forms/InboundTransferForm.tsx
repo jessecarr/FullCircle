@@ -792,8 +792,11 @@ export function InboundTransferForm({ initialData, onSuccess, onCancel }: Specia
               </p>
               <FastBoundSearch
                 onSelect={(item) => {
-                  // Add a new line with the FastBound item data
-                  const newLine: ProductLine = {
+                  // Check if first line is empty (all required fields are empty)
+                  const firstLine = productLines[0]
+                  const isFirstLineEmpty = !firstLine.control_number && !firstLine.manufacturer && !firstLine.model && !firstLine.serial_number
+                  
+                  const newLineData: ProductLine = {
                     control_number: item.control_number || item.serial_number || '',
                     manufacturer: item.manufacturer || '',
                     model: item.model || '',
@@ -804,12 +807,23 @@ export function InboundTransferForm({ initialData, onSuccess, onCancel }: Specia
                     firearm_type: item.firearm_type || '',
                     caliber: item.caliber || ''
                   }
-                  setProductLines([...productLines, newLine])
-                  // Recalculate height for the newly added row after a short delay
-                  setTimeout(() => {
-                    const newIndex = productLines.length
-                    recalculateRowHeight(newIndex)
-                  }, 100)
+                  
+                  if (isFirstLineEmpty) {
+                    // Fill the first line instead of creating a new one
+                    const updated = [...productLines]
+                    updated[0] = newLineData
+                    setProductLines(updated)
+                    // Recalculate height for the first row after a short delay
+                    setTimeout(() => recalculateRowHeight(0), 100)
+                  } else {
+                    // Add a new line with the FastBound item data
+                    setProductLines([...productLines, newLineData])
+                    // Recalculate height for the newly added row after a short delay
+                    setTimeout(() => {
+                      const newIndex = productLines.length
+                      recalculateRowHeight(newIndex)
+                    }, 100)
+                  }
                 }}
                 placeholder="Search by serial number, manufacturer, or model..."
               />
