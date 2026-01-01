@@ -105,7 +105,7 @@ export function OutboundTransferForm({ initialData, onSuccess, onCancel }: Outbo
     transferee_ffl_zip: initialData?.transferee_ffl_zip || '',
     transferee_ffl_state: initialData?.transferee_ffl_state || '',
     transferee_ffl_city: initialData?.transferee_ffl_city || '',
-    special_requests: initialData?.special_requests || ''
+    disposition_date: initialData?.disposition_date || ''
   })
 
   const addProductLine = () => {
@@ -334,7 +334,7 @@ export function OutboundTransferForm({ initialData, onSuccess, onCancel }: Outbo
           customer_zip: formData.customer_zip,
           product_lines: productLines,
           total_price: totalAmount,
-          special_requests: formData.special_requests
+          disposition_date: formData.disposition_date
         });
 
         try {
@@ -350,7 +350,7 @@ export function OutboundTransferForm({ initialData, onSuccess, onCancel }: Outbo
               customer_zip: formData.customer_zip,
               product_lines: productLines,
               total_price: totalAmount,
-              special_requests: formData.special_requests
+              disposition_date: formData.disposition_date
             })
             .eq('id', initialData.id)
             .select();
@@ -400,7 +400,7 @@ export function OutboundTransferForm({ initialData, onSuccess, onCancel }: Outbo
             customer_zip: formData.customer_zip,
             product_lines: productLines,
             total_price: totalAmount,
-            special_requests: formData.special_requests
+            disposition_date: formData.disposition_date
           }])
 
         if (error) {
@@ -1193,16 +1193,18 @@ export function OutboundTransferForm({ initialData, onSuccess, onCancel }: Outbo
           </div>
 
           
-          <div className="space-y-2">
-            <Label htmlFor="special_requests">Special Requests</Label>
-            <Textarea
-              id="special_requests"
-              value={formData.special_requests}
-              onChange={(e) => handleInputChange('special_requests', e.target.value.toUpperCase())}
-              rows={4}
-              suppressHydrationWarning
-              className="uppercase"
-            />
+          <div className="grid grid-cols-9 gap-4">
+            <div className="col-span-2 space-y-2">
+              <Label htmlFor="disposition_date">Disposition Date</Label>
+              <Input
+                id="disposition_date"
+                type="date"
+                value={formData.disposition_date}
+                onChange={(e) => handleInputChange('disposition_date', e.target.value)}
+                suppressHydrationWarning
+                className="text-base"
+              />
+            </div>
           </div>
 
           <div className="grid grid-cols-3 gap-4">

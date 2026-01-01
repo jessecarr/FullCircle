@@ -179,7 +179,7 @@ export interface OutboundTransferForm {
   caliber?: string
   serial_number?: string
   product_lines?: any[]
-  special_requests?: string
+  disposition_date?: string
   transfer_date?: string
   atf_form_type?: string
   tracking_number?: string
