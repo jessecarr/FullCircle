@@ -648,6 +648,12 @@ export function OutboundTransferForm({ initialData, onSuccess, onCancel }: Speci
                     id="customer_name"
                     value={formData.customer_name}
                     onChange={(e) => handleInputChange('customer_name', e.target.value.toUpperCase())}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter') {
+                        e.preventDefault();
+                        document.getElementById('customer_phone')?.focus();
+                      }
+                    }}
                     required
                     className="uppercase"
                   />
@@ -663,6 +669,12 @@ export function OutboundTransferForm({ initialData, onSuccess, onCancel }: Speci
                       const digits = e.target.value.replace(/\D/g, '');
                       handleInputChange('customer_phone', digits);
                     }}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter') {
+                        e.preventDefault();
+                        document.getElementById('drivers_license')?.focus();
+                      }
+                    }}
                     required
                     maxLength={14}
                     placeholder="(123) 456-7890"
@@ -677,6 +689,12 @@ export function OutboundTransferForm({ initialData, onSuccess, onCancel }: Speci
                     id="drivers_license"
                     value={formData.drivers_license}
                     onChange={(e) => handleInputChange('drivers_license', e.target.value.toUpperCase())}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter') {
+                        e.preventDefault();
+                        document.getElementById('license_expiration')?.focus();
+                      }
+                    }}
                     className="uppercase"
                   />
                 </div>
@@ -688,6 +706,12 @@ export function OutboundTransferForm({ initialData, onSuccess, onCancel }: Speci
                     type="date"
                     value={formData.license_expiration}
                     onChange={(e) => handleInputChange('license_expiration', e.target.value)}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter') {
+                        e.preventDefault();
+                        document.getElementById('customer_email')?.focus();
+                      }
+                    }}
                   />
                 </div>
 
@@ -698,6 +722,12 @@ export function OutboundTransferForm({ initialData, onSuccess, onCancel }: Speci
                     type="email"
                     value={formData.customer_email}
                     onChange={(e) => handleInputChange('customer_email', e.target.value.toUpperCase())}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter') {
+                        e.preventDefault();
+                        document.getElementById('customer_street')?.focus();
+                      }
+                    }}
                     className="uppercase"
                   />
                 </div>
@@ -720,6 +750,12 @@ export function OutboundTransferForm({ initialData, onSuccess, onCancel }: Speci
                       id="customer_zip"
                       value={formData.customer_zip}
                       onChange={(e) => handleZipCodeChange(e.target.value.toUpperCase())}
+                      onKeyDown={(e) => {
+                        if (e.key === 'Enter') {
+                          e.preventDefault();
+                          document.getElementById('customer_state')?.focus();
+                        }
+                      }}
                       placeholder="Enter 5-digit zip code"
                       maxLength={5}
                       className="text-base uppercase"
@@ -733,6 +769,12 @@ export function OutboundTransferForm({ initialData, onSuccess, onCancel }: Speci
                       id="customer_state"
                       value={formData.customer_state}
                       onChange={(e) => handleInputChange('customer_state', e.target.value.toUpperCase())}
+                      onKeyDown={(e) => {
+                        if (e.key === 'Enter') {
+                          e.preventDefault();
+                          document.getElementById('customer_city')?.focus();
+                        }
+                      }}
                       className="text-base uppercase"
                       required
                     />
