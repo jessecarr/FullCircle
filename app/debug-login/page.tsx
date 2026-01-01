@@ -100,10 +100,11 @@ export default function DebugLoginPage() {
       router.push('/dashboard')
     } catch (error) {
       console.error('Login error:', error)
-      setDebugInfo((prev: any) => ({ ...prev, error: error.message }))
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error occurred'
+      setDebugInfo((prev: any) => ({ ...prev, error: errorMessage }))
       toast({
         title: 'Error',
-        description: error.message,
+        description: errorMessage,
         variant: 'destructive',
       })
     } finally {
