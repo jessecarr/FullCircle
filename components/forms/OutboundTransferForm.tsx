@@ -398,9 +398,19 @@ export function OutboundTransferForm({ initialData, onSuccess, onCancel }: Outbo
             customer_city: formData.customer_city,
             customer_state: formData.customer_state,
             customer_zip: formData.customer_zip,
+            transferee_name: formData.transferee_name,
+            transferee_phone: formData.transferee_phone,
+            transferee_ffl_name: formData.transferee_ffl_name,
+            transferee_ffl_phone: formData.transferee_ffl_phone,
+            transferee_ffl_address: formData.transferee_ffl_address,
+            transferee_ffl_city: formData.transferee_ffl_city,
+            transferee_ffl_state: formData.transferee_ffl_state,
+            transferee_ffl_zip: formData.transferee_ffl_zip,
+            drivers_license: formData.drivers_license,
+            license_expiration: formData.license_expiration,
             product_lines: productLines,
             total_price: totalAmount,
-            disposition_date: formData.disposition_date
+            disposition_date: formData.disposition_date || null
           }])
 
         if (error) {

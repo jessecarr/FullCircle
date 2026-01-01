@@ -46,9 +46,13 @@ function HomeContent() {
   useEffect(() => {
     if (tabParam) {
       setActiveTab(tabParam)
+      // If navigating to view-all tab, switch to list mode
+      if (tabParam === 'view-all') {
+        setViewMode('list')
+      }
     }
   }, [tabParam])
-  const [viewMode, setViewMode] = useState<'form' | 'list'>('form')
+  const [viewMode, setViewMode] = useState<'form' | 'list'>(tabParam === 'view-all' ? 'list' : 'form')
   const [editingItem, setEditingItem] = useState<any>(null)
   const [viewingItem, setViewingItem] = useState<any>(null)
   const [refreshTrigger, setRefreshTrigger] = useState(0)
