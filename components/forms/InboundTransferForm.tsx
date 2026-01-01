@@ -12,7 +12,21 @@ import { useToast } from '@/components/ui/use-toast'
 import CustomerSearch from '../CustomerSearch'
 import VendorSearch from '../VendorSearch'
 import { lookupZipCode, isValidZipCode } from '@/lib/zipLookup'
-import { Printer } from 'lucide-react'
+import { Printer, Search } from 'lucide-react'
+import FastBoundSearch from '../FastBoundSearch'
+
+interface FastBoundInventoryItem {
+  id: string
+  fastbound_item_id: string
+  control_number: string | null
+  firearm_type: string | null
+  manufacturer: string | null
+  model: string | null
+  caliber: string | null
+  serial_number: string | null
+  status: string
+  price: number | null
+}
 
 interface SpecialOrderFormProps {
   initialData?: SpecialOrderFormType
@@ -21,12 +35,16 @@ interface SpecialOrderFormProps {
 }
 
 interface ProductLine {
-  sku: string
+  control_number: string
   description: string
   vendor: string
   quantity: number
   unit_price: number
   total_price: number
+  fastbound_item_id?: string
+  serial_number?: string
+  firearm_type?: string
+  caliber?: string
 }
 
 export function InboundTransferForm({ initialData, onSuccess, onCancel }: SpecialOrderFormProps) {
@@ -36,7 +54,7 @@ export function InboundTransferForm({ initialData, onSuccess, onCancel }: Specia
     // If editing existing form with product_lines, use those
     if (initialData?.product_lines && Array.isArray(initialData.product_lines)) {
       return initialData.product_lines.map((line: any) => ({
-        sku: line.sku || '',
+        control_number: line.control_number || '',
         description: line.description || '',
         vendor: line.vendor || '',
         quantity: line.quantity || 1,
@@ -46,7 +64,7 @@ export function InboundTransferForm({ initialData, onSuccess, onCancel }: Specia
     }
     // Otherwise, create a single empty line for new orders
     return [{
-      sku: '',
+      control_number: '',
       description: '',
       vendor: '',
       quantity: 1,
@@ -77,13 +95,33 @@ export function InboundTransferForm({ initialData, onSuccess, onCancel }: Specia
 
   const addProductLine = () => {
     setProductLines([...productLines, {
-      sku: '',
+      control_number: '',
       description: '',
       vendor: '',
       quantity: 1,
       unit_price: 0,
-      total_price: 0
+      total_price: 0,
+      fastbound_item_id: '',
+      serial_number: '',
+      firearm_type: '',
+      caliber: ''
     }])
+  }
+
+  const handleFastBoundSelect = (index: number, item: FastBoundInventoryItem) => {
+    const updated = [...productLines]
+    updated[index] = {
+      ...updated[index],
+      control_number: item.control_number || item.serial_number || '',
+      description: `${item.manufacturer || ''} ${item.model || ''} - ${item.caliber || ''}`.trim(),
+      unit_price: item.price || 0,
+      total_price: (item.price || 0) * updated[index].quantity,
+      fastbound_item_id: item.fastbound_item_id,
+      serial_number: item.serial_number || '',
+      firearm_type: item.firearm_type || '',
+      caliber: item.caliber || ''
+    }
+    setProductLines(updated)
   }
 
   const updateProductLine = (index: number, field: keyof ProductLine, value: any) => {
@@ -129,13 +167,13 @@ export function InboundTransferForm({ initialData, onSuccess, onCancel }: Specia
     if (!isClient) return
     
     // Get all textarea elements in this row and find the max height
-    const skuField = document.getElementById(`sku-${rowIndex}`) as HTMLTextAreaElement
+    const controlNumberField = document.getElementById(`control_number-${rowIndex}`) as HTMLTextAreaElement
     const descField = document.getElementById(`description-${rowIndex}`) as HTMLTextAreaElement
     const vendorField = document.querySelector(`[data-vendor-row="${rowIndex}"]`) as HTMLTextAreaElement
     
     let maxHeight = 48
     
-    if (skuField) maxHeight = Math.max(maxHeight, skuField.scrollHeight)
+    if (controlNumberField) maxHeight = Math.max(maxHeight, controlNumberField.scrollHeight)
     if (descField) maxHeight = Math.max(maxHeight, descField.scrollHeight)
     if (vendorField) maxHeight = Math.max(maxHeight, vendorField.scrollHeight)
     
@@ -488,7 +526,7 @@ export function InboundTransferForm({ initialData, onSuccess, onCancel }: Specia
           <table class="print-table">
             <thead>
               <tr>
-                <th style="width: 15%">SKU</th>
+                <th style="width: 15%">Control Number</th>
                 <th style="width: 35%">Description</th>
                 <th style="width: 20%">Vendor</th>
                 <th style="width: 10%">Qty</th>
@@ -499,7 +537,7 @@ export function InboundTransferForm({ initialData, onSuccess, onCancel }: Specia
             <tbody>
               ${productLines.map((line, index) => `
                 <tr key="${index}">
-                  <td>${line.sku || '-'}</td>
+                  <td>${line.control_number || '-'}</td>
                   <td>${line.description || '-'}</td>
                   <td>${line.vendor || '-'}</td>
                   <td>${line.quantity || 1}</td>
@@ -718,8 +756,39 @@ export function InboundTransferForm({ initialData, onSuccess, onCancel }: Specia
 
           <div className="border rounded-lg p-6 mb-6">
             <h3 className="text-xl underline font-bold mb-4">Items</h3>
+            
+            {/* FastBound Inventory Search */}
+            <div className="mb-6 p-4 bg-blue-50 rounded-lg border border-blue-200">
+              <Label className="text-lg font-semibold flex items-center gap-2 mb-2">
+                <Search className="h-5 w-5" />
+                Search FastBound Inventory
+              </Label>
+              <p className="text-sm text-gray-600 mb-3">
+                Search your FastBound inventory to auto-fill item details. Select an item to add it to the form.
+              </p>
+              <FastBoundSearch
+                onSelect={(item) => {
+                  // Add a new line with the FastBound item data
+                  const newLine: ProductLine = {
+                    control_number: item.control_number || item.serial_number || '',
+                    description: `${item.manufacturer || ''} ${item.model || ''} - ${item.caliber || ''}`.trim(),
+                    vendor: '',
+                    quantity: 1,
+                    unit_price: item.price || 0,
+                    total_price: item.price || 0,
+                    fastbound_item_id: item.fastbound_item_id,
+                    serial_number: item.serial_number || '',
+                    firearm_type: item.firearm_type || '',
+                    caliber: item.caliber || ''
+                  }
+                  setProductLines([...productLines, newLine])
+                }}
+                placeholder="Search by serial number, manufacturer, or model..."
+              />
+            </div>
+
             <div className="grid grid-cols-13 gap-4 items-end mb-2">
-              <div className="col-span-2"><Label className="text-lg">SKU *</Label></div>
+              <div className="col-span-2"><Label className="text-lg">Serial / Control # *</Label></div>
               <div className="col-span-5"><Label className="text-lg">Description *</Label></div>
               <div className="col-span-1"><Label className="text-lg">Qty *</Label></div>
               <div className="col-span-1"><Label className="text-lg">Price *</Label></div>
@@ -732,11 +801,11 @@ export function InboundTransferForm({ initialData, onSuccess, onCancel }: Specia
               <div key={index} className="grid grid-cols-13 gap-4 items-end mb-2">
                 <div className="col-span-2">
                   <Textarea
-                    id={`sku-${index}`}
-                    value={line.sku}
+                    id={`control_number-${index}`}
+                    value={line.control_number}
                     onChange={(e) => {
-                      console.log('SKU input changed:', e.target.value);
-                      updateProductLine(index, 'sku', e.target.value.toUpperCase());
+                      console.log('Control Number input changed:', e.target.value);
+                      updateProductLine(index, 'control_number', e.target.value.toUpperCase());
                     }}
                     required
                     className="text-base w-full min-h-[48px] resize-none overflow-hidden uppercase"
@@ -750,11 +819,11 @@ export function InboundTransferForm({ initialData, onSuccess, onCancel }: Specia
                       target.style.height = 'auto';
                       const newHeight = `${target.scrollHeight}px`;
                       target.style.height = newHeight;
-                      handleFieldHeightChange(index, `sku-${index}`, newHeight);
+                      handleFieldHeightChange(index, `control_number-${index}`, newHeight);
                       // Recalculate after a short delay to ensure proper shrinking
                       setTimeout(() => recalculateRowHeight(index), 10);
                     }}
-                    data-testid={`sku-input-${index}`}
+                    data-testid={`control-number-input-${index}`}
                   />
                 </div>
 
