@@ -396,25 +396,7 @@ export function OutboundTransferForm({ initialData, onSuccess, onCancel }: Speci
   };
 
   const handlePrint = () => {
-    // Calculate totals
-    const subtotal = productLines.reduce((acc, line) => acc + line.unit_price, 0);
-    const tax = 0; // No tax as requested
-    const total = subtotal;
-
-    // Determine scale factor based on number of items
-    const itemCount = productLines.length;
-    let scaleFactor = 1.0;
-    if (itemCount > 3) {
-      scaleFactor = 0.85;
-    }
-    if (itemCount > 5) {
-      scaleFactor = 0.75;
-    }
-    if (itemCount > 7) {
-      scaleFactor = 0.65;
-    }
-
-    // Create print content with two copies on one page
+    // Create print content with single copy
     const printContent = `
       <!DOCTYPE html>
       <html>
@@ -423,37 +405,16 @@ export function OutboundTransferForm({ initialData, onSuccess, onCancel }: Speci
         <style>
           @page {
             size: portrait;
-            margin: 0.25in;
+            margin: 0.5in;
           }
           
           body {
             font-family: 'Arial', sans-serif;
             color: #000;
             background: white;
-            padding: 10px;
+            padding: 20px;
             max-width: 8in;
             margin: 0 auto;
-            transform: scale(${scaleFactor});
-            transform-origin: top center;
-          }
-          
-          .print-copy {
-            border: 1px solid #000;
-            padding: 15px;
-            margin-bottom: 20px;
-            page-break-inside: avoid;
-          }
-          
-          .print-copy:last-child {
-            margin-bottom: 0;
-          }
-          
-          .copy-label {
-            text-align: center;
-            font-size: 10px;
-            color: #666;
-            margin-bottom: 5px;
-            font-weight: bold;
           }
           
           .print-header {
@@ -463,15 +424,16 @@ export function OutboundTransferForm({ initialData, onSuccess, onCancel }: Speci
             margin-bottom: 20px;
           }
           
-          .print-title {
-            font-size: 20px;
-            font-weight: bold;
-            margin-bottom: 8px;
+          .print-date {
+            text-align: left;
+            font-size: 10px;
+            margin-bottom: 10px;
           }
           
-          .print-subtitle {
-            font-size: 12px;
-            color: #666;
+          .print-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 8px;
           }
           
           .print-section {
@@ -479,21 +441,21 @@ export function OutboundTransferForm({ initialData, onSuccess, onCancel }: Speci
           }
           
           .print-section-title {
-            font-size: 14px;
+            font-size: 16px;
             font-weight: bold;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
             border-bottom: 1px solid #ccc;
-            padding-bottom: 3px;
+            padding-bottom: 5px;
           }
           
           .print-field {
-            margin-bottom: 6px;
+            margin-bottom: 8px;
             display: flex;
           }
           
           .print-label {
             font-weight: bold;
-            width: 120px;
+            width: 150px;
             flex-shrink: 0;
             font-size: 12px;
           }
@@ -546,164 +508,61 @@ export function OutboundTransferForm({ initialData, onSuccess, onCancel }: Speci
         </style>
       </head>
       <body>
-        <!-- Customer Copy (Top) -->
-        <div class="print-copy">
-          <div style="text-align: left; font-size: 10px; margin-bottom: 10px;">
-            ${new Date().toLocaleDateString('en-US', {
-              year: 'numeric',
-              month: 'long',
-              day: 'numeric'
-            })}
-          </div>
-          <div class="print-header">
-            <div class="print-title">Outbound Transfer Form</div>
-          </div>
+        <div class="print-date">
+          ${new Date().toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+          })}
+        </div>
+        
+        <div class="print-header">
+          <div class="print-title">Outbound Transfer Form</div>
+        </div>
 
-          <div class="print-section">
-            <div class="print-section-title">Customer Information</div>
-            <div class="print-field">
-              <div class="print-label">Name:</div>
-              <div class="print-value">${formData.customer_name}</div>
-            </div>
-            <div class="print-field">
-              <div class="print-label">Phone:</div>
-              <div class="print-value">${formatPhoneNumber(formData.customer_phone)}</div>
-            </div>
-            ${formData.customer_street ? `
-              <div class="print-field">
-                <div class="print-label">Address:</div>
-                <div class="print-value">
-                  ${formData.customer_street}
-                  ${formData.customer_city ? `, ${formData.customer_city}` : ''}
-                  ${formData.customer_state ? ` ${formData.customer_state}` : ''}
-                  ${formData.customer_zip ? ` ${formData.customer_zip}` : ''}
-                </div>
-              </div>
-            ` : ''}
+        <div class="print-section">
+          <div class="print-section-title">Customer Information</div>
+          <div class="print-field">
+            <div class="print-label">Name:</div>
+            <div class="print-value">${formData.customer_name}</div>
           </div>
-
-          <div class="print-section">
-            <div class="print-section-title">Order Items</div>
-            <table class="print-table">
-              <thead>
-                <tr>
-                  <th style="width: 15%">Control #</th>
-                  <th style="width: 30%">Manufacturer</th>
-                  <th style="width: 15%">Model</th>
-                  <th style="width: 15%">Serial #</th>
-                  <th style="width: 15%">Order Type</th>
-                  <th style="width: 10%">Unit Price</th>
-                </tr>
-              </thead>
-              <tbody>
-                ${productLines.map((line, index) => `
-                  <tr key="${index}">
-                    <td>${line.control_number || '-'}</td>
-                    <td>${line.manufacturer || '-'}</td>
-                    <td>${line.model || '-'}</td>
-                    <td>${line.serial_number || '-'}</td>
-                    <td>${line.order_type || '-'}</td>
-                    <td>$${(line.unit_price || 0).toFixed(2)}</td>
-                  </tr>
-                `).join('')}
-              </tbody>
-            </table>
-            
-            <div class="print-total-summary">
-              <div class="print-total-row">
-                <span style="font-weight: bold">Subtotal:</span>
-                <span>$${subtotal.toFixed(2)}</span>
-              </div>
-              <div class="print-total-row">
-                <span style="font-weight: bold">Tax:</span>
-                <span>$${tax.toFixed(2)}</span>
-              </div>
-              <div class="print-total-row final">
-                <span>Total:</span>
-                <span>$${total.toFixed(2)}</span>
-              </div>
+          <div class="print-field">
+            <div class="print-label">Phone:</div>
+            <div class="print-value">${formatPhoneNumber(formData.customer_phone)}</div>
+          </div>
+          <div class="print-field">
+            <div class="print-label">Address:</div>
+            <div class="print-value">
+              ${formData.customer_street}
+              ${formData.customer_city ? `, ${formData.customer_city}` : ''}
+              ${formData.customer_state ? ` ${formData.customer_state}` : ''}
+              ${formData.customer_zip ? ` ${formData.customer_zip}` : ''}
             </div>
           </div>
         </div>
 
-        <!-- Merchant Copy (Bottom) -->
-        <div class="print-copy">
-          <div style="text-align: left; font-size: 10px; margin-bottom: 10px;">
-            ${new Date().toLocaleDateString('en-US', {
-              year: 'numeric',
-              month: 'long',
-              day: 'numeric'
-            })}
-          </div>
-          <div class="print-header">
-            <div class="print-title">Outbound Transfer Form</div>
-          </div>
-
-          <div class="print-section">
-            <div class="print-section-title">Customer Information</div>
-            <div class="print-field">
-              <div class="print-label">Name:</div>
-              <div class="print-value">${formData.customer_name}</div>
-            </div>
-            <div class="print-field">
-              <div class="print-label">Phone:</div>
-              <div class="print-value">${formatPhoneNumber(formData.customer_phone)}</div>
-            </div>
-            ${formData.customer_street ? `
-              <div class="print-field">
-                <div class="print-label">Address:</div>
-                <div class="print-value">
-                  ${formData.customer_street}
-                  ${formData.customer_city ? `, ${formData.customer_city}` : ''}
-                  ${formData.customer_state ? ` ${formData.customer_state}` : ''}
-                  ${formData.customer_zip ? ` ${formData.customer_zip}` : ''}
-                </div>
-              </div>
-            ` : ''}
-          </div>
-
-          <div class="print-section">
-            <div class="print-section-title">Order Items</div>
-            <table class="print-table">
-              <thead>
-                <tr>
-                  <th style="width: 15%">Control #</th>
-                  <th style="width: 30%">Manufacturer</th>
-                  <th style="width: 15%">Model</th>
-                  <th style="width: 15%">Serial #</th>
-                  <th style="width: 15%">Order Type</th>
-                  <th style="width: 10%">Unit Price</th>
+        <div class="print-section">
+          <div class="print-section-title">Transfer Items</div>
+          <table class="print-table">
+            <thead>
+              <tr>
+                <th style="width: 20%">Control #</th>
+                <th style="width: 25%">Manufacturer</th>
+                <th style="width: 25%">Model</th>
+                <th style="width: 30%">Serial #</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${productLines.map((line, index) => `
+                <tr key="${index}">
+                  <td>${line.control_number || '-'}</td>
+                  <td>${line.manufacturer || '-'}</td>
+                  <td>${line.model || '-'}</td>
+                  <td>${line.serial_number || '-'}</td>
                 </tr>
-              </thead>
-              <tbody>
-                ${productLines.map((line, index) => `
-                  <tr key="${index}">
-                    <td>${line.control_number || '-'}</td>
-                    <td>${line.manufacturer || '-'}</td>
-                    <td>${line.model || '-'}</td>
-                    <td>${line.serial_number || '-'}</td>
-                    <td>${line.order_type || '-'}</td>
-                    <td>$${(line.unit_price || 0).toFixed(2)}</td>
-                  </tr>
-                `).join('')}
-              </tbody>
-            </table>
-            
-            <div class="print-total-summary">
-              <div class="print-total-row">
-                <span style="font-weight: bold">Subtotal:</span>
-                <span>$${subtotal.toFixed(2)}</span>
-              </div>
-              <div class="print-total-row">
-                <span style="font-weight: bold">Tax:</span>
-                <span>$${tax.toFixed(2)}</span>
-              </div>
-              <div class="print-total-row final">
-                <span>Total:</span>
-                <span>$${total.toFixed(2)}</span>
-              </div>
-            </div>
-          </div>
+              `).join('')}
+            </tbody>
+          </table>
         </div>
       </body>
       </html>
