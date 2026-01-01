@@ -7,7 +7,7 @@ export async function middleware(req: NextRequest) {
   
   // TEMPORARILY DISABLED FOR TESTING
   // Remove this return statement to re-enable middleware
-  if (req.nextUrl.pathname.startsWith('/debug-login') || req.nextUrl.pathname.startsWith('/landing') || req.nextUrl.pathname.startsWith('/dashboard')) {
+  if (req.nextUrl.pathname.startsWith('/debug-login') || req.nextUrl.pathname.startsWith('/landing') || req.nextUrl.pathname.startsWith('/dashboard') || req.nextUrl.pathname === '/') {
     return res
   }
   
