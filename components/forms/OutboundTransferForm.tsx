@@ -664,7 +664,7 @@ export function OutboundTransferForm({ initialData, onSuccess, onCancel }: Outbo
           <form onSubmit={handleSubmit} className="space-y-6">
           <div className="border rounded-lg p-6 mb-6">
             <div className="space-y-4">
-              <h3 className="text-lg font-semibold">Transferor</h3>
+              <h3 className="text-xl font-bold underline mb-4">Transferor</h3>
               <CustomerSearch 
                 onSelect={(customer) => {
                   setFormData({
@@ -835,7 +835,7 @@ export function OutboundTransferForm({ initialData, onSuccess, onCancel }: Outbo
 
           <div className="border rounded-lg p-6 mb-6">
             <div className="space-y-4">
-              <h3 className="text-lg font-semibold">Transferee</h3>
+              <h3 className="text-xl font-bold underline mb-4">Transferee</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="space-y-2">
                   <Label className="text-lg" htmlFor="transferee_name">Transferee Name *</Label>

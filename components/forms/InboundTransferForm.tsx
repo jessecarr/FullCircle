@@ -767,7 +767,7 @@ export function InboundTransferForm({ initialData, onSuccess, onCancel }: Specia
           <form onSubmit={handleSubmit} className="space-y-6">
           <div className="border rounded-lg p-6 mb-6">
             <div className="space-y-4">
-              <h3 className="text-lg font-semibold">Customer Information</h3>
+              <h3 className="text-xl font-bold underline mb-4">Customer Information</h3>
               <CustomerSearch 
                 onSelect={(customer) => {
                   setFormData({
