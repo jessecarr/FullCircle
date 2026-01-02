@@ -1131,6 +1131,7 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
               disabled={loading}
               className="w-full"
               suppressHydrationWarning
+              data-print-form="true"
             >
               <Printer className="h-4 w-4 mr-2" />
               Print

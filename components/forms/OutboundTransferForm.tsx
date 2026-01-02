@@ -446,7 +446,7 @@ export function OutboundTransferForm({ initialData, onSuccess, onCancel }: Outbo
   };
 
   const handlePrint = () => {
-    // Create print content with single copy
+    // Create print content with bordered sections matching the form layout
     const printContent = `
       <!DOCTYPE html>
       <html>
@@ -455,145 +455,191 @@ export function OutboundTransferForm({ initialData, onSuccess, onCancel }: Outbo
         <style>
           @page {
             size: portrait;
-            margin: 0.5in;
+            margin: 0.4in;
+          }
+          
+          * {
+            box-sizing: border-box;
           }
           
           body {
             font-family: 'Arial', sans-serif;
             color: #000;
             background: white;
-            padding: 20px;
+            padding: 15px;
             max-width: 8in;
             margin: 0 auto;
+            font-size: 12px;
           }
           
           .print-header {
             text-align: center;
-            border-bottom: 2px solid #000;
-            padding-bottom: 15px;
             margin-bottom: 20px;
           }
           
           .print-date {
             text-align: left;
             font-size: 10px;
-            margin-bottom: 10px;
+            color: #666;
+            margin-bottom: 5px;
           }
           
           .print-title {
-            font-size: 24px;
+            font-size: 22px;
             font-weight: bold;
-            margin-bottom: 8px;
           }
           
-          .print-section {
-            margin-bottom: 20px;
-          }
-          
-          .print-section-title {
-            font-size: 16px;
-            font-weight: bold;
-            margin-bottom: 10px;
-            border-bottom: 1px solid #ccc;
-            padding-bottom: 5px;
-          }
-          
-          .print-field {
-            margin-bottom: 8px;
-            display: flex;
-          }
-          
-          .print-label {
-            font-weight: bold;
-            width: 150px;
-            flex-shrink: 0;
-            font-size: 12px;
-          }
-          
-          .print-value {
-            flex: 1;
-            font-size: 12px;
-          }
-          
-          .print-table {
-            width: 100%;
-            border-collapse: collapse;
+          .section-box {
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            padding: 15px;
             margin-bottom: 15px;
           }
           
-          .print-table th,
-          .print-table td {
+          .section-title {
+            font-size: 16px;
+            font-weight: bold;
+            text-decoration: underline;
+            margin-bottom: 12px;
+          }
+          
+          .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+          }
+          
+          .field-group {
+            margin-bottom: 10px;
+          }
+          
+          .field-label {
+            font-size: 11px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 3px;
+          }
+          
+          .field-value {
+            font-size: 12px;
+            padding: 6px 8px;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            min-height: 28px;
+          }
+          
+          .field-value.address {
+            min-height: 60px;
+            white-space: pre-wrap;
+          }
+          
+          .address-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+          }
+          
+          .address-right {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+          }
+          
+          .items-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+          }
+          
+          .items-table th,
+          .items-table td {
             border: 1px solid #000;
-            padding: 6px;
+            padding: 8px;
             text-align: left;
             font-size: 11px;
           }
           
-          .print-table th {
-            background-color: #f5f5f5;
+          .items-table th {
+            background-color: #f0f0f0;
             font-weight: bold;
-          }
-          
-          .print-total-summary {
-            margin-top: 15px;
-            padding: 8px;
-            background-color: #f5f5f5;
-            border: 1px solid #000;
-          }
-          
-          .print-total-row {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 3px;
-            font-size: 12px;
-          }
-          
-          .print-total-row.final {
-            font-size: 14px;
-            font-weight: bold;
-            border-top: 1px solid #000;
-            padding-top: 3px;
-            margin-bottom: 0;
           }
         </style>
       </head>
       <body>
-        <div class="print-date">
-          ${new Date().toLocaleDateString('en-US', {
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric'
-          })}
-        </div>
-        
         <div class="print-header">
+          <div class="print-date">
+            ${new Date().toLocaleDateString('en-US', {
+              year: 'numeric',
+              month: 'long',
+              day: 'numeric'
+            })}
+          </div>
           <div class="print-title">Outbound Transfer Form</div>
         </div>
 
-        <div class="print-section">
-          <div class="print-section-title">Customer Information</div>
-          <div class="print-field">
-            <div class="print-label">Name:</div>
-            <div class="print-value">${formData.customer_name}</div>
-          </div>
-          <div class="print-field">
-            <div class="print-label">Phone:</div>
-            <div class="print-value">${formatPhoneNumber(formData.customer_phone)}</div>
-          </div>
-          <div class="print-field">
-            <div class="print-label">Address:</div>
-            <div class="print-value">
-              ${formData.customer_street}
-              ${formData.customer_city ? `, ${formData.customer_city}` : ''}
-              ${formData.customer_state ? ` ${formData.customer_state}` : ''}
-              ${formData.customer_zip ? ` ${formData.customer_zip}` : ''}
+        <!-- Transferor Section -->
+        <div class="section-box">
+          <div class="section-title">Transferor</div>
+          <div class="two-column">
+            <div class="field-group">
+              <div class="field-label">Name</div>
+              <div class="field-value">${formData.customer_name || ''}</div>
+            </div>
+            <div class="field-group">
+              <div class="field-label">Phone</div>
+              <div class="field-value">${formatPhoneNumber(formData.customer_phone) || ''}</div>
             </div>
           </div>
         </div>
 
-        <div class="print-section">
-          <div class="print-section-title">Transfer Items</div>
-          <table class="print-table">
+        <!-- Transferee Section -->
+        <div class="section-box">
+          <div class="section-title">Transferee</div>
+          <div class="two-column">
+            <div class="field-group">
+              <div class="field-label">Transferee Name</div>
+              <div class="field-value">${formData.transferee_name || ''}</div>
+            </div>
+            <div class="field-group">
+              <div class="field-label">Transferee Phone</div>
+              <div class="field-value">${formatPhoneNumber(formData.transferee_phone) || ''}</div>
+            </div>
+            <div class="field-group">
+              <div class="field-label">Transferee FFL Name</div>
+              <div class="field-value">${formData.transferee_ffl_name || ''}</div>
+            </div>
+            <div class="field-group">
+              <div class="field-label">Transferee FFL Phone</div>
+              <div class="field-value">${formatPhoneNumber(formData.transferee_ffl_phone) || ''}</div>
+            </div>
+          </div>
+          <div class="address-grid" style="margin-top: 15px;">
+            <div class="field-group">
+              <div class="field-label">Street Address</div>
+              <div class="field-value address">${formData.transferee_ffl_address || ''}</div>
+            </div>
+            <div class="address-right">
+              <div class="field-group">
+                <div class="field-label">Zip</div>
+                <div class="field-value">${formData.transferee_ffl_zip || ''}</div>
+              </div>
+              <div class="field-group">
+                <div class="field-label">State</div>
+                <div class="field-value">${formData.transferee_ffl_state || ''}</div>
+              </div>
+              <div class="field-group">
+                <div class="field-label">City</div>
+                <div class="field-value">${formData.transferee_ffl_city || ''}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Transfer Items Section -->
+        <div class="section-box">
+          <div class="section-title">Transfer Items</div>
+          <table class="items-table">
             <thead>
               <tr>
                 <th style="width: 20%">Control #</th>
@@ -604,7 +650,7 @@ export function OutboundTransferForm({ initialData, onSuccess, onCancel }: Outbo
             </thead>
             <tbody>
               ${productLines.map((line, index) => `
-                <tr key="${index}">
+                <tr>
                   <td>${line.control_number || '-'}</td>
                   <td>${line.manufacturer || '-'}</td>
                   <td>${line.model || '-'}</td>
@@ -614,6 +660,16 @@ export function OutboundTransferForm({ initialData, onSuccess, onCancel }: Outbo
             </tbody>
           </table>
         </div>
+
+        ${formData.disposition_date ? `
+        <div class="section-box">
+          <div class="section-title">Disposition</div>
+          <div class="field-group">
+            <div class="field-label">Disposition Date</div>
+            <div class="field-value">${new Date(formData.disposition_date).toLocaleDateString()}</div>
+          </div>
+        </div>
+        ` : ''}
       </body>
       </html>
     `;
@@ -1251,6 +1307,7 @@ export function OutboundTransferForm({ initialData, onSuccess, onCancel }: Outbo
               disabled={loading}
               className="w-full"
               suppressHydrationWarning
+              data-print-form="true"
             >
               <Printer className="h-4 w-4 mr-2" />
               Print
