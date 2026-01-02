@@ -32,6 +32,7 @@ export default function VendorSearch({ value, onSelect, placeholder = "Search or
   const [newVendorName, setNewVendorName] = useState('')
   const [isAdding, setIsAdding] = useState(false)
   const [highlightedIndex, setHighlightedIndex] = useState(0)
+  const [hasUserTyped, setHasUserTyped] = useState(false)
   const containerRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLTextAreaElement>(null)
 
@@ -214,6 +215,7 @@ export default function VendorSearch({ value, onSelect, placeholder = "Search or
   const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const newValue = e.target.value
     setQuery(newValue)
+    setHasUserTyped(true)
     onSelect(newValue)
   }
 
@@ -224,7 +226,7 @@ export default function VendorSearch({ value, onSelect, placeholder = "Search or
           ref={inputRef}
           value={query}
           onChange={handleInputChange}
-          onFocus={() => query && setShowResults(true)}
+          onFocus={() => hasUserTyped && query && setShowResults(true)}
           onKeyDown={handleKeyDown}
           placeholder={placeholder}
           className="text-base min-h-[48px] resize-none overflow-hidden"

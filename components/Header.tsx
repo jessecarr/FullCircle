@@ -20,7 +20,7 @@ export function Header() {
       <header className="border-b bg-white">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
-            <h1 className="text-2xl font-bold">Full Circle Firearms</h1>
+            <h1 className="text-2xl font-bold">Full Circle Forms</h1>
             <div className="h-10 w-32 bg-gray-200 animate-pulse rounded" />
           </div>
         </div>
@@ -36,7 +36,7 @@ export function Header() {
     <header className="border-b bg-white shadow-sm">
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
-          <h1 className="text-2xl font-bold text-gray-900">Full Circle Firearms</h1>
+          <h1 className="text-2xl font-bold text-gray-900">Full Circle Forms</h1>
           
           <div className="flex items-center gap-4">
             <DropdownMenu>

@@ -4,7 +4,8 @@ import { useState, useEffect, useRef } from 'react'
 import { supabase } from '@/lib/supabase'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
-import { Eye, Edit, Trash2, Printer, Download, RefreshCw, ChevronDown } from 'lucide-react'
+import { Eye, Edit, Trash2, Printer, Download, RefreshCw, ChevronDown, Search, X } from 'lucide-react'
+import { Input } from '@/components/ui/input'
 import { useToast } from '@/components/ui/use-toast'
 import { Label } from '@/components/ui/label'
 import {
@@ -55,6 +56,7 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger }: 
   const [selectedStatuses, setSelectedStatuses] = useState<string[]>(['pending', 'ordered'])
   const [selectedVendors, setSelectedVendors] = useState<string[]>([])
   const [availableVendors, setAvailableVendors] = useState<string[]>([])
+  const [searchQuery, setSearchQuery] = useState('')
   const [statusUpdateItem, setStatusUpdateItem] = useState<any>(null)
   const [showStatusDialog, setShowStatusDialog] = useState(false)
   const [newStatus, setNewStatus] = useState('')
@@ -140,6 +142,40 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger }: 
         })
       }
       
+      // Filter by search query
+      if (searchQuery.trim()) {
+        const query = searchQuery.toLowerCase().trim()
+        filteredData = filteredData.filter(item => {
+          // Search in customer name
+          if (item.customer_name?.toLowerCase().includes(query)) return true
+          // Search in customer phone
+          if (item.customer_phone?.toLowerCase().includes(query)) return true
+          // Search in customer email
+          if (item.customer_email?.toLowerCase().includes(query)) return true
+          // Search in transferee name
+          if (item.transferee_name?.toLowerCase().includes(query)) return true
+          // Search in transferee FFL name
+          if (item.transferee_ffl_name?.toLowerCase().includes(query)) return true
+          // Search in notes
+          if (item.notes?.toLowerCase().includes(query)) return true
+          // Search in product lines
+          if (item.product_lines && Array.isArray(item.product_lines)) {
+            return item.product_lines.some((line: any) => {
+              if (line.sku?.toLowerCase().includes(query)) return true
+              if (line.description?.toLowerCase().includes(query)) return true
+              if (line.vendor?.toLowerCase().includes(query)) return true
+              if (line.vendor_name?.toLowerCase().includes(query)) return true
+              if (line.manufacturer?.toLowerCase().includes(query)) return true
+              if (line.model?.toLowerCase().includes(query)) return true
+              if (line.serial_number?.toLowerCase().includes(query)) return true
+              if (line.control_number?.toLowerCase().includes(query)) return true
+              return false
+            })
+          }
+          return false
+        })
+      }
+      
       setItems(filteredData)
     } catch (error) {
       toast({
@@ -154,7 +190,7 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger }: 
 
   useEffect(() => {
     fetchAllItems()
-  }, [selectedFormTypes, selectedStatuses, selectedVendors, refreshTrigger])
+  }, [selectedFormTypes, selectedStatuses, selectedVendors, searchQuery, refreshTrigger])
 
   const handleDelete = async (item: any) => {
     if (!confirm('Are you sure you want to delete this item?')) return
@@ -323,6 +359,32 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger }: 
 
   return (
     <div className="space-y-4">
+      {/* Search */}
+      <Card>
+        <CardContent className="p-4">
+          <div className="flex items-center gap-4">
+            <div className="flex-1 relative">
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+              <Input
+                type="text"
+                placeholder="Search forms by customer name, phone, SKU, description, vendor, serial number..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="pl-10 pr-10 bg-white"
+              />
+              {searchQuery && (
+                <button
+                  onClick={() => setSearchQuery('')}
+                  className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                >
+                  <X className="h-4 w-4" />
+                </button>
+              )}
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
       {/* Filters */}
       <Card>
         <CardContent className="p-4">
@@ -436,6 +498,22 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger }: 
                   )}
                 </div>
               )}
+            </div>
+
+            {/* Clear Filters */}
+            <div className="flex flex-col space-y-2">
+              <Label className="text-lg block">&nbsp;</Label>
+              <Button
+                variant="outline"
+                onClick={() => {
+                  setSelectedFormTypes(['all'])
+                  setSelectedStatuses([])
+                  setSelectedVendors([])
+                }}
+                className="bg-white"
+              >
+                Clear Filters
+              </Button>
             </div>
           </div>
         </CardContent>

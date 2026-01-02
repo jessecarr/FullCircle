@@ -1192,6 +1192,7 @@ export function SuppressorApprovalForm({ initialData, onSuccess, onCancel }: Spe
               disabled={loading}
               className="w-full"
               suppressHydrationWarning
+              data-print-form="true"
             >
               <Printer className="h-4 w-4 mr-2" />
               Print

@@ -496,18 +496,19 @@ export function printOutboundTransfer(data: any) {
         <div class="print-section-title">Transferor Information</div>
         <div class="print-field"><div class="print-label">Name:</div><div class="print-value">${data.customer_name || ''}</div></div>
         <div class="print-field"><div class="print-label">Phone:</div><div class="print-value">${formatPhoneNumber(data.customer_phone || '')}</div></div>
-        ${data.customer_street ? `<div class="print-field"><div class="print-label">Address:</div><div class="print-value">${data.customer_street}, ${data.customer_city || ''} ${data.customer_state || ''} ${data.customer_zip || ''}</div></div>` : ''}
       </div>
 
-      ${data.transferee_name ? `
-        <div class="print-section">
-          <div class="print-section-title">Transferee Information</div>
-          <div class="print-field"><div class="print-label">Name:</div><div class="print-value">${data.transferee_name}</div></div>
-          ${data.transferee_phone ? `<div class="print-field"><div class="print-label">Phone:</div><div class="print-value">${formatPhoneNumber(data.transferee_phone)}</div></div>` : ''}
-          ${data.transferee_ffl_name ? `<div class="print-field"><div class="print-label">FFL Name:</div><div class="print-value">${data.transferee_ffl_name}</div></div>` : ''}
-          ${data.transferee_ffl_address ? `<div class="print-field"><div class="print-label">FFL Address:</div><div class="print-value">${data.transferee_ffl_address}, ${data.transferee_ffl_city || ''} ${data.transferee_ffl_state || ''} ${data.transferee_ffl_zip || ''}</div></div>` : ''}
-        </div>
-      ` : ''}
+      <div class="print-section">
+        <div class="print-section-title">Transferee Information</div>
+        ${data.transferee_name ? `<div class="print-field"><div class="print-label">Name:</div><div class="print-value">${data.transferee_name}</div></div>` : ''}
+        ${data.transferee_phone ? `<div class="print-field"><div class="print-label">Phone:</div><div class="print-value">${formatPhoneNumber(data.transferee_phone)}</div></div>` : ''}
+        ${data.transferee_ffl_name ? `<div class="print-field"><div class="print-label">FFL Name:</div><div class="print-value">${data.transferee_ffl_name}</div></div>` : ''}
+        ${data.transferee_ffl_phone ? `<div class="print-field"><div class="print-label">FFL Phone:</div><div class="print-value">${formatPhoneNumber(data.transferee_ffl_phone)}</div></div>` : ''}
+        ${data.transferee_ffl_address ? `<div class="print-field"><div class="print-label">FFL Address:</div><div class="print-value">${data.transferee_ffl_address}</div></div>` : ''}
+        ${data.transferee_ffl_city ? `<div class="print-field"><div class="print-label">FFL City:</div><div class="print-value">${data.transferee_ffl_city}</div></div>` : ''}
+        ${data.transferee_ffl_state ? `<div class="print-field"><div class="print-label">FFL State:</div><div class="print-value">${data.transferee_ffl_state}</div></div>` : ''}
+        ${data.transferee_ffl_zip ? `<div class="print-field"><div class="print-label">FFL Zip:</div><div class="print-value">${data.transferee_ffl_zip}</div></div>` : ''}
+      </div>
 
       <div class="print-section">
         <div class="print-section-title">Items</div>
@@ -798,18 +799,19 @@ function downloadOutboundTransferPDF(data: any) {
         <h3 style="border-bottom: 1px solid #ccc; padding-bottom: 5px;">Transferor Information</h3>
         <p><strong>Name:</strong> ${data.customer_name || ''}</p>
         <p><strong>Phone:</strong> ${formatPhoneNumber(data.customer_phone || '')}</p>
-        ${data.customer_street ? `<p><strong>Address:</strong> ${data.customer_street}, ${data.customer_city || ''} ${data.customer_state || ''} ${data.customer_zip || ''}</p>` : ''}
       </div>
 
-      ${data.transferee_name ? `
-        <div style="margin-bottom: 20px;">
-          <h3 style="border-bottom: 1px solid #ccc; padding-bottom: 5px;">Transferee Information</h3>
-          <p><strong>Name:</strong> ${data.transferee_name}</p>
-          ${data.transferee_phone ? `<p><strong>Phone:</strong> ${formatPhoneNumber(data.transferee_phone)}</p>` : ''}
-          ${data.transferee_ffl_name ? `<p><strong>FFL Name:</strong> ${data.transferee_ffl_name}</p>` : ''}
-          ${data.transferee_ffl_address ? `<p><strong>FFL Address:</strong> ${data.transferee_ffl_address}, ${data.transferee_ffl_city || ''} ${data.transferee_ffl_state || ''} ${data.transferee_ffl_zip || ''}</p>` : ''}
-        </div>
-      ` : ''}
+      <div style="margin-bottom: 20px;">
+        <h3 style="border-bottom: 1px solid #ccc; padding-bottom: 5px;">Transferee Information</h3>
+        ${data.transferee_name ? `<p><strong>Name:</strong> ${data.transferee_name}</p>` : ''}
+        ${data.transferee_phone ? `<p><strong>Phone:</strong> ${formatPhoneNumber(data.transferee_phone)}</p>` : ''}
+        ${data.transferee_ffl_name ? `<p><strong>FFL Name:</strong> ${data.transferee_ffl_name}</p>` : ''}
+        ${data.transferee_ffl_phone ? `<p><strong>FFL Phone:</strong> ${formatPhoneNumber(data.transferee_ffl_phone)}</p>` : ''}
+        ${data.transferee_ffl_address ? `<p><strong>FFL Address:</strong> ${data.transferee_ffl_address}</p>` : ''}
+        ${data.transferee_ffl_city ? `<p><strong>FFL City:</strong> ${data.transferee_ffl_city}</p>` : ''}
+        ${data.transferee_ffl_state ? `<p><strong>FFL State:</strong> ${data.transferee_ffl_state}</p>` : ''}
+        ${data.transferee_ffl_zip ? `<p><strong>FFL Zip:</strong> ${data.transferee_ffl_zip}</p>` : ''}
+      </div>
 
       <div style="margin-bottom: 20px;">
         <h3 style="border-bottom: 1px solid #ccc; padding-bottom: 5px;">Items</h3>

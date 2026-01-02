@@ -571,7 +571,7 @@ export function OutboundTransferForm({ initialData, onSuccess, onCancel }: Outbo
         </div>
 
         <div class="print-section">
-          <div class="print-section-title">Customer Information</div>
+          <div class="print-section-title">Transferor Information</div>
           <div class="print-field">
             <div class="print-label">Name:</div>
             <div class="print-value">${formData.customer_name}</div>
@@ -580,15 +580,18 @@ export function OutboundTransferForm({ initialData, onSuccess, onCancel }: Outbo
             <div class="print-label">Phone:</div>
             <div class="print-value">${formatPhoneNumber(formData.customer_phone)}</div>
           </div>
-          <div class="print-field">
-            <div class="print-label">Address:</div>
-            <div class="print-value">
-              ${formData.customer_street}
-              ${formData.customer_city ? `, ${formData.customer_city}` : ''}
-              ${formData.customer_state ? ` ${formData.customer_state}` : ''}
-              ${formData.customer_zip ? ` ${formData.customer_zip}` : ''}
-            </div>
-          </div>
+        </div>
+
+        <div class="print-section">
+          <div class="print-section-title">Transferee Information</div>
+          ${formData.transferee_name ? `<div class="print-field"><div class="print-label">Name:</div><div class="print-value">${formData.transferee_name}</div></div>` : ''}
+          ${formData.transferee_phone ? `<div class="print-field"><div class="print-label">Phone:</div><div class="print-value">${formatPhoneNumber(formData.transferee_phone)}</div></div>` : ''}
+          ${formData.transferee_ffl_name ? `<div class="print-field"><div class="print-label">FFL Name:</div><div class="print-value">${formData.transferee_ffl_name}</div></div>` : ''}
+          ${formData.transferee_ffl_phone ? `<div class="print-field"><div class="print-label">FFL Phone:</div><div class="print-value">${formatPhoneNumber(formData.transferee_ffl_phone)}</div></div>` : ''}
+          ${formData.transferee_ffl_address ? `<div class="print-field"><div class="print-label">FFL Address:</div><div class="print-value">${formData.transferee_ffl_address}</div></div>` : ''}
+          ${formData.transferee_ffl_city ? `<div class="print-field"><div class="print-label">FFL City:</div><div class="print-value">${formData.transferee_ffl_city}</div></div>` : ''}
+          ${formData.transferee_ffl_state ? `<div class="print-field"><div class="print-label">FFL State:</div><div class="print-value">${formData.transferee_ffl_state}</div></div>` : ''}
+          ${formData.transferee_ffl_zip ? `<div class="print-field"><div class="print-label">FFL Zip:</div><div class="print-value">${formData.transferee_ffl_zip}</div></div>` : ''}
         </div>
 
         <div class="print-section">
@@ -1251,6 +1254,7 @@ export function OutboundTransferForm({ initialData, onSuccess, onCancel }: Outbo
               disabled={loading}
               className="w-full"
               suppressHydrationWarning
+              data-print-form="true"
             >
               <Printer className="h-4 w-4 mr-2" />
               Print

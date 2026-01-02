@@ -10,7 +10,7 @@ import { OutboundTransferForm } from '@/components/forms/OutboundTransferForm'
 import { FormsList } from '@/components/FormsList'
 import { FormViewDialog } from '@/components/FormViewDialog'
 import { Button } from '@/components/ui/button'
-import { ChevronDown, List, ArrowLeft } from 'lucide-react'
+import { ChevronDown, List, ArrowLeft, Printer } from 'lucide-react'
 import { useAuth } from '@/hooks/useAuth'
 import { Header } from '@/components/Header'
 import {
@@ -90,6 +90,13 @@ function HomeContent() {
   }
 
   const handleFormSelect = (formType: string) => {
+    // Skip confirmation dialog if we're on the view all page (no form being edited)
+    if (viewMode === 'list') {
+      setActiveTab(formType)
+      setViewMode('form')
+      setEditingItem(null)
+      return
+    }
     setPendingFormSwitch(formType)
     setShowConfirmDialog(true)
   }
@@ -213,6 +220,22 @@ function HomeContent() {
                   </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
+              {viewMode === 'form' && (
+                <Button
+                  variant="outline"
+                  size="icon"
+                  onClick={() => {
+                    // Trigger print from the active form component
+                    const printButton = document.querySelector('[data-print-form]') as HTMLButtonElement
+                    if (printButton) {
+                      printButton.click()
+                    }
+                  }}
+                  title="Print Form"
+                >
+                  <Printer className="h-4 w-4" />
+                </Button>
+              )}
               <Button
                 variant={viewMode === 'list' ? 'default' : 'outline'}
                 onClick={() => setViewMode('list')}
