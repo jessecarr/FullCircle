@@ -57,6 +57,7 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger }: 
   const [selectedVendors, setSelectedVendors] = useState<string[]>([])
   const [availableVendors, setAvailableVendors] = useState<string[]>([])
   const [searchQuery, setSearchQuery] = useState('')
+  const [activeSearchQuery, setActiveSearchQuery] = useState('')
   const [statusUpdateItem, setStatusUpdateItem] = useState<any>(null)
   const [showStatusDialog, setShowStatusDialog] = useState(false)
   const [newStatus, setNewStatus] = useState('')
@@ -83,6 +84,11 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger }: 
     document.addEventListener('mousedown', handleClickOutside)
     return () => document.removeEventListener('mousedown', handleClickOutside)
   }, [])
+
+  // Handle search execution
+  const handleSearch = () => {
+    setActiveSearchQuery(searchQuery)
+  }
 
   const fetchAllItems = async () => {
     setLoading(true)
@@ -143,8 +149,8 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger }: 
       }
       
       // Filter by search query
-      if (searchQuery.trim()) {
-        const query = searchQuery.toLowerCase().trim()
+      if (activeSearchQuery.trim()) {
+        const query = activeSearchQuery.toLowerCase().trim()
         filteredData = filteredData.filter(item => {
           // Search in customer name
           if (item.customer_name?.toLowerCase().includes(query)) return true
@@ -190,7 +196,7 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger }: 
 
   useEffect(() => {
     fetchAllItems()
-  }, [selectedFormTypes, selectedStatuses, selectedVendors, searchQuery, refreshTrigger])
+  }, [selectedFormTypes, selectedStatuses, selectedVendors, activeSearchQuery, refreshTrigger])
 
   const handleDelete = async (item: any) => {
     if (!confirm('Are you sure you want to delete this item?')) return
@@ -364,23 +370,38 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger }: 
         <CardContent className="p-4">
           <div className="flex items-center gap-4">
             <div className="flex-1 relative">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
               <Input
                 type="text"
                 placeholder="Search forms by customer name, phone, SKU, description, vendor, serial number..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-10 pr-10 bg-white"
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter') {
+                    handleSearch()
+                  }
+                }}
+                className="pl-4 pr-10 bg-white"
               />
               {searchQuery && (
                 <button
-                  onClick={() => setSearchQuery('')}
+                  onClick={() => {
+                    setSearchQuery('')
+                    setActiveSearchQuery('')
+                  }}
                   className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
                 >
                   <X className="h-4 w-4" />
                 </button>
               )}
             </div>
+            <Button
+              onClick={handleSearch}
+              variant="default"
+              className="flex items-center gap-2"
+            >
+              <Search className="h-4 w-4" />
+              Search
+            </Button>
           </div>
         </CardContent>
       </Card>
