@@ -9,8 +9,8 @@ export async function POST() {
   try {
     // Create admin user
     const { data: adminUser, error: adminError } = await supabase.auth.admin.createUser({
-      email: 'Admin@fullcircle.com',
-      password: 'Admin123!',
+      email: process.env.ADMIN_EMAIL || 'Admin@fullcircle.com',
+      password: process.env.ADMIN_PASSWORD || 'Admin123!',
       email_confirm: true,
       user_metadata: {
         name: 'System Administrator',
@@ -32,8 +32,8 @@ export async function POST() {
 
     // Create manager user
     const { data: managerUser, error: managerError } = await supabase.auth.admin.createUser({
-      email: 'Manager@fullcircle.com',
-      password: 'Manager123!',
+      email: process.env.MANAGER_EMAIL || 'Manager@fullcircle.com',
+      password: process.env.MANAGER_PASSWORD || 'Manager123!',
       email_confirm: true,
       user_metadata: {
         name: 'Store Manager',
@@ -55,8 +55,8 @@ export async function POST() {
 
     // Create employee user
     const { data: employeeUser, error: employeeError } = await supabase.auth.admin.createUser({
-      email: 'Employee@fullcircle.com',
-      password: 'Employee123!',
+      email: process.env.EMPLOYEE_EMAIL || 'Employee@fullcircle.com',
+      password: process.env.EMPLOYEE_PASSWORD || 'Employee123!',
       email_confirm: true,
       user_metadata: {
         name: 'Sales Employee',
