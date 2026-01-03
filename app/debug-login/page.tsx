@@ -155,7 +155,7 @@ export default function DebugLoginPage() {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   required
-                  placeholder="Admin123!"
+                  placeholder="Enter password"
                   className="w-full"
                 />
               </div>
@@ -180,10 +180,7 @@ export default function DebugLoginPage() {
             )}
 
             <div className="mt-6 text-center text-sm text-gray-600">
-              <p>Test credentials:</p>
-              <p>admin@fullcircle.com / Admin123!</p>
-              <p>manager@fullcircle.com / Manager123!</p>
-              <p>employee@fullcircle.com / Employee123!</p>
+              <p>Use your configured test credentials to login</p>
             </div>
           </CardContent>
         </Card>
