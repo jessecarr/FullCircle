@@ -1,0 +1,12 @@
+﻿{
+  "mcpServers": {
+    "supabase": {
+      "command": "node",
+      "args": ["node_modules/@supabase/mcp-server-supabase/dist/index.js"],
+      "env": {
+        "SUPABASE_URL": "https://ykhjkreakwsrtslcqwuw.supabase.co",
+        "SUPABASE_SERVICE_ROLE_KEY": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlraGprcmVha3dzcnRzbGNxd3V3Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc2NzEyNTk3NCwiZXhwIjoyMDgyNzAxOTc0fQ.tU3Gu39m5EKmKcam031alCmXgemBytRn-HRRRqTQzk4"
+      }
+    }
+  }
+}
