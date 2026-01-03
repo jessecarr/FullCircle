@@ -50,14 +50,9 @@ export async function middleware(req: NextRequest) {
   // For authenticated users, verify they are employees
   if (user && !isPublicRoute) {
     try {
-      // Use service role key for admin operations
-      const supabaseAdmin = createClient(
-        process.env.NEXT_PUBLIC_SUPABASE_URL!,
-        process.env.SUPABASE_SERVICE_ROLE_KEY!
-      )
-
-      // Check if user exists in employees table
-      const { data: employee, error } = await supabaseAdmin
+      // Use the same supabase client (with user context) to check employees table
+      // RLS policies will ensure users can only read their own employee record
+      const { data: employee, error } = await supabase
         .from('employees')
         .select('id, role, is_active')
         .eq('id', user.id)
