@@ -362,8 +362,7 @@ export function SuppressorApprovalForm({ initialData, onSuccess, onCancel }: Spe
             customer_zip: formData.customer_zip,
             product_lines: productLines,
             total_price: totalAmount,
-            special_requests: formData.special_requests,
-            status: 'approved'
+            special_requests: formData.special_requests
           }])
 
         if (error) {
