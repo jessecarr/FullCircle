@@ -9,8 +9,8 @@ export async function POST() {
   try {
     // Create admin user
     const { data: adminUser, error: adminError } = await supabase.auth.admin.createUser({
-      email: process.env.ADMIN_EMAIL,
-      password: process.env.ADMIN_PASSWORD,
+      email: 'Admin@fullcircle.com',
+      password: 'Admin123!',
       email_confirm: true,
       user_metadata: {
         name: 'System Administrator',
@@ -27,13 +27,13 @@ export async function POST() {
       await supabase
         .from('employees')
         .update({ id: adminUser.user!.id })
-        .eq('email', process.env.ADMIN_EMAIL)
+        .eq('email', 'Admin@fullcircle.com')
     }
 
     // Create manager user
     const { data: managerUser, error: managerError } = await supabase.auth.admin.createUser({
-      email: process.env.MANAGER_EMAIL,
-      password: process.env.MANAGER_PASSWORD,
+      email: 'Manager@fullcircle.com',
+      password: 'Manager123!',
       email_confirm: true,
       user_metadata: {
         name: 'Store Manager',
@@ -50,13 +50,13 @@ export async function POST() {
       await supabase
         .from('employees')
         .update({ id: managerUser.user!.id })
-        .eq('email', process.env.MANAGER_EMAIL)
+        .eq('email', 'Manager@fullcircle.com')
     }
 
     // Create employee user
     const { data: employeeUser, error: employeeError } = await supabase.auth.admin.createUser({
-      email: process.env.EMPLOYEE_EMAIL,
-      password: process.env.EMPLOYEE_PASSWORD,
+      email: 'Employee@fullcircle.com',
+      password: 'Employee123!',
       email_confirm: true,
       user_metadata: {
         name: 'Sales Employee',
@@ -73,7 +73,7 @@ export async function POST() {
       await supabase
         .from('employees')
         .update({ id: employeeUser.user!.id })
-        .eq('email', process.env.EMPLOYEE_EMAIL)
+        .eq('email', 'Employee@fullcircle.com')
     }
 
     return NextResponse.json({ 
