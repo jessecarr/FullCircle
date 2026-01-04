@@ -234,10 +234,10 @@ export async function POST() {
     ]
 
     const results = {
-      specialOrders: { created: 0, errors: [] },
-      inboundTransfers: { created: 0, errors: [] },
-      outboundTransfers: { created: 0, errors: [] },
-      suppressorApprovals: { created: 0, errors: [] }
+      specialOrders: { created: 0, errors: [] as string[] },
+      inboundTransfers: { created: 0, errors: [] as string[] },
+      outboundTransfers: { created: 0, errors: [] as string[] },
+      suppressorApprovals: { created: 0, errors: [] as string[] }
     }
 
     // Create Special Orders
