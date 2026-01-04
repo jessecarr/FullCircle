@@ -380,7 +380,7 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger }: 
                     handleSearch()
                   }
                 }}
-                className="pl-4 pr-10 bg-white"
+                className="pl-4 pr-10 bg-[#374151] text-[#e0e0e0] border border-[#4b5563]"
               />
               {searchQuery && (
                 <button
@@ -388,7 +388,7 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger }: 
                     setSearchQuery('')
                     setActiveSearchQuery('')
                   }}
-                  className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                  className="absolute right-3 top-1/2 transform -translate-y-1/2 text-[#9ca3af] hover:text-[#e0e0e0]"
                 >
                   <X className="h-4 w-4" />
                 </button>
@@ -416,7 +416,7 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger }: 
               <Button
                 variant="outline"
                 onClick={() => setShowFormTypeDropdown(!showFormTypeDropdown)}
-                className="w-[200px] justify-between bg-white"
+                className="w-[200px] justify-between bg-[#374151] text-[#e0e0e0] border border-[#4b5563]"
               >
                 <span>
                   {selectedFormTypes.length === 1 
@@ -426,11 +426,11 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger }: 
                 <ChevronDown className="h-4 w-4" />
               </Button>
               {showFormTypeDropdown && (
-                <div className="absolute top-full mt-1 w-[200px] bg-white border border-gray-200 rounded-md shadow-lg z-50 p-2 max-h-[300px] overflow-y-auto">
+                <div className="absolute top-full mt-1 w-[200px] bg-[#2a2a4a] border border-[#4b5563] rounded-md shadow-lg z-50 p-2 max-h-[300px] overflow-y-auto">
                   {(['all', 'inbound_transfers', 'outbound_transfers', 'special_orders', 'suppressor_approvals'] as FormType[]).map(formType => (
                     <label
                       key={formType}
-                      className="flex items-center gap-2 p-2 hover:bg-gray-100 cursor-pointer rounded"
+                      className="flex items-center gap-2 p-2 hover:bg-[#374151] cursor-pointer rounded text-[#e0e0e0]"
                     >
                       <input
                         type="checkbox"
@@ -451,7 +451,7 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger }: 
               <Button
                 variant="outline"
                 onClick={() => setShowStatusDropdown(!showStatusDropdown)}
-                className="w-[200px] justify-between bg-white"
+                className="w-[200px] justify-between bg-[#374151] text-[#e0e0e0] border border-[#4b5563]"
               >
                 <span>
                   {selectedStatuses.length === 1 
@@ -461,11 +461,11 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger }: 
                 <ChevronDown className="h-4 w-4" />
               </Button>
               {showStatusDropdown && (
-                <div className="absolute top-full mt-1 w-[200px] bg-white border border-gray-200 rounded-md shadow-lg z-50 p-2 max-h-[300px] overflow-y-auto">
+                <div className="absolute top-full mt-1 w-[200px] bg-[#2a2a4a] border border-[#4b5563] rounded-md shadow-lg z-50 p-2 max-h-[300px] overflow-y-auto">
                   {ALL_STATUSES.map(status => (
                     <label
                       key={status}
-                      className="flex items-center gap-2 p-2 hover:bg-gray-100 cursor-pointer rounded capitalize"
+                      className="flex items-center gap-2 p-2 hover:bg-[#374151] cursor-pointer rounded capitalize text-[#e0e0e0]"
                     >
                       <input
                         type="checkbox"
@@ -486,7 +486,7 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger }: 
               <Button
                 variant="outline"
                 onClick={() => setShowVendorDropdown(!showVendorDropdown)}
-                className="w-[200px] justify-between bg-white"
+                className="w-[200px] justify-between bg-[#374151] text-[#e0e0e0] border border-[#4b5563]"
               >
                 <span>
                   {selectedVendors.length === 0 
@@ -498,14 +498,14 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger }: 
                 <ChevronDown className="h-4 w-4" />
               </Button>
               {showVendorDropdown && (
-                <div className="absolute top-full mt-1 w-[200px] bg-white border border-gray-200 rounded-md shadow-lg z-50 p-2 max-h-[300px] overflow-y-auto">
+                <div className="absolute top-full mt-1 w-[200px] bg-[#2a2a4a] border border-[#4b5563] rounded-md shadow-lg z-50 p-2 max-h-[300px] overflow-y-auto">
                   {availableVendors.length === 0 ? (
                     <p className="text-sm text-muted-foreground p-2">No vendors found</p>
                   ) : (
                     availableVendors.map(vendor => (
                       <label
                         key={vendor}
-                        className="flex items-center gap-2 p-2 hover:bg-gray-100 cursor-pointer rounded"
+                        className="flex items-center gap-2 p-2 hover:bg-[#374151] cursor-pointer rounded text-[#e0e0e0]"
                       >
                         <input
                           type="checkbox"
@@ -531,7 +531,7 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger }: 
                   setSelectedStatuses([])
                   setSelectedVendors([])
                 }}
-                className="bg-white"
+                className="bg-[#374151] text-[#e0e0e0] border border-[#4b5563]"
               >
                 Clear Filters
               </Button>
@@ -632,7 +632,7 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger }: 
 
       {/* Status Update Dialog */}
       <AlertDialog open={showStatusDialog} onOpenChange={setShowStatusDialog}>
-        <AlertDialogContent className="bg-white">
+        <AlertDialogContent>
           <AlertDialogHeader>
             <AlertDialogTitle>Update Status</AlertDialogTitle>
             <AlertDialogDescription>
@@ -641,12 +641,12 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger }: 
           </AlertDialogHeader>
           <div className="py-4">
             <Select value={newStatus} onValueChange={setNewStatus}>
-              <SelectTrigger className="w-full bg-white">
+              <SelectTrigger className="w-full bg-[#374151] text-[#e0e0e0] border border-[#4b5563]">
                 <SelectValue placeholder="Select status" />
               </SelectTrigger>
-              <SelectContent className="bg-white">
+              <SelectContent className="bg-[#2a2a4a] border border-[#4b5563] text-[#e0e0e0]">
                 {ALL_STATUSES.map(status => (
-                  <SelectItem key={status} value={status} className="capitalize">
+                  <SelectItem key={status} value={status} className="capitalize hover:bg-[#374151]">
                     {status.charAt(0).toUpperCase() + status.slice(1)}
                   </SelectItem>
                 ))}
