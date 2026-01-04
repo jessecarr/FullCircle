@@ -6,10 +6,12 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
+import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
 import { useToast } from '@/components/ui/use-toast'
 import { supabase } from '@/lib/supabase'
 import { useAuth } from '@/hooks/useAuth'
 import { useRouter } from 'next/navigation'
+import { Edit, Trash2 } from 'lucide-react'
 
 interface NewUser {
   email: string
@@ -41,6 +43,8 @@ export default function UserManagementPage() {
     name: '',
     role: 'employee'
   })
+  const [editingUser, setEditingUser] = useState<AuthUser | null>(null)
+  const [editRole, setEditRole] = useState<'admin' | 'manager' | 'employee'>('employee')
 
   // Fetch users on component mount
   useEffect(() => {
@@ -125,6 +129,44 @@ export default function UserManagementPage() {
       })
     } finally {
       setLoading(false)
+    }
+  }
+
+  const handleUpdateRole = async () => {
+    if (!editingUser) return
+
+    try {
+      const response = await fetch('/api/admin/users', {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          userId: editingUser.id,
+          role: editRole
+        })
+      })
+      
+      const data = await response.json()
+      
+      if (!response.ok) {
+        throw new Error(data.error || 'Failed to update user role')
+      }
+
+      toast({
+        title: 'Role Updated',
+        description: `Successfully updated role for ${editingUser.email}`,
+      })
+
+      setEditingUser(null)
+      fetchUsers()
+    } catch (error) {
+      console.error('Error updating user role:', error)
+      toast({
+        title: 'Error',
+        description: 'Failed to update user role',
+        variant: 'destructive',
+      })
     }
   }
 
@@ -278,14 +320,71 @@ export default function UserManagementPage() {
                           Created: {new Date(authUser.created_at).toLocaleDateString()}
                         </p>
                       </div>
-                      <Button
-                        variant="destructive"
-                        size="sm"
-                        onClick={() => handleDeleteUser(authUser.id, authUser.email)}
-                        disabled={authUser.id === user?.id}
-                      >
-                        {authUser.id === user?.id ? 'Current User' : 'Delete'}
-                      </Button>
+                      <div className="flex gap-2">
+                        <Dialog>
+                          <DialogTrigger asChild>
+                            <Button
+                              variant="outline"
+                              size="sm"
+                              onClick={() => {
+                                setEditingUser(authUser)
+                                setEditRole((authUser.raw_user_meta_data.role || 'employee') as 'admin' | 'manager' | 'employee')
+                              }}
+                              disabled={authUser.id === user?.id}
+                            >
+                              <Edit className="h-4 w-4" />
+                            </Button>
+                          </DialogTrigger>
+                          <DialogContent>
+                            <DialogHeader>
+                              <DialogTitle>Edit User Role</DialogTitle>
+                              <DialogDescription>
+                                Change the role for {editingUser?.email || 'this user'}
+                              </DialogDescription>
+                            </DialogHeader>
+                            <div className="space-y-4">
+                              <div className="space-y-2 relative z-[999999]">
+                                <Label htmlFor="editRole">New Role</Label>
+                                <Select
+                                  value={editRole}
+                                  onValueChange={(value) => setEditRole(value as 'admin' | 'manager' | 'employee')}
+                                >
+                                  <SelectTrigger className="bg-white border-gray-300">
+                                    <SelectValue placeholder="Select a role" />
+                                  </SelectTrigger>
+                                  <SelectContent className="bg-white border-gray-300 z-[999999]">
+                                    <SelectItem value="employee">Employee</SelectItem>
+                                    <SelectItem value="manager">Manager</SelectItem>
+                                    <SelectItem value="admin">Admin</SelectItem>
+                                  </SelectContent>
+                                </Select>
+                              </div>
+                            </div>
+                            <DialogFooter>
+                              <Button
+                                variant="outline"
+                                onClick={() => {
+                                  setEditingUser(null)
+                                  setEditRole('employee')
+                                }}
+                              >
+                                Cancel
+                              </Button>
+                              <Button onClick={handleUpdateRole}>
+                                Update Role
+                              </Button>
+                            </DialogFooter>
+                          </DialogContent>
+                        </Dialog>
+                        <Button
+                          variant="destructive"
+                          size="sm"
+                          onClick={() => handleDeleteUser(authUser.id, authUser.email)}
+                          disabled={authUser.id === user?.id}
+                        >
+                          <Trash2 className="h-4 w-4" />
+                        </Button>
+                      </div>
                     </div>
                   </div>
                 ))

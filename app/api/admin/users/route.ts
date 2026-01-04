@@ -57,6 +57,25 @@ export async function POST(request: Request) {
   }
 }
 
+export async function PUT(request: Request) {
+  try {
+    const { userId, role } = await request.json()
+
+    // Update user metadata with new role
+    const { data, error } = await supabaseAdmin.auth.admin.updateUserById(userId, {
+      user_metadata: { role }
+    })
+
+    if (error) {
+      return NextResponse.json({ error: error.message }, { status: 400 })
+    }
+
+    return NextResponse.json({ success: true, data })
+  } catch (error) {
+    return NextResponse.json({ error: 'Failed to update user role' }, { status: 500 })
+  }
+}
+
 export async function DELETE(request: Request) {
   try {
     const { userId } = await request.json()
