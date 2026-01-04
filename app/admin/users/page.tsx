@@ -11,7 +11,7 @@ import { useToast } from '@/components/ui/use-toast'
 import { supabase } from '@/lib/supabase'
 import { useAuth } from '@/hooks/useAuth'
 import { useRouter } from 'next/navigation'
-import { Edit, Trash2, ArrowLeft } from 'lucide-react'
+import { Edit, Trash2, ArrowLeft, Database } from 'lucide-react'
 
 interface NewUser {
   email: string
@@ -170,6 +170,42 @@ export default function UserManagementPage() {
     }
   }
 
+  const handleCreateDummyData = async () => {
+    if (!confirm('This will create 8 dummy records (2 of each form type). Are you sure?')) {
+      return
+    }
+
+    setLoading(true)
+    try {
+      const response = await fetch('/api/admin/create-dummy-data', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        }
+      })
+      
+      const data = await response.json()
+      
+      if (!response.ok) {
+        throw new Error(data.error || 'Failed to create dummy data')
+      }
+
+      toast({
+        title: 'Dummy Data Created',
+        description: data.message,
+      })
+    } catch (error) {
+      console.error('Error creating dummy data:', error)
+      toast({
+        title: 'Error',
+        description: 'Failed to create dummy data',
+        variant: 'destructive',
+      })
+    } finally {
+      setLoading(false)
+    }
+  }
+
   const handleDeleteUser = async (userId: string, userEmail: string) => {
     if (!confirm(`Are you sure you want to delete user ${userEmail}?`)) {
       return
@@ -223,6 +259,22 @@ export default function UserManagementPage() {
         
         <h1 className="text-3xl font-bold">User Management</h1>
         <p className="text-gray-600">Create and manage user accounts</p>
+        
+        {/* Dummy Data Button */}
+        <div className="mt-4">
+          <Button
+            variant="secondary"
+            onClick={handleCreateDummyData}
+            disabled={loading}
+            className="flex items-center gap-2"
+          >
+            <Database className="h-4 w-4" />
+            {loading ? 'Creating...' : 'Create Dummy Data'}
+          </Button>
+          <p className="text-xs text-gray-500 mt-1">
+            Creates 2 of each form type (Special Orders, Transfers, Suppressors) for testing
+          </p>
+        </div>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
