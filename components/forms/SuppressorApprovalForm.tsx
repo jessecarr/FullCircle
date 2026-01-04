@@ -936,12 +936,12 @@ export function SuppressorApprovalForm({ initialData, onSuccess, onCancel }: Spe
             <h3 className="text-xl underline font-bold mb-4">Items</h3>
             
             {/* FastBound Inventory Search */}
-            <div className="mb-2 p-4 bg-blue-50 rounded-lg border border-blue-200">
+            <div className="mb-2 p-4 bg-[#374151] rounded-lg border border-[#4b5563]">
               <Label className="text-lg font-semibold flex items-center gap-2 mb-2">
                 <Search className="h-5 w-5" />
                 Search FastBound Inventory
               </Label>
-              <p className="text-sm text-gray-600 mb-3">
+              <p className="text-sm text-[#9ca3af] mb-3">
                 Search your FastBound inventory to auto-fill item details. Select an item to add it to the form.
               </p>
               <FastBoundSearch

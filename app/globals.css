@@ -1,42 +1,41 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-  --card: #ffffff;
-  --card-foreground: #171717;
-  --popover: #ffffff;
-  --popover-foreground: #171717;
-  --primary: #2563eb;
+  --background: #1a1a2e;
+  --foreground: #e0e0e0;
+  --card: #2a2a4a;
+  --card-foreground: #e0e0e0;
+  --popover: #2a2a4a;
+  --popover-foreground: #e0e0e0;
+  --primary: #8b5cf6;
   --primary-foreground: #ffffff;
-  --secondary: #f1f5f9;
-  --secondary-foreground: #0f172a;
-  --muted: #f1f5f9;
-  --muted-foreground: #64748b;
-  --accent: #f1f5f9;
-  --accent-foreground: #0f172a;
+  --secondary: #374151;
+  --secondary-foreground: #e0e0e0;
+  --muted: #374151;
+  --muted-foreground: #9ca3af;
+  --accent: #374151;
+  --accent-foreground: #e0e0e0;
   --destructive: #ef4444;
   --destructive-foreground: #ffffff;
-  --border: #e2e8f0;
-  --input: #e2e8f0;
-  --ring: #2563eb;
+  --border: #4b5563;
+  --input: #374151;
+  --ring: #8b5cf6;
   --radius: 0.5rem;
 }
 
-/* Disable dark mode for this application */
+/* Enable dark mode for this application */
 html, body {
-  color-scheme: light;
+  color-scheme: dark;
 }
 
-/* Global scale to make content smaller (equivalent to 75% browser zoom) */
+/* Global smaller UI - using reduced base font size instead of transform/zoom */
+html {
+  font-size: 12px; /* Reduced from default 16px (75% = 12px) */
+}
+
 body {
-  transform: scale(0.75);
-  transform-origin: 0 0;
-  width: 133.33%;
-  height: 133.33%;
-  overflow: auto;
-  background: #ffffff;
-  color: #171717;
+  background: #1a1a2e;
+  color: #e0e0e0;
   font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -44,26 +43,106 @@ body {
 form, .form-container {
   padding: 1.5rem;
   border-radius: 0.5rem;
+  background-color: #2a2a4a;
+  color: #e0e0e0;
 }
 
 /* Dialog visibility fixes */
 [data-radix-dialog-content] {
-  background-color: white !important;
+  background-color: #2a2a4a !important;
   opacity: 1 !important;
-  color: #111827 !important;
-  border: 1px solid #e5e7eb !important;
+  color: #e0e0e0 !important;
+  border: 1px solid #4b5563 !important;
 }
 
 [data-radix-dialog-title] {
-  color: #111827 !important;
+  color: #e0e0e0 !important;
 }
 
 [data-radix-dialog-description] {
-  color: #6b7280 !important;
+  color: #9ca3af !important;
 }
 
 /* Force dialog overlay to be visible */
 [data-radix-dialog-overlay] {
   background-color: rgba(0, 0, 0, 0.9) !important;
   opacity: 1 !important;
+}
+
+/* Dropdown menus - solid dark background, not see-through */
+[data-radix-dropdown-menu-content] {
+  z-index: 99999 !important;
+  background-color: #2a2a4a !important;
+  border: 1px solid #4b5563 !important;
+  color: #e0e0e0 !important;
+}
+
+/* Select dropdown content - solid dark background */
+[data-radix-select-content],
+[data-radix-select-viewport] {
+  background-color: #2a2a4a !important;
+  border: 1px solid #4b5563 !important;
+  color: #e0e0e0 !important;
+}
+
+[data-radix-select-item] {
+  color: #e0e0e0 !important;
+}
+
+[data-radix-select-item]:hover,
+[data-radix-select-item][data-highlighted] {
+  background-color: #374151 !important;
+}
+
+/* Input fields - dark background */
+input, textarea, select {
+  background-color: #374151 !important;
+  color: #e0e0e0 !important;
+  border-color: #4b5563 !important;
+}
+
+input::placeholder, textarea::placeholder {
+  color: #9ca3af !important;
+}
+
+/* Date picker calendar icon */
+input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+}
+
+/* Vendor dropdown / Command component */
+[cmdk-root], [cmdk-list], [cmdk-group], [cmdk-item] {
+  background-color: #2a2a4a !important;
+  color: #e0e0e0 !important;
+}
+
+[cmdk-item]:hover, [cmdk-item][aria-selected="true"] {
+  background-color: #374151 !important;
+}
+
+[cmdk-input] {
+  background-color: #374151 !important;
+  color: #e0e0e0 !important;
+}
+
+/* Popover content (used by combobox/command) */
+[data-radix-popper-content-wrapper] {
+  z-index: 99999 !important;
+}
+
+[data-radix-popover-content] {
+  background-color: #2a2a4a !important;
+  border: 1px solid #4b5563 !important;
+  color: #e0e0e0 !important;
+}
+
+/* Fix any remaining white backgrounds in cards */
+.bg-white {
+  background-color: #2a2a4a !important;
+}
+
+/* Subtotal/Tax/Total section */
+.bg-gray-50, .bg-gray-100 {
+  background-color: #374151 !important;
+  color: #e0e0e0 !important;
 }

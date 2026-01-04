@@ -50,13 +50,13 @@ export default function VendorDialog({
     >
       <div
         style={{
-          backgroundColor: '#ffffff',
+          backgroundColor: '#2a2a4a',
           padding: '24px',
           borderRadius: '8px',
           boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
           maxWidth: '500px',
           width: '90%',
-          border: '1px solid #e5e7eb'
+          border: '1px solid #4b5563'
         }}
         onClick={(e) => e.stopPropagation()}
       >
@@ -64,14 +64,14 @@ export default function VendorDialog({
           <h2 style={{ 
             fontSize: '18px', 
             fontWeight: '600', 
-            color: '#111827',
+            color: '#e0e0e0',
             marginBottom: '8px'
           }}>
             {title}
           </h2>
           <p style={{ 
             fontSize: '14px', 
-            color: '#6b7280',
+            color: '#9ca3af',
             marginBottom: '16px'
           }}>
             {description}
@@ -86,9 +86,9 @@ export default function VendorDialog({
               placeholder="Vendor name"
               style={{ 
                 textTransform: 'uppercase',
-                backgroundColor: '#ffffff',
-                color: '#111827',
-                border: '1px solid #d1d5db',
+                backgroundColor: '#374151',
+                color: '#e0e0e0',
+                border: '1px solid #4b5563',
                 width: '100%'
               }}
               onKeyDown={(e) => {
@@ -103,8 +103,8 @@ export default function VendorDialog({
         ) : (
           <div style={{ marginBottom: '24px' }}>
             <div style={{
-              backgroundColor: '#f3f4f6',
-              border: '2px solid #d1d5db',
+              backgroundColor: '#374151',
+              border: '2px solid #4b5563',
               borderRadius: '6px',
               padding: '16px',
               textAlign: 'center',
@@ -113,7 +113,7 @@ export default function VendorDialog({
               <p style={{
                 fontSize: '18px',
                 fontWeight: 'bold',
-                color: '#111827',
+                color: '#e0e0e0',
                 textTransform: 'uppercase',
                 margin: 0
               }}>
@@ -122,7 +122,7 @@ export default function VendorDialog({
             </div>
             <p style={{
               fontSize: '14px',
-              color: '#6b7280',
+              color: '#9ca3af',
               textAlign: 'center',
               margin: 0
             }}>
@@ -141,9 +141,9 @@ export default function VendorDialog({
             variant="outline"
             onClick={onCancel}
             style={{
-              backgroundColor: '#ffffff',
-              color: '#111827',
-              border: '1px solid #d1d5db'
+              backgroundColor: '#374151',
+              color: '#e0e0e0',
+              border: '1px solid #4b5563'
             }}
           >
             {showVerification ? 'Back to Edit' : 'Cancel'}
@@ -153,7 +153,7 @@ export default function VendorDialog({
             onClick={onSubmit}
             disabled={isSubmitting}
             style={{
-              backgroundColor: '#3b82f6',
+              backgroundColor: '#8b5cf6',
               color: '#ffffff'
             }}
           >

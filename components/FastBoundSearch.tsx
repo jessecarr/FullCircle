@@ -146,27 +146,27 @@ export default function FastBoundSearch({
       )}
 
       {isOpen && results.length > 0 && (
-        <div className="absolute z-50 w-full mt-1 bg-white border border-gray-200 rounded-md shadow-lg max-h-60 overflow-auto">
+        <div className="absolute z-50 w-full mt-1 bg-[#2a2a4a] border border-[#4b5563] rounded-md shadow-lg max-h-60 overflow-auto">
           {results.map((item, index) => (
             <div
               key={item.id}
               onClick={() => handleSelect(item)}
-              className={`px-4 py-3 cursor-pointer border-b last:border-b-0 ${
+              className={`px-4 py-3 cursor-pointer border-b border-[#4b5563] last:border-b-0 ${
                 index === highlightedIndex 
-                  ? 'bg-blue-100 border-blue-200' 
-                  : 'hover:bg-gray-100'
+                  ? 'bg-[#374151]' 
+                  : 'hover:bg-[#374151]'
               }`}
             >
-              <div className="font-medium text-sm">
+              <div className="font-medium text-sm text-[#e0e0e0]">
                 {item.manufacturer} {item.model}
               </div>
-              <div className="text-xs text-gray-600 mt-1">
+              <div className="text-xs text-[#9ca3af] mt-1">
                 <span className="mr-3">Serial: {item.serial_number || 'N/A'}</span>
                 <span className="mr-3">Type: {item.firearm_type || 'N/A'}</span>
                 <span>Caliber: {item.caliber || 'N/A'}</span>
               </div>
               {item.price && (
-                <div className="text-xs text-green-600 mt-1">
+                <div className="text-xs text-green-400 mt-1">
                   Price: ${item.price.toFixed(2)}
                 </div>
               )}
@@ -176,7 +176,7 @@ export default function FastBoundSearch({
       )}
 
       {isOpen && results.length === 0 && query.trim() && !loading && (
-        <div className="absolute z-50 w-full mt-1 bg-white border border-gray-200 rounded-md shadow-lg p-4 text-center text-gray-500 text-sm">
+        <div className="absolute z-50 w-full mt-1 bg-[#2a2a4a] border border-[#4b5563] rounded-md shadow-lg p-4 text-center text-[#9ca3af] text-sm">
           No items found in inventory
         </div>
       )}

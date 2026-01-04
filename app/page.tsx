@@ -155,8 +155,8 @@ function HomeContent() {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-900 mx-auto"></div>
-          <p className="mt-2 text-gray-600">Loading...</p>
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto"></div>
+          <p className="mt-2 text-muted-foreground">Loading...</p>
         </div>
       </div>
     )
@@ -193,28 +193,28 @@ function HomeContent() {
                     <ChevronDown className="h-4 w-4 ml-2" />
                   </Button>
                 </DropdownMenuTrigger>
-                <DropdownMenuContent className="bg-white border border-gray-200 shadow-lg z-50">
+                <DropdownMenuContent>
                   <DropdownMenuItem 
                     onClick={() => handleFormSelect('special-order')}
-                    className="cursor-pointer hover:bg-gray-100"
+                    className="cursor-pointer"
                   >
                     Special Order
                   </DropdownMenuItem>
                   <DropdownMenuItem 
                     onClick={() => handleFormSelect('inbound-transfer')}
-                    className="cursor-pointer hover:bg-gray-100"
+                    className="cursor-pointer"
                   >
                     Inbound Transfer
                   </DropdownMenuItem>
                   <DropdownMenuItem 
                     onClick={() => handleFormSelect('suppressor-approval')}
-                    className="cursor-pointer hover:bg-gray-100"
+                    className="cursor-pointer"
                   >
                     Suppressor Approval
                   </DropdownMenuItem>
                   <DropdownMenuItem 
                     onClick={() => handleFormSelect('outbound-transfer')}
-                    className="cursor-pointer hover:bg-gray-100"
+                    className="cursor-pointer"
                   >
                     Outbound Transfer
                   </DropdownMenuItem>
@@ -299,7 +299,7 @@ function HomeContent() {
       />
 
       <AlertDialog open={showConfirmDialog} onOpenChange={setShowConfirmDialog}>
-        <AlertDialogContent className="bg-white">
+        <AlertDialogContent>
           <AlertDialogHeader>
             <AlertDialogTitle>Switch Form?</AlertDialogTitle>
             <AlertDialogDescription>
@@ -321,8 +321,8 @@ export default function Home() {
     <Suspense fallback={
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-900 mx-auto"></div>
-          <p className="mt-2 text-gray-600">Loading...</p>
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto"></div>
+          <p className="mt-2 text-muted-foreground">Loading...</p>
         </div>
       </div>
     }>

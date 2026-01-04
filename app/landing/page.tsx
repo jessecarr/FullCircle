@@ -92,8 +92,8 @@ export default function LandingPage() {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-900 mx-auto"></div>
-          <p className="mt-2 text-gray-600">Loading...</p>
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto"></div>
+          <p className="mt-2 text-muted-foreground">Loading...</p>
         </div>
       </div>
     )
@@ -104,7 +104,7 @@ export default function LandingPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-background">
       <Header />
 
       {/* Main Content */}
@@ -112,10 +112,10 @@ export default function LandingPage() {
         <div className="px-4 py-6 sm:px-0">
           {/* Welcome Section */}
           <div className="mb-8">
-            <h2 className="text-3xl font-bold text-gray-900">
+            <h2 className="text-3xl font-bold text-foreground">
               Welcome back, {user?.user_metadata?.name || user?.email}!
             </h2>
-            <p className="mt-2 text-gray-600">
+            <p className="mt-2 text-muted-foreground">
               What would you like to do today?
             </p>
           </div>
@@ -145,7 +145,7 @@ export default function LandingPage() {
                     <Button 
                       variant="ghost" 
                       size="sm" 
-                      className="group-hover:bg-gray-100 w-full justify-between"
+                      className="group-hover:bg-accent w-full justify-between"
                     >
                       Open Form
                       <ArrowRight className="h-4 w-4 ml-2 group-hover:translate-x-1 transition-transform" />
@@ -158,12 +158,12 @@ export default function LandingPage() {
 
           {/* Quick Stats */}
           <div className="mt-12">
-            <h3 className="text-xl font-semibold text-gray-900 mb-4">Quick Stats</h3>
+            <h3 className="text-xl font-semibold text-foreground mb-4">Quick Stats</h3>
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
               <Card>
                 <CardContent className="p-4">
-                  <div className="text-2xl font-bold text-blue-600">{activeOrdersCount}</div>
-                  <p className="text-sm text-gray-600">Active Special Orders</p>
+                  <div className="text-2xl font-bold text-primary">{activeOrdersCount}</div>
+                  <p className="text-sm text-muted-foreground">Active Special Orders</p>
                 </CardContent>
               </Card>
             </div>

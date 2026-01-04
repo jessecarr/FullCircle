@@ -1053,7 +1053,7 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
             </Button>
             
             {/* Order Total Summary */}
-            <div className="mt-6 p-4 bg-gray-50 rounded-lg border">
+            <div className="mt-6 p-4 bg-[#374151] rounded-lg border border-[#4b5563]">
               <div className="space-y-2">
                 <div className="flex justify-between text-lg">
                   <span className="font-semibold">Subtotal:</span>
@@ -1075,27 +1075,27 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
             <div className="space-y-2">
               <Label className="text-lg" htmlFor="delivery_method">Delivery Method *</Label>
               <Select value={formData.delivery_method} onValueChange={(value) => handleInputChange('delivery_method', value)}>
-                <SelectTrigger className="bg-white text-black border border-gray-300" suppressHydrationWarning>
+                <SelectTrigger className="bg-[#374151] text-[#e0e0e0] border border-[#4b5563]" suppressHydrationWarning>
                   <SelectValue />
                 </SelectTrigger>
-                <SelectContent className="bg-white border border-gray-300 text-black">
-                  <SelectItem value="in_store_pickup" className="hover:bg-gray-100">In-Store Pickup</SelectItem>
-                  <SelectItem value="ship_to_customer" className="hover:bg-gray-100">Ship to Customer</SelectItem>
+                <SelectContent className="bg-[#2a2a4a] border border-[#4b5563] text-[#e0e0e0]">
+                  <SelectItem value="in_store_pickup" className="hover:bg-[#374151]">In-Store Pickup</SelectItem>
+                  <SelectItem value="ship_to_customer" className="hover:bg-[#374151]">Ship to Customer</SelectItem>
                 </SelectContent>
               </Select>
             </div>
             <div className="space-y-2">
               <Label className="text-lg" htmlFor="status">Status *</Label>
               <Select value={formData.status} onValueChange={(value) => handleInputChange('status', value)}>
-                <SelectTrigger className="bg-white text-black border border-gray-300" suppressHydrationWarning>
+                <SelectTrigger className="bg-[#374151] text-[#e0e0e0] border border-[#4b5563]" suppressHydrationWarning>
                   <SelectValue />
                 </SelectTrigger>
-                <SelectContent className="bg-white border border-gray-300 text-black">
-                  <SelectItem value="pending" className="hover:bg-gray-100">Pending</SelectItem>
-                  <SelectItem value="ordered" className="hover:bg-gray-100">Ordered</SelectItem>
-                  <SelectItem value="received" className="hover:bg-gray-100">Received</SelectItem>
-                  <SelectItem value="completed" className="hover:bg-gray-100">Completed</SelectItem>
-                  <SelectItem value="cancelled" className="hover:bg-gray-100">Cancelled</SelectItem>
+                <SelectContent className="bg-[#2a2a4a] border border-[#4b5563] text-[#e0e0e0]">
+                  <SelectItem value="pending" className="hover:bg-[#374151]">Pending</SelectItem>
+                  <SelectItem value="ordered" className="hover:bg-[#374151]">Ordered</SelectItem>
+                  <SelectItem value="received" className="hover:bg-[#374151]">Received</SelectItem>
+                  <SelectItem value="completed" className="hover:bg-[#374151]">Completed</SelectItem>
+                  <SelectItem value="cancelled" className="hover:bg-[#374151]">Cancelled</SelectItem>
                 </SelectContent>
               </Select>
             </div>

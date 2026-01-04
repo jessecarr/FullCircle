@@ -19,11 +19,11 @@ export function Header() {
 
   if (loading) {
     return (
-      <header className="border-b bg-white">
+      <header className="border-b bg-card">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
-            <h1 className="text-2xl font-bold">Full Circle Forms</h1>
-            <div className="h-10 w-32 bg-gray-200 animate-pulse rounded" />
+            <h1 className="text-2xl font-bold text-foreground">Full Circle Forms</h1>
+            <div className="h-10 w-32 bg-muted animate-pulse rounded" />
           </div>
         </div>
       </header>
@@ -35,10 +35,10 @@ export function Header() {
   }
 
   return (
-    <header className="border-b bg-white shadow-sm">
+    <header className="border-b bg-card shadow-sm">
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
-          <h1 className="text-2xl font-bold text-gray-900">Full Circle Forms</h1>
+          <h1 className="text-2xl font-bold text-foreground">Full Circle Forms</h1>
           
           <div className="flex items-center gap-4">
             <DropdownMenu>
@@ -51,8 +51,8 @@ export function Header() {
               <DropdownMenuContent align="end" className="w-56">
                 <DropdownMenuLabel>My Account</DropdownMenuLabel>
                 <DropdownMenuSeparator />
-                <div className="px-2 py-1.5 text-sm text-gray-500">
-                  <div className="font-medium text-gray-900">{user.user_metadata?.name || 'User'}</div>
+                <div className="px-2 py-1.5 text-sm text-muted-foreground">
+                  <div className="font-medium text-foreground">{user.user_metadata?.name || 'User'}</div>
                   <div className="text-xs">{user.email}</div>
                   {user.user_metadata?.role && (
                     <div className="text-xs mt-1 capitalize">

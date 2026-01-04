@@ -936,12 +936,12 @@ export function InboundTransferForm({ initialData, onSuccess, onCancel }: Specia
             <h3 className="text-xl underline font-bold mb-4">Items</h3>
             
             {/* FastBound Inventory Search */}
-            <div className="mb-2 p-4 bg-blue-50 rounded-lg border border-blue-200">
+            <div className="mb-2 p-4 bg-[#374151] rounded-lg border border-[#4b5563]">
               <Label className="text-lg font-semibold flex items-center gap-2 mb-2">
                 <Search className="h-5 w-5" />
                 Search FastBound Inventory
               </Label>
-              <p className="text-sm text-gray-600 mb-3">
+              <p className="text-sm text-[#9ca3af] mb-3">
                 Search your FastBound inventory to auto-fill item details. Select an item to add it to the form.
               </p>
               <FastBoundSearch
@@ -1149,7 +1149,7 @@ export function InboundTransferForm({ initialData, onSuccess, onCancel }: Specia
                   }}
                   >
                     <SelectTrigger 
-                      className="bg-white text-black border" 
+                      className="bg-[#374151] text-[#e0e0e0] border border-[#4b5563]" 
                       suppressHydrationWarning
                       style={{ 
                         height: isClient ? (rowHeights[index] || '48px') : '48px',
@@ -1163,9 +1163,9 @@ export function InboundTransferForm({ initialData, onSuccess, onCancel }: Specia
                         <SelectValue placeholder="Select order type" />
                       </div>
                     </SelectTrigger>
-                    <SelectContent className="bg-white border border-gray-300 text-black" style={{ maxWidth: '200px' }}>
-                      <SelectItem value="Transfer" className="hover:bg-gray-100" style={{ whiteSpace: 'normal', wordWrap: 'break-word' }}>TRANSFER</SelectItem>
-                      <SelectItem value="Purchased From FCR" className="hover:bg-gray-100" style={{ whiteSpace: 'normal', wordWrap: 'break-word' }}>PURCHASED FROM FCR</SelectItem>
+                    <SelectContent className="bg-[#2a2a4a] border border-[#4b5563] text-[#e0e0e0]" style={{ maxWidth: '200px' }}>
+                      <SelectItem value="Transfer" className="hover:bg-[#374151]" style={{ whiteSpace: 'normal', wordWrap: 'break-word' }}>TRANSFER</SelectItem>
+                      <SelectItem value="Purchased From FCR" className="hover:bg-[#374151]" style={{ whiteSpace: 'normal', wordWrap: 'break-word' }}>PURCHASED FROM FCR</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
@@ -1217,7 +1217,7 @@ export function InboundTransferForm({ initialData, onSuccess, onCancel }: Specia
             </Button>
             
             {/* Order Total Summary */}
-            <div className="mt-6 p-4 bg-gray-50 rounded-lg border">
+            <div className="mt-6 p-4 bg-[#374151] rounded-lg border border-[#4b5563]">
               <div className="space-y-2">
                 <div className="flex justify-between text-lg">
                   <span className="font-semibold">Subtotal:</span>

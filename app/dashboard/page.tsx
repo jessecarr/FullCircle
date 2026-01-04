@@ -24,8 +24,8 @@ export default function DashboardPage() {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-900 mx-auto"></div>
-          <p className="mt-2 text-gray-600">Loading...</p>
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto"></div>
+          <p className="mt-2 text-muted-foreground">Loading...</p>
         </div>
       </div>
     )
@@ -36,7 +36,7 @@ export default function DashboardPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-background">
       <Header />
 
       {/* Main Content */}
@@ -56,10 +56,10 @@ export default function DashboardPage() {
 
           {/* Welcome Section */}
           <div className="mb-8">
-            <h2 className="text-3xl font-bold text-gray-900">
+            <h2 className="text-3xl font-bold text-foreground">
               Welcome back, {user?.user_metadata?.name || user?.email}!
             </h2>
-            <p className="mt-2 text-gray-600">
+            <p className="mt-2 text-muted-foreground">
               Here's what's happening with your firearms management today.
             </p>
           </div>
@@ -164,7 +164,7 @@ export default function DashboardPage() {
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <div className="text-center py-8 text-gray-500">
+              <div className="text-center py-8 text-muted-foreground">
                 <p>No recent activity to display.</p>
                 <p className="text-sm mt-2">Activity will appear here as you use the system.</p>
               </div>

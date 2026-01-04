@@ -255,14 +255,14 @@ export default function VendorSearch({ value, onSelect, placeholder = "Search or
         />
         
         {showResults && results.length > 0 && !showAddDialog && !showVerificationDialog && (
-          <div className="absolute z-50 w-full mt-1 bg-white border border-gray-300 rounded-md shadow-lg max-h-60 overflow-y-auto">
+          <div className="absolute z-50 w-full mt-1 bg-[#2a2a4a] border border-[#4b5563] rounded-md shadow-lg max-h-60 overflow-y-auto">
             {results.map((vendor, index) => (
               <div
                 key={vendor.id}
-                className={`px-4 py-2 cursor-pointer ${
+                className={`px-4 py-2 cursor-pointer text-[#e0e0e0] ${
                   index === highlightedIndex 
-                    ? 'bg-blue-100 text-blue-900' 
-                    : 'hover:bg-gray-100'
+                    ? 'bg-[#374151]' 
+                    : 'hover:bg-[#374151]'
                 }`}
                 onClick={() => handleSelect(vendor.name)}
                 onMouseEnter={() => setHighlightedIndex(index)}
@@ -274,9 +274,9 @@ export default function VendorSearch({ value, onSelect, placeholder = "Search or
         )}
 
         {showResults && query && results.length === 0 && !showAddDialog && !showVerificationDialog && (
-          <div className="absolute z-50 w-full mt-1 bg-white border border-gray-300 rounded-md shadow-lg">
-            <div className="px-4 py-2 text-gray-500">No vendors found</div>
-            <div className="px-4 py-2 border-t">
+          <div className="absolute z-50 w-full mt-1 bg-[#2a2a4a] border border-[#4b5563] rounded-md shadow-lg">
+            <div className="px-4 py-2 text-[#9ca3af]">No vendors found</div>
+            <div className="px-4 py-2 border-t border-[#4b5563]">
               <Button
                 type="button"
                 variant="outline"
