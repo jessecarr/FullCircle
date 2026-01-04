@@ -18,9 +18,9 @@ export function FormViewDialog({ open, onOpenChange, data, title, onEdit }: Form
     if (value === null || value === undefined || value === '') return null
     
     return (
-      <div className="grid grid-cols-3 gap-4 py-2 border-b">
-        <dt className="font-semibold text-sm text-gray-700">{label}</dt>
-        <dd className="col-span-2 text-sm text-black">{String(value)}</dd>
+      <div className="grid grid-cols-3 gap-4 py-2 border-b border-[#4b5563]">
+        <dt className="font-semibold text-sm text-[#9ca3af]">{label}</dt>
+        <dd className="col-span-2 text-sm text-[#e0e0e0]">{String(value)}</dd>
       </div>
     )
   }
@@ -34,7 +34,7 @@ export function FormViewDialog({ open, onOpenChange, data, title, onEdit }: Form
     
     return (
       <div className="mb-6">
-        <h4 className="text-lg font-semibold mb-3 text-black">{sectionTitle}</h4>
+        <h4 className="text-lg font-semibold mb-3 text-[#e0e0e0]">{sectionTitle}</h4>
         <dl className="space-y-1">
           {Object.entries(fields).map(([key, value]) => {
             if (value === null || value === undefined || value === '') return null
@@ -60,26 +60,26 @@ export function FormViewDialog({ open, onOpenChange, data, title, onEdit }: Form
     
     return (
       <div className="mb-6">
-        <h4 className="text-lg font-semibold mb-3 text-black">Items</h4>
+        <h4 className="text-lg font-semibold mb-3 text-[#e0e0e0]">Items</h4>
         <div className="space-y-3">
           {productLines.map((line, index) => (
-            <div key={index} className="border rounded-lg p-4 bg-gray-50">
+            <div key={index} className="border border-[#4b5563] rounded-lg p-4 bg-[#374151]">
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                 <div>
-                  <span className="text-xs text-gray-500">SKU</span>
-                  <p className="font-medium text-black">{line.sku}</p>
+                  <span className="text-xs text-[#9ca3af]">SKU</span>
+                  <p className="font-medium text-[#e0e0e0]">{line.sku}</p>
                 </div>
                 <div>
-                  <span className="text-xs text-gray-500">Description</span>
-                  <p className="font-medium text-black">{line.description}</p>
+                  <span className="text-xs text-[#9ca3af]">Description</span>
+                  <p className="font-medium text-[#e0e0e0]">{line.description}</p>
                 </div>
                 <div>
-                  <span className="text-xs text-gray-500">Qty/Price</span>
-                  <p className="font-medium text-black">{line.quantity} × ${line.unit_price}</p>
+                  <span className="text-xs text-[#9ca3af]">Qty/Price</span>
+                  <p className="font-medium text-[#e0e0e0]">{line.quantity} × ${line.unit_price}</p>
                 </div>
                 <div>
-                  <span className="text-xs text-gray-500">Total</span>
-                  <p className="font-medium text-black">${line.total_price}</p>
+                  <span className="text-xs text-[#9ca3af]">Total</span>
+                  <p className="font-medium text-[#e0e0e0]">${line.total_price}</p>
                 </div>
               </div>
             </div>
@@ -222,7 +222,7 @@ export function FormViewDialog({ open, onOpenChange, data, title, onEdit }: Form
     >
       <div
         style={{
-          backgroundColor: '#ffffff',
+          backgroundColor: '#2a2a4a',
           padding: '24px',
           borderRadius: '8px',
           boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
@@ -230,7 +230,7 @@ export function FormViewDialog({ open, onOpenChange, data, title, onEdit }: Form
           width: '100%',
           maxHeight: '80vh',
           overflowY: 'auto',
-          border: '2px solid #d1d5db',
+          border: '2px solid #4b5563',
           position: 'relative'
         }}
         onClick={(e) => e.stopPropagation()}
@@ -239,7 +239,7 @@ export function FormViewDialog({ open, onOpenChange, data, title, onEdit }: Form
           <h2 style={{ 
             fontSize: '24px', 
             fontWeight: '600', 
-            color: '#111827',
+            color: '#e0e0e0',
             margin: 0
           }}>
             {title}
@@ -263,10 +263,10 @@ export function FormViewDialog({ open, onOpenChange, data, title, onEdit }: Form
                 alignItems: 'center',
                 justifyContent: 'center'
               }}
-              onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#f3f4f6'}
+              onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#374151'}
               onMouseOut={(e) => e.currentTarget.style.backgroundColor = 'transparent'}
             >
-              <X className="h-5 w-5" style={{ color: '#6b7280' }} />
+              <X className="h-5 w-5" style={{ color: '#9ca3af' }} />
             </button>
           </div>
         </div>
