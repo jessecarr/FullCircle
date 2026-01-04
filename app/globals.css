@@ -28,7 +28,13 @@ html, body {
   color-scheme: light;
 }
 
+/* Global scale to make content smaller (equivalent to 75% browser zoom) */
 body {
+  transform: scale(0.75);
+  transform-origin: 0 0;
+  width: 133.33%;
+  height: 133.33%;
+  overflow: auto;
   background: #ffffff;
   color: #171717;
   font-family: Arial, Helvetica, sans-serif;
