@@ -2,12 +2,12 @@ import { createClient } from '@supabase/supabase-js'
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
 
-export async function middleware(req: NextRequest) {
+export async function proxy(req: NextRequest) {
   const res = NextResponse.next()
   
   // TEMPORARILY DISABLED FOR TESTING
   // Remove this return statement to re-enable middleware
-  if (req.nextUrl.pathname.startsWith('/debug-login') || req.nextUrl.pathname.startsWith('/landing') || req.nextUrl.pathname.startsWith('/dashboard') || req.nextUrl.pathname === '/') {
+  if (req.nextUrl.pathname.startsWith('/landing') || req.nextUrl.pathname.startsWith('/dashboard') || req.nextUrl.pathname.startsWith('/admin') || req.nextUrl.pathname === '/') {
     return res
   }
   
@@ -30,7 +30,7 @@ export async function middleware(req: NextRequest) {
   } = await supabase.auth.getUser()
 
   // Public routes that don't require authentication
-  const publicRoutes = ['/login', '/debug-login', '/landing', '/dashboard']
+  const publicRoutes = ['/login', '/landing', '/dashboard']
   const isPublicRoute = publicRoutes.some(route => 
     req.nextUrl.pathname.startsWith(route)
   )
@@ -47,34 +47,23 @@ export async function middleware(req: NextRequest) {
     return NextResponse.redirect(redirectUrl)
   }
 
-  // For authenticated users, verify they are employees
+  // For authenticated users, verify they have proper role metadata
   if (user && !isPublicRoute) {
     try {
-      // Use service role key for admin operations
-      const supabaseAdmin = createClient(
-        process.env.NEXT_PUBLIC_SUPABASE_URL!,
-        process.env.SUPABASE_SERVICE_ROLE_KEY!
-      )
-
-      // Check if user exists in employees table
-      const { data: employee, error } = await supabaseAdmin
-        .from('employees')
-        .select('id, role, is_active')
-        .eq('id', user.id)
-        .eq('is_active', true)
-        .single()
-
-      if (error || !employee) {
-        // User is not an active employee, sign them out and redirect to login
+      // Check if user has required role metadata
+      const userRole = user.user_metadata?.role
+      
+      if (!userRole || !['admin', 'manager', 'employee'].includes(userRole)) {
+        // User doesn't have proper role metadata, sign them out and redirect to login
         await supabase.auth.signOut()
         const redirectUrl = new URL('/login', req.url)
         redirectUrl.searchParams.set('error', 'not_authorized')
         return NextResponse.redirect(redirectUrl)
       }
 
-      // Add employee role to headers for use in components
-      res.headers.set('x-employee-role', employee.role)
-      res.headers.set('x-employee-id', employee.id)
+      // Add user role to headers for use in components
+      res.headers.set('x-user-role', userRole)
+      res.headers.set('x-user-id', user.id)
     } catch (error) {
       console.error('Middleware error:', error)
       const redirectUrl = new URL('/login', req.url)

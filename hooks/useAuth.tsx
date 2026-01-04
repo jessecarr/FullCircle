@@ -9,23 +9,42 @@ interface AuthContextType {
   user: User | null
   loading: boolean
   signOut: () => Promise<void>
+  userRole: string | null
+  userName: string | null
+  employeeId: string | null
 }
 
 const AuthContext = createContext<AuthContextType>({
   user: null,
   loading: true,
   signOut: async () => {},
+  userRole: null,
+  userName: null,
+  employeeId: null,
 })
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<User | null>(null)
   const [loading, setLoading] = useState(true)
+  const [userRole, setUserRole] = useState<string | null>(null)
+  const [userName, setUserName] = useState<string | null>(null)
+  const [employeeId, setEmployeeId] = useState<string | null>(null)
   const router = useRouter()
 
   useEffect(() => {
     // Get initial session
     supabase.auth.getSession().then(({ data: { session } }) => {
       setUser(session?.user ?? null)
+      if (session?.user) {
+        const metadata = session.user.user_metadata
+        setUserRole(metadata?.role || null)
+        setUserName(metadata?.name || null)
+        setEmployeeId(metadata?.employee_id || null)
+      } else {
+        setUserRole(null)
+        setUserName(null)
+        setEmployeeId(null)
+      }
       setLoading(false)
     })
 
@@ -34,6 +53,16 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       data: { subscription },
     } = supabase.auth.onAuthStateChange((_event, session) => {
       setUser(session?.user ?? null)
+      if (session?.user) {
+        const metadata = session.user.user_metadata
+        setUserRole(metadata?.role || null)
+        setUserName(metadata?.name || null)
+        setEmployeeId(metadata?.employee_id || null)
+      } else {
+        setUserRole(null)
+        setUserName(null)
+        setEmployeeId(null)
+      }
       setLoading(false)
     })
 
@@ -43,11 +72,14 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const signOut = async () => {
     await supabase.auth.signOut()
     setUser(null)
+    setUserRole(null)
+    setUserName(null)
+    setEmployeeId(null)
     router.push('/login')
   }
 
   return (
-    <AuthContext.Provider value={{ user, loading, signOut }}>
+    <AuthContext.Provider value={{ user, loading, signOut, userRole, userName, employeeId }}>
       {children}
     </AuthContext.Provider>
   )

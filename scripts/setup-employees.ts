@@ -64,33 +64,33 @@ async function setupInitialEmployees() {
 
   // Create admin user
   const admin = await createEmployee(
-    'Admin@fullcircle.com',
-    'Admin123!',
+    process.env.ADMIN_EMAIL || 'Admin@fullcircle.com',
+    process.env.ADMIN_PASSWORD || 'Admin123!',
     'System Administrator',
     'admin'
   )
 
   // Create manager user
   const manager = await createEmployee(
-    'Manager@fullcircle.com',
-    'Manager123!',
+    process.env.MANAGER_EMAIL || 'Manager@fullcircle.com',
+    process.env.MANAGER_PASSWORD || 'Manager123!',
     'Store Manager',
     'manager'
   )
 
   // Create employee user
   const employee = await createEmployee(
-    'Employee@fullcircle.com',
-    'Employee123!',
+    process.env.EMPLOYEE_EMAIL || 'Employee@fullcircle.com',
+    process.env.EMPLOYEE_PASSWORD || 'Employee123!',
     'Sales Employee',
     'employee'
   )
 
   console.log('\n✨ Setup complete!')
   console.log('📋 Login credentials:')
-  console.log('Admin: Admin@fullcircle.com / Admin123!')
-  console.log('Manager: Manager@fullcircle.com / Manager123!')
-  console.log('Employee: Employee@fullcircle.com / Employee123!')
+  console.log(`Admin: ${process.env.ADMIN_EMAIL || 'Admin@fullcircle.com'} / ${process.env.ADMIN_PASSWORD || 'Admin123!'}`)
+  console.log(`Manager: ${process.env.MANAGER_EMAIL || 'Manager@fullcircle.com'} / ${process.env.MANAGER_PASSWORD || 'Manager123!'}`)
+  console.log(`Employee: ${process.env.EMPLOYEE_EMAIL || 'Employee@fullcircle.com'} / ${process.env.EMPLOYEE_PASSWORD || 'Employee123!'}`)
 }
 
 // Run the setup

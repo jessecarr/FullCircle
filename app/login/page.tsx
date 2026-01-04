@@ -23,31 +23,13 @@ export default function LoginPage() {
     try {
       const normalizedEmail = email.toLowerCase()
 
-      // Step 1: Verify user is an authorized employee
-      const { data: employeeData, error: employeeError } = await supabase
-        .from('employees')
-        .select('id, name, role, is_active')
-        .eq('email', normalizedEmail)
-        .eq('is_active', true)
-        .single()
-
-      if (employeeError || !employeeData) {
-        toast({
-          title: 'Access Denied',
-          description: 'You are not authorized to access this system.',
-          variant: 'destructive',
-        })
-        setLoading(false)
-        return
-      }
-
-      // Step 2: Attempt to sign in with Supabase Auth
+      // Step 1: Attempt to sign in with Supabase Auth
       const { data: authData, error: authError } = await supabase.auth.signInWithPassword({
         email: normalizedEmail,
         password: password,
       })
 
-      // Step 3: Handle authentication result
+      // Step 2: Handle authentication result
       if (authError) {
         toast({
           title: 'Login Failed',
@@ -58,11 +40,28 @@ export default function LoginPage() {
         return
       }
 
-      // Step 4: Successful login
-      if (authData.session) {
+      // Step 3: Check if user is authorized employee from user metadata
+      if (authData.session && authData.user) {
+        const userMetadata = authData.user.user_metadata
+        const userRole = userMetadata?.role
+        const employeeName = userMetadata?.name
+
+        // Verify user has required role metadata
+        if (!userRole || !['admin', 'manager', 'employee'].includes(userRole)) {
+          toast({
+            title: 'Access Denied',
+            description: 'You are not authorized to access this system.',
+            variant: 'destructive',
+          })
+          await supabase.auth.signOut()
+          setLoading(false)
+          return
+        }
+
+        // Step 4: Successful login
         toast({
           title: 'Login Successful',
-          description: `Welcome back, ${employeeData.name}!`,
+          description: `Welcome back, ${employeeName || 'User'}!`,
         })
         
         // Use router.replace instead of push to prevent back button issues

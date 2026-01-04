@@ -58,13 +58,19 @@ export function FormViewDialog({ open, onOpenChange, data, title, onEdit }: Form
   const renderProductLines = (productLines: any[]) => {
     if (!productLines || productLines.length === 0) return null
     
+    // Calculate totals
+    const subtotal = productLines.reduce((sum, line) => sum + (parseFloat(line.total_price) || 0), 0)
+    const taxRate = 0.0795 // 7.95% tax rate
+    const tax = subtotal * taxRate
+    const total = subtotal + tax
+    
     return (
       <div className="mb-6">
         <h4 className="text-lg font-semibold mb-3 text-black">Items</h4>
         <div className="space-y-3">
           {productLines.map((line, index) => (
             <div key={index} className="border rounded-lg p-4 bg-gray-50">
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
                 <div>
                   <span className="text-xs text-gray-500">SKU</span>
                   <p className="font-medium text-black">{line.sku}</p>
@@ -72,6 +78,10 @@ export function FormViewDialog({ open, onOpenChange, data, title, onEdit }: Form
                 <div>
                   <span className="text-xs text-gray-500">Description</span>
                   <p className="font-medium text-black">{line.description}</p>
+                </div>
+                <div>
+                  <span className="text-xs text-gray-500">Vendor</span>
+                  <p className="font-medium text-black">{line.vendor || 'N/A'}</p>
                 </div>
                 <div>
                   <span className="text-xs text-gray-500">Qty/Price</span>
@@ -84,6 +94,24 @@ export function FormViewDialog({ open, onOpenChange, data, title, onEdit }: Form
               </div>
             </div>
           ))}
+        </div>
+        
+        {/* Totals Summary */}
+        <div className="mt-4 border-t pt-4">
+          <div className="flex flex-col gap-2 max-w-xs ml-auto">
+            <div className="flex justify-between text-sm">
+              <span className="font-semibold text-gray-700">Subtotal:</span>
+              <span className="text-black">${subtotal.toFixed(2)}</span>
+            </div>
+            <div className="flex justify-between text-sm">
+              <span className="font-semibold text-gray-700">Tax (7.95%):</span>
+              <span className="text-black">${tax.toFixed(2)}</span>
+            </div>
+            <div className="flex justify-between text-lg font-bold border-t pt-2">
+              <span className="text-gray-900">Total:</span>
+              <span className="text-black">${total.toFixed(2)}</span>
+            </div>
+          </div>
         </div>
       </div>
     )
