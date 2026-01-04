@@ -2,7 +2,7 @@
 
 import { useAuth } from '@/hooks/useAuth'
 import { Button } from '@/components/ui/button'
-import { LogOut, User } from 'lucide-react'
+import { LogOut, User, Users } from 'lucide-react'
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -11,9 +11,11 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
+import { useRouter } from 'next/navigation'
 
 export function Header() {
-  const { user, signOut, loading } = useAuth()
+  const { user, signOut, loading, userRole } = useAuth()
+  const router = useRouter()
 
   if (loading) {
     return (
@@ -59,6 +61,13 @@ export function Header() {
                   )}
                 </div>
                 <DropdownMenuSeparator />
+                {userRole === 'admin' && (
+                  <DropdownMenuItem onClick={() => router.push('/admin/users')} className="cursor-pointer">
+                    <Users className="mr-2 h-4 w-4" />
+                    <span>Manage Users</span>
+                  </DropdownMenuItem>
+                )}
+                {userRole === 'admin' && <DropdownMenuSeparator />}
                 <DropdownMenuItem onClick={signOut} className="text-red-600 cursor-pointer">
                   <LogOut className="mr-2 h-4 w-4" />
                   <span>Log out</span>

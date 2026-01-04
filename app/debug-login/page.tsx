@@ -18,68 +18,94 @@ export default function DebugLoginPage() {
   const router = useRouter()
   const { toast } = useToast()
 
-  const handleLogin = async (e: React.FormEvent) => {
+  const handleCreateUsers = async () => {
+    setLoading(true)
+    setDebugInfo({})
+
+    const employees = [
+      {
+        email: 'admin@fullcircle.com',
+        password: 'Admin123!',
+        name: 'System Administrator',
+        role: 'admin',
+        employee_id: '003b2a69-4bf4-4b00-8f60-0ec6fda52adb'
+      },
+      {
+        email: 'manager@fullcircle.com',
+        password: 'Manager123!',
+        name: 'Store Manager',
+        role: 'manager',
+        employee_id: 'a13695cf-eaaa-44fa-b22b-9d952cda4ca1'
+      },
+      {
+        email: 'employee@fullcircle.com',
+        password: 'Employee123!',
+        name: 'Sales Employee',
+        role: 'employee',
+        employee_id: '541adca6-c147-4837-89d4-2d3759f69db7'
+      }
+    ]
+
+    const results = []
+
+    for (const employee of employees) {
+      try {
+        console.log(`Creating user: ${employee.email}`)
+        
+        const { data, error } = await supabase.auth.signUp({
+          email: employee.email,
+          password: employee.password,
+          options: {
+            data: {
+              name: employee.name,
+              role: employee.role,
+              employee_id: employee.employee_id
+            }
+          }
+        })
+
+        results.push({
+          email: employee.email,
+          success: !error,
+          data: data,
+          error: error?.message
+        })
+
+        if (error && !error.message.includes('already registered')) {
+          console.error(`Failed to create ${employee.email}:`, error.message)
+        } else {
+          console.log(`✅ ${employee.email} processed`)
+        }
+      } catch (e) {
+        results.push({
+          email: employee.email,
+          success: false,
+          error: e.message
+        })
+      }
+    }
+
+    setDebugInfo({ createUserResults: results })
+    setLoading(false)
+    
+    toast({
+      title: 'User Creation Complete',
+      description: `Processed ${employees.length} users. Check debug info for details.`,
+    })
+  }
     e.preventDefault()
     setLoading(true)
     setDebugInfo({})
 
     try {
-      // Step 1: Check employee record
-      console.log('Step 1: Checking employee record for:', email.toLowerCase())
-      const { data: employeeData, error: employeeError } = await supabase
-        .from('employees')
-        .select('*')
-        .eq('email', email.toLowerCase())
-        .single()
-
-      setDebugInfo((prev: any) => ({ ...prev, step1: { employeeData, employeeError } }))
-
-      if (employeeError || !employeeData) {
-        console.log('Employee not found:', employeeError)
-        toast({
-          title: 'Access Denied',
-          description: `Employee not found: ${employeeError?.message || 'Unknown error'}`,
-          variant: 'destructive',
-        })
-        return
-      }
-
-      console.log('Employee found:', employeeData)
-
-      // Step 2: Try to create auth user directly
-      console.log('Step 2: Creating auth user...')
-      const { data: signUpData, error: signUpError } = await supabase.auth.signUp({
-        email: email.toLowerCase(),
-        password: password,
-        options: {
-          data: {
-            name: employeeData.name,
-            role: employeeData.role,
-            employee_id: employeeData.id
-          }
-        }
-      })
-
-      setDebugInfo((prev: any) => ({ ...prev, step2: { signUpData, signUpError } }))
-
-      if (signUpError && !signUpError.message.includes('already registered')) {
-        console.log('Signup error:', signUpError)
-        toast({
-          title: 'Signup Failed',
-          description: signUpError.message,
-          variant: 'destructive',
-        })
-        return
-      }
-
-      // Step 3: Try to sign in
-      console.log('Step 3: Signing in...')
+      // Step 1: Try to sign in directly with Supabase Auth
+      console.log('Step 1: Signing in with Supabase Auth...')
       const { data: authData, error: authError } = await supabase.auth.signInWithPassword({
         email: email.toLowerCase(),
         password: password,
       })
 
-      setDebugInfo((prev: any) => ({ ...prev, step3: { authData, authError } }))
+      setDebugInfo((prev: any) => ({ ...prev, step1: { authData, authError } }))
 
       if (authError) {
         console.log('Auth error:', authError)
@@ -92,13 +118,42 @@ export default function DebugLoginPage() {
       }
 
       console.log('Login successful:', authData)
-      
-      toast({
-        title: 'Login Successful',
-        description: `Welcome, ${employeeData.name}!`,
-      })
 
-      router.push('/dashboard')
+      // Step 2: Check user metadata for authorization
+      if (authData.session && authData.user) {
+        const userMetadata = authData.user.user_metadata
+        const userRole = userMetadata?.role
+        const employeeName = userMetadata?.name
+
+        setDebugInfo((prev: any) => ({ ...prev, step2: { userMetadata, userRole, employeeName } }))
+
+        // Verify user has required role metadata
+        if (!userRole || !['admin', 'manager', 'employee'].includes(userRole)) {
+          console.log('Access denied: Invalid role', userRole)
+          toast({
+            title: 'Access Denied',
+            description: 'You are not authorized to access this system.',
+            variant: 'destructive',
+          })
+          await supabase.auth.signOut()
+          return
+        }
+
+        console.log('Authorization successful:', { userRole, employeeName })
+        
+        toast({
+          title: 'Login Successful',
+          description: `Welcome, ${employeeName || 'User'}!`,
+        })
+
+        router.push('/dashboard')
+      } else {
+        toast({
+          title: 'Login Failed',
+          description: 'Unable to establish session.',
+          variant: 'destructive',
+        })
+      }
     } catch (error) {
       console.error('Login error:', error)
       const errorMessage = error instanceof Error ? error.message : 'Unknown error occurred'
