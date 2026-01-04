@@ -11,7 +11,7 @@ import { useToast } from '@/components/ui/use-toast'
 import { supabase } from '@/lib/supabase'
 import { useAuth } from '@/hooks/useAuth'
 import { useRouter } from 'next/navigation'
-import { Edit, Trash2 } from 'lucide-react'
+import { Edit, Trash2, ArrowLeft } from 'lucide-react'
 
 interface NewUser {
   email: string
@@ -209,6 +209,18 @@ export default function UserManagementPage() {
   return (
     <div className="container mx-auto py-8">
       <div className="mb-8">
+        {/* Back Button */}
+        <div className="mb-4">
+          <Button 
+            variant="outline" 
+            onClick={() => router.push('/landing')}
+            className="flex items-center gap-2"
+          >
+            <ArrowLeft className="h-4 w-4" />
+            Back to Landing
+          </Button>
+        </div>
+        
         <h1 className="text-3xl font-bold">User Management</h1>
         <p className="text-gray-600">Create and manage user accounts</p>
       </div>
