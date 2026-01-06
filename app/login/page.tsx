@@ -86,7 +86,13 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+    <>
+      <style jsx>{`
+        :global(html) {
+          font-size: 16px !important; /* Override global 12px back to full size */
+        }
+      `}</style>
+      <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full space-y-8">
         <div className="text-center">
           <h2 className="mt-6 text-3xl font-extrabold text-gray-900">
@@ -153,5 +159,6 @@ export default function LoginPage() {
         </Card>
       </div>
     </div>
+    </>
   )
 }
