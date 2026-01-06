@@ -91,19 +91,130 @@ export default function LoginPage() {
         :global(html) {
           font-size: 16px !important; /* Override global 12px back to full size */
         }
+        
+        :global(body) {
+          background: #0a0a0a !important;
+          position: relative;
+          overflow: hidden;
+        }
+        
+        :global(body::before) {
+          content: '';
+          position: fixed;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background: 
+            /* Edge vignette - black fade on all edges */
+            radial-gradient(circle at 50% 50%, transparent 30%, rgba(10, 10, 10, 0.8) 100%),
+            /* Blue gradients in corners */
+            radial-gradient(circle at 15% 15%, rgba(59, 130, 246, 0.4) 0%, transparent 50%),
+            radial-gradient(circle at 85% 15%, rgba(59, 130, 246, 0.4) 0%, transparent 50%),
+            radial-gradient(circle at 5% 5%, rgba(96, 165, 250, 0.5) 0%, transparent 40%),
+            radial-gradient(circle at 95% 5%, rgba(96, 165, 250, 0.5) 0%, transparent 40%),
+            radial-gradient(circle at 0% 10%, rgba(147, 197, 253, 0.25) 0%, transparent 30%),
+            radial-gradient(circle at 100% 10%, rgba(147, 197, 253, 0.25) 0%, transparent 30%),
+            linear-gradient(45deg, rgba(59, 130, 246, 0.08) 0%, transparent 50%),
+            linear-gradient(135deg, rgba(59, 130, 246, 0.08) 50%, transparent 100%);
+          pointer-events: none;
+          z-index: 0;
+          animation: loginGradientShift 10s ease-in-out infinite alternate;
+        }
+        
+        :global(.login-card) {
+          background: 
+            radial-gradient(circle at 50% 0%, rgba(59, 130, 246, 0.15) 0%, transparent 30%),
+            radial-gradient(circle at 50% 100%, rgba(59, 130, 246, 0.15) 0%, transparent 30%),
+            radial-gradient(circle at 0% 50%, rgba(59, 130, 246, 0.15) 0%, transparent 30%),
+            radial-gradient(circle at 100% 50%, rgba(59, 130, 246, 0.15) 0%, transparent 30%),
+            radial-gradient(circle at 85% 15%, rgba(96, 165, 250, 0.2) 0%, transparent 25%),
+            radial-gradient(circle at 15% 15%, rgba(96, 165, 250, 0.2) 0%, transparent 25%),
+            radial-gradient(circle at 85% 85%, rgba(96, 165, 250, 0.2) 0%, transparent 25%),
+            radial-gradient(circle at 15% 85%, rgba(96, 165, 250, 0.2) 0%, transparent 25%),
+            rgba(17, 24, 39, 0.98) !important;
+          border: 1px solid rgba(59, 130, 246, 0.2) !important;
+          backdrop-filter: blur(10px) !important;
+          box-shadow: 0 8px 32px rgba(17, 24, 39, 0.6) !important;
+        }
+        
+        :global(.login-card [data-radix-dialog-content]) {
+          background: 
+            radial-gradient(circle at 50% 0%, rgba(59, 130, 246, 0.15) 0%, transparent 30%),
+            radial-gradient(circle at 50% 100%, rgba(59, 130, 246, 0.15) 0%, transparent 30%),
+            radial-gradient(circle at 0% 50%, rgba(59, 130, 246, 0.15) 0%, transparent 30%),
+            radial-gradient(circle at 100% 50%, rgba(59, 130, 246, 0.15) 0%, transparent 30%),
+            radial-gradient(circle at 85% 15%, rgba(96, 165, 250, 0.2) 0%, transparent 25%),
+            radial-gradient(circle at 15% 15%, rgba(96, 165, 250, 0.2) 0%, transparent 25%),
+            radial-gradient(circle at 85% 85%, rgba(96, 165, 250, 0.2) 0%, transparent 25%),
+            radial-gradient(circle at 15% 85%, rgba(96, 165, 250, 0.2) 0%, transparent 25%),
+            rgba(17, 24, 39, 0.98) !important;
+          border: 1px solid rgba(59, 130, 246, 0.2) !important;
+          backdrop-filter: blur(10px) !important;
+          box-shadow: 0 8px 32px rgba(17, 24, 39, 0.6) !important;
+        }
+        
+        :global(.login-card input), :global(.login-card textarea), :global(.login-card select) {
+          background-color: rgba(17, 24, 39, 0.8) !important;
+          color: #ffffff !important;
+          border: 1px solid rgba(59, 130, 246, 0.3) !important;
+          border-radius: 0.5rem !important;
+        }
+        
+        :global(.login-card input::placeholder), :global(.login-card textarea::placeholder) {
+          color: rgba(148, 163, 184, 0.7) !important;
+        }
+        
+        :global(.login-card input:focus), :global(.login-card textarea:focus), :global(.login-card select:focus) {
+          border-color: rgba(59, 130, 246, 0.6) !important;
+          outline: none !important;
+          box-shadow: 0 0 0 1px rgba(59, 130, 246, 0.3) !important;
+        }
+        
+        :global(.login-card .card-content) {
+          background-color: rgba(17, 24, 39, 0.7) !important;
+          border-radius: 0.5rem !important;
+          border: 1px solid rgba(59, 130, 246, 0.2) !important;
+        }
+        
+        :global(.login-card form) {
+          background-color: rgba(17, 24, 39, 0.7) !important;
+          border-radius: 0.5rem !important;
+          padding: 1.5rem !important;
+        }
+        
+        :global(.login-card button[type="submit"]) {
+          background-color: rgba(59, 130, 246, 0.8) !important;
+          border: 1px solid rgba(59, 130, 246, 0.4) !important;
+          color: #ffffff !important;
+        }
+        
+        :global(.login-card button[type="submit"]:hover) {
+          background-color: rgba(59, 130, 246, 0.9) !important;
+          border: 1px solid rgba(59, 130, 246, 0.6) !important;
+        }
+        
+        @keyframes loginGradientShift {
+          0% {
+            transform: translate(0px, 0px) scale(1);
+          }
+          100% {
+            transform: translate(-10px, 10px) scale(1.05);
+          }
+        }
       `}</style>
-      <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+      <div className="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8" style={{ position: 'relative', zIndex: 1 }}>
       <div className="max-w-md w-full space-y-8">
         <div className="text-center">
-          <h2 className="mt-6 text-3xl font-extrabold text-gray-900">
-            Employee Login
+          <h2 className="mt-6 text-5xl font-extrabold text-white">
+            Login
           </h2>
-          <p className="mt-2 text-sm text-gray-600">
-            FullCircle Firearms Management System
+          <p className="mt-2 text-sm text-white">
+            Full Circle Form Management System
           </p>
         </div>
         
-        <Card>
+        <Card className="login-card">
           <CardHeader>
             <CardTitle>Sign In</CardTitle>
             <CardDescription>

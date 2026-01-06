@@ -127,7 +127,7 @@ export default function LandingPage() {
               return (
                 <Card 
                   key={index}
-                  className="hover:shadow-lg transition-shadow cursor-pointer group"
+                  className="hover:shadow-lg transition-shadow cursor-pointer group landing-card"
                   onClick={() => router.push(option.href)}
                 >
                   <CardHeader className="flex flex-row items-center space-y-0 pb-4">

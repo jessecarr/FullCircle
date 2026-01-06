@@ -1,25 +1,25 @@
 @import "tailwindcss";
 
 :root {
-  --background: #1a1a2e;
-  --foreground: #e0e0e0;
-  --card: #2a2a4a;
-  --card-foreground: #e0e0e0;
-  --popover: #2a2a4a;
-  --popover-foreground: #e0e0e0;
-  --primary: #8b5cf6;
+  --background: #0a0a0a;
+  --foreground: #ffffff;
+  --card: #1a1a1a;
+  --card-foreground: #ffffff;
+  --popover: #1a1a1a;
+  --popover-foreground: #ffffff;
+  --primary: #3b82f6;
   --primary-foreground: #ffffff;
-  --secondary: #374151;
-  --secondary-foreground: #e0e0e0;
-  --muted: #374151;
-  --muted-foreground: #9ca3af;
-  --accent: #374151;
-  --accent-foreground: #e0e0e0;
+  --secondary: #262626;
+  --secondary-foreground: #ffffff;
+  --muted: #262626;
+  --muted-foreground: #a3a3a3;
+  --accent: #3b82f6;
+  --accent-foreground: #ffffff;
   --destructive: #ef4444;
   --destructive-foreground: #ffffff;
-  --border: #4b5563;
-  --input: #374151;
-  --ring: #8b5cf6;
+  --border: #2a2a2a;
+  --input: #1a1a1a;
+  --ring: #3b82f6;
   --radius: 0.5rem;
 }
 
@@ -34,75 +34,126 @@ html {
 }
 
 body {
-  background: #1a1a2e !important;
-  color: #e0e0e0 !important;
-  font-family: Arial, Helvetica, sans-serif;
+  background: #0a0a0a !important;
+  color: #ffffff !important;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Add gradient background overlay */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 20% 50%, rgba(59, 130, 246, 0.15) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(96, 165, 250, 0.25) 0%, transparent 50%),
+    radial-gradient(circle at 90% 10%, rgba(147, 197, 253, 0.3) 0%, transparent 40%),
+    linear-gradient(135deg, rgba(59, 130, 246, 0.05) 0%, transparent 60%);
+  pointer-events: none;
+  z-index: -1;
+  animation: gradientShift 8s ease-in-out infinite alternate;
+}
+
+/* Animated gradient effect */
+@keyframes gradientShift {
+  0% {
+    transform: translate(0px, 0px) scale(1);
+  }
+  100% {
+    transform: translate(20px, -20px) scale(1.1);
+  }
 }
 
 /* Form styling */
 form, .form-container {
   padding: 1.5rem;
   border-radius: 0.5rem;
-  background-color: #2a2a4a;
-  color: #e0e0e0;
+  background-color: #1a1a1a;
+  color: #ffffff;
+}
+
+/* Landing page cards - make them stand out */
+.landing-card {
+  background-color: #1a1a1a !important;
+  border: 1px solid #2a2a2a !important;
+  transition: all 0.3s ease !important;
+}
+
+.landing-card:hover {
+  background-color: #262626 !important;
+  border-color: #404040 !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 10px 20px rgba(59, 130, 246, 0.15) !important;
 }
 
 /* Dialog visibility fixes */
 [data-radix-dialog-content] {
-  background-color: #2a2a4a !important;
+  background-color: #1a1a1a !important;
   opacity: 1 !important;
-  color: #e0e0e0 !important;
-  border: 1px solid #4b5563 !important;
+  color: #ffffff !important;
+  border: 1px solid #2a2a2a !important;
 }
 
 [data-radix-dialog-title] {
-  color: #e0e0e0 !important;
+  color: #ffffff !important;
 }
 
 [data-radix-dialog-description] {
-  color: #9ca3af !important;
+  color: #a3a3a3 !important;
 }
 
 /* Force dialog overlay to be visible */
 [data-radix-dialog-overlay] {
-  background-color: rgba(0, 0, 0, 0.9) !important;
+  background-color: rgba(10, 10, 10, 0.9) !important;
   opacity: 1 !important;
 }
 
 /* Dropdown menus - solid dark background, not see-through */
 [data-radix-dropdown-menu-content] {
   z-index: 99999 !important;
-  background-color: #2a2a4a !important;
-  border: 1px solid #4b5563 !important;
-  color: #e0e0e0 !important;
+  background-color: #1a1a1a !important;
+  border: 1px solid #2a2a2a !important;
+  color: #ffffff !important;
 }
 
 /* Select dropdown content - solid dark background */
 [data-radix-select-content],
 [data-radix-select-viewport] {
-  background-color: #2a2a4a !important;
-  border: 1px solid #4b5563 !important;
-  color: #e0e0e0 !important;
+  background-color: #1a1a1a !important;
+  border: 1px solid #2a2a2a !important;
+  color: #ffffff !important;
 }
 
 [data-radix-select-item] {
-  color: #e0e0e0 !important;
+  color: #ffffff !important;
 }
 
 [data-radix-select-item]:hover,
 [data-radix-select-item][data-highlighted] {
-  background-color: #374151 !important;
+  background-color: #262626 !important;
 }
 
 /* Input fields - dark background */
 input, textarea, select {
-  background-color: #374151 !important;
-  color: #e0e0e0 !important;
-  border-color: #4b5563 !important;
+  background-color: #1a1a1a !important;
+  color: #ffffff !important;
+  border: 1px solid #2a2a2a !important;
+  border-radius: 0.5rem;
 }
 
 input::placeholder, textarea::placeholder {
-  color: #9ca3af !important;
+  color: #737373 !important;
+}
+
+input:focus, textarea:focus, select:focus {
+  border-color: #3b82f6 !important;
+  outline: none !important;
+  box-shadow: 0 0 0 1px #3b82f6 !important;
 }
 
 /* Date picker calendar icon */
@@ -112,17 +163,18 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 /* Vendor dropdown / Command component */
 [cmdk-root], [cmdk-list], [cmdk-group], [cmdk-item] {
-  background-color: #2a2a4a !important;
-  color: #e0e0e0 !important;
+  background-color: #1a1a1a !important;
+  color: #ffffff !important;
 }
 
 [cmdk-item]:hover, [cmdk-item][aria-selected="true"] {
-  background-color: #374151 !important;
+  background-color: #262626 !important;
 }
 
 [cmdk-input] {
-  background-color: #374151 !important;
-  color: #e0e0e0 !important;
+  background-color: #1a1a1a !important;
+  color: #ffffff !important;
+  border: 1px solid #2a2a2a !important;
 }
 
 /* Popover content (used by combobox/command) */
@@ -131,18 +183,96 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 [data-radix-popover-content] {
-  background-color: #2a2a4a !important;
-  border: 1px solid #4b5563 !important;
-  color: #e0e0e0 !important;
+  background-color: #1a1a1a !important;
+  border: 1px solid #2a2a2a !important;
+  color: #ffffff !important;
 }
 
 /* Fix any remaining white backgrounds in cards */
 .bg-white {
-  background-color: #2a2a4a !important;
+  background-color: #1a1a1a !important;
 }
 
-/* Subtotal/Tax/Total section */
+/* Cards and containers */
 .bg-gray-50, .bg-gray-100 {
-  background-color: #374151 !important;
-  color: #e0e0e0 !important;
+  background-color: #1a1a1a !important;
+  color: #ffffff !important;
+}
+
+/* Buttons - blue accent */
+button[type="submit"], .btn-primary {
+  background-color: #3b82f6 !important;
+  color: #ffffff !important;
+  border: none !important;
+  border-radius: 0.5rem !important;
+}
+
+button[type="submit"]:hover, .btn-primary:hover {
+  background-color: #2563eb !important;
+}
+
+/* Button outlines */
+button[variant="outline"] {
+  background-color: transparent !important;
+  color: #ffffff !important;
+  border: 1px solid #2a2a2a !important;
+}
+
+button[variant="outline"]:hover {
+  background-color: #262626 !important;
+  border-color: #404040 !important;
+}
+
+/* Secondary buttons */
+button[variant="secondary"] {
+  background-color: #262626 !important;
+  color: #ffffff !important;
+  border: 1px solid #2a2a2a !important;
+}
+
+/* Ghost buttons */
+button[variant="ghost"] {
+  background-color: transparent !important;
+  color: #a3a3a3 !important;
+}
+
+button[variant="ghost"]:hover {
+  background-color: #262626 !important;
+  color: #ffffff !important;
+}
+
+/* Status badges - adjust for new theme */
+.bg-yellow-100 {
+  background-color: #854d0e !important;
+  color: #fef3c7 !important;
+}
+
+.bg-blue-100 {
+  background-color: #1e40af !important;
+  color: #dbeafe !important;
+}
+
+.bg-green-100 {
+  background-color: #166534 !important;
+  color: #dcfce7 !important;
+}
+
+.bg-gray-100 {
+  background-color: #262626 !important;
+  color: #ffffff !important;
+}
+
+.bg-red-100 {
+  background-color: #991b1b !important;
+  color: #fee2e2 !important;
+}
+
+.bg-purple-100 {
+  background-color: #6b21a8 !important;
+  color: #f3e8ff !important;
+}
+
+.bg-teal-100 {
+  background-color: #134e4a !important;
+  color: #ccfbf1 !important;
 }

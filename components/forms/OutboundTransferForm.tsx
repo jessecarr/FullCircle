@@ -1314,7 +1314,7 @@ export function OutboundTransferForm({ initialData, onSuccess, onCancel }: Outbo
               <Printer className="h-4 w-4 mr-2" />
               Print
             </Button>
-            <Button type="submit" disabled={loading} className="w-full border border-input" suppressHydrationWarning>
+            <Button type="submit" disabled={loading} className="w-full" suppressHydrationWarning>
               {loading ? 'Saving...' : initialData ? 'Update Order' : 'Create Order'}
             </Button>
           </div>
