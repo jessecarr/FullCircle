@@ -51,17 +51,35 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     // Listen for auth changes
     const {
       data: { subscription },
-    } = supabase.auth.onAuthStateChange((_event, session) => {
-      setUser(session?.user ?? null)
-      if (session?.user) {
+    } = supabase.auth.onAuthStateChange(async (event, session) => {
+      console.log('Auth state change:', event, session?.user?.email)
+      
+      // Handle refresh token errors by signing out
+      if (event === 'TOKEN_REFRESHED' && !session) {
+        console.log('Token refresh failed, signing out')
+        await supabase.auth.signOut()
+        setUser(null)
+        setUserRole(null)
+        setUserName(null)
+        setEmployeeId(null)
+        router.push('/login')
+        return
+      }
+      
+      if (event === 'SIGNED_OUT' || !session) {
+        setUser(null)
+        setUserRole(null)
+        setUserName(null)
+        setEmployeeId(null)
+        if (event === 'SIGNED_OUT') {
+          router.push('/login')
+        }
+      } else {
+        setUser(session.user ?? null)
         const metadata = session.user.user_metadata
         setUserRole(metadata?.role || null)
         setUserName(metadata?.name || null)
         setEmployeeId(metadata?.employee_id || null)
-      } else {
-        setUserRole(null)
-        setUserName(null)
-        setEmployeeId(null)
       }
       setLoading(false)
     })
