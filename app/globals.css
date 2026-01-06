@@ -30,12 +30,12 @@ html, body {
 
 /* Global smaller UI - using reduced base font size instead of transform/zoom */
 html {
-  font-size: 12px; /* Reduced from default 16px (75% = 12px) */
+  font-size: 12px !important; /* Reduced from default 16px (75% = 12px) */
 }
 
 body {
-  background: #1a1a2e;
-  color: #e0e0e0;
+  background: #1a1a2e !important;
+  color: #e0e0e0 !important;
   font-family: Arial, Helvetica, sans-serif;
 }
 
