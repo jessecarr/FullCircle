@@ -13,6 +13,7 @@ import CustomerSearch from '../CustomerSearch'
 import VendorSearch from '../VendorSearch'
 import { lookupZipCode, isValidZipCode } from '@/lib/zipLookup'
 import { Printer } from 'lucide-react'
+import { PrintSubmitDialog } from '@/components/ui/print-submit-dialog'
 
 interface SpecialOrderFormProps {
   initialData?: SpecialOrderFormType
@@ -32,6 +33,7 @@ interface ProductLine {
 export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOrderFormProps) {
   const { toast } = useToast()
   const [loading, setLoading] = useState(false)
+  const [showPrintSubmitDialog, setShowPrintSubmitDialog] = useState(false)
   const [productLines, setProductLines] = useState<ProductLine[]>(() => {
     // If editing existing form with product_lines, use those
     if (initialData?.product_lines && Array.isArray(initialData.product_lines)) {
@@ -197,8 +199,8 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
       return
     }
 
-    // For new orders, proceed directly
-    await performSubmission()
+    // For new orders, show print/submit dialog
+    setShowPrintSubmitDialog(true)
   }
 
   const performSubmission = async () => {
@@ -1229,6 +1231,16 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
         </div>
       </div>
     )}
+    
+    {/* Print/Submit Dialog */}
+    <PrintSubmitDialog
+      open={showPrintSubmitDialog}
+      onOpenChange={setShowPrintSubmitDialog}
+      onPrint={handlePrint}
+      onSubmit={performSubmission}
+      isEditing={!!initialData}
+      loading={loading}
+    />
     </>
   )
 }

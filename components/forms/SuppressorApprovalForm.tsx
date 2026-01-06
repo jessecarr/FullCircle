@@ -7,11 +7,12 @@ import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { supabase, type SpecialOrderForm as SpecialOrderFormType } from '@/lib/supabase'
+import { supabase, type SpecialOrderForm as SpecialOrderFormType, type SuppressorApprovalForm } from '@/lib/supabase'
 import { useToast } from '@/components/ui/use-toast'
 import CustomerSearch from '../CustomerSearch'
 import { lookupZipCode, isValidZipCode } from '@/lib/zipLookup'
 import { Printer, Search } from 'lucide-react'
+import { PrintSubmitDialog } from '@/components/ui/print-submit-dialog'
 import FastBoundSearch from '../FastBoundSearch'
 
 interface FastBoundInventoryItem {
@@ -48,6 +49,7 @@ interface ProductLine {
 export function SuppressorApprovalForm({ initialData, onSuccess, onCancel }: SpecialOrderFormProps) {
   const { toast } = useToast()
   const [loading, setLoading] = useState(false)
+  const [showPrintSubmitDialog, setShowPrintSubmitDialog] = useState(false)
   const [productLines, setProductLines] = useState<ProductLine[]>(() => {
     // If editing existing form with product_lines, use those
     if (initialData?.product_lines && Array.isArray(initialData.product_lines)) {
@@ -264,8 +266,8 @@ export function SuppressorApprovalForm({ initialData, onSuccess, onCancel }: Spe
       return
     }
 
-    // For new orders, proceed directly
-    await performSubmission()
+    // For new orders, show print/submit dialog
+    setShowPrintSubmitDialog(true)
   }
 
   const performSubmission = async () => {
@@ -1290,6 +1292,16 @@ export function SuppressorApprovalForm({ initialData, onSuccess, onCancel }: Spe
         </div>
       </div>
     )}
+    
+    {/* Print/Submit Dialog */}
+    <PrintSubmitDialog
+      open={showPrintSubmitDialog}
+      onOpenChange={setShowPrintSubmitDialog}
+      onPrint={handlePrint}
+      onSubmit={performSubmission}
+      isEditing={!!initialData}
+      loading={loading}
+    />
     </>
   )
 }

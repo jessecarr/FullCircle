@@ -13,6 +13,7 @@ import CustomerSearch from '../CustomerSearch'
 import { lookupZipCode, isValidZipCode } from '@/lib/zipLookup'
 import { Printer, Search } from 'lucide-react'
 import FastBoundSearch from '../FastBoundSearch'
+import { PrintSubmitDialog } from '@/components/ui/print-submit-dialog'
 
 interface FastBoundInventoryItem {
   id: string
@@ -48,6 +49,7 @@ interface ProductLine {
 export function InboundTransferForm({ initialData, onSuccess, onCancel }: SpecialOrderFormProps) {
   const { toast } = useToast()
   const [loading, setLoading] = useState(false)
+  const [showPrintSubmitDialog, setShowPrintSubmitDialog] = useState(false)
   const [productLines, setProductLines] = useState<ProductLine[]>(() => {
     // If editing existing form with product_lines, use those
     if (initialData?.product_lines && Array.isArray(initialData.product_lines)) {
@@ -264,8 +266,8 @@ export function InboundTransferForm({ initialData, onSuccess, onCancel }: Specia
       return
     }
 
-    // For new orders, proceed directly
-    await performSubmission()
+    // For new orders, show print/submit dialog
+    setShowPrintSubmitDialog(true)
   }
 
   const performSubmission = async () => {
@@ -1360,6 +1362,16 @@ export function InboundTransferForm({ initialData, onSuccess, onCancel }: Specia
         </div>
       </div>
     )}
+    
+    {/* Print/Submit Dialog */}
+    <PrintSubmitDialog
+      open={showPrintSubmitDialog}
+      onOpenChange={setShowPrintSubmitDialog}
+      onPrint={handlePrint}
+      onSubmit={performSubmission}
+      isEditing={!!initialData}
+      loading={loading}
+    />
     </>
   )
 }

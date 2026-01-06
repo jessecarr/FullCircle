@@ -7,12 +7,13 @@ import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { supabase, type OutboundTransferForm as OutboundTransferFormType } from '@/lib/supabase'
+import { supabase, type SpecialOrderForm as SpecialOrderFormType, type OutboundTransferForm } from '@/lib/supabase'
 import { useToast } from '@/components/ui/use-toast'
 import CustomerSearch from '../CustomerSearch'
 import { lookupZipCode, isValidZipCode } from '@/lib/zipLookup'
 import { Printer, Search } from 'lucide-react'
 import FastBoundSearch from '../FastBoundSearch'
+import { PrintSubmitDialog } from '@/components/ui/print-submit-dialog'
 
 interface FastBoundInventoryItem {
   id: string
@@ -28,7 +29,7 @@ interface FastBoundInventoryItem {
 }
 
 interface OutboundTransferFormProps {
-  initialData?: OutboundTransferFormType
+  initialData?: OutboundTransferForm
   onSuccess?: () => void
   onCancel?: () => void
 }
@@ -48,6 +49,7 @@ interface ProductLine {
 export function OutboundTransferForm({ initialData, onSuccess, onCancel }: OutboundTransferFormProps) {
   const { toast } = useToast()
   const [loading, setLoading] = useState(false)
+  const [showPrintSubmitDialog, setShowPrintSubmitDialog] = useState(false)
   const [productLines, setProductLines] = useState<ProductLine[]>(() => {
     // If editing existing form with product_lines, use those
     if (initialData?.product_lines && Array.isArray(initialData.product_lines)) {
@@ -302,8 +304,8 @@ export function OutboundTransferForm({ initialData, onSuccess, onCancel }: Outbo
       return
     }
 
-    // For new orders, proceed directly
-    await performSubmission()
+    // For new orders, show print/submit dialog
+    setShowPrintSubmitDialog(true)
   }
 
   const performSubmission = async () => {
@@ -1405,6 +1407,16 @@ export function OutboundTransferForm({ initialData, onSuccess, onCancel }: Outbo
         </div>
       </div>
     )}
+    
+    {/* Print/Submit Dialog */}
+    <PrintSubmitDialog
+      open={showPrintSubmitDialog}
+      onOpenChange={setShowPrintSubmitDialog}
+      onPrint={handlePrint}
+      onSubmit={performSubmission}
+      isEditing={!!initialData}
+      loading={loading}
+    />
     </>
   )
 }

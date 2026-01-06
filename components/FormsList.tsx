@@ -49,11 +49,11 @@ const ALL_STATUSES = ['pending', 'ordered', 'received', 'completed', 'cancelled'
 export function FormsList({ tableName, title, onEdit, onView, refreshTrigger }: FormsListProps) {
   const [items, setItems] = useState<any[]>([])
   const [loading, setLoading] = useState(true)
-  const [selectedFormTypes, setSelectedFormTypes] = useState<FormType[]>(['special_orders'])
+  const [selectedFormTypes, setSelectedFormTypes] = useState<FormType[]>(['all'])
   const [showFormTypeDropdown, setShowFormTypeDropdown] = useState(false)
   const [showStatusDropdown, setShowStatusDropdown] = useState(false)
   const [showVendorDropdown, setShowVendorDropdown] = useState(false)
-  const [selectedStatuses, setSelectedStatuses] = useState<string[]>(['pending', 'ordered'])
+  const [selectedStatuses, setSelectedStatuses] = useState<string[]>(['pending', 'ordered', 'received'])
   const [selectedVendors, setSelectedVendors] = useState<string[]>([])
   const [availableVendors, setAvailableVendors] = useState<string[]>([])
   const [searchQuery, setSearchQuery] = useState('')
@@ -462,6 +462,28 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger }: 
               </Button>
               {showStatusDropdown && (
                 <div className="absolute top-full mt-1 w-[200px] bg-[#2a2a4a] border border-[#4b5563] rounded-md shadow-lg z-50 p-2 max-h-[300px] overflow-y-auto">
+                  <label
+                    className="flex items-center gap-2 p-2 hover:bg-[#374151] cursor-pointer rounded text-[#e0e0e0] border-b border-[#4b5563] mb-1"
+                  >
+                    <input
+                      type="checkbox"
+                      checked={selectedStatuses.length === ALL_STATUSES.length}
+                      ref={(input) => {
+                        if (input && input.indeterminate !== (selectedStatuses.length > 0 && selectedStatuses.length < ALL_STATUSES.length)) {
+                          input.indeterminate = selectedStatuses.length > 0 && selectedStatuses.length < ALL_STATUSES.length
+                        }
+                      }}
+                      onChange={() => {
+                        if (selectedStatuses.length === ALL_STATUSES.length) {
+                          setSelectedStatuses([])
+                        } else {
+                          setSelectedStatuses([...ALL_STATUSES])
+                        }
+                      }}
+                      className="w-4 h-4"
+                    />
+                    <span className="font-medium">All Status</span>
+                  </label>
                   {ALL_STATUSES.map(status => (
                     <label
                       key={status}

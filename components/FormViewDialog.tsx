@@ -64,7 +64,7 @@ export function FormViewDialog({ open, onOpenChange, data, title, onEdit }: Form
         <div className="space-y-3">
           {productLines.map((line, index) => (
             <div key={index} className="border border-[#4b5563] rounded-lg p-4 bg-[#374151]">
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
                 <div>
                   <span className="text-xs text-[#9ca3af]">SKU</span>
                   <p className="font-medium text-[#e0e0e0]">{line.sku}</p>
@@ -80,6 +80,10 @@ export function FormViewDialog({ open, onOpenChange, data, title, onEdit }: Form
                 <div>
                   <span className="text-xs text-[#9ca3af]">Total</span>
                   <p className="font-medium text-[#e0e0e0]">${line.total_price}</p>
+                </div>
+                <div>
+                  <span className="text-xs text-[#9ca3af]">Vendor</span>
+                  <p className="font-medium text-[#e0e0e0]">{line.vendor_name || line.vendor || 'N/A'}</p>
                 </div>
               </div>
             </div>
