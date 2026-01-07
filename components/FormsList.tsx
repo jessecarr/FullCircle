@@ -596,60 +596,54 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger }: 
                   {onView && (
                     <Button
                       variant="outline"
-                      size="icon"
                       onClick={() => onView(item, item._formType)}
                       title="View"
                       className="styled-button"
                     >
-                      <Eye className="h-4 w-4" />
+                      <Eye className="h-5 w-5" />
                     </Button>
                   )}
                   {onEdit && (
                     <Button
                       variant="outline"
-                      size="icon"
                       onClick={() => onEdit(item, item._formType)}
                       title="Edit"
                       className="styled-button"
                     >
-                      <Edit className="h-4 w-4" />
+                      <Edit className="h-5 w-5" />
                     </Button>
                   )}
                   <Button
                     variant="outline"
-                    size="icon"
                     onClick={() => handleDelete(item)}
                     title="Delete"
                     className="styled-button"
                   >
-                    <Trash2 className="h-4 w-4" />
+                    <Trash2 className="h-5 w-5" />
                   </Button>
                   <Button
                     variant="outline"
-                    size="icon"
                     onClick={() => handlePrint(item)}
                     title="Print"
                     className="styled-button"
                   >
-                    <Printer className="h-4 w-4" />
+                    <Printer className="h-5 w-5" />
                   </Button>
                   <Button
                     variant="outline"
-                    size="icon"
                     onClick={() => handleDownloadPDF(item)}
                     title="Download PDF"
                     className="styled-button"
                   >
-                    <Download className="h-4 w-4" />
+                    <Download className="h-5 w-5" />
                   </Button>
                   <Button
                     variant="outline"
-                    size="icon"
                     onClick={() => openStatusDialog(item)}
                     title="Update Status"
                     className="styled-button"
                   >
-                    <RefreshCw className="h-4 w-4" />
+                    <RefreshCw className="h-5 w-5" />
                   </Button>
                 </div>
               </div>

@@ -63,11 +63,22 @@ export function FormPrintView({ data, onClose }: FormPrintViewProps) {
         
         .print-area {
           font-family: 'Arial', sans-serif;
-          color: #000;
-          background: white;
+          color: #ffffff;
+          background: 
+            radial-gradient(circle at 50% 0%, rgba(59, 130, 246, 0.15) 0%, transparent 30%),
+            radial-gradient(circle at 50% 100%, rgba(59, 130, 246, 0.15) 0%, transparent 30%),
+            radial-gradient(circle at 0% 50%, rgba(59, 130, 246, 0.15) 0%, transparent 30%),
+            radial-gradient(circle at 100% 50%, rgba(59, 130, 246, 0.15) 0%, transparent 30%),
+            radial-gradient(circle at 85% 15%, rgba(96, 165, 250, 0.2) 0%, transparent 25%),
+            radial-gradient(circle at 15% 15%, rgba(96, 165, 250, 0.2) 0%, transparent 25%),
+            radial-gradient(circle at 85% 85%, rgba(96, 165, 250, 0.2) 0%, transparent 25%),
+            radial-gradient(circle at 15% 85%, rgba(96, 165, 250, 0.2) 0%, transparent 25%),
+            rgba(17, 24, 39, 0.98);
           padding: 20px;
           max-width: 8in;
           margin: 0 auto;
+          border: 1px solid rgba(59, 130, 246, 0.2);
+          border-radius: 0.5rem;
         }
         
         .print-header {
@@ -129,8 +140,9 @@ export function FormPrintView({ data, onClose }: FormPrintViewProps) {
         }
         
         .print-table th {
-          background-color: #f5f5f5;
+          background-color: rgba(59, 130, 246, 0.2);
           font-weight: bold;
+          color: #ffffff;
         }
         
         .print-total {
@@ -215,7 +227,7 @@ export function FormPrintView({ data, onClose }: FormPrintViewProps) {
           </table>
           
           {/* Order Total Summary */}
-          <div style={{ marginTop: '20px', padding: '10px', backgroundColor: '#f5f5f5', border: '1px solid #000' }}>
+          <div style={{ marginTop: '20px', padding: '10px', backgroundColor: 'rgba(59, 130, 246, 0.2)', border: '1px solid rgba(59, 130, 246, 0.4)', borderRadius: '0.5rem' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '5px', fontSize: '14px' }}>
               <span style={{ fontWeight: 'bold' }}>Subtotal:</span>
               <span>{formatCurrency(data.product_lines.reduce((acc: number, line: any) => acc + (line.total_price || 0), 0))}</span>

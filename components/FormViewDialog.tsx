@@ -18,7 +18,7 @@ export function FormViewDialog({ open, onOpenChange, data, title, onEdit }: Form
     if (value === null || value === undefined || value === '') return null
     
     return (
-      <div className="grid grid-cols-3 gap-4 py-2 border-b border-[#4b5563]">
+      <div className="grid grid-cols-3 gap-4 py-2 border-b border-[rgba(59, 130, 246, 0.3)]">
         <dt className="font-semibold text-sm text-[#9ca3af]">{label}</dt>
         <dd className="col-span-2 text-sm text-[#e0e0e0]">{String(value)}</dd>
       </div>
@@ -63,7 +63,7 @@ export function FormViewDialog({ open, onOpenChange, data, title, onEdit }: Form
         <h4 className="text-lg font-semibold mb-3 text-[#e0e0e0]">Items</h4>
         <div className="space-y-3">
           {productLines.map((line, index) => (
-            <div key={index} className="border border-[#4b5563] rounded-lg p-4 bg-[#374151]">
+            <div key={index} className="border border-[rgba(59, 130, 246, 0.3)] rounded-lg p-4 bg-[rgba(17, 24, 39, 0.8)]">
               <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
                 <div>
                   <span className="text-xs text-[#9ca3af]">SKU</span>
@@ -226,16 +226,17 @@ export function FormViewDialog({ open, onOpenChange, data, title, onEdit }: Form
     >
       <div
         style={{
-          backgroundColor: '#2a2a4a',
+          backgroundColor: 'rgba(17, 24, 39, 0.98)',
           padding: '24px',
           borderRadius: '8px',
-          boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
+          boxShadow: '0 8px 32px rgba(0, 0, 0, 0.8)',
           maxWidth: '768px',
           width: '100%',
           maxHeight: '80vh',
           overflowY: 'auto',
-          border: '2px solid #4b5563',
-          position: 'relative'
+          border: '1px solid rgba(59, 130, 246, 0.3)',
+          position: 'relative',
+          backdropFilter: 'blur(10px)'
         }}
         onClick={(e) => e.stopPropagation()}
       >
