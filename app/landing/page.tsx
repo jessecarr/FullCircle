@@ -127,7 +127,7 @@ export default function LandingPage() {
               return (
                 <Card 
                   key={index}
-                  className="hover:shadow-lg transition-shadow cursor-pointer group landing-card"
+                  className="hover:shadow-lg transition-shadow cursor-pointer group landing-card h-full flex flex-col"
                   onClick={() => router.push(option.href)}
                 >
                   <CardHeader className="flex flex-row items-center space-y-0 pb-4">
@@ -135,21 +135,23 @@ export default function LandingPage() {
                       <Icon className="h-6 w-6 text-white" />
                     </div>
                     <div className="flex-1">
-                      <CardTitle className="text-lg">{option.title}</CardTitle>
+                      <CardTitle className="text-2xl">{option.title}</CardTitle>
                     </div>
                   </CardHeader>
-                  <CardContent>
+                  <CardContent className="flex-1 flex flex-col">
                     <CardDescription className="text-sm mb-4">
                       {option.description}
                     </CardDescription>
-                    <Button 
-                      variant="ghost" 
-                      size="sm" 
-                      className="group-hover:bg-accent w-full justify-between"
-                    >
-                      Open Form
-                      <ArrowRight className="h-4 w-4 ml-2 group-hover:translate-x-1 transition-transform" />
-                    </Button>
+                    <div className="mt-auto">
+                      <Button 
+                        variant="ghost" 
+                        size="sm" 
+                        className="group-hover:bg-accent w-full justify-between"
+                      >
+                        Open Form
+                        <ArrowRight className="h-4 w-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                      </Button>
+                    </div>
                   </CardContent>
                 </Card>
               )
