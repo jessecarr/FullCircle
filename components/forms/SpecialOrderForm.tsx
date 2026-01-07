@@ -1191,7 +1191,7 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
           left: 0,
           right: 0,
           bottom: 0,
-          backgroundColor: 'rgba(0, 0, 0, 0.3)',
+          backgroundColor: 'rgba(10, 10, 10, 0.9)',
           zIndex: 999999,
           display: 'flex',
           alignItems: 'center',
@@ -1202,13 +1202,14 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
       >
         <div
           style={{
-            backgroundColor: '#ffffff',
+            backgroundColor: 'rgba(17, 24, 39, 0.98)',
             padding: '24px',
             borderRadius: '8px',
-            boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
+            boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.8)',
+            backdropFilter: 'blur(10px)',
             maxWidth: '400px',
             width: '100%',
-            border: '2px solid #d1d5db',
+            border: '2px solid rgba(59, 130, 246, 0.3)',
             position: 'relative'
           }}
           onClick={(e) => e.stopPropagation()}
@@ -1216,14 +1217,14 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
           <h3 style={{ 
             fontSize: '18px', 
             fontWeight: '600', 
-            color: '#111827',
+            color: '#ffffff',
             margin: '0 0 16px 0'
           }}>
             Confirm Update
           </h3>
           <p style={{ 
             fontSize: '14px', 
-            color: '#6b7280',
+            color: '#9ca3af',
             margin: '0 0 24px 0',
             lineHeight: '1.5'
           }}>
@@ -1234,16 +1235,16 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
               onClick={() => setShowUpdateDialog(false)}
               style={{
                 padding: '8px 16px',
-                border: '1px solid #d1d5db',
+                border: '1px solid rgba(59, 130, 246, 0.3)',
                 borderRadius: '6px',
-                backgroundColor: '#ffffff',
-                color: '#374151',
+                backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                color: '#ffffff',
                 cursor: 'pointer',
                 fontSize: '14px',
                 fontWeight: '500'
               }}
-              onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#f9fafb'}
-              onMouseOut={(e) => e.currentTarget.style.backgroundColor = '#ffffff'}
+              onMouseOver={(e) => e.currentTarget.style.backgroundColor = 'rgba(59, 130, 246, 0.2)'}
+              onMouseOut={(e) => e.currentTarget.style.backgroundColor = 'rgba(59, 130, 246, 0.1)'}
             >
               Cancel
             </button>
@@ -1252,16 +1253,22 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
               disabled={loading}
               style={{
                 padding: '8px 16px',
-                border: '1px solid #2563eb',
+                border: '1px solid rgba(59, 130, 246, 0.5)',
                 borderRadius: '6px',
-                backgroundColor: loading ? '#9ca3af' : '#2563eb',
+                backgroundColor: loading ? 'rgba(59, 130, 246, 0.5)' : 'rgba(59, 130, 246, 0.8)',
                 color: '#ffffff',
                 cursor: loading ? 'not-allowed' : 'pointer',
                 fontSize: '14px',
                 fontWeight: '500'
               }}
+              onMouseOver={(e) => {
+                if (!loading) e.currentTarget.style.backgroundColor = 'rgba(59, 130, 246, 1)'
+              }}
+              onMouseOut={(e) => {
+                if (!loading) e.currentTarget.style.backgroundColor = 'rgba(59, 130, 246, 0.8)'
+              }}
             >
-              {loading ? 'Updating...' : 'Accept Changes'}
+              {loading ? 'Updating...' : 'Confirm'}
             </button>
           </div>
         </div>
