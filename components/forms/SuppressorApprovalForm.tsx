@@ -763,7 +763,7 @@ export function SuppressorApprovalForm({ initialData, onSuccess, onCancel }: Spe
     <>
       <Card>
         <CardHeader className="text-center">
-          <CardTitle className="font-bold underline text-5xl">Suppressor Approval Form</CardTitle>
+          <CardTitle className="font-bold underline text-6xl">Suppressor Approval Form</CardTitle>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-6">

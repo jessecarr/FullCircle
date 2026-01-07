@@ -678,3 +678,15 @@ button[variant="ghost"]:hover {
 .landing-card .text-sm {
   font-size: 1.25rem !important;
 }
+
+/* Override CardTitle text size for form headers */
+.text-6xl {
+  font-size: 3.75rem !important;
+  line-height: 1 !important;
+}
+
+/* Specific override for CardTitle with text-6xl */
+h3.text-6xl {
+  font-size: 3.75rem !important;
+  line-height: 1 !important;
+}

@@ -703,7 +703,7 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
     <>
       <Card>
         <CardHeader className="text-center">
-          <CardTitle className="font-bold underline text-5xl">Special Order Form</CardTitle>
+          <CardTitle className="font-bold underline text-6xl">Special Order Form</CardTitle>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-6">

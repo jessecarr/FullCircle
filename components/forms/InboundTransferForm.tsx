@@ -763,7 +763,7 @@ export function InboundTransferForm({ initialData, onSuccess, onCancel }: Specia
     <>
       <Card>
         <CardHeader className="text-center">
-          <CardTitle className="font-bold underline text-5xl">Inbound Transfer Form</CardTitle>
+          <CardTitle className="font-bold underline text-6xl">Inbound Transfer Form</CardTitle>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-6">

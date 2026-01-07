@@ -726,7 +726,7 @@ export function OutboundTransferForm({ initialData, onSuccess, onCancel }: Outbo
     <>
       <Card>
         <CardHeader className="text-center">
-          <CardTitle className="font-bold underline text-5xl">Outbound Transfer Form</CardTitle>
+          <CardTitle className="font-bold underline text-6xl">Outbound Transfer Form</CardTitle>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-6">
