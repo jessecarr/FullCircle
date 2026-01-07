@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect, useRef } from 'react'
+import { createPortal } from 'react-dom'
 import { supabase } from '@/lib/supabase'
 import { Input } from '@/components/ui/input'
 
@@ -26,7 +27,7 @@ interface FastBoundSearchProps {
 
 export default function FastBoundSearch({ 
   onSelect, 
-  placeholder = "Search inventory by serial, manufacturer, or model...",
+  placeholder = "Search by control number...",
   value = "",
   className = ""
 }: FastBoundSearchProps) {
@@ -35,7 +36,9 @@ export default function FastBoundSearch({
   const [isOpen, setIsOpen] = useState(false)
   const [loading, setLoading] = useState(false)
   const [highlightedIndex, setHighlightedIndex] = useState(-1)
+  const [dropdownPosition, setDropdownPosition] = useState({ top: 0, left: 0, width: 0 })
   const wrapperRef = useRef<HTMLDivElement>(null)
+  const inputRef = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
     setQuery(value)
@@ -50,6 +53,28 @@ export default function FastBoundSearch({
     document.addEventListener('mousedown', handleClickOutside)
     return () => document.removeEventListener('mousedown', handleClickOutside)
   }, [])
+
+  useEffect(() => {
+    if (isOpen && inputRef.current) {
+      const updatePosition = () => {
+        const rect = inputRef.current?.getBoundingClientRect()
+        if (rect) {
+          setDropdownPosition({
+            top: rect.bottom + window.scrollY,
+            left: rect.left + window.scrollX,
+            width: rect.width
+          })
+        }
+      }
+      updatePosition()
+      window.addEventListener('scroll', updatePosition, true)
+      window.addEventListener('resize', updatePosition)
+      return () => {
+        window.removeEventListener('scroll', updatePosition, true)
+        window.removeEventListener('resize', updatePosition)
+      }
+    }
+  }, [isOpen, results])
 
   const handleSearch = async (searchQuery: string) => {
     setQuery(searchQuery)
@@ -130,6 +155,7 @@ export default function FastBoundSearch({
   return (
     <div ref={wrapperRef} className={`search-component relative ${className}`}>
       <Input
+        ref={inputRef}
         type="text"
         value={query}
         onChange={(e) => handleSearch(e.target.value)}
@@ -145,19 +171,28 @@ export default function FastBoundSearch({
         </div>
       )}
 
-      {isOpen && results.length > 0 && (
-        <div className="absolute z-50 w-full mt-1 bg-[#2a2a4a] border border-[#4b5563] rounded-md shadow-lg max-h-60 overflow-auto">
+      {isOpen && results.length > 0 && createPortal(
+        <div 
+          style={{
+            position: 'fixed',
+            top: `${dropdownPosition.top}px`,
+            left: `${dropdownPosition.left}px`,
+            width: `${dropdownPosition.width}px`,
+            zIndex: 99999
+          }}
+          className="bg-[rgba(17, 24, 39, 0.98)] border border-[rgba(59, 130, 246, 0.3)] rounded-md shadow-lg max-h-60 overflow-auto"
+        >
           {results.map((item, index) => (
             <div
               key={item.id}
               onClick={() => handleSelect(item)}
-              className={`px-4 py-3 cursor-pointer border-b border-[#4b5563] last:border-b-0 ${
+              className={`px-4 py-3 cursor-pointer border-b border-[rgba(59, 130, 246, 0.2)] last:border-b-0 ${
                 index === highlightedIndex 
-                  ? 'bg-[#374151]' 
-                  : 'hover:bg-[#374151]'
+                  ? 'bg-[rgba(59, 130, 246, 0.2)]' 
+                  : 'hover:bg-[rgba(59, 130, 246, 0.1)]'
               }`}
             >
-              <div className="font-medium text-sm text-[#e0e0e0]">
+              <div className="font-medium text-sm text-white">
                 {item.manufacturer} {item.model}
               </div>
               <div className="text-xs text-[#9ca3af] mt-1">
@@ -172,13 +207,24 @@ export default function FastBoundSearch({
               )}
             </div>
           ))}
-        </div>
+        </div>,
+        document.body
       )}
 
-      {isOpen && results.length === 0 && query.trim() && !loading && (
-        <div className="absolute z-50 w-full mt-1 bg-[#2a2a4a] border border-[#4b5563] rounded-md shadow-lg p-4 text-center text-[#9ca3af] text-sm">
+      {isOpen && results.length === 0 && query.trim() && !loading && createPortal(
+        <div 
+          style={{
+            position: 'fixed',
+            top: `${dropdownPosition.top}px`,
+            left: `${dropdownPosition.left}px`,
+            width: `${dropdownPosition.width}px`,
+            zIndex: 99999
+          }}
+          className="bg-[rgba(17, 24, 39, 0.98)] border border-[rgba(59, 130, 246, 0.3)] rounded-md shadow-lg p-4 text-center text-[#9ca3af] text-sm"
+        >
           No items found in inventory
-        </div>
+        </div>,
+        document.body
       )}
     </div>
   )

@@ -126,6 +126,8 @@ body::before {
   border: 1px solid rgba(59, 130, 246, 0.3) !important;
   backdrop-filter: blur(10px) !important;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.8) !important;
+  overflow: visible !important;
+  position: relative !important;
 }
 
 /* Animated gradient effect - exact login page animation */

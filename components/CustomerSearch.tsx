@@ -98,25 +98,25 @@ export default function CustomerSearch({ onSelect }: CustomerSearchProps) {
           onChange={handleQueryChange}
           onKeyDown={handleKeyDown}
           placeholder="Search by email, phone, or name"
-          className="w-full p-2 border rounded"
+          className="w-full p-2 border border-[rgba(59, 130, 246, 0.3)] rounded bg-[rgba(17, 24, 39, 0.8)] text-white placeholder-[#9ca3af]"
         />
       </div>
       
       {results.length > 0 && (
-        <div className="border rounded p-2 max-h-60 overflow-y-auto">
+        <div className="border border-[rgba(59, 130, 246, 0.3)] rounded p-2 max-h-60 overflow-y-auto bg-[rgba(17, 24, 39, 0.95)] backdrop-blur-[10px]">
           {results.map((customer, index) => (
             <div 
               key={customer.id}
-              className={`p-2 cursor-pointer ${
+              className={`p-2 cursor-pointer rounded ${
                 index === highlightedIndex 
-                  ? 'bg-blue-100 border border-blue-200' 
-                  : 'hover:bg-gray-100'
+                  ? 'bg-[rgba(59, 130, 246, 0.2)] border border-[rgba(59, 130, 246, 0.4)]' 
+                  : 'hover:bg-[rgba(59, 130, 246, 0.1)]'
               }`}
               onClick={() => handleSelect(customer)}
             >
-              <div className="font-medium">{customer.name}</div>
-              <div className="text-sm text-gray-600">{customer.email}</div>
-              <div className="text-sm text-gray-600">{customer.phone}</div>
+              <div className="font-medium text-white">{customer.name}</div>
+              <div className="text-sm text-[#9ca3af]">{customer.email}</div>
+              <div className="text-sm text-[#9ca3af]">{customer.phone}</div>
             </div>
           ))}
         </div>
