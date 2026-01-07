@@ -148,7 +148,7 @@ export default function LandingPage() {
                         size="sm" 
                         className="group-hover:bg-accent w-full justify-between"
                       >
-                        Open Form
+                        <span style={{ fontSize: '1.25rem', lineHeight: '1.4' }}>Open Form</span>
                         <ArrowRight className="h-4 w-4 ml-2 group-hover:translate-x-1 transition-transform" />
                       </Button>
                     </div>

@@ -384,6 +384,7 @@ form, .form-container {
   color: rgba(203, 213, 225, 0.8) !important;
 }
 
+
 /* Quick Stats section styling */
 .quick-stats-header {
   font-size: 2rem !important;
@@ -663,4 +664,17 @@ button[variant="ghost"]:hover {
 .bg-teal-100 {
   background-color: #134e4a !important;
   color: #ccfbf1 !important;
+}
+
+/* Landing page card buttons - match description text size - HIGHEST PRIORITY */
+.landing-card button,
+.landing-card button.text-sm,
+.landing-card button.inline-flex,
+.landing-card button[data-variant="ghost"] {
+  font-size: 1.25rem !important;
+  line-height: 1.4 !important;
+}
+
+.landing-card .text-sm {
+  font-size: 1.25rem !important;
 }
