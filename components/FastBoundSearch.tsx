@@ -60,8 +60,8 @@ export default function FastBoundSearch({
         const rect = inputRef.current?.getBoundingClientRect()
         if (rect) {
           setDropdownPosition({
-            top: rect.bottom + window.scrollY,
-            left: rect.left + window.scrollX,
+            top: rect.bottom,
+            left: rect.left,
             width: rect.width
           })
         }
@@ -128,6 +128,14 @@ export default function FastBoundSearch({
         e.preventDefault()
         setHighlightedIndex(prev => {
           const newIndex = prev < results.length - 1 ? prev + 1 : 0
+          // Scroll the new highlighted item into view
+          setTimeout(() => {
+            const dropdown = document.querySelector('[data-fastbound-dropdown]')
+            const items = dropdown?.querySelectorAll('[data-dropdown-item]')
+            if (items && items[newIndex]) {
+              items[newIndex].scrollIntoView({ block: 'nearest', behavior: 'smooth' })
+            }
+          }, 0)
           return newIndex
         })
         break
@@ -135,6 +143,14 @@ export default function FastBoundSearch({
         e.preventDefault()
         setHighlightedIndex(prev => {
           const newIndex = prev > 0 ? prev - 1 : results.length - 1
+          // Scroll the new highlighted item into view
+          setTimeout(() => {
+            const dropdown = document.querySelector('[data-fastbound-dropdown]')
+            const items = dropdown?.querySelectorAll('[data-dropdown-item]')
+            if (items && items[newIndex]) {
+              items[newIndex].scrollIntoView({ block: 'nearest', behavior: 'smooth' })
+            }
+          }, 0)
           return newIndex
         })
         break
@@ -171,37 +187,55 @@ export default function FastBoundSearch({
         </div>
       )}
 
-      {isOpen && results.length > 0 && createPortal(
+      {isOpen && results.length > 0 && typeof window !== 'undefined' && createPortal(
         <div 
+          data-fastbound-dropdown
           style={{
             position: 'fixed',
             top: `${dropdownPosition.top}px`,
             left: `${dropdownPosition.left}px`,
             width: `${dropdownPosition.width}px`,
-            zIndex: 99999
+            zIndex: 999999999,
+            backgroundColor: 'rgba(17, 24, 39, 0.98)',
+            border: '1px solid rgba(59, 130, 246, 0.3)',
+            borderRadius: '0.375rem',
+            boxShadow: '0 10px 25px rgba(0, 0, 0, 0.8)',
+            maxHeight: '240px',
+            overflow: 'auto'
           }}
-          className="bg-[rgba(17, 24, 39, 0.98)] border border-[rgba(59, 130, 246, 0.3)] rounded-md shadow-lg max-h-60 overflow-auto"
         >
           {results.map((item, index) => (
             <div
               key={item.id}
+              data-dropdown-item
               onClick={() => handleSelect(item)}
-              className={`px-4 py-3 cursor-pointer border-b border-[rgba(59, 130, 246, 0.2)] last:border-b-0 ${
-                index === highlightedIndex 
-                  ? 'bg-[rgba(59, 130, 246, 0.2)]' 
-                  : 'hover:bg-[rgba(59, 130, 246, 0.1)]'
-              }`}
+              style={{
+                padding: '12px 16px',
+                cursor: 'pointer',
+                borderBottom: index < results.length - 1 ? '1px solid rgba(59, 130, 246, 0.2)' : 'none',
+                backgroundColor: index === highlightedIndex ? 'rgba(59, 130, 246, 0.2)' : 'transparent'
+              }}
+              onMouseEnter={(e) => {
+                if (index !== highlightedIndex) {
+                  e.currentTarget.style.backgroundColor = 'rgba(59, 130, 246, 0.1)'
+                }
+              }}
+              onMouseLeave={(e) => {
+                if (index !== highlightedIndex) {
+                  e.currentTarget.style.backgroundColor = 'transparent'
+                }
+              }}
             >
-              <div className="font-medium text-sm text-white">
+              <div style={{ fontSize: '14px', fontWeight: '500', color: 'white' }}>
                 {item.manufacturer} {item.model}
               </div>
-              <div className="text-xs text-[#9ca3af] mt-1">
-                <span className="mr-3">Serial: {item.serial_number || 'N/A'}</span>
-                <span className="mr-3">Type: {item.firearm_type || 'N/A'}</span>
+              <div style={{ fontSize: '12px', color: '#9ca3af', marginTop: '4px' }}>
+                <span style={{ marginRight: '12px' }}>Serial: {item.serial_number || 'N/A'}</span>
+                <span style={{ marginRight: '12px' }}>Type: {item.firearm_type || 'N/A'}</span>
                 <span>Caliber: {item.caliber || 'N/A'}</span>
               </div>
               {item.price && (
-                <div className="text-xs text-green-400 mt-1">
+                <div style={{ fontSize: '12px', color: '#4ade80', marginTop: '4px' }}>
                   Price: ${item.price.toFixed(2)}
                 </div>
               )}
@@ -211,16 +245,23 @@ export default function FastBoundSearch({
         document.body
       )}
 
-      {isOpen && results.length === 0 && query.trim() && !loading && createPortal(
+      {isOpen && results.length === 0 && query.trim() && !loading && typeof window !== 'undefined' && createPortal(
         <div 
           style={{
             position: 'fixed',
             top: `${dropdownPosition.top}px`,
             left: `${dropdownPosition.left}px`,
             width: `${dropdownPosition.width}px`,
-            zIndex: 99999
+            zIndex: 999999999,
+            backgroundColor: 'rgba(17, 24, 39, 0.98)',
+            border: '1px solid rgba(59, 130, 246, 0.3)',
+            borderRadius: '0.375rem',
+            boxShadow: '0 10px 25px rgba(0, 0, 0, 0.8)',
+            padding: '16px',
+            textAlign: 'center',
+            color: '#9ca3af',
+            fontSize: '14px'
           }}
-          className="bg-[rgba(17, 24, 39, 0.98)] border border-[rgba(59, 130, 246, 0.3)] rounded-md shadow-lg p-4 text-center text-[#9ca3af] text-sm"
         >
           No items found in inventory
         </div>,

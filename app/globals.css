@@ -124,7 +124,6 @@ body::before {
 .subtotal-section {
   background: rgba(0, 0, 0, 0.95) !important;
   border: 1px solid rgba(59, 130, 246, 0.3) !important;
-  backdrop-filter: blur(10px) !important;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.8) !important;
   overflow: visible !important;
   position: relative !important;
@@ -156,7 +155,6 @@ form, .form-container {
     rgba(17, 24, 39, 0.98) !important;
   border: 1px solid rgba(59, 130, 246, 0.2) !important;
   color: #ffffff;
-  backdrop-filter: blur(10px) !important;
   box-shadow: 0 8px 32px rgba(17, 24, 39, 0.6) !important;
 }
 
