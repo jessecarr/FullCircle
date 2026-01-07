@@ -1151,7 +1151,6 @@ export function InboundTransferForm({ initialData, onSuccess, onCancel }: Specia
                   }}
                   >
                     <SelectTrigger 
-                      className="bg-[#374151] text-[#e0e0e0] border border-[#4b5563]" 
                       suppressHydrationWarning
                       style={{ 
                         height: isClient ? (rowHeights[index] || '48px') : '48px',
@@ -1165,9 +1164,9 @@ export function InboundTransferForm({ initialData, onSuccess, onCancel }: Specia
                         <SelectValue placeholder="Select order type" />
                       </div>
                     </SelectTrigger>
-                    <SelectContent className="bg-[#2a2a4a] border border-[#4b5563] text-[#e0e0e0]" style={{ maxWidth: '200px' }}>
-                      <SelectItem value="Transfer" className="hover:bg-[#374151]" style={{ whiteSpace: 'normal', wordWrap: 'break-word' }}>TRANSFER</SelectItem>
-                      <SelectItem value="Purchased From FCR" className="hover:bg-[#374151]" style={{ whiteSpace: 'normal', wordWrap: 'break-word' }}>PURCHASED FROM FCR</SelectItem>
+                    <SelectContent style={{ maxWidth: '200px' }}>
+                      <SelectItem value="Transfer" style={{ whiteSpace: 'normal', wordWrap: 'break-word' }}>TRANSFER</SelectItem>
+                      <SelectItem value="Purchased From FCR" style={{ whiteSpace: 'normal', wordWrap: 'break-word' }}>PURCHASED FROM FCR</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
