@@ -1055,7 +1055,7 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
             </Button>
             
             {/* Order Total Summary */}
-            <div className="mt-6 p-4 bg-[#374151] rounded-lg border border-[#4b5563]">
+            <div className="subtotal-section mt-6 p-4 rounded-lg">
               <div className="space-y-2">
                 <div className="flex justify-between text-lg">
                   <span className="font-semibold">Subtotal:</span>

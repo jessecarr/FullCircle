@@ -380,7 +380,7 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger }: 
                     handleSearch()
                   }
                 }}
-                className="pl-4 pr-10 bg-[#374151] text-[#e0e0e0] border border-[#4b5563]"
+                className="pl-4 pr-10"
               />
               {searchQuery && (
                 <button
@@ -416,7 +416,7 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger }: 
               <Button
                 variant="outline"
                 onClick={() => setShowFormTypeDropdown(!showFormTypeDropdown)}
-                className="w-[200px] justify-between bg-[#374151] text-[#e0e0e0] border border-[#4b5563]"
+                className="styled-button w-[200px] justify-between"
               >
                 <span>
                   {selectedFormTypes.length === 1 
@@ -426,11 +426,11 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger }: 
                 <ChevronDown className="h-4 w-4" />
               </Button>
               {showFormTypeDropdown && (
-                <div className="absolute top-full mt-1 w-[200px] bg-[#2a2a4a] border border-[#4b5563] rounded-md shadow-lg z-50 p-2 max-h-[300px] overflow-y-auto">
+                <div className="absolute top-full mt-1 w-[200px] bg-[rgba(17,24,39,0.95)] border border-[rgba(59,130,246,0.3)] rounded-md shadow-lg z-50 p-2 max-h-[300px] overflow-y-auto backdrop-blur-[10px]">
                   {(['all', 'inbound_transfers', 'outbound_transfers', 'special_orders', 'suppressor_approvals'] as FormType[]).map(formType => (
                     <label
                       key={formType}
-                      className="flex items-center gap-2 p-2 hover:bg-[#374151] cursor-pointer rounded text-[#e0e0e0]"
+                      className="flex items-center gap-2 p-2 hover:bg-[rgba(59,130,246,0.2)] cursor-pointer rounded text-white"
                     >
                       <input
                         type="checkbox"
@@ -451,7 +451,7 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger }: 
               <Button
                 variant="outline"
                 onClick={() => setShowStatusDropdown(!showStatusDropdown)}
-                className="w-[200px] justify-between bg-[#374151] text-[#e0e0e0] border border-[#4b5563]"
+                className="styled-button w-[200px] justify-between"
               >
                 <span>
                   {selectedStatuses.length === 1 
@@ -461,9 +461,9 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger }: 
                 <ChevronDown className="h-4 w-4" />
               </Button>
               {showStatusDropdown && (
-                <div className="absolute top-full mt-1 w-[200px] bg-[#2a2a4a] border border-[#4b5563] rounded-md shadow-lg z-50 p-2 max-h-[300px] overflow-y-auto">
+                <div className="absolute top-full mt-1 w-[200px] bg-[rgba(17,24,39,0.95)] border border-[rgba(59,130,246,0.3)] rounded-md shadow-lg z-50 p-2 max-h-[300px] overflow-y-auto backdrop-blur-[10px]">
                   <label
-                    className="flex items-center gap-2 p-2 hover:bg-[#374151] cursor-pointer rounded text-[#e0e0e0] border-b border-[#4b5563] mb-1"
+                    className="flex items-center gap-2 p-2 hover:bg-[rgba(59,130,246,0.2)] cursor-pointer rounded text-white border-b border-[rgba(59,130,246,0.2)] mb-1"
                   >
                     <input
                       type="checkbox"
@@ -487,7 +487,7 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger }: 
                   {ALL_STATUSES.map(status => (
                     <label
                       key={status}
-                      className="flex items-center gap-2 p-2 hover:bg-[#374151] cursor-pointer rounded capitalize text-[#e0e0e0]"
+                      className="flex items-center gap-2 p-2 hover:bg-[rgba(59,130,246,0.2)] cursor-pointer rounded capitalize text-white"
                     >
                       <input
                         type="checkbox"
@@ -508,7 +508,7 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger }: 
               <Button
                 variant="outline"
                 onClick={() => setShowVendorDropdown(!showVendorDropdown)}
-                className="w-[200px] justify-between bg-[#374151] text-[#e0e0e0] border border-[#4b5563]"
+                className="styled-button w-[200px] justify-between"
               >
                 <span>
                   {selectedVendors.length === 0 
@@ -520,14 +520,14 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger }: 
                 <ChevronDown className="h-4 w-4" />
               </Button>
               {showVendorDropdown && (
-                <div className="absolute top-full mt-1 w-[200px] bg-[#2a2a4a] border border-[#4b5563] rounded-md shadow-lg z-50 p-2 max-h-[300px] overflow-y-auto">
+                <div className="absolute top-full mt-1 w-[200px] bg-[rgba(17,24,39,0.95)] border border-[rgba(59,130,246,0.3)] rounded-md shadow-lg z-50 p-2 max-h-[300px] overflow-y-auto backdrop-blur-[10px]">
                   {availableVendors.length === 0 ? (
                     <p className="text-sm text-muted-foreground p-2">No vendors found</p>
                   ) : (
                     availableVendors.map(vendor => (
                       <label
                         key={vendor}
-                        className="flex items-center gap-2 p-2 hover:bg-[#374151] cursor-pointer rounded text-[#e0e0e0]"
+                        className="flex items-center gap-2 p-2 hover:bg-[rgba(59,130,246,0.2)] cursor-pointer rounded text-white"
                       >
                         <input
                           type="checkbox"
@@ -553,7 +553,7 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger }: 
                   setSelectedStatuses([])
                   setSelectedVendors([])
                 }}
-                className="bg-[#374151] text-[#e0e0e0] border border-[#4b5563]"
+                className="styled-button"
               >
                 Clear Filters
               </Button>
@@ -569,14 +569,14 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger }: 
 
       {/* Items List */}
       {items.length === 0 ? (
-        <Card>
+        <Card className="view-all-form-card">
           <CardContent className="p-6">
             <p className="text-center text-muted-foreground">No forms found matching the selected filters</p>
           </CardContent>
         </Card>
       ) : (
         items.map((item) => (
-          <Card key={`${item._formType}-${item.id}`}>
+          <Card key={`${item._formType}-${item.id}`} className="view-all-form-card">
             <CardHeader>
               <div className="flex items-start justify-between">
                 <div className="space-y-2">
@@ -599,6 +599,7 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger }: 
                       size="icon"
                       onClick={() => onView(item, item._formType)}
                       title="View"
+                      className="styled-button"
                     >
                       <Eye className="h-4 w-4" />
                     </Button>
@@ -609,6 +610,7 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger }: 
                       size="icon"
                       onClick={() => onEdit(item, item._formType)}
                       title="Edit"
+                      className="styled-button"
                     >
                       <Edit className="h-4 w-4" />
                     </Button>
@@ -618,6 +620,7 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger }: 
                     size="icon"
                     onClick={() => handleDelete(item)}
                     title="Delete"
+                    className="styled-button"
                   >
                     <Trash2 className="h-4 w-4" />
                   </Button>
@@ -626,6 +629,7 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger }: 
                     size="icon"
                     onClick={() => handlePrint(item)}
                     title="Print"
+                    className="styled-button"
                   >
                     <Printer className="h-4 w-4" />
                   </Button>
@@ -634,6 +638,7 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger }: 
                     size="icon"
                     onClick={() => handleDownloadPDF(item)}
                     title="Download PDF"
+                    className="styled-button"
                   >
                     <Download className="h-4 w-4" />
                   </Button>
@@ -642,6 +647,7 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger }: 
                     size="icon"
                     onClick={() => openStatusDialog(item)}
                     title="Update Status"
+                    className="styled-button"
                   >
                     <RefreshCw className="h-4 w-4" />
                   </Button>
@@ -663,12 +669,12 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger }: 
           </AlertDialogHeader>
           <div className="py-4">
             <Select value={newStatus} onValueChange={setNewStatus}>
-              <SelectTrigger className="w-full bg-[#374151] text-[#e0e0e0] border border-[#4b5563]">
+              <SelectTrigger className="w-full">
                 <SelectValue placeholder="Select status" />
               </SelectTrigger>
-              <SelectContent className="bg-[#2a2a4a] border border-[#4b5563] text-[#e0e0e0]">
+              <SelectContent>
                 {ALL_STATUSES.map(status => (
-                  <SelectItem key={status} value={status} className="capitalize hover:bg-[#374151]">
+                  <SelectItem key={status} value={status} className="capitalize">
                     {status.charAt(0).toUpperCase() + status.slice(1)}
                   </SelectItem>
                 ))}

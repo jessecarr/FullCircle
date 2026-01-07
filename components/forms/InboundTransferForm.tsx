@@ -938,7 +938,7 @@ export function InboundTransferForm({ initialData, onSuccess, onCancel }: Specia
             <h3 className="text-xl underline font-bold mb-4">Items</h3>
             
             {/* FastBound Inventory Search */}
-            <div className="mb-2 p-4 bg-[#374151] rounded-lg border border-[#4b5563]">
+            <div className="subtotal-section mb-2 p-4 rounded-lg">
               <Label className="text-lg font-semibold flex items-center gap-2 mb-2">
                 <Search className="h-5 w-5" />
                 Search FastBound Inventory
@@ -1219,7 +1219,7 @@ export function InboundTransferForm({ initialData, onSuccess, onCancel }: Specia
             </Button>
             
             {/* Order Total Summary */}
-            <div className="mt-6 p-4 bg-[#374151] rounded-lg border border-[#4b5563]">
+            <div className="subtotal-section mt-6 p-4 rounded-lg">
               <div className="space-y-2">
                 <div className="flex justify-between text-lg">
                   <span className="font-semibold">Subtotal:</span>

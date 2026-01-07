@@ -128,7 +128,7 @@ export default function FastBoundSearch({
   }
 
   return (
-    <div ref={wrapperRef} className={`relative ${className}`}>
+    <div ref={wrapperRef} className={`search-component relative ${className}`}>
       <Input
         type="text"
         value={query}

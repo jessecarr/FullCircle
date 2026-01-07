@@ -68,12 +68,14 @@ body::before {
   animation: loginGradientShift 10s ease-in-out infinite alternate;
 }
 
-/* Dropdown menus - fix positioning */
+/* Dropdown menus - apply project theme to all dropdowns */
 [data-radix-dropdown-menu-content] {
-  z-index: 99999 !important;
-  background-color: #1a1a1a !important;
-  border: 1px solid #2a2a2a !important;
+  background-color: rgba(17, 24, 39, 0.95) !important;
+  border: 1px solid rgba(59, 130, 246, 0.3) !important;
   color: #ffffff !important;
+  backdrop-filter: blur(10px) !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.8) !important;
+  z-index: 99999 !important;
   max-height: 300px !important;
   overflow-y: auto !important;
 }
@@ -81,17 +83,17 @@ body::before {
 /* Select dropdown content - fix positioning */
 [data-radix-select-content] {
   z-index: 99999 !important;
-  background-color: #1a1a1a !important;
-  border: 1px solid #2a2a2a !important;
+  background-color: rgba(17, 24, 39, 0.95) !important;
+  border: 1px solid rgba(59, 130, 246, 0.3) !important;
   color: #ffffff !important;
-  max-height: none !important;
+  backdrop-filter: blur(10px) !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.8) !important;
+  max-height: 300px !important;
   overflow-y: auto !important;
-  width: var(--radix-select-trigger-width) !important;
-  min-width: var(--radix-select-trigger-width) !important;
 }
 
 [data-radix-select-viewport] {
-  width: 100% !important;
+  background-color: transparent !important;
   max-height: 300px !important;
 }
 
@@ -103,9 +105,40 @@ body::before {
   align-items: center !important;
 }
 
-[data-radix-select-item]:hover,
+[data-radix-select-item]:hover {
+  background-color: rgba(59, 130, 246, 0.2) !important;
+  outline: none !important;
+}
+
 [data-radix-select-item][data-highlighted] {
-  background-color: #262626 !important;
+  background-color: rgba(59, 130, 246, 0.2) !important;
+  outline: none !important;
+}
+
+/* Select trigger styling */
+[data-radix-select-trigger] {
+  background-color: rgba(59, 130, 246, 0.1) !important;
+  border: 1px solid rgba(59, 130, 246, 0.3) !important;
+  color: #ffffff !important;
+}
+
+/* Subtotal section styling - apply to all forms */
+.subtotal-section {
+  background: 
+    radial-gradient(circle at 50% 50%, rgba(26, 26, 26, 0.8) 0%, rgba(10, 10, 10, 0.9) 70%, rgba(0, 0, 0, 0.95) 100%),
+    radial-gradient(circle at 15% 15%, rgba(59, 130, 246, 0.6) 0%, transparent 50%),
+    radial-gradient(circle at 85% 15%, rgba(59, 130, 246, 0.6) 0%, transparent 50%),
+    radial-gradient(circle at 5% 5%, rgba(96, 165, 250, 0.7) 0%, transparent 45%),
+    radial-gradient(circle at 95% 5%, rgba(96, 165, 250, 0.7) 0%, transparent 45%),
+    radial-gradient(circle at 0% 10%, rgba(147, 197, 253, 0.4) 0%, transparent 35%),
+    radial-gradient(circle at 100% 10%, rgba(147, 197, 253, 0.4) 0%, transparent 35%),
+    radial-gradient(circle at 20% 80%, rgba(59, 130, 246, 0.4) 0%, transparent 55%),
+    radial-gradient(circle at 80% 70%, rgba(96, 165, 250, 0.5) 0%, transparent 45%),
+    radial-gradient(circle at 50% 90%, rgba(147, 197, 253, 0.3) 0%, transparent 40%),
+    radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.1) 0%, transparent 60%);
+  border: 1px solid rgba(59, 130, 246, 0.3) !important;
+  backdrop-filter: blur(10px) !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.8) !important;
 }
 
 /* Animated gradient effect - exact login page animation */
@@ -118,34 +151,358 @@ body::before {
   }
 }
 
-/* Form styling */
+/* Form styling - matching login card theme */
 form, .form-container {
   padding: 1.5rem;
   border-radius: 0.5rem;
-  background-color: #1a1a1a;
+  background: 
+    radial-gradient(circle at 50% 0%, rgba(59, 130, 246, 0.15) 0%, transparent 30%),
+    radial-gradient(circle at 50% 100%, rgba(59, 130, 246, 0.15) 0%, transparent 30%),
+    radial-gradient(circle at 0% 50%, rgba(59, 130, 246, 0.15) 0%, transparent 30%),
+    radial-gradient(circle at 100% 50%, rgba(59, 130, 246, 0.15) 0%, transparent 30%),
+    radial-gradient(circle at 85% 15%, rgba(96, 165, 250, 0.2) 0%, transparent 25%),
+    radial-gradient(circle at 15% 15%, rgba(96, 165, 250, 0.2) 0%, transparent 25%),
+    radial-gradient(circle at 85% 85%, rgba(96, 165, 250, 0.2) 0%, transparent 25%),
+    radial-gradient(circle at 15% 85%, rgba(96, 165, 250, 0.2) 0%, transparent 25%),
+    rgba(17, 24, 39, 0.98) !important;
+  border: 1px solid rgba(59, 130, 246, 0.2) !important;
   color: #ffffff;
+  backdrop-filter: blur(10px) !important;
+  box-shadow: 0 8px 32px rgba(17, 24, 39, 0.6) !important;
 }
 
-/* Landing page cards - make them stand out */
+/* Landing page cards - edge shadows grading to lighter center with enhanced blue theme */
 .landing-card {
-  background-color: #1a1a1a !important;
-  border: 1px solid #2a2a2a !important;
+  background: 
+    /* Black shadows around edges grading to lighter center */
+    radial-gradient(circle at 50% 50%, rgba(26, 26, 26, 0.8) 0%, rgba(10, 10, 10, 0.9) 70%, rgba(0, 0, 0, 0.95) 100%),
+    /* Enhanced blue theme - stronger blue accents */
+    radial-gradient(circle at 15% 15%, rgba(59, 130, 246, 0.6) 0%, transparent 50%),
+    radial-gradient(circle at 85% 15%, rgba(59, 130, 246, 0.6) 0%, transparent 50%),
+    radial-gradient(circle at 5% 5%, rgba(96, 165, 250, 0.7) 0%, transparent 45%),
+    radial-gradient(circle at 95% 5%, rgba(96, 165, 250, 0.7) 0%, transparent 45%),
+    radial-gradient(circle at 0% 10%, rgba(147, 197, 253, 0.4) 0%, transparent 35%),
+    radial-gradient(circle at 100% 10%, rgba(147, 197, 253, 0.4) 0%, transparent 35%),
+    /* Additional blue gradients for stronger theme */
+    radial-gradient(circle at 20% 80%, rgba(59, 130, 246, 0.4) 0%, transparent 55%),
+    radial-gradient(circle at 80% 70%, rgba(96, 165, 250, 0.5) 0%, transparent 45%),
+    radial-gradient(circle at 50% 90%, rgba(147, 197, 253, 0.3) 0%, transparent 40%),
+    /* Light center area with blue tint */
+    radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.1) 0%, transparent 60%);
+  border: 1px solid rgba(59, 130, 246, 0.3) !important;
   transition: all 0.3s ease !important;
+  backdrop-filter: blur(10px) !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.8) !important;
 }
 
 .landing-card:hover {
-  background-color: #262626 !important;
-  border-color: #404040 !important;
+  background: 
+    /* Lighter center on hover */
+    radial-gradient(circle at 50% 50%, rgba(26, 26, 26, 0.7) 0%, rgba(10, 10, 10, 0.85) 70%, rgba(0, 0, 0, 0.9) 100%),
+    /* Even brighter blue accents on hover */
+    radial-gradient(circle at 15% 15%, rgba(59, 130, 246, 0.8) 0%, transparent 50%),
+    radial-gradient(circle at 85% 15%, rgba(59, 130, 246, 0.8) 0%, transparent 50%),
+    radial-gradient(circle at 5% 5%, rgba(96, 165, 250, 0.9) 0%, transparent 45%),
+    radial-gradient(circle at 95% 5%, rgba(96, 165, 250, 0.9) 0%, transparent 45%),
+    radial-gradient(circle at 0% 10%, rgba(147, 197, 253, 0.5) 0%, transparent 35%),
+    radial-gradient(circle at 100% 10%, rgba(147, 197, 253, 0.5) 0%, transparent 35%),
+    /* Additional blue gradients for stronger hover theme */
+    radial-gradient(circle at 20% 80%, rgba(59, 130, 246, 0.6) 0%, transparent 55%),
+    radial-gradient(circle at 80% 70%, rgba(96, 165, 250, 0.7) 0%, transparent 45%),
+    radial-gradient(circle at 50% 90%, rgba(147, 197, 253, 0.4) 0%, transparent 40%),
+    /* Lighter center area with stronger blue tint on hover */
+    radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.15) 0%, transparent 60%);
+  border: 1px solid rgba(59, 130, 246, 0.5) !important;
   transform: translateY(-2px) !important;
-  box-shadow: 0 10px 20px rgba(59, 130, 246, 0.15) !important;
+  box-shadow: 0 10px 20px rgba(59, 130, 246, 0.25) !important;
 }
 
-/* Dialog visibility fixes */
-[data-radix-dialog-content] {
-  background-color: #1a1a1a !important;
-  opacity: 1 !important;
+/* Page header - matching landing card blue theme */
+.page-header {
+  background: 
+    /* Black shadows around edges grading to lighter center */
+    radial-gradient(circle at 50% 50%, rgba(26, 26, 26, 0.8) 0%, rgba(10, 10, 10, 0.9) 70%, rgba(0, 0, 0, 0.95) 100%),
+    /* Enhanced blue theme - stronger blue accents */
+    radial-gradient(circle at 15% 15%, rgba(59, 130, 246, 0.6) 0%, transparent 50%),
+    radial-gradient(circle at 85% 15%, rgba(59, 130, 246, 0.6) 0%, transparent 50%),
+    radial-gradient(circle at 5% 5%, rgba(96, 165, 250, 0.7) 0%, transparent 45%),
+    radial-gradient(circle at 95% 5%, rgba(96, 165, 250, 0.7) 0%, transparent 45%),
+    radial-gradient(circle at 0% 10%, rgba(147, 197, 253, 0.4) 0%, transparent 35%),
+    radial-gradient(circle at 100% 10%, rgba(147, 197, 253, 0.4) 0%, transparent 35%),
+    /* Additional blue gradients for stronger theme */
+    radial-gradient(circle at 20% 80%, rgba(59, 130, 246, 0.4) 0%, transparent 55%),
+    radial-gradient(circle at 80% 70%, rgba(96, 165, 250, 0.5) 0%, transparent 45%),
+    radial-gradient(circle at 50% 90%, rgba(147, 197, 253, 0.3) 0%, transparent 40%),
+    /* Light center area with blue tint */
+    radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.1) 0%, transparent 60%);
+  border: 1px solid rgba(59, 130, 246, 0.3) !important;
+  backdrop-filter: blur(10px) !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.8) !important;
+}
+
+.page-header h1 {
   color: #ffffff !important;
-  border: 1px solid #2a2a2a !important;
+  font-size: 2rem !important;
+  line-height: 1.2 !important;
+}
+
+.page-header .text-foreground {
+  color: #ffffff !important;
+  font-size: 2rem !important;
+  line-height: 1.2 !important;
+}
+
+.page-header .text-2xl {
+  font-size: 2rem !important;
+  line-height: 1.2 !important;
+}
+
+.page-header button {
+  background-color: rgba(59, 130, 246, 0.2) !important;
+  border: 1px solid rgba(59, 130, 246, 0.4) !important;
+  color: #ffffff !important;
+  backdrop-filter: blur(5px) !important;
+  font-size: 1rem !important;
+  padding: 0.5rem 1rem !important;
+}
+
+.page-header button span {
+  color: #ffffff !important;
+  font-size: 1rem !important;
+}
+
+.page-header button:hover {
+  background-color: rgba(59, 130, 246, 0.3) !important;
+  border: 1px solid rgba(59, 130, 246, 0.6) !important;
+  color: #ffffff !important;
+}
+
+.page-header button:hover span {
+  color: #ffffff !important;
+}
+
+/* Override button variant classes */
+.page-header button[variant="outline"] {
+  background-color: rgba(59, 130, 246, 0.2) !important;
+  border: 1px solid rgba(59, 130, 246, 0.4) !important;
+  color: #ffffff !important;
+  font-size: 1rem !important;
+  padding: 0.5rem 1rem !important;
+}
+
+.page-header button[variant="outline"]:hover {
+  background-color: rgba(59, 130, 246, 0.3) !important;
+  border: 1px solid rgba(59, 130, 246, 0.6) !important;
+  color: #ffffff !important;
+}
+
+/* User dropdown menu content - make it larger */
+.user-dropdown-menu {
+  background-color: rgba(17, 24, 39, 0.95) !important;
+  border: 1px solid rgba(59, 130, 246, 0.3) !important;
+  color: #ffffff !important;
+  backdrop-filter: blur(10px) !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.8) !important;
+  font-size: 1.125rem !important;
+  min-width: 320px !important;
+  width: 320px !important;
+  padding: 0.75rem !important;
+  z-index: 99999 !important;
+}
+
+.user-dropdown-menu [data-radix-dropdown-menu-label] {
+  font-size: 1.25rem !important;
+  font-weight: 600 !important;
+  color: #ffffff !important;
+  padding: 0.75rem 1rem !important;
+}
+
+.user-dropdown-menu [data-radix-dropdown-menu-item] {
+  font-size: 1.125rem !important;
+  color: #ffffff !important;
+  padding: 1rem 1.25rem !important;
+  line-height: 1.5 !important;
+  min-height: 3rem !important;
+}
+
+.user-dropdown-menu [data-radix-dropdown-menu-item]:hover {
+  background-color: rgba(59, 130, 246, 0.2) !important;
+  color: #ffffff !important;
+}
+
+.user-dropdown-menu [data-radix-dropdown-menu-separator] {
+  background-color: rgba(59, 130, 246, 0.2) !important;
+  margin: 0.5rem 0 !important;
+}
+
+.user-dropdown-menu .text-sm {
+  font-size: 1.125rem !important;
+}
+
+.user-dropdown-menu .text-xs {
+  font-size: 1rem !important;
+}
+
+.user-dropdown-menu .font-medium {
+  color: #ffffff !important;
+  font-size: 1.125rem !important;
+}
+
+.user-dropdown-menu div {
+  font-size: 1.125rem !important;
+}
+
+/* Global dropdown menu theme - apply to all dropdowns */
+[data-radix-dropdown-menu-content] {
+  background-color: rgba(17, 24, 39, 0.95) !important;
+  border: 1px solid rgba(59, 130, 246, 0.3) !important;
+  color: #ffffff !important;
+  backdrop-filter: blur(10px) !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.8) !important;
+  z-index: 99999 !important;
+}
+
+/* Landing page welcome text - make it bigger */
+.landing-page h2 {
+  font-size: 2.5rem !important;
+  line-height: 1.2 !important;
+}
+
+.landing-page .text-3xl {
+  font-size: 2.5rem !important;
+  line-height: 1.2 !important;
+}
+
+.landing-page p {
+  font-size: 1.25rem !important;
+  line-height: 1.4 !important;
+}
+
+.landing-page .text-muted-foreground {
+  font-size: 1.25rem !important;
+  line-height: 1.4 !important;
+  color: rgba(203, 213, 225, 0.8) !important;
+}
+
+/* Quick Stats section styling */
+.quick-stats-header {
+  font-size: 2rem !important;
+  font-weight: 700 !important;
+  color: #ffffff !important;
+  margin-bottom: 1rem !important;
+}
+
+.quick-stats-card {
+  background: 
+    radial-gradient(circle at 50% 50%, rgba(26, 26, 26, 0.8) 0%, rgba(10, 10, 10, 0.9) 70%, rgba(0, 0, 0, 0.95) 100%),
+    radial-gradient(circle at 15% 15%, rgba(59, 130, 246, 0.6) 0%, transparent 50%),
+    radial-gradient(circle at 85% 15%, rgba(59, 130, 246, 0.6) 0%, transparent 50%),
+    radial-gradient(circle at 5% 5%, rgba(96, 165, 250, 0.7) 0%, transparent 45%),
+    radial-gradient(circle at 95% 5%, rgba(96, 165, 250, 0.7) 0%, transparent 45%),
+    radial-gradient(circle at 0% 10%, rgba(147, 197, 253, 0.4) 0%, transparent 35%),
+    radial-gradient(circle at 100% 10%, rgba(147, 197, 253, 0.4) 0%, transparent 35%),
+    radial-gradient(circle at 20% 80%, rgba(59, 130, 246, 0.4) 0%, transparent 55%),
+    radial-gradient(circle at 80% 70%, rgba(96, 165, 250, 0.5) 0%, transparent 45%),
+    radial-gradient(circle at 50% 90%, rgba(147, 197, 253, 0.3) 0%, transparent 40%),
+    radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.1) 0%, transparent 60%);
+  border: 1px solid rgba(59, 130, 246, 0.3) !important;
+  backdrop-filter: blur(10px) !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.8) !important;
+}
+
+.quick-stats-card h3 {
+  color: #ffffff !important;
+  font-size: 1.125rem !important;
+}
+
+/* Form field labels - make them larger */
+label, .label, [class*="Label"] {
+  font-size: 1.125rem !important;
+  font-weight: 500 !important;
+  color: rgba(203, 213, 225, 0.95) !important;
+}
+
+/* Form section headers - make them even larger */
+.form-section-header, h3.underline, h3.font-bold {
+  font-size: 1.5rem !important;
+  font-weight: 700 !important;
+  color: #ffffff !important;
+}
+
+/* Search component styling */
+.search-component, [class*="CustomerSearch"], [class*="VendorSearch"] {
+  background: 
+    radial-gradient(circle at 50% 50%, rgba(26, 26, 26, 0.8) 0%, rgba(10, 10, 10, 0.9) 70%, rgba(0, 0, 0, 0.95) 100%),
+    radial-gradient(circle at 15% 15%, rgba(59, 130, 246, 0.6) 0%, transparent 50%),
+    radial-gradient(circle at 85% 15%, rgba(59, 130, 246, 0.6) 0%, transparent 50%),
+    radial-gradient(circle at 5% 5%, rgba(96, 165, 250, 0.7) 0%, transparent 45%),
+    radial-gradient(circle at 95% 5%, rgba(96, 165, 250, 0.7) 0%, transparent 45%),
+    radial-gradient(circle at 0% 10%, rgba(147, 197, 253, 0.4) 0%, transparent 35%),
+    radial-gradient(circle at 100% 10%, rgba(147, 197, 253, 0.4) 0%, transparent 35%),
+    radial-gradient(circle at 20% 80%, rgba(59, 130, 246, 0.4) 0%, transparent 55%),
+    radial-gradient(circle at 80% 70%, rgba(96, 165, 250, 0.5) 0%, transparent 45%),
+    radial-gradient(circle at 50% 90%, rgba(147, 197, 253, 0.3) 0%, transparent 40%),
+    radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.1) 0%, transparent 60%);
+  border: 1px solid rgba(59, 130, 246, 0.3) !important;
+  backdrop-filter: blur(10px) !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.8) !important;
+  padding: 1rem !important;
+  border-radius: 0.5rem !important;
+}
+
+/* View All page form cards */
+.view-all-form-card {
+  background: 
+    radial-gradient(circle at 50% 50%, rgba(26, 26, 26, 0.8) 0%, rgba(10, 10, 10, 0.9) 70%, rgba(0, 0, 0, 0.95) 100%),
+    radial-gradient(circle at 15% 15%, rgba(59, 130, 246, 0.6) 0%, transparent 50%),
+    radial-gradient(circle at 85% 15%, rgba(59, 130, 246, 0.6) 0%, transparent 50%),
+    radial-gradient(circle at 5% 5%, rgba(96, 165, 250, 0.7) 0%, transparent 45%),
+    radial-gradient(circle at 95% 5%, rgba(96, 165, 250, 0.7) 0%, transparent 45%),
+    radial-gradient(circle at 0% 10%, rgba(147, 197, 253, 0.4) 0%, transparent 35%),
+    radial-gradient(circle at 100% 10%, rgba(147, 197, 253, 0.4) 0%, transparent 35%),
+    radial-gradient(circle at 20% 80%, rgba(59, 130, 246, 0.4) 0%, transparent 55%),
+    radial-gradient(circle at 80% 70%, rgba(96, 165, 250, 0.5) 0%, transparent 45%),
+    radial-gradient(circle at 50% 90%, rgba(147, 197, 253, 0.3) 0%, transparent 40%),
+    radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.1) 0%, transparent 60%);
+  border: 1px solid rgba(59, 130, 246, 0.3) !important;
+  transition: all 0.3s ease !important;
+  backdrop-filter: blur(10px) !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.8) !important;
+}
+
+.view-all-form-card:hover {
+  background: 
+    radial-gradient(circle at 50% 50%, rgba(26, 26, 26, 0.7) 0%, rgba(10, 10, 10, 0.85) 70%, rgba(0, 0, 0, 0.9) 100%),
+    radial-gradient(circle at 15% 15%, rgba(59, 130, 246, 0.8) 0%, transparent 50%),
+    radial-gradient(circle at 85% 15%, rgba(59, 130, 246, 0.8) 0%, transparent 50%),
+    radial-gradient(circle at 5% 5%, rgba(96, 165, 250, 0.9) 0%, transparent 45%),
+    radial-gradient(circle at 95% 5%, rgba(96, 165, 250, 0.9) 0%, transparent 45%),
+    radial-gradient(circle at 0% 10%, rgba(147, 197, 253, 0.5) 0%, transparent 35%),
+    radial-gradient(circle at 100% 10%, rgba(147, 197, 253, 0.5) 0%, transparent 35%),
+    radial-gradient(circle at 20% 80%, rgba(59, 130, 246, 0.6) 0%, transparent 55%),
+    radial-gradient(circle at 80% 70%, rgba(96, 165, 250, 0.7) 0%, transparent 45%),
+    radial-gradient(circle at 50% 90%, rgba(147, 197, 253, 0.4) 0%, transparent 40%),
+    radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.15) 0%, transparent 60%);
+  border: 1px solid rgba(59, 130, 246, 0.5) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 10px 20px rgba(59, 130, 246, 0.25) !important;
+}
+
+/* Style buttons like user dropdown */
+.styled-button, button.new-form-button, button.filter-button, button.return-button {
+  background-color: rgba(59, 130, 246, 0.2) !important;
+  border: 1px solid rgba(59, 130, 246, 0.4) !important;
+  color: #ffffff !important;
+  backdrop-filter: blur(5px) !important;
+  font-size: 1rem !important;
+  padding: 0.5rem 1rem !important;
+  transition: all 0.3s ease !important;
+}
+
+.styled-button:hover, button.new-form-button:hover, button.filter-button:hover, button.return-button:hover {
+  background-color: rgba(59, 130, 246, 0.3) !important;
+  border: 1px solid rgba(59, 130, 246, 0.6) !important;
+  color: #ffffff !important;
 }
 
 [data-radix-dialog-title] {
@@ -162,22 +519,24 @@ form, .form-container {
   opacity: 1 !important;
 }
 
-/* Input fields - dark background */
+/* Input fields - matching login page theme */
 input, textarea, select {
-  background-color: #1a1a1a !important;
-  color: #ffffff !important;
-  border: 1px solid #2a2a2a !important;
+  background-color: rgba(17, 24, 39, 0.8) !important;
+  color: rgba(203, 213, 225, 0.95) !important;
+  border: 1px solid rgba(59, 130, 246, 0.3) !important;
   border-radius: 0.5rem;
+  backdrop-filter: blur(5px) !important;
 }
 
 input::placeholder, textarea::placeholder {
-  color: #737373 !important;
+  color: rgba(148, 163, 184, 0.6) !important;
 }
 
 input:focus, textarea:focus, select:focus {
-  border-color: #3b82f6 !important;
+  border-color: rgba(59, 130, 246, 0.6) !important;
   outline: none !important;
-  box-shadow: 0 0 0 1px #3b82f6 !important;
+  box-shadow: 0 0 0 1px rgba(59, 130, 246, 0.3) !important;
+  background-color: rgba(17, 24, 39, 0.9) !important;
 }
 
 /* Date picker calendar icon */
@@ -223,16 +582,21 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   color: #ffffff !important;
 }
 
-/* Buttons - blue accent */
+/* Buttons - matching login page theme */
 button[type="submit"], .btn-primary {
-  background-color: #3b82f6 !important;
+  background-color: rgba(59, 130, 246, 0.9) !important;
   color: #ffffff !important;
-  border: none !important;
+  border: 1px solid rgba(59, 130, 246, 0.6) !important;
   border-radius: 0.5rem !important;
+  backdrop-filter: blur(5px) !important;
+  transition: all 0.3s ease !important;
 }
 
 button[type="submit"]:hover, .btn-primary:hover {
-  background-color: #2563eb !important;
+  background-color: rgba(59, 130, 246, 1) !important;
+  border: 1px solid rgba(59, 130, 246, 0.8) !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3) !important;
 }
 
 /* Button outlines */

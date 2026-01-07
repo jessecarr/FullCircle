@@ -1051,7 +1051,7 @@ export function OutboundTransferForm({ initialData, onSuccess, onCancel }: Outbo
             <h3 className="text-xl underline font-bold mb-4">Items</h3>
             
             {/* FastBound Inventory Search */}
-            <div className="mb-2 p-4 bg-[#374151] rounded-lg border border-[#4b5563]">
+            <div className="subtotal-section mb-2 p-4 rounded-lg">
               <Label className="text-lg font-semibold flex items-center gap-2 mb-2">
                 <Search className="h-5 w-5" />
                 Search FastBound Inventory

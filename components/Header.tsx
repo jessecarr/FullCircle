@@ -35,7 +35,7 @@ export function Header() {
   }
 
   return (
-    <header className="border-b bg-card shadow-sm">
+    <header className="page-header border-b shadow-sm">
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           <h1 className="text-2xl font-bold text-foreground">Full Circle Forms</h1>
@@ -48,7 +48,7 @@ export function Header() {
                   <span className="hidden sm:inline">{user.email}</span>
                 </Button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent align="end" className="w-56">
+              <DropdownMenuContent align="start" className="user-dropdown-menu w-56">
                 <DropdownMenuLabel>My Account</DropdownMenuLabel>
                 <DropdownMenuSeparator />
                 <div className="px-2 py-1.5 text-sm text-muted-foreground">

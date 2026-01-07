@@ -108,7 +108,7 @@ export default function LandingPage() {
       <Header />
 
       {/* Main Content */}
-      <main className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+      <main className="landing-page max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
         <div className="px-4 py-6 sm:px-0">
           {/* Welcome Section */}
           <div className="mb-8">
@@ -158,12 +158,12 @@ export default function LandingPage() {
 
           {/* Quick Stats */}
           <div className="mt-12">
-            <h3 className="text-xl font-semibold text-foreground mb-4">Quick Stats</h3>
+            <h3 className="quick-stats-header text-xl font-semibold text-foreground mb-4">Quick Stats</h3>
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-              <Card>
+              <Card className="quick-stats-card">
                 <CardContent className="p-4">
                   <div className="text-2xl font-bold text-primary">{activeOrdersCount}</div>
-                  <p className="text-sm text-muted-foreground">Active Special Orders</p>
+                  <p className="text-sm" style={{color: '#ffffff'}}>Active Special Orders</p>
                 </CardContent>
               </Card>
             </div>
