@@ -977,8 +977,9 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
                     type="number"
                     min="0"
                     step="0.01"
-                    value={line.unit_price}
-                    onChange={(e) => updateProductLine(index, 'unit_price', parseFloat(e.target.value))}
+                    value={line.unit_price || ''}
+                    onChange={(e) => updateProductLine(index, 'unit_price', e.target.value ? parseFloat(e.target.value) : 0)}
+                    placeholder="0"
                     onKeyDown={(e) => {
                       if (e.key === 'Enter') {
                         e.preventDefault();
@@ -987,8 +988,12 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
                       }
                     }}
                     required
-                    className="w-24 text-base"
-                    style={{ height: isClient ? (rowHeights[index] || '48px') : '48px' }}
+                    className="w-24 text-base text-center text-left"
+                    style={{ 
+                      height: isClient ? (rowHeights[index] || '48px') : '48px',
+                      MozAppearance: 'textfield',
+                      WebkitAppearance: 'none'
+                    }}
                   />
                 </div>
 
