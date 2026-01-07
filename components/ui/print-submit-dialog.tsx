@@ -77,7 +77,7 @@ export function PrintSubmitDialog({
             variant="outline"
             onClick={() => {
               onPrint()
-              onOpenChange(false)
+              // Don't close the dialog after printing
             }}
             disabled={loading}
             style={{
