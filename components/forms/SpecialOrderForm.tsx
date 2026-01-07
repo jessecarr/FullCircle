@@ -1077,27 +1077,27 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
             <div className="space-y-2">
               <Label className="text-lg" htmlFor="delivery_method">Delivery Method *</Label>
               <Select value={formData.delivery_method} onValueChange={(value) => handleInputChange('delivery_method', value)}>
-                <SelectTrigger className="bg-[#374151] text-[#e0e0e0] border border-[#4b5563]" suppressHydrationWarning>
+                <SelectTrigger suppressHydrationWarning>
                   <SelectValue />
                 </SelectTrigger>
-                <SelectContent className="bg-[#2a2a4a] border border-[#4b5563] text-[#e0e0e0]">
-                  <SelectItem value="in_store_pickup" className="hover:bg-[#374151]">In-Store Pickup</SelectItem>
-                  <SelectItem value="ship_to_customer" className="hover:bg-[#374151]">Ship to Customer</SelectItem>
+                <SelectContent>
+                  <SelectItem value="in_store_pickup">In-Store Pickup</SelectItem>
+                  <SelectItem value="ship_to_customer">Ship to Customer</SelectItem>
                 </SelectContent>
               </Select>
             </div>
             <div className="space-y-2">
               <Label className="text-lg" htmlFor="status">Status *</Label>
               <Select value={formData.status} onValueChange={(value) => handleInputChange('status', value)}>
-                <SelectTrigger className="bg-[#374151] text-[#e0e0e0] border border-[#4b5563]" suppressHydrationWarning>
+                <SelectTrigger suppressHydrationWarning>
                   <SelectValue />
                 </SelectTrigger>
-                <SelectContent className="bg-[#2a2a4a] border border-[#4b5563] text-[#e0e0e0]">
-                  <SelectItem value="pending" className="hover:bg-[#374151]">Pending</SelectItem>
-                  <SelectItem value="ordered" className="hover:bg-[#374151]">Ordered</SelectItem>
-                  <SelectItem value="received" className="hover:bg-[#374151]">Received</SelectItem>
-                  <SelectItem value="completed" className="hover:bg-[#374151]">Completed</SelectItem>
-                  <SelectItem value="cancelled" className="hover:bg-[#374151]">Cancelled</SelectItem>
+                <SelectContent>
+                  <SelectItem value="pending">Pending</SelectItem>
+                  <SelectItem value="ordered">Ordered</SelectItem>
+                  <SelectItem value="received">Received</SelectItem>
+                  <SelectItem value="completed">Completed</SelectItem>
+                  <SelectItem value="cancelled">Cancelled</SelectItem>
                 </SelectContent>
               </Select>
             </div>
