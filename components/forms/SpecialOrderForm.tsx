@@ -65,6 +65,70 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
   useEffect(() => {
     setIsClient(true)
   }, [])
+
+  // Customer update function for future forms
+  const updateCustomerRecord = async () => {
+    // Only update if we have customer phone or email to identify the customer
+    if (!formData.customer_phone && !formData.customer_email) {
+      return;
+    }
+
+    try {
+      // Check if customer exists by phone or email
+      const { data: existingCustomer } = await supabase
+        .from('customers')
+        .select('*')
+        .or(`phone.eq.${formData.customer_phone},email.eq.${formData.customer_email}`)
+        .single();
+
+      if (existingCustomer) {
+        // Customer exists, update with additional information
+        const updateData: any = {};
+        
+        // Only update fields that have new information
+        if (formData.customer_name && formData.customer_name !== existingCustomer.name) {
+          updateData.name = formData.customer_name;
+        }
+        if (formData.customer_email && formData.customer_email !== existingCustomer.email) {
+          updateData.email = formData.customer_email;
+        }
+        if (formData.customer_phone && formData.customer_phone !== existingCustomer.phone) {
+          updateData.phone = formData.customer_phone;
+        }
+        if (formData.customer_street && formData.customer_street !== existingCustomer.street) {
+          updateData.street = formData.customer_street;
+        }
+        if (formData.customer_city && formData.customer_city !== existingCustomer.city) {
+          updateData.city = formData.customer_city;
+        }
+        if (formData.customer_state && formData.customer_state !== existingCustomer.state) {
+          updateData.state = formData.customer_state;
+        }
+        if (formData.customer_zip && formData.customer_zip !== existingCustomer.zip) {
+          updateData.zip = formData.customer_zip;
+        }
+
+        // Only update if there are changes
+        if (Object.keys(updateData).length > 0) {
+          updateData.updated_at = new Date().toISOString();
+          
+          const { error } = await supabase
+            .from('customers')
+            .update(updateData)
+            .eq('id', existingCustomer.id);
+
+          if (error) {
+            console.error('Failed to update customer record:', error);
+          } else {
+            console.log('Customer record updated successfully');
+          }
+        }
+      }
+    } catch (error) {
+      console.error('Error updating customer record:', error);
+      // Don't throw error - customer update shouldn't block order creation
+    }
+  };
   
   const [formData, setFormData] = useState({
     customer_name: initialData?.customer_name || '',
@@ -203,75 +267,6 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
 
     // For new orders, show print/submit dialog
     setShowPrintSubmitDialog(true)
-  }
-
-  const updateCustomerRecord = async () => {
-    // Only update if we have customer phone or email to identify the customer
-    if (!formData.customer_phone && !formData.customer_email) {
-      return;
-    }
-
-    try {
-      // Check if customer exists by phone or email
-      const { data: existingCustomer } = await supabase
-        .from('customers')
-        .select('*')
-        .or(`phone.eq.${formData.customer_phone},email.eq.${formData.customer_email}`)
-        .single();
-
-      if (existingCustomer) {
-        // Customer exists, update with additional information
-        const updateData: any = {};
-        
-        // Only update fields that have new information
-        if (formData.customer_name && formData.customer_name !== existingCustomer.name) {
-          updateData.name = formData.customer_name;
-        }
-        if (formData.customer_email && formData.customer_email !== existingCustomer.email) {
-          updateData.email = formData.customer_email;
-        }
-        if (formData.customer_phone && formData.customer_phone !== existingCustomer.phone) {
-          updateData.phone = formData.customer_phone;
-        }
-        if (formData.customer_street && formData.customer_street !== existingCustomer.street) {
-          updateData.street = formData.customer_street;
-        }
-        if (formData.customer_city && formData.customer_city !== existingCustomer.city) {
-          updateData.city = formData.customer_city;
-        }
-        if (formData.customer_state && formData.customer_state !== existingCustomer.state) {
-          updateData.state = formData.customer_state;
-        }
-        if (formData.customer_zip && formData.customer_zip !== existingCustomer.zip) {
-          updateData.zip = formData.customer_zip;
-        }
-        if (formData.drivers_license && formData.drivers_license !== existingCustomer.drivers_license) {
-          updateData.drivers_license = formData.drivers_license;
-        }
-        if (formData.license_expiration && formData.license_expiration !== existingCustomer.license_expiration) {
-          updateData.license_expiration = formData.license_expiration;
-        }
-
-        // Only update if there are changes
-        if (Object.keys(updateData).length > 0) {
-          updateData.updated_at = new Date().toISOString();
-          
-          const { error } = await supabase
-            .from('customers')
-            .update(updateData)
-            .eq('id', existingCustomer.id);
-
-          if (error) {
-            console.error('Failed to update customer record:', error);
-          } else {
-            console.log('Customer record updated successfully');
-          }
-        }
-      }
-    } catch (error) {
-      console.error('Error updating customer record:', error);
-      // Don't throw error - customer update shouldn't block order creation
-    }
   }
 
   const performSubmission = async () => {
