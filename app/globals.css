@@ -37,7 +37,6 @@ body {
   background: #0a0a0a !important;
   color: #ffffff !important;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  position: relative;
   overflow-x: hidden;
 }
 
@@ -80,7 +79,7 @@ body::before {
 
 /* Select dropdown content - fix positioning */
 [data-radix-select-content] {
-  z-index: 99999 !important;
+  z-index: 100001 !important;
   background-color: rgba(17, 24, 39, 0.95) !important;
   border: 1px solid rgba(59, 130, 246, 0.3) !important;
   color: #ffffff !important;
@@ -88,6 +87,30 @@ body::before {
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.8) !important;
   max-height: 300px !important;
   overflow-y: auto !important;
+  position: fixed !important;
+}
+
+/* Fix Select dropdown inside Dialog - ensure it appears above dialog backdrop */
+[data-radix-dialog-overlay] ~ * [data-radix-select-content] {
+  z-index: 100001 !important;
+  position: fixed !important;
+}
+
+/* Additional fix for Select dropdowns in any modal/dialog context */
+[data-radix-dialog-content] [data-radix-select-content] {
+  z-index: 100001 !important;
+  position: fixed !important;
+}
+
+/* Ensure Select dropdown portal is above all overlays */
+[data-radix-select-portal] {
+  z-index: 100001 !important;
+}
+
+/* Most aggressive fix - target any select content that exists */
+body [data-radix-select-content] {
+  z-index: 100001 !important;
+  position: fixed !important;
 }
 
 [data-radix-select-viewport] {

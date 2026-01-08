@@ -50,7 +50,7 @@ export default function SettingsPage() {
               className="styled-button flex items-center gap-2"
             >
               <ArrowLeft className="h-4 w-4" />
-              Return to Home
+              Return to Dashboard
             </Button>
           </div>
 

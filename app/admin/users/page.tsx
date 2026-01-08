@@ -6,7 +6,16 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
-import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from '@/components/ui/alert-dialog'
 import { useToast } from '@/components/ui/use-toast'
 import { supabase } from '@/lib/supabase'
 import { useAuth } from '@/hooks/useAuth'
@@ -24,7 +33,7 @@ interface AuthUser {
   id: string
   email: string
   created_at: string
-  raw_user_meta_data: {
+  user_metadata: {
     name?: string
     role?: string
     employee_id?: string
@@ -45,6 +54,7 @@ export default function UserManagementPage() {
   })
   const [editingUser, setEditingUser] = useState<AuthUser | null>(null)
   const [editRole, setEditRole] = useState<'admin' | 'manager' | 'employee'>('employee')
+  const [showEditDialog, setShowEditDialog] = useState(false)
 
   // Fetch users on component mount
   useEffect(() => {
@@ -373,11 +383,11 @@ export default function UserManagementPage() {
                       <div>
                         <p className="font-medium">{authUser.email}</p>
                         <p className="text-sm text-gray-600">
-                          Name: {authUser.raw_user_meta_data.name || 'Not set'}
+                          Name: {authUser.user_metadata?.name || 'Not set'}
                         </p>
                         <p className="text-sm text-gray-600">
                           Role: <span className="inline-block px-2 py-1 text-xs rounded bg-blue-100 text-blue-800">
-                            {authUser.raw_user_meta_data.role || 'No role'}
+                            {authUser.user_metadata?.role || 'No role'}
                           </span>
                         </p>
                         <p className="text-xs text-gray-500">
@@ -385,61 +395,17 @@ export default function UserManagementPage() {
                         </p>
                       </div>
                       <div className="flex gap-2">
-                        <Dialog>
-                          <DialogTrigger asChild>
-                            <Button
-                              variant="outline"
-                              size="sm"
-                              onClick={() => {
-                                setEditingUser(authUser)
-                                setEditRole((authUser.raw_user_meta_data.role || 'employee') as 'admin' | 'manager' | 'employee')
-                              }}
-                              disabled={authUser.id === user?.id}
-                            >
-                              <Edit className="h-4 w-4" />
-                            </Button>
-                          </DialogTrigger>
-                          <DialogContent>
-                            <DialogHeader>
-                              <DialogTitle>Edit User Role</DialogTitle>
-                              <DialogDescription>
-                                Change the role for {editingUser?.email || 'this user'}
-                              </DialogDescription>
-                            </DialogHeader>
-                            <div className="space-y-4">
-                              <div className="space-y-2 relative z-[999999]">
-                                <Label htmlFor="editRole">New Role</Label>
-                                <Select
-                                  value={editRole}
-                                  onValueChange={(value) => setEditRole(value as 'admin' | 'manager' | 'employee')}
-                                >
-                                  <SelectTrigger className="bg-white border-gray-300">
-                                    <SelectValue placeholder="Select a role" />
-                                  </SelectTrigger>
-                                  <SelectContent className="bg-white border-gray-300 z-[999999]">
-                                    <SelectItem value="employee">Employee</SelectItem>
-                                    <SelectItem value="manager">Manager</SelectItem>
-                                    <SelectItem value="admin">Admin</SelectItem>
-                                  </SelectContent>
-                                </Select>
-                              </div>
-                            </div>
-                            <DialogFooter>
-                              <Button
-                                variant="outline"
-                                onClick={() => {
-                                  setEditingUser(null)
-                                  setEditRole('employee')
-                                }}
-                              >
-                                Cancel
-                              </Button>
-                              <Button onClick={handleUpdateRole}>
-                                Update Role
-                              </Button>
-                            </DialogFooter>
-                          </DialogContent>
-                        </Dialog>
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          onClick={() => {
+                            setEditingUser(authUser)
+                            setEditRole((authUser.user_metadata?.role || 'employee') as 'admin' | 'manager' | 'employee')
+                            setShowEditDialog(true)
+                          }}
+                        >
+                          <Edit className="h-4 w-4" />
+                        </Button>
                         <Button
                           variant="destructive"
                           size="sm"
@@ -457,6 +423,42 @@ export default function UserManagementPage() {
           </CardContent>
         </Card>
       </div>
+
+      {/* Edit User Role Dialog */}
+      <AlertDialog open={showEditDialog} onOpenChange={setShowEditDialog}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Edit User Role</AlertDialogTitle>
+            <AlertDialogDescription>
+              Change the role for {editingUser?.email || 'this user'}
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <div className="py-4">
+            <Label htmlFor="editRole">New Role</Label>
+            <Select value={editRole} onValueChange={(value) => setEditRole(value as 'admin' | 'manager' | 'employee')}>
+              <SelectTrigger className="w-full">
+                <SelectValue placeholder="Select role" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="admin">Admin</SelectItem>
+                <SelectItem value="manager">Manager</SelectItem>
+                <SelectItem value="employee">Employee</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+          <AlertDialogFooter>
+            <AlertDialogCancel onClick={() => {
+              setShowEditDialog(false)
+              setEditingUser(null)
+              setEditRole('employee')
+            }}>Cancel</AlertDialogCancel>
+            <AlertDialogAction onClick={() => {
+              handleUpdateRole()
+              setShowEditDialog(false)
+            }}>Update Role</AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </div>
   )
 }
