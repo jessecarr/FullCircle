@@ -255,14 +255,14 @@ export default function VendorSearch({ value, onSelect, placeholder = "Search or
         />
         
         {showResults && results.length > 0 && !showAddDialog && !showVerificationDialog && (
-          <div className="absolute z-50 w-full mt-1 bg-[#2a2a4a] border border-[#4b5563] rounded-md shadow-lg max-h-60 overflow-y-auto">
+          <div className="absolute z-50 w-full mt-1 bg-[rgba(17,24,39,0.95)] border border-[rgba(59,130,246,0.3)] rounded-md shadow-lg max-h-60 overflow-y-auto backdrop-blur-[5px]">
             {results.map((vendor, index) => (
               <div
                 key={vendor.id}
-                className={`px-4 py-2 cursor-pointer text-[#e0e0e0] ${
+                className={`px-4 py-2 cursor-pointer text-white ${
                   index === highlightedIndex 
-                    ? 'bg-[#374151]' 
-                    : 'hover:bg-[#374151]'
+                    ? 'bg-[rgba(59,130,246,0.3)]' 
+                    : 'hover:bg-[rgba(59,130,246,0.2)]'
                 }`}
                 onClick={() => handleSelect(vendor.name)}
                 onMouseEnter={() => setHighlightedIndex(index)}
@@ -274,9 +274,9 @@ export default function VendorSearch({ value, onSelect, placeholder = "Search or
         )}
 
         {showResults && query && results.length === 0 && !showAddDialog && !showVerificationDialog && (
-          <div className="absolute z-50 w-full mt-1 bg-[#2a2a4a] border border-[#4b5563] rounded-md shadow-lg">
-            <div className="px-4 py-2 text-[#9ca3af]">No vendors found</div>
-            <div className="px-4 py-2 border-t border-[#4b5563]">
+          <div className="absolute z-50 w-full mt-1 bg-[rgba(17,24,39,0.95)] border border-[rgba(59,130,246,0.3)] rounded-md shadow-lg backdrop-blur-[5px]">
+            <div className="px-4 py-2 text-[rgba(255,255,255,0.6)]">No vendors found</div>
+            <div className="px-4 py-2 border-t border-[rgba(59,130,246,0.3)]">
               <Button
                 type="button"
                 variant="outline"

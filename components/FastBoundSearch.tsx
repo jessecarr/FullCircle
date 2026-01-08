@@ -209,11 +209,16 @@ export default function FastBoundSearch({
               key={item.id}
               data-dropdown-item
               onClick={() => handleSelect(item)}
+              onMouseDown={(e) => {
+                e.preventDefault()
+                handleSelect(item)
+              }}
               style={{
                 padding: '12px 16px',
                 cursor: 'pointer',
                 borderBottom: index < results.length - 1 ? '1px solid rgba(59, 130, 246, 0.2)' : 'none',
-                backgroundColor: index === highlightedIndex ? 'rgba(59, 130, 246, 0.2)' : 'transparent'
+                backgroundColor: index === highlightedIndex ? 'rgba(59, 130, 246, 0.2)' : 'transparent',
+                userSelect: 'none'
               }}
               onMouseEnter={(e) => {
                 if (index !== highlightedIndex) {
