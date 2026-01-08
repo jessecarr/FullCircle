@@ -186,6 +186,19 @@ export function OutboundTransferForm({ initialData, onSuccess, onCancel }: Outbo
     setProductLines(updated)
   }
 
+  const clearProductLine = (index: number) => {
+    const updated = [...productLines]
+    updated[index] = {
+      control_number: '',
+      manufacturer: '',
+      model: '',
+      serial_number: '',
+      order_type: '',
+      unit_price: 0
+    }
+    setProductLines(updated)
+  }
+
   const removeProductLine = (index: number) => {
     if (productLines.length > 1 && confirm('Are you sure you want to remove this product line?')) {
       setProductLines(productLines.filter((_, i) => i !== index))
@@ -732,21 +745,35 @@ export function OutboundTransferForm({ initialData, onSuccess, onCancel }: Outbo
           <form onSubmit={handleSubmit} className="space-y-6">
           <div className="border rounded-lg p-6 mb-6">
             <div className="space-y-4">
-              <h3 className="text-xl font-bold underline mb-4">Transferor</h3>
-              <CustomerSearch 
-                onSelect={(customer) => {
-                  setFormData({
-                    ...formData,
-                    customer_name: customer.name,
-                    customer_email: customer.email,
-                    customer_phone: customer.phone,
-                    customer_street: customer.street || '',
-                    customer_city: customer.city || '',
-                    customer_state: customer.state || '',
-                    customer_zip: customer.zip || ''
-                  });
-                }}
-              />
+              <div className="p-4 rounded-lg" style={{
+                backgroundColor: '#172554',
+                border: '2px solid #ffffff',
+                padding: '1rem',
+                borderRadius: '0.5rem',
+                boxShadow: '0 0 0 1px rgba(255, 255, 255, 0.2)'
+              }}>
+                <div className="text-xl font-semibold flex items-center gap-2 mb-3" style={{ color: '#dbeafe' }}>
+                  <Search className="h-6 w-6" />
+                  Search Transferor Information
+                </div>
+                <p className="text-base mb-3" style={{ color: '#dbeafe' }}>
+                  Search for existing transferors by name, email, or phone. Select a transferor to auto-fill their information.
+                </p>
+                <CustomerSearch 
+                  onSelect={(customer) => {
+                    setFormData({
+                      ...formData,
+                      customer_name: customer.name || '',
+                      customer_email: customer.email || '',
+                      customer_phone: customer.phone || '',
+                      customer_street: customer.street || '',
+                      customer_city: customer.city || '',
+                      customer_state: customer.state || '',
+                      customer_zip: customer.zip || '',
+                    })
+                  }}
+                />
+              </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="space-y-2">
                   <Label className="text-lg" htmlFor="customer_name">Customer Name *</Label>
@@ -1100,16 +1127,17 @@ export function OutboundTransferForm({ initialData, onSuccess, onCancel }: Outbo
               />
             </div>
 
-            <div className="grid grid-cols-9 gap-4 items-end mb-1">
+            <div className="grid grid-cols-10 gap-4 items-end mb-1">
               <div className="col-span-2"><Label className="text-lg">Control # *</Label></div>
               <div className="col-span-2"><Label className="text-lg">Manufacturer *</Label></div>
               <div className="col-span-2"><Label className="text-lg">Model *</Label></div>
               <div className="col-span-2"><Label className="text-lg">Serial # *</Label></div>
+              <div className="col-span-1"><Label className="text-lg"></Label></div> {/* Clear button */}
               <div className="col-span-1"><Label className="text-lg"></Label></div> {/* Delete button header */}
             </div>
             
             {productLines.map((line, index) => (
-              <div key={index} className="grid grid-cols-9 gap-4 items-center mb-2">
+              <div key={index} className="grid grid-cols-10 gap-4 items-center mb-2">
                 <div className="col-span-2">
                   <Textarea
                     id={`control_number-${index}`}
@@ -1243,6 +1271,18 @@ export function OutboundTransferForm({ initialData, onSuccess, onCancel }: Outbo
                       setTimeout(() => recalculateRowHeight(index), 10);
                     }}
                   />
+                </div>
+
+                <div className="col-span-1">
+                  <Button
+                    type="button"
+                    variant="outline"
+                    size="sm"
+                    onClick={() => clearProductLine(index)}
+                    className="text-base border border-gray-400 hover:border-gray-300"
+                  >
+                    Clear
+                  </Button>
                 </div>
 
                 <div className="col-span-1">

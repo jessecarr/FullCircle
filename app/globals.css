@@ -65,6 +65,54 @@ body::before {
   animation: loginGradientShift 10s ease-in-out infinite alternate;
 }
 
+/* Delete button styling - red background for destructive action */
+.delete-button {
+  background-color: rgba(239, 68, 68, 0.9) !important;
+  border-color: rgba(239, 68, 68, 0.6) !important;
+  color: #D1D5DB !important; /* Light gray like status badges */
+}
+
+.delete-button:hover {
+  background-color: rgba(239, 68, 68, 1) !important;
+  border-color: rgba(239, 68, 68, 0.8) !important;
+}
+
+/* More specific selector to override any existing styles */
+button.delete-button {
+  background-color: rgba(239, 68, 68, 0.9) !important;
+  border-color: rgba(239, 68, 68, 0.6) !important;
+  color: #D1D5DB !important; /* Light gray like status badges */
+}
+
+button.delete-button:hover {
+  background-color: rgba(239, 68, 68, 1) !important;
+  border-color: rgba(239, 68, 68, 0.8) !important;
+}
+
+/* Update Status button styling - blue background like create button */
+.update-status-button {
+  background-color: rgba(59, 130, 246, 0.9) !important;
+  border-color: rgba(59, 130, 246, 0.6) !important;
+  color: #D1D5DB !important; /* Light gray like status badges */
+}
+
+.update-status-button:hover {
+  background-color: rgba(59, 130, 246, 1) !important;
+  border-color: rgba(59, 130, 246, 0.8) !important;
+}
+
+/* More specific selector to override any existing styles */
+button.update-status-button {
+  background-color: rgba(59, 130, 246, 0.9) !important;
+  border-color: rgba(59, 130, 246, 0.6) !important;
+  color: #D1D5DB !important; /* Light gray like status badges */
+}
+
+button.update-status-button:hover {
+  background-color: rgba(59, 130, 246, 1) !important;
+  border-color: rgba(59, 130, 246, 0.8) !important;
+}
+
 /* Dropdown menus - apply project theme to all dropdowns */
 [data-radix-dropdown-menu-content] {
   background-color: rgba(17, 24, 39, 0.95) !important;
@@ -535,8 +583,20 @@ input, textarea, select {
   background-color: rgba(17, 24, 39, 0.8) !important;
   color: rgba(203, 213, 225, 0.95) !important;
   border: 1px solid rgba(59, 130, 246, 0.3) !important;
-  border-radius: 0.5rem;
+  border-radius: 0.375rem !important;
+  padding: 0.5rem 1rem !important;
   backdrop-filter: blur(5px) !important;
+}
+
+/* White border for search inputs in customer search containers */
+input.border-white {
+  border: 2px solid #ffffff !important;
+  padding: 0.75rem 1rem !important;
+}
+
+input.border-white:focus {
+  border-color: #ffffff !important;
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.5) !important;
 }
 
 input::placeholder, textarea::placeholder {

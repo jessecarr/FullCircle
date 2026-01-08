@@ -98,7 +98,7 @@ export default function CustomerSearch({ onSelect }: CustomerSearchProps) {
           onChange={handleQueryChange}
           onKeyDown={handleKeyDown}
           placeholder="Search by email, phone, or name"
-          className="w-full p-2 border border-[rgba(59, 130, 246, 0.3)] rounded bg-[rgba(17, 24, 39, 0.8)] text-white placeholder-[#9ca3af]"
+          className="w-full p-3 border-2 border-white rounded bg-[rgba(17, 24, 39, 0.8)] text-white placeholder-[#9ca3af]"
         />
       </div>
       

@@ -58,6 +58,8 @@ function HomeContent() {
   const [refreshTrigger, setRefreshTrigger] = useState(0)
   const [pendingFormSwitch, setPendingFormSwitch] = useState<string | null>(null)
   const [showConfirmDialog, setShowConfirmDialog] = useState(false)
+  const [allItems, setAllItems] = useState<any[]>([])
+  const [currentViewIndex, setCurrentViewIndex] = useState(-1)
 
   const handleFormSuccess = () => {
     setRefreshTrigger(prev => prev + 1)
@@ -82,6 +84,27 @@ function HomeContent() {
 
   const handleView = (item: any, formType?: string) => {
     setViewingItem({ ...item, _formType: formType })
+    // Find the index of this item in allItems
+    const index = allItems.findIndex(allItem => 
+      allItem.id === item.id && allItem._formType === formType
+    )
+    setCurrentViewIndex(index)
+  }
+
+  const handlePrevious = () => {
+    if (currentViewIndex > 0) {
+      const previousItem = allItems[currentViewIndex - 1]
+      setViewingItem(previousItem)
+      setCurrentViewIndex(currentViewIndex - 1)
+    }
+  }
+
+  const handleNext = () => {
+    if (currentViewIndex < allItems.length - 1) {
+      const nextItem = allItems[currentViewIndex + 1]
+      setViewingItem(nextItem)
+      setCurrentViewIndex(currentViewIndex + 1)
+    }
   }
 
   const handleNewForm = () => {
@@ -103,9 +126,16 @@ function HomeContent() {
 
   const confirmFormSwitch = () => {
     if (pendingFormSwitch) {
-      setActiveTab(pendingFormSwitch)
-      setViewMode('form')
       setEditingItem(null)
+      setViewMode('form')
+      // Force tab change even if it's the same form type
+      if (activeTab === pendingFormSwitch) {
+        // Force re-render by incrementing a key or using a different approach
+        setActiveTab('temp')
+        setTimeout(() => setActiveTab(pendingFormSwitch), 0)
+      } else {
+        setActiveTab(pendingFormSwitch)
+      }
     }
     setShowConfirmDialog(false)
     setPendingFormSwitch(null)
@@ -251,6 +281,7 @@ function HomeContent() {
               onEdit={handleEdit}
               onView={handleView}
               refreshTrigger={refreshTrigger}
+              onItemsChange={setAllItems}
             />
           ) : (
             <>
@@ -296,6 +327,10 @@ function HomeContent() {
           handleEdit(viewingItem, viewingItem?._formType)
           setViewingItem(null)
         }}
+        onPrevious={handlePrevious}
+        onNext={handleNext}
+        hasPrevious={currentViewIndex > 0}
+        hasNext={currentViewIndex < allItems.length - 1}
       />
 
       <AlertDialog open={showConfirmDialog} onOpenChange={setShowConfirmDialog}>

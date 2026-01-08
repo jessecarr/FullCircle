@@ -70,26 +70,46 @@ export default function VendorSearch({ value, onSelect, placeholder = "Search or
       }
 
       try {
-        const { data, error } = await supabase
+        let queryBuilder = supabase
           .from('vendors')
           .select('id, name')
           .ilike('name', `%${query}%`)
           .order('name')
           .limit(10)
 
+        // Only exclude current value if it's different from the search query
+        if (value && value.trim() !== query.trim()) {
+          queryBuilder = queryBuilder.neq('name', value || '')
+        }
+
+        const { data, error } = await queryBuilder
+
         if (error) throw error
 
-        setResults(data || [])
-        setShowResults(true)
+        const results = data || []
+        setResults(results)
+        
+        // Check if the current query exactly matches any vendor in the database
+        const exactMatch = results.some(vendor => 
+          vendor.name.toLowerCase() === query.trim().toLowerCase()
+        )
+        
+        // Don't show dropdown if there's an exact match and no other results
+        if (exactMatch && results.length === 1) {
+          setShowResults(false)
+        } else {
+          setShowResults(true)
+        }
       } catch (error) {
         console.error('Vendor search error:', error)
         setResults([])
+        setShowResults(false)
       }
     }
 
     const debounceTimer = setTimeout(searchVendors, 300)
     return () => clearTimeout(debounceTimer)
-  }, [query])
+  }, [query, value])
 
   const handleSelect = (vendorName: string) => {
     setQuery(vendorName)
@@ -226,7 +246,29 @@ export default function VendorSearch({ value, onSelect, placeholder = "Search or
           ref={inputRef}
           value={query}
           onChange={handleInputChange}
-          onFocus={() => hasUserTyped && query && setShowResults(true)}
+          onFocus={async () => {
+            if (hasUserTyped && query) {
+              // Check if current query exactly matches a vendor before showing dropdown
+              try {
+                const { data, error } = await supabase
+                  .from('vendors')
+                  .select('id, name')
+                  .eq('name', query.trim())
+                  .single()
+
+                if (!error && data) {
+                  // Exact match found, don't show dropdown
+                  setShowResults(false)
+                } else {
+                  // No exact match, show dropdown
+                  setShowResults(true)
+                }
+              } catch (error) {
+                // Error checking, show dropdown as fallback
+                setShowResults(true)
+              }
+            }
+          }}
           onKeyDown={handleKeyDown}
           placeholder={placeholder}
           className="text-base min-h-[48px] resize-none overflow-hidden"
