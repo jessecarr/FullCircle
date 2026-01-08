@@ -20,7 +20,8 @@ import { useToast } from '@/components/ui/use-toast'
 import { supabase } from '@/lib/supabase'
 import { useAuth } from '@/hooks/useAuth'
 import { useRouter } from 'next/navigation'
-import { Edit, Trash2, ArrowLeft, Database, Eye, EyeOff } from 'lucide-react'
+import { Header } from '@/components/Header'
+import { Edit, Trash2, ArrowLeft, Eye, EyeOff, Users } from 'lucide-react'
 
 interface NewUser {
   email: string
@@ -198,42 +199,6 @@ export default function UserManagementPage() {
     }
   }
 
-  const handleCreateDummyData = async () => {
-    if (!confirm('This will create 8 dummy records (2 of each form type). Are you sure?')) {
-      return
-    }
-
-    setLoading(true)
-    try {
-      const response = await fetch('/api/admin/create-dummy-data', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        }
-      })
-      
-      const data = await response.json()
-      
-      if (!response.ok) {
-        throw new Error(data.error || 'Failed to create dummy data')
-      }
-
-      toast({
-        title: 'Dummy Data Created',
-        description: data.message,
-      })
-    } catch (error) {
-      console.error('Error creating dummy data:', error)
-      toast({
-        title: 'Error',
-        description: 'Failed to create dummy data',
-        variant: 'destructive',
-      })
-    } finally {
-      setLoading(false)
-    }
-  }
-
   const handleDeleteUser = async (userId: string, userEmail: string) => {
     if (!confirm(`Are you sure you want to delete user ${userEmail}?`)) {
       return
@@ -271,41 +236,15 @@ export default function UserManagementPage() {
   }
 
   return (
-    <div className="container mx-auto py-8">
-      <div className="mb-8">
-        {/* Back Button */}
-        <div className="mb-4">
-          <Button 
-            variant="outline" 
-            onClick={() => router.push('/landing')}
-            className="flex items-center gap-2"
-          >
-            <ArrowLeft className="h-4 w-4" />
-            Back to Landing
-          </Button>
+    <div>
+      <Header />
+      <div className="container mx-auto py-8">
+        <div className="mb-8">
+          <h1 className="text-3xl font-bold">User Management</h1>
+          <p className="text-gray-600">Create and manage user accounts</p>
         </div>
-        
-        <h1 className="text-3xl font-bold">User Management</h1>
-        <p className="text-gray-600">Create and manage user accounts</p>
-        
-        {/* Dummy Data Button */}
-        <div className="mt-4">
-          <Button
-            variant="secondary"
-            onClick={handleCreateDummyData}
-            disabled={loading}
-            className="flex items-center gap-2"
-          >
-            <Database className="h-4 w-4" />
-            {loading ? 'Creating...' : 'Create Dummy Data'}
-          </Button>
-          <p className="text-xs text-gray-500 mt-1">
-            Creates 2 of each form type (Special Orders, Transfers, Suppressors) for testing
-          </p>
-        </div>
-      </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         {/* Create New User Form */}
         <Card>
           <CardHeader>
@@ -395,22 +334,23 @@ export default function UserManagementPage() {
               {users.length === 0 ? (
                 <p className="text-gray-500 text-center py-4">No users found</p>
               ) : (
-                users.map((authUser) => (
-                  <div key={authUser.id} className="border rounded-lg p-4">
-                    <div className="flex justify-between items-start">
-                      <div>
-                        <p className="font-medium">{authUser.email}</p>
-                        <p className="text-sm text-gray-600">
-                          Name: {authUser.user_metadata?.name || 'Not set'}
-                        </p>
-                        <p className="text-sm text-gray-600">
-                          Role: <span className="inline-block px-2 py-1 text-xs rounded bg-blue-100 text-blue-800">
-                            {authUser.user_metadata?.role || 'No role'}
-                          </span>
-                        </p>
-                        <p className="text-xs text-gray-500">
-                          Created: {new Date(authUser.created_at).toLocaleDateString()}
-                        </p>
+                <>
+                {users.map((authUser: AuthUser) => (
+                  <Card 
+                    key={authUser.id}
+                    className="hover:shadow-lg transition-shadow cursor-pointer group landing-card"
+                  >
+                    <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-4">
+                      <div className="flex items-center">
+                        <div className="p-3 rounded-lg bg-blue-500 hover:bg-blue-600 transition-colors mr-3">
+                          <Users className="h-6 w-6 text-white" />
+                        </div>
+                        <div>
+                          <CardTitle className="text-lg">{authUser.email}</CardTitle>
+                          <CardDescription className="text-sm">
+                            {authUser.user_metadata?.name || 'No name set'}
+                          </CardDescription>
+                        </div>
                       </div>
                       <div className="flex gap-2">
                         <Button
@@ -425,21 +365,38 @@ export default function UserManagementPage() {
                             setShowConfirmPassword(false)
                             setShowEditDialog(true)
                           }}
+                          className="flex items-center gap-2 group-hover:bg-accent"
                         >
                           <Edit className="h-4 w-4" />
+                          Edit
                         </Button>
                         <Button
                           variant="destructive"
                           size="sm"
                           onClick={() => handleDeleteUser(authUser.id, authUser.email)}
                           disabled={authUser.id === user?.id}
+                          className="flex items-center gap-2"
                         >
                           <Trash2 className="h-4 w-4" />
+                          Delete
                         </Button>
                       </div>
-                    </div>
-                  </div>
-                ))
+                    </CardHeader>
+                    <CardContent>
+                      <div className="space-y-2">
+                        <p className="text-sm font-medium">
+                          Role: <span className="inline-block px-2 py-1 text-sm rounded bg-blue-100 text-blue-800 font-semibold uppercase">
+                            {authUser.user_metadata?.role || 'No role'}
+                          </span>
+                        </p>
+                        <p className="text-xs text-gray-500">
+                          Created: {new Date(authUser.created_at).toLocaleDateString()}
+                        </p>
+                      </div>
+                    </CardContent>
+                  </Card>
+                ))}
+                </>
               )}
             </div>
           </CardContent>
@@ -546,6 +503,7 @@ export default function UserManagementPage() {
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
+      </div>
     </div>
   )
 }
