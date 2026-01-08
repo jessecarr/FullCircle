@@ -13,7 +13,7 @@ import { useToast } from '@/components/ui/use-toast'
 import CustomerSearch from '../CustomerSearch'
 import VendorSearch from '../VendorSearch'
 import { lookupZipCode, isValidZipCode } from '@/lib/zipLookup'
-import { Printer } from 'lucide-react'
+import { Printer, Search } from 'lucide-react'
 import { PrintSubmitDialog } from '@/components/ui/print-submit-dialog'
 
 interface SpecialOrderFormProps {
@@ -811,23 +811,35 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
           <form onSubmit={handleSubmit} className="space-y-6">
           <div className="border rounded-lg p-6 mb-6">
             <div className="space-y-4">
-              <h3 className="text-xl font-bold underline mb-4">Customer Information</h3>
-              <CustomerSearch 
-                onSelect={(customer) => {
-                  setFormData({
-                    ...formData,
-                    customer_name: customer.name,
-                    customer_email: customer.email,
-                    customer_phone: customer.phone,
-                    customer_street: customer.street || '',
-                    customer_city: customer.city || '',
-                    customer_state: customer.state || '',
-                    customer_zip: customer.zip || '',
-                    drivers_license: customer.drivers_license || '',
-                    license_expiration: customer.license_expiration || ''
-                  });
-                }}
-              />
+              <div className="p-4 rounded-lg" style={{
+                backgroundColor: '#172554',
+                border: '2px solid #ffffff',
+                padding: '1rem',
+                borderRadius: '0.5rem',
+                boxShadow: '0 0 0 1px rgba(255, 255, 255, 0.2)'
+              }}>
+                <div className="text-xl font-semibold flex items-center gap-2 mb-3" style={{ color: '#dbeafe' }}>
+                  <Search className="h-6 w-6" />
+                  Search Customer Information
+                </div>
+                <p className="text-base mb-3" style={{ color: '#dbeafe' }}>
+                  Search for existing customers by name, email, or phone. Select a customer to auto-fill their information.
+                </p>
+                <CustomerSearch 
+                  onSelect={(customer) => {
+                    setFormData({
+                      ...formData,
+                      customer_name: customer.name || '',
+                      customer_email: customer.email || '',
+                      customer_phone: customer.phone || '',
+                      customer_street: customer.street || '',
+                      customer_city: customer.city || '',
+                      customer_state: customer.state || '',
+                      customer_zip: customer.zip || '',
+                    })
+                  }}
+                />
+              </div>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div className="space-y-2">
                   <Label className="text-lg" htmlFor="customer_name">Customer Name *</Label>
