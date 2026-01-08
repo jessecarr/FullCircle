@@ -199,6 +199,19 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
     setProductLines(updated)
   }
 
+  const clearProductLine = (index: number) => {
+    const updated = [...productLines]
+    updated[index] = {
+      sku: '',
+      description: '',
+      vendor: '',
+      quantity: 1,
+      unit_price: 0,
+      total_price: 0
+    }
+    setProductLines(updated)
+  }
+
   const removeProductLine = (index: number) => {
     if (productLines.length > 1 && confirm('Are you sure you want to remove this product line?')) {
       setProductLines(productLines.filter((_, i) => i !== index))
@@ -1021,18 +1034,19 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
 
           <div className="border rounded-lg p-6 mb-6">
             <h3 className="text-xl underline font-bold mb-4">Items</h3>
-            <div className="grid grid-cols-13 gap-4 items-end mb-2">
+            <div className="grid grid-cols-14 gap-4 items-end mb-2">
               <div className="col-span-2"><Label className="text-lg">SKU *</Label></div>
               <div className="col-span-5"><Label className="text-lg">Description *</Label></div>
               <div className="col-span-1"><Label className="text-lg">Qty *</Label></div>
               <div className="col-span-1"><Label className="text-lg">Price *</Label></div>
               <div className="col-span-1"><Label className="text-lg">Total *</Label></div>
               <div className="col-span-2"><Label className="text-lg">Vendor *</Label></div>
-              <div className="col-span-1"></div> {/* Delete button */}
+              <div className="col-span-1"><Label className="text-lg"></Label></div> {/* Clear button */}
+              <div className="col-span-1"><Label className="text-lg"></Label></div> {/* Delete button */}
             </div>
             
             {productLines.map((line, index) => (
-              <div key={index} className="grid grid-cols-13 gap-4 items-center mb-2">
+              <div key={index} className="grid grid-cols-14 gap-4 items-center mb-2">
                 <div className="col-span-2">
                   <Textarea
                     id={`sku-${index}`}
@@ -1172,6 +1186,18 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
                     onHeightChange={(newHeight) => handleFieldHeightChange(index, `vendor-${index}`, newHeight)}
                     rowIndex={index}
                   />
+                </div>
+
+                <div className="col-span-1">
+                  <Button
+                    type="button"
+                    variant="outline"
+                    size="sm"
+                    onClick={() => clearProductLine(index)}
+                    className="text-base border border-gray-400 hover:border-gray-300"
+                  >
+                    Clear
+                  </Button>
                 </div>
 
                 <div className="col-span-1">

@@ -186,6 +186,18 @@ export function OutboundTransferForm({ initialData, onSuccess, onCancel }: Outbo
     setProductLines(updated)
   }
 
+  const clearProductLine = (index: number) => {
+    const updated = [...productLines]
+    updated[index] = {
+      control_number: '',
+      manufacturer: '',
+      model: '',
+      serial_number: '',
+      unit_price: 0
+    }
+    setProductLines(updated)
+  }
+
   const removeProductLine = (index: number) => {
     if (productLines.length > 1 && confirm('Are you sure you want to remove this product line?')) {
       setProductLines(productLines.filter((_, i) => i !== index))
@@ -1114,16 +1126,17 @@ export function OutboundTransferForm({ initialData, onSuccess, onCancel }: Outbo
               />
             </div>
 
-            <div className="grid grid-cols-9 gap-4 items-end mb-1">
+            <div className="grid grid-cols-10 gap-4 items-end mb-1">
               <div className="col-span-2"><Label className="text-lg">Control # *</Label></div>
               <div className="col-span-2"><Label className="text-lg">Manufacturer *</Label></div>
               <div className="col-span-2"><Label className="text-lg">Model *</Label></div>
               <div className="col-span-2"><Label className="text-lg">Serial # *</Label></div>
+              <div className="col-span-1"><Label className="text-lg"></Label></div> {/* Clear button */}
               <div className="col-span-1"><Label className="text-lg"></Label></div> {/* Delete button header */}
             </div>
             
             {productLines.map((line, index) => (
-              <div key={index} className="grid grid-cols-9 gap-4 items-center mb-2">
+              <div key={index} className="grid grid-cols-10 gap-4 items-center mb-2">
                 <div className="col-span-2">
                   <Textarea
                     id={`control_number-${index}`}
@@ -1257,6 +1270,18 @@ export function OutboundTransferForm({ initialData, onSuccess, onCancel }: Outbo
                       setTimeout(() => recalculateRowHeight(index), 10);
                     }}
                   />
+                </div>
+
+                <div className="col-span-1">
+                  <Button
+                    type="button"
+                    variant="outline"
+                    size="sm"
+                    onClick={() => clearProductLine(index)}
+                    className="text-base border border-gray-400 hover:border-gray-300"
+                  >
+                    Clear
+                  </Button>
                 </div>
 
                 <div className="col-span-1">
