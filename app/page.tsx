@@ -103,9 +103,16 @@ function HomeContent() {
 
   const confirmFormSwitch = () => {
     if (pendingFormSwitch) {
-      setActiveTab(pendingFormSwitch)
-      setViewMode('form')
       setEditingItem(null)
+      setViewMode('form')
+      // Force tab change even if it's the same form type
+      if (activeTab === pendingFormSwitch) {
+        // Force re-render by incrementing a key or using a different approach
+        setActiveTab('temp')
+        setTimeout(() => setActiveTab(pendingFormSwitch), 0)
+      } else {
+        setActiveTab(pendingFormSwitch)
+      }
     }
     setShowConfirmDialog(false)
     setPendingFormSwitch(null)
