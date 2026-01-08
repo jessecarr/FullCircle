@@ -24,7 +24,7 @@ export async function GET() {
       id: user.id,
       email: user.email || '',
       created_at: user.created_at,
-      raw_user_meta_data: user.user_metadata || {}
+      user_metadata: user.user_metadata || {}
     }))
 
     return NextResponse.json({ users })
@@ -61,16 +61,26 @@ export async function PUT(request: Request) {
   try {
     const { userId, role } = await request.json()
 
-    // Update user metadata with new role
-    const { data, error } = await supabaseAdmin.auth.admin.updateUserById(userId, {
-      user_metadata: { role }
-    })
+    // Get current user metadata to preserve other fields
+    const { data: currentUser } = await supabaseAdmin.auth.admin.getUserById(userId)
+    
+    if (currentUser?.user?.user_metadata) {
+      // Update user metadata with new role, preserving other metadata
+      const { data, error } = await supabaseAdmin.auth.admin.updateUserById(userId, {
+        user_metadata: {
+          ...currentUser.user.user_metadata,
+          role
+        }
+      })
 
-    if (error) {
-      return NextResponse.json({ error: error.message }, { status: 400 })
+      if (error) {
+        return NextResponse.json({ error: error.message }, { status: 400 })
+      }
+
+      return NextResponse.json({ success: true, data })
+    } else {
+      return NextResponse.json({ error: 'User not found' }, { status: 404 })
     }
-
-    return NextResponse.json({ success: true, data })
   } catch (error) {
     return NextResponse.json({ error: 'Failed to update user role' }, { status: 500 })
   }
