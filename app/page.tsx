@@ -83,37 +83,27 @@ function HomeContent() {
   }
 
   const handleView = (item: any, formType?: string) => {
-    console.log('handleView called', { item, formType, allItemsLength: allItems.length })
     setViewingItem({ ...item, _formType: formType })
     // Find the index of this item in allItems
     const index = allItems.findIndex(allItem => 
       allItem.id === item.id && allItem._formType === formType
     )
-    console.log('Found item at index:', index)
     setCurrentViewIndex(index)
   }
 
   const handlePrevious = () => {
-    console.log('handlePrevious called', { currentViewIndex, allItemsLength: allItems.length })
     if (currentViewIndex > 0) {
       const previousItem = allItems[currentViewIndex - 1]
-      console.log('Navigating to previous item:', previousItem)
       setViewingItem(previousItem)
       setCurrentViewIndex(currentViewIndex - 1)
-    } else {
-      console.log('No previous item available')
     }
   }
 
   const handleNext = () => {
-    console.log('handleNext called', { currentViewIndex, allItemsLength: allItems.length })
     if (currentViewIndex < allItems.length - 1) {
       const nextItem = allItems[currentViewIndex + 1]
-      console.log('Navigating to next item:', nextItem)
       setViewingItem(nextItem)
       setCurrentViewIndex(currentViewIndex + 1)
-    } else {
-      console.log('No next item available')
     }
   }
 

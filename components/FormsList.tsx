@@ -596,7 +596,7 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger, on
             onClick={() => onView && onView(item, item._formType)}
           >
             <CardHeader>
-              <div className="flex items-start justify-between">
+              <div className="flex items-center justify-between">
                 <div className="space-y-2 flex-1">
                   <CardTitle className="text-2xl">{getCustomerName(item)}</CardTitle>
                   <div className="flex flex-wrap gap-4 text-base text-muted-foreground">
@@ -611,16 +611,6 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger, on
                   </div>
                 </div>
                 <div className="flex gap-2 flex-wrap justify-end" onClick={(e) => e.stopPropagation()}>
-                  {onView && (
-                    <Button
-                      variant="outline"
-                      onClick={() => onView(item, item._formType)}
-                      title="View"
-                      className="styled-button"
-                    >
-                      <Eye className="h-5 w-5" />
-                    </Button>
-                  )}
                   {onEdit && (
                     <Button
                       variant="outline"
@@ -631,14 +621,6 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger, on
                       <Edit className="h-5 w-5" />
                     </Button>
                   )}
-                  <Button
-                    variant="outline"
-                    onClick={() => handleDelete(item)}
-                    title="Delete"
-                    className="styled-button"
-                  >
-                    <Trash2 className="h-5 w-5" />
-                  </Button>
                   <Button
                     variant="outline"
                     onClick={() => handlePrint(item)}
@@ -662,6 +644,14 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger, on
                     className="styled-button"
                   >
                     <RefreshCw className="h-5 w-5" />
+                  </Button>
+                  <Button
+                    variant="outline"
+                    onClick={() => handleDelete(item)}
+                    title="Delete"
+                    className="styled-button"
+                  >
+                    <Trash2 className="h-5 w-5" />
                   </Button>
                 </div>
               </div>

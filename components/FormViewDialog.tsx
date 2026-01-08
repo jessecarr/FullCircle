@@ -260,8 +260,8 @@ export function FormViewDialog({ open, onOpenChange, data, title, onEdit, onPrev
             onPrevious()
           }}
           style={{
-            background: 'rgba(17, 24, 39, 0.9)',
-            border: '1px solid rgba(59, 130, 246, 0.3)',
+            background: 'rgba(59, 130, 246, 0.9)',
+            border: '1px solid rgba(59, 130, 246, 0.6)',
             borderRadius: '50%',
             width: '48px',
             height: '48px',
@@ -275,16 +275,18 @@ export function FormViewDialog({ open, onOpenChange, data, title, onEdit, onPrev
             flexShrink: 0
           }}
           onMouseOver={(e) => {
-            e.currentTarget.style.backgroundColor = 'rgba(59, 130, 246, 0.2)'
+            e.currentTarget.style.backgroundColor = 'rgba(59, 130, 246, 1)'
             e.currentTarget.style.transform = 'scale(1.1)'
+            e.currentTarget.style.border = '1px solid rgba(59, 130, 246, 0.8)'
           }}
           onMouseOut={(e) => {
-            e.currentTarget.style.backgroundColor = 'rgba(17, 24, 39, 0.9)'
+            e.currentTarget.style.backgroundColor = 'rgba(59, 130, 246, 0.9)'
             e.currentTarget.style.transform = 'scale(1)'
+            e.currentTarget.style.border = '1px solid rgba(59, 130, 246, 0.6)'
           }}
           title="Previous (←)"
         >
-          <ChevronLeft className="h-6 w-6" style={{ color: '#e0e0e0' }} />
+          <ChevronLeft className="h-6 w-6" style={{ color: '#ffffff' }} />
         </button>
       )}
 
@@ -361,8 +363,8 @@ export function FormViewDialog({ open, onOpenChange, data, title, onEdit, onPrev
             onNext()
           }}
           style={{
-            background: 'rgba(17, 24, 39, 0.9)',
-            border: '1px solid rgba(59, 130, 246, 0.3)',
+            background: 'rgba(59, 130, 246, 0.9)',
+            border: '1px solid rgba(59, 130, 246, 0.6)',
             borderRadius: '50%',
             width: '48px',
             height: '48px',
@@ -376,16 +378,18 @@ export function FormViewDialog({ open, onOpenChange, data, title, onEdit, onPrev
             flexShrink: 0
           }}
           onMouseOver={(e) => {
-            e.currentTarget.style.backgroundColor = 'rgba(59, 130, 246, 0.2)'
+            e.currentTarget.style.backgroundColor = 'rgba(59, 130, 246, 1)'
             e.currentTarget.style.transform = 'scale(1.1)'
+            e.currentTarget.style.border = '1px solid rgba(59, 130, 246, 0.8)'
           }}
           onMouseOut={(e) => {
-            e.currentTarget.style.backgroundColor = 'rgba(17, 24, 39, 0.9)'
+            e.currentTarget.style.backgroundColor = 'rgba(59, 130, 246, 0.9)'
             e.currentTarget.style.transform = 'scale(1)'
+            e.currentTarget.style.border = '1px solid rgba(59, 130, 246, 0.6)'
           }}
           title="Next (→)"
         >
-          <ChevronRight className="h-6 w-6" style={{ color: '#e0e0e0' }} />
+          <ChevronRight className="h-6 w-6" style={{ color: '#ffffff' }} />
         </button>
       )}
     </div>
