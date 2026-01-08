@@ -74,12 +74,34 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
     }
 
     try {
-      // Check if customer exists by phone or email
-      const { data: existingCustomer } = await supabase
-        .from('customers')
-        .select('*')
-        .or(`phone.eq.${formData.customer_phone},email.eq.${formData.customer_email}`)
-        .single();
+      // Check if customer exists by phone AND/OR email
+      let existingCustomer = null;
+      
+      // First try to find by phone if provided
+      if (formData.customer_phone) {
+        const { data } = await supabase
+          .from('customers')
+          .select('*')
+          .eq('phone', formData.customer_phone)
+          .maybeSingle();
+        
+        if (data) {
+          existingCustomer = data;
+        }
+      }
+      
+      // If not found by phone, try by email if provided
+      if (!existingCustomer && formData.customer_email) {
+        const { data } = await supabase
+          .from('customers')
+          .select('*')
+          .eq('email', formData.customer_email)
+          .maybeSingle();
+        
+        if (data) {
+          existingCustomer = data;
+        }
+      }
 
       if (existingCustomer) {
         // Customer exists, update with additional information
@@ -132,9 +154,8 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
         }
       } else {
         // Customer doesn't exist, create new customer with all provided information
-        const newCustomerData = {
+        const newCustomerData: any = {
           name: formData.customer_name,
-          email: formData.customer_email || '', // Use empty string instead of null
           phone: formData.customer_phone,
           street: formData.customer_street || null,
           city: formData.customer_city || null,
@@ -145,6 +166,16 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
           created_at: new Date().toISOString(),
           updated_at: new Date().toISOString()
         };
+
+        // Always include email field - generate unique placeholder if not provided
+        if (formData.customer_email && formData.customer_email.trim() !== '') {
+          newCustomerData.email = formData.customer_email;
+        } else {
+          // Generate unique placeholder email to satisfy unique constraint
+          const timestamp = Date.now();
+          const random = Math.random().toString(36).substring(2, 8);
+          newCustomerData.email = `no-email-${timestamp}-${random}@placeholder.local`;
+        }
 
         const { error: insertError } = await supabase
           .from('customers')
@@ -840,10 +871,12 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
                 </p>
                 <CustomerSearch 
                   onSelect={(customer) => {
+                    // Check if email is a placeholder, leave blank if so
+                    const isPlaceholderEmail = customer.email && customer.email.includes('@placeholder.local');
                     setFormData({
                       ...formData,
                       customer_name: customer.name || '',
-                      customer_email: customer.email || '',
+                      customer_email: isPlaceholderEmail ? '' : (customer.email || ''),
                       customer_phone: customer.phone || '',
                       customer_street: customer.street || '',
                       customer_city: customer.city || '',

@@ -88,6 +88,134 @@ export function InboundTransferForm({ initialData, onSuccess, onCancel }: Specia
       })
     }
   }, [productLines, isClient])
+
+  // Customer update and creation function
+  const updateCustomerRecord = async () => {
+    // Only proceed if we have customer phone or email to identify the customer
+    if (!formData.customer_phone && !formData.customer_email) {
+      return;
+    }
+
+    try {
+      // Check if customer exists by phone AND/OR email
+      let existingCustomer = null;
+      
+      // First try to find by phone if provided
+      if (formData.customer_phone) {
+        const { data } = await supabase
+          .from('customers')
+          .select('*')
+          .eq('phone', formData.customer_phone)
+          .maybeSingle();
+        
+        if (data) {
+          existingCustomer = data;
+        }
+      }
+      
+      // If not found by phone, try by email if provided
+      if (!existingCustomer && formData.customer_email) {
+        const { data } = await supabase
+          .from('customers')
+          .select('*')
+          .eq('email', formData.customer_email)
+          .maybeSingle();
+        
+        if (data) {
+          existingCustomer = data;
+        }
+      }
+
+      if (existingCustomer) {
+        // Customer exists, update with additional information
+        const updateData: any = {};
+        
+        // Only update fields that have new information
+        if (formData.customer_name && formData.customer_name !== existingCustomer.name) {
+          updateData.name = formData.customer_name;
+        }
+        if (formData.customer_email && formData.customer_email !== existingCustomer.email) {
+          updateData.email = formData.customer_email;
+        }
+        if (formData.customer_phone && formData.customer_phone !== existingCustomer.phone) {
+          updateData.phone = formData.customer_phone;
+        }
+        if (formData.customer_street && formData.customer_street !== existingCustomer.street) {
+          updateData.street = formData.customer_street;
+        }
+        if (formData.customer_city && formData.customer_city !== existingCustomer.city) {
+          updateData.city = formData.customer_city;
+        }
+        if (formData.customer_state && formData.customer_state !== existingCustomer.state) {
+          updateData.state = formData.customer_state;
+        }
+        if (formData.customer_zip && formData.customer_zip !== existingCustomer.zip) {
+          updateData.zip = formData.customer_zip;
+        }
+        if (formData.drivers_license && formData.drivers_license !== existingCustomer.drivers_license) {
+          updateData.drivers_license = formData.drivers_license;
+        }
+        if (formData.license_expiration && formData.license_expiration !== existingCustomer.license_expiration) {
+          updateData.license_expiration = formData.license_expiration;
+        }
+
+        // Only update if there are changes
+        if (Object.keys(updateData).length > 0) {
+          updateData.updated_at = new Date().toISOString();
+          
+          const { error } = await supabase
+            .from('customers')
+            .update(updateData)
+            .eq('id', existingCustomer.id);
+
+          if (error) {
+            console.error('Failed to update customer record:', error);
+            console.error('Update error details:', JSON.stringify(error, null, 2));
+          } else {
+            console.log('Customer record updated successfully');
+          }
+        }
+      } else {
+        // Customer doesn't exist, create new customer with all provided information
+        const newCustomerData: any = {
+          name: formData.customer_name,
+          phone: formData.customer_phone,
+          street: formData.customer_street || null,
+          city: formData.customer_city || null,
+          state: formData.customer_state || null,
+          zip: formData.customer_zip || null,
+          drivers_license: formData.drivers_license || null,
+          license_expiration: formData.license_expiration || null,
+          created_at: new Date().toISOString(),
+          updated_at: new Date().toISOString()
+        };
+
+        // Always include email field - generate unique placeholder if not provided
+        if (formData.customer_email && formData.customer_email.trim() !== '') {
+          newCustomerData.email = formData.customer_email;
+        } else {
+          // Generate unique placeholder email to satisfy unique constraint
+          const timestamp = Date.now();
+          const random = Math.random().toString(36).substring(2, 8);
+          newCustomerData.email = `no-email-${timestamp}-${random}@placeholder.local`;
+        }
+
+        const { error: insertError } = await supabase
+          .from('customers')
+          .insert([newCustomerData]);
+
+        if (insertError) {
+          console.error('Failed to create customer record:', insertError);
+          console.error('Insert error details:', JSON.stringify(insertError, null, 2));
+        } else {
+          console.log('Customer record created successfully');
+        }
+      }
+    } catch (error) {
+      console.error('Error in customer record operation:', error);
+      // Don't throw error - customer operations shouldn't block order creation
+    }
+  };
   
   const [formData, setFormData] = useState({
     customer_name: initialData?.customer_name || '',
@@ -292,6 +420,9 @@ export function InboundTransferForm({ initialData, onSuccess, onCancel }: Specia
     try {
       // Calculate total price for all product lines
       const totalAmount = productLines.reduce((acc, line) => acc + line.unit_price, 0);
+
+      // Update customer record with additional information if provided
+      await updateCustomerRecord();
 
       if (initialData) {
         // Update existing order
@@ -801,10 +932,12 @@ export function InboundTransferForm({ initialData, onSuccess, onCancel }: Specia
                 </p>
                 <CustomerSearch 
                   onSelect={(customer) => {
+                    // Check if email is a placeholder, leave blank if so
+                    const isPlaceholderEmail = customer.email && customer.email.includes('@placeholder.local');
                     setFormData({
                       ...formData,
                       customer_name: customer.name || '',
-                      customer_email: customer.email || '',
+                      customer_email: isPlaceholderEmail ? '' : (customer.email || ''),
                       customer_phone: customer.phone || '',
                       customer_street: customer.street || '',
                       customer_city: customer.city || '',
