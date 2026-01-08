@@ -20,7 +20,7 @@ import { useToast } from '@/components/ui/use-toast'
 import { supabase } from '@/lib/supabase'
 import { useAuth } from '@/hooks/useAuth'
 import { useRouter } from 'next/navigation'
-import { Edit, Trash2, ArrowLeft, Database } from 'lucide-react'
+import { Edit, Trash2, ArrowLeft, Database, Eye, EyeOff } from 'lucide-react'
 
 interface NewUser {
   email: string
@@ -54,6 +54,10 @@ export default function UserManagementPage() {
   })
   const [editingUser, setEditingUser] = useState<AuthUser | null>(null)
   const [editRole, setEditRole] = useState<'admin' | 'manager' | 'employee'>('employee')
+  const [editPassword, setEditPassword] = useState('')
+  const [confirmPassword, setConfirmPassword] = useState('')
+  const [showEditPassword, setShowEditPassword] = useState(false)
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false)
   const [showEditDialog, setShowEditDialog] = useState(false)
 
   // Fetch users on component mount
@@ -145,6 +149,16 @@ export default function UserManagementPage() {
   const handleUpdateRole = async () => {
     if (!editingUser) return
 
+    // Validate password confirmation if password is provided
+    if (editPassword && editPassword !== confirmPassword) {
+      toast({
+        title: 'Password Mismatch',
+        description: 'Passwords do not match. Please confirm the password.',
+        variant: 'destructive'
+      })
+      return
+    }
+
     try {
       const response = await fetch('/api/admin/users', {
         method: 'PUT',
@@ -153,28 +167,32 @@ export default function UserManagementPage() {
         },
         body: JSON.stringify({
           userId: editingUser.id,
-          role: editRole
+          role: editRole,
+          password: editPassword || undefined
         })
       })
       
       const data = await response.json()
       
       if (!response.ok) {
-        throw new Error(data.error || 'Failed to update user role')
+        throw new Error(data.error || 'Failed to update user')
       }
 
       toast({
-        title: 'Role Updated',
-        description: `Successfully updated role for ${editingUser.email}`,
+        title: 'User Updated',
+        description: `Successfully updated ${editingUser.email}`,
       })
 
       setEditingUser(null)
+      setEditPassword('')
+      setConfirmPassword('')
+      setShowEditDialog(false)
       fetchUsers()
     } catch (error) {
-      console.error('Error updating user role:', error)
+      console.error('Error updating user:', error)
       toast({
         title: 'Error',
-        description: 'Failed to update user role',
+        description: 'Failed to update user',
         variant: 'destructive',
       })
     }
@@ -401,6 +419,10 @@ export default function UserManagementPage() {
                           onClick={() => {
                             setEditingUser(authUser)
                             setEditRole((authUser.user_metadata?.role || 'employee') as 'admin' | 'manager' | 'employee')
+                            setEditPassword('')
+                            setConfirmPassword('')
+                            setShowEditPassword(false)
+                            setShowConfirmPassword(false)
                             setShowEditDialog(true)
                           }}
                         >
@@ -428,34 +450,94 @@ export default function UserManagementPage() {
       <AlertDialog open={showEditDialog} onOpenChange={setShowEditDialog}>
         <AlertDialogContent>
           <AlertDialogHeader>
-            <AlertDialogTitle>Edit User Role</AlertDialogTitle>
+            <AlertDialogTitle>Edit User</AlertDialogTitle>
             <AlertDialogDescription>
-              Change the role for {editingUser?.email || 'this user'}
+              Update the role and password for {editingUser?.email || 'this user'}
             </AlertDialogDescription>
           </AlertDialogHeader>
-          <div className="py-4">
-            <Label htmlFor="editRole">New Role</Label>
-            <Select value={editRole} onValueChange={(value) => setEditRole(value as 'admin' | 'manager' | 'employee')}>
-              <SelectTrigger className="w-full">
-                <SelectValue placeholder="Select role" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="admin">Admin</SelectItem>
-                <SelectItem value="manager">Manager</SelectItem>
-                <SelectItem value="employee">Employee</SelectItem>
-              </SelectContent>
-            </Select>
+          <div className="py-4 space-y-4">
+            <div className="space-y-2">
+              <Label htmlFor="editRole">New Role</Label>
+              <Select value={editRole} onValueChange={(value) => setEditRole(value as 'admin' | 'manager' | 'employee')}>
+                <SelectTrigger className="w-full">
+                  <SelectValue placeholder="Select role" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="admin">Admin</SelectItem>
+                  <SelectItem value="manager">Manager</SelectItem>
+                  <SelectItem value="employee">Employee</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="editPassword">New Password (optional)</Label>
+              <div className="relative">
+                <Input
+                  id="editPassword"
+                  type={showEditPassword ? "text" : "password"}
+                  value={editPassword}
+                  onChange={(e) => setEditPassword(e.target.value)}
+                  placeholder="Leave empty to keep current password"
+                  className="pr-10"
+                />
+                <Button
+                  type="button"
+                  variant="ghost"
+                  size="sm"
+                  className="absolute right-0 top-0 h-full px-3 py-2 hover:bg-transparent"
+                  onClick={() => setShowEditPassword(!showEditPassword)}
+                >
+                  {showEditPassword ? (
+                    <EyeOff className="h-4 w-4 text-gray-500" />
+                  ) : (
+                    <Eye className="h-4 w-4 text-gray-500" />
+                  )}
+                </Button>
+              </div>
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="confirmPassword">Confirm Password</Label>
+              <div className="relative">
+                <Input
+                  id="confirmPassword"
+                  type={showConfirmPassword ? "text" : "password"}
+                  value={confirmPassword}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                  placeholder="Confirm new password"
+                  className={`pr-10 ${editPassword && confirmPassword && editPassword !== confirmPassword ? 'border-red-500' : ''}`}
+                />
+                <Button
+                  type="button"
+                  variant="ghost"
+                  size="sm"
+                  className="absolute right-0 top-0 h-full px-3 py-2 hover:bg-transparent"
+                  onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                >
+                  {showConfirmPassword ? (
+                    <EyeOff className="h-4 w-4 text-gray-500" />
+                  ) : (
+                    <Eye className="h-4 w-4 text-gray-500" />
+                  )}
+                </Button>
+              </div>
+              {editPassword && confirmPassword && editPassword !== confirmPassword && (
+                <p className="text-sm text-red-500">Passwords do not match</p>
+              )}
+            </div>
           </div>
           <AlertDialogFooter>
             <AlertDialogCancel onClick={() => {
               setShowEditDialog(false)
               setEditingUser(null)
               setEditRole('employee')
+              setEditPassword('')
+              setConfirmPassword('')
+              setShowEditPassword(false)
+              setShowConfirmPassword(false)
             }}>Cancel</AlertDialogCancel>
             <AlertDialogAction onClick={() => {
               handleUpdateRole()
-              setShowEditDialog(false)
-            }}>Update Role</AlertDialogAction>
+            }}>Update User</AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>

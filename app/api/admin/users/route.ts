@@ -59,30 +59,44 @@ export async function POST(request: Request) {
 
 export async function PUT(request: Request) {
   try {
-    const { userId, role } = await request.json()
+    const { userId, role, password } = await request.json()
 
     // Get current user metadata to preserve other fields
     const { data: currentUser } = await supabaseAdmin.auth.admin.getUserById(userId)
     
     if (currentUser?.user?.user_metadata) {
-      // Update user metadata with new role, preserving other metadata
-      const { data, error } = await supabaseAdmin.auth.admin.updateUserById(userId, {
-        user_metadata: {
-          ...currentUser.user.user_metadata,
-          role
-        }
-      })
-
-      if (error) {
-        return NextResponse.json({ error: error.message }, { status: 400 })
+      // Prepare update data
+      const updateData: any = {
+        ...currentUser.user.user_metadata,
+        role
       }
 
-      return NextResponse.json({ success: true, data })
+      // Update user metadata first
+      const { data: metadataResult, error: metadataError } = await supabaseAdmin.auth.admin.updateUserById(userId, {
+        user_metadata: updateData
+      })
+
+      if (metadataError) {
+        return NextResponse.json({ error: metadataError.message }, { status: 400 })
+      }
+
+      // Update password if provided
+      if (password && password.trim() !== '') {
+        const { data: passwordResult, error: passwordError } = await supabaseAdmin.auth.admin.updateUserById(userId, {
+          password: password
+        })
+
+        if (passwordError) {
+          return NextResponse.json({ error: passwordError.message }, { status: 400 })
+        }
+      }
+
+      return NextResponse.json({ success: true, data: metadataResult })
     } else {
       return NextResponse.json({ error: 'User not found' }, { status: 404 })
     }
   } catch (error) {
-    return NextResponse.json({ error: 'Failed to update user role' }, { status: 500 })
+    return NextResponse.json({ error: 'Failed to update user' }, { status: 500 })
   }
 }
 
