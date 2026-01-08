@@ -51,6 +51,8 @@ export interface Customer {
   city?: string
   state?: string
   zip?: string
+  drivers_license?: string
+  license_expiration?: string
   created_at: string
   updated_at: string
 }

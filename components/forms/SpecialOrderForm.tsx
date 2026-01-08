@@ -107,6 +107,12 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
         if (formData.customer_zip && formData.customer_zip !== existingCustomer.zip) {
           updateData.zip = formData.customer_zip;
         }
+        if (formData.drivers_license && formData.drivers_license !== existingCustomer.drivers_license) {
+          updateData.drivers_license = formData.drivers_license;
+        }
+        if (formData.license_expiration && formData.license_expiration !== existingCustomer.license_expiration) {
+          updateData.license_expiration = formData.license_expiration;
+        }
 
         // Only update if there are changes
         if (Object.keys(updateData).length > 0) {
@@ -119,6 +125,7 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
 
           if (error) {
             console.error('Failed to update customer record:', error);
+            console.error('Update error details:', JSON.stringify(error, null, 2));
           } else {
             console.log('Customer record updated successfully');
           }
@@ -127,12 +134,14 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
         // Customer doesn't exist, create new customer with all provided information
         const newCustomerData = {
           name: formData.customer_name,
-          email: formData.customer_email || null,
+          email: formData.customer_email || '', // Use empty string instead of null
           phone: formData.customer_phone,
           street: formData.customer_street || null,
           city: formData.customer_city || null,
           state: formData.customer_state || null,
           zip: formData.customer_zip || null,
+          drivers_license: formData.drivers_license || null,
+          license_expiration: formData.license_expiration || null,
           created_at: new Date().toISOString(),
           updated_at: new Date().toISOString()
         };
@@ -143,6 +152,7 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
 
         if (insertError) {
           console.error('Failed to create customer record:', insertError);
+          console.error('Insert error details:', JSON.stringify(insertError, null, 2));
         } else {
           console.log('Customer record created successfully');
         }
@@ -812,7 +822,9 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
                     customer_street: customer.street || '',
                     customer_city: customer.city || '',
                     customer_state: customer.state || '',
-                    customer_zip: customer.zip || ''
+                    customer_zip: customer.zip || '',
+                    drivers_license: customer.drivers_license || '',
+                    license_expiration: customer.license_expiration || ''
                   });
                 }}
               />
