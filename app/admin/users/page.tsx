@@ -535,9 +535,14 @@ export default function UserManagementPage() {
               setShowEditPassword(false)
               setShowConfirmPassword(false)
             }}>Cancel</AlertDialogCancel>
-            <AlertDialogAction onClick={() => {
-              handleUpdateRole()
-            }}>Update User</AlertDialogAction>
+            <Button 
+              onClick={() => {
+                handleUpdateRole()
+              }}
+              className="bg-blue-600 hover:bg-blue-700 text-white"
+            >
+              Update User
+            </Button>
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
