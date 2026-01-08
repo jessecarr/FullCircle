@@ -58,6 +58,8 @@ function HomeContent() {
   const [refreshTrigger, setRefreshTrigger] = useState(0)
   const [pendingFormSwitch, setPendingFormSwitch] = useState<string | null>(null)
   const [showConfirmDialog, setShowConfirmDialog] = useState(false)
+  const [allItems, setAllItems] = useState<any[]>([])
+  const [currentViewIndex, setCurrentViewIndex] = useState(-1)
 
   const handleFormSuccess = () => {
     setRefreshTrigger(prev => prev + 1)
@@ -81,7 +83,38 @@ function HomeContent() {
   }
 
   const handleView = (item: any, formType?: string) => {
+    console.log('handleView called', { item, formType, allItemsLength: allItems.length })
     setViewingItem({ ...item, _formType: formType })
+    // Find the index of this item in allItems
+    const index = allItems.findIndex(allItem => 
+      allItem.id === item.id && allItem._formType === formType
+    )
+    console.log('Found item at index:', index)
+    setCurrentViewIndex(index)
+  }
+
+  const handlePrevious = () => {
+    console.log('handlePrevious called', { currentViewIndex, allItemsLength: allItems.length })
+    if (currentViewIndex > 0) {
+      const previousItem = allItems[currentViewIndex - 1]
+      console.log('Navigating to previous item:', previousItem)
+      setViewingItem(previousItem)
+      setCurrentViewIndex(currentViewIndex - 1)
+    } else {
+      console.log('No previous item available')
+    }
+  }
+
+  const handleNext = () => {
+    console.log('handleNext called', { currentViewIndex, allItemsLength: allItems.length })
+    if (currentViewIndex < allItems.length - 1) {
+      const nextItem = allItems[currentViewIndex + 1]
+      console.log('Navigating to next item:', nextItem)
+      setViewingItem(nextItem)
+      setCurrentViewIndex(currentViewIndex + 1)
+    } else {
+      console.log('No next item available')
+    }
   }
 
   const handleNewForm = () => {
@@ -258,6 +291,7 @@ function HomeContent() {
               onEdit={handleEdit}
               onView={handleView}
               refreshTrigger={refreshTrigger}
+              onItemsChange={setAllItems}
             />
           ) : (
             <>
@@ -303,6 +337,10 @@ function HomeContent() {
           handleEdit(viewingItem, viewingItem?._formType)
           setViewingItem(null)
         }}
+        onPrevious={handlePrevious}
+        onNext={handleNext}
+        hasPrevious={currentViewIndex > 0}
+        hasNext={currentViewIndex < allItems.length - 1}
       />
 
       <AlertDialog open={showConfirmDialog} onOpenChange={setShowConfirmDialog}>

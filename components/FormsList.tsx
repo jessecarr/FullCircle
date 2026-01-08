@@ -32,6 +32,7 @@ interface FormsListProps {
   onEdit?: (item: any, formType: string) => void
   onView?: (item: any, formType: string) => void
   refreshTrigger?: number
+  onItemsChange?: (items: any[]) => void
 }
 
 type FormType = 'all' | 'special_orders' | 'inbound_transfers' | 'suppressor_approvals' | 'outbound_transfers'
@@ -46,7 +47,7 @@ const FORM_TYPE_LABELS: Record<FormType, string> = {
 
 const ALL_STATUSES = ['pending', 'ordered', 'received', 'completed', 'cancelled', 'shipped', 'delivered']
 
-export function FormsList({ tableName, title, onEdit, onView, refreshTrigger }: FormsListProps) {
+export function FormsList({ tableName, title, onEdit, onView, refreshTrigger, onItemsChange }: FormsListProps) {
   const [items, setItems] = useState<any[]>([])
   const [loading, setLoading] = useState(true)
   const [selectedFormTypes, setSelectedFormTypes] = useState<FormType[]>(['all'])
@@ -186,6 +187,7 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger }: 
       }
       
       setItems(filteredData)
+      onItemsChange?.(filteredData)
     } catch (error) {
       toast({
         title: 'Error',
@@ -588,10 +590,14 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger }: 
         </Card>
       ) : (
         items.map((item) => (
-          <Card key={`${item._formType}-${item.id}`} className="view-all-form-card">
+          <Card 
+            key={`${item._formType}-${item.id}`} 
+            className="view-all-form-card cursor-pointer hover:shadow-lg transition-shadow"
+            onClick={() => onView && onView(item, item._formType)}
+          >
             <CardHeader>
               <div className="flex items-start justify-between">
-                <div className="space-y-2">
+                <div className="space-y-2 flex-1">
                   <CardTitle className="text-2xl">{getCustomerName(item)}</CardTitle>
                   <div className="flex flex-wrap gap-4 text-base text-muted-foreground">
                     <span><strong>Form Type:</strong> {FORM_TYPE_LABELS[item._formType as FormType]}</span>
@@ -604,7 +610,7 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger }: 
                     )}
                   </div>
                 </div>
-                <div className="flex gap-2 flex-wrap justify-end">
+                <div className="flex gap-2 flex-wrap justify-end" onClick={(e) => e.stopPropagation()}>
                   {onView && (
                     <Button
                       variant="outline"

@@ -1,7 +1,8 @@
 'use client'
 
+import { useEffect } from 'react'
 import { Button } from '@/components/ui/button'
-import { Edit, X } from 'lucide-react'
+import { Edit, X, ChevronLeft, ChevronRight } from 'lucide-react'
 
 interface FormViewDialogProps {
   open: boolean
@@ -9,9 +10,36 @@ interface FormViewDialogProps {
   data: any
   title: string
   onEdit?: () => void
+  onPrevious?: () => void
+  onNext?: () => void
+  hasPrevious?: boolean
+  hasNext?: boolean
 }
 
-export function FormViewDialog({ open, onOpenChange, data, title, onEdit }: FormViewDialogProps) {
+export function FormViewDialog({ open, onOpenChange, data, title, onEdit, onPrevious, onNext, hasPrevious, hasNext }: FormViewDialogProps) {
+  // Add Escape and arrow key handlers
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (!open) return
+      
+      if (e.key === 'Escape') {
+        onOpenChange(false)
+      } else if (e.key === 'ArrowLeft' && hasPrevious && onPrevious) {
+        onPrevious()
+      } else if (e.key === 'ArrowRight' && hasNext && onNext) {
+        onNext()
+      }
+    }
+
+    if (open) {
+      document.addEventListener('keydown', handleKeyDown)
+    }
+
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown)
+    }
+  }, [open, onOpenChange, hasPrevious, hasNext, onPrevious, onNext])
+
   if (!data) return null
 
   const renderField = (label: string, value: any) => {
@@ -224,6 +252,42 @@ export function FormViewDialog({ open, onOpenChange, data, title, onEdit }: Form
       }}
       onClick={() => onOpenChange(false)}
     >
+      {/* Left Navigation Arrow */}
+      {hasPrevious && onPrevious && (
+        <button
+          onClick={(e) => {
+            e.stopPropagation()
+            onPrevious()
+          }}
+          style={{
+            background: 'rgba(17, 24, 39, 0.9)',
+            border: '1px solid rgba(59, 130, 246, 0.3)',
+            borderRadius: '50%',
+            width: '48px',
+            height: '48px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            cursor: 'pointer',
+            marginRight: '16px',
+            backdropFilter: 'blur(10px)',
+            transition: 'all 0.2s ease',
+            flexShrink: 0
+          }}
+          onMouseOver={(e) => {
+            e.currentTarget.style.backgroundColor = 'rgba(59, 130, 246, 0.2)'
+            e.currentTarget.style.transform = 'scale(1.1)'
+          }}
+          onMouseOut={(e) => {
+            e.currentTarget.style.backgroundColor = 'rgba(17, 24, 39, 0.9)'
+            e.currentTarget.style.transform = 'scale(1)'
+          }}
+          title="Previous (←)"
+        >
+          <ChevronLeft className="h-6 w-6" style={{ color: '#e0e0e0' }} />
+        </button>
+      )}
+
       <div
         style={{
           backgroundColor: 'rgba(17, 24, 39, 0.98)',
@@ -288,6 +352,42 @@ export function FormViewDialog({ open, onOpenChange, data, title, onEdit }: Form
           ))}
         </div>
       </div>
+
+      {/* Right Navigation Arrow */}
+      {hasNext && onNext && (
+        <button
+          onClick={(e) => {
+            e.stopPropagation()
+            onNext()
+          }}
+          style={{
+            background: 'rgba(17, 24, 39, 0.9)',
+            border: '1px solid rgba(59, 130, 246, 0.3)',
+            borderRadius: '50%',
+            width: '48px',
+            height: '48px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            cursor: 'pointer',
+            marginLeft: '16px',
+            backdropFilter: 'blur(10px)',
+            transition: 'all 0.2s ease',
+            flexShrink: 0
+          }}
+          onMouseOver={(e) => {
+            e.currentTarget.style.backgroundColor = 'rgba(59, 130, 246, 0.2)'
+            e.currentTarget.style.transform = 'scale(1.1)'
+          }}
+          onMouseOut={(e) => {
+            e.currentTarget.style.backgroundColor = 'rgba(17, 24, 39, 0.9)'
+            e.currentTarget.style.transform = 'scale(1)'
+          }}
+          title="Next (→)"
+        >
+          <ChevronRight className="h-6 w-6" style={{ color: '#e0e0e0' }} />
+        </button>
+      )}
     </div>
   )
 }
