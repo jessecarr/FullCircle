@@ -65,6 +65,54 @@ body::before {
   animation: loginGradientShift 10s ease-in-out infinite alternate;
 }
 
+/* Delete button styling - red background for destructive action */
+.delete-button {
+  background-color: rgba(239, 68, 68, 0.9) !important;
+  border-color: rgba(239, 68, 68, 0.6) !important;
+  color: #D1D5DB !important; /* Light gray like status badges */
+}
+
+.delete-button:hover {
+  background-color: rgba(239, 68, 68, 1) !important;
+  border-color: rgba(239, 68, 68, 0.8) !important;
+}
+
+/* More specific selector to override any existing styles */
+button.delete-button {
+  background-color: rgba(239, 68, 68, 0.9) !important;
+  border-color: rgba(239, 68, 68, 0.6) !important;
+  color: #D1D5DB !important; /* Light gray like status badges */
+}
+
+button.delete-button:hover {
+  background-color: rgba(239, 68, 68, 1) !important;
+  border-color: rgba(239, 68, 68, 0.8) !important;
+}
+
+/* Update Status button styling - blue background like create button */
+.update-status-button {
+  background-color: rgba(59, 130, 246, 0.9) !important;
+  border-color: rgba(59, 130, 246, 0.6) !important;
+  color: #D1D5DB !important; /* Light gray like status badges */
+}
+
+.update-status-button:hover {
+  background-color: rgba(59, 130, 246, 1) !important;
+  border-color: rgba(59, 130, 246, 0.8) !important;
+}
+
+/* More specific selector to override any existing styles */
+button.update-status-button {
+  background-color: rgba(59, 130, 246, 0.9) !important;
+  border-color: rgba(59, 130, 246, 0.6) !important;
+  color: #D1D5DB !important; /* Light gray like status badges */
+}
+
+button.update-status-button:hover {
+  background-color: rgba(59, 130, 246, 1) !important;
+  border-color: rgba(59, 130, 246, 0.8) !important;
+}
+
 /* Dropdown menus - apply project theme to all dropdowns */
 [data-radix-dropdown-menu-content] {
   background-color: rgba(17, 24, 39, 0.95) !important;

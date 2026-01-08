@@ -637,22 +637,61 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger, on
                   >
                     <Download className="h-5 w-5" />
                   </Button>
-                  <Button
-                    variant="outline"
+                  <button
                     onClick={() => openStatusDialog(item)}
                     title="Update Status"
-                    className="styled-button"
+                    style={{
+                      backgroundColor: '#1e40af',
+                      borderColor: '#1e40af',
+                      color: '#dbeafe',
+                      borderRadius: '0.5rem',
+                      padding: '0.5rem 1rem',
+                      border: '1px solid',
+                      cursor: 'pointer',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      transition: 'all 0.3s ease'
+                    }}
+                    onMouseOver={(e) => {
+                      e.currentTarget.style.backgroundColor = '#1e3a8a'
+                      e.currentTarget.style.borderColor = '#1e3a8a'
+                    }}
+                    onMouseOut={(e) => {
+                      e.currentTarget.style.backgroundColor = '#1e40af'
+                      e.currentTarget.style.borderColor = '#1e40af'
+                    }}
                   >
-                    <RefreshCw className="h-5 w-5" />
-                  </Button>
-                  <Button
-                    variant="outline"
+                    Update Status
+                  </button>
+                  <button
                     onClick={() => handleDelete(item)}
                     title="Delete"
-                    className="styled-button"
+                    className="delete-button"
+                    style={{
+                      backgroundColor: 'rgba(239, 68, 68, 0.9)',
+                      borderColor: 'rgba(239, 68, 68, 0.6)',
+                      color: '#D1D5DB',
+                      borderRadius: '0.5rem',
+                      padding: '0.5rem 1rem',
+                      border: '1px solid',
+                      cursor: 'pointer',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      transition: 'all 0.3s ease'
+                    }}
+                    onMouseOver={(e) => {
+                      e.currentTarget.style.backgroundColor = 'rgba(239, 68, 68, 1)'
+                      e.currentTarget.style.borderColor = 'rgba(239, 68, 68, 0.8)'
+                    }}
+                    onMouseOut={(e) => {
+                      e.currentTarget.style.backgroundColor = 'rgba(239, 68, 68, 0.9)'
+                      e.currentTarget.style.borderColor = 'rgba(239, 68, 68, 0.6)'
+                    }}
                   >
                     <Trash2 className="h-5 w-5" />
-                  </Button>
+                  </button>
                 </div>
               </div>
             </CardHeader>
