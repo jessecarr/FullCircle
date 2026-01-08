@@ -193,6 +193,7 @@ export function OutboundTransferForm({ initialData, onSuccess, onCancel }: Outbo
       manufacturer: '',
       model: '',
       serial_number: '',
+      order_type: '',
       unit_price: 0
     }
     setProductLines(updated)
