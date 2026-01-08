@@ -60,6 +60,9 @@ export default function UserManagementPage() {
   const [showEditPassword, setShowEditPassword] = useState(false)
   const [showConfirmPassword, setShowConfirmPassword] = useState(false)
   const [showEditDialog, setShowEditDialog] = useState(false)
+  const [deleteUser, setDeleteUser] = useState<AuthUser | null>(null)
+  const [showDeleteDialog, setShowDeleteDialog] = useState(false)
+  const [deleteConfirmation, setDeleteConfirmation] = useState('')
 
   // Fetch users on component mount
   useEffect(() => {
@@ -199,10 +202,13 @@ export default function UserManagementPage() {
     }
   }
 
-  const handleDeleteUser = async (userId: string, userEmail: string) => {
-    if (!confirm(`Are you sure you want to delete user ${userEmail}?`)) {
-      return
-    }
+  const handleDeleteUser = (user: AuthUser) => {
+    setDeleteUser(user)
+    setShowDeleteDialog(true)
+  }
+
+  const confirmDeleteUser = async () => {
+    if (!deleteUser || deleteConfirmation.toLowerCase() !== 'delete') return
 
     try {
       const response = await fetch('/api/admin/users', {
@@ -210,7 +216,7 @@ export default function UserManagementPage() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ userId })
+        body: JSON.stringify({ userId: deleteUser.id })
       })
       
       const data = await response.json()
@@ -221,7 +227,7 @@ export default function UserManagementPage() {
 
       toast({
         title: 'User Deleted',
-        description: `Successfully deleted user: ${userEmail}`,
+        description: `Successfully deleted user: ${deleteUser.email}`,
       })
 
       fetchUsers()
@@ -232,6 +238,10 @@ export default function UserManagementPage() {
         description: 'Failed to delete user',
         variant: 'destructive',
       })
+    } finally {
+      setShowDeleteDialog(false)
+      setDeleteUser(null)
+      setDeleteConfirmation('')
     }
   }
 
@@ -352,7 +362,10 @@ export default function UserManagementPage() {
                           </CardDescription>
                         </div>
                       </div>
-                      <div className="flex gap-2">
+                      <div className="flex items-center gap-8">
+                        <span className="inline-block px-2 py-1 text-sm rounded bg-blue-100 text-blue-800 font-semibold uppercase">
+                          {authUser.user_metadata?.role || 'No role'}
+                        </span>
                         <Button
                           variant="outline"
                           size="sm"
@@ -373,7 +386,7 @@ export default function UserManagementPage() {
                         <Button
                           variant="destructive"
                           size="sm"
-                          onClick={() => handleDeleteUser(authUser.id, authUser.email)}
+                          onClick={() => handleDeleteUser(authUser)}
                           disabled={authUser.id === user?.id}
                           className="flex items-center gap-2"
                         >
@@ -384,11 +397,6 @@ export default function UserManagementPage() {
                     </CardHeader>
                     <CardContent>
                       <div className="space-y-2">
-                        <p className="text-sm font-medium">
-                          Role: <span className="inline-block px-2 py-1 text-sm rounded bg-blue-100 text-blue-800 font-semibold uppercase">
-                            {authUser.user_metadata?.role || 'No role'}
-                          </span>
-                        </p>
                         <p className="text-xs text-gray-500">
                           Created: {new Date(authUser.created_at).toLocaleDateString()}
                         </p>
@@ -500,6 +508,83 @@ export default function UserManagementPage() {
             >
               Update User
             </Button>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
+
+      {/* Delete User Confirmation Dialog */}
+      <AlertDialog open={showDeleteDialog} onOpenChange={(open) => {
+        setShowDeleteDialog(open)
+        if (!open) {
+          setDeleteUser(null)
+          setDeleteConfirmation('')
+        }
+      }}>
+        <AlertDialogContent style={{
+          backgroundColor: 'rgba(17, 24, 39, 0.98)',
+          border: '2px solid rgba(59, 130, 246, 0.3)',
+          boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.8)',
+          backdropFilter: 'blur(10px)'
+        }}>
+          <AlertDialogHeader>
+            <AlertDialogTitle style={{ color: '#ffffff' }}>Confirm Delete</AlertDialogTitle>
+            <AlertDialogDescription style={{ color: '#9ca3af' }}>
+              Are you sure you want to delete this user? This action cannot be undone.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <div className="py-4">
+            <div className="space-y-2">
+              <label htmlFor="delete-confirmation" style={{ color: '#e5e7eb', fontSize: '14px', fontWeight: '500' }}>
+                Type <span style={{ color: '#ef4444', fontWeight: 'bold' }}>"delete"</span> to confirm:
+              </label>
+              <Input
+                id="delete-confirmation"
+                value={deleteConfirmation}
+                onChange={(e) => setDeleteConfirmation(e.target.value)}
+                placeholder="Type delete to confirm"
+                style={{
+                  backgroundColor: 'rgba(31, 41, 55, 0.8)',
+                  border: '1px solid rgba(59, 130, 246, 0.3)',
+                  color: '#ffffff'
+                }}
+                className="placeholder:text-gray-400"
+              />
+            </div>
+          </div>
+          <AlertDialogFooter>
+            <AlertDialogCancel 
+              onClick={() => {
+                setShowDeleteDialog(false)
+                setDeleteUser(null)
+                setDeleteConfirmation('')
+              }}
+              style={{
+                backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                border: '1px solid rgba(59, 130, 246, 0.3)',
+                color: '#ffffff'
+              }}
+              className="hover:bg-blue-600"
+            >
+              Cancel
+            </AlertDialogCancel>
+            <AlertDialogAction
+              onClick={confirmDeleteUser}
+              disabled={deleteConfirmation.toLowerCase() !== 'delete'}
+              style={{
+                backgroundColor: deleteConfirmation.toLowerCase() === 'delete'
+                  ? 'rgba(220, 38, 38, 0.8)'
+                  : 'rgba(107, 114, 128, 0.5)',
+                border: deleteConfirmation.toLowerCase() === 'delete'
+                  ? '1px solid rgba(220, 38, 38, 0.5)'
+                  : '1px solid rgba(107, 114, 128, 0.3)',
+                color: '#ffffff',
+                cursor: deleteConfirmation.toLowerCase() === 'delete' ? 'pointer' : 'not-allowed',
+                opacity: deleteConfirmation.toLowerCase() === 'delete' ? 1 : 0.6
+              }}
+              className={deleteConfirmation.toLowerCase() === 'delete' ? 'hover:bg-red-600' : ''}
+            >
+              Delete
+            </AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
