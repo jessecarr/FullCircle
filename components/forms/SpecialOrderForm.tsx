@@ -66,9 +66,9 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
     setIsClient(true)
   }, [])
 
-  // Customer update function for future forms
+  // Customer update and creation function
   const updateCustomerRecord = async () => {
-    // Only update if we have customer phone or email to identify the customer
+    // Only proceed if we have customer phone or email to identify the customer
     if (!formData.customer_phone && !formData.customer_email) {
       return;
     }
@@ -123,10 +123,33 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
             console.log('Customer record updated successfully');
           }
         }
+      } else {
+        // Customer doesn't exist, create new customer with all provided information
+        const newCustomerData = {
+          name: formData.customer_name,
+          email: formData.customer_email || null,
+          phone: formData.customer_phone,
+          street: formData.customer_street || null,
+          city: formData.customer_city || null,
+          state: formData.customer_state || null,
+          zip: formData.customer_zip || null,
+          created_at: new Date().toISOString(),
+          updated_at: new Date().toISOString()
+        };
+
+        const { error: insertError } = await supabase
+          .from('customers')
+          .insert([newCustomerData]);
+
+        if (insertError) {
+          console.error('Failed to create customer record:', insertError);
+        } else {
+          console.log('Customer record created successfully');
+        }
       }
     } catch (error) {
-      console.error('Error updating customer record:', error);
-      // Don't throw error - customer update shouldn't block order creation
+      console.error('Error in customer record operation:', error);
+      // Don't throw error - customer operations shouldn't block order creation
     }
   };
   
