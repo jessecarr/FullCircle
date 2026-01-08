@@ -61,6 +61,9 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger }: 
   const [statusUpdateItem, setStatusUpdateItem] = useState<any>(null)
   const [showStatusDialog, setShowStatusDialog] = useState(false)
   const [newStatus, setNewStatus] = useState('')
+  const [deleteItem, setDeleteItem] = useState<any>(null)
+  const [showDeleteDialog, setShowDeleteDialog] = useState(false)
+  const [deleteConfirmation, setDeleteConfirmation] = useState('')
   const { toast } = useToast()
   const printRef = useRef<HTMLDivElement>(null)
   const formTypeRef = useRef<HTMLDivElement>(null)
@@ -198,14 +201,19 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger }: 
     fetchAllItems()
   }, [selectedFormTypes, selectedStatuses, selectedVendors, activeSearchQuery, refreshTrigger])
 
-  const handleDelete = async (item: any) => {
-    if (!confirm('Are you sure you want to delete this item?')) return
+  const handleDelete = (item: any) => {
+    setDeleteItem(item)
+    setShowDeleteDialog(true)
+  }
+
+  const confirmDelete = async () => {
+    if (!deleteItem || deleteConfirmation.toLowerCase() !== 'delete') return
 
     try {
       const { error } = await supabase
-        .from(item._formType)
+        .from(deleteItem._formType)
         .delete()
-        .eq('id', item.id)
+        .eq('id', deleteItem.id)
 
       if (error) throw error
 
@@ -221,6 +229,10 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger }: 
         description: 'Failed to delete item',
         variant: 'destructive',
       })
+    } finally {
+      setShowDeleteDialog(false)
+      setDeleteItem(null)
+      setDeleteConfirmation('')
     }
   }
 
@@ -682,6 +694,83 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger }: 
               setNewStatus('')
             }}>Cancel</AlertDialogCancel>
             <AlertDialogAction onClick={handleStatusUpdate}>Update</AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
+
+      {/* Delete Confirmation Dialog */}
+      <AlertDialog open={showDeleteDialog} onOpenChange={(open) => {
+        setShowDeleteDialog(open)
+        if (!open) {
+          setDeleteItem(null)
+          setDeleteConfirmation('')
+        }
+      }}>
+        <AlertDialogContent style={{
+          backgroundColor: 'rgba(17, 24, 39, 0.98)',
+          border: '2px solid rgba(59, 130, 246, 0.3)',
+          boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.8)',
+          backdropFilter: 'blur(10px)'
+        }}>
+          <AlertDialogHeader>
+            <AlertDialogTitle style={{ color: '#ffffff' }}>Confirm Delete</AlertDialogTitle>
+            <AlertDialogDescription style={{ color: '#9ca3af' }}>
+              Are you sure you want to delete this {deleteItem?._formType?.replace('_', ' ')}? This action cannot be undone.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <div className="py-4">
+            <div className="space-y-2">
+              <label htmlFor="delete-confirmation" style={{ color: '#e5e7eb', fontSize: '14px', fontWeight: '500' }}>
+                Type <span style={{ color: '#ef4444', fontWeight: 'bold' }}>"delete"</span> to confirm:
+              </label>
+              <Input
+                id="delete-confirmation"
+                value={deleteConfirmation}
+                onChange={(e) => setDeleteConfirmation(e.target.value)}
+                placeholder="Type delete to confirm"
+                style={{
+                  backgroundColor: 'rgba(31, 41, 55, 0.8)',
+                  border: '1px solid rgba(59, 130, 246, 0.3)',
+                  color: '#ffffff'
+                }}
+                className="placeholder:text-gray-400"
+              />
+            </div>
+          </div>
+          <AlertDialogFooter>
+            <AlertDialogCancel 
+              onClick={() => {
+                setShowDeleteDialog(false)
+                setDeleteItem(null)
+                setDeleteConfirmation('')
+              }}
+              style={{
+                backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                border: '1px solid rgba(59, 130, 246, 0.3)',
+                color: '#ffffff'
+              }}
+              className="hover:bg-blue-600"
+            >
+              Cancel
+            </AlertDialogCancel>
+            <AlertDialogAction 
+              onClick={confirmDelete}
+              disabled={deleteConfirmation.toLowerCase() !== 'delete'}
+              style={{
+                backgroundColor: deleteConfirmation.toLowerCase() === 'delete' 
+                  ? 'rgba(220, 38, 38, 0.8)' 
+                  : 'rgba(107, 114, 128, 0.5)',
+                border: deleteConfirmation.toLowerCase() === 'delete'
+                  ? '1px solid rgba(220, 38, 38, 0.5)'
+                  : '1px solid rgba(107, 114, 128, 0.3)',
+                color: '#ffffff',
+                cursor: deleteConfirmation.toLowerCase() === 'delete' ? 'pointer' : 'not-allowed',
+                opacity: deleteConfirmation.toLowerCase() === 'delete' ? 1 : 0.6
+              }}
+              className={deleteConfirmation.toLowerCase() === 'delete' ? 'hover:bg-red-600' : ''}
+            >
+              Delete
+            </AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
