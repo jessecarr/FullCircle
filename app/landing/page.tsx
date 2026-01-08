@@ -7,7 +7,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { useAuth } from '@/hooks/useAuth'
 import { Header } from '@/components/Header'
 import { supabase } from '@/lib/supabase'
-import { FileText, Users, ArrowRight, Package, Shield, List } from 'lucide-react'
+import { FileText, Users, ArrowRight, Package, Shield, List, Settings } from 'lucide-react'
 
 export default function LandingPage() {
   const { user, loading } = useAuth()
@@ -85,6 +85,14 @@ export default function LandingPage() {
       href: '/dashboard',
       color: 'bg-gray-500',
       hoverColor: 'hover:bg-gray-600'
+    },
+    {
+      title: 'Settings',
+      description: 'Manage account settings and preferences',
+      icon: Settings,
+      href: '/settings',
+      color: 'bg-slate-500',
+      hoverColor: 'hover:bg-slate-600'
     }
   ]
 
