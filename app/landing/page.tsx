@@ -79,14 +79,6 @@ export default function LandingPage() {
       hoverColor: 'hover:bg-green-600'
     },
     {
-      title: 'Dashboard',
-      description: 'View system overview and analytics',
-      icon: Users,
-      href: '/dashboard',
-      color: 'bg-gray-500',
-      hoverColor: 'hover:bg-gray-600'
-    },
-    {
       title: 'Settings',
       description: 'Manage account settings and preferences',
       icon: Settings,
