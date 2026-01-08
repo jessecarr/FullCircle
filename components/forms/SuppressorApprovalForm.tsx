@@ -996,7 +996,7 @@ export function SuppressorApprovalForm({ initialData, onSuccess, onCancel }: Spe
             </div>
             
             {productLines.map((line, index) => (
-              <div key={index} className="grid grid-cols-9 gap-4 items-end mb-2">
+              <div key={index} className="grid grid-cols-9 gap-4 items-center mb-2">
                 <div className="col-span-2">
                   <Textarea
                     id={`control_number-${index}`}
@@ -1136,18 +1136,12 @@ export function SuppressorApprovalForm({ initialData, onSuccess, onCancel }: Spe
                   <Button
                     type="button"
                     variant="ghost"
-                    size="icon"
+                    size="sm"
                     onClick={() => removeProductLine(index)}
                     disabled={productLines.length <= 1}
-                    className="h-14 w-14 text-red-600 hover:text-red-800"
+                    className="text-white bg-red-600 hover:bg-red-800"
                   >
-                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M3 6h18"></path>
-                      <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path>
-                      <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path>
-                      <line x1="10" y1="11" x2="10" y2="17"></line>
-                      <line x1="14" y1="11" y2="17"></line>
-                    </svg>
+                    Delete
                   </Button>
                 </div>
               </div>
