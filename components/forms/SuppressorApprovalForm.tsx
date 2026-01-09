@@ -565,20 +565,29 @@ export function SuppressorApprovalForm({ initialData, onSuccess, onCancel }: Spe
     const tax = 0; // No tax as requested
     const total = subtotal;
 
-    // Determine scale factor based on number of items
+    // Calculate scale factor - scale down based on item count to fit in half page
     const itemCount = productLines.length;
     let scaleFactor = 1.0;
-    if (itemCount > 3) {
+    if (itemCount >= 4) {
+      scaleFactor = 0.90;
+    }
+    if (itemCount >= 5) {
       scaleFactor = 0.85;
     }
-    if (itemCount > 5) {
+    if (itemCount >= 6) {
+      scaleFactor = 0.80;
+    }
+    if (itemCount >= 7) {
       scaleFactor = 0.75;
     }
-    if (itemCount > 7) {
+    if (itemCount >= 8) {
       scaleFactor = 0.65;
     }
+    if (itemCount >= 10) {
+      scaleFactor = 0.55;
+    }
 
-    // Create print content with two copies on one page
+    // Create print content with two copies on one page - each copy takes exactly half the page
     const printContent = `
       <!DOCTYPE html>
       <html>
@@ -586,99 +595,116 @@ export function SuppressorApprovalForm({ initialData, onSuccess, onCancel }: Spe
         <title>Suppressor Approval Form</title>
         <style>
           @page {
-            size: portrait;
-            margin: 0.25in;
+            size: letter portrait;
+            margin: 0;
           }
           
-          body {
+          * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+          }
+          
+          html, body {
+            height: 100%;
+            width: 100%;
             font-family: 'Arial', sans-serif;
             color: #000;
             background: white;
-            padding: 10px;
-            max-width: 8in;
-            margin: 0 auto;
-            transform: scale(${scaleFactor});
-            transform-origin: top center;
+          }
+          
+          .page-container {
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
           }
           
           .print-copy {
+            height: 50%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 0.15in 0.3in;
+            overflow: hidden;
+          }
+          
+          .print-copy:first-child {
+            border-bottom: 1px dashed #999;
+          }
+          
+          .form-content {
+            width: 100%;
+            max-width: 7.5in;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
             border: 1px solid #000;
-            padding: 15px;
-            margin-bottom: 20px;
-            page-break-inside: avoid;
-          }
-          
-          .print-copy:last-child {
-            margin-bottom: 0;
-          }
-          
-          .copy-label {
-            text-align: center;
-            font-size: 10px;
-            color: #666;
-            margin-bottom: 5px;
-            font-weight: bold;
+            padding: 15px 20px;
+            transform: scale(${scaleFactor});
+            transform-origin: top center;
           }
           
           .print-header {
             text-align: center;
             border-bottom: 2px solid #000;
-            padding-bottom: 15px;
-            margin-bottom: 20px;
+            padding-bottom: 12px;
+            margin-bottom: 15px;
           }
           
-          .print-title {
-            font-size: 20px;
-            font-weight: bold;
+          .print-date {
+            text-align: left;
+            font-size: 11px;
             margin-bottom: 8px;
           }
           
-          .print-subtitle {
-            font-size: 12px;
-            color: #666;
+          .print-title {
+            font-size: 22px;
+            font-weight: bold;
           }
           
           .print-section {
-            margin-bottom: 20px;
+            margin-bottom: 12px;
           }
           
           .print-section-title {
             font-size: 14px;
             font-weight: bold;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
             border-bottom: 1px solid #ccc;
             padding-bottom: 3px;
           }
           
           .print-field {
-            margin-bottom: 6px;
+            margin-bottom: 4px;
             display: flex;
           }
           
           .print-label {
             font-weight: bold;
-            width: 120px;
+            width: 90px;
             flex-shrink: 0;
-            font-size: 12px;
+            font-size: 13px;
           }
           
           .print-value {
             flex: 1;
-            font-size: 12px;
+            font-size: 13px;
           }
           
           .print-table {
             width: 100%;
             border-collapse: collapse;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
           }
           
           .print-table th,
           .print-table td {
             border: 1px solid #000;
-            padding: 6px;
+            padding: 6px 8px;
             text-align: left;
-            font-size: 11px;
+            font-size: 12px;
           }
           
           .print-table th {
@@ -687,8 +713,8 @@ export function SuppressorApprovalForm({ initialData, onSuccess, onCancel }: Spe
           }
           
           .print-total-summary {
-            margin-top: 15px;
-            padding: 8px;
+            margin-top: auto;
+            padding: 8px 12px;
             background-color: #f5f5f5;
             border: 1px solid #000;
           }
@@ -704,15 +730,17 @@ export function SuppressorApprovalForm({ initialData, onSuccess, onCancel }: Spe
             font-size: 14px;
             font-weight: bold;
             border-top: 1px solid #000;
-            padding-top: 3px;
+            padding-top: 2px;
             margin-bottom: 0;
           }
         </style>
       </head>
       <body>
-        <!-- Customer Copy (Top) -->
+        <div class="page-container">
+        <!-- Customer Copy (Top Half) -->
         <div class="print-copy">
-          <div style="text-align: left; font-size: 10px; margin-bottom: 10px;">
+          <div class="form-content">
+          <div class="print-date">
             ${new Date().toLocaleDateString('en-US', {
               year: 'numeric',
               month: 'long',
@@ -752,11 +780,11 @@ export function SuppressorApprovalForm({ initialData, onSuccess, onCancel }: Spe
               <thead>
                 <tr>
                   <th style="width: 15%">Control #</th>
-                  <th style="width: 30%">Manufacturer</th>
+                  <th style="width: 25%">Manufacturer</th>
                   <th style="width: 15%">Model</th>
                   <th style="width: 15%">Serial #</th>
                   <th style="width: 15%">Order Type</th>
-                  <th style="width: 10%">Unit Price</th>
+                  <th style="width: 15%">Unit Price</th>
                 </tr>
               </thead>
               <tbody>
@@ -787,12 +815,14 @@ export function SuppressorApprovalForm({ initialData, onSuccess, onCancel }: Spe
                 <span>$${total.toFixed(2)}</span>
               </div>
             </div>
+          </div>
           </div>
         </div>
 
-        <!-- Merchant Copy (Bottom) -->
+        <!-- Merchant Copy (Bottom Half) -->
         <div class="print-copy">
-          <div style="text-align: left; font-size: 10px; margin-bottom: 10px;">
+          <div class="form-content">
+          <div class="print-date">
             ${new Date().toLocaleDateString('en-US', {
               year: 'numeric',
               month: 'long',
@@ -832,11 +862,11 @@ export function SuppressorApprovalForm({ initialData, onSuccess, onCancel }: Spe
               <thead>
                 <tr>
                   <th style="width: 15%">Control #</th>
-                  <th style="width: 30%">Manufacturer</th>
+                  <th style="width: 25%">Manufacturer</th>
                   <th style="width: 15%">Model</th>
                   <th style="width: 15%">Serial #</th>
                   <th style="width: 15%">Order Type</th>
-                  <th style="width: 10%">Unit Price</th>
+                  <th style="width: 15%">Unit Price</th>
                 </tr>
               </thead>
               <tbody>
@@ -868,6 +898,8 @@ export function SuppressorApprovalForm({ initialData, onSuccess, onCancel }: Spe
               </div>
             </div>
           </div>
+          </div>
+        </div>
         </div>
       </body>
       </html>
