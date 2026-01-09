@@ -1427,9 +1427,8 @@ export function OutboundTransferForm({ initialData, onSuccess, onCancel }: Outbo
                   <Button
                     type="button"
                     variant="outline"
-                    size="sm"
                     onClick={() => clearProductLine(index)}
-                    className="text-base border border-gray-400 hover:border-gray-300"
+                    className="text-base px-8 py-3 border border-gray-400 hover:border-gray-300 h-12"
                   >
                     Clear
                   </Button>
@@ -1439,10 +1438,9 @@ export function OutboundTransferForm({ initialData, onSuccess, onCancel }: Outbo
                   <Button
                     type="button"
                     variant="ghost"
-                    size="sm"
                     onClick={() => removeProductLine(index)}
                     disabled={productLines.length <= 1}
-                    className="text-white bg-red-600 hover:bg-red-800"
+                    className="text-white bg-red-600 hover:bg-red-800 px-8 py-3 h-12"
                   >
                     Delete
                   </Button>
