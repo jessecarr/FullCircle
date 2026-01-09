@@ -1435,9 +1435,9 @@ export function InboundTransferForm({ initialData, onSuccess, onCancel }: Specia
             <Button 
               type="button" 
               variant="outline" 
-              onClick={() => onCancel ? onCancel() : window.history.back()}
+              onClick={() => window.location.href = '/landing'}
               disabled={loading}
-              className="w-full"
+              className="w-full bg-red-600 hover:bg-red-700 text-white border-red-600"
               suppressHydrationWarning
             >
               Cancel
