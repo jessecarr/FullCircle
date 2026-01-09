@@ -330,7 +330,7 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
     e.preventDefault()
     
     // Validate required fields
-    if (!formData.customer_name || !formData.customer_phone) {
+    if (!formData.customer_name || !formData.customer_phone || !formData.payment) {
       toast({
         title: 'Validation Error',
         description: 'Please fill in all required customer fields',
@@ -751,11 +751,7 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
                   <div class="print-label">Payment:</div>
                   <div class="print-value">${formatPayment(formData.payment)}</div>
                 </div>
-                <div class="print-field">
-                  <div class="print-label">Status:</div>
-                  <div class="print-value">${formData.status.charAt(0).toUpperCase() + formData.status.slice(1)}</div>
-                </div>
-              </div>
+                              </div>
             </div>
           </div>
 
@@ -854,11 +850,7 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
                   <div class="print-label">Payment:</div>
                   <div class="print-value">${formatPayment(formData.payment)}</div>
                 </div>
-                <div class="print-field">
-                  <div class="print-label">Status:</div>
-                  <div class="print-value">${formData.status.charAt(0).toUpperCase() + formData.status.slice(1)}</div>
-                </div>
-              </div>
+                              </div>
             </div>
           </div>
 
@@ -1397,7 +1389,7 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
               </Select>
             </div>
             <div className="space-y-2">
-              <Label className="text-medium" htmlFor="payment">Payment</Label>
+              <Label className="text-medium" htmlFor="payment">Payment *</Label>
               <Select value={formData.payment} onValueChange={(value) => handleInputChange('payment', value)}>
                 <SelectTrigger suppressHydrationWarning>
                   <SelectValue placeholder="Select payment method" />
