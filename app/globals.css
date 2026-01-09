@@ -476,7 +476,7 @@ form, .form-container {
 
 /* Form field labels - make them larger */
 label, .label, [class*="Label"] {
-  font-size: 1.125rem !important;
+  font-size: 16px !important;
   font-weight: 500 !important;
   color: rgba(203, 213, 225, 0.95) !important;
 }
@@ -770,4 +770,23 @@ button[variant="ghost"]:hover {
 h3.text-6xl {
   font-size: 3.75rem !important;
   line-height: 1 !important;
+}
+
+/* FastBound search input - remove border to match CustomerSearch */
+.search-component input {
+  border: none !important;
+  outline: none !important;
+}
+
+/* Form view dialog field labels - make them larger */
+.FormViewDialog dt {
+  font-size: 16px !important;
+  font-weight: 600 !important;
+  color: #dbeafe !important;
+}
+
+/* Button icons - make them larger to match button text */
+button svg {
+  width: 1.25rem !important;
+  height: 1.25rem !important;
 }

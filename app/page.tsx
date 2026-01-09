@@ -58,6 +58,8 @@ function HomeContent() {
   const [refreshTrigger, setRefreshTrigger] = useState(0)
   const [pendingFormSwitch, setPendingFormSwitch] = useState<string | null>(null)
   const [showConfirmDialog, setShowConfirmDialog] = useState(false)
+  const [showDashboardDialog, setShowDashboardDialog] = useState(false)
+  const [showViewAllDialog, setShowViewAllDialog] = useState(false)
   const [allItems, setAllItems] = useState<any[]>([])
   const [currentViewIndex, setCurrentViewIndex] = useState(-1)
 
@@ -146,6 +148,46 @@ function HomeContent() {
     setPendingFormSwitch(null)
   }
 
+  const handleDashboardClick = () => {
+    console.log('Dashboard clicked, viewMode:', viewMode, 'editingItem:', editingItem);
+    // Always show dialog when on a form to prevent accidental navigation
+    if (viewMode === 'form') {
+      setShowDashboardDialog(true)
+    } else {
+      router.push('/landing')
+    }
+  }
+
+  const confirmDashboardNavigation = () => {
+    console.log('Confirming dashboard navigation');
+    setShowDashboardDialog(false)
+    router.push('/landing')
+  }
+
+  const cancelDashboardNavigation = () => {
+    setShowDashboardDialog(false)
+  }
+
+  const handleViewAllClick = () => {
+    console.log('View All clicked, viewMode:', viewMode, 'editingItem:', editingItem);
+    // Always show dialog when on a form to prevent accidental navigation
+    if (viewMode === 'form') {
+      setShowViewAllDialog(true)
+    } else {
+      setViewMode('list')
+    }
+  }
+
+  const confirmViewAllNavigation = () => {
+    console.log('Confirming view all navigation');
+    setShowViewAllDialog(false)
+    setViewMode('list')
+  }
+
+  const cancelViewAllNavigation = () => {
+    setShowViewAllDialog(false)
+  }
+
   const handleCancel = () => {
     setEditingItem(null)
     setViewMode('list')
@@ -209,7 +251,7 @@ function HomeContent() {
           <div className="flex items-center justify-between mb-6">
             <Button
               variant="outline"
-              onClick={() => router.push('/landing')}
+              onClick={handleDashboardClick}
             >
               <ArrowLeft className="h-4 w-4 mr-2" />
               Return to Dashboard
@@ -268,7 +310,7 @@ function HomeContent() {
               )}
               <Button
                 variant={viewMode === 'list' ? 'default' : 'outline'}
-                onClick={() => setViewMode('list')}
+                onClick={handleViewAllClick}
               >
                 <List className="h-4 w-4 mr-2" />
                 View All
@@ -343,7 +385,90 @@ function HomeContent() {
           </AlertDialogHeader>
           <AlertDialogFooter>
             <AlertDialogCancel onClick={cancelFormSwitch}>Cancel</AlertDialogCancel>
-            <AlertDialogAction onClick={confirmFormSwitch}>Continue</AlertDialogAction>
+            <Button 
+              onClick={confirmFormSwitch}
+              style={{
+                backgroundColor: '#1e40af',
+                borderColor: '#1e40af',
+                color: 'white'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = '#1d4ed8'
+                e.currentTarget.style.borderColor = '#1d4ed8'
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = '#1e40af'
+                e.currentTarget.style.borderColor = '#1e40af'
+              }}
+            >
+              Continue
+            </Button>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
+
+      {/* Dashboard Navigation Confirmation Dialog */}
+      <AlertDialog open={showDashboardDialog} onOpenChange={setShowDashboardDialog}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Return to Dashboard?</AlertDialogTitle>
+            <AlertDialogDescription>
+              The current form will not be saved. Are you sure you want to continue?
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel onClick={cancelDashboardNavigation}>Cancel</AlertDialogCancel>
+            <Button 
+              onClick={confirmDashboardNavigation}
+              style={{
+                backgroundColor: '#1e40af',
+                borderColor: '#1e40af',
+                color: 'white'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = '#1d4ed8'
+                e.currentTarget.style.borderColor = '#1d4ed8'
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = '#1e40af'
+                e.currentTarget.style.borderColor = '#1e40af'
+              }}
+            >
+              Continue
+            </Button>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
+
+      {/* View All Navigation Confirmation Dialog */}
+      <AlertDialog open={showViewAllDialog} onOpenChange={setShowViewAllDialog}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>View All Forms?</AlertDialogTitle>
+            <AlertDialogDescription>
+              The current form will not be saved. Are you sure you want to continue?
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel onClick={cancelViewAllNavigation}>Cancel</AlertDialogCancel>
+            <Button 
+              onClick={confirmViewAllNavigation}
+              style={{
+                backgroundColor: '#1e40af',
+                borderColor: '#1e40af',
+                color: 'white'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = '#1d4ed8'
+                e.currentTarget.style.borderColor = '#1d4ed8'
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = '#1e40af'
+                e.currentTarget.style.borderColor = '#1e40af'
+              }}
+            >
+              Continue
+            </Button>
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>

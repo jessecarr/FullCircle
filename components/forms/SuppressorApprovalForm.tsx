@@ -88,6 +88,147 @@ export function SuppressorApprovalForm({ initialData, onSuccess, onCancel }: Spe
       })
     }
   }, [productLines, isClient])
+
+  // Customer update and creation function
+  const updateCustomerRecord = async () => {
+    // Only proceed if we have customer phone or email to identify the customer
+    if (!formData.customer_phone && !formData.customer_email) {
+      return;
+    }
+
+    try {
+      // Check if customer exists by phone AND/OR email
+      let existingCustomer = null;
+      
+      console.log('Customer lookup - Phone:', formData.customer_phone, 'Email:', formData.customer_email);
+      
+      // First try to find by phone if provided
+      if (formData.customer_phone && formData.customer_phone.trim() !== '') {
+        console.log('Looking up customer by phone:', formData.customer_phone);
+        const { data } = await supabase
+          .from('customers')
+          .select('*')
+          .eq('phone', formData.customer_phone)
+          .maybeSingle();
+        
+        if (data) {
+          existingCustomer = data;
+          console.log('Found existing customer by phone:', data);
+        }
+      }
+      
+      // If not found by phone, try by email if provided and not empty
+      if (!existingCustomer && formData.customer_email && formData.customer_email.trim() !== '') {
+        console.log('Looking up customer by email:', formData.customer_email);
+        const { data } = await supabase
+          .from('customers')
+          .select('*')
+          .eq('email', formData.customer_email)
+          .maybeSingle();
+        
+        if (data) {
+          existingCustomer = data;
+          console.log('Found existing customer by email:', data);
+        }
+      }
+      
+      console.log('Final existingCustomer result:', existingCustomer);
+
+      if (existingCustomer) {
+        // Customer exists, update with additional information
+        const updateData: any = {};
+        
+        // Only update fields that have new information
+        if (formData.customer_name && formData.customer_name !== existingCustomer.name) {
+          updateData.name = formData.customer_name;
+        }
+        if (formData.customer_email && formData.customer_email !== existingCustomer.email) {
+          updateData.email = formData.customer_email;
+        }
+        if (formData.customer_phone && formData.customer_phone !== existingCustomer.phone) {
+          updateData.phone = formData.customer_phone;
+        }
+        if (formData.customer_street && formData.customer_street !== existingCustomer.street) {
+          updateData.street = formData.customer_street;
+        }
+        if (formData.customer_city && formData.customer_city !== existingCustomer.city) {
+          updateData.city = formData.customer_city;
+        }
+        if (formData.customer_state && formData.customer_state !== existingCustomer.state) {
+          updateData.state = formData.customer_state;
+        }
+        if (formData.customer_zip && formData.customer_zip !== existingCustomer.zip) {
+          updateData.zip = formData.customer_zip;
+        }
+        if (formData.drivers_license && formData.drivers_license !== existingCustomer.drivers_license) {
+          updateData.drivers_license = formData.drivers_license;
+        }
+        if (formData.license_expiration && formData.license_expiration !== existingCustomer.license_expiration) {
+          updateData.license_expiration = formData.license_expiration;
+        }
+
+        // Only update if there are changes
+        if (Object.keys(updateData).length > 0) {
+          updateData.updated_at = new Date().toISOString();
+          
+          const { error } = await supabase
+            .from('customers')
+            .update(updateData)
+            .eq('id', existingCustomer.id);
+
+          if (error) {
+            console.error('Failed to update customer record:', error);
+            console.error('Update error details:', JSON.stringify(error, null, 2));
+          } else {
+            console.log('Customer record updated successfully');
+          }
+        }
+      } else {
+        // Customer doesn't exist, create new customer with all provided information
+        console.log('Creating new customer record...');
+        const newCustomerData: any = {
+          name: formData.customer_name,
+          phone: formData.customer_phone,
+          street: formData.customer_street || null,
+          city: formData.customer_city || null,
+          state: formData.customer_state || null,
+          zip: formData.customer_zip || null,
+          drivers_license: formData.drivers_license || null,
+          license_expiration: formData.license_expiration || null,
+          created_at: new Date().toISOString(),
+          updated_at: new Date().toISOString()
+        };
+
+        // Always include email field - generate unique placeholder if not provided
+        if (formData.customer_email && formData.customer_email.trim() !== '') {
+          newCustomerData.email = formData.customer_email;
+          console.log('Using provided email:', formData.customer_email);
+        } else {
+          // Generate unique placeholder email to satisfy unique constraint
+          const timestamp = Date.now();
+          const random = Math.random().toString(36).substring(2, 8);
+          newCustomerData.email = `no-email-${timestamp}-${random}@placeholder.local`;
+          console.log('Generated placeholder email:', newCustomerData.email);
+        }
+
+        console.log('New customer data to insert:', newCustomerData);
+
+        const { error: insertError } = await supabase
+          .from('customers')
+          .insert([newCustomerData]);
+
+        if (insertError) {
+          console.error('Failed to create customer record:', insertError);
+          console.error('Insert error details:', JSON.stringify(insertError, null, 2));
+        } else {
+          console.log('Customer record created successfully');
+        }
+      }
+    } catch (error) {
+      console.error('Error in customer record operation:', error);
+      // Don't throw error - customer operations shouldn't block order creation
+    }
+  };
   
   const [formData, setFormData] = useState({
     customer_name: initialData?.customer_name || '',
@@ -292,6 +433,9 @@ export function SuppressorApprovalForm({ initialData, onSuccess, onCancel }: Spe
     try {
       // Calculate total price for all product lines
       const totalAmount = productLines.reduce((acc, line) => acc + line.unit_price, 0);
+
+      // Update customer record with additional information if provided
+      await updateCustomerRecord();
 
       if (initialData) {
         // Update existing order
@@ -786,11 +930,10 @@ export function SuppressorApprovalForm({ initialData, onSuccess, onCancel }: Spe
           <div className="border rounded-lg p-6 mb-6">
             <div className="space-y-4">
               <div className="p-4 rounded-lg" style={{
-                backgroundColor: '#172554',
-                border: '2px solid #ffffff',
+                backgroundColor: 'rgba(59, 130, 246, 0.2)',
+                border: '1px solid rgba(59, 130, 246, 0.4)',
                 padding: '1rem',
-                borderRadius: '0.5rem',
-                boxShadow: '0 0 0 1px rgba(255, 255, 255, 0.2)'
+                borderRadius: '0.5rem'
               }}>
                 <div className="text-xl font-semibold flex items-center gap-2 mb-3" style={{ color: '#dbeafe' }}>
                   <Search className="h-6 w-6" />
@@ -801,10 +944,12 @@ export function SuppressorApprovalForm({ initialData, onSuccess, onCancel }: Spe
                 </p>
                 <CustomerSearch 
                   onSelect={(customer) => {
+                    // Check if email is a placeholder, leave blank if so
+                    const isPlaceholderEmail = customer.email && customer.email.includes('@placeholder.local');
                     setFormData({
                       ...formData,
                       customer_name: customer.name || '',
-                      customer_email: customer.email || '',
+                      customer_email: isPlaceholderEmail ? '' : (customer.email || ''),
                       customer_phone: customer.phone || '',
                       customer_street: customer.street || '',
                       customer_city: customer.city || '',
@@ -816,7 +961,7 @@ export function SuppressorApprovalForm({ initialData, onSuccess, onCancel }: Spe
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="space-y-2">
-                  <Label className="text-lg" htmlFor="customer_name">Customer Name *</Label>
+                  <Label className="text-medium" htmlFor="customer_name">Customer Name *</Label>
                   <Input
                     id="customer_name"
                     value={formData.customer_name}
@@ -833,7 +978,7 @@ export function SuppressorApprovalForm({ initialData, onSuccess, onCancel }: Spe
                 </div>
 
                 <div className="space-y-2">
-                  <Label className="text-lg" htmlFor="customer_phone">Customer Phone *</Label>
+                  <Label className="text-medium" htmlFor="customer_phone">Customer Phone *</Label>
                   <Input
                     id="customer_phone"
                     type="tel"
@@ -857,7 +1002,7 @@ export function SuppressorApprovalForm({ initialData, onSuccess, onCancel }: Spe
               
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
                 <div className="space-y-2">
-                  <Label className="text-lg" htmlFor="drivers_license">Driver's License</Label>
+                  <Label className="text-medium" htmlFor="drivers_license">Driver's License</Label>
                   <Input
                     id="drivers_license"
                     value={formData.drivers_license}
@@ -873,7 +1018,7 @@ export function SuppressorApprovalForm({ initialData, onSuccess, onCancel }: Spe
                 </div>
 
                 <div className="space-y-2">
-                  <Label className="text-lg" htmlFor="license_expiration">Expiration Date</Label>
+                  <Label className="text-medium" htmlFor="license_expiration">Expiration Date</Label>
                   <Input
                     id="license_expiration"
                     type="date"
@@ -889,7 +1034,7 @@ export function SuppressorApprovalForm({ initialData, onSuccess, onCancel }: Spe
                 </div>
 
                 <div className="space-y-2">
-                  <Label className="text-lg" htmlFor="customer_email">Customer Email</Label>
+                  <Label className="text-medium" htmlFor="customer_email">Customer Email</Label>
                   <Input
                     id="customer_email"
                     type="email"
@@ -907,7 +1052,7 @@ export function SuppressorApprovalForm({ initialData, onSuccess, onCancel }: Spe
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
                 <div className="space-y-2">
-                  <Label className="text-lg" htmlFor="customer_street">Street Address</Label>
+                  <Label className="text-medium" htmlFor="customer_street">Street Address</Label>
                   <Textarea
                     id="customer_street"
                     value={formData.customer_street}
@@ -917,7 +1062,7 @@ export function SuppressorApprovalForm({ initialData, onSuccess, onCancel }: Spe
                 </div>
                 <div className="grid grid-cols-1 gap-4">
                   <div className="space-y-2">
-                    <Label className="text-lg" htmlFor="customer_zip">Zip</Label>
+                    <Label className="text-medium" htmlFor="customer_zip">Zip</Label>
                     <Input
                       id="customer_zip"
                       value={formData.customer_zip}
@@ -935,7 +1080,7 @@ export function SuppressorApprovalForm({ initialData, onSuccess, onCancel }: Spe
                   </div>
 
                   <div className="space-y-2">
-                    <Label className="text-lg" htmlFor="customer_state">State</Label>
+                    <Label className="text-medium" htmlFor="customer_state">State</Label>
                     <Input
                       id="customer_state"
                       value={formData.customer_state}
@@ -951,7 +1096,7 @@ export function SuppressorApprovalForm({ initialData, onSuccess, onCancel }: Spe
                   </div>
 
                   <div className="space-y-2">
-                    <Label className="text-lg" htmlFor="customer_city">City</Label>
+                    <Label className="text-medium" htmlFor="customer_city">City</Label>
                     <Input
                       id="customer_city"
                       value={formData.customer_city}
@@ -968,12 +1113,17 @@ export function SuppressorApprovalForm({ initialData, onSuccess, onCancel }: Spe
             <h3 className="text-xl underline font-bold mb-4">Items</h3>
             
             {/* FastBound Inventory Search */}
-            <div className="subtotal-section mb-2 p-4 rounded-lg">
-              <Label className="text-lg font-semibold flex items-center gap-2 mb-2">
-                <Search className="h-5 w-5" />
+            <div className="p-4 rounded-lg mb-6" style={{
+              backgroundColor: 'rgba(59, 130, 246, 0.2)',
+              border: '1px solid rgba(59, 130, 246, 0.4)',
+              padding: '1rem',
+              borderRadius: '0.5rem'
+            }}>
+              <div className="text-xl font-semibold flex items-center gap-2 mb-3" style={{ color: '#dbeafe' }}>
+                <Search className="h-6 w-6" />
                 Search FastBound Inventory
-              </Label>
-              <p className="text-sm text-[#9ca3af] mb-3">
+              </div>
+              <p className="text-base mb-3" style={{ color: '#dbeafe' }}>
                 Search your FastBound inventory to auto-fill item details. Select an item to add it to the form.
               </p>
               <FastBoundSearch
@@ -1066,7 +1216,7 @@ export function SuppressorApprovalForm({ initialData, onSuccess, onCancel }: Spe
                       setTimeout(() => recalculateRowHeight(index), 10);
                     }}
                     data-testid={`control-number-input-${index}`}
-                    placeholder="ENTER CONTROL #"
+                    placeholder="Enter Control # to Autofill"
                   />
                 </div>
 
@@ -1182,7 +1332,7 @@ export function SuppressorApprovalForm({ initialData, onSuccess, onCancel }: Spe
                     size="sm"
                     onClick={() => removeProductLine(index)}
                     disabled={productLines.length <= 1}
-                    className="text-white bg-red-600 hover:bg-red-800"
+                    className="text-base text-white bg-red-600 hover:bg-red-800"
                   >
                     Delete
                   </Button>
@@ -1217,9 +1367,9 @@ export function SuppressorApprovalForm({ initialData, onSuccess, onCancel }: Spe
             <Button 
               type="button" 
               variant="outline" 
-              onClick={() => onCancel ? onCancel() : window.history.back()}
+              onClick={() => window.location.href = '/landing'}
               disabled={loading}
-              className="w-full"
+              className="w-full bg-red-600 hover:bg-red-700 text-white border-red-600"
               suppressHydrationWarning
             >
               Cancel
@@ -1233,7 +1383,7 @@ export function SuppressorApprovalForm({ initialData, onSuccess, onCancel }: Spe
               suppressHydrationWarning
               data-print-form="true"
             >
-              <Printer className="h-4 w-4 mr-2" />
+              <Printer className="h-6 w-6 mr-2" />
               Print
             </Button>
             <Button type="submit" disabled={loading} className="w-full" suppressHydrationWarning>
