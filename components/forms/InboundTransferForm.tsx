@@ -1370,13 +1370,13 @@ export function InboundTransferForm({ initialData, onSuccess, onCancel }: Specia
                   />
                 </div>
 
-                <div className="col-span-1 flex flex-col gap-2 justify-end">
+                <div className="col-span-1 flex flex-col gap-1 justify-end">
                   <Button
                     type="button"
                     variant="outline"
                     size="sm"
                     onClick={() => clearProductLine(index)}
-                    className="text-base border border-gray-400 hover:border-gray-300 w-full"
+                    className="text-xs border border-gray-400 hover:border-gray-300 w-16 h-8"
                   >
                     Clear
                   </Button>
@@ -1386,7 +1386,7 @@ export function InboundTransferForm({ initialData, onSuccess, onCancel }: Specia
                     size="sm"
                     onClick={() => removeProductLine(index)}
                     disabled={productLines.length <= 1}
-                    className="text-white bg-red-600 hover:bg-red-800 w-full"
+                    className="text-xs text-white bg-red-600 hover:bg-red-800 w-16 h-8"
                   >
                     Delete
                   </Button>

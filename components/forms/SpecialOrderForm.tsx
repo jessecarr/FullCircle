@@ -1192,7 +1192,7 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
                       }
                     }}
                     required
-                    className="w-24 text-base text-center text-left"
+                    className="w-20 text-base text-center text-left"
                     style={{ 
                       height: isClient ? (rowHeights[index] || '48px') : '48px',
                       MozAppearance: 'textfield',
@@ -1217,7 +1217,7 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
                         vendorField?.focus();
                       }
                     }}
-                    className="w-24 text-base"
+                    className="w-20 text-base"
                     style={{ height: isClient ? (rowHeights[index] || '48px') : '48px' }}
                   />
                 </div>
@@ -1233,26 +1233,21 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
                   />
                 </div>
 
-                <div className="col-span-1">
+                <div className="col-span-2 flex gap-2 justify-end">
                   <Button
                     type="button"
                     variant="outline"
-                    size="sm"
                     onClick={() => clearProductLine(index)}
-                    className="text-base border border-gray-400 hover:border-gray-300"
+                    className="text-base px-6 py-3 border border-gray-400 hover:border-gray-300 h-12"
                   >
                     Clear
                   </Button>
-                </div>
-
-                <div className="col-span-1">
                   <Button
                     type="button"
                     variant="ghost"
-                    size="sm"
                     onClick={() => removeProductLine(index)}
                     disabled={productLines.length <= 1}
-                    className="text-white bg-red-600 hover:bg-red-800"
+                    className="text-white bg-red-600 hover:bg-red-800 px-6 py-3 h-12"
                   >
                     Delete
                   </Button>
