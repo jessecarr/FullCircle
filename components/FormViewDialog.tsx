@@ -46,9 +46,9 @@ export function FormViewDialog({ open, onOpenChange, data, title, onEdit, onPrev
     if (value === null || value === undefined || value === '') return null
     
     return (
-      <div className="grid grid-cols-3 gap-4 py-2 border-b border-[rgba(59, 130, 246, 0.3)]">
-        <dt className="font-semibold text-sm text-[#9ca3af]">{label}</dt>
-        <dd className="col-span-2 text-sm text-[#e0e0e0]">{String(value)}</dd>
+      <div className="grid grid-cols-3 gap-4 py-3 px-4 rounded-lg bg-[rgba(59, 130, 246, 0.05)] border border-[rgba(59, 130, 246, 0.2)] hover:bg-[rgba(59, 130, 246, 0.08)] transition-all duration-200">
+        <dt className="font-semibold text-sm text-[#dbeafe]">{label}</dt>
+        <dd className="col-span-2 text-sm text-[#e0e0e0] font-medium">{String(value)}</dd>
       </div>
     )
   }
@@ -61,9 +61,9 @@ export function FormViewDialog({ open, onOpenChange, data, title, onEdit, onPrev
     if (!hasData) return null
     
     return (
-      <div className="mb-6">
-        <h4 className="text-lg font-semibold mb-3 text-[#e0e0e0]">{sectionTitle}</h4>
-        <dl className="space-y-1">
+      <div className="mb-8">
+        <h4 className="text-xl font-bold mb-4 text-[#dbeafe] pb-2 border-b-2 border-[rgba(59, 130, 246, 0.3)]">{sectionTitle}</h4>
+        <dl className="space-y-3">
           {Object.entries(fields).map(([key, value]) => {
             if (value === null || value === undefined || value === '') return null
             
@@ -87,8 +87,8 @@ export function FormViewDialog({ open, onOpenChange, data, title, onEdit, onPrev
     if (!productLines || productLines.length === 0) return null
     
     return (
-      <div className="mb-6">
-        <h4 className="text-lg font-semibold mb-3 text-[#e0e0e0]">Items</h4>
+      <div className="mb-8">
+        <h4 className="text-xl font-bold mb-4 text-[#dbeafe] pb-2 border-b-2 border-[rgba(59, 130, 246, 0.3)]">Items</h4>
         <div className="space-y-3">
           {productLines.map((line, index) => (
             <div key={index} className="border border-[rgba(59, 130, 246, 0.3)] rounded-lg p-4 landing-card">
@@ -342,13 +342,13 @@ export function FormViewDialog({ open, onOpenChange, data, title, onEdit, onPrev
           </div>
         </div>
         
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
           {sections.map((section, index) => (
-            <div key={index}>
+            <div key={index} className="transition-all duration-300">
               {(section as any).productLines ? (
                 renderProductLines((section as any).productLines)
               ) : (
-                renderSection(section.title, section.fields)
+                renderSection((section as any).title, (section as any).fields)
               )}
             </div>
           ))}

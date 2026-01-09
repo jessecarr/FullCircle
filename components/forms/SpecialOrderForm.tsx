@@ -869,11 +869,10 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
           <div className="border rounded-lg p-6 mb-6">
             <div className="space-y-4">
               <div className="p-4 rounded-lg" style={{
-                backgroundColor: '#172554',
-                border: '2px solid #ffffff',
+                backgroundColor: 'rgba(59, 130, 246, 0.2)',
+                border: '1px solid rgba(59, 130, 246, 0.4)',
                 padding: '1rem',
-                borderRadius: '0.5rem',
-                boxShadow: '0 0 0 1px rgba(255, 255, 255, 0.2)'
+                borderRadius: '0.5rem'
               }}>
                 <div className="text-xl font-semibold flex items-center gap-2 mb-3" style={{ color: '#dbeafe' }}>
                   <Search className="h-6 w-6" />
