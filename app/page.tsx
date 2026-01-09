@@ -343,7 +343,24 @@ function HomeContent() {
           </AlertDialogHeader>
           <AlertDialogFooter>
             <AlertDialogCancel onClick={cancelFormSwitch}>Cancel</AlertDialogCancel>
-            <AlertDialogAction onClick={confirmFormSwitch}>Continue</AlertDialogAction>
+            <Button 
+              onClick={confirmFormSwitch}
+              style={{
+                backgroundColor: '#1e40af',
+                borderColor: '#1e40af',
+                color: 'white'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = '#1d4ed8'
+                e.currentTarget.style.borderColor = '#1d4ed8'
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = '#1e40af'
+                e.currentTarget.style.borderColor = '#1e40af'
+              }}
+            >
+              Continue
+            </Button>
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
