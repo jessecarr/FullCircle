@@ -47,8 +47,8 @@ export function FormViewDialog({ open, onOpenChange, data, title, onEdit, onPrev
     
     return (
       <div className="grid grid-cols-3 gap-4 py-3 px-4 rounded-lg bg-[rgba(59, 130, 246, 0.05)] border border-[rgba(59, 130, 246, 0.2)] hover:bg-[rgba(59, 130, 246, 0.08)] transition-all duration-200">
-        <dt className="font-semibold text-sm text-[#dbeafe]">{label}</dt>
-        <dd className="col-span-2 text-sm text-[#e0e0e0] font-medium">{String(value)}</dd>
+        <dt className="font-semibold text-[#dbeafe]" style={{ fontSize: '18px' }}>{label}</dt>
+        <dd className="col-span-2 text-[#e0e0e0] font-medium" style={{ fontSize: '14px' }}>{String(value)}</dd>
       </div>
     )
   }
@@ -291,6 +291,7 @@ export function FormViewDialog({ open, onOpenChange, data, title, onEdit, onPrev
       )}
 
       <div
+        className="FormViewDialog"
         style={{
           backgroundColor: 'rgba(17, 24, 39, 0.98)',
           padding: '24px',

@@ -476,7 +476,7 @@ form, .form-container {
 
 /* Form field labels - make them larger */
 label, .label, [class*="Label"] {
-  font-size: 1.125rem !important;
+  font-size: 18px !important;
   font-weight: 500 !important;
   color: rgba(203, 213, 225, 0.95) !important;
 }
@@ -776,4 +776,11 @@ h3.text-6xl {
 .search-component input {
   border: none !important;
   outline: none !important;
+}
+
+/* Form view dialog field labels - make them larger */
+.FormViewDialog dt {
+  font-size: 1.125rem !important;
+  font-weight: 600 !important;
+  color: #dbeafe !important;
 }
