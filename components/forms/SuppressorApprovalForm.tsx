@@ -1332,7 +1332,7 @@ export function SuppressorApprovalForm({ initialData, onSuccess, onCancel }: Spe
                     size="sm"
                     onClick={() => removeProductLine(index)}
                     disabled={productLines.length <= 1}
-                    className="text-white bg-red-600 hover:bg-red-800"
+                    className="text-base text-white bg-red-600 hover:bg-red-800"
                   >
                     Delete
                   </Button>

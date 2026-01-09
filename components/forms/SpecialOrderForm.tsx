@@ -1247,7 +1247,7 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
                     variant="ghost"
                     onClick={() => removeProductLine(index)}
                     disabled={productLines.length <= 1}
-                    className="text-white bg-red-600 hover:bg-red-800 px-6 py-3 h-12"
+                    className="text-base text-white bg-red-600 hover:bg-red-800 px-6 py-3 h-12"
                   >
                     Delete
                   </Button>
