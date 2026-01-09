@@ -1218,7 +1218,7 @@ export function SuppressorApprovalForm({ initialData, onSuccess, onCancel }: Spe
                       setTimeout(() => recalculateRowHeight(index), 10);
                     }}
                     data-testid={`control-number-input-${index}`}
-                    placeholder="ENTER CONTROL #"
+                    placeholder="Enter Control # to Autofill"
                   />
                 </div>
 
