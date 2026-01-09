@@ -82,6 +82,7 @@ export interface SpecialOrderForm {
   product_lines: any[]
   total_price: number
   delivery_method: 'in_store_pickup' | 'ship_to_customer'
+  payment?: string
   special_requests?: string
   status: 'pending' | 'ordered' | 'received' | 'completed' | 'cancelled'
   created_at: string

@@ -83,37 +83,70 @@ export function FormViewDialog({ open, onOpenChange, data, title, onEdit, onPrev
     )
   }
 
-  const renderProductLines = (productLines: any[]) => {
+  const renderProductLines = (productLines: any[], formType?: string) => {
     if (!productLines || productLines.length === 0) return null
     
     return (
       <div className="mb-8">
-        <h4 className="text-xl font-bold mb-4 text-[#dbeafe] pb-2 border-b-2 border-[rgba(59, 130, 246, 0.3)]">Items</h4>
+        <h4 className="text-xl font-bold mb-4 text-[#dbeafe] pb-2 border-b-2 border-[rgba(59, 130, 246, 0.3)]">
+          {formType === 'inbound_transfer' ? 'Transfer Items' : 'Items'}
+        </h4>
         <div className="space-y-3">
           {productLines.map((line, index) => (
             <div key={index} className="border border-[rgba(59, 130, 246, 0.3)] rounded-lg p-4 landing-card">
-              <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
-                <div>
-                  <span className="text-xs text-[#9ca3af]">SKU</span>
-                  <p className="font-medium text-[#e0e0e0]">{line.sku}</p>
+              {formType === 'inbound_transfer' ? (
+                // Inbound Transfer fields
+                <div className="grid grid-cols-2 md:grid-cols-6 gap-4">
+                  <div>
+                    <span className="text-xs text-[#9ca3af]">Control #</span>
+                    <p className="font-medium text-[#e0e0e0]">{line.control_number || '-'}</p>
+                  </div>
+                  <div>
+                    <span className="text-xs text-[#9ca3af]">Manufacturer</span>
+                    <p className="font-medium text-[#e0e0e0]">{line.manufacturer || '-'}</p>
+                  </div>
+                  <div>
+                    <span className="text-xs text-[#9ca3af]">Model</span>
+                    <p className="font-medium text-[#e0e0e0]">{line.model || '-'}</p>
+                  </div>
+                  <div>
+                    <span className="text-xs text-[#9ca3af]">Serial #</span>
+                    <p className="font-medium text-[#e0e0e0]">{line.serial_number || '-'}</p>
+                  </div>
+                  <div>
+                    <span className="text-xs text-[#9ca3af]">Order Type</span>
+                    <p className="font-medium text-[#e0e0e0]">{line.order_type || '-'}</p>
+                  </div>
+                  <div>
+                    <span className="text-xs text-[#9ca3af]">Unit Price</span>
+                    <p className="font-medium text-[#e0e0e0]">{line.unit_price ? (typeof line.unit_price === 'string' && line.unit_price.includes('$') ? line.unit_price : `$${line.unit_price.toFixed(2)}`) : '-'}</p>
+                  </div>
                 </div>
-                <div>
-                  <span className="text-xs text-[#9ca3af]">Description</span>
-                  <p className="font-medium text-[#e0e0e0]">{line.description}</p>
+              ) : (
+                // Special Order fields
+                <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+                  <div>
+                    <span className="text-xs text-[#9ca3af]">SKU</span>
+                    <p className="font-medium text-[#e0e0e0]">{line.sku || '-'}</p>
+                  </div>
+                  <div>
+                    <span className="text-xs text-[#9ca3af]">Description</span>
+                    <p className="font-medium text-[#e0e0e0]">{line.description || '-'}</p>
+                  </div>
+                  <div>
+                    <span className="text-xs text-[#9ca3af]">Qty/Price</span>
+                    <p className="font-medium text-[#e0e0e0]">{line.quantity || 0} × {line.unit_price ? (typeof line.unit_price === 'string' && line.unit_price.includes('$') ? line.unit_price : `$${line.unit_price.toFixed(2)}`) : '-'}</p>
+                  </div>
+                  <div>
+                    <span className="text-xs text-[#9ca3af]">Total</span>
+                    <p className="font-medium text-[#e0e0e0]">{line.total_price ? (typeof line.total_price === 'string' && line.total_price.includes('$') ? line.total_price : `$${line.total_price.toFixed(2)}`) : '-'}</p>
+                  </div>
+                  <div>
+                    <span className="text-xs text-[#9ca3af]">Vendor</span>
+                    <p className="font-medium text-[#e0e0e0]">{line.vendor_name || line.vendor || 'N/A'}</p>
+                  </div>
                 </div>
-                <div>
-                  <span className="text-xs text-[#9ca3af]">Qty/Price</span>
-                  <p className="font-medium text-[#e0e0e0]">{line.quantity} × ${line.unit_price}</p>
-                </div>
-                <div>
-                  <span className="text-xs text-[#9ca3af]">Total</span>
-                  <p className="font-medium text-[#e0e0e0]">${line.total_price}</p>
-                </div>
-                <div>
-                  <span className="text-xs text-[#9ca3af]">Vendor</span>
-                  <p className="font-medium text-[#e0e0e0]">{line.vendor_name || line.vendor || 'N/A'}</p>
-                </div>
-              </div>
+              )}
             </div>
           ))}
         </div>
@@ -134,6 +167,7 @@ export function FormViewDialog({ open, onOpenChange, data, title, onEdit, onPrev
 
   const orderFields = {
     delivery_method: data.delivery_method === 'in_store_pickup' ? 'In-Store Pickup' : 'Ship to Customer',
+    payment: data.payment ? (typeof data.payment === 'string' ? data.payment.charAt(0).toUpperCase() + data.payment.slice(1).replace('_', ' ') : data.payment) : '',
     special_requests: data.special_requests,
     status: data.status,
     total_price: data.total_price,
@@ -141,9 +175,35 @@ export function FormViewDialog({ open, onOpenChange, data, title, onEdit, onPrev
 
   // Handle different form types
   const getFormSections = () => {
-    // Check if it's a special order by looking for customer fields
-    if (data.customer_name || data.customer_email || data.customer_phone) {
-      // Special Order form - has customer fields
+    // Check form type based on _formType if available, otherwise fall back to field detection
+    const formType = data._formType || ''
+    
+    if (formType === 'inbound_transfers' || (data.customer_name && !data.delivery_method && !data.payment)) {
+      // Inbound Transfer form - has customer fields but no delivery/payment
+      const transferFields = {
+        customer_name: data.customer_name,
+        customer_email: data.customer_email,
+        customer_phone: data.customer_phone,
+        customer_street: data.customer_street,
+        customer_city: data.customer_city,
+        customer_state: data.customer_state,
+        customer_zip: data.customer_zip,
+        status: data.status,
+        special_requests: data.special_requests,
+      }
+      
+      const sections = [
+        { title: 'Customer Information', fields: transferFields }
+      ]
+      
+      // Add product lines if they exist
+      if (data.product_lines && Array.isArray(data.product_lines)) {
+        sections.push({ title: 'Transfer Items', fields: {}, productLines: data.product_lines, formType: 'inbound_transfer' } as any)
+      }
+      
+      return sections
+    } else if (data.customer_name || data.customer_email || data.customer_phone) {
+      // Special Order form - has customer fields and delivery/payment
       const sections = [
         { title: 'Customer Information', fields: customerFields },
         { title: 'Order Details', fields: orderFields }
@@ -151,12 +211,12 @@ export function FormViewDialog({ open, onOpenChange, data, title, onEdit, onPrev
       
       // Add product lines if they exist
       if (data.product_lines && Array.isArray(data.product_lines)) {
-        sections.push({ title: 'Items', fields: {}, productLines: data.product_lines } as any)
+        sections.push({ title: 'Items', fields: {}, productLines: data.product_lines, formType: 'special_order' } as any)
       }
       
       return sections
     } else if (data.transferor_name) {
-      // Inbound Transfer form
+      // Inbound Transfer form (old format)
       const transferFields = {
         transferor_name: data.transferor_name,
         transferor_ffl: data.transferor_ffl,
@@ -347,7 +407,7 @@ export function FormViewDialog({ open, onOpenChange, data, title, onEdit, onPrev
           {sections.map((section, index) => (
             <div key={index} className="transition-all duration-300">
               {(section as any).productLines ? (
-                renderProductLines((section as any).productLines)
+                renderProductLines((section as any).productLines, (section as any).formType)
               ) : (
                 renderSection((section as any).title, (section as any).fields)
               )}

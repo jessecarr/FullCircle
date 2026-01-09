@@ -21,17 +21,26 @@ const formatPhoneNumber = (phone: string): string => {
   return `(${digits.slice(0,3)}) ${digits.slice(3,6)}-${digits.slice(6,10)}`
 }
 
+const formatPayment = (payment: string): string => {
+  if (!payment) return 'Not specified'
+  return payment.charAt(0).toUpperCase() + payment.slice(1).replace('_', ' ')
+}
+
 export function printSpecialOrder(data: any) {
   const productLines: ProductLine[] = data.product_lines || []
   const subtotal = productLines.reduce((acc, line) => acc + (line.total_price || 0), 0)
   const tax = subtotal * 0.0795
   const total = subtotal * 1.0795
 
+  // Calculate scale factor - scale down based on item count to fit in half page
   const itemCount = productLines.length
   let scaleFactor = 1.0
-  if (itemCount > 3) scaleFactor = 0.85
-  if (itemCount > 5) scaleFactor = 0.75
-  if (itemCount > 7) scaleFactor = 0.65
+  if (itemCount >= 4) scaleFactor = 0.93
+  if (itemCount >= 5) scaleFactor = 0.90
+  if (itemCount >= 6) scaleFactor = 0.87
+  if (itemCount >= 7) scaleFactor = 0.84
+  if (itemCount >= 8) scaleFactor = 0.80
+  if (itemCount >= 10) scaleFactor = 0.78
 
   const printContent = `
     <!DOCTYPE html>
@@ -40,86 +49,126 @@ export function printSpecialOrder(data: any) {
       <title>Special Order Form</title>
       <style>
         @page {
-          size: portrait;
-          margin: 0.25in;
+          size: letter portrait;
+          margin: 0;
         }
         
-        body {
+        * {
+          box-sizing: border-box;
+          margin: 0;
+          padding: 0;
+        }
+        
+        html, body {
+          height: 100%;
+          width: 100%;
           font-family: 'Arial', sans-serif;
           color: #000;
           background: white;
-          padding: 10px;
-          max-width: 8in;
-          margin: 0 auto;
-          transform: scale(${scaleFactor});
-          transform-origin: top center;
+        }
+        
+        .page-container {
+          height: 100vh;
+          width: 100%;
+          display: flex;
+          flex-direction: column;
         }
         
         .print-copy {
-          border: 1px solid #000;
-          padding: 15px;
-          margin-bottom: 20px;
-          page-break-inside: avoid;
+          height: 50%;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          padding: 0.15in 0.3in;
+          overflow: hidden;
         }
         
-        .print-copy:last-child {
-          margin-bottom: 0;
+        .print-copy:first-child {
+          border-bottom: 1px dashed #999;
+        }
+        
+        .form-content {
+          width: 100%;
+          max-width: 7.5in;
+          height: 100%;
+          display: flex;
+          flex-direction: column;
+          border: 1px solid #000;
+          padding: 15px 20px;
+          transform: scale(${scaleFactor});
+          transform-origin: top center;
         }
         
         .print-header {
           text-align: center;
           border-bottom: 2px solid #000;
-          padding-bottom: 15px;
-          margin-bottom: 20px;
+          padding-bottom: 12px;
+          margin-bottom: 15px;
         }
         
-        .print-title {
-          font-size: 20px;
-          font-weight: bold;
+        .print-date {
+          text-align: left;
+          font-size: 11px;
           margin-bottom: 8px;
         }
         
+        .print-title {
+          font-size: 22px;
+          font-weight: bold;
+        }
+        
+        .info-row {
+          display: flex;
+          gap: 20px;
+          margin-bottom: 8px;
+        }
+        
+        .info-column {
+          flex: 1;
+        }
+        
         .print-section {
-          margin-bottom: 20px;
+          margin-bottom: 12px;
         }
         
         .print-section-title {
           font-size: 14px;
           font-weight: bold;
-          margin-bottom: 8px;
+          margin-bottom: 6px;
           border-bottom: 1px solid #ccc;
           padding-bottom: 3px;
         }
         
         .print-field {
-          margin-bottom: 6px;
+          margin-bottom: 4px;
           display: flex;
         }
         
         .print-label {
           font-weight: bold;
-          width: 120px;
+          width: 90px;
           flex-shrink: 0;
-          font-size: 12px;
+          font-size: 13px;
         }
         
         .print-value {
           flex: 1;
-          font-size: 12px;
+          font-size: 13px;
         }
         
         .print-table {
           width: 100%;
           border-collapse: collapse;
-          margin-bottom: 15px;
+          margin-bottom: 10px;
         }
         
         .print-table th,
         .print-table td {
           border: 1px solid #000;
-          padding: 6px;
+          padding: 6px 8px;
           text-align: left;
-          font-size: 11px;
+          font-size: 12px;
         }
         
         .print-table th {
@@ -128,8 +177,8 @@ export function printSpecialOrder(data: any) {
         }
         
         .print-total-summary {
-          margin-top: 15px;
-          padding: 8px;
+          margin-top: auto;
+          padding: 8px 12px;
           background-color: #f5f5f5;
           border: 1px solid #000;
         }
@@ -145,42 +194,61 @@ export function printSpecialOrder(data: any) {
           font-size: 14px;
           font-weight: bold;
           border-top: 1px solid #000;
-          padding-top: 3px;
+          padding-top: 2px;
           margin-bottom: 0;
         }
       </style>
     </head>
     <body>
-      <!-- Customer Copy -->
+      <div class="page-container">
+      <!-- Customer Copy (Top Half) -->
       <div class="print-copy">
-        <div style="text-align: left; font-size: 10px; margin-bottom: 10px;">
+        <div class="form-content">
+        <div class="print-date">
           ${new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
         </div>
         <div class="print-header">
           <div class="print-title">Special Order Form</div>
         </div>
 
-        <div class="print-section">
-          <div class="print-section-title">Customer Information</div>
-          <div class="print-field">
-            <div class="print-label">Name:</div>
-            <div class="print-value">${data.customer_name || ''}</div>
+        <div class="info-row">
+          <div class="info-column">
+            <div class="print-section">
+              <div class="print-section-title">Customer Information</div>
+              <div class="print-field">
+                <div class="print-label">Name:</div>
+                <div class="print-value">${data.customer_name || ''}</div>
+              </div>
+              <div class="print-field">
+                <div class="print-label">Phone:</div>
+                <div class="print-value">${formatPhoneNumber(data.customer_phone || '')}</div>
+              </div>
+              ${data.customer_street ? `
+                <div class="print-field">
+                  <div class="print-label">Address:</div>
+                  <div class="print-value">
+                    ${data.customer_street}
+                    ${data.customer_city ? `, ${data.customer_city}` : ''}
+                    ${data.customer_state ? ` ${data.customer_state}` : ''}
+                    ${data.customer_zip ? ` ${data.customer_zip}` : ''}
+                  </div>
+                </div>
+              ` : ''}
+            </div>
           </div>
-          <div class="print-field">
-            <div class="print-label">Phone:</div>
-            <div class="print-value">${formatPhoneNumber(data.customer_phone || '')}</div>
-          </div>
-          ${data.customer_street ? `
-            <div class="print-field">
-              <div class="print-label">Address:</div>
-              <div class="print-value">
-                ${data.customer_street}
-                ${data.customer_city ? `, ${data.customer_city}` : ''}
-                ${data.customer_state ? ` ${data.customer_state}` : ''}
-                ${data.customer_zip ? ` ${data.customer_zip}` : ''}
+          <div class="info-column">
+            <div class="print-section">
+              <div class="print-section-title">Order Details</div>
+              <div class="print-field">
+                <div class="print-label">Delivery:</div>
+                <div class="print-value">${data.delivery_method === 'in_store_pickup' ? 'In-Store Pickup' : 'Ship to Customer'}</div>
+              </div>
+              <div class="print-field">
+                <div class="print-label">Payment:</div>
+                <div class="print-value">${formatPayment(data.payment || '')}</div>
               </div>
             </div>
-          ` : ''}
+          </div>
         </div>
 
         <div class="print-section">
@@ -224,39 +292,58 @@ export function printSpecialOrder(data: any) {
               <span>$${total.toFixed(2)}</span>
             </div>
           </div>
+        </div>
         </div>
       </div>
 
-      <!-- Merchant Copy -->
+      <!-- Merchant Copy (Bottom Half) -->
       <div class="print-copy">
-        <div style="text-align: left; font-size: 10px; margin-bottom: 10px;">
+        <div class="form-content">
+        <div class="print-date">
           ${new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
         </div>
         <div class="print-header">
           <div class="print-title">Special Order Form</div>
         </div>
 
-        <div class="print-section">
-          <div class="print-section-title">Customer Information</div>
-          <div class="print-field">
-            <div class="print-label">Name:</div>
-            <div class="print-value">${data.customer_name || ''}</div>
+        <div class="info-row">
+          <div class="info-column">
+            <div class="print-section">
+              <div class="print-section-title">Customer Information</div>
+              <div class="print-field">
+                <div class="print-label">Name:</div>
+                <div class="print-value">${data.customer_name || ''}</div>
+              </div>
+              <div class="print-field">
+                <div class="print-label">Phone:</div>
+                <div class="print-value">${formatPhoneNumber(data.customer_phone || '')}</div>
+              </div>
+              ${data.customer_street ? `
+                <div class="print-field">
+                  <div class="print-label">Address:</div>
+                  <div class="print-value">
+                    ${data.customer_street}
+                    ${data.customer_city ? `, ${data.customer_city}` : ''}
+                    ${data.customer_state ? ` ${data.customer_state}` : ''}
+                    ${data.customer_zip ? ` ${data.customer_zip}` : ''}
+                  </div>
+                </div>
+              ` : ''}
+            </div>
           </div>
-          <div class="print-field">
-            <div class="print-label">Phone:</div>
-            <div class="print-value">${formatPhoneNumber(data.customer_phone || '')}</div>
-          </div>
-          ${data.customer_street ? `
-            <div class="print-field">
-              <div class="print-label">Address:</div>
-              <div class="print-value">
-                ${data.customer_street}
-                ${data.customer_city ? `, ${data.customer_city}` : ''}
-                ${data.customer_state ? ` ${data.customer_state}` : ''}
-                ${data.customer_zip ? ` ${data.customer_zip}` : ''}
+          <div class="info-column">
+            <div class="print-section">
+              <div class="print-section-title">Order Details</div>
+              <div class="print-field">
+                <div class="print-label">Delivery:</div>
+                <div class="print-value">${data.delivery_method === 'in_store_pickup' ? 'In-Store Pickup' : 'Ship to Customer'}</div>
+              </div>
+              <div class="print-field">
+                <div class="print-label">Payment:</div>
+                <div class="print-value">${formatPayment(data.payment || '')}</div>
               </div>
             </div>
-          ` : ''}
+          </div>
         </div>
 
         <div class="print-section">
@@ -301,6 +388,8 @@ export function printSpecialOrder(data: any) {
             </div>
           </div>
         </div>
+        </div>
+      </div>
       </div>
     </body>
     </html>
@@ -311,74 +400,325 @@ export function printSpecialOrder(data: any) {
 
 export function printInboundTransfer(data: any) {
   const productLines: ProductLine[] = data.product_lines || []
-  
+  const subtotal = productLines.reduce((acc, line) => acc + (line.unit_price || 0), 0)
+  const tax = 0
+  const total = subtotal
+
+  // Calculate scale factor - scale down based on item count to fit in half page
+  const itemCount = productLines.length
+  let scaleFactor = 1.0
+  if (itemCount >= 4) scaleFactor = 0.93
+  if (itemCount >= 5) scaleFactor = 0.90
+  if (itemCount >= 6) scaleFactor = 0.87
+  if (itemCount >= 7) scaleFactor = 0.84
+  if (itemCount >= 8) scaleFactor = 0.80
+  if (itemCount >= 10) scaleFactor = 0.78
+
   const printContent = `
     <!DOCTYPE html>
     <html>
     <head>
       <title>Inbound Transfer Form</title>
       <style>
-        @page { size: portrait; margin: 0.5in; }
-        body { font-family: Arial, sans-serif; color: #000; background: white; padding: 20px; }
-        .print-header { text-align: center; border-bottom: 2px solid #000; padding-bottom: 15px; margin-bottom: 20px; }
-        .print-title { font-size: 24px; font-weight: bold; }
-        .print-section { margin-bottom: 20px; }
-        .print-section-title { font-size: 16px; font-weight: bold; margin-bottom: 10px; border-bottom: 1px solid #ccc; padding-bottom: 5px; }
-        .print-field { margin-bottom: 8px; display: flex; }
-        .print-label { font-weight: bold; width: 150px; }
-        .print-value { flex: 1; }
-        .print-table { width: 100%; border-collapse: collapse; margin-top: 10px; }
-        .print-table th, .print-table td { border: 1px solid #000; padding: 8px; text-align: left; }
-        .print-table th { background-color: #f5f5f5; }
+        @page {
+          size: letter portrait;
+          margin: 0;
+        }
+        
+        * {
+          box-sizing: border-box;
+          margin: 0;
+          padding: 0;
+        }
+        
+        html, body {
+          height: 100%;
+          width: 100%;
+          font-family: 'Arial', sans-serif;
+          color: #000;
+          background: white;
+        }
+        
+        .page-container {
+          height: 100vh;
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+        }
+        
+        .print-copy {
+          height: 50%;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          padding: 0.15in 0.3in;
+          overflow: hidden;
+        }
+        
+        .print-copy:first-child {
+          border-bottom: 1px dashed #999;
+        }
+        
+        .form-content {
+          width: 100%;
+          max-width: 7.5in;
+          height: 100%;
+          display: flex;
+          flex-direction: column;
+          border: 1px solid #000;
+          padding: 15px 20px;
+          transform: scale(${scaleFactor});
+          transform-origin: top center;
+        }
+        
+        .print-header {
+          text-align: center;
+          border-bottom: 2px solid #000;
+          padding-bottom: 12px;
+          margin-bottom: 15px;
+        }
+        
+        .print-date {
+          text-align: left;
+          font-size: 11px;
+          margin-bottom: 8px;
+        }
+        
+        .print-title {
+          font-size: 22px;
+          font-weight: bold;
+        }
+        
+        .print-section {
+          margin-bottom: 12px;
+        }
+        
+        .print-section-title {
+          font-size: 14px;
+          font-weight: bold;
+          margin-bottom: 6px;
+          border-bottom: 1px solid #ccc;
+          padding-bottom: 3px;
+        }
+        
+        .print-field {
+          margin-bottom: 4px;
+          display: flex;
+        }
+        
+        .print-label {
+          font-weight: bold;
+          width: 90px;
+          flex-shrink: 0;
+          font-size: 13px;
+        }
+        
+        .print-value {
+          flex: 1;
+          font-size: 13px;
+        }
+        
+        .print-table {
+          width: 100%;
+          border-collapse: collapse;
+          margin-bottom: 10px;
+        }
+        
+        .print-table th,
+        .print-table td {
+          border: 1px solid #000;
+          padding: 6px 8px;
+          text-align: left;
+          font-size: 12px;
+        }
+        
+        .print-table th {
+          background-color: #f5f5f5;
+          font-weight: bold;
+        }
+        
+        .print-total-summary {
+          margin-top: auto;
+          padding: 8px 12px;
+          background-color: #f5f5f5;
+          border: 1px solid #000;
+        }
+        
+        .print-total-row {
+          display: flex;
+          justify-content: space-between;
+          margin-bottom: 3px;
+          font-size: 12px;
+        }
+        
+        .print-total-row.final {
+          font-size: 14px;
+          font-weight: bold;
+          border-top: 1px solid #000;
+          padding-top: 2px;
+          margin-bottom: 0;
+        }
       </style>
     </head>
     <body>
-      <div class="print-header">
-        <div class="print-title">Inbound Transfer Form</div>
-        <div style="font-size: 12px; margin-top: 5px;">${new Date().toLocaleDateString()}</div>
-      </div>
-
-      <div class="print-section">
-        <div class="print-section-title">Transferor Information</div>
-        <div class="print-field"><div class="print-label">Name:</div><div class="print-value">${data.transferor_name || data.customer_name || ''}</div></div>
-        <div class="print-field"><div class="print-label">Phone:</div><div class="print-value">${formatPhoneNumber(data.transferor_phone || data.customer_phone || '')}</div></div>
-        ${data.customer_street ? `<div class="print-field"><div class="print-label">Address:</div><div class="print-value">${data.customer_street}, ${data.customer_city || ''} ${data.customer_state || ''} ${data.customer_zip || ''}</div></div>` : ''}
-      </div>
-
-      <div class="print-section">
-        <div class="print-section-title">Items</div>
-        <table class="print-table">
-          <thead>
-            <tr>
-              <th>Control #</th>
-              <th>Manufacturer</th>
-              <th>Model</th>
-              <th>Serial #</th>
-              <th>Type</th>
-              <th>Price</th>
-            </tr>
-          </thead>
-          <tbody>
-            ${productLines.map((line) => `
-              <tr>
-                <td>${line.control_number || '-'}</td>
-                <td>${line.manufacturer || '-'}</td>
-                <td>${line.model || '-'}</td>
-                <td>${line.serial_number || '-'}</td>
-                <td>${line.order_type || '-'}</td>
-                <td>$${(line.unit_price || 0).toFixed(2)}</td>
-              </tr>
-            `).join('')}
-          </tbody>
-        </table>
-      </div>
-
-      ${data.special_requests ? `
-        <div class="print-section">
-          <div class="print-section-title">Special Requests</div>
-          <p>${data.special_requests}</p>
+      <div class="page-container">
+      <!-- Customer Copy (Top Half) -->
+      <div class="print-copy">
+        <div class="form-content">
+        <div class="print-date">
+          ${new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
         </div>
-      ` : ''}
+        <div class="print-header">
+          <div class="print-title">Inbound Transfer Form</div>
+        </div>
+
+        <div class="print-section">
+          <div class="print-section-title">Customer Information</div>
+          <div class="print-field">
+            <div class="print-label">Name:</div>
+            <div class="print-value">${data.customer_name || ''}</div>
+          </div>
+          <div class="print-field">
+            <div class="print-label">Phone:</div>
+            <div class="print-value">${formatPhoneNumber(data.customer_phone || '')}</div>
+          </div>
+          ${data.customer_street ? `
+            <div class="print-field">
+              <div class="print-label">Address:</div>
+              <div class="print-value">
+                ${data.customer_street}
+                ${data.customer_city ? `, ${data.customer_city}` : ''}
+                ${data.customer_state ? ` ${data.customer_state}` : ''}
+                ${data.customer_zip ? ` ${data.customer_zip}` : ''}
+              </div>
+            </div>
+          ` : ''}
+        </div>
+
+        <div class="print-section">
+          <div class="print-section-title">Order Items</div>
+          <table class="print-table">
+            <thead>
+              <tr>
+                <th style="width: 15%">Control #</th>
+                <th style="width: 25%">Manufacturer</th>
+                <th style="width: 15%">Model</th>
+                <th style="width: 15%">Serial #</th>
+                <th style="width: 15%">Order Type</th>
+                <th style="width: 15%">Unit Price</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${productLines.map((line) => `
+                <tr>
+                  <td>${line.control_number || '-'}</td>
+                  <td>${line.manufacturer || '-'}</td>
+                  <td>${line.model || '-'}</td>
+                  <td>${line.serial_number || '-'}</td>
+                  <td>${line.order_type || '-'}</td>
+                  <td>$${(line.unit_price || 0).toFixed(2)}</td>
+                </tr>
+              `).join('')}
+            </tbody>
+          </table>
+          
+          <div class="print-total-summary">
+            <div class="print-total-row">
+              <span style="font-weight: bold">Subtotal:</span>
+              <span>$${subtotal.toFixed(2)}</span>
+            </div>
+            <div class="print-total-row">
+              <span style="font-weight: bold">Tax:</span>
+              <span>$${tax.toFixed(2)}</span>
+            </div>
+            <div class="print-total-row final">
+              <span>Total:</span>
+              <span>$${total.toFixed(2)}</span>
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>
+
+      <!-- Merchant Copy (Bottom Half) -->
+      <div class="print-copy">
+        <div class="form-content">
+        <div class="print-date">
+          ${new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+        </div>
+        <div class="print-header">
+          <div class="print-title">Inbound Transfer Form</div>
+        </div>
+
+        <div class="print-section">
+          <div class="print-section-title">Customer Information</div>
+          <div class="print-field">
+            <div class="print-label">Name:</div>
+            <div class="print-value">${data.customer_name || ''}</div>
+          </div>
+          <div class="print-field">
+            <div class="print-label">Phone:</div>
+            <div class="print-value">${formatPhoneNumber(data.customer_phone || '')}</div>
+          </div>
+          ${data.customer_street ? `
+            <div class="print-field">
+              <div class="print-label">Address:</div>
+              <div class="print-value">
+                ${data.customer_street}
+                ${data.customer_city ? `, ${data.customer_city}` : ''}
+                ${data.customer_state ? ` ${data.customer_state}` : ''}
+                ${data.customer_zip ? ` ${data.customer_zip}` : ''}
+              </div>
+            </div>
+          ` : ''}
+        </div>
+
+        <div class="print-section">
+          <div class="print-section-title">Order Items</div>
+          <table class="print-table">
+            <thead>
+              <tr>
+                <th style="width: 15%">Control #</th>
+                <th style="width: 25%">Manufacturer</th>
+                <th style="width: 15%">Model</th>
+                <th style="width: 15%">Serial #</th>
+                <th style="width: 15%">Order Type</th>
+                <th style="width: 15%">Unit Price</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${productLines.map((line) => `
+                <tr>
+                  <td>${line.control_number || '-'}</td>
+                  <td>${line.manufacturer || '-'}</td>
+                  <td>${line.model || '-'}</td>
+                  <td>${line.serial_number || '-'}</td>
+                  <td>${line.order_type || '-'}</td>
+                  <td>$${(line.unit_price || 0).toFixed(2)}</td>
+                </tr>
+              `).join('')}
+            </tbody>
+          </table>
+          
+          <div class="print-total-summary">
+            <div class="print-total-row">
+              <span style="font-weight: bold">Subtotal:</span>
+              <span>$${subtotal.toFixed(2)}</span>
+            </div>
+            <div class="print-total-row">
+              <span style="font-weight: bold">Tax:</span>
+              <span>$${tax.toFixed(2)}</span>
+            </div>
+            <div class="print-total-row final">
+              <span>Total:</span>
+              <span>$${total.toFixed(2)}</span>
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>
+      </div>
     </body>
     </html>
   `
@@ -388,74 +728,325 @@ export function printInboundTransfer(data: any) {
 
 export function printSuppressorApproval(data: any) {
   const productLines: ProductLine[] = data.product_lines || []
-  
+  const subtotal = productLines.reduce((acc, line) => acc + (line.unit_price || 0), 0)
+  const tax = 0
+  const total = subtotal
+
+  // Calculate scale factor - scale down based on item count to fit in half page
+  const itemCount = productLines.length
+  let scaleFactor = 1.0
+  if (itemCount >= 4) scaleFactor = 0.93
+  if (itemCount >= 5) scaleFactor = 0.90
+  if (itemCount >= 6) scaleFactor = 0.87
+  if (itemCount >= 7) scaleFactor = 0.84
+  if (itemCount >= 8) scaleFactor = 0.80
+  if (itemCount >= 10) scaleFactor = 0.78
+
   const printContent = `
     <!DOCTYPE html>
     <html>
     <head>
       <title>Suppressor Approval Form</title>
       <style>
-        @page { size: portrait; margin: 0.5in; }
-        body { font-family: Arial, sans-serif; color: #000; background: white; padding: 20px; }
-        .print-header { text-align: center; border-bottom: 2px solid #000; padding-bottom: 15px; margin-bottom: 20px; }
-        .print-title { font-size: 24px; font-weight: bold; }
-        .print-section { margin-bottom: 20px; }
-        .print-section-title { font-size: 16px; font-weight: bold; margin-bottom: 10px; border-bottom: 1px solid #ccc; padding-bottom: 5px; }
-        .print-field { margin-bottom: 8px; display: flex; }
-        .print-label { font-weight: bold; width: 150px; }
-        .print-value { flex: 1; }
-        .print-table { width: 100%; border-collapse: collapse; margin-top: 10px; }
-        .print-table th, .print-table td { border: 1px solid #000; padding: 8px; text-align: left; }
-        .print-table th { background-color: #f5f5f5; }
+        @page {
+          size: letter portrait;
+          margin: 0;
+        }
+        
+        * {
+          box-sizing: border-box;
+          margin: 0;
+          padding: 0;
+        }
+        
+        html, body {
+          height: 100%;
+          width: 100%;
+          font-family: 'Arial', sans-serif;
+          color: #000;
+          background: white;
+        }
+        
+        .page-container {
+          height: 100vh;
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+        }
+        
+        .print-copy {
+          height: 50%;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          padding: 0.15in 0.3in;
+          overflow: hidden;
+        }
+        
+        .print-copy:first-child {
+          border-bottom: 1px dashed #999;
+        }
+        
+        .form-content {
+          width: 100%;
+          max-width: 7.5in;
+          height: 100%;
+          display: flex;
+          flex-direction: column;
+          border: 1px solid #000;
+          padding: 15px 20px;
+          transform: scale(${scaleFactor});
+          transform-origin: top center;
+        }
+        
+        .print-header {
+          text-align: center;
+          border-bottom: 2px solid #000;
+          padding-bottom: 12px;
+          margin-bottom: 15px;
+        }
+        
+        .print-date {
+          text-align: left;
+          font-size: 11px;
+          margin-bottom: 8px;
+        }
+        
+        .print-title {
+          font-size: 22px;
+          font-weight: bold;
+        }
+        
+        .print-section {
+          margin-bottom: 12px;
+        }
+        
+        .print-section-title {
+          font-size: 14px;
+          font-weight: bold;
+          margin-bottom: 6px;
+          border-bottom: 1px solid #ccc;
+          padding-bottom: 3px;
+        }
+        
+        .print-field {
+          margin-bottom: 4px;
+          display: flex;
+        }
+        
+        .print-label {
+          font-weight: bold;
+          width: 90px;
+          flex-shrink: 0;
+          font-size: 13px;
+        }
+        
+        .print-value {
+          flex: 1;
+          font-size: 13px;
+        }
+        
+        .print-table {
+          width: 100%;
+          border-collapse: collapse;
+          margin-bottom: 10px;
+        }
+        
+        .print-table th,
+        .print-table td {
+          border: 1px solid #000;
+          padding: 6px 8px;
+          text-align: left;
+          font-size: 12px;
+        }
+        
+        .print-table th {
+          background-color: #f5f5f5;
+          font-weight: bold;
+        }
+        
+        .print-total-summary {
+          margin-top: auto;
+          padding: 8px 12px;
+          background-color: #f5f5f5;
+          border: 1px solid #000;
+        }
+        
+        .print-total-row {
+          display: flex;
+          justify-content: space-between;
+          margin-bottom: 3px;
+          font-size: 12px;
+        }
+        
+        .print-total-row.final {
+          font-size: 14px;
+          font-weight: bold;
+          border-top: 1px solid #000;
+          padding-top: 2px;
+          margin-bottom: 0;
+        }
       </style>
     </head>
     <body>
-      <div class="print-header">
-        <div class="print-title">Suppressor Approval Form</div>
-        <div style="font-size: 12px; margin-top: 5px;">${new Date().toLocaleDateString()}</div>
-      </div>
-
-      <div class="print-section">
-        <div class="print-section-title">Customer Information</div>
-        <div class="print-field"><div class="print-label">Name:</div><div class="print-value">${data.customer_name || ''}</div></div>
-        <div class="print-field"><div class="print-label">Phone:</div><div class="print-value">${formatPhoneNumber(data.customer_phone || '')}</div></div>
-        ${data.customer_street ? `<div class="print-field"><div class="print-label">Address:</div><div class="print-value">${data.customer_street}, ${data.customer_city || ''} ${data.customer_state || ''} ${data.customer_zip || ''}</div></div>` : ''}
-      </div>
-
-      <div class="print-section">
-        <div class="print-section-title">Items</div>
-        <table class="print-table">
-          <thead>
-            <tr>
-              <th>Control #</th>
-              <th>Manufacturer</th>
-              <th>Model</th>
-              <th>Serial #</th>
-              <th>Type</th>
-              <th>Price</th>
-            </tr>
-          </thead>
-          <tbody>
-            ${productLines.map((line) => `
-              <tr>
-                <td>${line.control_number || '-'}</td>
-                <td>${line.manufacturer || '-'}</td>
-                <td>${line.model || '-'}</td>
-                <td>${line.serial_number || '-'}</td>
-                <td>${line.order_type || '-'}</td>
-                <td>$${(line.unit_price || 0).toFixed(2)}</td>
-              </tr>
-            `).join('')}
-          </tbody>
-        </table>
-      </div>
-
-      ${data.special_requests ? `
-        <div class="print-section">
-          <div class="print-section-title">Special Requests</div>
-          <p>${data.special_requests}</p>
+      <div class="page-container">
+      <!-- Customer Copy (Top Half) -->
+      <div class="print-copy">
+        <div class="form-content">
+        <div class="print-date">
+          ${new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
         </div>
-      ` : ''}
+        <div class="print-header">
+          <div class="print-title">Suppressor Approval Form</div>
+        </div>
+
+        <div class="print-section">
+          <div class="print-section-title">Customer Information</div>
+          <div class="print-field">
+            <div class="print-label">Name:</div>
+            <div class="print-value">${data.customer_name || ''}</div>
+          </div>
+          <div class="print-field">
+            <div class="print-label">Phone:</div>
+            <div class="print-value">${formatPhoneNumber(data.customer_phone || '')}</div>
+          </div>
+          ${data.customer_street ? `
+            <div class="print-field">
+              <div class="print-label">Address:</div>
+              <div class="print-value">
+                ${data.customer_street}
+                ${data.customer_city ? `, ${data.customer_city}` : ''}
+                ${data.customer_state ? ` ${data.customer_state}` : ''}
+                ${data.customer_zip ? ` ${data.customer_zip}` : ''}
+              </div>
+            </div>
+          ` : ''}
+        </div>
+
+        <div class="print-section">
+          <div class="print-section-title">Order Items</div>
+          <table class="print-table">
+            <thead>
+              <tr>
+                <th style="width: 15%">Control #</th>
+                <th style="width: 25%">Manufacturer</th>
+                <th style="width: 15%">Model</th>
+                <th style="width: 15%">Serial #</th>
+                <th style="width: 15%">Order Type</th>
+                <th style="width: 15%">Unit Price</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${productLines.map((line) => `
+                <tr>
+                  <td>${line.control_number || '-'}</td>
+                  <td>${line.manufacturer || '-'}</td>
+                  <td>${line.model || '-'}</td>
+                  <td>${line.serial_number || '-'}</td>
+                  <td>${line.order_type || '-'}</td>
+                  <td>$${(line.unit_price || 0).toFixed(2)}</td>
+                </tr>
+              `).join('')}
+            </tbody>
+          </table>
+          
+          <div class="print-total-summary">
+            <div class="print-total-row">
+              <span style="font-weight: bold">Subtotal:</span>
+              <span>$${subtotal.toFixed(2)}</span>
+            </div>
+            <div class="print-total-row">
+              <span style="font-weight: bold">Tax:</span>
+              <span>$${tax.toFixed(2)}</span>
+            </div>
+            <div class="print-total-row final">
+              <span>Total:</span>
+              <span>$${total.toFixed(2)}</span>
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>
+
+      <!-- Merchant Copy (Bottom Half) -->
+      <div class="print-copy">
+        <div class="form-content">
+        <div class="print-date">
+          ${new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+        </div>
+        <div class="print-header">
+          <div class="print-title">Suppressor Approval Form</div>
+        </div>
+
+        <div class="print-section">
+          <div class="print-section-title">Customer Information</div>
+          <div class="print-field">
+            <div class="print-label">Name:</div>
+            <div class="print-value">${data.customer_name || ''}</div>
+          </div>
+          <div class="print-field">
+            <div class="print-label">Phone:</div>
+            <div class="print-value">${formatPhoneNumber(data.customer_phone || '')}</div>
+          </div>
+          ${data.customer_street ? `
+            <div class="print-field">
+              <div class="print-label">Address:</div>
+              <div class="print-value">
+                ${data.customer_street}
+                ${data.customer_city ? `, ${data.customer_city}` : ''}
+                ${data.customer_state ? ` ${data.customer_state}` : ''}
+                ${data.customer_zip ? ` ${data.customer_zip}` : ''}
+              </div>
+            </div>
+          ` : ''}
+        </div>
+
+        <div class="print-section">
+          <div class="print-section-title">Order Items</div>
+          <table class="print-table">
+            <thead>
+              <tr>
+                <th style="width: 15%">Control #</th>
+                <th style="width: 25%">Manufacturer</th>
+                <th style="width: 15%">Model</th>
+                <th style="width: 15%">Serial #</th>
+                <th style="width: 15%">Order Type</th>
+                <th style="width: 15%">Unit Price</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${productLines.map((line) => `
+                <tr>
+                  <td>${line.control_number || '-'}</td>
+                  <td>${line.manufacturer || '-'}</td>
+                  <td>${line.model || '-'}</td>
+                  <td>${line.serial_number || '-'}</td>
+                  <td>${line.order_type || '-'}</td>
+                  <td>$${(line.unit_price || 0).toFixed(2)}</td>
+                </tr>
+              `).join('')}
+            </tbody>
+          </table>
+          
+          <div class="print-total-summary">
+            <div class="print-total-row">
+              <span style="font-weight: bold">Subtotal:</span>
+              <span>$${subtotal.toFixed(2)}</span>
+            </div>
+            <div class="print-total-row">
+              <span style="font-weight: bold">Tax:</span>
+              <span>$${tax.toFixed(2)}</span>
+            </div>
+            <div class="print-total-row final">
+              <span>Total:</span>
+              <span>$${total.toFixed(2)}</span>
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>
+      </div>
     </body>
     </html>
   `
@@ -472,55 +1063,199 @@ export function printOutboundTransfer(data: any) {
     <head>
       <title>Outbound Transfer Form</title>
       <style>
-        @page { size: portrait; margin: 0.5in; }
-        body { font-family: Arial, sans-serif; color: #000; background: white; padding: 20px; }
-        .print-header { text-align: center; border-bottom: 2px solid #000; padding-bottom: 15px; margin-bottom: 20px; }
-        .print-title { font-size: 24px; font-weight: bold; }
-        .print-section { margin-bottom: 20px; }
-        .print-section-title { font-size: 16px; font-weight: bold; margin-bottom: 10px; border-bottom: 1px solid #ccc; padding-bottom: 5px; }
-        .print-field { margin-bottom: 8px; display: flex; }
-        .print-label { font-weight: bold; width: 150px; }
-        .print-value { flex: 1; }
-        .print-table { width: 100%; border-collapse: collapse; margin-top: 10px; }
-        .print-table th, .print-table td { border: 1px solid #000; padding: 8px; text-align: left; }
-        .print-table th { background-color: #f5f5f5; }
+        @page {
+          size: portrait;
+          margin: 0.4in;
+        }
+        
+        * {
+          box-sizing: border-box;
+        }
+        
+        body {
+          font-family: 'Arial', sans-serif;
+          color: #000;
+          background: white;
+          padding: 15px;
+          max-width: 8in;
+          margin: 0 auto;
+          font-size: 12px;
+        }
+        
+        .print-header {
+          text-align: center;
+          margin-bottom: 20px;
+        }
+        
+        .print-date {
+          text-align: left;
+          font-size: 10px;
+          color: #666;
+          margin-bottom: 5px;
+        }
+        
+        .print-title {
+          font-size: 22px;
+          font-weight: bold;
+        }
+        
+        .section-box {
+          border: 1px solid #ccc;
+          border-radius: 8px;
+          padding: 15px;
+          margin-bottom: 15px;
+        }
+        
+        .section-title {
+          font-size: 16px;
+          font-weight: bold;
+          text-decoration: underline;
+          margin-bottom: 12px;
+        }
+        
+        .two-column {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 15px;
+        }
+        
+        .field-group {
+          margin-bottom: 10px;
+        }
+        
+        .field-label {
+          font-size: 11px;
+          font-weight: bold;
+          color: #333;
+          margin-bottom: 3px;
+        }
+        
+        .field-value {
+          font-size: 12px;
+          padding: 6px 8px;
+          background-color: #f9f9f9;
+          border: 1px solid #ddd;
+          border-radius: 4px;
+          min-height: 28px;
+        }
+        
+        .field-value.address {
+          min-height: 60px;
+          white-space: pre-wrap;
+        }
+        
+        .address-grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 15px;
+        }
+        
+        .address-right {
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+        }
+        
+        .items-table {
+          width: 100%;
+          border-collapse: collapse;
+          margin-top: 10px;
+        }
+        
+        .items-table th,
+        .items-table td {
+          border: 1px solid #000;
+          padding: 8px;
+          text-align: left;
+          font-size: 11px;
+        }
+        
+        .items-table th {
+          background-color: #f0f0f0;
+          font-weight: bold;
+        }
       </style>
     </head>
     <body>
       <div class="print-header">
+        <div class="print-date">
+          ${new Date().toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+          })}
+        </div>
         <div class="print-title">Outbound Transfer Form</div>
-        <div style="font-size: 12px; margin-top: 5px;">${new Date().toLocaleDateString()}</div>
       </div>
 
-      <div class="print-section">
-        <div class="print-section-title">Transferor Information</div>
-        <div class="print-field"><div class="print-label">Name:</div><div class="print-value">${data.customer_name || ''}</div></div>
-        <div class="print-field"><div class="print-label">Phone:</div><div class="print-value">${formatPhoneNumber(data.customer_phone || '')}</div></div>
+      <!-- Transferor Section -->
+      <div class="section-box">
+        <div class="section-title">Transferor</div>
+        <div class="two-column">
+          <div class="field-group">
+            <div class="field-label">Name</div>
+            <div class="field-value">${data.customer_name || ''}</div>
+          </div>
+          <div class="field-group">
+            <div class="field-label">Phone</div>
+            <div class="field-value">${formatPhoneNumber(data.customer_phone || '')}</div>
+          </div>
+        </div>
       </div>
 
-      <div class="print-section">
-        <div class="print-section-title">Transferee Information</div>
-        ${data.transferee_name ? `<div class="print-field"><div class="print-label">Name:</div><div class="print-value">${data.transferee_name}</div></div>` : ''}
-        ${data.transferee_phone ? `<div class="print-field"><div class="print-label">Phone:</div><div class="print-value">${formatPhoneNumber(data.transferee_phone)}</div></div>` : ''}
-        ${data.transferee_ffl_name ? `<div class="print-field"><div class="print-label">FFL Name:</div><div class="print-value">${data.transferee_ffl_name}</div></div>` : ''}
-        ${data.transferee_ffl_phone ? `<div class="print-field"><div class="print-label">FFL Phone:</div><div class="print-value">${formatPhoneNumber(data.transferee_ffl_phone)}</div></div>` : ''}
-        ${data.transferee_ffl_address ? `<div class="print-field"><div class="print-label">FFL Address:</div><div class="print-value">${data.transferee_ffl_address}</div></div>` : ''}
-        ${data.transferee_ffl_city ? `<div class="print-field"><div class="print-label">FFL City:</div><div class="print-value">${data.transferee_ffl_city}</div></div>` : ''}
-        ${data.transferee_ffl_state ? `<div class="print-field"><div class="print-label">FFL State:</div><div class="print-value">${data.transferee_ffl_state}</div></div>` : ''}
-        ${data.transferee_ffl_zip ? `<div class="print-field"><div class="print-label">FFL Zip:</div><div class="print-value">${data.transferee_ffl_zip}</div></div>` : ''}
+      <!-- Transferee Section -->
+      <div class="section-box">
+        <div class="section-title">Transferee</div>
+        <div class="two-column">
+          <div class="field-group">
+            <div class="field-label">Transferee Name</div>
+            <div class="field-value">${data.transferee_name || ''}</div>
+          </div>
+          <div class="field-group">
+            <div class="field-label">Transferee Phone</div>
+            <div class="field-value">${formatPhoneNumber(data.transferee_phone || '')}</div>
+          </div>
+          <div class="field-group">
+            <div class="field-label">Transferee FFL Name</div>
+            <div class="field-value">${data.transferee_ffl_name || ''}</div>
+          </div>
+          <div class="field-group">
+            <div class="field-label">Transferee FFL Phone</div>
+            <div class="field-value">${formatPhoneNumber(data.transferee_ffl_phone || '')}</div>
+          </div>
+        </div>
+        <div class="address-grid" style="margin-top: 15px;">
+          <div class="field-group">
+            <div class="field-label">Street Address</div>
+            <div class="field-value address">${data.transferee_ffl_address || ''}</div>
+          </div>
+          <div class="address-right">
+            <div class="field-group">
+              <div class="field-label">Zip</div>
+              <div class="field-value">${data.transferee_ffl_zip || ''}</div>
+            </div>
+            <div class="field-group">
+              <div class="field-label">State</div>
+              <div class="field-value">${data.transferee_ffl_state || ''}</div>
+            </div>
+            <div class="field-group">
+              <div class="field-label">City</div>
+              <div class="field-value">${data.transferee_ffl_city || ''}</div>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <div class="print-section">
-        <div class="print-section-title">Items</div>
-        <table class="print-table">
+      <!-- Transfer Items Section -->
+      <div class="section-box">
+        <div class="section-title">Transfer Items</div>
+        <table class="items-table">
           <thead>
             <tr>
-              <th>Control #</th>
-              <th>Manufacturer</th>
-              <th>Model</th>
-              <th>Serial #</th>
-              <th>Type</th>
-              <th>Price</th>
+              <th style="width: 20%">Control #</th>
+              <th style="width: 25%">Manufacturer</th>
+              <th style="width: 25%">Model</th>
+              <th style="width: 30%">Serial #</th>
             </tr>
           </thead>
           <tbody>
@@ -530,8 +1265,6 @@ export function printOutboundTransfer(data: any) {
                 <td>${line.manufacturer || '-'}</td>
                 <td>${line.model || '-'}</td>
                 <td>${line.serial_number || '-'}</td>
-                <td>${line.order_type || '-'}</td>
-                <td>$${(line.unit_price || 0).toFixed(2)}</td>
               </tr>
             `).join('')}
           </tbody>
@@ -539,10 +1272,13 @@ export function printOutboundTransfer(data: any) {
       </div>
 
       ${data.disposition_date ? `
-        <div class="print-section">
-          <div class="print-section-title">Disposition Date</div>
-          <p>${new Date(data.disposition_date).toLocaleDateString()}</p>
+      <div class="section-box">
+        <div class="section-title">Disposition</div>
+        <div class="field-group">
+          <div class="field-label">Disposition Date</div>
+          <div class="field-value">${new Date(data.disposition_date).toLocaleDateString()}</div>
         </div>
+      </div>
       ` : ''}
     </body>
     </html>

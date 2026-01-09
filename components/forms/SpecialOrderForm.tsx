@@ -218,6 +218,7 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
     customer_state: initialData?.customer_state || '',
     customer_zip: initialData?.customer_zip || '',
     delivery_method: initialData?.delivery_method || 'in_store_pickup',
+    payment: initialData?.payment || '',
     special_requests: initialData?.special_requests || '',
     status: initialData?.status || 'pending' as const
   })
@@ -329,7 +330,7 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
     e.preventDefault()
     
     // Validate required fields
-    if (!formData.customer_name || !formData.customer_phone) {
+    if (!formData.customer_name || !formData.customer_phone || !formData.payment) {
       toast({
         title: 'Validation Error',
         description: 'Please fill in all required customer fields',
@@ -391,6 +392,7 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
           product_lines: productLines,
           total_price: totalAmount,
           delivery_method: formData.delivery_method,
+          payment: formData.payment,
           special_requests: formData.special_requests,
           status: formData.status
         });
@@ -409,6 +411,7 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
               product_lines: productLines,
               total_price: totalAmount,
               delivery_method: formData.delivery_method,
+              payment: formData.payment,
               special_requests: formData.special_requests,
               status: formData.status
             })
@@ -461,6 +464,7 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
             product_lines: productLines,
             total_price: totalAmount,
             delivery_method: formData.delivery_method,
+            payment: formData.payment,
             special_requests: formData.special_requests,
             status: formData.status
           }])
@@ -503,20 +507,35 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
     const tax = subtotal * 0.0795;
     const total = subtotal * 1.0795;
 
-    // Determine scale factor based on number of items
+    // Format payment for display
+    const formatPayment = (payment: string) => {
+      if (!payment) return 'Not specified';
+      return payment.charAt(0).toUpperCase() + payment.slice(1).replace('_', ' ');
+    };
+
+    // Calculate scale factor - scale down based on item count to fit in half page
     const itemCount = productLines.length;
     let scaleFactor = 1.0;
-    if (itemCount > 3) {
-      scaleFactor = 0.85;
+    if (itemCount >= 4) {
+      scaleFactor = 0.93;
     }
-    if (itemCount > 5) {
-      scaleFactor = 0.75;
+    if (itemCount >= 5) {
+      scaleFactor = 0.90;
     }
-    if (itemCount > 7) {
-      scaleFactor = 0.65;
+    if (itemCount >= 6) {
+      scaleFactor = 0.87;
+    }
+    if (itemCount >= 7) {
+      scaleFactor = 0.84;
+    }
+    if (itemCount >= 8) {
+      scaleFactor = 0.80;
+    }
+    if (itemCount >= 10) {
+      scaleFactor = 0.78;
     }
 
-    // Create print content with two copies on one page
+    // Create print content with two copies on one page - each copy takes exactly half the page
     const printContent = `
       <!DOCTYPE html>
       <html>
@@ -524,99 +543,132 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
         <title>Special Order Form</title>
         <style>
           @page {
-            size: portrait;
-            margin: 0.25in;
+            size: letter portrait;
+            margin: 0;
           }
           
-          body {
+          * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+          }
+          
+          html, body {
+            height: 100%;
+            width: 100%;
             font-family: 'Arial', sans-serif;
             color: #000;
             background: white;
-            padding: 10px;
-            max-width: 8in;
-            margin: 0 auto;
-            transform: scale(${scaleFactor});
-            transform-origin: top center;
+          }
+          
+          .page-container {
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
           }
           
           .print-copy {
+            height: 50%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 0.15in 0.3in;
+            overflow: hidden;
+          }
+          
+          .print-copy:first-child {
+            border-bottom: 1px dashed #999;
+          }
+          
+          .form-content {
+            width: 100%;
+            max-width: 7.5in;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
             border: 1px solid #000;
-            padding: 15px;
-            margin-bottom: 20px;
-            page-break-inside: avoid;
-          }
-          
-          .print-copy:last-child {
-            margin-bottom: 0;
-          }
-          
-          .copy-label {
-            text-align: center;
-            font-size: 10px;
-            color: #666;
-            margin-bottom: 5px;
-            font-weight: bold;
+            padding: 15px 20px;
+            transform: scale(${scaleFactor});
+            transform-origin: top center;
           }
           
           .print-header {
             text-align: center;
             border-bottom: 2px solid #000;
-            padding-bottom: 15px;
-            margin-bottom: 20px;
+            padding-bottom: 12px;
+            margin-bottom: 15px;
           }
           
-          .print-title {
-            font-size: 20px;
-            font-weight: bold;
+          .print-date {
+            text-align: left;
+            font-size: 11px;
             margin-bottom: 8px;
           }
           
-          .print-subtitle {
-            font-size: 12px;
-            color: #666;
+          .print-title {
+            font-size: 22px;
+            font-weight: bold;
+          }
+          
+          .info-row {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 8px;
+          }
+          
+          .info-column {
+            flex: 1;
           }
           
           .print-section {
-            margin-bottom: 20px;
+            margin-bottom: 12px;
           }
           
           .print-section-title {
             font-size: 14px;
             font-weight: bold;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
             border-bottom: 1px solid #ccc;
             padding-bottom: 3px;
           }
           
           .print-field {
-            margin-bottom: 6px;
+            margin-bottom: 4px;
             display: flex;
           }
           
           .print-label {
             font-weight: bold;
-            width: 120px;
+            width: 90px;
             flex-shrink: 0;
-            font-size: 12px;
+            font-size: 13px;
           }
           
           .print-value {
             flex: 1;
-            font-size: 12px;
+            font-size: 13px;
+          }
+          
+          .order-items-section {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
           }
           
           .print-table {
             width: 100%;
             border-collapse: collapse;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
           }
           
           .print-table th,
           .print-table td {
             border: 1px solid #000;
-            padding: 6px;
+            padding: 6px 8px;
             text-align: left;
-            font-size: 11px;
+            font-size: 12px;
           }
           
           .print-table th {
@@ -625,8 +677,8 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
           }
           
           .print-total-summary {
-            margin-top: 15px;
-            padding: 8px;
+            margin-top: auto;
+            padding: 8px 12px;
             background-color: #f5f5f5;
             border: 1px solid #000;
           }
@@ -642,15 +694,17 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
             font-size: 14px;
             font-weight: bold;
             border-top: 1px solid #000;
-            padding-top: 3px;
+            padding-top: 2px;
             margin-bottom: 0;
           }
         </style>
       </head>
       <body>
-        <!-- Customer Copy (Top) -->
+        <div class="page-container">
+        <!-- Customer Copy (Top Half) -->
         <div class="print-copy">
-          <div style="text-align: left; font-size: 10px; margin-bottom: 10px;">
+          <div class="form-content">
+          <div class="print-date">
             ${new Date().toLocaleDateString('en-US', {
               year: 'numeric',
               month: 'long',
@@ -661,27 +715,44 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
             <div class="print-title">Special Order Form</div>
           </div>
 
-          <div class="print-section">
-            <div class="print-section-title">Customer Information</div>
-            <div class="print-field">
-              <div class="print-label">Name:</div>
-              <div class="print-value">${formData.customer_name}</div>
-            </div>
-            <div class="print-field">
-              <div class="print-label">Phone:</div>
-              <div class="print-value">${formatPhoneNumber(formData.customer_phone)}</div>
-            </div>
-            ${formData.customer_street ? `
-              <div class="print-field">
-                <div class="print-label">Address:</div>
-                <div class="print-value">
-                  ${formData.customer_street}
-                  ${formData.customer_city ? `, ${formData.customer_city}` : ''}
-                  ${formData.customer_state ? ` ${formData.customer_state}` : ''}
-                  ${formData.customer_zip ? ` ${formData.customer_zip}` : ''}
+          <div class="info-row">
+            <div class="info-column">
+              <div class="print-section">
+                <div class="print-section-title">Customer Information</div>
+                <div class="print-field">
+                  <div class="print-label">Name:</div>
+                  <div class="print-value">${formData.customer_name}</div>
                 </div>
+                <div class="print-field">
+                  <div class="print-label">Phone:</div>
+                  <div class="print-value">${formatPhoneNumber(formData.customer_phone)}</div>
+                </div>
+                ${formData.customer_street ? `
+                  <div class="print-field">
+                    <div class="print-label">Address:</div>
+                    <div class="print-value">
+                      ${formData.customer_street}
+                      ${formData.customer_city ? `, ${formData.customer_city}` : ''}
+                      ${formData.customer_state ? ` ${formData.customer_state}` : ''}
+                      ${formData.customer_zip ? ` ${formData.customer_zip}` : ''}
+                    </div>
+                  </div>
+                ` : ''}
               </div>
-            ` : ''}
+            </div>
+            <div class="info-column">
+              <div class="print-section">
+                <div class="print-section-title">Order Details</div>
+                <div class="print-field">
+                  <div class="print-label">Delivery:</div>
+                  <div class="print-value">${formData.delivery_method === 'in_store_pickup' ? 'In-Store Pickup' : 'Ship to Customer'}</div>
+                </div>
+                <div class="print-field">
+                  <div class="print-label">Payment:</div>
+                  <div class="print-value">${formatPayment(formData.payment)}</div>
+                </div>
+                              </div>
+            </div>
           </div>
 
           <div class="print-section">
@@ -725,12 +796,14 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
                 <span>$${total.toFixed(2)}</span>
               </div>
             </div>
+          </div>
           </div>
         </div>
 
-        <!-- Merchant Copy (Bottom) -->
+        <!-- Merchant Copy (Bottom Half) -->
         <div class="print-copy">
-          <div style="text-align: left; font-size: 10px; margin-bottom: 10px;">
+          <div class="form-content">
+          <div class="print-date">
             ${new Date().toLocaleDateString('en-US', {
               year: 'numeric',
               month: 'long',
@@ -741,27 +814,44 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
             <div class="print-title">Special Order Form</div>
           </div>
 
-          <div class="print-section">
-            <div class="print-section-title">Customer Information</div>
-            <div class="print-field">
-              <div class="print-label">Name:</div>
-              <div class="print-value">${formData.customer_name}</div>
-            </div>
-            <div class="print-field">
-              <div class="print-label">Phone:</div>
-              <div class="print-value">${formatPhoneNumber(formData.customer_phone)}</div>
-            </div>
-            ${formData.customer_street ? `
-              <div class="print-field">
-                <div class="print-label">Address:</div>
-                <div class="print-value">
-                  ${formData.customer_street}
-                  ${formData.customer_city ? `, ${formData.customer_city}` : ''}
-                  ${formData.customer_state ? ` ${formData.customer_state}` : ''}
-                  ${formData.customer_zip ? ` ${formData.customer_zip}` : ''}
+          <div class="info-row">
+            <div class="info-column">
+              <div class="print-section">
+                <div class="print-section-title">Customer Information</div>
+                <div class="print-field">
+                  <div class="print-label">Name:</div>
+                  <div class="print-value">${formData.customer_name}</div>
                 </div>
+                <div class="print-field">
+                  <div class="print-label">Phone:</div>
+                  <div class="print-value">${formatPhoneNumber(formData.customer_phone)}</div>
+                </div>
+                ${formData.customer_street ? `
+                  <div class="print-field">
+                    <div class="print-label">Address:</div>
+                    <div class="print-value">
+                      ${formData.customer_street}
+                      ${formData.customer_city ? `, ${formData.customer_city}` : ''}
+                      ${formData.customer_state ? ` ${formData.customer_state}` : ''}
+                      ${formData.customer_zip ? ` ${formData.customer_zip}` : ''}
+                    </div>
+                  </div>
+                ` : ''}
               </div>
-            ` : ''}
+            </div>
+            <div class="info-column">
+              <div class="print-section">
+                <div class="print-section-title">Order Details</div>
+                <div class="print-field">
+                  <div class="print-label">Delivery:</div>
+                  <div class="print-value">${formData.delivery_method === 'in_store_pickup' ? 'In-Store Pickup' : 'Ship to Customer'}</div>
+                </div>
+                <div class="print-field">
+                  <div class="print-label">Payment:</div>
+                  <div class="print-value">${formatPayment(formData.payment)}</div>
+                </div>
+                              </div>
+            </div>
           </div>
 
           <div class="print-section">
@@ -806,6 +896,8 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
               </div>
             </div>
           </div>
+          </div>
+        </div>
         </div>
 
       </body>
@@ -1297,6 +1389,22 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
               </Select>
             </div>
             <div className="space-y-2">
+              <Label className="text-medium" htmlFor="payment">Payment *</Label>
+              <Select value={formData.payment} onValueChange={(value) => handleInputChange('payment', value)}>
+                <SelectTrigger suppressHydrationWarning>
+                  <SelectValue placeholder="Select payment method" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="paid">Paid</SelectItem>
+                  <SelectItem value="not_paid">Not Paid</SelectItem>
+                  <SelectItem value="layaway">Layaway</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="space-y-2">
               <Label className="text-medium" htmlFor="status">Status *</Label>
               <Select value={formData.status} onValueChange={(value) => handleInputChange('status', value)}>
                 <SelectTrigger suppressHydrationWarning>
@@ -1310,6 +1418,9 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
                   <SelectItem value="cancelled">Cancelled</SelectItem>
                 </SelectContent>
               </Select>
+            </div>
+            <div className="space-y-2">
+              {/* Empty space for layout balance */}
             </div>
           </div>
 
