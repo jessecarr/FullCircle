@@ -784,3 +784,9 @@ h3.text-6xl {
   font-weight: 600 !important;
   color: #dbeafe !important;
 }
+
+/* Button icons - make them larger to match button text */
+button svg {
+  width: 1.25rem !important;
+  height: 1.25rem !important;
+}

@@ -1345,7 +1345,7 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
               suppressHydrationWarning
               data-print-form="true"
             >
-              <Printer className="h-4 w-4 mr-2" />
+              <Printer className="h-6 w-6 mr-2" />
               Print
             </Button>
             <Button type="submit" disabled={loading} className="w-full" suppressHydrationWarning>
