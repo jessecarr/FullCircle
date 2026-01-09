@@ -36,6 +36,7 @@ export default function FastBoundSearch({
   const [isOpen, setIsOpen] = useState(false)
   const [loading, setLoading] = useState(false)
   const [highlightedIndex, setHighlightedIndex] = useState(-1)
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
   const [dropdownPosition, setDropdownPosition] = useState({ top: 0, left: 0, width: 0 })
   const wrapperRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
@@ -169,8 +170,8 @@ export default function FastBoundSearch({
   }
 
   return (
-    <div ref={wrapperRef} className={`search-component relative ${className}`}>
-      <Input
+    <div ref={wrapperRef} className={`relative ${className}`}>
+      <input
         ref={inputRef}
         type="text"
         value={query}
@@ -178,7 +179,11 @@ export default function FastBoundSearch({
         onFocus={() => results.length > 0 && setIsOpen(true)}
         onKeyDown={handleKeyDown}
         placeholder={placeholder}
-        className="w-full text-base"
+        className="w-full p-3 rounded bg-[rgba(17, 24, 39, 0.8)] text-white placeholder-[#9ca3af] text-base"
+        style={{
+          border: 'none',
+          outline: 'none'
+        }}
       />
       
       {loading && (
@@ -196,12 +201,14 @@ export default function FastBoundSearch({
             left: `${dropdownPosition.left}px`,
             width: `${dropdownPosition.width}px`,
             zIndex: 999999999,
-            backgroundColor: 'rgba(17, 24, 39, 0.98)',
+            backgroundColor: 'rgba(17, 24, 39, 0.95)',
             border: '1px solid rgba(59, 130, 246, 0.3)',
             borderRadius: '0.375rem',
             boxShadow: '0 10px 25px rgba(0, 0, 0, 0.8)',
             maxHeight: '240px',
-            overflow: 'auto'
+            overflow: 'auto',
+            backdropFilter: 'blur(10px)',
+            padding: '8px'
           }}
         >
           {results.map((item, index) => (
@@ -217,21 +224,25 @@ export default function FastBoundSearch({
                 padding: '12px 16px',
                 cursor: 'pointer',
                 borderBottom: index < results.length - 1 ? '1px solid rgba(59, 130, 246, 0.2)' : 'none',
-                backgroundColor: index === highlightedIndex ? 'rgba(59, 130, 246, 0.2)' : 'transparent',
-                userSelect: 'none'
+                userSelect: 'none',
+                borderRadius: '0.5rem',
+                marginBottom: index < results.length - 1 ? '8px' : '0',
+                transition: 'all 0.2s ease',
+                background: index === highlightedIndex || hoveredIndex === index
+                  ? 'radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.25) 0%, rgba(26, 26, 26, 0.8) 50%, rgba(10, 10, 10, 0.9) 100%)'
+                  : 'radial-gradient(circle at 50% 50%, rgba(26, 26, 26, 0.8) 0%, rgba(10, 10, 10, 0.9) 70%, rgba(0, 0, 0, 0.95) 100%)',
+                backdropFilter: 'blur(10px)',
+                boxShadow: index === highlightedIndex || hoveredIndex === index
+                  ? '0 10px 20px rgba(59, 130, 246, 0.25), 0 8px 32px rgba(0, 0, 0, 0.8)'
+                  : '0 8px 32px rgba(0, 0, 0, 0.8)',
+                border: index === highlightedIndex || hoveredIndex === index 
+                  ? '2px solid rgba(59, 130, 246, 0.6)' 
+                  : '1px solid rgba(59, 130, 246, 0.3)',
               }}
-              onMouseEnter={(e) => {
-                if (index !== highlightedIndex) {
-                  e.currentTarget.style.backgroundColor = 'rgba(59, 130, 246, 0.1)'
-                }
-              }}
-              onMouseLeave={(e) => {
-                if (index !== highlightedIndex) {
-                  e.currentTarget.style.backgroundColor = 'transparent'
-                }
-              }}
+              onMouseEnter={() => setHoveredIndex(index)}
+              onMouseLeave={() => setHoveredIndex(null)}
             >
-              <div style={{ fontSize: '14px', fontWeight: '500', color: 'white' }}>
+              <div style={{ fontSize: '16px', fontWeight: '500', color: 'white' }}>
                 {item.manufacturer} {item.model}
               </div>
               <div style={{ fontSize: '12px', color: '#9ca3af', marginTop: '4px' }}>

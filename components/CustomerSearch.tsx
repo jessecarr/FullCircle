@@ -7,10 +7,11 @@ type CustomerSearchProps = {
 };
 
 export default function CustomerSearch({ onSelect }: CustomerSearchProps) {
-  const [query, setQuery] = useState('');
-  const [results, setResults] = useState<Customer[]>([]);
-  const [isSearching, setIsSearching] = useState(false);
-  const [highlightedIndex, setHighlightedIndex] = useState(-1);
+  const [query, setQuery] = useState('')
+  const [results, setResults] = useState<Customer[]>([])
+  const [isSearching, setIsSearching] = useState(false)
+  const [highlightedIndex, setHighlightedIndex] = useState(-1)
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
   const wrapperRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -134,20 +135,22 @@ export default function CustomerSearch({ onSelect }: CustomerSearchProps) {
               key={customer.id}
               data-customer-index={index}
               className={`border border-[rgba(59, 130, 246, 0.3)] rounded-lg p-3 cursor-pointer mb-2 transition-all duration-200 ${
-                index === highlightedIndex 
+                index === highlightedIndex || hoveredIndex === index
                   ? 'ring-2 ring-[rgba(59, 130, 246, 0.6)] shadow-lg' 
-                  : 'hover:ring-1 hover:ring-[rgba(59, 130, 246, 0.4)]'
+                  : ''
               }`}
               style={{
-                background: index === highlightedIndex 
+                background: index === highlightedIndex || hoveredIndex === index
                   ? 'radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.25) 0%, rgba(26, 26, 26, 0.8) 50%, rgba(10, 10, 10, 0.9) 100%)'
                   : 'radial-gradient(circle at 50% 50%, rgba(26, 26, 26, 0.8) 0%, rgba(10, 10, 10, 0.9) 70%, rgba(0, 0, 0, 0.95) 100%)',
                 backdropFilter: 'blur(10px)',
-                boxShadow: index === highlightedIndex 
+                boxShadow: index === highlightedIndex || hoveredIndex === index
                   ? '0 10px 20px rgba(59, 130, 246, 0.25), 0 8px 32px rgba(0, 0, 0, 0.8)'
                   : '0 8px 32px rgba(0, 0, 0, 0.8)'
               }}
               onClick={() => handleSelect(customer)}
+              onMouseEnter={() => setHoveredIndex(index)}
+              onMouseLeave={() => setHoveredIndex(null)}
             >
               <div className="font-medium text-white text-lg">{customer.name}</div>
               <div className="text-sm text-[#9ca3af]">{customer.email || 'No email'}</div>

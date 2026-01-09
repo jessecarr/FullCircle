@@ -1114,12 +1114,18 @@ export function SuppressorApprovalForm({ initialData, onSuccess, onCancel }: Spe
             <h3 className="text-xl underline font-bold mb-4">Items</h3>
             
             {/* FastBound Inventory Search */}
-            <div className="subtotal-section mb-2 p-4 rounded-lg">
-              <Label className="text-lg font-semibold flex items-center gap-2 mb-2">
-                <Search className="h-5 w-5" />
+            <div className="p-4 rounded-lg mb-6" style={{
+              backgroundColor: '#172554',
+              border: '2px solid #ffffff',
+              padding: '1rem',
+              borderRadius: '0.5rem',
+              boxShadow: '0 0 0 1px rgba(255, 255, 255, 0.2)'
+            }}>
+              <div className="text-xl font-semibold flex items-center gap-2 mb-3" style={{ color: '#dbeafe' }}>
+                <Search className="h-6 w-6" />
                 Search FastBound Inventory
-              </Label>
-              <p className="text-sm text-[#9ca3af] mb-3">
+              </div>
+              <p className="text-base mb-3" style={{ color: '#dbeafe' }}>
                 Search your FastBound inventory to auto-fill item details. Select an item to add it to the form.
               </p>
               <FastBoundSearch
