@@ -569,22 +569,22 @@ export function SuppressorApprovalForm({ initialData, onSuccess, onCancel }: Spe
     const itemCount = productLines.length;
     let scaleFactor = 1.0;
     if (itemCount >= 4) {
-      scaleFactor = 0.90;
+      scaleFactor = 0.93;
     }
     if (itemCount >= 5) {
-      scaleFactor = 0.85;
+      scaleFactor = 0.90;
     }
     if (itemCount >= 6) {
-      scaleFactor = 0.80;
+      scaleFactor = 0.87;
     }
     if (itemCount >= 7) {
-      scaleFactor = 0.75;
+      scaleFactor = 0.84;
     }
     if (itemCount >= 8) {
-      scaleFactor = 0.65;
+      scaleFactor = 0.80;
     }
     if (itemCount >= 10) {
-      scaleFactor = 0.55;
+      scaleFactor = 0.78;
     }
 
     // Create print content with two copies on one page - each copy takes exactly half the page
