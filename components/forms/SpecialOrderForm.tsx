@@ -77,8 +77,11 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
       // Check if customer exists by phone AND/OR email
       let existingCustomer = null;
       
+      console.log('Customer lookup - Phone:', formData.customer_phone, 'Email:', formData.customer_email);
+      
       // First try to find by phone if provided
-      if (formData.customer_phone) {
+      if (formData.customer_phone && formData.customer_phone.trim() !== '') {
+        console.log('Looking up customer by phone:', formData.customer_phone);
         const { data } = await supabase
           .from('customers')
           .select('*')
@@ -87,11 +90,13 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
         
         if (data) {
           existingCustomer = data;
+          console.log('Found existing customer by phone:', data);
         }
       }
       
-      // If not found by phone, try by email if provided
-      if (!existingCustomer && formData.customer_email) {
+      // If not found by phone, try by email if provided and not empty
+      if (!existingCustomer && formData.customer_email && formData.customer_email.trim() !== '') {
+        console.log('Looking up customer by email:', formData.customer_email);
         const { data } = await supabase
           .from('customers')
           .select('*')
@@ -100,8 +105,11 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
         
         if (data) {
           existingCustomer = data;
+          console.log('Found existing customer by email:', data);
         }
       }
+      
+      console.log('Final existingCustomer result:', existingCustomer);
 
       if (existingCustomer) {
         // Customer exists, update with additional information
@@ -154,6 +162,7 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
         }
       } else {
         // Customer doesn't exist, create new customer with all provided information
+        console.log('Creating new customer record...');
         const newCustomerData: any = {
           name: formData.customer_name,
           phone: formData.customer_phone,
@@ -170,12 +179,16 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
         // Always include email field - generate unique placeholder if not provided
         if (formData.customer_email && formData.customer_email.trim() !== '') {
           newCustomerData.email = formData.customer_email;
+          console.log('Using provided email:', formData.customer_email);
         } else {
           // Generate unique placeholder email to satisfy unique constraint
           const timestamp = Date.now();
           const random = Math.random().toString(36).substring(2, 8);
           newCustomerData.email = `no-email-${timestamp}-${random}@placeholder.local`;
+          console.log('Generated placeholder email:', newCustomerData.email);
         }
+
+        console.log('New customer data to insert:', newCustomerData);
 
         const { error: insertError } = await supabase
           .from('customers')

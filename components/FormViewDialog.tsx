@@ -91,7 +91,7 @@ export function FormViewDialog({ open, onOpenChange, data, title, onEdit, onPrev
         <h4 className="text-lg font-semibold mb-3 text-[#e0e0e0]">Items</h4>
         <div className="space-y-3">
           {productLines.map((line, index) => (
-            <div key={index} className="border border-[rgba(59, 130, 246, 0.3)] rounded-lg p-4 bg-[rgba(17, 24, 39, 0.8)]">
+            <div key={index} className="border border-[rgba(59, 130, 246, 0.3)] rounded-lg p-4 landing-card">
               <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
                 <div>
                   <span className="text-xs text-[#9ca3af]">SKU</span>
