@@ -1185,20 +1185,22 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
 
           <div className="border rounded-lg p-6 mb-6">
             <h3 className="text-xl underline font-bold mb-4">Items</h3>
-            <div className="grid grid-cols-15 gap-4 items-end mb-2">
+            <div className="grid grid-cols-16 gap-4 items-end mb-2">
               <div className="col-span-2"><Label className="text-lg">SKU *</Label></div>
               <div className="col-span-4"><Label className="text-lg">Description *</Label></div>
               <div className="col-span-1"><Label className="text-lg">Qty *</Label></div>
               <div className="col-span-1"><Label className="text-lg">Price *</Label></div>
               <div className="col-span-1"><Label className="text-lg">Total *</Label></div>
               <div className="col-span-2"><Label className="text-lg">Vendor *</Label></div>
-              <div className="col-span-1 text-center"><Label className="text-lg">Rec'd</Label></div>
+              <div className="col-span-2 text-center">
+                <Label className="text-lg">Completed</Label>
+              </div>
               <div className="col-span-1"><Label className="text-lg"></Label></div> {/* Clear button */}
-              <div className="col-span-1"><Label className="text-lg"></Label></div> {/* Delete button */}
+              <div className="col-span-2"><Label className="text-lg"></Label></div> {/* Delete button */}
             </div>
             
             {productLines.map((line, index) => (
-              <div key={index} className="grid grid-cols-15 gap-4 items-center mb-2">
+              <div key={index} className="grid grid-cols-16 gap-4 items-center mb-2">
                 <div className="col-span-2">
                   <Textarea
                     id={`sku-${index}`}
@@ -1340,17 +1342,30 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
                   />
                 </div>
 
-                <div className="col-span-1 flex items-center justify-center">
-                  <input
-                    type="checkbox"
-                    id={`received-${index}`}
-                    checked={line.received}
-                    onChange={(e) => updateProductLine(index, 'received', e.target.checked)}
-                    className="w-5 h-5 rounded border-gray-400 text-green-600 focus:ring-green-500 cursor-pointer"
-                  />
+                <div className="col-span-2 flex items-center justify-center gap-4">
+                  <div className="flex flex-col items-center gap-1">
+                    <span className="text-xs text-muted-foreground">Yes</span>
+                    <input
+                      type="checkbox"
+                      id={`received-yes-${index}`}
+                      checked={line.received === true}
+                      onChange={() => updateProductLine(index, 'received', true)}
+                      className="w-5 h-5 rounded border-gray-400 text-green-600 focus:ring-green-500 cursor-pointer"
+                    />
+                  </div>
+                  <div className="flex flex-col items-center gap-1">
+                    <span className="text-xs text-muted-foreground">No</span>
+                    <input
+                      type="checkbox"
+                      id={`received-no-${index}`}
+                      checked={line.received === false}
+                      onChange={() => updateProductLine(index, 'received', false)}
+                      className="w-5 h-5 rounded border-gray-400 text-red-600 focus:ring-red-500 cursor-pointer"
+                    />
+                  </div>
                 </div>
 
-                <div className="col-span-2 flex gap-2 justify-end">
+                <div className="col-span-3 flex gap-2 justify-end">
                   <Button
                     type="button"
                     variant="outline"
