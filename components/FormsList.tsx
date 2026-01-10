@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from 'react'
 import { supabase } from '@/lib/supabase'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
-import { Eye, Edit, Trash2, Printer, Download, RefreshCw, ChevronDown, Search, X } from 'lucide-react'
+import { Eye, Edit, Trash2, Printer, Download, RefreshCw, ChevronDown, Search, X, ArrowUpDown } from 'lucide-react'
 import { Input } from '@/components/ui/input'
 import { useToast } from '@/components/ui/use-toast'
 import { Label } from '@/components/ui/label'
@@ -66,6 +66,9 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger, on
   const [deleteItem, setDeleteItem] = useState<any>(null)
   const [showDeleteDialog, setShowDeleteDialog] = useState(false)
   const [deleteConfirmation, setDeleteConfirmation] = useState('')
+  const [sortBy, setSortBy] = useState<'name_asc' | 'name_desc' | 'status' | 'date_desc' | 'date_asc'>('date_desc')
+  const [showSortDropdown, setShowSortDropdown] = useState(false)
+  const sortRef = useRef<HTMLDivElement>(null)
   const { toast } = useToast()
   const printRef = useRef<HTMLDivElement>(null)
   const formTypeRef = useRef<HTMLDivElement>(null)
@@ -83,6 +86,9 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger, on
       }
       if (vendorRef.current && !vendorRef.current.contains(event.target as Node)) {
         setShowVendorDropdown(false)
+      }
+      if (sortRef.current && !sortRef.current.contains(event.target as Node)) {
+        setShowSortDropdown(false)
       }
     }
 
@@ -328,6 +334,46 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger, on
     )
   }
 
+  const sortItems = (itemsToSort: any[]) => {
+    const sorted = [...itemsToSort]
+    switch (sortBy) {
+      case 'name_asc':
+        return sorted.sort((a, b) => {
+          const nameA = (a.customer_name || '').toLowerCase()
+          const nameB = (b.customer_name || '').toLowerCase()
+          return nameA.localeCompare(nameB)
+        })
+      case 'name_desc':
+        return sorted.sort((a, b) => {
+          const nameA = (a.customer_name || '').toLowerCase()
+          const nameB = (b.customer_name || '').toLowerCase()
+          return nameB.localeCompare(nameA)
+        })
+      case 'status':
+        return sorted.sort((a, b) => {
+          const statusA = (a.status || '').toLowerCase()
+          const statusB = (b.status || '').toLowerCase()
+          return statusA.localeCompare(statusB)
+        })
+      case 'date_asc':
+        return sorted.sort((a, b) => new Date(a.created_at).getTime() - new Date(b.created_at).getTime())
+      case 'date_desc':
+      default:
+        return sorted.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime())
+    }
+  }
+
+  const getSortLabel = () => {
+    switch (sortBy) {
+      case 'name_asc': return 'Name (A-Z)'
+      case 'name_desc': return 'Name (Z-A)'
+      case 'status': return 'Status'
+      case 'date_asc': return 'Date (Oldest)'
+      case 'date_desc': return 'Date (Newest)'
+      default: return 'Sort By'
+    }
+  }
+
   const formatDate = (dateString: string) => {
     if (!dateString) return 'N/A'
     const date = new Date(dateString)
@@ -561,6 +607,44 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger, on
               )}
             </div>
 
+            {/* Sort By */}
+            <div className="flex flex-col space-y-2 relative" ref={sortRef}>
+              <Label className="text-lg block">Sort By</Label>
+              <Button
+                variant="outline"
+                onClick={() => setShowSortDropdown(!showSortDropdown)}
+                className="styled-button w-[200px] justify-between"
+              >
+                <span className="flex items-center gap-2">
+                  <ArrowUpDown className="h-4 w-4" />
+                  {getSortLabel()}
+                </span>
+                <ChevronDown className="h-4 w-4" />
+              </Button>
+              {showSortDropdown && (
+                <div className="absolute top-full mt-1 w-[200px] bg-[rgba(17,24,39,0.95)] border border-[rgba(59,130,246,0.3)] rounded-md shadow-lg z-50 p-2 backdrop-blur-[10px]">
+                  {[
+                    { value: 'name_asc', label: 'Name (A-Z)' },
+                    { value: 'name_desc', label: 'Name (Z-A)' },
+                    { value: 'status', label: 'Status' },
+                    { value: 'date_desc', label: 'Date (Newest)' },
+                    { value: 'date_asc', label: 'Date (Oldest)' },
+                  ].map(option => (
+                    <button
+                      key={option.value}
+                      onClick={() => {
+                        setSortBy(option.value as any)
+                        setShowSortDropdown(false)
+                      }}
+                      className={`w-full text-left p-2 hover:bg-[rgba(59,130,246,0.2)] cursor-pointer rounded text-white ${sortBy === option.value ? 'bg-[rgba(59,130,246,0.3)]' : ''}`}
+                    >
+                      {option.label}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
+
             {/* Clear Filters */}
             <div className="flex flex-col space-y-2">
               <Label className="text-lg block">&nbsp;</Label>
@@ -570,6 +654,7 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger, on
                   setSelectedFormTypes(['all'])
                   setSelectedStatuses([])
                   setSelectedVendors([])
+                  setSortBy('date_desc')
                 }}
                 className="styled-button"
               >
@@ -593,7 +678,7 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger, on
           </CardContent>
         </Card>
       ) : (
-        items.map((item) => (
+        sortItems(items).map((item) => (
           <Card 
             key={`${item._formType}-${item.id}`} 
             className="view-all-form-card cursor-pointer hover:shadow-lg transition-shadow"

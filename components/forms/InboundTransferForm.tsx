@@ -484,9 +484,12 @@ export function InboundTransferForm({ initialData, onSuccess, onCancel }: Specia
             customer_city: formData.customer_city,
             customer_state: formData.customer_state,
             customer_zip: formData.customer_zip,
+            drivers_license: formData.drivers_license,
+            license_expiration: formData.license_expiration,
             product_lines: productLines,
             total_price: totalAmount,
-            special_requests: formData.special_requests
+            special_requests: formData.special_requests,
+            status: 'completed'
           }])
 
         if (error) {

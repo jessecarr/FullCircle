@@ -29,6 +29,7 @@ interface ProductLine {
   quantity: number
   unit_price: number
   total_price: number
+  received: boolean
 }
 
 export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOrderFormProps) {
@@ -46,6 +47,7 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
         quantity: line.quantity || 1,
         unit_price: line.unit_price || 0,
         total_price: line.total_price || 0,
+        received: line.received || false,
       }))
     }
     // Otherwise, create a single empty line for new orders
@@ -56,6 +58,7 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
       quantity: 1,
       unit_price: 0,
       total_price: 0,
+      received: false,
     }]
   })
   const [rowHeights, setRowHeights] = useState<{[key: number]: string}>({})
@@ -230,7 +233,8 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
       vendor: '',
       quantity: 1,
       unit_price: 0,
-      total_price: 0
+      total_price: 0,
+      received: false
     }])
   }
 
@@ -252,7 +256,8 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
       vendor: '',
       quantity: 1,
       unit_price: 0,
-      total_price: 0
+      total_price: 0,
+      received: false
     }
     setProductLines(updated)
   }
@@ -1180,19 +1185,20 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
 
           <div className="border rounded-lg p-6 mb-6">
             <h3 className="text-xl underline font-bold mb-4">Items</h3>
-            <div className="grid grid-cols-14 gap-4 items-end mb-2">
+            <div className="grid grid-cols-15 gap-4 items-end mb-2">
               <div className="col-span-2"><Label className="text-lg">SKU *</Label></div>
-              <div className="col-span-5"><Label className="text-lg">Description *</Label></div>
+              <div className="col-span-4"><Label className="text-lg">Description *</Label></div>
               <div className="col-span-1"><Label className="text-lg">Qty *</Label></div>
               <div className="col-span-1"><Label className="text-lg">Price *</Label></div>
               <div className="col-span-1"><Label className="text-lg">Total *</Label></div>
               <div className="col-span-2"><Label className="text-lg">Vendor *</Label></div>
+              <div className="col-span-1 text-center"><Label className="text-lg">Rec'd</Label></div>
               <div className="col-span-1"><Label className="text-lg"></Label></div> {/* Clear button */}
               <div className="col-span-1"><Label className="text-lg"></Label></div> {/* Delete button */}
             </div>
             
             {productLines.map((line, index) => (
-              <div key={index} className="grid grid-cols-14 gap-4 items-center mb-2">
+              <div key={index} className="grid grid-cols-15 gap-4 items-center mb-2">
                 <div className="col-span-2">
                   <Textarea
                     id={`sku-${index}`}
@@ -1227,7 +1233,7 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
                   />
                 </div>
 
-                <div className="col-span-5">
+                <div className="col-span-4">
                   <Textarea
                     id={`description-${index}`}
                     value={line.description}
@@ -1331,6 +1337,16 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
                     height={rowHeights[index]}
                     onHeightChange={(newHeight) => handleFieldHeightChange(index, `vendor-${index}`, newHeight)}
                     rowIndex={index}
+                  />
+                </div>
+
+                <div className="col-span-1 flex items-center justify-center">
+                  <input
+                    type="checkbox"
+                    id={`received-${index}`}
+                    checked={line.received}
+                    onChange={(e) => updateProductLine(index, 'received', e.target.checked)}
+                    className="w-5 h-5 rounded border-gray-400 text-green-600 focus:ring-green-500 cursor-pointer"
                   />
                 </div>
 
