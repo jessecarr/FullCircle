@@ -273,44 +273,6 @@ export function InboundTransferForm({ initialData, onSuccess, onCancel }: Specia
     setProductLines(updated)
   }
 
-  const handleControlNumberSearch = async (index: number, controlNumber: string) => {
-    if (!controlNumber.trim()) return
-    
-    try {
-      const response = await fetch(`/api/control-number?controlNumber=${encodeURIComponent(controlNumber.trim())}`)
-      if (!response.ok) {
-        if (response.status === 404) {
-          // Control number not found, don't show error to user, just don't auto-fill
-          return
-        }
-        throw new Error('Search failed')
-      }
-      
-      const item = await response.json()
-      if (item) {
-        // Auto-fill the fields with the found item data
-        const updated = [...productLines]
-        updated[index] = {
-          ...updated[index],
-          manufacturer: item.manufacturer || '',
-          model: item.model || '',
-          serial_number: item.serial_number || '',
-          fastbound_item_id: item.fastbound_item_id,
-          firearm_type: item.firearm_type || '',
-          caliber: item.caliber || ''
-        }
-        setProductLines(updated)
-        
-        toast({
-          title: 'Item Found',
-          description: 'Auto-filled manufacturer, model, and serial number',
-        })
-      }
-    } catch (error) {
-      console.error('Error searching control number:', error)
-      // Don't show error to user for failed searches, just log it
-    }
-  }
 
   const updateProductLine = (index: number, field: keyof ProductLine, value: any) => {
     console.log('Updating product line:', { index, field, value });
@@ -522,9 +484,12 @@ export function InboundTransferForm({ initialData, onSuccess, onCancel }: Specia
             customer_city: formData.customer_city,
             customer_state: formData.customer_state,
             customer_zip: formData.customer_zip,
+            drivers_license: formData.drivers_license,
+            license_expiration: formData.license_expiration,
             product_lines: productLines,
             total_price: totalAmount,
-            special_requests: formData.special_requests
+            special_requests: formData.special_requests,
+            status: 'completed'
           }])
 
         if (error) {
@@ -996,7 +961,6 @@ export function InboundTransferForm({ initialData, onSuccess, onCancel }: Specia
                 </p>
                 <CustomerSearch 
                   onSelect={(customer) => {
-                    // Check if email is a placeholder, leave blank if so
                     const isPlaceholderEmail = customer.email && customer.email.includes('@placeholder.local');
                     setFormData({
                       ...formData,
@@ -1007,154 +971,166 @@ export function InboundTransferForm({ initialData, onSuccess, onCancel }: Specia
                       customer_city: customer.city || '',
                       customer_state: customer.state || '',
                       customer_zip: customer.zip || '',
+                      drivers_license: customer.drivers_license || '',
+                      license_expiration: customer.license_expiration || '',
                     })
                   }}
                 />
               </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="space-y-2">
-                  <Label className="text-medium" htmlFor="customer_name">Customer Name *</Label>
-                  <Input
-                    id="customer_name"
-                    value={formData.customer_name}
-                    onChange={(e) => handleInputChange('customer_name', e.target.value.toUpperCase())}
-                    onKeyDown={(e) => {
-                      if (e.key === 'Enter') {
-                        e.preventDefault();
-                        document.getElementById('customer_phone')?.focus();
-                      }
-                    }}
-                    required
-                    className="uppercase"
-                  />
-                </div>
-
-                <div className="space-y-2">
-                  <Label className="text-medium" htmlFor="customer_phone">Customer Phone *</Label>
-                  <Input
-                    id="customer_phone"
-                    type="tel"
-                    value={formatPhoneNumber(formData.customer_phone)}
-                    onChange={(e) => {
-                      const digits = e.target.value.replace(/\D/g, '');
-                      handleInputChange('customer_phone', digits);
-                    }}
-                    onKeyDown={(e) => {
-                      if (e.key === 'Enter') {
-                        e.preventDefault();
-                        document.getElementById('drivers_license')?.focus();
-                      }
-                    }}
-                    required
-                    maxLength={14}
-                    placeholder="(123) 456-7890"
-                  />
-                </div>
-              </div>
-              
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
-                <div className="space-y-2">
-                  <Label className="text-medium" htmlFor="drivers_license">Driver's License</Label>
-                  <Input
-                    id="drivers_license"
-                    value={formData.drivers_license}
-                    onChange={(e) => handleInputChange('drivers_license', e.target.value.toUpperCase())}
-                    onKeyDown={(e) => {
-                      if (e.key === 'Enter') {
-                        e.preventDefault();
-                        document.getElementById('license_expiration')?.focus();
-                      }
-                    }}
-                    className="uppercase"
-                  />
-                </div>
-
-                <div className="space-y-2">
-                  <Label className="text-medium" htmlFor="license_expiration">Expiration Date</Label>
-                  <Input
-                    id="license_expiration"
-                    type="date"
-                    value={formData.license_expiration}
-                    onChange={(e) => handleInputChange('license_expiration', e.target.value)}
-                    onKeyDown={(e) => {
-                      if (e.key === 'Enter') {
-                        e.preventDefault();
-                        document.getElementById('customer_email')?.focus();
-                      }
-                    }}
-                  />
-                </div>
-
-                <div className="space-y-2">
-                  <Label className="text-medium" htmlFor="customer_email">Customer Email</Label>
-                  <Input
-                    id="customer_email"
-                    type="email"
-                    value={formData.customer_email}
-                    onChange={(e) => handleInputChange('customer_email', e.target.value.toUpperCase())}
-                    onKeyDown={(e) => {
-                      if (e.key === 'Enter') {
-                        e.preventDefault();
-                        document.getElementById('customer_street')?.focus();
-                      }
-                    }}
-                    className="uppercase"
-                  />
-                </div>
-              </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
-                <div className="space-y-2">
-                  <Label className="text-medium" htmlFor="customer_street">Street Address</Label>
-                  <Textarea
-                    id="customer_street"
-                    value={formData.customer_street}
-                    onChange={(e) => handleInputChange('customer_street', e.target.value.toUpperCase())}
-                    className="min-h-[192px] text-base uppercase"
-                  />
-                </div>
-                <div className="grid grid-cols-1 gap-4">
+              <div className="grid grid-cols-2 gap-6">
+                <div className="space-y-4">
                   <div className="space-y-2">
-                    <Label className="text-medium" htmlFor="customer_zip">Zip</Label>
+                    <Label className="text-medium" htmlFor="customer_name">Name *</Label>
                     <Input
-                      id="customer_zip"
-                      value={formData.customer_zip}
-                      onChange={(e) => handleZipCodeChange(e.target.value.toUpperCase())}
+                      id="customer_name"
+                      value={formData.customer_name}
+                      onChange={(e) => handleInputChange('customer_name', e.target.value.toUpperCase())}
                       onKeyDown={(e) => {
                         if (e.key === 'Enter') {
                           e.preventDefault();
-                          document.getElementById('customer_state')?.focus();
+                          document.getElementById('customer_phone')?.focus();
                         }
                       }}
-                      placeholder="Enter 5-digit zip code"
-                      maxLength={5}
+                      required
                       className="text-base uppercase"
                     />
                   </div>
 
                   <div className="space-y-2">
-                    <Label className="text-medium" htmlFor="customer_state">State</Label>
+                    <Label className="text-medium" htmlFor="customer_phone">Phone *</Label>
                     <Input
-                      id="customer_state"
-                      value={formData.customer_state}
-                      onChange={(e) => handleInputChange('customer_state', e.target.value.toUpperCase())}
+                      id="customer_phone"
+                      type="tel"
+                      value={formatPhoneNumber(formData.customer_phone)}
+                      onChange={(e) => {
+                        const digits = e.target.value.replace(/\D/g, '');
+                        handleInputChange('customer_phone', digits);
+                      }}
                       onKeyDown={(e) => {
                         if (e.key === 'Enter') {
                           e.preventDefault();
-                          document.getElementById('customer_city')?.focus();
+                          document.getElementById('customer_email')?.focus();
                         }
                       }}
-                      className="text-base uppercase"
+                      required
+                      maxLength={14}
+                      placeholder="(___) ___-____"
+                      className="text-base"
                     />
                   </div>
 
                   <div className="space-y-2">
-                    <Label className="text-medium" htmlFor="customer_city">City</Label>
+                    <Label className="text-medium" htmlFor="customer_email">Email</Label>
                     <Input
-                      id="customer_city"
-                      value={formData.customer_city}
-                      onChange={(e) => handleInputChange('customer_city', e.target.value.toUpperCase())}
-                      className="text-base uppercase"
+                      id="customer_email"
+                      type="email"
+                      value={formData.customer_email}
+                      onChange={(e) => handleInputChange('customer_email', e.target.value)}
+                      onKeyDown={(e) => {
+                        if (e.key === 'Enter') {
+                          e.preventDefault();
+                          document.getElementById('drivers_license')?.focus();
+                        }
+                      }}
+                      className="text-base"
                     />
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className="space-y-2">
+                      <Label className="text-medium" htmlFor="drivers_license">Driver's License</Label>
+                      <Input
+                        id="drivers_license"
+                        value={formData.drivers_license}
+                        onChange={(e) => handleInputChange('drivers_license', e.target.value.toUpperCase())}
+                        onKeyDown={(e) => {
+                          if (e.key === 'Enter') {
+                            e.preventDefault();
+                            document.getElementById('license_expiration')?.focus();
+                          }
+                        }}
+                        className="text-base uppercase"
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <Label className="text-medium" htmlFor="license_expiration">Expiration Date</Label>
+                      <Input
+                        id="license_expiration"
+                        type="date"
+                        value={formData.license_expiration}
+                        onChange={(e) => handleInputChange('license_expiration', e.target.value)}
+                        onKeyDown={(e) => {
+                          if (e.key === 'Enter') {
+                            e.preventDefault();
+                            document.getElementById('customer_street')?.focus();
+                          }
+                        }}
+                        className="text-base"
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                <div className="space-y-4">
+                  <div className="space-y-2">
+                    <Label className="text-medium" htmlFor="customer_street">Street Address</Label>
+                    <Textarea
+                      id="customer_street"
+                      value={formData.customer_street}
+                      onChange={(e) => handleInputChange('customer_street', e.target.value.toUpperCase())}
+                      onKeyDown={(e) => {
+                        if (e.key === 'Enter') {
+                          e.preventDefault();
+                          document.getElementById('customer_zip')?.focus();
+                        }
+                      }}
+                      rows={2}
+                      className="text-base uppercase resize-none"
+                    />
+                  </div>
+                  
+                  <div className="grid grid-cols-3 gap-2">
+                    <div className="space-y-2">
+                      <Label className="text-medium" htmlFor="customer_zip">Zip</Label>
+                      <Input
+                        id="customer_zip"
+                        value={formData.customer_zip}
+                        onChange={(e) => handleZipCodeChange(e.target.value.toUpperCase())}
+                        onKeyDown={(e) => {
+                          if (e.key === 'Enter') {
+                            e.preventDefault();
+                            document.getElementById('customer_state')?.focus();
+                          }
+                        }}
+                        className="text-base uppercase"
+                      />
+                    </div>
+
+                    <div className="space-y-2">
+                      <Label className="text-medium" htmlFor="customer_state">State</Label>
+                      <Input
+                        id="customer_state"
+                        value={formData.customer_state}
+                        onChange={(e) => handleInputChange('customer_state', e.target.value.toUpperCase())}
+                        onKeyDown={(e) => {
+                          if (e.key === 'Enter') {
+                            e.preventDefault();
+                            document.getElementById('customer_city')?.focus();
+                          }
+                        }}
+                        className="text-base uppercase"
+                      />
+                    </div>
+
+                    <div className="space-y-2">
+                      <Label className="text-medium" htmlFor="customer_city">City</Label>
+                      <Input
+                        id="customer_city"
+                        value={formData.customer_city}
+                        onChange={(e) => handleInputChange('customer_city', e.target.value.toUpperCase())}
+                        className="text-base uppercase"
+                      />
+                    </div>
                   </div>
                 </div>
               </div>
@@ -1247,9 +1223,6 @@ export function InboundTransferForm({ initialData, onSuccess, onCancel }: Specia
                         }
                       }
                     }}
-                    onBlur={(e) => {
-                      handleControlNumberSearch(index, e.target.value);
-                    }}
                     required
                     className="text-base w-full min-h-[48px] resize-none overflow-hidden uppercase text-center text-left"
                     rows={1}
@@ -1267,7 +1240,7 @@ export function InboundTransferForm({ initialData, onSuccess, onCancel }: Specia
                       setTimeout(() => recalculateRowHeight(index), 10);
                     }}
                     data-testid={`control-number-input-${index}`}
-                    placeholder="Enter Control # to Autofill"
+                    placeholder=""
                   />
                 </div>
 

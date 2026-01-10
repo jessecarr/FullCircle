@@ -7,6 +7,7 @@ import { SpecialOrderForm } from '@/components/forms/SpecialOrderForm'
 import { InboundTransferForm } from '@/components/forms/InboundTransferForm'
 import { SuppressorApprovalForm } from '@/components/forms/SuppressorApprovalForm'
 import { OutboundTransferForm } from '@/components/forms/OutboundTransferForm'
+import { ConsignmentForm } from '@/components/forms/ConsignmentForm'
 import { FormsList } from '@/components/FormsList'
 import { FormViewDialog } from '@/components/FormViewDialog'
 import { Button } from '@/components/ui/button'
@@ -77,7 +78,8 @@ function HomeContent() {
         'special_orders': 'special-order',
         'inbound_transfers': 'inbound-transfer',
         'suppressor_approvals': 'suppressor-approval',
-        'outbound_transfers': 'outbound-transfer'
+        'outbound_transfers': 'outbound-transfer',
+        'consignment_forms': 'consignment'
       }
       setActiveTab(tabMap[formType] || 'special-order')
     }
@@ -203,6 +205,8 @@ function HomeContent() {
         return 'Suppressor Approvals'
       case 'outbound-transfer':
         return 'Outbound Transfers'
+      case 'consignment':
+        return 'Consignments'
       default:
         return ''
     }
@@ -218,6 +222,8 @@ function HomeContent() {
         return 'suppressor_approvals' as const
       case 'outbound-transfer':
         return 'outbound_transfers' as const
+      case 'consignment':
+        return 'consignment_forms' as const
       default:
         return 'special_orders' as const
     }
@@ -290,6 +296,12 @@ function HomeContent() {
                   >
                     Outbound Transfer
                   </DropdownMenuItem>
+                  <DropdownMenuItem 
+                    onClick={() => handleFormSelect('consignment')}
+                    className="cursor-pointer"
+                  >
+                    Consignment
+                  </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
               {viewMode === 'form' && (
@@ -351,6 +363,13 @@ function HomeContent() {
 
               <TabsContent value="outbound-transfer">
                 <OutboundTransferForm
+                  initialData={editingItem}
+                  onSuccess={handleFormSuccess}
+                />
+              </TabsContent>
+
+              <TabsContent value="consignment">
+                <ConsignmentForm
                   initialData={editingItem}
                   onSuccess={handleFormSuccess}
                 />

@@ -29,6 +29,7 @@ interface ProductLine {
   quantity: number
   unit_price: number
   total_price: number
+  received: boolean
 }
 
 export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOrderFormProps) {
@@ -46,6 +47,7 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
         quantity: line.quantity || 1,
         unit_price: line.unit_price || 0,
         total_price: line.total_price || 0,
+        received: line.received || false,
       }))
     }
     // Otherwise, create a single empty line for new orders
@@ -56,6 +58,7 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
       quantity: 1,
       unit_price: 0,
       total_price: 0,
+      received: false,
     }]
   })
   const [rowHeights, setRowHeights] = useState<{[key: number]: string}>({})
@@ -230,7 +233,8 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
       vendor: '',
       quantity: 1,
       unit_price: 0,
-      total_price: 0
+      total_price: 0,
+      received: false
     }])
   }
 
@@ -252,7 +256,8 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
       vendor: '',
       quantity: 1,
       unit_price: 0,
-      total_price: 0
+      total_price: 0,
+      received: false
     }
     setProductLines(updated)
   }
@@ -1074,51 +1079,62 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
 
               {/* Customer Details Section - Collapsible */}
               {showCustomerDetails && (
-                <div className="mt-4 space-y-4">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
-                    <div className="space-y-2">
-                      <Label className="text-medium" htmlFor="drivers_license">Driver's License</Label>
-                      <Input
-                        id="drivers_license"
-                        value={formData.drivers_license}
-                        onChange={(e) => handleInputChange('drivers_license', e.target.value.toUpperCase())}
-                        onKeyDown={(e) => {
-                          if (e.key === 'Enter') {
-                            e.preventDefault();
-                            document.getElementById('license_expiration')?.focus();
-                          }
-                        }}
-                        className="uppercase"
-                      />
-                    </div>
-
-                    <div className="space-y-2">
-                      <Label className="text-medium" htmlFor="license_expiration">Expiration Date</Label>
-                      <Input
-                        id="license_expiration"
-                        type="date"
-                        value={formData.license_expiration}
-                        onChange={(e) => handleInputChange('license_expiration', e.target.value)}
-                        onKeyDown={(e) => {
-                          if (e.key === 'Enter') {
-                            e.preventDefault();
-                            document.getElementById('customer_street')?.focus();
-                          }
-                        }}
-                      />
+                <div className="mt-4 grid grid-cols-2 gap-6">
+                  <div className="space-y-4">
+                    <div className="grid grid-cols-2 gap-4">
+                      <div className="space-y-2">
+                        <Label className="text-medium" htmlFor="drivers_license">Driver's License</Label>
+                        <Input
+                          id="drivers_license"
+                          value={formData.drivers_license}
+                          onChange={(e) => handleInputChange('drivers_license', e.target.value.toUpperCase())}
+                          onKeyDown={(e) => {
+                            if (e.key === 'Enter') {
+                              e.preventDefault();
+                              document.getElementById('license_expiration')?.focus();
+                            }
+                          }}
+                          className="text-base uppercase"
+                        />
+                      </div>
+                      <div className="space-y-2">
+                        <Label className="text-medium" htmlFor="license_expiration">Expiration Date</Label>
+                        <Input
+                          id="license_expiration"
+                          type="date"
+                          value={formData.license_expiration}
+                          onChange={(e) => handleInputChange('license_expiration', e.target.value)}
+                          onKeyDown={(e) => {
+                            if (e.key === 'Enter') {
+                              e.preventDefault();
+                              document.getElementById('customer_street')?.focus();
+                            }
+                          }}
+                          className="text-base"
+                        />
+                      </div>
                     </div>
                   </div>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+
+                  <div className="space-y-4">
                     <div className="space-y-2">
                       <Label className="text-medium" htmlFor="customer_street">Street Address</Label>
                       <Textarea
                         id="customer_street"
                         value={formData.customer_street}
                         onChange={(e) => handleInputChange('customer_street', e.target.value.toUpperCase())}
-                        className="min-h-[192px] text-base uppercase"
+                        onKeyDown={(e) => {
+                          if (e.key === 'Enter') {
+                            e.preventDefault();
+                            document.getElementById('customer_zip')?.focus();
+                          }
+                        }}
+                        rows={2}
+                        className="text-base uppercase resize-none"
                       />
                     </div>
-                    <div className="grid grid-cols-1 gap-4">
+                    
+                    <div className="grid grid-cols-3 gap-2">
                       <div className="space-y-2">
                         <Label className="text-medium" htmlFor="customer_zip">Zip</Label>
                         <Input
@@ -1131,8 +1147,6 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
                               document.getElementById('customer_state')?.focus();
                             }
                           }}
-                          placeholder="Enter 5-digit zip code"
-                          maxLength={5}
                           className="text-base uppercase"
                         />
                       </div>
@@ -1171,19 +1185,22 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
 
           <div className="border rounded-lg p-6 mb-6">
             <h3 className="text-xl underline font-bold mb-4">Items</h3>
-            <div className="grid grid-cols-14 gap-4 items-end mb-2">
+            <div className="grid grid-cols-16 gap-4 items-end mb-2">
               <div className="col-span-2"><Label className="text-lg">SKU *</Label></div>
-              <div className="col-span-5"><Label className="text-lg">Description *</Label></div>
+              <div className="col-span-4"><Label className="text-lg">Description *</Label></div>
               <div className="col-span-1"><Label className="text-lg">Qty *</Label></div>
               <div className="col-span-1"><Label className="text-lg">Price *</Label></div>
               <div className="col-span-1"><Label className="text-lg">Total *</Label></div>
               <div className="col-span-2"><Label className="text-lg">Vendor *</Label></div>
+              <div className="col-span-2 text-center">
+                <Label className="text-lg">Completed</Label>
+              </div>
               <div className="col-span-1"><Label className="text-lg"></Label></div> {/* Clear button */}
-              <div className="col-span-1"><Label className="text-lg"></Label></div> {/* Delete button */}
+              <div className="col-span-2"><Label className="text-lg"></Label></div> {/* Delete button */}
             </div>
             
             {productLines.map((line, index) => (
-              <div key={index} className="grid grid-cols-14 gap-4 items-center mb-2">
+              <div key={index} className="grid grid-cols-16 gap-4 items-center mb-2">
                 <div className="col-span-2">
                   <Textarea
                     id={`sku-${index}`}
@@ -1218,7 +1235,7 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
                   />
                 </div>
 
-                <div className="col-span-5">
+                <div className="col-span-4">
                   <Textarea
                     id={`description-${index}`}
                     value={line.description}
@@ -1325,7 +1342,30 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
                   />
                 </div>
 
-                <div className="col-span-2 flex gap-2 justify-end">
+                <div className="col-span-2 flex items-center justify-center gap-4">
+                  <div className="flex flex-col items-center gap-1">
+                    <span className="text-xs text-muted-foreground">Yes</span>
+                    <input
+                      type="checkbox"
+                      id={`received-yes-${index}`}
+                      checked={line.received === true}
+                      onChange={() => updateProductLine(index, 'received', true)}
+                      className="w-5 h-5 rounded border-gray-400 text-green-600 focus:ring-green-500 cursor-pointer"
+                    />
+                  </div>
+                  <div className="flex flex-col items-center gap-1">
+                    <span className="text-xs text-muted-foreground">No</span>
+                    <input
+                      type="checkbox"
+                      id={`received-no-${index}`}
+                      checked={line.received === false}
+                      onChange={() => updateProductLine(index, 'received', false)}
+                      className="w-5 h-5 rounded border-gray-400 text-red-600 focus:ring-red-500 cursor-pointer"
+                    />
+                  </div>
+                </div>
+
+                <div className="col-span-3 flex gap-2 justify-end">
                   <Button
                     type="button"
                     variant="outline"

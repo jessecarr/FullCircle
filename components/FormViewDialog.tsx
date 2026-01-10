@@ -2,7 +2,7 @@
 
 import { useEffect } from 'react'
 import { Button } from '@/components/ui/button'
-import { Edit, X, ChevronLeft, ChevronRight } from 'lucide-react'
+import { Edit, X, ChevronLeft, ChevronRight, User, Package, FileText, Truck } from 'lucide-react'
 
 interface FormViewDialogProps {
   open: boolean
@@ -16,8 +16,28 @@ interface FormViewDialogProps {
   hasNext?: boolean
 }
 
+const formatPhoneNumber = (phone: string): string => {
+  if (!phone) return ''
+  const cleaned = phone.replace(/\D/g, '')
+  if (cleaned.length === 10) {
+    return `(${cleaned.slice(0, 3)}) ${cleaned.slice(3, 6)}-${cleaned.slice(6)}`
+  }
+  return phone
+}
+
+const formatCurrency = (value: any): string => {
+  if (value === null || value === undefined) return '-'
+  if (typeof value === 'string' && value.includes('$')) return value
+  const num = typeof value === 'number' ? value : parseFloat(value)
+  return isNaN(num) ? '-' : `$${num.toFixed(2)}`
+}
+
+const formatStatus = (status: string): string => {
+  if (!status) return ''
+  return status.charAt(0).toUpperCase() + status.slice(1).replace(/_/g, ' ')
+}
+
 export function FormViewDialog({ open, onOpenChange, data, title, onEdit, onPrevious, onNext, hasPrevious, hasNext }: FormViewDialogProps) {
-  // Add Escape and arrow key handlers
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (!open) return
@@ -42,256 +62,313 @@ export function FormViewDialog({ open, onOpenChange, data, title, onEdit, onPrev
 
   if (!data) return null
 
-  const renderField = (label: string, value: any) => {
-    if (value === null || value === undefined || value === '') return null
-    
-    return (
-      <div className="grid grid-cols-3 gap-4 py-3 px-4 rounded-lg bg-[rgba(59, 130, 246, 0.05)] border border-[rgba(59, 130, 246, 0.2)] hover:bg-[rgba(59, 130, 246, 0.08)] transition-all duration-200">
-        <dt className="font-semibold text-[#dbeafe]" style={{ fontSize: '18px' }}>{label}</dt>
-        <dd className="col-span-2 text-[#e0e0e0] font-medium" style={{ fontSize: '14px' }}>{String(value)}</dd>
-      </div>
-    )
+  const getStatusBadgeColor = (status: string) => {
+    switch (status?.toLowerCase()) {
+      case 'pending': return 'bg-yellow-500/20 text-yellow-400 border-yellow-500/30'
+      case 'ordered': return 'bg-blue-500/20 text-blue-400 border-blue-500/30'
+      case 'received': case 'completed': return 'bg-green-500/20 text-green-400 border-green-500/30'
+      case 'cancelled': return 'bg-red-500/20 text-red-400 border-red-500/30'
+      case 'shipped': return 'bg-purple-500/20 text-purple-400 border-purple-500/30'
+      case 'active': return 'bg-emerald-500/20 text-emerald-400 border-emerald-500/30'
+      case 'sold': return 'bg-indigo-500/20 text-indigo-400 border-indigo-500/30'
+      case 'returned': return 'bg-orange-500/20 text-orange-400 border-orange-500/30'
+      default: return 'bg-gray-500/20 text-gray-400 border-gray-500/30'
+    }
   }
 
-  const renderSection = (sectionTitle: string, fields: Record<string, any>) => {
-    const hasData = Object.values(fields).some(value => 
-      value !== null && value !== undefined && value !== ''
-    )
-    
-    if (!hasData) return null
-    
+  const renderCustomerSection = () => {
+    const hasCustomerData = data.customer_name || data.customer_phone || data.customer_email
+    if (!hasCustomerData) return null
+
+    const address = [
+      data.customer_street,
+      data.customer_city,
+      data.customer_state,
+      data.customer_zip
+    ].filter(Boolean).join(', ')
+
     return (
-      <div className="mb-8">
-        <h4 className="text-xl font-bold mb-4 text-[#dbeafe] pb-2 border-b-2 border-[rgba(59, 130, 246, 0.3)]">{sectionTitle}</h4>
-        <dl className="space-y-3">
-          {Object.entries(fields).map(([key, value]) => {
-            if (value === null || value === undefined || value === '') return null
-            
-            const label = key
-              .split('_')
-              .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-              .join(' ')
-            
-            return (
-              <div key={key}>
-                {renderField(label, value)}
+      <div className="mb-6">
+        <div className="flex items-center gap-2 mb-4 pb-2 border-b border-blue-500/30">
+          <User className="h-5 w-5 text-blue-400" />
+          <h4 className="text-lg font-semibold text-blue-300">Customer Information</h4>
+        </div>
+        <div className="grid grid-cols-2 gap-4">
+          <div className="space-y-3">
+            {data.customer_name && (
+              <div>
+                <span className="text-xs text-gray-400 uppercase tracking-wide">Name</span>
+                <p className="text-white font-medium text-lg">{data.customer_name}</p>
               </div>
-            )
-          })}
-        </dl>
+            )}
+            {data.customer_phone && (
+              <div>
+                <span className="text-xs text-gray-400 uppercase tracking-wide">Phone</span>
+                <p className="text-white font-medium">{formatPhoneNumber(data.customer_phone)}</p>
+              </div>
+            )}
+            {data.customer_email && !data.customer_email.includes('@placeholder.local') && (
+              <div>
+                <span className="text-xs text-gray-400 uppercase tracking-wide">Email</span>
+                <p className="text-white font-medium">{data.customer_email}</p>
+              </div>
+            )}
+          </div>
+          <div className="space-y-3">
+            {address && (
+              <div>
+                <span className="text-xs text-gray-400 uppercase tracking-wide">Address</span>
+                <p className="text-white font-medium">{address}</p>
+              </div>
+            )}
+            {(data.drivers_license || data.license_expiration) && (
+              <div className="grid grid-cols-2 gap-3">
+                {data.drivers_license && (
+                  <div>
+                    <span className="text-xs text-gray-400 uppercase tracking-wide">Driver's License</span>
+                    <p className="text-white font-medium">{data.drivers_license}</p>
+                  </div>
+                )}
+                {data.license_expiration && (
+                  <div>
+                    <span className="text-xs text-gray-400 uppercase tracking-wide">Expiration</span>
+                    <p className="text-white font-medium">{data.license_expiration}</p>
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
+        </div>
       </div>
     )
   }
 
-  const renderProductLines = (productLines: any[], formType?: string) => {
-    if (!productLines || productLines.length === 0) return null
-    
+  const renderOrderDetails = () => {
+    const hasOrderData = data.delivery_method || data.payment || data.special_requests || data.total_price
+    if (!hasOrderData) return null
+
     return (
-      <div className="mb-8">
-        <h4 className="text-xl font-bold mb-4 text-[#dbeafe] pb-2 border-b-2 border-[rgba(59, 130, 246, 0.3)]">
-          {formType === 'inbound_transfer' ? 'Transfer Items' : 'Items'}
-        </h4>
+      <div className="mb-6">
+        <div className="flex items-center gap-2 mb-4 pb-2 border-b border-blue-500/30">
+          <FileText className="h-5 w-5 text-blue-400" />
+          <h4 className="text-lg font-semibold text-blue-300">Order Details</h4>
+        </div>
+        <div className="grid grid-cols-2 gap-4">
+          {data.delivery_method && (
+            <div>
+              <span className="text-xs text-gray-400 uppercase tracking-wide">Delivery Method</span>
+              <p className="text-white font-medium">
+                {data.delivery_method === 'in_store_pickup' ? 'In-Store Pickup' : 'Ship to Customer'}
+              </p>
+            </div>
+          )}
+          {data.payment && (
+            <div>
+              <span className="text-xs text-gray-400 uppercase tracking-wide">Payment</span>
+              <p className="text-white font-medium">{formatStatus(data.payment)}</p>
+            </div>
+          )}
+          {data.total_price !== undefined && (
+            <div>
+              <span className="text-xs text-gray-400 uppercase tracking-wide">Total</span>
+              <p className="text-white font-semibold text-lg">{formatCurrency(data.total_price)}</p>
+            </div>
+          )}
+          {data.special_requests && (
+            <div className="col-span-2">
+              <span className="text-xs text-gray-400 uppercase tracking-wide">Special Requests</span>
+              <p className="text-white font-medium">{data.special_requests}</p>
+            </div>
+          )}
+        </div>
+      </div>
+    )
+  }
+
+  const renderTransfereeSection = () => {
+    if (!data.transferee_name && !data.transferee_ffl_name) return null
+
+    const address = [
+      data.transferee_ffl_address || data.transferee_street,
+      data.transferee_ffl_city || data.transferee_city,
+      data.transferee_ffl_state || data.transferee_state,
+      data.transferee_ffl_zip || data.transferee_zip
+    ].filter(Boolean).join(', ')
+
+    return (
+      <div className="mb-6">
+        <div className="flex items-center gap-2 mb-4 pb-2 border-b border-blue-500/30">
+          <Truck className="h-5 w-5 text-blue-400" />
+          <h4 className="text-lg font-semibold text-blue-300">Transferee Information</h4>
+        </div>
+        <div className="grid grid-cols-2 gap-4">
+          <div className="space-y-3">
+            {(data.transferee_name) && (
+              <div>
+                <span className="text-xs text-gray-400 uppercase tracking-wide">Transferee Name</span>
+                <p className="text-white font-medium">{data.transferee_name}</p>
+              </div>
+            )}
+            {(data.transferee_phone) && (
+              <div>
+                <span className="text-xs text-gray-400 uppercase tracking-wide">Transferee Phone</span>
+                <p className="text-white font-medium">{formatPhoneNumber(data.transferee_phone)}</p>
+              </div>
+            )}
+            {(data.transferee_ffl_name) && (
+              <div>
+                <span className="text-xs text-gray-400 uppercase tracking-wide">FFL Name</span>
+                <p className="text-white font-medium">{data.transferee_ffl_name}</p>
+              </div>
+            )}
+          </div>
+          <div className="space-y-3">
+            {(data.transferee_ffl_phone) && (
+              <div>
+                <span className="text-xs text-gray-400 uppercase tracking-wide">FFL Phone</span>
+                <p className="text-white font-medium">{formatPhoneNumber(data.transferee_ffl_phone)}</p>
+              </div>
+            )}
+            {address && (
+              <div>
+                <span className="text-xs text-gray-400 uppercase tracking-wide">FFL Address</span>
+                <p className="text-white font-medium">{address}</p>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+    )
+  }
+
+  const renderProductLines = () => {
+    if (!data.product_lines || !Array.isArray(data.product_lines) || data.product_lines.length === 0) return null
+
+    const formType = data._formType || ''
+    const isConsignment = formType === 'consignment_forms'
+    const isInbound = formType === 'inbound_transfers'
+    const isOutbound = formType === 'outbound_transfers'
+    const isSuppressor = formType === 'suppressor_approvals'
+
+    return (
+      <div className="mb-6">
+        <div className="flex items-center gap-2 mb-4 pb-2 border-b border-blue-500/30">
+          <Package className="h-5 w-5 text-blue-400" />
+          <h4 className="text-lg font-semibold text-blue-300">
+            {isConsignment ? 'Consignment Items' : isInbound || isOutbound ? 'Transfer Items' : isSuppressor ? 'Suppressor Items' : 'Order Items'}
+          </h4>
+        </div>
         <div className="space-y-3">
-          {productLines.map((line, index) => (
-            <div key={index} className="border border-[rgba(59, 130, 246, 0.3)] rounded-lg p-4 landing-card">
-              {formType === 'inbound_transfer' ? (
-                // Inbound Transfer fields
-                <div className="grid grid-cols-2 md:grid-cols-6 gap-4">
+          {data.product_lines.map((line: any, index: number) => (
+            <div key={index} className="bg-gray-800/50 border border-gray-700 rounded-lg p-4">
+              {isConsignment ? (
+                <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
                   <div>
-                    <span className="text-xs text-[#9ca3af]">Control #</span>
-                    <p className="font-medium text-[#e0e0e0]">{line.control_number || '-'}</p>
+                    <span className="text-xs text-gray-400">Control #</span>
+                    <p className="text-white font-medium text-sm">{line.control_number || '-'}</p>
                   </div>
                   <div>
-                    <span className="text-xs text-[#9ca3af]">Manufacturer</span>
-                    <p className="font-medium text-[#e0e0e0]">{line.manufacturer || '-'}</p>
+                    <span className="text-xs text-gray-400">Manufacturer</span>
+                    <p className="text-white font-medium text-sm">{line.manufacturer || '-'}</p>
                   </div>
                   <div>
-                    <span className="text-xs text-[#9ca3af]">Model</span>
-                    <p className="font-medium text-[#e0e0e0]">{line.model || '-'}</p>
+                    <span className="text-xs text-gray-400">Model</span>
+                    <p className="text-white font-medium text-sm">{line.model || '-'}</p>
                   </div>
                   <div>
-                    <span className="text-xs text-[#9ca3af]">Serial #</span>
-                    <p className="font-medium text-[#e0e0e0]">{line.serial_number || '-'}</p>
+                    <span className="text-xs text-gray-400">Serial #</span>
+                    <p className="text-white font-medium text-sm">{line.serial_number || '-'}</p>
                   </div>
                   <div>
-                    <span className="text-xs text-[#9ca3af]">Order Type</span>
-                    <p className="font-medium text-[#e0e0e0]">{line.order_type || '-'}</p>
+                    <span className="text-xs text-gray-400">Type</span>
+                    <p className="text-white font-medium text-sm">{line.type || '-'}</p>
                   </div>
                   <div>
-                    <span className="text-xs text-[#9ca3af]">Unit Price</span>
-                    <p className="font-medium text-[#e0e0e0]">{line.unit_price ? (typeof line.unit_price === 'string' && line.unit_price.includes('$') ? line.unit_price : `$${line.unit_price.toFixed(2)}`) : '-'}</p>
+                    <span className="text-xs text-gray-400">Caliber</span>
+                    <p className="text-white font-medium text-sm">{line.caliber || '-'}</p>
+                  </div>
+                  <div>
+                    <span className="text-xs text-gray-400">Method</span>
+                    <p className="text-white font-medium text-sm">{line.method || '-'}</p>
+                  </div>
+                  <div>
+                    <span className="text-xs text-gray-400">Sale Price</span>
+                    <p className="text-white font-medium text-sm">{formatCurrency(line.sale_price)}</p>
+                  </div>
+                  <div>
+                    <span className="text-xs text-gray-400">After Fee</span>
+                    <p className="text-green-400 font-semibold text-sm">{formatCurrency(line.after_fee)}</p>
+                  </div>
+                  <div>
+                    <span className="text-xs text-gray-400">Check #</span>
+                    <p className="text-white font-medium text-sm">{line.check_number || '-'}</p>
+                  </div>
+                </div>
+              ) : isInbound || isOutbound || isSuppressor ? (
+                <div className="grid grid-cols-2 md:grid-cols-6 gap-3">
+                  <div>
+                    <span className="text-xs text-gray-400">Control #</span>
+                    <p className="text-white font-medium text-sm">{line.control_number || '-'}</p>
+                  </div>
+                  <div>
+                    <span className="text-xs text-gray-400">Manufacturer</span>
+                    <p className="text-white font-medium text-sm">{line.manufacturer || '-'}</p>
+                  </div>
+                  <div>
+                    <span className="text-xs text-gray-400">Model</span>
+                    <p className="text-white font-medium text-sm">{line.model || '-'}</p>
+                  </div>
+                  <div>
+                    <span className="text-xs text-gray-400">Serial #</span>
+                    <p className="text-white font-medium text-sm">{line.serial_number || '-'}</p>
+                  </div>
+                  <div>
+                    <span className="text-xs text-gray-400">Order Type</span>
+                    <p className="text-white font-medium text-sm">{line.order_type || '-'}</p>
+                  </div>
+                  <div>
+                    <span className="text-xs text-gray-400">Unit Price</span>
+                    <p className="text-white font-medium text-sm">{formatCurrency(line.unit_price)}</p>
                   </div>
                 </div>
               ) : (
-                // Special Order fields
-                <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+                <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
                   <div>
-                    <span className="text-xs text-[#9ca3af]">SKU</span>
-                    <p className="font-medium text-[#e0e0e0]">{line.sku || '-'}</p>
+                    <span className="text-xs text-gray-400">SKU</span>
+                    <p className="text-white font-medium text-sm">{line.sku || '-'}</p>
                   </div>
                   <div>
-                    <span className="text-xs text-[#9ca3af]">Description</span>
-                    <p className="font-medium text-[#e0e0e0]">{line.description || '-'}</p>
+                    <span className="text-xs text-gray-400">Description</span>
+                    <p className="text-white font-medium text-sm">{line.description || '-'}</p>
                   </div>
                   <div>
-                    <span className="text-xs text-[#9ca3af]">Qty/Price</span>
-                    <p className="font-medium text-[#e0e0e0]">{line.quantity || 0} × {line.unit_price ? (typeof line.unit_price === 'string' && line.unit_price.includes('$') ? line.unit_price : `$${line.unit_price.toFixed(2)}`) : '-'}</p>
+                    <span className="text-xs text-gray-400">Qty × Price</span>
+                    <p className="text-white font-medium text-sm">{line.quantity || 0} × {formatCurrency(line.unit_price)}</p>
                   </div>
                   <div>
-                    <span className="text-xs text-[#9ca3af]">Total</span>
-                    <p className="font-medium text-[#e0e0e0]">{line.total_price ? (typeof line.total_price === 'string' && line.total_price.includes('$') ? line.total_price : `$${line.total_price.toFixed(2)}`) : '-'}</p>
+                    <span className="text-xs text-gray-400">Total</span>
+                    <p className="text-white font-semibold text-sm">{formatCurrency(line.total_price)}</p>
                   </div>
                   <div>
-                    <span className="text-xs text-[#9ca3af]">Vendor</span>
-                    <p className="font-medium text-[#e0e0e0]">{line.vendor_name || line.vendor || 'N/A'}</p>
+                    <span className="text-xs text-gray-400">Vendor</span>
+                    <p className="text-white font-medium text-sm">{line.vendor_name || line.vendor || '-'}</p>
                   </div>
                 </div>
               )}
             </div>
           ))}
         </div>
+        {data.total_price !== undefined && (
+          <div className="mt-4 flex justify-end">
+            <div className="bg-blue-500/10 border border-blue-500/30 rounded-lg px-4 py-2">
+              <span className="text-sm text-gray-400 mr-3">Total:</span>
+              <span className="text-xl font-bold text-white">{formatCurrency(data.total_price)}</span>
+            </div>
+          </div>
+        )}
       </div>
     )
   }
-
-  // Group fields by section
-  const customerFields = {
-    customer_name: data.customer_name,
-    customer_email: data.customer_email,
-    customer_phone: data.customer_phone,
-    customer_street: data.customer_street,
-    customer_city: data.customer_city,
-    customer_state: data.customer_state,
-    customer_zip: data.customer_zip,
-  }
-
-  const orderFields = {
-    delivery_method: data.delivery_method === 'in_store_pickup' ? 'In-Store Pickup' : 'Ship to Customer',
-    payment: data.payment ? (typeof data.payment === 'string' ? data.payment.charAt(0).toUpperCase() + data.payment.slice(1).replace('_', ' ') : data.payment) : '',
-    special_requests: data.special_requests,
-    status: data.status,
-    total_price: data.total_price,
-  }
-
-  // Handle different form types
-  const getFormSections = () => {
-    // Check form type based on _formType if available, otherwise fall back to field detection
-    const formType = data._formType || ''
-    
-    if (formType === 'inbound_transfers' || (data.customer_name && !data.delivery_method && !data.payment)) {
-      // Inbound Transfer form - has customer fields but no delivery/payment
-      const transferFields = {
-        customer_name: data.customer_name,
-        customer_email: data.customer_email,
-        customer_phone: data.customer_phone,
-        customer_street: data.customer_street,
-        customer_city: data.customer_city,
-        customer_state: data.customer_state,
-        customer_zip: data.customer_zip,
-        status: data.status,
-        special_requests: data.special_requests,
-      }
-      
-      const sections = [
-        { title: 'Customer Information', fields: transferFields }
-      ]
-      
-      // Add product lines if they exist
-      if (data.product_lines && Array.isArray(data.product_lines)) {
-        sections.push({ title: 'Transfer Items', fields: {}, productLines: data.product_lines, formType: 'inbound_transfer' } as any)
-      }
-      
-      return sections
-    } else if (data.customer_name || data.customer_email || data.customer_phone) {
-      // Special Order form - has customer fields and delivery/payment
-      const sections = [
-        { title: 'Customer Information', fields: customerFields },
-        { title: 'Order Details', fields: orderFields }
-      ]
-      
-      // Add product lines if they exist
-      if (data.product_lines && Array.isArray(data.product_lines)) {
-        sections.push({ title: 'Items', fields: {}, productLines: data.product_lines, formType: 'special_order' } as any)
-      }
-      
-      return sections
-    } else if (data.transferor_name) {
-      // Inbound Transfer form (old format)
-      const transferFields = {
-        transferor_name: data.transferor_name,
-        transferor_ffl: data.transferor_ffl,
-        transferor_address: data.transferor_address,
-        transferor_city: data.transferor_city,
-        transferor_state: data.transferor_state,
-        transferor_zip: data.transferor_zip,
-        firearm_type: data.firearm_type,
-        manufacturer: data.manufacturer,
-        model: data.model,
-        caliber: data.caliber,
-        serial_number: data.serial_number,
-        transfer_date: data.transfer_date,
-        atf_form_type: data.atf_form_type,
-        tracking_number: data.tracking_number,
-        notes: data.notes,
-        status: data.status,
-      }
-      return [{ title: 'Transfer Details', fields: transferFields }]
-    } else if (data.suppressor_manufacturer) {
-      // Suppressor Approval form
-      const suppressorFields = {
-        customer_name: data.customer_name,
-        customer_email: data.customer_email,
-        customer_phone: data.customer_phone,
-        customer_address: data.customer_address,
-        customer_city: data.customer_city,
-        customer_state: data.customer_state,
-        customer_zip: data.customer_zip,
-        suppressor_manufacturer: data.suppressor_manufacturer,
-        suppressor_model: data.suppressor_model,
-        suppressor_caliber: data.suppressor_caliber,
-        suppressor_serial_number: data.suppressor_serial_number,
-        trust_name: data.trust_name,
-        form_type: data.form_type,
-        submission_date: data.submission_date,
-        approval_date: data.approval_date,
-        tax_stamp_number: data.tax_stamp_number,
-        examiner_name: data.examiner_name,
-        status: data.status,
-        notes: data.notes,
-      }
-      return [
-        { title: 'Customer Information', fields: customerFields },
-        { title: 'Suppressor Details', fields: suppressorFields }
-      ]
-    } else if (data.transferee_name) {
-      // Outbound Transfer form
-      const outboundFields = {
-        transferee_name: data.transferee_name,
-        transferee_ffl: data.transferee_ffl,
-        transferee_address: data.transferee_address,
-        transferee_city: data.transferee_city,
-        transferee_state: data.transferee_state,
-        transferee_zip: data.transferee_zip,
-        firearm_type: data.firearm_type,
-        manufacturer: data.manufacturer,
-        model: data.model,
-        caliber: data.caliber,
-        serial_number: data.serial_number,
-        transfer_date: data.transfer_date,
-        atf_form_type: data.atf_form_type,
-        tracking_number: data.tracking_number,
-        carrier: data.carrier,
-        notes: data.notes,
-        status: data.status,
-      }
-      return [{ title: 'Transfer Details', fields: outboundFields }]
-    }
-    
-    // Fallback - show all fields
-    return [{ title: 'Form Details', fields: data }]
-  }
-
-  const sections = getFormSections()
 
   if (!open) return null
 
@@ -403,16 +480,21 @@ export function FormViewDialog({ open, onOpenChange, data, title, onEdit, onPrev
           </div>
         </div>
         
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
-          {sections.map((section, index) => (
-            <div key={index} className="transition-all duration-300">
-              {(section as any).productLines ? (
-                renderProductLines((section as any).productLines, (section as any).formType)
-              ) : (
-                renderSection((section as any).title, (section as any).fields)
-              )}
+        <div>
+          {/* Status Badge */}
+          {data.status && (
+            <div className="mb-6 flex items-center gap-3">
+              <span className="text-sm text-gray-400">Status:</span>
+              <span className={`px-3 py-1 rounded-full text-sm font-medium border ${getStatusBadgeColor(data.status)}`}>
+                {formatStatus(data.status)}
+              </span>
             </div>
-          ))}
+          )}
+          
+          {renderCustomerSection()}
+          {renderTransfereeSection()}
+          {renderOrderDetails()}
+          {renderProductLines()}
         </div>
       </div>
 
