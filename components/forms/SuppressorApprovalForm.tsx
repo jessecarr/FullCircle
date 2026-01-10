@@ -49,6 +49,7 @@ interface ProductLine {
 export function SuppressorApprovalForm({ initialData, onSuccess, onCancel }: SpecialOrderFormProps) {
   const { toast } = useToast()
   const [loading, setLoading] = useState(false)
+  const [emailLoading, setEmailLoading] = useState(false)
   const [showPrintSubmitDialog, setShowPrintSubmitDialog] = useState(false)
   const [productLines, setProductLines] = useState<ProductLine[]>(() => {
     // If editing existing form with product_lines, use those
@@ -916,6 +917,32 @@ export function SuppressorApprovalForm({ initialData, onSuccess, onCancel }: Spe
     }
   };
 
+  const handleEmail = async () => {
+    if (!formData.customer_email) {
+      toast({ title: 'No Email Available', description: 'Please enter a customer email address before sending.', variant: 'destructive' });
+      return;
+    }
+    setEmailLoading(true);
+    try {
+      const { sendFormEmail } = await import('@/lib/emailUtils');
+      const result = await sendFormEmail({
+        customerEmail: formData.customer_email,
+        customerName: formData.customer_name || 'Customer',
+        formType: 'suppressor_approvals',
+        formData: { ...formData, product_lines: productLines },
+      });
+      if (result.success) {
+        toast({ title: 'Email Sent', description: result.message });
+      } else {
+        toast({ title: 'Email Failed', description: result.message, variant: 'destructive' });
+      }
+    } catch (error) {
+      toast({ title: 'Email Failed', description: error instanceof Error ? error.message : 'Failed to send email', variant: 'destructive' });
+    } finally {
+      setEmailLoading(false);
+    }
+  };
+
   return (
     <>
       <Card>
@@ -1491,8 +1518,12 @@ export function SuppressorApprovalForm({ initialData, onSuccess, onCancel }: Spe
       onOpenChange={setShowPrintSubmitDialog}
       onPrint={handlePrint}
       onSubmit={performSubmission}
+      onEmail={handleEmail}
       isEditing={!!initialData}
       loading={loading}
+      emailLoading={emailLoading}
+      customerEmail={formData.customer_email}
+      customerName={formData.customer_name}
     />
     </>
   )

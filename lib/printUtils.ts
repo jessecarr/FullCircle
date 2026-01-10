@@ -1536,25 +1536,41 @@ function downloadConsignmentPDF(data: any) {
   `
 
   const filename = `Consignment_${data.customer_name || 'Form'}_${new Date().toISOString().split('T')[0]}.pdf`
-  generatePDF(content, filename)
+  generateImage(content, filename)
 }
 
 export function printForm(data: any, formType: string) {
+  // Parse product_lines if it's a string
+  let productLines = data.product_lines
+  if (typeof productLines === 'string') {
+    try {
+      productLines = JSON.parse(productLines)
+    } catch (e) {
+      console.error('Failed to parse product_lines:', e)
+      productLines = []
+    }
+  }
+  if (!Array.isArray(productLines)) {
+    productLines = []
+  }
+  
+  const processedData = { ...data, product_lines: productLines }
+  
   switch (formType) {
     case 'special_orders':
-      printSpecialOrder(data)
+      printSpecialOrder(processedData)
       break
     case 'inbound_transfers':
-      printInboundTransfer(data)
+      printInboundTransfer(processedData)
       break
     case 'suppressor_approvals':
-      printSuppressorApproval(data)
+      printSuppressorApproval(processedData)
       break
     case 'outbound_transfers':
-      printOutboundTransfer(data)
+      printOutboundTransfer(processedData)
       break
     case 'consignment_forms':
-      printConsignment(data)
+      printConsignment(processedData)
       break
     default:
       console.error('Unknown form type:', formType)
@@ -1562,21 +1578,44 @@ export function printForm(data: any, formType: string) {
 }
 
 export function downloadFormPDF(data: any, formType: string) {
+  // Debug: Log incoming data
+  console.log('downloadFormPDF called with:', { formType, data })
+  console.log('product_lines type:', typeof data.product_lines)
+  console.log('product_lines value:', data.product_lines)
+  
+  // Parse product_lines if it's a string
+  let productLines = data.product_lines
+  if (typeof productLines === 'string') {
+    try {
+      productLines = JSON.parse(productLines)
+    } catch (e) {
+      console.error('Failed to parse product_lines:', e)
+      productLines = []
+    }
+  }
+  if (!Array.isArray(productLines)) {
+    productLines = []
+  }
+  
+  console.log('Processed product_lines:', productLines)
+  
+  const processedData = { ...data, product_lines: productLines }
+  
   switch (formType) {
     case 'special_orders':
-      downloadSpecialOrderPDF(data)
+      downloadSpecialOrderPDF(processedData)
       break
     case 'inbound_transfers':
-      downloadInboundTransferPDF(data)
+      downloadInboundTransferPDF(processedData)
       break
     case 'suppressor_approvals':
-      downloadSuppressorApprovalPDF(data)
+      downloadSuppressorApprovalPDF(processedData)
       break
     case 'outbound_transfers':
-      downloadOutboundTransferPDF(data)
+      downloadOutboundTransferPDF(processedData)
       break
     case 'consignment_forms':
-      downloadConsignmentPDF(data)
+      downloadConsignmentPDF(processedData)
       break
     default:
       console.error('Unknown form type:', formType)
@@ -1590,249 +1629,600 @@ function downloadSpecialOrderPDF(data: any) {
   const total = subtotal * 1.0795
 
   const content = `
-    <div style="font-family: Arial, sans-serif; padding: 20px; max-width: 800px; margin: 0 auto;">
-      <div style="text-align: center; border-bottom: 2px solid #000; padding-bottom: 15px; margin-bottom: 20px;">
-        <h1 style="margin: 0; font-size: 24px;">Special Order Form</h1>
+    <div style="font-family: Arial, sans-serif; padding: 20px; max-width: 800px; margin: 0 auto; color: #000; background-color: #fff;">
+      <div style="text-align: center; border-bottom: 2px solid #1e40af; padding-bottom: 15px; margin-bottom: 20px;">
+        <h1 style="margin: 0; font-size: 24px; color: #1e40af;">Special Order Form</h1>
         <p style="margin: 5px 0 0 0; color: #666;">${new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
       </div>
 
       <div style="margin-bottom: 20px;">
-        <h3 style="border-bottom: 1px solid #ccc; padding-bottom: 5px;">Customer Information</h3>
-        <p><strong>Name:</strong> ${data.customer_name || ''}</p>
-        <p><strong>Phone:</strong> ${formatPhoneNumber(data.customer_phone || '')}</p>
-        <p><strong>Email:</strong> ${data.customer_email || ''}</p>
-        ${data.customer_street ? `<p><strong>Address:</strong> ${data.customer_street}, ${data.customer_city || ''} ${data.customer_state || ''} ${data.customer_zip || ''}</p>` : ''}
+        <h3 style="border-bottom: 1px solid #1e40af; padding-bottom: 5px; color: #1e40af;">Customer Information</h3>
+        <p style="color: #000;"><strong>Name:</strong> ${data.customer_name || ''}</p>
+        <p style="color: #000;"><strong>Phone:</strong> ${formatPhoneNumber(data.customer_phone || '')}</p>
+        <p style="color: #000;"><strong>Email:</strong> ${data.customer_email || ''}</p>
+        ${data.customer_street ? `<p style="color: #000;"><strong>Address:</strong> ${data.customer_street}, ${data.customer_city || ''} ${data.customer_state || ''} ${data.customer_zip || ''}</p>` : ''}
       </div>
 
       <div style="margin-bottom: 20px;">
-        <h3 style="border-bottom: 1px solid #ccc; padding-bottom: 5px;">Order Items</h3>
-        <table style="width: 100%; border-collapse: collapse;">
+        <h3 style="border-bottom: 1px solid #1e40af; padding-bottom: 5px; color: #1e40af;">Order Items</h3>
+        <table style="width: 100%; border-collapse: collapse; color: #000;">
           <thead>
-            <tr style="background-color: #f5f5f5;">
-              <th style="border: 1px solid #000; padding: 8px; text-align: left;">SKU</th>
-              <th style="border: 1px solid #000; padding: 8px; text-align: left;">Description</th>
-              <th style="border: 1px solid #000; padding: 8px; text-align: left;">Vendor</th>
-              <th style="border: 1px solid #000; padding: 8px; text-align: center;">Qty</th>
-              <th style="border: 1px solid #000; padding: 8px; text-align: right;">Unit Price</th>
-              <th style="border: 1px solid #000; padding: 8px; text-align: right;">Total</th>
+            <tr style="background-color: #1e40af;">
+              <th style="border: 1px solid #1e40af; padding: 8px; text-align: left; color: #fff;">SKU</th>
+              <th style="border: 1px solid #1e40af; padding: 8px; text-align: left; color: #fff;">Description</th>
+              <th style="border: 1px solid #1e40af; padding: 8px; text-align: left; color: #fff;">Vendor</th>
+              <th style="border: 1px solid #1e40af; padding: 8px; text-align: center; color: #fff;">Qty</th>
+              <th style="border: 1px solid #1e40af; padding: 8px; text-align: right; color: #fff;">Unit Price</th>
+              <th style="border: 1px solid #1e40af; padding: 8px; text-align: right; color: #fff;">Total</th>
             </tr>
           </thead>
           <tbody>
             ${productLines.map(line => `
               <tr>
-                <td style="border: 1px solid #000; padding: 8px;">${line.sku || '-'}</td>
-                <td style="border: 1px solid #000; padding: 8px;">${line.description || '-'}</td>
-                <td style="border: 1px solid #000; padding: 8px;">${line.vendor || '-'}</td>
-                <td style="border: 1px solid #000; padding: 8px; text-align: center;">${line.quantity || 0}</td>
-                <td style="border: 1px solid #000; padding: 8px; text-align: right;">$${(line.unit_price || 0).toFixed(2)}</td>
-                <td style="border: 1px solid #000; padding: 8px; text-align: right;">$${((line.unit_price || 0) * (line.quantity || 0)).toFixed(2)}</td>
+                <td style="border: 1px solid #ccc; padding: 8px; color: #000;">${line.sku || '-'}</td>
+                <td style="border: 1px solid #ccc; padding: 8px; color: #000;">${line.description || '-'}</td>
+                <td style="border: 1px solid #ccc; padding: 8px; color: #000;">${line.vendor || '-'}</td>
+                <td style="border: 1px solid #ccc; padding: 8px; text-align: center; color: #000;">${line.quantity || 0}</td>
+                <td style="border: 1px solid #ccc; padding: 8px; text-align: right; color: #000;">$${(line.unit_price || 0).toFixed(2)}</td>
+                <td style="border: 1px solid #ccc; padding: 8px; text-align: right; color: #000;">$${((line.unit_price || 0) * (line.quantity || 0)).toFixed(2)}</td>
               </tr>
             `).join('')}
           </tbody>
         </table>
         
-        <div style="margin-top: 15px; padding: 10px; background-color: #f5f5f5; border: 1px solid #000;">
-          <p style="margin: 5px 0;"><strong>Subtotal:</strong> $${subtotal.toFixed(2)}</p>
-          <p style="margin: 5px 0;"><strong>Tax (7.95%):</strong> $${tax.toFixed(2)}</p>
-          <p style="margin: 5px 0; font-size: 18px; border-top: 1px solid #000; padding-top: 5px;"><strong>Total:</strong> $${total.toFixed(2)}</p>
+        <div style="margin-top: 15px; padding: 10px; background-color: rgba(30, 64, 175, 0.1); border: 1px solid #1e40af; border-radius: 4px;">
+          <p style="margin: 5px 0; color: #000;"><strong>Subtotal:</strong> $${subtotal.toFixed(2)}</p>
+          <p style="margin: 5px 0; color: #000;"><strong>Tax (7.95%):</strong> $${tax.toFixed(2)}</p>
+          <p style="margin: 5px 0; font-size: 18px; border-top: 1px solid #1e40af; padding-top: 5px; color: #1e40af;"><strong>Total:</strong> $${total.toFixed(2)}</p>
         </div>
       </div>
 
-      ${data.delivery_method ? `<p><strong>Delivery Method:</strong> ${data.delivery_method === 'in_store_pickup' ? 'In-Store Pickup' : 'Ship to Customer'}</p>` : ''}
-      ${data.status ? `<p><strong>Status:</strong> ${data.status.charAt(0).toUpperCase() + data.status.slice(1)}</p>` : ''}
-      ${data.special_requests ? `<div style="margin-top: 20px;"><h3>Special Requests</h3><p>${data.special_requests}</p></div>` : ''}
+      ${data.delivery_method ? `<p style="color: #000;"><strong>Delivery Method:</strong> ${data.delivery_method === 'in_store_pickup' ? 'In-Store Pickup' : 'Ship to Customer'}</p>` : ''}
+      ${data.status ? `<p style="color: #000;"><strong>Status:</strong> ${data.status.charAt(0).toUpperCase() + data.status.slice(1)}</p>` : ''}
+      ${data.special_requests ? `<div style="margin-top: 20px;"><h3 style="color: #1e40af;">Special Requests</h3><p style="color: #000;">${data.special_requests}</p></div>` : ''}
     </div>
   `
 
-  generatePDF(content, `Special_Order_${data.customer_name || 'Form'}_${new Date().toISOString().split('T')[0]}.pdf`)
+  generateImage(content, `Special_Order_${data.customer_name || 'Form'}_${new Date().toISOString().split('T')[0]}.pdf`)
 }
 
 function downloadInboundTransferPDF(data: any) {
+  console.log('downloadInboundTransferPDF data:', JSON.stringify(data, null, 2))
   const productLines: ProductLine[] = data.product_lines || []
+  console.log('productLines length:', productLines.length)
+  
+  // Build product rows HTML
+  let productRowsHtml = ''
+  for (let i = 0; i < productLines.length; i++) {
+    const line = productLines[i]
+    productRowsHtml += `
+      <tr>
+        <td style="border: 1px solid #ccc; padding: 8px; color: #000;">${line.control_number || '-'}</td>
+        <td style="border: 1px solid #ccc; padding: 8px; color: #000;">${line.manufacturer || '-'}</td>
+        <td style="border: 1px solid #ccc; padding: 8px; color: #000;">${line.model || '-'}</td>
+        <td style="border: 1px solid #ccc; padding: 8px; color: #000;">${line.serial_number || '-'}</td>
+        <td style="border: 1px solid #ccc; padding: 8px; color: #000;">${line.order_type || '-'}</td>
+        <td style="border: 1px solid #ccc; padding: 8px; color: #000;">$${(line.unit_price || 0).toFixed(2)}</td>
+      </tr>
+    `
+  }
   
   const content = `
-    <div style="font-family: Arial, sans-serif; padding: 20px; max-width: 800px; margin: 0 auto;">
-      <div style="text-align: center; border-bottom: 2px solid #000; padding-bottom: 15px; margin-bottom: 20px;">
-        <h1 style="margin: 0; font-size: 24px;">Inbound Transfer Form</h1>
+    <div style="font-family: Arial, sans-serif; padding: 20px; max-width: 800px; margin: 0 auto; color: #000; background-color: #fff;">
+      <div style="text-align: center; border-bottom: 2px solid #1e40af; padding-bottom: 15px; margin-bottom: 20px;">
+        <h1 style="margin: 0; font-size: 24px; color: #1e40af;">Inbound Transfer Form</h1>
         <p style="margin: 5px 0 0 0; color: #666;">${new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
       </div>
 
       <div style="margin-bottom: 20px;">
-        <h3 style="border-bottom: 1px solid #ccc; padding-bottom: 5px;">Transferor Information</h3>
-        <p><strong>Name:</strong> ${data.customer_name || ''}</p>
-        <p><strong>Phone:</strong> ${formatPhoneNumber(data.customer_phone || '')}</p>
-        ${data.customer_street ? `<p><strong>Address:</strong> ${data.customer_street}, ${data.customer_city || ''} ${data.customer_state || ''} ${data.customer_zip || ''}</p>` : ''}
+        <h3 style="border-bottom: 1px solid #1e40af; padding-bottom: 5px; color: #1e40af;">Transferor Information</h3>
+        <p style="color: #000;"><strong>Name:</strong> ${data.customer_name || ''}</p>
+        <p style="color: #000;"><strong>Phone:</strong> ${formatPhoneNumber(data.customer_phone || '')}</p>
+        ${data.customer_street ? `<p style="color: #000;"><strong>Address:</strong> ${data.customer_street}, ${data.customer_city || ''} ${data.customer_state || ''} ${data.customer_zip || ''}</p>` : ''}
       </div>
 
       <div style="margin-bottom: 20px;">
-        <h3 style="border-bottom: 1px solid #ccc; padding-bottom: 5px;">Items</h3>
-        <table style="width: 100%; border-collapse: collapse;">
+        <h3 style="border-bottom: 1px solid #1e40af; padding-bottom: 5px; color: #1e40af;">Items</h3>
+        <table style="width: 100%; border-collapse: collapse; color: #000;">
           <thead>
-            <tr style="background-color: #f5f5f5;">
-              <th style="border: 1px solid #000; padding: 8px;">Control #</th>
-              <th style="border: 1px solid #000; padding: 8px;">Manufacturer</th>
-              <th style="border: 1px solid #000; padding: 8px;">Model</th>
-              <th style="border: 1px solid #000; padding: 8px;">Serial #</th>
-              <th style="border: 1px solid #000; padding: 8px;">Type</th>
-              <th style="border: 1px solid #000; padding: 8px;">Price</th>
+            <tr style="background-color: #1e40af;">
+              <th style="border: 1px solid #1e40af; padding: 8px; color: #fff;">Control #</th>
+              <th style="border: 1px solid #1e40af; padding: 8px; color: #fff;">Manufacturer</th>
+              <th style="border: 1px solid #1e40af; padding: 8px; color: #fff;">Model</th>
+              <th style="border: 1px solid #1e40af; padding: 8px; color: #fff;">Serial #</th>
+              <th style="border: 1px solid #1e40af; padding: 8px; color: #fff;">Type</th>
+              <th style="border: 1px solid #1e40af; padding: 8px; color: #fff;">Price</th>
             </tr>
           </thead>
           <tbody>
-            ${productLines.map(line => `
-              <tr>
-                <td style="border: 1px solid #000; padding: 8px;">${line.control_number || '-'}</td>
-                <td style="border: 1px solid #000; padding: 8px;">${line.manufacturer || '-'}</td>
-                <td style="border: 1px solid #000; padding: 8px;">${line.model || '-'}</td>
-                <td style="border: 1px solid #000; padding: 8px;">${line.serial_number || '-'}</td>
-                <td style="border: 1px solid #000; padding: 8px;">${line.order_type || '-'}</td>
-                <td style="border: 1px solid #000; padding: 8px;">$${(line.unit_price || 0).toFixed(2)}</td>
-              </tr>
-            `).join('')}
+            ${productRowsHtml}
           </tbody>
         </table>
       </div>
 
-      ${data.status ? `<p><strong>Status:</strong> ${data.status.charAt(0).toUpperCase() + data.status.slice(1)}</p>` : ''}
-      ${data.special_requests ? `<div style="margin-top: 20px;"><h3>Special Requests</h3><p>${data.special_requests}</p></div>` : ''}
+      ${data.status ? `<p style="color: #000;"><strong>Status:</strong> ${data.status.charAt(0).toUpperCase() + data.status.slice(1)}</p>` : ''}
+      ${data.special_requests ? `<div style="margin-top: 20px;"><h3 style="color: #1e40af;">Special Requests</h3><p style="color: #000;">${data.special_requests}</p></div>` : ''}
     </div>
   `
+  
+  console.log('Generated HTML content:', content.substring(0, 1000))
 
-  generatePDF(content, `Inbound_Transfer_${data.customer_name || 'Form'}_${new Date().toISOString().split('T')[0]}.pdf`)
+  generateImage(content, `Inbound_Transfer_${data.customer_name || 'Form'}_${new Date().toISOString().split('T')[0]}.pdf`)
 }
 
 function downloadSuppressorApprovalPDF(data: any) {
   const productLines: ProductLine[] = data.product_lines || []
   
   const content = `
-    <div style="font-family: Arial, sans-serif; padding: 20px; max-width: 800px; margin: 0 auto;">
-      <div style="text-align: center; border-bottom: 2px solid #000; padding-bottom: 15px; margin-bottom: 20px;">
-        <h1 style="margin: 0; font-size: 24px;">Suppressor Approval Form</h1>
+    <div style="font-family: Arial, sans-serif; padding: 20px; max-width: 800px; margin: 0 auto; color: #000; background-color: #fff;">
+      <div style="text-align: center; border-bottom: 2px solid #1e40af; padding-bottom: 15px; margin-bottom: 20px;">
+        <h1 style="margin: 0; font-size: 24px; color: #1e40af;">Suppressor Approval Form</h1>
         <p style="margin: 5px 0 0 0; color: #666;">${new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
       </div>
 
       <div style="margin-bottom: 20px;">
-        <h3 style="border-bottom: 1px solid #ccc; padding-bottom: 5px;">Customer Information</h3>
-        <p><strong>Name:</strong> ${data.customer_name || ''}</p>
-        <p><strong>Phone:</strong> ${formatPhoneNumber(data.customer_phone || '')}</p>
-        ${data.customer_street ? `<p><strong>Address:</strong> ${data.customer_street}, ${data.customer_city || ''} ${data.customer_state || ''} ${data.customer_zip || ''}</p>` : ''}
+        <h3 style="border-bottom: 1px solid #1e40af; padding-bottom: 5px; color: #1e40af;">Customer Information</h3>
+        <p style="color: #000;"><strong>Name:</strong> ${data.customer_name || ''}</p>
+        <p style="color: #000;"><strong>Phone:</strong> ${formatPhoneNumber(data.customer_phone || '')}</p>
+        ${data.customer_street ? `<p style="color: #000;"><strong>Address:</strong> ${data.customer_street}, ${data.customer_city || ''} ${data.customer_state || ''} ${data.customer_zip || ''}</p>` : ''}
       </div>
 
       <div style="margin-bottom: 20px;">
-        <h3 style="border-bottom: 1px solid #ccc; padding-bottom: 5px;">Items</h3>
-        <table style="width: 100%; border-collapse: collapse;">
+        <h3 style="border-bottom: 1px solid #1e40af; padding-bottom: 5px; color: #1e40af;">Items</h3>
+        <table style="width: 100%; border-collapse: collapse; color: #000;">
           <thead>
-            <tr style="background-color: #f5f5f5;">
-              <th style="border: 1px solid #000; padding: 8px;">Control #</th>
-              <th style="border: 1px solid #000; padding: 8px;">Manufacturer</th>
-              <th style="border: 1px solid #000; padding: 8px;">Model</th>
-              <th style="border: 1px solid #000; padding: 8px;">Serial #</th>
-              <th style="border: 1px solid #000; padding: 8px;">Type</th>
-              <th style="border: 1px solid #000; padding: 8px;">Price</th>
+            <tr style="background-color: #1e40af;">
+              <th style="border: 1px solid #1e40af; padding: 8px; color: #fff;">Control #</th>
+              <th style="border: 1px solid #1e40af; padding: 8px; color: #fff;">Manufacturer</th>
+              <th style="border: 1px solid #1e40af; padding: 8px; color: #fff;">Model</th>
+              <th style="border: 1px solid #1e40af; padding: 8px; color: #fff;">Serial #</th>
+              <th style="border: 1px solid #1e40af; padding: 8px; color: #fff;">Type</th>
+              <th style="border: 1px solid #1e40af; padding: 8px; color: #fff;">Price</th>
             </tr>
           </thead>
           <tbody>
             ${productLines.map(line => `
               <tr>
-                <td style="border: 1px solid #000; padding: 8px;">${line.control_number || '-'}</td>
-                <td style="border: 1px solid #000; padding: 8px;">${line.manufacturer || '-'}</td>
-                <td style="border: 1px solid #000; padding: 8px;">${line.model || '-'}</td>
-                <td style="border: 1px solid #000; padding: 8px;">${line.serial_number || '-'}</td>
-                <td style="border: 1px solid #000; padding: 8px;">${line.order_type || '-'}</td>
-                <td style="border: 1px solid #000; padding: 8px;">$${(line.unit_price || 0).toFixed(2)}</td>
+                <td style="border: 1px solid #ccc; padding: 8px; color: #000;">${line.control_number || '-'}</td>
+                <td style="border: 1px solid #ccc; padding: 8px; color: #000;">${line.manufacturer || '-'}</td>
+                <td style="border: 1px solid #ccc; padding: 8px; color: #000;">${line.model || '-'}</td>
+                <td style="border: 1px solid #ccc; padding: 8px; color: #000;">${line.serial_number || '-'}</td>
+                <td style="border: 1px solid #ccc; padding: 8px; color: #000;">${line.order_type || '-'}</td>
+                <td style="border: 1px solid #ccc; padding: 8px; color: #000;">$${(line.unit_price || 0).toFixed(2)}</td>
               </tr>
             `).join('')}
           </tbody>
         </table>
       </div>
 
-      ${data.status ? `<p><strong>Status:</strong> ${data.status.charAt(0).toUpperCase() + data.status.slice(1)}</p>` : ''}
-      ${data.special_requests ? `<div style="margin-top: 20px;"><h3>Special Requests</h3><p>${data.special_requests}</p></div>` : ''}
+      ${data.status ? `<p style="color: #000;"><strong>Status:</strong> ${data.status.charAt(0).toUpperCase() + data.status.slice(1)}</p>` : ''}
+      ${data.special_requests ? `<div style="margin-top: 20px;"><h3 style="color: #1e40af;">Special Requests</h3><p style="color: #000;">${data.special_requests}</p></div>` : ''}
     </div>
   `
 
-  generatePDF(content, `Suppressor_Approval_${data.customer_name || 'Form'}_${new Date().toISOString().split('T')[0]}.pdf`)
+  generateImage(content, `Suppressor_Approval_${data.customer_name || 'Form'}_${new Date().toISOString().split('T')[0]}.pdf`)
 }
 
 function downloadOutboundTransferPDF(data: any) {
   const productLines: ProductLine[] = data.product_lines || []
   
   const content = `
-    <div style="font-family: Arial, sans-serif; padding: 20px; max-width: 800px; margin: 0 auto;">
-      <div style="text-align: center; border-bottom: 2px solid #000; padding-bottom: 15px; margin-bottom: 20px;">
-        <h1 style="margin: 0; font-size: 24px;">Outbound Transfer Form</h1>
+    <div style="font-family: Arial, sans-serif; padding: 20px; max-width: 800px; margin: 0 auto; color: #000; background-color: #fff;">
+      <div style="text-align: center; border-bottom: 2px solid #1e40af; padding-bottom: 15px; margin-bottom: 20px;">
+        <h1 style="margin: 0; font-size: 24px; color: #1e40af;">Outbound Transfer Form</h1>
         <p style="margin: 5px 0 0 0; color: #666;">${new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
       </div>
 
       <div style="margin-bottom: 20px;">
-        <h3 style="border-bottom: 1px solid #ccc; padding-bottom: 5px;">Transferor Information</h3>
-        <p><strong>Name:</strong> ${data.customer_name || ''}</p>
-        <p><strong>Phone:</strong> ${formatPhoneNumber(data.customer_phone || '')}</p>
+        <h3 style="border-bottom: 1px solid #1e40af; padding-bottom: 5px; color: #1e40af;">Transferor Information</h3>
+        <p style="color: #000;"><strong>Name:</strong> ${data.customer_name || ''}</p>
+        <p style="color: #000;"><strong>Phone:</strong> ${formatPhoneNumber(data.customer_phone || '')}</p>
       </div>
 
       <div style="margin-bottom: 20px;">
-        <h3 style="border-bottom: 1px solid #ccc; padding-bottom: 5px;">Transferee Information</h3>
-        ${data.transferee_name ? `<p><strong>Name:</strong> ${data.transferee_name}</p>` : ''}
-        ${data.transferee_phone ? `<p><strong>Phone:</strong> ${formatPhoneNumber(data.transferee_phone)}</p>` : ''}
-        ${data.transferee_ffl_name ? `<p><strong>FFL Name:</strong> ${data.transferee_ffl_name}</p>` : ''}
-        ${data.transferee_ffl_phone ? `<p><strong>FFL Phone:</strong> ${formatPhoneNumber(data.transferee_ffl_phone)}</p>` : ''}
-        ${data.transferee_ffl_address ? `<p><strong>FFL Address:</strong> ${data.transferee_ffl_address}</p>` : ''}
-        ${data.transferee_ffl_city ? `<p><strong>FFL City:</strong> ${data.transferee_ffl_city}</p>` : ''}
-        ${data.transferee_ffl_state ? `<p><strong>FFL State:</strong> ${data.transferee_ffl_state}</p>` : ''}
-        ${data.transferee_ffl_zip ? `<p><strong>FFL Zip:</strong> ${data.transferee_ffl_zip}</p>` : ''}
+        <h3 style="border-bottom: 1px solid #1e40af; padding-bottom: 5px; color: #1e40af;">Transferee Information</h3>
+        ${data.transferee_name ? `<p style="color: #000;"><strong>Name:</strong> ${data.transferee_name}</p>` : ''}
+        ${data.transferee_phone ? `<p style="color: #000;"><strong>Phone:</strong> ${formatPhoneNumber(data.transferee_phone)}</p>` : ''}
+        ${data.transferee_ffl_name ? `<p style="color: #000;"><strong>FFL Name:</strong> ${data.transferee_ffl_name}</p>` : ''}
+        ${data.transferee_ffl_phone ? `<p style="color: #000;"><strong>FFL Phone:</strong> ${formatPhoneNumber(data.transferee_ffl_phone)}</p>` : ''}
+        ${data.transferee_ffl_address ? `<p style="color: #000;"><strong>FFL Address:</strong> ${data.transferee_ffl_address}</p>` : ''}
+        ${data.transferee_ffl_city ? `<p style="color: #000;"><strong>FFL City:</strong> ${data.transferee_ffl_city}</p>` : ''}
+        ${data.transferee_ffl_state ? `<p style="color: #000;"><strong>FFL State:</strong> ${data.transferee_ffl_state}</p>` : ''}
+        ${data.transferee_ffl_zip ? `<p style="color: #000;"><strong>FFL Zip:</strong> ${data.transferee_ffl_zip}</p>` : ''}
       </div>
 
       <div style="margin-bottom: 20px;">
-        <h3 style="border-bottom: 1px solid #ccc; padding-bottom: 5px;">Items</h3>
-        <table style="width: 100%; border-collapse: collapse;">
+        <h3 style="border-bottom: 1px solid #1e40af; padding-bottom: 5px; color: #1e40af;">Items</h3>
+        <table style="width: 100%; border-collapse: collapse; color: #000;">
           <thead>
-            <tr style="background-color: #f5f5f5;">
-              <th style="border: 1px solid #000; padding: 8px;">Control #</th>
-              <th style="border: 1px solid #000; padding: 8px;">Manufacturer</th>
-              <th style="border: 1px solid #000; padding: 8px;">Model</th>
-              <th style="border: 1px solid #000; padding: 8px;">Serial #</th>
-              <th style="border: 1px solid #000; padding: 8px;">Type</th>
-              <th style="border: 1px solid #000; padding: 8px;">Price</th>
+            <tr style="background-color: #1e40af;">
+              <th style="border: 1px solid #1e40af; padding: 8px; color: #fff;">Control #</th>
+              <th style="border: 1px solid #1e40af; padding: 8px; color: #fff;">Manufacturer</th>
+              <th style="border: 1px solid #1e40af; padding: 8px; color: #fff;">Model</th>
+              <th style="border: 1px solid #1e40af; padding: 8px; color: #fff;">Serial #</th>
+              <th style="border: 1px solid #1e40af; padding: 8px; color: #fff;">Type</th>
+              <th style="border: 1px solid #1e40af; padding: 8px; color: #fff;">Price</th>
             </tr>
           </thead>
           <tbody>
             ${productLines.map(line => `
               <tr>
-                <td style="border: 1px solid #000; padding: 8px;">${line.control_number || '-'}</td>
-                <td style="border: 1px solid #000; padding: 8px;">${line.manufacturer || '-'}</td>
-                <td style="border: 1px solid #000; padding: 8px;">${line.model || '-'}</td>
-                <td style="border: 1px solid #000; padding: 8px;">${line.serial_number || '-'}</td>
-                <td style="border: 1px solid #000; padding: 8px;">${line.order_type || '-'}</td>
-                <td style="border: 1px solid #000; padding: 8px;">$${(line.unit_price || 0).toFixed(2)}</td>
+                <td style="border: 1px solid #ccc; padding: 8px; color: #000;">${line.control_number || '-'}</td>
+                <td style="border: 1px solid #ccc; padding: 8px; color: #000;">${line.manufacturer || '-'}</td>
+                <td style="border: 1px solid #ccc; padding: 8px; color: #000;">${line.model || '-'}</td>
+                <td style="border: 1px solid #ccc; padding: 8px; color: #000;">${line.serial_number || '-'}</td>
+                <td style="border: 1px solid #ccc; padding: 8px; color: #000;">${line.order_type || '-'}</td>
+                <td style="border: 1px solid #ccc; padding: 8px; color: #000;">$${(line.unit_price || 0).toFixed(2)}</td>
               </tr>
             `).join('')}
           </tbody>
         </table>
       </div>
 
-      ${data.disposition_date ? `<p><strong>Disposition Date:</strong> ${new Date(data.disposition_date).toLocaleDateString()}</p>` : ''}
-      ${data.status ? `<p><strong>Status:</strong> ${data.status.charAt(0).toUpperCase() + data.status.slice(1)}</p>` : ''}
+      ${data.disposition_date ? `<p style="color: #000;"><strong>Disposition Date:</strong> ${new Date(data.disposition_date).toLocaleDateString()}</p>` : ''}
+      ${data.status ? `<p style="color: #000;"><strong>Status:</strong> ${data.status.charAt(0).toUpperCase() + data.status.slice(1)}</p>` : ''}
     </div>
   `
 
-  generatePDF(content, `Outbound_Transfer_${data.customer_name || 'Form'}_${new Date().toISOString().split('T')[0]}.pdf`)
+  generateImage(content, `Outbound_Transfer_${data.customer_name || 'Form'}_${new Date().toISOString().split('T')[0]}.pdf`)
 }
 
-async function generatePDF(htmlContent: string, filename: string) {
-  const element = document.createElement('div')
-  element.innerHTML = htmlContent
-  document.body.appendChild(element)
+async function generateImage(htmlContent: string, filename: string) {
+  console.log('generateImage called with content length:', htmlContent.length)
+  
+  // Create container with explicit styling
+  const container = document.createElement('div')
+  container.style.position = 'absolute'
+  container.style.left = '-9999px'
+  container.style.top = '0'
+  container.style.width = '800px'
+  container.style.backgroundColor = '#ffffff'
+  container.style.padding = '40px'
+  container.style.fontFamily = 'Arial, sans-serif'
+  container.innerHTML = htmlContent
+  document.body.appendChild(container)
 
-  const opt = {
-    margin: 0.5,
-    filename: filename,
-    image: { type: 'jpeg' as const, quality: 0.98 },
-    html2canvas: { scale: 2 },
-    jsPDF: { unit: 'in' as const, format: 'letter' as const, orientation: 'portrait' as const }
+  // Wait for content to render
+  await new Promise(resolve => setTimeout(resolve, 100))
+
+  try {
+    // Dynamic import html2canvas
+    const html2canvas = (await import('html2canvas')).default
+    
+    const canvas = await html2canvas(container, {
+      backgroundColor: '#ffffff',
+      scale: 2,
+      useCORS: true,
+      logging: false
+    })
+    
+    // Convert to blob and download
+    canvas.toBlob((blob) => {
+      if (blob) {
+        const url = URL.createObjectURL(blob)
+        const link = document.createElement('a')
+        link.href = url
+        link.download = filename.replace('.pdf', '.jpg')
+        document.body.appendChild(link)
+        link.click()
+        document.body.removeChild(link)
+        URL.revokeObjectURL(url)
+      }
+    }, 'image/jpeg', 0.95)
+  } finally {
+    document.body.removeChild(container)
   }
+}
 
-  // Dynamic import to avoid SSR issues
-  const html2pdf = (await import('html2pdf.js')).default
-  html2pdf().set(opt).from(element).save().then(() => {
-    document.body.removeChild(element)
-  })
+export async function generateFormImageBase64(data: any, formType: string): Promise<string> {
+  console.log('generateFormImageBase64 called with:', { formType, data })
+  const content = getFormHTMLContent(data, formType)
+  console.log('Generated HTML content length:', content.length)
+  
+  // Create container with explicit styling
+  const container = document.createElement('div')
+  container.style.position = 'absolute'
+  container.style.left = '-9999px'
+  container.style.top = '0'
+  container.style.width = '800px'
+  container.style.backgroundColor = '#ffffff'
+  container.style.padding = '40px'
+  container.style.fontFamily = 'Arial, sans-serif'
+  container.innerHTML = content
+  document.body.appendChild(container)
+
+  // Wait for content to render
+  await new Promise(resolve => setTimeout(resolve, 100))
+
+  try {
+    const html2canvas = (await import('html2canvas')).default
+    
+    const canvas = await html2canvas(container, {
+      backgroundColor: '#ffffff',
+      scale: 2,
+      useCORS: true,
+      logging: false
+    })
+    
+    // Convert to base64
+    const base64 = canvas.toDataURL('image/jpeg', 0.95).split(',')[1]
+    return base64
+  } finally {
+    document.body.removeChild(container)
+  }
+}
+
+function parseProductLines(data: any): any[] {
+  let productLines = data.product_lines
+  
+  // If product_lines is a string, try to parse it as JSON
+  if (typeof productLines === 'string') {
+    try {
+      productLines = JSON.parse(productLines)
+    } catch (e) {
+      console.error('Failed to parse product_lines:', e)
+      productLines = []
+    }
+  }
+  
+  // Ensure it's an array
+  if (!Array.isArray(productLines)) {
+    productLines = []
+  }
+  
+  return productLines
+}
+
+function getFormHTMLContent(data: any, formType: string): string {
+  // Parse product_lines before passing to content generators
+  const processedData = { ...data, product_lines: parseProductLines(data) }
+  
+  switch (formType) {
+    case 'special_orders':
+      return getSpecialOrderContent(processedData)
+    case 'inbound_transfers':
+      return getInboundTransferContent(processedData)
+    case 'suppressor_approvals':
+      return getSuppressorApprovalContent(processedData)
+    case 'outbound_transfers':
+      return getOutboundTransferContent(processedData)
+    case 'consignment_forms':
+      return getConsignmentContent(processedData)
+    default:
+      return '<div>Unknown form type</div>'
+  }
+}
+
+function getSpecialOrderContent(data: any): string {
+  const productLines: ProductLine[] = data.product_lines || []
+  const subtotal = productLines.reduce((acc, line) => acc + (line.total_price || 0), 0)
+  const tax = subtotal * 0.0795
+  const total = subtotal * 1.0795
+
+  return `
+    <div style="font-family: Arial, sans-serif; padding: 20px; max-width: 800px; margin: 0 auto; color: #000; background-color: #fff;">
+      <div style="text-align: center; border-bottom: 2px solid #1e40af; padding-bottom: 15px; margin-bottom: 20px;">
+        <h1 style="margin: 0; font-size: 24px; color: #1e40af;">Special Order Form</h1>
+        <p style="margin: 5px 0 0 0; color: #666;">${new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+      </div>
+      <div style="margin-bottom: 20px;">
+        <h3 style="border-bottom: 1px solid #1e40af; padding-bottom: 5px; color: #1e40af;">Customer Information</h3>
+        <p style="color: #000;"><strong>Name:</strong> ${data.customer_name || ''}</p>
+        <p style="color: #000;"><strong>Phone:</strong> ${formatPhoneNumber(data.customer_phone || '')}</p>
+        <p style="color: #000;"><strong>Email:</strong> ${data.customer_email || ''}</p>
+        ${data.customer_street ? `<p style="color: #000;"><strong>Address:</strong> ${data.customer_street}, ${data.customer_city || ''} ${data.customer_state || ''} ${data.customer_zip || ''}</p>` : ''}
+      </div>
+      <div style="margin-bottom: 20px;">
+        <h3 style="border-bottom: 1px solid #1e40af; padding-bottom: 5px; color: #1e40af;">Order Items</h3>
+        <table style="width: 100%; border-collapse: collapse; color: #000;">
+          <thead>
+            <tr style="background-color: #1e40af;">
+              <th style="border: 1px solid #1e40af; padding: 8px; text-align: left; color: #fff;">SKU</th>
+              <th style="border: 1px solid #1e40af; padding: 8px; text-align: left; color: #fff;">Description</th>
+              <th style="border: 1px solid #1e40af; padding: 8px; text-align: left; color: #fff;">Vendor</th>
+              <th style="border: 1px solid #1e40af; padding: 8px; text-align: center; color: #fff;">Qty</th>
+              <th style="border: 1px solid #1e40af; padding: 8px; text-align: right; color: #fff;">Unit Price</th>
+              <th style="border: 1px solid #1e40af; padding: 8px; text-align: right; color: #fff;">Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${productLines.map(line => `
+              <tr>
+                <td style="border: 1px solid #ccc; padding: 8px; color: #000;">${line.sku || '-'}</td>
+                <td style="border: 1px solid #ccc; padding: 8px; color: #000;">${line.description || '-'}</td>
+                <td style="border: 1px solid #ccc; padding: 8px; color: #000;">${line.vendor || '-'}</td>
+                <td style="border: 1px solid #ccc; padding: 8px; text-align: center; color: #000;">${line.quantity || 0}</td>
+                <td style="border: 1px solid #ccc; padding: 8px; text-align: right; color: #000;">$${(line.unit_price || 0).toFixed(2)}</td>
+                <td style="border: 1px solid #ccc; padding: 8px; text-align: right; color: #000;">$${((line.unit_price || 0) * (line.quantity || 0)).toFixed(2)}</td>
+              </tr>
+            `).join('')}
+          </tbody>
+        </table>
+        <div style="margin-top: 15px; padding: 10px; background-color: rgba(30, 64, 175, 0.1); border: 1px solid #1e40af; border-radius: 4px;">
+          <p style="margin: 5px 0; color: #000;"><strong>Subtotal:</strong> $${subtotal.toFixed(2)}</p>
+          <p style="margin: 5px 0; color: #000;"><strong>Tax (7.95%):</strong> $${tax.toFixed(2)}</p>
+          <p style="margin: 5px 0; font-size: 18px; border-top: 1px solid #1e40af; padding-top: 5px; color: #1e40af;"><strong>Total:</strong> $${total.toFixed(2)}</p>
+        </div>
+      </div>
+      ${data.delivery_method ? `<p style="color: #000;"><strong>Delivery Method:</strong> ${data.delivery_method === 'in_store_pickup' ? 'In-Store Pickup' : 'Ship to Customer'}</p>` : ''}
+      ${data.status ? `<p style="color: #000;"><strong>Status:</strong> ${data.status.charAt(0).toUpperCase() + data.status.slice(1)}</p>` : ''}
+      ${data.special_requests ? `<div style="margin-top: 20px;"><h3 style="color: #1e40af;">Special Requests</h3><p style="color: #000;">${data.special_requests}</p></div>` : ''}
+    </div>
+  `
+}
+
+function getInboundTransferContent(data: any): string {
+  const productLines: ProductLine[] = data.product_lines || []
+  return `
+    <div style="font-family: Arial, sans-serif; padding: 20px; max-width: 800px; margin: 0 auto; color: #000; background-color: #fff;">
+      <div style="text-align: center; border-bottom: 2px solid #1e40af; padding-bottom: 15px; margin-bottom: 20px;">
+        <h1 style="margin: 0; font-size: 24px; color: #1e40af;">Inbound Transfer Form</h1>
+        <p style="margin: 5px 0 0 0; color: #666;">${new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+      </div>
+      <div style="margin-bottom: 20px;">
+        <h3 style="border-bottom: 1px solid #1e40af; padding-bottom: 5px; color: #1e40af;">Customer Information</h3>
+        <p style="color: #000;"><strong>Name:</strong> ${data.customer_name || ''}</p>
+        <p style="color: #000;"><strong>Phone:</strong> ${formatPhoneNumber(data.customer_phone || '')}</p>
+        <p style="color: #000;"><strong>Email:</strong> ${data.customer_email || ''}</p>
+        ${data.drivers_license ? `<p style="color: #000;"><strong>Driver's License:</strong> ${data.drivers_license}${data.license_expiration ? ` (Exp: ${data.license_expiration})` : ''}</p>` : ''}
+      </div>
+      <div style="margin-bottom: 20px;">
+        <h3 style="border-bottom: 1px solid #1e40af; padding-bottom: 5px; color: #1e40af;">Items</h3>
+        <table style="width: 100%; border-collapse: collapse; color: #000;">
+          <thead>
+            <tr style="background-color: #1e40af;">
+              <th style="border: 1px solid #1e40af; padding: 8px; color: #fff;">Manufacturer</th>
+              <th style="border: 1px solid #1e40af; padding: 8px; color: #fff;">Model</th>
+              <th style="border: 1px solid #1e40af; padding: 8px; color: #fff;">Serial #</th>
+              <th style="border: 1px solid #1e40af; padding: 8px; color: #fff;">Type</th>
+              <th style="border: 1px solid #1e40af; padding: 8px; color: #fff;">Price</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${productLines.map(line => `
+              <tr>
+                <td style="border: 1px solid #ccc; padding: 8px; color: #000;">${line.manufacturer || '-'}</td>
+                <td style="border: 1px solid #ccc; padding: 8px; color: #000;">${line.model || '-'}</td>
+                <td style="border: 1px solid #ccc; padding: 8px; color: #000;">${line.serial_number || '-'}</td>
+                <td style="border: 1px solid #ccc; padding: 8px; color: #000;">${line.order_type || '-'}</td>
+                <td style="border: 1px solid #ccc; padding: 8px; color: #000;">$${(line.unit_price || 0).toFixed(2)}</td>
+              </tr>
+            `).join('')}
+          </tbody>
+        </table>
+      </div>
+      ${data.status ? `<p style="color: #000;"><strong>Status:</strong> ${data.status.charAt(0).toUpperCase() + data.status.slice(1)}</p>` : ''}
+    </div>
+  `
+}
+
+function getSuppressorApprovalContent(data: any): string {
+  const productLines: ProductLine[] = data.product_lines || []
+  return `
+    <div style="font-family: Arial, sans-serif; padding: 20px; max-width: 800px; margin: 0 auto; color: #000; background-color: #fff;">
+      <div style="text-align: center; border-bottom: 2px solid #1e40af; padding-bottom: 15px; margin-bottom: 20px;">
+        <h1 style="margin: 0; font-size: 24px; color: #1e40af;">Suppressor Approval Form</h1>
+        <p style="margin: 5px 0 0 0; color: #666;">${new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+      </div>
+      <div style="margin-bottom: 20px;">
+        <h3 style="border-bottom: 1px solid #1e40af; padding-bottom: 5px; color: #1e40af;">Customer Information</h3>
+        <p style="color: #000;"><strong>Name:</strong> ${data.customer_name || ''}</p>
+        <p style="color: #000;"><strong>Phone:</strong> ${formatPhoneNumber(data.customer_phone || '')}</p>
+        <p style="color: #000;"><strong>Email:</strong> ${data.customer_email || ''}</p>
+        ${data.drivers_license ? `<p style="color: #000;"><strong>Driver's License:</strong> ${data.drivers_license}${data.license_expiration ? ` (Exp: ${data.license_expiration})` : ''}</p>` : ''}
+      </div>
+      <div style="margin-bottom: 20px;">
+        <h3 style="border-bottom: 1px solid #1e40af; padding-bottom: 5px; color: #1e40af;">Items</h3>
+        <table style="width: 100%; border-collapse: collapse; color: #000;">
+          <thead>
+            <tr style="background-color: #1e40af;">
+              <th style="border: 1px solid #1e40af; padding: 8px; color: #fff;">Control #</th>
+              <th style="border: 1px solid #1e40af; padding: 8px; color: #fff;">Manufacturer</th>
+              <th style="border: 1px solid #1e40af; padding: 8px; color: #fff;">Model</th>
+              <th style="border: 1px solid #1e40af; padding: 8px; color: #fff;">Serial #</th>
+              <th style="border: 1px solid #1e40af; padding: 8px; color: #fff;">Caliber</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${productLines.map(line => `
+              <tr>
+                <td style="border: 1px solid #ccc; padding: 8px; color: #000;">${line.control_number || '-'}</td>
+                <td style="border: 1px solid #ccc; padding: 8px; color: #000;">${line.manufacturer || '-'}</td>
+                <td style="border: 1px solid #ccc; padding: 8px; color: #000;">${line.model || '-'}</td>
+                <td style="border: 1px solid #ccc; padding: 8px; color: #000;">${line.serial_number || '-'}</td>
+                <td style="border: 1px solid #ccc; padding: 8px; color: #000;">${(line as any).caliber || '-'}</td>
+              </tr>
+            `).join('')}
+          </tbody>
+        </table>
+      </div>
+      ${data.status ? `<p style="color: #000;"><strong>Status:</strong> ${data.status.charAt(0).toUpperCase() + data.status.slice(1)}</p>` : ''}
+    </div>
+  `
+}
+
+function getOutboundTransferContent(data: any): string {
+  const productLines: ProductLine[] = data.product_lines || []
+  return `
+    <div style="font-family: Arial, sans-serif; padding: 20px; max-width: 800px; margin: 0 auto; color: #000; background-color: #fff;">
+      <div style="text-align: center; border-bottom: 2px solid #1e40af; padding-bottom: 15px; margin-bottom: 20px;">
+        <h1 style="margin: 0; font-size: 24px; color: #1e40af;">Outbound Transfer Form</h1>
+        <p style="margin: 5px 0 0 0; color: #666;">${new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+      </div>
+      <div style="margin-bottom: 20px;">
+        <h3 style="border-bottom: 1px solid #1e40af; padding-bottom: 5px; color: #1e40af;">Customer Information</h3>
+        <p style="color: #000;"><strong>Name:</strong> ${data.customer_name || ''}</p>
+        <p style="color: #000;"><strong>Phone:</strong> ${formatPhoneNumber(data.customer_phone || '')}</p>
+        <p style="color: #000;"><strong>Email:</strong> ${data.customer_email || ''}</p>
+        ${data.drivers_license ? `<p style="color: #000;"><strong>Driver's License:</strong> ${data.drivers_license}${data.license_expiration ? ` (Exp: ${data.license_expiration})` : ''}</p>` : ''}
+      </div>
+      <div style="margin-bottom: 20px;">
+        <h3 style="border-bottom: 1px solid #1e40af; padding-bottom: 5px; color: #1e40af;">Items</h3>
+        <table style="width: 100%; border-collapse: collapse; color: #000;">
+          <thead>
+            <tr style="background-color: #1e40af;">
+              <th style="border: 1px solid #1e40af; padding: 8px; color: #fff;">Manufacturer</th>
+              <th style="border: 1px solid #1e40af; padding: 8px; color: #fff;">Model</th>
+              <th style="border: 1px solid #1e40af; padding: 8px; color: #fff;">Serial #</th>
+              <th style="border: 1px solid #1e40af; padding: 8px; color: #fff;">Caliber</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${productLines.map(line => `
+              <tr>
+                <td style="border: 1px solid #ccc; padding: 8px; color: #000;">${line.manufacturer || '-'}</td>
+                <td style="border: 1px solid #ccc; padding: 8px; color: #000;">${line.model || '-'}</td>
+                <td style="border: 1px solid #ccc; padding: 8px; color: #000;">${line.serial_number || '-'}</td>
+                <td style="border: 1px solid #ccc; padding: 8px; color: #000;">${(line as any).caliber || '-'}</td>
+              </tr>
+            `).join('')}
+          </tbody>
+        </table>
+      </div>
+      ${data.status ? `<p style="color: #000;"><strong>Status:</strong> ${data.status.charAt(0).toUpperCase() + data.status.slice(1)}</p>` : ''}
+    </div>
+  `
+}
+
+function getConsignmentContent(data: any): string {
+  const productLines: ProductLine[] = data.product_lines || []
+  return `
+    <div style="font-family: Arial, sans-serif; padding: 20px; max-width: 800px; margin: 0 auto; color: #000; background-color: #fff;">
+      <div style="text-align: center; border-bottom: 2px solid #1e40af; padding-bottom: 15px; margin-bottom: 20px;">
+        <h1 style="margin: 0; font-size: 24px; color: #1e40af;">Consignment Form</h1>
+        <p style="margin: 5px 0 0 0; color: #666;">${new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+      </div>
+      <div style="margin-bottom: 20px;">
+        <h3 style="border-bottom: 1px solid #1e40af; padding-bottom: 5px; color: #1e40af;">Customer Information</h3>
+        <p style="color: #000;"><strong>Name:</strong> ${data.customer_name || ''}</p>
+        <p style="color: #000;"><strong>Phone:</strong> ${formatPhoneNumber(data.customer_phone || '')}</p>
+        <p style="color: #000;"><strong>Email:</strong> ${data.customer_email || ''}</p>
+        ${data.drivers_license ? `<p style="color: #000;"><strong>Driver's License:</strong> ${data.drivers_license}${data.license_expiration ? ` (Exp: ${data.license_expiration})` : ''}</p>` : ''}
+      </div>
+      <div style="margin-bottom: 20px;">
+        <h3 style="border-bottom: 1px solid #1e40af; padding-bottom: 5px; color: #1e40af;">Items</h3>
+        <table style="width: 100%; border-collapse: collapse; color: #000;">
+          <thead>
+            <tr style="background-color: #1e40af;">
+              <th style="border: 1px solid #1e40af; padding: 8px; color: #fff;">Manufacturer</th>
+              <th style="border: 1px solid #1e40af; padding: 8px; color: #fff;">Model</th>
+              <th style="border: 1px solid #1e40af; padding: 8px; color: #fff;">Serial #</th>
+              <th style="border: 1px solid #1e40af; padding: 8px; color: #fff;">Caliber</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${productLines.map(line => `
+              <tr>
+                <td style="border: 1px solid #ccc; padding: 8px; color: #000;">${line.manufacturer || '-'}</td>
+                <td style="border: 1px solid #ccc; padding: 8px; color: #000;">${line.model || '-'}</td>
+                <td style="border: 1px solid #ccc; padding: 8px; color: #000;">${line.serial_number || '-'}</td>
+                <td style="border: 1px solid #ccc; padding: 8px; color: #000;">${(line as any).caliber || '-'}</td>
+              </tr>
+            `).join('')}
+          </tbody>
+        </table>
+      </div>
+      ${data.status ? `<p style="color: #000;"><strong>Status:</strong> ${data.status.charAt(0).toUpperCase() + data.status.slice(1)}</p>` : ''}
+    </div>
+  `
 }

@@ -2,14 +2,17 @@
 
 import { useEffect } from 'react'
 import { Button } from '@/components/ui/button'
-import { Edit, X, ChevronLeft, ChevronRight, User, Package, FileText, Truck } from 'lucide-react'
+import { Edit, X, ChevronLeft, ChevronRight, User, Package, FileText, Truck, Printer, Mail } from 'lucide-react'
 
 interface FormViewDialogProps {
   open: boolean
   onOpenChange: (open: boolean) => void
   data: any
   title: string
+  formType?: string
   onEdit?: () => void
+  onPrint?: () => void
+  onEmail?: () => void
   onPrevious?: () => void
   onNext?: () => void
   hasPrevious?: boolean
@@ -37,7 +40,7 @@ const formatStatus = (status: string): string => {
   return status.charAt(0).toUpperCase() + status.slice(1).replace(/_/g, ' ')
 }
 
-export function FormViewDialog({ open, onOpenChange, data, title, onEdit, onPrevious, onNext, hasPrevious, hasNext }: FormViewDialogProps) {
+export function FormViewDialog({ open, onOpenChange, data, title, formType, onEdit, onPrint, onEmail, onPrevious, onNext, hasPrevious, hasNext }: FormViewDialogProps) {
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (!open) return
@@ -458,6 +461,18 @@ export function FormViewDialog({ open, onOpenChange, data, title, onEdit, onPrev
               <Button variant="outline" size="sm" onClick={onEdit}>
                 <Edit className="h-4 w-4 mr-2" />
                 Edit
+              </Button>
+            )}
+            {onPrint && (
+              <Button variant="outline" size="sm" onClick={onPrint}>
+                <Printer className="h-4 w-4 mr-2" />
+                Print
+              </Button>
+            )}
+            {onEmail && (
+              <Button variant="outline" size="sm" onClick={onEmail}>
+                <Mail className="h-4 w-4 mr-2" />
+                Email
               </Button>
             )}
             <button
