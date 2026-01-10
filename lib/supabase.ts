@@ -38,6 +38,11 @@ export type Database = {
         Insert: Omit<OutboundTransferForm, 'id' | 'created_at' | 'updated_at'>
         Update: Partial<Omit<OutboundTransferForm, 'id' | 'created_at'>>
       }
+      consignment_forms: {
+        Row: ConsignmentForm
+        Insert: Omit<ConsignmentForm, 'id' | 'created_at' | 'updated_at'>
+        Update: Partial<Omit<ConsignmentForm, 'id' | 'created_at'>>
+      }
     }
   }
 }
@@ -189,6 +194,25 @@ export interface OutboundTransferForm {
   carrier?: string
   notes?: string
   status: 'pending' | 'shipped' | 'delivered' | 'completed'
+  created_at: string
+  updated_at: string
+}
+
+export interface ConsignmentForm {
+  id: string
+  customer_name?: string
+  customer_email?: string
+  customer_phone?: string
+  drivers_license?: string
+  license_expiration?: string
+  customer_street?: string
+  customer_city?: string
+  customer_state?: string
+  customer_zip?: string
+  product_lines?: any[]
+  total_price?: number
+  special_requests?: string
+  status: 'pending' | 'active' | 'sold' | 'returned' | 'completed'
   created_at: string
   updated_at: string
 }

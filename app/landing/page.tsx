@@ -71,6 +71,14 @@ export default function LandingPage() {
       hoverColor: 'hover:bg-red-600'
     },
     {
+      title: 'Consignment',
+      description: 'Manage consignment sales and inventory',
+      icon: FileText,
+      href: '/?tab=consignment',
+      color: 'bg-teal-500',
+      hoverColor: 'hover:bg-teal-600'
+    },
+    {
       title: 'View All Forms',
       description: 'Browse and manage all submitted forms',
       icon: List,

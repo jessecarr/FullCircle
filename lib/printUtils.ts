@@ -1313,6 +1313,188 @@ function executePrint(printContent: string) {
   }
 }
 
+export function printConsignment(data: any) {
+  const productLines = data.product_lines || []
+  const totalAfterFee = productLines.reduce((acc: number, line: any) => acc + (line.after_fee || 0), 0)
+
+  const dateStr = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })
+  
+  const addressHtml = data.customer_street ? `
+    <div class="print-field">
+      <div class="print-label">Address:</div>
+      <div class="print-value">
+        ${data.customer_street}
+        ${data.customer_city ? `, ${data.customer_city}` : ''}
+        ${data.customer_state ? ` ${data.customer_state}` : ''}
+        ${data.customer_zip ? ` ${data.customer_zip}` : ''}
+      </div>
+    </div>
+  ` : ''
+
+  const itemsHtml = productLines.map((line: any) => `
+    <tr>
+      <td>${line.control_number || '-'}</td>
+      <td>${line.manufacturer || '-'}</td>
+      <td>${line.model || '-'}</td>
+      <td>${line.serial_number || '-'}</td>
+      <td>${line.type || '-'}</td>
+      <td>${line.caliber || '-'}</td>
+      <td>${line.method || '-'}</td>
+      <td>$${(line.sale_price || 0).toFixed(2)}</td>
+      <td>$${(line.after_fee || 0).toFixed(2)}</td>
+      <td>${line.check_number || '-'}</td>
+    </tr>
+  `).join('')
+
+  const printContent = `
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <title>Consignment Form</title>
+      <style>
+        @page { size: landscape; margin: 0.3in; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html, body { height: 100%; width: 100%; font-family: 'Arial', sans-serif; color: #000; background: white; }
+        .page-container { width: 100%; padding: 15px; }
+        .print-header { text-align: center; border-bottom: 2px solid #000; padding-bottom: 12px; margin-bottom: 15px; }
+        .print-date { text-align: left; font-size: 11px; margin-bottom: 8px; }
+        .print-title { font-size: 22px; font-weight: bold; }
+        .print-section { margin-bottom: 15px; }
+        .print-section-title { font-size: 14px; font-weight: bold; margin-bottom: 6px; border-bottom: 1px solid #ccc; padding-bottom: 3px; }
+        .print-field { margin-bottom: 4px; display: flex; }
+        .print-label { font-weight: bold; width: 90px; flex-shrink: 0; font-size: 12px; }
+        .print-value { flex: 1; font-size: 12px; }
+        .print-table { width: 100%; border-collapse: collapse; margin-bottom: 10px; }
+        .print-table th, .print-table td { border: 1px solid #000; padding: 4px 6px; text-align: left; font-size: 10px; }
+        .print-table th { background-color: #f5f5f5; font-weight: bold; }
+        .print-total-summary { margin-top: 15px; padding: 8px 12px; background-color: #f5f5f5; border: 1px solid #000; width: 300px; margin-left: auto; }
+        .print-total-row { display: flex; justify-content: space-between; margin-bottom: 3px; font-size: 12px; }
+        .print-total-row.final { font-size: 14px; font-weight: bold; border-top: 1px solid #000; padding-top: 2px; margin-bottom: 0; }
+      </style>
+    </head>
+    <body>
+      <div class="page-container">
+        <div class="print-date">${dateStr}</div>
+        <div class="print-header">
+          <div class="print-title">Consignment Form</div>
+        </div>
+        <div class="print-section">
+          <div class="print-section-title">Customer Information</div>
+          <div class="print-field">
+            <div class="print-label">Name:</div>
+            <div class="print-value">${data.customer_name || ''}</div>
+          </div>
+          <div class="print-field">
+            <div class="print-label">Phone:</div>
+            <div class="print-value">${formatPhoneNumber(data.customer_phone || '')}</div>
+          </div>
+          ${addressHtml}
+        </div>
+        <div class="print-section">
+          <div class="print-section-title">Consignment Items</div>
+          <table class="print-table">
+            <thead>
+              <tr>
+                <th>Control #</th>
+                <th>Manufacturer</th>
+                <th>Model</th>
+                <th>Serial #</th>
+                <th>Type</th>
+                <th>Caliber</th>
+                <th>Method</th>
+                <th>Sale Price</th>
+                <th>After Fee</th>
+                <th>Check #</th>
+              </tr>
+            </thead>
+            <tbody>${itemsHtml}</tbody>
+          </table>
+          <div class="print-total-summary">
+            <div class="print-total-row final">
+              <span>Total After Fees:</span>
+              <span>$${totalAfterFee.toFixed(2)}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </body>
+    </html>
+  `
+
+  executePrint(printContent)
+}
+
+function downloadConsignmentPDF(data: any) {
+  const productLines = data.product_lines || []
+  const totalAfterFee = productLines.reduce((acc: number, line: any) => acc + (line.after_fee || 0), 0)
+  const dateStr = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })
+  
+  const addressHtml = data.customer_street 
+    ? `<p><strong>Address:</strong> ${data.customer_street}${data.customer_city ? `, ${data.customer_city}` : ''}${data.customer_state ? ` ${data.customer_state}` : ''}${data.customer_zip ? ` ${data.customer_zip}` : ''}</p>` 
+    : ''
+  
+  const statusHtml = data.status 
+    ? `<p><strong>Status:</strong> ${data.status.charAt(0).toUpperCase() + data.status.slice(1)}</p>` 
+    : ''
+
+  const itemsHtml = productLines.map((line: any) => `
+    <tr>
+      <td style="border: 1px solid #000; padding: 6px;">${line.control_number || '-'}</td>
+      <td style="border: 1px solid #000; padding: 6px;">${line.manufacturer || '-'}</td>
+      <td style="border: 1px solid #000; padding: 6px;">${line.model || '-'}</td>
+      <td style="border: 1px solid #000; padding: 6px;">${line.serial_number || '-'}</td>
+      <td style="border: 1px solid #000; padding: 6px;">${line.type || '-'}</td>
+      <td style="border: 1px solid #000; padding: 6px;">${line.caliber || '-'}</td>
+      <td style="border: 1px solid #000; padding: 6px;">${line.method || '-'}</td>
+      <td style="border: 1px solid #000; padding: 6px;">$${(line.sale_price || 0).toFixed(2)}</td>
+      <td style="border: 1px solid #000; padding: 6px;">$${(line.after_fee || 0).toFixed(2)}</td>
+      <td style="border: 1px solid #000; padding: 6px;">${line.check_number || '-'}</td>
+    </tr>
+  `).join('')
+
+  const content = `
+    <div style="font-family: Arial, sans-serif; padding: 20px; max-width: 1000px; margin: 0 auto;">
+      <div style="text-align: center; border-bottom: 2px solid #000; padding-bottom: 15px; margin-bottom: 20px;">
+        <div style="font-size: 10px; text-align: left; color: #666;">${dateStr}</div>
+        <h1 style="margin: 0; font-size: 24px;">Consignment Form</h1>
+      </div>
+      <div style="margin-bottom: 20px;">
+        <h3 style="border-bottom: 1px solid #ccc; padding-bottom: 5px;">Customer Information</h3>
+        <p><strong>Name:</strong> ${data.customer_name || ''}</p>
+        <p><strong>Phone:</strong> ${formatPhoneNumber(data.customer_phone || '')}</p>
+        ${addressHtml}
+      </div>
+      <div style="margin-bottom: 20px;">
+        <h3 style="border-bottom: 1px solid #ccc; padding-bottom: 5px;">Consignment Items</h3>
+        <table style="width: 100%; border-collapse: collapse; font-size: 10px;">
+          <thead>
+            <tr style="background-color: #f5f5f5;">
+              <th style="border: 1px solid #000; padding: 6px;">Control #</th>
+              <th style="border: 1px solid #000; padding: 6px;">Manufacturer</th>
+              <th style="border: 1px solid #000; padding: 6px;">Model</th>
+              <th style="border: 1px solid #000; padding: 6px;">Serial #</th>
+              <th style="border: 1px solid #000; padding: 6px;">Type</th>
+              <th style="border: 1px solid #000; padding: 6px;">Caliber</th>
+              <th style="border: 1px solid #000; padding: 6px;">Method</th>
+              <th style="border: 1px solid #000; padding: 6px;">Sale Price</th>
+              <th style="border: 1px solid #000; padding: 6px;">After Fee</th>
+              <th style="border: 1px solid #000; padding: 6px;">Check #</th>
+            </tr>
+          </thead>
+          <tbody>${itemsHtml}</tbody>
+        </table>
+        <div style="text-align: right; margin-top: 10px;">
+          <strong>Total After Fees: $${totalAfterFee.toFixed(2)}</strong>
+        </div>
+      </div>
+      ${statusHtml}
+    </div>
+  `
+
+  const filename = `Consignment_${data.customer_name || 'Form'}_${new Date().toISOString().split('T')[0]}.pdf`
+  generatePDF(content, filename)
+}
+
 export function printForm(data: any, formType: string) {
   switch (formType) {
     case 'special_orders':
@@ -1326,6 +1508,9 @@ export function printForm(data: any, formType: string) {
       break
     case 'outbound_transfers':
       printOutboundTransfer(data)
+      break
+    case 'consignment_forms':
+      printConsignment(data)
       break
     default:
       console.error('Unknown form type:', formType)
@@ -1345,6 +1530,9 @@ export function downloadFormPDF(data: any, formType: string) {
       break
     case 'outbound_transfers':
       downloadOutboundTransferPDF(data)
+      break
+    case 'consignment_forms':
+      downloadConsignmentPDF(data)
       break
     default:
       console.error('Unknown form type:', formType)

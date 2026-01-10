@@ -27,7 +27,7 @@ import {
 } from '@/components/ui/alert-dialog'
 
 interface FormsListProps {
-  tableName?: 'special_orders' | 'inbound_transfers' | 'suppressor_approvals' | 'outbound_transfers'
+  tableName?: 'special_orders' | 'inbound_transfers' | 'suppressor_approvals' | 'outbound_transfers' | 'consignment_forms'
   title?: string
   onEdit?: (item: any, formType: string) => void
   onView?: (item: any, formType: string) => void
@@ -35,7 +35,7 @@ interface FormsListProps {
   onItemsChange?: (items: any[]) => void
 }
 
-type FormType = 'all' | 'special_orders' | 'inbound_transfers' | 'suppressor_approvals' | 'outbound_transfers'
+type FormType = 'all' | 'special_orders' | 'inbound_transfers' | 'suppressor_approvals' | 'outbound_transfers' | 'consignment_forms'
 
 const FORM_TYPE_LABELS: Record<FormType, string> = {
   all: 'All Forms',
@@ -43,9 +43,10 @@ const FORM_TYPE_LABELS: Record<FormType, string> = {
   inbound_transfers: 'Inbound Transfer',
   suppressor_approvals: 'Suppressor Approval',
   outbound_transfers: 'Outbound Transfer',
+  consignment_forms: 'Consignment',
 }
 
-const ALL_STATUSES = ['pending', 'ordered', 'received', 'completed', 'cancelled', 'shipped', 'delivered']
+const ALL_STATUSES = ['pending', 'ordered', 'received', 'completed', 'cancelled', 'shipped', 'delivered', 'active', 'sold', 'returned']
 
 export function FormsList({ tableName, title, onEdit, onView, refreshTrigger, onItemsChange }: FormsListProps) {
   const [items, setItems] = useState<any[]>([])
@@ -101,10 +102,10 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger, on
       const vendors = new Set<string>()
       
       // Determine which tables to fetch from
-      const tablesToFetch: Array<'special_orders' | 'inbound_transfers' | 'suppressor_approvals' | 'outbound_transfers'> = 
+      const tablesToFetch: Array<'special_orders' | 'inbound_transfers' | 'suppressor_approvals' | 'outbound_transfers' | 'consignment_forms'> = 
         selectedFormTypes.includes('all')
-          ? ['special_orders', 'inbound_transfers', 'suppressor_approvals', 'outbound_transfers']
-          : selectedFormTypes.filter(t => t !== 'all') as Array<'special_orders' | 'inbound_transfers' | 'suppressor_approvals' | 'outbound_transfers'>
+          ? ['special_orders', 'inbound_transfers', 'suppressor_approvals', 'outbound_transfers', 'consignment_forms']
+          : selectedFormTypes.filter(t => t !== 'all') as Array<'special_orders' | 'inbound_transfers' | 'suppressor_approvals' | 'outbound_transfers' | 'consignment_forms'>
       
       for (const table of tablesToFetch) {
         const { data, error } = await supabase
@@ -293,7 +294,7 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger, on
     setSelectedFormTypes(prev => {
       if (formType === 'all') {
         // If 'all' is selected, select all form types
-        return prev.includes('all') ? [] : ['all', 'special_orders', 'inbound_transfers', 'suppressor_approvals', 'outbound_transfers']
+        return prev.includes('all') ? [] : ['all', 'special_orders', 'inbound_transfers', 'suppressor_approvals', 'outbound_transfers', 'consignment_forms']
       } else {
         // Toggle individual form type
         const newTypes = prev.includes(formType)
@@ -301,7 +302,7 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger, on
           : [...prev.filter(t => t !== 'all'), formType]
         
         // If all individual types are selected, also select 'all'
-        const allIndividualTypes = ['special_orders', 'inbound_transfers', 'suppressor_approvals', 'outbound_transfers']
+        const allIndividualTypes = ['special_orders', 'inbound_transfers', 'suppressor_approvals', 'outbound_transfers', 'consignment_forms']
         if (allIndividualTypes.every(t => newTypes.includes(t as FormType))) {
           return ['all', ...allIndividualTypes] as FormType[]
         }
@@ -363,6 +364,9 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger, on
       case 'cancelled': return 'bg-red-100 text-red-800'
       case 'shipped': return 'bg-purple-100 text-purple-800'
       case 'delivered': return 'bg-teal-100 text-teal-800'
+      case 'active': return 'bg-emerald-100 text-emerald-800'
+      case 'sold': return 'bg-indigo-100 text-indigo-800'
+      case 'returned': return 'bg-orange-100 text-orange-800'
       default: return 'bg-gray-100 text-gray-800'
     }
   }
@@ -441,7 +445,7 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger, on
               </Button>
               {showFormTypeDropdown && (
                 <div className="absolute top-full mt-1 w-[200px] bg-[rgba(17,24,39,0.95)] border border-[rgba(59,130,246,0.3)] rounded-md shadow-lg z-50 p-2 max-h-[300px] overflow-y-auto backdrop-blur-[10px]">
-                  {(['all', 'inbound_transfers', 'outbound_transfers', 'special_orders', 'suppressor_approvals'] as FormType[]).map(formType => (
+                  {(['all', 'inbound_transfers', 'outbound_transfers', 'special_orders', 'suppressor_approvals', 'consignment_forms'] as FormType[]).map(formType => (
                     <label
                       key={formType}
                       className="flex items-center gap-2 p-2 hover:bg-[rgba(59,130,246,0.2)] cursor-pointer rounded text-white"
