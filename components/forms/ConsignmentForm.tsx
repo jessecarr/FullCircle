@@ -51,6 +51,7 @@ interface ProductLine {
 export function ConsignmentForm({ initialData, onSuccess, onCancel }: ConsignmentFormProps) {
   const { toast } = useToast()
   const [loading, setLoading] = useState(false)
+  const [emailLoading, setEmailLoading] = useState(false)
   const [showPrintSubmitDialog, setShowPrintSubmitDialog] = useState(false)
   const [productLines, setProductLines] = useState<ProductLine[]>(() => {
     if (initialData?.product_lines && Array.isArray(initialData.product_lines)) {
@@ -702,6 +703,32 @@ export function ConsignmentForm({ initialData, onSuccess, onCancel }: Consignmen
           }, 1000);
         }, 500);
       };
+    }
+  };
+
+  const handleEmail = async () => {
+    if (!formData.customer_email) {
+      toast({ title: 'No Email Available', description: 'Please enter a customer email address before sending.', variant: 'destructive' });
+      return;
+    }
+    setEmailLoading(true);
+    try {
+      const { sendFormEmail } = await import('@/lib/emailUtils');
+      const result = await sendFormEmail({
+        customerEmail: formData.customer_email,
+        customerName: formData.customer_name || 'Customer',
+        formType: 'consignment_forms',
+        formData: { ...formData, product_lines: productLines },
+      });
+      if (result.success) {
+        toast({ title: 'Email Sent', description: result.message });
+      } else {
+        toast({ title: 'Email Failed', description: result.message, variant: 'destructive' });
+      }
+    } catch (error) {
+      toast({ title: 'Email Failed', description: error instanceof Error ? error.message : 'Failed to send email', variant: 'destructive' });
+    } finally {
+      setEmailLoading(false);
     }
   };
 
@@ -1384,8 +1411,12 @@ export function ConsignmentForm({ initialData, onSuccess, onCancel }: Consignmen
       onOpenChange={setShowPrintSubmitDialog}
       onPrint={handlePrint}
       onSubmit={performSubmission}
+      onEmail={handleEmail}
       isEditing={!!initialData}
       loading={loading}
+      emailLoading={emailLoading}
+      customerEmail={formData.customer_email}
+      customerName={formData.customer_name}
     />
     </>
   )

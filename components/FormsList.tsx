@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from 'react'
 import { supabase } from '@/lib/supabase'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
-import { Eye, Edit, Trash2, Printer, Download, RefreshCw, ChevronDown, Search, X, ArrowUpDown } from 'lucide-react'
+import { Eye, Edit, Trash2, Printer, Download, RefreshCw, ChevronDown, Search, X, ArrowUpDown, Mail } from 'lucide-react'
 import { Input } from '@/components/ui/input'
 import { useToast } from '@/components/ui/use-toast'
 import { Label } from '@/components/ui/label'
@@ -25,6 +25,7 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from '@/components/ui/alert-dialog'
+import { EmailConfirmDialog } from '@/components/ui/email-confirm-dialog'
 
 interface FormsListProps {
   tableName?: 'special_orders' | 'inbound_transfers' | 'suppressor_approvals' | 'outbound_transfers' | 'consignment_forms'
@@ -68,6 +69,9 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger, on
   const [deleteConfirmation, setDeleteConfirmation] = useState('')
   const [sortBy, setSortBy] = useState<'name_asc' | 'name_desc' | 'status' | 'date_desc' | 'date_asc'>('date_desc')
   const [showSortDropdown, setShowSortDropdown] = useState(false)
+  const [emailItem, setEmailItem] = useState<any>(null)
+  const [showEmailDialog, setShowEmailDialog] = useState(false)
+  const [emailLoading, setEmailLoading] = useState(false)
   const sortRef = useRef<HTMLDivElement>(null)
   const { toast } = useToast()
   const printRef = useRef<HTMLDivElement>(null)
@@ -288,6 +292,47 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger, on
       title: 'Downloading PDF',
       description: 'Your PDF is being generated and will download shortly.',
     })
+  }
+
+  const handleEmailClick = (item: any) => {
+    const customerEmail = item.customer_email
+    if (!customerEmail) {
+      toast({
+        title: 'No Email Available',
+        description: 'This customer does not have an email address on file.',
+        variant: 'destructive',
+      })
+      return
+    }
+    setEmailItem(item)
+    setShowEmailDialog(true)
+  }
+
+  const handleEmailConfirm = async () => {
+    if (!emailItem) return
+    
+    setEmailLoading(true)
+    try {
+      const { sendFormEmail } = await import('@/lib/emailUtils')
+      const result = await sendFormEmail({
+        customerEmail: emailItem.customer_email,
+        customerName: emailItem.customer_name || 'Customer',
+        formType: emailItem._formType,
+        formData: emailItem,
+      })
+
+      if (result.success) {
+        toast({ title: 'Email Sent', description: result.message })
+      } else {
+        toast({ title: 'Email Failed', description: result.message, variant: 'destructive' })
+      }
+    } catch (error) {
+      toast({ title: 'Email Failed', description: error instanceof Error ? error.message : 'Failed to send email', variant: 'destructive' })
+    } finally {
+      setEmailLoading(false)
+      setShowEmailDialog(false)
+      setEmailItem(null)
+    }
   }
 
   const openStatusDialog = (item: any) => {
@@ -726,6 +771,14 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger, on
                   >
                     <Download className="h-5 w-5" />
                   </Button>
+                  <Button
+                    variant="outline"
+                    onClick={() => handleEmailClick(item)}
+                    title="Email to Customer"
+                    className="styled-button"
+                  >
+                    <Mail className="h-5 w-5" />
+                  </Button>
                   <button
                     onClick={() => openStatusDialog(item)}
                     title="Update Status"
@@ -915,6 +968,19 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger, on
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
+
+      {/* Email Confirmation Dialog */}
+      <EmailConfirmDialog
+        open={showEmailDialog}
+        onOpenChange={(open) => {
+          setShowEmailDialog(open)
+          if (!open) setEmailItem(null)
+        }}
+        customerEmail={emailItem?.customer_email || ''}
+        customerName={emailItem?.customer_name}
+        onConfirm={handleEmailConfirm}
+        loading={emailLoading}
+      />
     </div>
   )
 }

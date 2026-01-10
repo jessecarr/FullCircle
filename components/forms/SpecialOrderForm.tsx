@@ -35,6 +35,7 @@ interface ProductLine {
 export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOrderFormProps) {
   const { toast } = useToast()
   const [loading, setLoading] = useState(false)
+  const [emailLoading, setEmailLoading] = useState(false)
   const [showPrintSubmitDialog, setShowPrintSubmitDialog] = useState(false)
   const [showCustomerDetails, setShowCustomerDetails] = useState(false)
   const [productLines, setProductLines] = useState<ProductLine[]>(() => {
@@ -334,11 +335,16 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     
-    // Validate required fields
-    if (!formData.customer_name || !formData.customer_phone || !formData.payment) {
+    // Validate required fields and collect missing field names
+    const missingFields: string[] = []
+    if (!formData.customer_name) missingFields.push('Customer Name')
+    if (!formData.customer_phone) missingFields.push('Customer Phone')
+    if (!formData.payment) missingFields.push('Payment Method')
+    
+    if (missingFields.length > 0) {
       toast({
         title: 'Validation Error',
-        description: 'Please fill in all required customer fields',
+        description: `Please fill in the following required fields: ${missingFields.join(', ')}`,
         variant: 'destructive',
       })
       return
@@ -952,6 +958,55 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
           variant: 'destructive',
         });
       }
+    }
+  };
+
+  const handleEmail = async () => {
+    if (!formData.customer_email) {
+      toast({
+        title: 'No Email Available',
+        description: 'Please enter a customer email address before sending.',
+        variant: 'destructive',
+      });
+      return;
+    }
+
+    setEmailLoading(true);
+    try {
+      const { sendFormEmail } = await import('@/lib/emailUtils');
+      const formDataForEmail = {
+        ...formData,
+        product_lines: productLines,
+        total_price: productLines.reduce((acc, line) => acc + line.total_price, 0) * 1.0795,
+      };
+
+      const result = await sendFormEmail({
+        customerEmail: formData.customer_email,
+        customerName: formData.customer_name || 'Customer',
+        formType: 'special_orders',
+        formData: formDataForEmail,
+      });
+
+      if (result.success) {
+        toast({
+          title: 'Email Sent',
+          description: result.message,
+        });
+      } else {
+        toast({
+          title: 'Email Failed',
+          description: result.message,
+          variant: 'destructive',
+        });
+      }
+    } catch (error) {
+      toast({
+        title: 'Email Failed',
+        description: error instanceof Error ? error.message : 'Failed to send email',
+        variant: 'destructive',
+      });
+    } finally {
+      setEmailLoading(false);
     }
   };
 
@@ -1606,8 +1661,12 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
       onOpenChange={setShowPrintSubmitDialog}
       onPrint={handlePrint}
       onSubmit={performSubmission}
+      onEmail={handleEmail}
       isEditing={!!initialData}
       loading={loading}
+      emailLoading={emailLoading}
+      customerEmail={formData.customer_email}
+      customerName={formData.customer_name}
     />
     </>
   )

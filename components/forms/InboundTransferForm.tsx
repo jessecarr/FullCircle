@@ -49,6 +49,7 @@ interface ProductLine {
 export function InboundTransferForm({ initialData, onSuccess, onCancel }: SpecialOrderFormProps) {
   const { toast } = useToast()
   const [loading, setLoading] = useState(false)
+  const [emailLoading, setEmailLoading] = useState(false)
   const [showPrintSubmitDialog, setShowPrintSubmitDialog] = useState(false)
   const [productLines, setProductLines] = useState<ProductLine[]>(() => {
     // If editing existing form with product_lines, use those
@@ -278,6 +279,12 @@ export function InboundTransferForm({ initialData, onSuccess, onCancel }: Specia
     console.log('Updating product line:', { index, field, value });
     const updated = [...productLines]
     updated[index] = { ...updated[index], [field]: value }
+    
+    // Auto-set price to $0 when order type is "Purchased From FCR"
+    if (field === 'order_type' && value === 'Purchased From FCR') {
+      updated[index].unit_price = 0
+    }
+    
     setProductLines(updated)
   }
 
@@ -936,6 +943,44 @@ export function InboundTransferForm({ initialData, onSuccess, onCancel }: Specia
     }
   };
 
+  const handleEmail = async () => {
+    if (!formData.customer_email) {
+      toast({
+        title: 'No Email Available',
+        description: 'Please enter a customer email address before sending.',
+        variant: 'destructive',
+      });
+      return;
+    }
+
+    setEmailLoading(true);
+    try {
+      const { sendFormEmail } = await import('@/lib/emailUtils');
+      const formDataForEmail = {
+        ...formData,
+        product_lines: productLines,
+        total_price: productLines.reduce((acc, line) => acc + line.unit_price, 0),
+      };
+
+      const result = await sendFormEmail({
+        customerEmail: formData.customer_email,
+        customerName: formData.customer_name || 'Customer',
+        formType: 'inbound_transfers',
+        formData: formDataForEmail,
+      });
+
+      if (result.success) {
+        toast({ title: 'Email Sent', description: result.message });
+      } else {
+        toast({ title: 'Email Failed', description: result.message, variant: 'destructive' });
+      }
+    } catch (error) {
+      toast({ title: 'Email Failed', description: error instanceof Error ? error.message : 'Failed to send email', variant: 'destructive' });
+    } finally {
+      setEmailLoading(false);
+    }
+  };
+
   return (
     <>
       <Card>
@@ -1382,10 +1427,9 @@ export function InboundTransferForm({ initialData, onSuccess, onCancel }: Specia
                     type="number"
                     min="0"
                     step="0.01"
-                    value={line.unit_price || ''}
+                    value={line.unit_price === 0 ? '0' : (line.unit_price || '')}
                     onChange={(e) => updateProductLine(index, 'unit_price', e.target.value ? parseFloat(e.target.value) : 0)}
                     placeholder="0"
-                    required
                     className="w-24 text-base text-center text-left"
                     style={{ 
                       height: isClient ? (rowHeights[index] || '48px') : '48px',
@@ -1579,8 +1623,12 @@ export function InboundTransferForm({ initialData, onSuccess, onCancel }: Specia
       onOpenChange={setShowPrintSubmitDialog}
       onPrint={handlePrint}
       onSubmit={performSubmission}
+      onEmail={handleEmail}
       isEditing={!!initialData}
       loading={loading}
+      emailLoading={emailLoading}
+      customerEmail={formData.customer_email}
+      customerName={formData.customer_name}
     />
     </>
   )

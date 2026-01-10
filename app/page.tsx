@@ -30,7 +30,6 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from '@/components/ui/alert-dialog'
-
 function HomeContent() {
   const { user, loading } = useAuth()
   const router = useRouter()
@@ -108,6 +107,41 @@ function HomeContent() {
       const nextItem = allItems[currentViewIndex + 1]
       setViewingItem(nextItem)
       setCurrentViewIndex(currentViewIndex + 1)
+    }
+  }
+
+  const handleViewPrint = async () => {
+    if (!viewingItem) return
+    const { printForm } = await import('@/lib/printUtils')
+    printForm(viewingItem, viewingItem._formType)
+  }
+
+  const handleViewEmailClick = async () => {
+    if (!viewingItem) return
+    const customerEmail = viewingItem.customer_email
+    if (!customerEmail) {
+      alert('No customer email address on file.')
+      return
+    }
+    
+    // Use browser confirm dialog since we're already in a modal
+    const confirmed = window.confirm(
+      `Send this form to ${viewingItem.customer_name || 'the customer'} at ${customerEmail}?`
+    )
+    
+    if (!confirmed) return
+    
+    try {
+      const { sendFormEmail } = await import('@/lib/emailUtils')
+      const result = await sendFormEmail({
+        customerEmail: viewingItem.customer_email,
+        customerName: viewingItem.customer_name || 'Customer',
+        formType: viewingItem._formType,
+        formData: viewingItem,
+      })
+      alert(result.success ? result.message : `Failed: ${result.message}`)
+    } catch (error) {
+      alert('Failed to send email: ' + (error instanceof Error ? error.message : 'Unknown error'))
     }
   }
 
@@ -384,10 +418,13 @@ function HomeContent() {
         onOpenChange={(open) => !open && setViewingItem(null)}
         data={viewingItem}
         title={getFormTitle()}
+        formType={viewingItem?._formType}
         onEdit={() => {
           handleEdit(viewingItem, viewingItem?._formType)
           setViewingItem(null)
         }}
+        onPrint={handleViewPrint}
+        onEmail={handleViewEmailClick}
         onPrevious={handlePrevious}
         onNext={handleNext}
         hasPrevious={currentViewIndex > 0}
@@ -491,6 +528,7 @@ function HomeContent() {
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
+
     </div>
   )
 }
