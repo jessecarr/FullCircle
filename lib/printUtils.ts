@@ -583,6 +583,12 @@ export function printInboundTransfer(data: any) {
             <div class="print-label">Phone:</div>
             <div class="print-value">${formatPhoneNumber(data.customer_phone || '')}</div>
           </div>
+          ${data.drivers_license ? `
+            <div class="print-field">
+              <div class="print-label">License:</div>
+              <div class="print-value">${data.drivers_license}${data.license_expiration ? ` (Exp: ${data.license_expiration})` : ''}</div>
+            </div>
+          ` : ''}
           ${data.customer_street ? `
             <div class="print-field">
               <div class="print-label">Address:</div>
@@ -661,6 +667,12 @@ export function printInboundTransfer(data: any) {
             <div class="print-label">Phone:</div>
             <div class="print-value">${formatPhoneNumber(data.customer_phone || '')}</div>
           </div>
+          ${data.drivers_license ? `
+            <div class="print-field">
+              <div class="print-label">License:</div>
+              <div class="print-value">${data.drivers_license}${data.license_expiration ? ` (Exp: ${data.license_expiration})` : ''}</div>
+            </div>
+          ` : ''}
           ${data.customer_street ? `
             <div class="print-field">
               <div class="print-label">Address:</div>
@@ -911,6 +923,12 @@ export function printSuppressorApproval(data: any) {
             <div class="print-label">Phone:</div>
             <div class="print-value">${formatPhoneNumber(data.customer_phone || '')}</div>
           </div>
+          ${data.drivers_license ? `
+            <div class="print-field">
+              <div class="print-label">License:</div>
+              <div class="print-value">${data.drivers_license}${data.license_expiration ? ` (Exp: ${data.license_expiration})` : ''}</div>
+            </div>
+          ` : ''}
           ${data.customer_street ? `
             <div class="print-field">
               <div class="print-label">Address:</div>
@@ -989,6 +1007,12 @@ export function printSuppressorApproval(data: any) {
             <div class="print-label">Phone:</div>
             <div class="print-value">${formatPhoneNumber(data.customer_phone || '')}</div>
           </div>
+          ${data.drivers_license ? `
+            <div class="print-field">
+              <div class="print-label">License:</div>
+              <div class="print-value">${data.drivers_license}${data.license_expiration ? ` (Exp: ${data.license_expiration})` : ''}</div>
+            </div>
+          ` : ''}
           ${data.customer_street ? `
             <div class="print-field">
               <div class="print-label">Address:</div>
@@ -1200,6 +1224,18 @@ export function printOutboundTransfer(data: any) {
             <div class="field-label">Phone</div>
             <div class="field-value">${formatPhoneNumber(data.customer_phone || '')}</div>
           </div>
+          ${data.drivers_license ? `
+          <div class="field-group">
+            <div class="field-label">Driver's License</div>
+            <div class="field-value">${data.drivers_license}</div>
+          </div>
+          ` : ''}
+          ${data.license_expiration ? `
+          <div class="field-group">
+            <div class="field-label">License Expiration</div>
+            <div class="field-value">${data.license_expiration}</div>
+          </div>
+          ` : ''}
         </div>
       </div>
 
@@ -1319,6 +1355,13 @@ export function printConsignment(data: any) {
 
   const dateStr = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })
   
+  const licenseHtml = data.drivers_license ? `
+    <div class="print-field">
+      <div class="print-label">License:</div>
+      <div class="print-value">${data.drivers_license}${data.license_expiration ? ` (Exp: ${data.license_expiration})` : ''}</div>
+    </div>
+  ` : ''
+
   const addressHtml = data.customer_street ? `
     <div class="print-field">
       <div class="print-label">Address:</div>
@@ -1388,6 +1431,7 @@ export function printConsignment(data: any) {
             <div class="print-label">Phone:</div>
             <div class="print-value">${formatPhoneNumber(data.customer_phone || '')}</div>
           </div>
+          ${licenseHtml}
           ${addressHtml}
         </div>
         <div class="print-section">

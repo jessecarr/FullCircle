@@ -1074,51 +1074,62 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
 
               {/* Customer Details Section - Collapsible */}
               {showCustomerDetails && (
-                <div className="mt-4 space-y-4">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
-                    <div className="space-y-2">
-                      <Label className="text-medium" htmlFor="drivers_license">Driver's License</Label>
-                      <Input
-                        id="drivers_license"
-                        value={formData.drivers_license}
-                        onChange={(e) => handleInputChange('drivers_license', e.target.value.toUpperCase())}
-                        onKeyDown={(e) => {
-                          if (e.key === 'Enter') {
-                            e.preventDefault();
-                            document.getElementById('license_expiration')?.focus();
-                          }
-                        }}
-                        className="uppercase"
-                      />
-                    </div>
-
-                    <div className="space-y-2">
-                      <Label className="text-medium" htmlFor="license_expiration">Expiration Date</Label>
-                      <Input
-                        id="license_expiration"
-                        type="date"
-                        value={formData.license_expiration}
-                        onChange={(e) => handleInputChange('license_expiration', e.target.value)}
-                        onKeyDown={(e) => {
-                          if (e.key === 'Enter') {
-                            e.preventDefault();
-                            document.getElementById('customer_street')?.focus();
-                          }
-                        }}
-                      />
+                <div className="mt-4 grid grid-cols-2 gap-6">
+                  <div className="space-y-4">
+                    <div className="grid grid-cols-2 gap-4">
+                      <div className="space-y-2">
+                        <Label className="text-medium" htmlFor="drivers_license">Driver's License</Label>
+                        <Input
+                          id="drivers_license"
+                          value={formData.drivers_license}
+                          onChange={(e) => handleInputChange('drivers_license', e.target.value.toUpperCase())}
+                          onKeyDown={(e) => {
+                            if (e.key === 'Enter') {
+                              e.preventDefault();
+                              document.getElementById('license_expiration')?.focus();
+                            }
+                          }}
+                          className="text-base uppercase"
+                        />
+                      </div>
+                      <div className="space-y-2">
+                        <Label className="text-medium" htmlFor="license_expiration">Expiration Date</Label>
+                        <Input
+                          id="license_expiration"
+                          type="date"
+                          value={formData.license_expiration}
+                          onChange={(e) => handleInputChange('license_expiration', e.target.value)}
+                          onKeyDown={(e) => {
+                            if (e.key === 'Enter') {
+                              e.preventDefault();
+                              document.getElementById('customer_street')?.focus();
+                            }
+                          }}
+                          className="text-base"
+                        />
+                      </div>
                     </div>
                   </div>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+
+                  <div className="space-y-4">
                     <div className="space-y-2">
                       <Label className="text-medium" htmlFor="customer_street">Street Address</Label>
                       <Textarea
                         id="customer_street"
                         value={formData.customer_street}
                         onChange={(e) => handleInputChange('customer_street', e.target.value.toUpperCase())}
-                        className="min-h-[192px] text-base uppercase"
+                        onKeyDown={(e) => {
+                          if (e.key === 'Enter') {
+                            e.preventDefault();
+                            document.getElementById('customer_zip')?.focus();
+                          }
+                        }}
+                        rows={2}
+                        className="text-base uppercase resize-none"
                       />
                     </div>
-                    <div className="grid grid-cols-1 gap-4">
+                    
+                    <div className="grid grid-cols-3 gap-2">
                       <div className="space-y-2">
                         <Label className="text-medium" htmlFor="customer_zip">Zip</Label>
                         <Input
@@ -1131,8 +1142,6 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
                               document.getElementById('customer_state')?.focus();
                             }
                           }}
-                          placeholder="Enter 5-digit zip code"
-                          maxLength={5}
                           className="text-base uppercase"
                         />
                       </div>
