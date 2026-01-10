@@ -365,6 +365,24 @@ export function ConsignmentForm({ initialData, onSuccess, onCancel }: Consignmen
       return
     }
 
+    // Validate that all product lines have method and sale_price
+    const invalidLines = productLines.filter((line, index) => {
+      const hasData = line.control_number || line.manufacturer || line.model || line.serial_number
+      if (hasData) {
+        return !line.method || !line.sale_price
+      }
+      return false
+    })
+
+    if (invalidLines.length > 0) {
+      toast({
+        title: 'Validation Error',
+        description: 'Method and Sale Price are required for all items',
+        variant: 'destructive',
+      })
+      return
+    }
+
     if (initialData) {
       setShowUpdateDialog(true)
       return
@@ -785,11 +803,45 @@ export function ConsignmentForm({ initialData, onSuccess, onCancel }: Consignmen
                     onKeyDown={(e) => {
                       if (e.key === 'Enter') {
                         e.preventDefault();
-                        document.getElementById('customer_street')?.focus();
+                        document.getElementById('drivers_license')?.focus();
                       }
                     }}
                     className="text-base"
                   />
+                </div>
+
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="space-y-2">
+                    <Label className="text-medium" htmlFor="drivers_license">Driver's License</Label>
+                    <Input
+                      id="drivers_license"
+                      value={formData.drivers_license}
+                      onChange={(e) => handleInputChange('drivers_license', e.target.value.toUpperCase())}
+                      onKeyDown={(e) => {
+                        if (e.key === 'Enter') {
+                          e.preventDefault();
+                          document.getElementById('license_expiration')?.focus();
+                        }
+                      }}
+                      className="text-base uppercase"
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label className="text-medium" htmlFor="license_expiration">Expiration Date</Label>
+                    <Input
+                      id="license_expiration"
+                      type="date"
+                      value={formData.license_expiration}
+                      onChange={(e) => handleInputChange('license_expiration', e.target.value)}
+                      onKeyDown={(e) => {
+                        if (e.key === 'Enter') {
+                          e.preventDefault();
+                          document.getElementById('customer_street')?.focus();
+                        }
+                      }}
+                      className="text-base"
+                    />
+                  </div>
                 </div>
               </div>
 
