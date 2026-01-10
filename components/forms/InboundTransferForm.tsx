@@ -273,44 +273,6 @@ export function InboundTransferForm({ initialData, onSuccess, onCancel }: Specia
     setProductLines(updated)
   }
 
-  const handleControlNumberSearch = async (index: number, controlNumber: string) => {
-    if (!controlNumber.trim()) return
-    
-    try {
-      const response = await fetch(`/api/control-number?controlNumber=${encodeURIComponent(controlNumber.trim())}`)
-      if (!response.ok) {
-        if (response.status === 404) {
-          // Control number not found, don't show error to user, just don't auto-fill
-          return
-        }
-        throw new Error('Search failed')
-      }
-      
-      const item = await response.json()
-      if (item) {
-        // Auto-fill the fields with the found item data
-        const updated = [...productLines]
-        updated[index] = {
-          ...updated[index],
-          manufacturer: item.manufacturer || '',
-          model: item.model || '',
-          serial_number: item.serial_number || '',
-          fastbound_item_id: item.fastbound_item_id,
-          firearm_type: item.firearm_type || '',
-          caliber: item.caliber || ''
-        }
-        setProductLines(updated)
-        
-        toast({
-          title: 'Item Found',
-          description: 'Auto-filled manufacturer, model, and serial number',
-        })
-      }
-    } catch (error) {
-      console.error('Error searching control number:', error)
-      // Don't show error to user for failed searches, just log it
-    }
-  }
 
   const updateProductLine = (index: number, field: keyof ProductLine, value: any) => {
     console.log('Updating product line:', { index, field, value });
@@ -1247,9 +1209,6 @@ export function InboundTransferForm({ initialData, onSuccess, onCancel }: Specia
                         }
                       }
                     }}
-                    onBlur={(e) => {
-                      handleControlNumberSearch(index, e.target.value);
-                    }}
                     required
                     className="text-base w-full min-h-[48px] resize-none overflow-hidden uppercase text-center text-left"
                     rows={1}
@@ -1267,7 +1226,7 @@ export function InboundTransferForm({ initialData, onSuccess, onCancel }: Specia
                       setTimeout(() => recalculateRowHeight(index), 10);
                     }}
                     data-testid={`control-number-input-${index}`}
-                    placeholder="Enter Control # to Autofill"
+                    placeholder=""
                   />
                 </div>
 
