@@ -29,7 +29,7 @@ interface ProductLine {
   quantity: number
   unit_price: number
   total_price: number
-  received: boolean
+  completed: boolean
 }
 
 export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOrderFormProps) {
@@ -48,7 +48,7 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
         quantity: line.quantity || 1,
         unit_price: line.unit_price || 0,
         total_price: line.total_price || 0,
-        received: line.received || false,
+        completed: line.completed || false,
       }))
     }
     // Otherwise, create a single empty line for new orders
@@ -59,7 +59,7 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
       quantity: 1,
       unit_price: 0,
       total_price: 0,
-      received: false,
+      completed: false,
     }]
   })
   const [rowHeights, setRowHeights] = useState<{[key: number]: string}>({})
@@ -235,7 +235,7 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
       quantity: 1,
       unit_price: 0,
       total_price: 0,
-      received: false
+      completed: false
     }])
   }
 
@@ -258,7 +258,7 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
       quantity: 1,
       unit_price: 0,
       total_price: 0,
-      received: false
+      completed: false
     }
     setProductLines(updated)
   }
@@ -1408,9 +1408,9 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
                     <span className="text-xs text-muted-foreground">Yes</span>
                     <input
                       type="checkbox"
-                      id={`received-yes-${index}`}
-                      checked={line.received === true}
-                      onChange={() => updateProductLine(index, 'received', true)}
+                      id={`completed-yes-${index}`}
+                      checked={line.completed === true}
+                      onChange={() => updateProductLine(index, 'completed', true)}
                       className="w-5 h-5 rounded border-gray-400 text-green-600 focus:ring-green-500 cursor-pointer"
                     />
                   </div>
@@ -1418,9 +1418,9 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
                     <span className="text-xs text-muted-foreground">No</span>
                     <input
                       type="checkbox"
-                      id={`received-no-${index}`}
-                      checked={line.received === false}
-                      onChange={() => updateProductLine(index, 'received', false)}
+                      id={`completed-no-${index}`}
+                      checked={line.completed === false}
+                      onChange={() => updateProductLine(index, 'completed', false)}
                       className="w-5 h-5 rounded border-gray-400 text-red-600 focus:ring-red-500 cursor-pointer"
                     />
                   </div>

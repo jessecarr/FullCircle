@@ -170,10 +170,17 @@ export default function LandingPage() {
           <div className="mt-12">
             <h3 className="quick-stats-header text-xl font-semibold text-foreground mb-4">Quick Stats</h3>
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-              <Card className="quick-stats-card">
+              <Card 
+                className="quick-stats-card hover:shadow-lg transition-all cursor-pointer group landing-card"
+                onClick={() => router.push('/?tab=view-all')}
+              >
                 <CardContent className="p-4">
-                  <div className="text-2xl font-bold text-primary">{activeOrdersCount}</div>
-                  <p className="text-sm" style={{color: '#ffffff'}}>Active Special Orders</p>
+                  <div className="text-2xl font-bold text-primary group-hover:scale-105 transition-transform">{activeOrdersCount}</div>
+                  <p className="text-sm group-hover:text-blue-400 transition-colors" style={{color: '#ffffff'}}>Active Special Orders</p>
+                  <div className="mt-2 flex items-center text-xs text-muted-foreground group-hover:text-blue-400 transition-colors">
+                    <span>View All</span>
+                    <ArrowRight className="h-3 w-3 ml-1 group-hover:translate-x-1 transition-transform" />
+                  </div>
                 </CardContent>
               </Card>
             </div>
