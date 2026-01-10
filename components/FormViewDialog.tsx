@@ -1,8 +1,8 @@
 'use client'
 
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { Button } from '@/components/ui/button'
-import { Edit, X, ChevronLeft, ChevronRight, User, Package, FileText, Truck, Printer, Mail } from 'lucide-react'
+import { Edit, X, ChevronLeft, ChevronRight, User, Package, FileText, Truck, Printer, Mail, Check, Circle } from 'lucide-react'
 
 interface FormViewDialogProps {
   open: boolean
@@ -17,6 +17,7 @@ interface FormViewDialogProps {
   onNext?: () => void
   hasPrevious?: boolean
   hasNext?: boolean
+  onToggleItemCompleted?: (itemIndex: number, completed: boolean) => void
 }
 
 const formatPhoneNumber = (phone: string): string => {
@@ -40,7 +41,7 @@ const formatStatus = (status: string): string => {
   return status.charAt(0).toUpperCase() + status.slice(1).replace(/_/g, ' ')
 }
 
-export function FormViewDialog({ open, onOpenChange, data, title, formType, onEdit, onPrint, onEmail, onPrevious, onNext, hasPrevious, hasNext }: FormViewDialogProps) {
+export function FormViewDialog({ open, onOpenChange, data, title, formType, onEdit, onPrint, onEmail, onPrevious, onNext, hasPrevious, hasNext, onToggleItemCompleted }: FormViewDialogProps) {
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (!open) return
@@ -247,11 +248,12 @@ export function FormViewDialog({ open, onOpenChange, data, title, formType, onEd
   const renderProductLines = () => {
     if (!data.product_lines || !Array.isArray(data.product_lines) || data.product_lines.length === 0) return null
 
-    const formType = data._formType || ''
-    const isConsignment = formType === 'consignment_forms'
-    const isInbound = formType === 'inbound_transfers'
-    const isOutbound = formType === 'outbound_transfers'
-    const isSuppressor = formType === 'suppressor_approvals'
+    const currentFormType = data._formType || ''
+    const isConsignment = currentFormType === 'consignment_forms'
+    const isInbound = currentFormType === 'inbound_transfers'
+    const isOutbound = currentFormType === 'outbound_transfers'
+    const isSuppressor = currentFormType === 'suppressor_approvals'
+    const isSpecialOrder = currentFormType === 'special_orders'
 
     return (
       <div className="mb-6">
@@ -335,27 +337,45 @@ export function FormViewDialog({ open, onOpenChange, data, title, formType, onEd
                   </div>
                 </div>
               ) : (
-                <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
-                  <div>
-                    <span className="text-xs text-gray-400">SKU</span>
-                    <p className="text-white font-medium text-sm">{line.sku || '-'}</p>
+                <div className="flex items-start gap-3">
+                  <div className="grid grid-cols-2 md:grid-cols-5 gap-3 flex-1">
+                    <div>
+                      <span className="text-xs text-gray-400">SKU</span>
+                      <p className="text-white font-medium text-sm">{line.sku || '-'}</p>
+                    </div>
+                    <div>
+                      <span className="text-xs text-gray-400">Description</span>
+                      <p className="text-white font-medium text-sm">{line.description || '-'}</p>
+                    </div>
+                    <div>
+                      <span className="text-xs text-gray-400">Qty × Price</span>
+                      <p className="text-white font-medium text-sm">{line.quantity || 0} × {formatCurrency(line.unit_price)}</p>
+                    </div>
+                    <div>
+                      <span className="text-xs text-gray-400">Total</span>
+                      <p className="text-white font-semibold text-sm">{formatCurrency(line.total_price)}</p>
+                    </div>
+                    <div>
+                      <span className="text-xs text-gray-400">Vendor</span>
+                      <p className="text-white font-medium text-sm">{line.vendor_name || line.vendor || '-'}</p>
+                    </div>
                   </div>
-                  <div>
-                    <span className="text-xs text-gray-400">Description</span>
-                    <p className="text-white font-medium text-sm">{line.description || '-'}</p>
-                  </div>
-                  <div>
-                    <span className="text-xs text-gray-400">Qty × Price</span>
-                    <p className="text-white font-medium text-sm">{line.quantity || 0} × {formatCurrency(line.unit_price)}</p>
-                  </div>
-                  <div>
-                    <span className="text-xs text-gray-400">Total</span>
-                    <p className="text-white font-semibold text-sm">{formatCurrency(line.total_price)}</p>
-                  </div>
-                  <div>
-                    <span className="text-xs text-gray-400">Vendor</span>
-                    <p className="text-white font-medium text-sm">{line.vendor_name || line.vendor || '-'}</p>
-                  </div>
+                  {isSpecialOrder && onToggleItemCompleted && (
+                    <div className="flex flex-col items-center gap-1">
+                      <span className="text-xs text-gray-400">Completed</span>
+                      <button
+                        onClick={() => onToggleItemCompleted(index, !line.completed)}
+                        className={`p-2 rounded-full transition-all ${
+                          line.completed 
+                            ? 'bg-green-500/20 text-green-400 border border-green-500/30 hover:bg-green-500/30' 
+                            : 'bg-gray-700/50 text-gray-400 border border-gray-600 hover:bg-gray-600/50'
+                        }`}
+                        title={line.completed ? 'Mark as incomplete' : 'Mark as complete'}
+                      >
+                        {line.completed ? <Check className="h-4 w-4" /> : <Circle className="h-4 w-4" />}
+                      </button>
+                    </div>
+                  )}
                 </div>
               )}
             </div>

@@ -13,16 +13,33 @@ import {
 } from '@/components/ui/dropdown-menu'
 import { useRouter } from 'next/navigation'
 
-export function Header() {
+interface HeaderProps {
+  onTitleClick?: () => void
+}
+
+export function Header({ onTitleClick }: HeaderProps = {}) {
   const { user, signOut, loading, userRole } = useAuth()
   const router = useRouter()
+  
+  const handleTitleClick = () => {
+    if (onTitleClick) {
+      onTitleClick()
+    } else {
+      router.push('/landing')
+    }
+  }
 
   if (loading) {
     return (
       <header className="border-b bg-card">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
-            <h1 className="text-2xl font-bold text-foreground">Full Circle Forms</h1>
+            <h1 
+              className="text-2xl font-bold text-foreground cursor-pointer hover:text-blue-400 transition-colors"
+              onClick={handleTitleClick}
+            >
+              Full Circle Forms
+            </h1>
             <div className="h-10 w-32 bg-muted animate-pulse rounded" />
           </div>
         </div>
@@ -38,7 +55,12 @@ export function Header() {
     <header className="page-header border-b shadow-sm">
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
-          <h1 className="text-2xl font-bold text-foreground">Full Circle Forms</h1>
+          <h1 
+            className="text-2xl font-bold text-foreground cursor-pointer hover:text-blue-400 transition-colors"
+            onClick={handleTitleClick}
+          >
+            Full Circle Forms
+          </h1>
           
           <div className="flex items-center gap-4">
             <DropdownMenu>

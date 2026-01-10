@@ -224,6 +224,52 @@ function HomeContent() {
     setShowViewAllDialog(false)
   }
 
+  const handleToggleItemCompleted = async (itemIndex: number, completed: boolean) => {
+    if (!viewingItem || viewingItem._formType !== 'special_orders') return
+    
+    try {
+      const { supabase } = await import('@/lib/supabase')
+      
+      // Update the product_lines array with the new completed status
+      const updatedProductLines = [...(viewingItem.product_lines || [])]
+      if (updatedProductLines[itemIndex]) {
+        updatedProductLines[itemIndex] = {
+          ...updatedProductLines[itemIndex],
+          completed: completed
+        }
+      }
+      
+      // Update in database
+      const { error } = await supabase
+        .from('special_orders')
+        .update({ product_lines: updatedProductLines })
+        .eq('id', viewingItem.id)
+      
+      if (error) throw error
+      
+      // Update local state
+      const updatedItem = {
+        ...viewingItem,
+        product_lines: updatedProductLines
+      }
+      setViewingItem(updatedItem)
+      
+      // Update in allItems array too
+      const updatedAllItems = allItems.map(item => 
+        item.id === viewingItem.id && item._formType === 'special_orders' 
+          ? updatedItem 
+          : item
+      )
+      setAllItems(updatedAllItems)
+      
+      // Trigger refresh for the list
+      setRefreshTrigger(prev => prev + 1)
+    } catch (error) {
+      console.error('Failed to update item completion status:', error)
+      alert('Failed to update completion status')
+    }
+  }
+
   const handleCancel = () => {
     setEditingItem(null)
     setViewMode('list')
@@ -280,7 +326,7 @@ function HomeContent() {
 
   return (
     <div className="min-h-screen bg-background">
-      <Header />
+      <Header onTitleClick={handleDashboardClick} />
 
       <main className="container mx-auto px-4 py-8">
         <Tabs value={activeTab} onValueChange={(value) => {
@@ -429,6 +475,7 @@ function HomeContent() {
         onNext={handleNext}
         hasPrevious={currentViewIndex > 0}
         hasNext={currentViewIndex < allItems.length - 1}
+        onToggleItemCompleted={handleToggleItemCompleted}
       />
 
       <AlertDialog open={showConfirmDialog} onOpenChange={setShowConfirmDialog}>

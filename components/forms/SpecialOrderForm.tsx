@@ -415,6 +415,8 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
               customer_name: formData.customer_name,
               customer_email: formData.customer_email,
               customer_phone: formData.customer_phone,
+              drivers_license: formData.drivers_license,
+              license_expiration: formData.license_expiration,
               customer_street: formData.customer_street,
               customer_city: formData.customer_city,
               customer_state: formData.customer_state,
@@ -468,6 +470,8 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
             customer_name: formData.customer_name,
             customer_email: formData.customer_email,
             customer_phone: formData.customer_phone,
+            drivers_license: formData.drivers_license,
+            license_expiration: formData.license_expiration,
             customer_street: formData.customer_street,
             customer_city: formData.customer_city,
             customer_state: formData.customer_state,
@@ -1042,6 +1046,8 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
                       customer_name: customer.name || '',
                       customer_email: isPlaceholderEmail ? '' : (customer.email || ''),
                       customer_phone: customer.phone || '',
+                      drivers_license: customer.drivers_license || '',
+                      license_expiration: customer.license_expiration || '',
                       customer_street: customer.street || '',
                       customer_city: customer.city || '',
                       customer_state: customer.state || '',
@@ -1485,7 +1491,7 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
             </div>
             <div className="space-y-2">
               <Label className="text-medium" htmlFor="payment">Payment *</Label>
-              <Select value={formData.payment} onValueChange={(value) => handleInputChange('payment', value)}>
+              <Select value={formData.payment} onValueChange={(value) => handleInputChange('payment', value)} required>
                 <SelectTrigger suppressHydrationWarning>
                   <SelectValue placeholder="Select payment method" />
                 </SelectTrigger>
@@ -1495,6 +1501,21 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
                   <SelectItem value="layaway">Layaway</SelectItem>
                 </SelectContent>
               </Select>
+              {/* Hidden input for native browser validation */}
+              <input
+                type="text"
+                value={formData.payment}
+                required
+                tabIndex={-1}
+                style={{
+                  position: 'absolute',
+                  opacity: 0,
+                  pointerEvents: 'none',
+                  width: 0,
+                  height: 0,
+                }}
+                onChange={() => {}}
+              />
             </div>
           </div>
 
