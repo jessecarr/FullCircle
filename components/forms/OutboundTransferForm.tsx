@@ -771,15 +771,11 @@ export function OutboundTransferForm({ initialData, onSuccess, onCancel }: Outbo
       </div>
     `
 
-    // Helper to generate the Company FFL page
+    // Helper to generate the Company FFL page (FFL image only, no header)
     const generateCompanyFFLPage = () => `
       <div class="page ffl-page">
-        <div class="print-header">
-          <div class="print-title">Company FFL Copy</div>
-          <div class="copy-type">Full Circle Firearms - Federal Firearms License</div>
-        </div>
         ${fflSrc ? `
-          <div class="ffl-image-container">
+          <div class="ffl-image-container" style="margin-top: 0; padding-top: 20px;">
             <img src="${fflSrc}" alt="Company FFL" />
           </div>
         ` : `
@@ -1022,7 +1018,7 @@ export function OutboundTransferForm({ initialData, onSuccess, onCancel }: Outbo
           
           .ffl-image-container img {
             max-width: 100%;
-            max-height: 600px;
+            max-height: 900px;
             border: 1px solid #ddd;
           }
           

@@ -399,7 +399,11 @@ export default function ArchivePage() {
         ) : (
           <div className="space-y-3">
             {filteredForms.map((form, index) => (
-              <Card key={`${form._tableName}-${form.id}`} className={`landing-card hover:shadow-md transition-shadow ${selectedIds.has(`${form._tableName}-${form.id}`) ? 'ring-2 ring-blue-500' : ''}`}>
+              <Card 
+                key={`${form._tableName}-${form.id}`} 
+                className={`landing-card hover:shadow-md transition-shadow cursor-pointer ${selectedIds.has(`${form._tableName}-${form.id}`) ? 'ring-2 ring-blue-500' : ''}`}
+                onClick={() => viewForm(form, index)}
+              >
                 <CardContent className="py-4">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-4">
@@ -410,16 +414,10 @@ export default function ArchivePage() {
                         onClick={(e) => e.stopPropagation()}
                         className="w-4 h-4 rounded"
                       />
-                      <div 
-                        className="p-2 rounded-lg bg-slate-700/50 cursor-pointer"
-                        onClick={() => viewForm(form, index)}
-                      >
+                      <div className="p-2 rounded-lg bg-slate-700/50">
                         {getFormIcon(form._formType)}
                       </div>
-                      <div 
-                        className="cursor-pointer flex-1"
-                        onClick={() => viewForm(form, index)}
-                      >
+                      <div className="flex-1">
                         <div className="font-medium">{form.customer_name || 'No Name'}</div>
                         <div className="text-sm text-muted-foreground">
                           {form._formType} • {form.customer_phone || 'No Phone'}
@@ -435,15 +433,7 @@ export default function ArchivePage() {
                         </div>
                       </div>
                     </div>
-                    <div className="flex gap-2">
-                      <Button
-                        size="sm"
-                        variant="outline"
-                        onClick={() => viewForm(form, index)}
-                      >
-                        <Eye className="h-4 w-4 mr-1" />
-                        View
-                      </Button>
+                    <div className="flex gap-2" onClick={(e) => e.stopPropagation()}>
                       <Button
                         variant="outline"
                         size="sm"
@@ -458,6 +448,7 @@ export default function ArchivePage() {
                       <Button
                         variant="destructive"
                         size="sm"
+                        className="bg-red-600 hover:bg-red-700 text-white border-red-600"
                         onClick={() => {
                           setSelectedForm(form)
                           setDeleteDialogOpen(true)
@@ -507,7 +498,8 @@ export default function ArchivePage() {
             <AlertDialogFooter>
               <AlertDialogCancel onClick={() => setDeleteConfirmation('')}>Cancel</AlertDialogCancel>
               <Button 
-                variant="destructive" 
+                variant="destructive"
+                className="bg-red-600 hover:bg-red-700 text-white border-red-600"
                 onClick={handlePermanentDelete}
                 disabled={deleteConfirmation.toLowerCase() !== 'delete'}
               >
@@ -706,6 +698,7 @@ export default function ArchivePage() {
               </Button>
               <Button 
                 variant="destructive"
+                className="bg-red-600 hover:bg-red-700 text-white border-red-600"
                 onClick={() => {
                   if (viewingForm) {
                     setSelectedForm(viewingForm)

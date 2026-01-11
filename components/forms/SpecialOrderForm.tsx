@@ -784,7 +784,7 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
           }
           
           .company-logo {
-            width: 120px;
+            width: 240px;
             height: auto;
             object-fit: contain;
           }

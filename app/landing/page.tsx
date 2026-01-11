@@ -162,8 +162,11 @@ export default function LandingPage() {
             })}
           </div>
 
+          {/* Separator */}
+          <div className="my-10 border-t border-slate-700/50"></div>
+
           {/* Management Tools Section */}
-          <div className="mt-12">
+          <div>
             <h3 className="text-xl font-semibold text-foreground mb-4">Management Tools</h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {/* Deleted Forms Archive */}
@@ -240,8 +243,11 @@ export default function LandingPage() {
             </div>
           </div>
 
+          {/* Separator */}
+          <div className="my-10 border-t border-slate-700/50"></div>
+
           {/* Quick Stats */}
-          <div className="mt-12">
+          <div>
             <h3 className="quick-stats-header text-xl font-semibold text-foreground mb-4">Quick Stats</h3>
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
               <Card 

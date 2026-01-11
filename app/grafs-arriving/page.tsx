@@ -461,9 +461,13 @@ export default function GrafsArrivingPage() {
                       const product = getProductInfo(order)
                       const globalIndex = orders.findIndex(o => o.id === order.id)
                       return (
-                        <Card key={order.id} className={`landing-card ${
-                          overdue ? 'border-red-500/30' : ''
-                        } ${selectedIds.has(order.id) ? 'ring-2 ring-blue-500' : ''}`}>
+                        <Card 
+                          key={order.id} 
+                          className={`landing-card cursor-pointer ${
+                            overdue ? 'border-red-500/30' : ''
+                          } ${selectedIds.has(order.id) ? 'ring-2 ring-blue-500' : ''}`}
+                          onClick={() => viewOrder(order, globalIndex)}
+                        >
                           <CardContent className="py-4">
                             <div className="flex items-center justify-between">
                               <div className="flex items-center gap-4">
@@ -475,19 +479,15 @@ export default function GrafsArrivingPage() {
                                   className="w-4 h-4 rounded"
                                 />
                                 <div 
-                                  className={`p-2 rounded-lg cursor-pointer ${
+                                  className={`p-2 rounded-lg ${
                                     overdue ? 'bg-red-500/20' : 'bg-slate-700/50'
                                   }`}
-                                  onClick={() => viewOrder(order, globalIndex)}
                                 >
                                   <Package className={`h-4 w-4 ${
                                     overdue ? 'text-red-400' : 'text-muted-foreground'
                                   }`} />
                                 </div>
-                                <div 
-                                  className="cursor-pointer flex-1"
-                                  onClick={() => viewOrder(order, globalIndex)}
-                                >
+                                <div className="flex-1">
                                   <div className="font-medium">{order.customer_name}</div>
                                   <div className="text-sm text-muted-foreground">
                                     {product.description}
@@ -501,15 +501,7 @@ export default function GrafsArrivingPage() {
                                   )}
                                 </div>
                               </div>
-                              <div className="flex gap-2">
-                                <Button
-                                  size="sm"
-                                  variant="outline"
-                                  onClick={() => viewOrder(order, globalIndex)}
-                                >
-                                  <Eye className="h-4 w-4 mr-1" />
-                                  View
-                                </Button>
+                              <div className="flex gap-2" onClick={(e) => e.stopPropagation()}>
                                 <Button
                                   size="sm"
                                   onClick={() => {
@@ -693,13 +685,16 @@ export default function GrafsArrivingPage() {
 
             <AlertDialogFooter>
               <AlertDialogCancel onClick={closeViewer}>Close</AlertDialogCancel>
-              <Button onClick={() => {
-                if (viewingOrder) {
-                  setSelectedOrder(viewingOrder)
-                  setMarkArrivedDialogOpen(true)
-                  closeViewer()
-                }
-              }}>
+              <Button 
+                className="bg-blue-600 hover:bg-blue-700 text-white"
+                onClick={() => {
+                  if (viewingOrder) {
+                    setSelectedOrder(viewingOrder)
+                    setMarkArrivedDialogOpen(true)
+                    closeViewer()
+                  }
+                }}
+              >
                 Mark Arrived
               </Button>
             </AlertDialogFooter>
