@@ -13,7 +13,9 @@ import CustomerSearch from '../CustomerSearch'
 import { lookupZipCode, isValidZipCode } from '@/lib/zipLookup'
 import { Printer, Search } from 'lucide-react'
 import FastBoundSearch from '../FastBoundSearch'
+import FFLSearch from '../FFLSearch'
 import { PrintSubmitDialog } from '@/components/ui/print-submit-dialog'
+import { FFLContact } from '@/lib/fflTypes'
 
 interface FastBoundInventoryItem {
   id: string
@@ -390,6 +392,19 @@ export function OutboundTransferForm({ initialData, onSuccess, onCancel }: Outbo
         console.error('Failed to lookup zip code:', error)
       }
     }
+  }
+
+  // Handle FFL selection from search
+  const handleFFLSelect = (ffl: FFLContact) => {
+    setFormData(prev => ({
+      ...prev,
+      transferee_ffl_name: ffl.trade_name || ffl.license_name || '',
+      transferee_ffl_phone: ffl.phone || '',
+      transferee_ffl_address: ffl.premise_address || '',
+      transferee_ffl_city: ffl.premise_city || '',
+      transferee_ffl_state: ffl.premise_state || '',
+      transferee_ffl_zip: ffl.premise_zip || ''
+    }))
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -1077,6 +1092,20 @@ export function OutboundTransferForm({ initialData, onSuccess, onCancel }: Outbo
           <div className="border rounded-lg p-6 mb-6">
             <div className="space-y-4">
               <h3 className="text-xl font-bold underline mb-4">Transferee</h3>
+              
+              {/* FFL Search */}
+              <div className="mb-4">
+                <FFLSearch
+                  onSelect={handleFFLSelect}
+                  label="Search FFL Database"
+                  placeholder="Search by FFL number (X-XX-XXXXX) or business name..."
+                  showSyncButton={true}
+                />
+                <p className="text-xs text-muted-foreground mt-1">
+                  Search for an FFL to auto-fill the transferee information below
+                </p>
+              </div>
+
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="space-y-2">
                   <Label className="text-medium" htmlFor="transferee_name">Transferee Name *</Label>

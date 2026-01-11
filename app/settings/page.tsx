@@ -1,24 +1,146 @@
 'use client'
 
-import { useEffect } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import { useRouter } from 'next/navigation'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { useToast } from '@/components/ui/use-toast'
 import { useAuth } from '@/hooks/useAuth'
 import { Header } from '@/components/Header'
-import { Settings, Users, FileText, Package, ArrowRight, ArrowLeft, User, Shield, Database } from 'lucide-react'
+import { Settings, Users, FileText, Package, ArrowRight, ArrowLeft, User, Shield, Database, RefreshCw, Upload, Building2 } from 'lucide-react'
 
 export default function SettingsPage() {
   const { user, loading } = useAuth()
   const router = useRouter()
   const { toast } = useToast()
+  const [isSyncing, setIsSyncing] = useState(false)
+  const [syncStats, setSyncStats] = useState<{
+    totalRecords: number
+    lastSyncedAt: string | null
+  } | null>(null)
+  const fileInputRef = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
     if (!loading && !user) {
       router.push('/login')
     }
   }, [user, loading, router])
+
+  // Fetch FFL sync stats
+  useEffect(() => {
+    const fetchStats = async () => {
+      try {
+        const response = await fetch('/api/ffl/sync')
+        const data = await response.json()
+        if (data.success) {
+          setSyncStats({
+            totalRecords: data.totalRecords,
+            lastSyncedAt: data.lastSyncedAt
+          })
+        }
+      } catch (error) {
+        console.error('Failed to fetch FFL stats:', error)
+      }
+    }
+    if (user) {
+      fetchStats()
+    }
+  }, [user])
+
+  const handleSyncFromATF = async () => {
+    setIsSyncing(true)
+    toast({
+      title: 'Syncing FFL Database',
+      description: 'Downloading ATF database. This may take a few minutes...'
+    })
+
+    try {
+      const response = await fetch('/api/ffl/sync', {
+        method: 'POST'
+      })
+      const data = await response.json()
+
+      if (data.success) {
+        toast({
+          title: 'Sync Complete',
+          description: `Successfully processed ${data.totalProcessed.toLocaleString()} FFLs.`
+        })
+        setSyncStats({
+          totalRecords: data.totalProcessed,
+          lastSyncedAt: data.syncedAt
+        })
+      } else {
+        toast({
+          title: 'Sync Failed',
+          description: data.errors?.join(', ') || 'Unknown error occurred',
+          variant: 'destructive'
+        })
+      }
+    } catch (error) {
+      toast({
+        title: 'Sync Error',
+        description: (error as Error).message,
+        variant: 'destructive'
+      })
+    } finally {
+      setIsSyncing(false)
+    }
+  }
+
+  const handleFileUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0]
+    if (!file) return
+
+    setIsSyncing(true)
+    toast({
+      title: 'Uploading FFL File',
+      description: 'Processing uploaded file...'
+    })
+
+    try {
+      const formData = new FormData()
+      formData.append('file', file)
+
+      const response = await fetch('/api/ffl/sync', {
+        method: 'POST',
+        body: formData
+      })
+      const data = await response.json()
+
+      if (data.success) {
+        toast({
+          title: 'Upload Complete',
+          description: `Successfully processed ${data.totalProcessed.toLocaleString()} FFLs.`
+        })
+        setSyncStats({
+          totalRecords: data.totalProcessed,
+          lastSyncedAt: data.syncedAt
+        })
+      } else {
+        toast({
+          title: 'Upload Failed',
+          description: data.errors?.join(', ') || 'Unknown error occurred',
+          variant: 'destructive'
+        })
+      }
+    } catch (error) {
+      toast({
+        title: 'Upload Error',
+        description: (error as Error).message,
+        variant: 'destructive'
+      })
+    } finally {
+      setIsSyncing(false)
+      if (fileInputRef.current) {
+        fileInputRef.current.value = ''
+      }
+    }
+  }
+
+  const formatDate = (dateString: string | null) => {
+    if (!dateString) return 'Never'
+    return new Date(dateString).toLocaleString()
+  }
 
   if (loading) {
     return (
@@ -153,6 +275,63 @@ export default function SettingsPage() {
                   Open Customer Management
                   <ArrowRight className="h-4 w-4 ml-2" />
                 </Button>
+              </CardContent>
+            </Card>
+
+            <Card className="landing-card hover:shadow-lg transition-shadow">
+              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                <CardTitle className="text-sm font-medium">FFL Database</CardTitle>
+                <Building2 className="h-4 w-4 text-muted-foreground" />
+              </CardHeader>
+              <CardContent>
+                <div className="text-2xl font-bold">FFL Lookup</div>
+                <p className="text-xs text-muted-foreground mb-2">
+                  Import ATF FFL database for quick lookups
+                </p>
+                {syncStats && (
+                  <div className="text-xs text-muted-foreground mb-3 space-y-1">
+                    <p>Records: <span className="text-foreground font-medium">{syncStats.totalRecords.toLocaleString()}</span></p>
+                    <p>Last Sync: <span className="text-foreground font-medium">{formatDate(syncStats.lastSyncedAt)}</span></p>
+                  </div>
+                )}
+                <div className="space-y-2">
+                  <a 
+                    href="https://www.atf.gov/firearms/listing-federal-firearms-licensees"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block"
+                  >
+                    <Button 
+                      variant="outline" 
+                      size="sm" 
+                      className="w-full"
+                      type="button"
+                    >
+                      <RefreshCw className="h-4 w-4 mr-2" />
+                      Download from ATF Website
+                    </Button>
+                  </a>
+                  <Button 
+                    variant="default" 
+                    size="sm" 
+                    className="w-full"
+                    onClick={() => fileInputRef.current?.click()}
+                    disabled={isSyncing}
+                  >
+                    <Upload className={`h-4 w-4 mr-2 ${isSyncing ? 'animate-spin' : ''}`} />
+                    {isSyncing ? 'Importing...' : 'Upload FFL File'}
+                  </Button>
+                  <input
+                    ref={fileInputRef}
+                    type="file"
+                    accept=".xlsx,.xls,.csv"
+                    onChange={handleFileUpload}
+                    className="hidden"
+                  />
+                  <p className="text-xs text-muted-foreground text-center">
+                    Download the Excel file from ATF, then upload it here
+                  </p>
+                </div>
               </CardContent>
             </Card>
           </div>
