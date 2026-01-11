@@ -15,6 +15,7 @@ import VendorSearch from '../VendorSearch'
 import { lookupZipCode, isValidZipCode } from '@/lib/zipLookup'
 import { Printer, Search } from 'lucide-react'
 import { PrintSubmitDialog } from '@/components/ui/print-submit-dialog'
+import { loadImageAsBase64 } from '@/lib/imageUtils'
 
 interface SpecialOrderFormProps {
   initialData?: SpecialOrderFormType
@@ -516,7 +517,10 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
     return `(${digits.slice(0,3)}) ${digits.slice(3,6)}-${digits.slice(6,10)}`;
   };
 
-  const handlePrint = () => {
+  const handlePrint = async () => {
+    // Load company logo as base64
+    const logoBase64 = await loadImageAsBase64('/company-logo.png');
+    
     // Calculate totals
     const subtotal = productLines.reduce((acc, line) => acc + line.total_price, 0);
     const tax = subtotal * 0.0795;
@@ -733,39 +737,41 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
           
           .company-header {
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 20px;
+            gap: 15px;
             margin-bottom: 40px;
             padding-bottom: 20px;
             border-bottom: 2px solid #000;
           }
           
           .company-logo {
-            max-width: 150px;
-            max-height: 80px;
+            max-width: 180px;
+            max-height: 100px;
             object-fit: contain;
+            margin-bottom: 10px;
           }
           
           .company-details {
-            text-align: left;
+            text-align: center;
           }
           
           .company-name {
-            font-size: 20px;
+            font-size: 24px;
             font-weight: bold;
             text-decoration: underline;
-            margin-bottom: 5px;
+            margin-bottom: 8px;
           }
           
           .company-address {
             font-size: 16px;
-            line-height: 1.4;
+            line-height: 1.5;
           }
           
           .company-phone {
             font-size: 16px;
-            margin-top: 3px;
+            margin-top: 5px;
           }
           
           .returns-section {
@@ -1009,9 +1015,9 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
           <div class="print-copy company-info-copy">
             <div class="company-info-content">
               <div class="company-header">
-                <img src="${typeof window !== 'undefined' ? window.location.origin : ''}/company-logo.png" alt="Full Circle Reloading and Firearms" class="company-logo" onerror="this.style.display='none'" />
+                ${logoBase64 ? `<img src="${logoBase64}" alt="Full Circle" class="company-logo" />` : ''}
                 <div class="company-details">
-                  <div class="company-name">Full Circle Reloading and Firearms</div>
+                  <div class="company-name">Full Circle</div>
                   <div class="company-address">923 South 5th Street</div>
                   <div class="company-address">St. Charles, MO 63301</div>
                   <div class="company-phone">636-946-7468</div>

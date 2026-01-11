@@ -3,6 +3,7 @@
 import { useAuth } from '@/hooks/useAuth'
 import { Button } from '@/components/ui/button'
 import { LogOut, User, Settings } from 'lucide-react'
+import { SideNav } from './SideNav'
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -52,15 +53,17 @@ export function Header({ onTitleClick }: HeaderProps = {}) {
   }
 
   return (
-    <header className="page-header border-b shadow-sm">
-      <div className="container mx-auto px-4 py-4">
-        <div className="flex items-center justify-between">
-          <h1 
-            className="text-2xl font-bold text-foreground cursor-pointer hover:text-blue-400 transition-colors"
-            onClick={handleTitleClick}
-          >
-            Full Circle Forms
-          </h1>
+    <>
+      <SideNav />
+      <header className="page-header border-b shadow-sm">
+        <div className="container mx-auto px-4 py-4">
+          <div className="flex items-center justify-between">
+            <h1 
+              className="text-2xl font-bold text-foreground cursor-pointer hover:text-blue-400 transition-colors ml-14"
+              onClick={handleTitleClick}
+            >
+              Full Circle Forms
+            </h1>
           
           <div className="flex items-center gap-4">
             <DropdownMenu>
@@ -83,11 +86,13 @@ export function Header({ onTitleClick }: HeaderProps = {}) {
                   )}
                 </div>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem onClick={() => router.push('/settings')} className="cursor-pointer">
-                  <Settings className="mr-2 h-4 w-4" />
-                  <span>Settings</span>
-                </DropdownMenuItem>
-                <DropdownMenuSeparator />
+                {userRole === 'admin' && (
+                  <DropdownMenuItem onClick={() => router.push('/settings')} className="cursor-pointer">
+                    <Settings className="mr-2 h-4 w-4" />
+                    <span>Settings</span>
+                  </DropdownMenuItem>
+                )}
+                {userRole === 'admin' && <DropdownMenuSeparator />}
                 <DropdownMenuItem onClick={signOut} className="text-red-600 cursor-pointer">
                   <LogOut className="mr-2 h-4 w-4" />
                   <span>Log out</span>
@@ -98,5 +103,6 @@ export function Header({ onTitleClick }: HeaderProps = {}) {
         </div>
       </div>
     </header>
+    </>
   )
 }

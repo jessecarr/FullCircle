@@ -16,6 +16,7 @@ import FastBoundSearch from '../FastBoundSearch'
 import FFLSearch from '../FFLSearch'
 import { PrintSubmitDialog } from '@/components/ui/print-submit-dialog'
 import { FFLContact } from '@/lib/fflTypes'
+import { loadImageAsBase64 } from '@/lib/imageUtils'
 
 interface FastBoundInventoryItem {
   id: string
@@ -582,7 +583,10 @@ export function OutboundTransferForm({ initialData, onSuccess, onCancel }: Outbo
     return `(${digits.slice(0,3)}) ${digits.slice(3,6)}-${digits.slice(6,10)}`;
   };
 
-  const handlePrint = () => {
+  const handlePrint = async () => {
+    // Load company FFL image as base64
+    const fflBase64 = await loadImageAsBase64('/company-ffl.png');
+    
     // Helper to generate transferor section (full or limited for packing slip)
     const generateTransferorSection = (isPackingSlip: boolean) => {
       if (isPackingSlip) {
@@ -774,18 +778,23 @@ export function OutboundTransferForm({ initialData, onSuccess, onCancel }: Outbo
           <div class="print-title">Company FFL Copy</div>
           <div class="copy-type">Full Circle Firearms - Federal Firearms License</div>
         </div>
-        <div class="ffl-notice">
-          <p>Please attach a copy of your company's FFL document here, or configure it in:</p>
-          <p><strong>public/company-ffl.png</strong></p>
-          <p class="ffl-instructions">To add your FFL: Save your FFL as an image file named "company-ffl.png" in the public folder of your project.</p>
-        </div>
-        <div class="ffl-image-container">
-          <img src="${typeof window !== 'undefined' ? window.location.origin : ''}/company-ffl.png" alt="Company FFL" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
-          <div class="ffl-placeholder">
-            <p>FFL Image Not Found</p>
-            <p class="small">Add your FFL image to: public/company-ffl.png</p>
+        ${fflBase64 ? `
+          <div class="ffl-image-container">
+            <img src="${fflBase64}" alt="Company FFL" />
           </div>
-        </div>
+        ` : `
+          <div class="ffl-notice">
+            <p>Please attach a copy of your company's FFL document here, or configure it in:</p>
+            <p><strong>public/company-ffl.png</strong></p>
+            <p class="ffl-instructions">To add your FFL: Save your FFL as an image file named "company-ffl.png" in the public folder of your project.</p>
+          </div>
+          <div class="ffl-image-container">
+            <div class="ffl-placeholder" style="display:flex;">
+              <p>FFL Image Not Found</p>
+              <p class="small">Add your FFL image to: public/company-ffl.png</p>
+            </div>
+          </div>
+        `}
       </div>
     `
 

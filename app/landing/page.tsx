@@ -89,17 +89,8 @@ export default function LandingPage() {
     }
   ]
 
-  // Add Settings card only for admin users
-  const formOptions = userRole === 'admin' 
-    ? [...baseFormOptions, {
-        title: 'Settings',
-        description: 'Manage account settings and preferences',
-        icon: Settings,
-        href: '/settings',
-        color: 'bg-slate-500',
-        hoverColor: 'hover:bg-slate-600'
-      }]
-    : baseFormOptions
+  // Settings card removed - accessible via user dropdown for admins only
+  const formOptions = baseFormOptions
 
   if (loading) {
     return (
