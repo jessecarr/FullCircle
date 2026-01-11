@@ -4,6 +4,7 @@ import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
 import { AuthProvider } from "@/hooks/useAuth";
 import { AuthErrorHandler } from "@/hooks/authErrorHandler";
+import { NavigationGuardProvider } from "@/hooks/useNavigationGuard";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -32,8 +33,10 @@ export default function RootLayout({
       >
         <AuthErrorHandler>
           <AuthProvider>
-            {children}
-            <Toaster />
+            <NavigationGuardProvider>
+              {children}
+              <Toaster />
+            </NavigationGuardProvider>
           </AuthProvider>
         </AuthErrorHandler>
       </body>

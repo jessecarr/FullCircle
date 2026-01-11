@@ -2,7 +2,8 @@
 
 import { useAuth } from '@/hooks/useAuth'
 import { Button } from '@/components/ui/button'
-import { LogOut, User, Users } from 'lucide-react'
+import { LogOut, User, Settings } from 'lucide-react'
+import { SideNav } from './SideNav'
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -13,16 +14,33 @@ import {
 } from '@/components/ui/dropdown-menu'
 import { useRouter } from 'next/navigation'
 
-export function Header() {
+interface HeaderProps {
+  onTitleClick?: () => void
+}
+
+export function Header({ onTitleClick }: HeaderProps = {}) {
   const { user, signOut, loading, userRole } = useAuth()
   const router = useRouter()
+  
+  const handleTitleClick = () => {
+    if (onTitleClick) {
+      onTitleClick()
+    } else {
+      router.push('/landing')
+    }
+  }
 
   if (loading) {
     return (
       <header className="border-b bg-card">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
-            <h1 className="text-2xl font-bold text-foreground">Full Circle Forms</h1>
+            <h1 
+              className="text-2xl font-bold text-foreground cursor-pointer hover:text-blue-400 transition-colors"
+              onClick={handleTitleClick}
+            >
+              Full Circle Forms
+            </h1>
             <div className="h-10 w-32 bg-muted animate-pulse rounded" />
           </div>
         </div>
@@ -35,10 +53,17 @@ export function Header() {
   }
 
   return (
-    <header className="page-header border-b shadow-sm">
-      <div className="container mx-auto px-4 py-4">
-        <div className="flex items-center justify-between">
-          <h1 className="text-2xl font-bold text-foreground">Full Circle Forms</h1>
+    <>
+      <SideNav />
+      <header className="page-header border-b shadow-sm">
+        <div className="container mx-auto px-4 py-4">
+          <div className="flex items-center justify-between">
+            <h1 
+              className="text-2xl font-bold text-foreground cursor-pointer hover:text-blue-400 transition-colors ml-14"
+              onClick={handleTitleClick}
+            >
+              Full Circle Forms
+            </h1>
           
           <div className="flex items-center gap-4">
             <DropdownMenu>
@@ -62,9 +87,9 @@ export function Header() {
                 </div>
                 <DropdownMenuSeparator />
                 {userRole === 'admin' && (
-                  <DropdownMenuItem onClick={() => router.push('/admin/users')} className="cursor-pointer">
-                    <Users className="mr-2 h-4 w-4" />
-                    <span>Manage Users</span>
+                  <DropdownMenuItem onClick={() => router.push('/settings')} className="cursor-pointer">
+                    <Settings className="mr-2 h-4 w-4" />
+                    <span>Settings</span>
                   </DropdownMenuItem>
                 )}
                 {userRole === 'admin' && <DropdownMenuSeparator />}
@@ -78,5 +103,6 @@ export function Header() {
         </div>
       </div>
     </header>
+    </>
   )
 }

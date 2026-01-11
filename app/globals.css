@@ -89,6 +89,20 @@ button.delete-button:hover {
   border-color: rgba(239, 68, 68, 0.8) !important;
 }
 
+/* Destructive variant buttons - RED styling with highest priority */
+button.bg-destructive,
+.bg-destructive {
+  background-color: rgba(239, 68, 68, 0.9) !important;
+  border: 1px solid rgba(239, 68, 68, 0.6) !important;
+  color: #ffffff !important;
+}
+
+button.bg-destructive:hover,
+.bg-destructive:hover {
+  background-color: rgba(220, 38, 38, 1) !important;
+  border: 1px solid rgba(220, 38, 38, 0.8) !important;
+}
+
 /* Update Status button styling - blue background like create button */
 .update-status-button {
   background-color: rgba(59, 130, 246, 0.9) !important;

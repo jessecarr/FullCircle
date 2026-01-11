@@ -7,10 +7,10 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { useAuth } from '@/hooks/useAuth'
 import { Header } from '@/components/Header'
 import { supabase } from '@/lib/supabase'
-import { FileText, Users, ArrowRight, Package, Shield, List, Settings } from 'lucide-react'
+import { FileText, Users, ArrowRight, Package, Shield, List, Settings, Archive, Truck, Calendar } from 'lucide-react'
 
 export default function LandingPage() {
-  const { user, loading } = useAuth()
+  const { user, loading, userRole } = useAuth()
   const router = useRouter()
   const [activeOrdersCount, setActiveOrdersCount] = useState(0)
 
@@ -37,7 +37,8 @@ export default function LandingPage() {
     }
   }, [user])
 
-  const formOptions = [
+  // Base form options available to all users
+  const baseFormOptions = [
     {
       title: 'Special Order Form',
       description: 'Create and manage special customer orders',
@@ -85,16 +86,11 @@ export default function LandingPage() {
       href: '/?tab=view-all',
       color: 'bg-green-500',
       hoverColor: 'hover:bg-green-600'
-    },
-    {
-      title: 'Settings',
-      description: 'Manage account settings and preferences',
-      icon: Settings,
-      href: '/settings',
-      color: 'bg-slate-500',
-      hoverColor: 'hover:bg-slate-600'
     }
   ]
+
+  // Settings card removed - accessible via user dropdown for admins only
+  const formOptions = baseFormOptions
 
   if (loading) {
     return (
@@ -166,14 +162,105 @@ export default function LandingPage() {
             })}
           </div>
 
+          {/* Separator */}
+          <div className="my-10 border-t border-slate-700/50"></div>
+
+          {/* Management Tools Section */}
+          <div>
+            <h3 className="text-xl font-semibold text-foreground mb-4">Management Tools</h3>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {/* Deleted Forms Archive */}
+              <Card 
+                className="hover:shadow-lg transition-shadow cursor-pointer group landing-card"
+                onClick={() => router.push('/archive')}
+              >
+                <CardHeader className="flex flex-row items-center space-y-0 pb-2">
+                  <div className="p-3 rounded-lg bg-slate-500 hover:bg-slate-600 transition-colors mr-3">
+                    <Archive className="h-6 w-6 text-white" />
+                  </div>
+                  <div className="flex-1">
+                    <CardTitle className="text-lg">Deleted Forms</CardTitle>
+                  </div>
+                </CardHeader>
+                <CardContent>
+                  <CardDescription className="text-sm mb-3">
+                    View and restore deleted forms from archive
+                  </CardDescription>
+                  <Button variant="ghost" size="sm" className="group-hover:bg-accent w-full justify-between">
+                    <span>Open Archive</span>
+                    <ArrowRight className="h-4 w-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                  </Button>
+                </CardContent>
+              </Card>
+
+              {/* Graf's Delivery Schedule */}
+              <Card 
+                className="hover:shadow-lg transition-shadow cursor-pointer group landing-card"
+                onClick={() => router.push('/grafs-schedule')}
+              >
+                <CardHeader className="flex flex-row items-center space-y-0 pb-2">
+                  <div className="p-3 rounded-lg bg-blue-500 hover:bg-blue-600 transition-colors mr-3">
+                    <Calendar className="h-6 w-6 text-white" />
+                  </div>
+                  <div className="flex-1">
+                    <CardTitle className="text-lg">Graf's Schedule</CardTitle>
+                  </div>
+                </CardHeader>
+                <CardContent>
+                  <CardDescription className="text-sm mb-3">
+                    Manage Graf & Sons delivery dates
+                  </CardDescription>
+                  <Button variant="ghost" size="sm" className="group-hover:bg-accent w-full justify-between">
+                    <span>Open Schedule</span>
+                    <ArrowRight className="h-4 w-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                  </Button>
+                </CardContent>
+              </Card>
+
+              {/* Graf's Arriving Orders */}
+              <Card 
+                className="hover:shadow-lg transition-shadow cursor-pointer group landing-card"
+                onClick={() => router.push('/grafs-arriving')}
+              >
+                <CardHeader className="flex flex-row items-center space-y-0 pb-2">
+                  <div className="p-3 rounded-lg bg-green-500 hover:bg-green-600 transition-colors mr-3">
+                    <Truck className="h-6 w-6 text-white" />
+                  </div>
+                  <div className="flex-1">
+                    <CardTitle className="text-lg">Graf's Arriving</CardTitle>
+                  </div>
+                </CardHeader>
+                <CardContent>
+                  <CardDescription className="text-sm mb-3">
+                    Track orders arriving from Graf & Sons
+                  </CardDescription>
+                  <Button variant="ghost" size="sm" className="group-hover:bg-accent w-full justify-between">
+                    <span>View Orders</span>
+                    <ArrowRight className="h-4 w-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                  </Button>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+
+          {/* Separator */}
+          <div className="my-10 border-t border-slate-700/50"></div>
+
           {/* Quick Stats */}
-          <div className="mt-12">
+          <div>
             <h3 className="quick-stats-header text-xl font-semibold text-foreground mb-4">Quick Stats</h3>
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-              <Card className="quick-stats-card">
+              <Card 
+                className="quick-stats-card hover:shadow-lg transition-all cursor-pointer group landing-card"
+                onClick={() => router.push('/?tab=view-all')}
+              >
                 <CardContent className="p-4">
-                  <div className="text-2xl font-bold text-primary">{activeOrdersCount}</div>
-                  <p className="text-sm" style={{color: '#ffffff'}}>Active Special Orders</p>
+                  <div className="text-2xl font-bold text-primary group-hover:scale-105 transition-transform">{activeOrdersCount}</div>
+                  <p className="text-sm group-hover:text-blue-400 transition-colors" style={{color: '#ffffff'}}>Active Special Orders</p>
+                  <div className="mt-2 flex items-center text-xs text-muted-foreground group-hover:text-blue-400 transition-colors">
+                    <span>View All</span>
+                    <ArrowRight className="h-3 w-3 ml-1 group-hover:translate-x-1 transition-transform" />
+                  </div>
                 </CardContent>
               </Card>
             </div>

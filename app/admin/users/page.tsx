@@ -250,6 +250,14 @@ export default function UserManagementPage() {
       <Header />
       <div className="container mx-auto py-8">
         <div className="mb-8">
+          <Button
+            variant="outline"
+            onClick={() => router.push('/settings')}
+            className="mb-4"
+          >
+            <ArrowLeft className="mr-2 h-4 w-4" />
+            Back to Settings
+          </Button>
           <h1 className="text-3xl font-bold">User Management</h1>
           <p className="text-gray-600">Create and manage user accounts</p>
         </div>

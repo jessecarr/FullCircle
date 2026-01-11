@@ -1,8 +1,8 @@
 'use client'
 
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { Button } from '@/components/ui/button'
-import { Edit, X, ChevronLeft, ChevronRight, User, Package, FileText, Truck, Printer, Mail } from 'lucide-react'
+import { Edit, X, ChevronLeft, ChevronRight, User, Package, FileText, Truck, Printer, Mail, Check, Circle } from 'lucide-react'
 
 interface FormViewDialogProps {
   open: boolean
@@ -17,6 +17,9 @@ interface FormViewDialogProps {
   onNext?: () => void
   hasPrevious?: boolean
   hasNext?: boolean
+  currentIndex?: number
+  totalCount?: number
+  onToggleItemCompleted?: (itemIndex: number, completed: boolean) => void
 }
 
 const formatPhoneNumber = (phone: string): string => {
@@ -40,7 +43,7 @@ const formatStatus = (status: string): string => {
   return status.charAt(0).toUpperCase() + status.slice(1).replace(/_/g, ' ')
 }
 
-export function FormViewDialog({ open, onOpenChange, data, title, formType, onEdit, onPrint, onEmail, onPrevious, onNext, hasPrevious, hasNext }: FormViewDialogProps) {
+export function FormViewDialog({ open, onOpenChange, data, title, formType, onEdit, onPrint, onEmail, onPrevious, onNext, hasPrevious, hasNext, currentIndex, totalCount, onToggleItemCompleted }: FormViewDialogProps) {
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (!open) return
@@ -247,11 +250,12 @@ export function FormViewDialog({ open, onOpenChange, data, title, formType, onEd
   const renderProductLines = () => {
     if (!data.product_lines || !Array.isArray(data.product_lines) || data.product_lines.length === 0) return null
 
-    const formType = data._formType || ''
-    const isConsignment = formType === 'consignment_forms'
-    const isInbound = formType === 'inbound_transfers'
-    const isOutbound = formType === 'outbound_transfers'
-    const isSuppressor = formType === 'suppressor_approvals'
+    const currentFormType = data._formType || ''
+    const isConsignment = currentFormType === 'consignment_forms'
+    const isInbound = currentFormType === 'inbound_transfers'
+    const isOutbound = currentFormType === 'outbound_transfers'
+    const isSuppressor = currentFormType === 'suppressor_approvals'
+    const isSpecialOrder = currentFormType === 'special_orders'
 
     return (
       <div className="mb-6">
@@ -335,27 +339,45 @@ export function FormViewDialog({ open, onOpenChange, data, title, formType, onEd
                   </div>
                 </div>
               ) : (
-                <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
-                  <div>
-                    <span className="text-xs text-gray-400">SKU</span>
-                    <p className="text-white font-medium text-sm">{line.sku || '-'}</p>
+                <div className="flex items-start gap-3">
+                  <div className="grid grid-cols-2 md:grid-cols-5 gap-3 flex-1">
+                    <div>
+                      <span className="text-xs text-gray-400">SKU</span>
+                      <p className="text-white font-medium text-sm">{line.sku || '-'}</p>
+                    </div>
+                    <div>
+                      <span className="text-xs text-gray-400">Description</span>
+                      <p className="text-white font-medium text-sm">{line.description || '-'}</p>
+                    </div>
+                    <div>
+                      <span className="text-xs text-gray-400">Qty × Price</span>
+                      <p className="text-white font-medium text-sm">{line.quantity || 0} × {formatCurrency(line.unit_price)}</p>
+                    </div>
+                    <div>
+                      <span className="text-xs text-gray-400">Total</span>
+                      <p className="text-white font-semibold text-sm">{formatCurrency(line.total_price)}</p>
+                    </div>
+                    <div>
+                      <span className="text-xs text-gray-400">Vendor</span>
+                      <p className="text-white font-medium text-sm">{line.vendor_name || line.vendor || '-'}</p>
+                    </div>
                   </div>
-                  <div>
-                    <span className="text-xs text-gray-400">Description</span>
-                    <p className="text-white font-medium text-sm">{line.description || '-'}</p>
-                  </div>
-                  <div>
-                    <span className="text-xs text-gray-400">Qty × Price</span>
-                    <p className="text-white font-medium text-sm">{line.quantity || 0} × {formatCurrency(line.unit_price)}</p>
-                  </div>
-                  <div>
-                    <span className="text-xs text-gray-400">Total</span>
-                    <p className="text-white font-semibold text-sm">{formatCurrency(line.total_price)}</p>
-                  </div>
-                  <div>
-                    <span className="text-xs text-gray-400">Vendor</span>
-                    <p className="text-white font-medium text-sm">{line.vendor_name || line.vendor || '-'}</p>
-                  </div>
+                  {isSpecialOrder && onToggleItemCompleted && (
+                    <div className="flex flex-col items-center gap-1">
+                      <span className="text-xs text-gray-400">Completed</span>
+                      <button
+                        onClick={() => onToggleItemCompleted(index, !line.completed)}
+                        className={`p-2 rounded-full transition-all ${
+                          line.completed 
+                            ? 'bg-green-500/20 text-green-400 border border-green-500/30 hover:bg-green-500/30' 
+                            : 'bg-gray-700/50 text-gray-400 border border-gray-600 hover:bg-gray-600/50'
+                        }`}
+                        title={line.completed ? 'Mark as incomplete' : 'Mark as complete'}
+                      >
+                        {line.completed ? <Check className="h-4 w-4" /> : <Circle className="h-4 w-4" />}
+                      </button>
+                    </div>
+                  )}
                 </div>
               )}
             </div>
@@ -392,44 +414,6 @@ export function FormViewDialog({ open, onOpenChange, data, title, formType, onEd
       }}
       onClick={() => onOpenChange(false)}
     >
-      {/* Left Navigation Arrow */}
-      {hasPrevious && onPrevious && (
-        <button
-          onClick={(e) => {
-            e.stopPropagation()
-            onPrevious()
-          }}
-          style={{
-            background: 'rgba(59, 130, 246, 0.9)',
-            border: '1px solid rgba(59, 130, 246, 0.6)',
-            borderRadius: '50%',
-            width: '48px',
-            height: '48px',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            cursor: 'pointer',
-            marginRight: '16px',
-            backdropFilter: 'blur(10px)',
-            transition: 'all 0.2s ease',
-            flexShrink: 0
-          }}
-          onMouseOver={(e) => {
-            e.currentTarget.style.backgroundColor = 'rgba(59, 130, 246, 1)'
-            e.currentTarget.style.transform = 'scale(1.1)'
-            e.currentTarget.style.border = '1px solid rgba(59, 130, 246, 0.8)'
-          }}
-          onMouseOut={(e) => {
-            e.currentTarget.style.backgroundColor = 'rgba(59, 130, 246, 0.9)'
-            e.currentTarget.style.transform = 'scale(1)'
-            e.currentTarget.style.border = '1px solid rgba(59, 130, 246, 0.6)'
-          }}
-          title="Previous (←)"
-        >
-          <ChevronLeft className="h-6 w-6" style={{ color: '#ffffff' }} />
-        </button>
-      )}
-
       <div
         className="FormViewDialog"
         style={{
@@ -447,34 +431,17 @@ export function FormViewDialog({ open, onOpenChange, data, title, formType, onEd
         }}
         onClick={(e) => e.stopPropagation()}
       >
-        <div style={{ marginBottom: '24px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-          <h2 style={{ 
-            fontSize: '24px', 
-            fontWeight: '600', 
-            color: '#e0e0e0',
-            margin: 0
-          }}>
-            {title}
-          </h2>
-          <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
-            {onEdit && (
-              <Button variant="outline" size="sm" onClick={onEdit}>
-                <Edit className="h-4 w-4 mr-2" />
-                Edit
-              </Button>
-            )}
-            {onPrint && (
-              <Button variant="outline" size="sm" onClick={onPrint}>
-                <Printer className="h-4 w-4 mr-2" />
-                Print
-              </Button>
-            )}
-            {onEmail && (
-              <Button variant="outline" size="sm" onClick={onEmail}>
-                <Mail className="h-4 w-4 mr-2" />
-                Email
-              </Button>
-            )}
+        {/* Header with Navigation */}
+        <div style={{ marginBottom: '24px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '16px' }}>
+            <h2 style={{ 
+              fontSize: '24px', 
+              fontWeight: '600', 
+              color: '#e0e0e0',
+              margin: 0
+            }}>
+              {title}
+            </h2>
             <button
               onClick={() => onOpenChange(false)}
               style={{
@@ -492,6 +459,66 @@ export function FormViewDialog({ open, onOpenChange, data, title, formType, onEd
             >
               <X className="h-5 w-5" style={{ color: '#9ca3af' }} />
             </button>
+          </div>
+          
+          {/* Navigation and Action Buttons Row */}
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '12px' }}>
+            {/* Navigation */}
+            {(onPrevious || onNext) && (
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={(e) => {
+                    e.stopPropagation()
+                    onPrevious?.()
+                  }}
+                  disabled={!hasPrevious}
+                >
+                  <ChevronLeft className="h-4 w-4" />
+                  Previous
+                </Button>
+                {currentIndex !== undefined && totalCount !== undefined && (
+                  <span style={{ color: '#9ca3af', fontSize: '14px', padding: '0 8px' }}>
+                    {currentIndex + 1} of {totalCount}
+                  </span>
+                )}
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={(e) => {
+                    e.stopPropagation()
+                    onNext?.()
+                  }}
+                  disabled={!hasNext}
+                >
+                  Next
+                  <ChevronRight className="h-4 w-4" />
+                </Button>
+              </div>
+            )}
+            
+            {/* Action Buttons */}
+            <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+              {onEdit && (
+                <Button variant="outline" size="sm" onClick={onEdit}>
+                  <Edit className="h-4 w-4 mr-2" />
+                  Edit
+                </Button>
+              )}
+              {onPrint && (
+                <Button variant="outline" size="sm" onClick={onPrint}>
+                  <Printer className="h-4 w-4 mr-2" />
+                  Print
+                </Button>
+              )}
+              {onEmail && (
+                <Button variant="outline" size="sm" onClick={onEmail}>
+                  <Mail className="h-4 w-4 mr-2" />
+                  Email
+                </Button>
+              )}
+            </div>
           </div>
         </div>
         
@@ -513,43 +540,6 @@ export function FormViewDialog({ open, onOpenChange, data, title, formType, onEd
         </div>
       </div>
 
-      {/* Right Navigation Arrow */}
-      {hasNext && onNext && (
-        <button
-          onClick={(e) => {
-            e.stopPropagation()
-            onNext()
-          }}
-          style={{
-            background: 'rgba(59, 130, 246, 0.9)',
-            border: '1px solid rgba(59, 130, 246, 0.6)',
-            borderRadius: '50%',
-            width: '48px',
-            height: '48px',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            cursor: 'pointer',
-            marginLeft: '16px',
-            backdropFilter: 'blur(10px)',
-            transition: 'all 0.2s ease',
-            flexShrink: 0
-          }}
-          onMouseOver={(e) => {
-            e.currentTarget.style.backgroundColor = 'rgba(59, 130, 246, 1)'
-            e.currentTarget.style.transform = 'scale(1.1)'
-            e.currentTarget.style.border = '1px solid rgba(59, 130, 246, 0.8)'
-          }}
-          onMouseOut={(e) => {
-            e.currentTarget.style.backgroundColor = 'rgba(59, 130, 246, 0.9)'
-            e.currentTarget.style.transform = 'scale(1)'
-            e.currentTarget.style.border = '1px solid rgba(59, 130, 246, 0.6)'
-          }}
-          title="Next (→)"
-        >
-          <ChevronRight className="h-6 w-6" style={{ color: '#ffffff' }} />
-        </button>
-      )}
     </div>
   )
 }

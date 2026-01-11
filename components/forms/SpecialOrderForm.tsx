@@ -15,6 +15,7 @@ import VendorSearch from '../VendorSearch'
 import { lookupZipCode, isValidZipCode } from '@/lib/zipLookup'
 import { Printer, Search } from 'lucide-react'
 import { PrintSubmitDialog } from '@/components/ui/print-submit-dialog'
+import { COMPANY_LOGO_BASE64 } from '@/lib/imageConstants'
 
 interface SpecialOrderFormProps {
   initialData?: SpecialOrderFormType
@@ -29,7 +30,7 @@ interface ProductLine {
   quantity: number
   unit_price: number
   total_price: number
-  received: boolean
+  completed: boolean
 }
 
 export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOrderFormProps) {
@@ -48,7 +49,7 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
         quantity: line.quantity || 1,
         unit_price: line.unit_price || 0,
         total_price: line.total_price || 0,
-        received: line.received || false,
+        completed: line.completed || false,
       }))
     }
     // Otherwise, create a single empty line for new orders
@@ -59,7 +60,7 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
       quantity: 1,
       unit_price: 0,
       total_price: 0,
-      received: false,
+      completed: false,
     }]
   })
   const [rowHeights, setRowHeights] = useState<{[key: number]: string}>({})
@@ -235,7 +236,7 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
       quantity: 1,
       unit_price: 0,
       total_price: 0,
-      received: false
+      completed: false
     }])
   }
 
@@ -258,7 +259,7 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
       quantity: 1,
       unit_price: 0,
       total_price: 0,
-      received: false
+      completed: false
     }
     setProductLines(updated)
   }
@@ -415,6 +416,8 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
               customer_name: formData.customer_name,
               customer_email: formData.customer_email,
               customer_phone: formData.customer_phone,
+              drivers_license: formData.drivers_license,
+              license_expiration: formData.license_expiration,
               customer_street: formData.customer_street,
               customer_city: formData.customer_city,
               customer_state: formData.customer_state,
@@ -462,12 +465,14 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
         }
       } else {
         // Create new order
-        const { error } = await supabase
+        const { data: newOrder, error } = await supabase
           .from('special_orders')
           .insert([{
             customer_name: formData.customer_name,
             customer_email: formData.customer_email,
             customer_phone: formData.customer_phone,
+            drivers_license: formData.drivers_license,
+            license_expiration: formData.license_expiration,
             customer_street: formData.customer_street,
             customer_city: formData.customer_city,
             customer_state: formData.customer_state,
@@ -479,6 +484,8 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
             special_requests: formData.special_requests,
             status: formData.status
           }])
+          .select()
+          .single()
 
         if (error) {
           console.error('Supabase error:', {
@@ -487,6 +494,41 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
             code: error.code
           });
           throw error;
+        }
+
+        // Check for Graf & Sons vendor items and create tracking records
+        if (newOrder) {
+          const grafsItems = productLines
+            .map((line, index) => ({ line, index }))
+            .filter(({ line }) => {
+              const vendor = (line.vendor || '').toUpperCase()
+              return vendor.includes('GRAF') || vendor.includes('GRAFS')
+            })
+
+          if (grafsItems.length > 0) {
+            // Get the next Graf delivery date
+            const today = new Date().toISOString().split('T')[0]
+            const { data: nextDelivery } = await supabase
+              .from('grafs_delivery_schedule')
+              .select('delivery_date')
+              .gte('delivery_date', today)
+              .order('delivery_date', { ascending: true })
+              .limit(1)
+              .single()
+
+            if (nextDelivery) {
+              // Create tracking records for each Graf item
+              const trackingRecords = grafsItems.map(({ index }) => ({
+                special_order_id: newOrder.id,
+                product_line_index: index,
+                expected_delivery_date: nextDelivery.delivery_date,
+              }))
+
+              await supabase
+                .from('grafs_order_tracking')
+                .insert(trackingRecords)
+            }
+          }
         }
 
         toast({ title: 'Success', description: 'Order created successfully' });
@@ -512,7 +554,10 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
     return `(${digits.slice(0,3)}) ${digits.slice(3,6)}-${digits.slice(6,10)}`;
   };
 
-  const handlePrint = () => {
+  const handlePrint = async () => {
+    // Use embedded base64 logo - guaranteed to work in print window
+    const logoSrc = COMPANY_LOGO_BASE64;
+    
     // Calculate totals
     const subtotal = productLines.reduce((acc, line) => acc + line.total_price, 0);
     const tax = subtotal * 0.0795;
@@ -707,6 +752,96 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
             border-top: 1px solid #000;
             padding-top: 2px;
             margin-bottom: 0;
+          }
+          
+          /* Page 2 Styles - Company Info and Returns */
+          .page-two {
+            page-break-before: always;
+          }
+          
+          .company-info-copy {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          }
+          
+          .company-info-content {
+            width: 100%;
+            max-width: 6in;
+            text-align: center;
+            padding: 30px;
+          }
+          
+          .company-header {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            gap: 25px;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #000;
+          }
+          
+          .company-logo {
+            width: 240px;
+            height: auto;
+            object-fit: contain;
+          }
+          
+          .company-details {
+            text-align: left;
+          }
+          
+          .company-name {
+            font-size: 24px;
+            font-weight: bold;
+            text-decoration: underline;
+            margin-bottom: 8px;
+          }
+          
+          .company-address {
+            font-size: 16px;
+            line-height: 1.5;
+          }
+          
+          .company-phone {
+            font-size: 16px;
+            margin-top: 5px;
+          }
+          
+          .returns-section {
+            margin-top: 30px;
+            padding: 25px;
+            border: 2px solid #000;
+          }
+          
+          .returns-title {
+            font-size: 22px;
+            font-weight: bold;
+            text-decoration: underline;
+            margin-bottom: 20px;
+          }
+          
+          .returns-text {
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 15px;
+          }
+          
+          .returns-fee {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 0;
+          }
+          
+          .returns-fee em {
+            font-style: italic;
+            text-decoration: underline;
+          }
+          
+          .blank-half {
+            border-bottom: none;
           }
         </style>
       </head>
@@ -911,6 +1046,37 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
         </div>
         </div>
 
+        <!-- Page 2: Company Info and Returns (Top Half for Customer) -->
+        <div class="page-container page-two">
+          <div class="print-copy company-info-copy">
+            <div class="company-info-content">
+              <div class="company-header">
+                ${logoSrc ? `<img src="${logoSrc}" alt="Full Circle" class="company-logo" />` : ''}
+                <div class="company-details">
+                  <div class="company-name">Full Circle</div>
+                  <div class="company-address">923 South 5th Street</div>
+                  <div class="company-address">St. Charles, MO 63301</div>
+                  <div class="company-phone">636-946-7468</div>
+                </div>
+              </div>
+              
+              <div class="returns-section">
+                <div class="returns-title">RETURNS</div>
+                <p class="returns-text">
+                  If you are not satisfied with your purchase, please contact us within 15 business days of purchase.
+                </p>
+                <p class="returns-text returns-fee">
+                  All cancelled and returned items are subject to a 25% restocking fee <em>without exception</em>
+                </p>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Bottom half intentionally blank for cutting -->
+          <div class="print-copy blank-half">
+          </div>
+        </div>
+
       </body>
       </html>
     `;
@@ -1042,6 +1208,8 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
                       customer_name: customer.name || '',
                       customer_email: isPlaceholderEmail ? '' : (customer.email || ''),
                       customer_phone: customer.phone || '',
+                      drivers_license: customer.drivers_license || '',
+                      license_expiration: customer.license_expiration || '',
                       customer_street: customer.street || '',
                       customer_city: customer.city || '',
                       customer_state: customer.state || '',
@@ -1402,9 +1570,9 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
                     <span className="text-xs text-muted-foreground">Yes</span>
                     <input
                       type="checkbox"
-                      id={`received-yes-${index}`}
-                      checked={line.received === true}
-                      onChange={() => updateProductLine(index, 'received', true)}
+                      id={`completed-yes-${index}`}
+                      checked={line.completed === true}
+                      onChange={() => updateProductLine(index, 'completed', true)}
                       className="w-5 h-5 rounded border-gray-400 text-green-600 focus:ring-green-500 cursor-pointer"
                     />
                   </div>
@@ -1412,9 +1580,9 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
                     <span className="text-xs text-muted-foreground">No</span>
                     <input
                       type="checkbox"
-                      id={`received-no-${index}`}
-                      checked={line.received === false}
-                      onChange={() => updateProductLine(index, 'received', false)}
+                      id={`completed-no-${index}`}
+                      checked={line.completed === false}
+                      onChange={() => updateProductLine(index, 'completed', false)}
                       className="w-5 h-5 rounded border-gray-400 text-red-600 focus:ring-red-500 cursor-pointer"
                     />
                   </div>
@@ -1485,7 +1653,7 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
             </div>
             <div className="space-y-2">
               <Label className="text-medium" htmlFor="payment">Payment *</Label>
-              <Select value={formData.payment} onValueChange={(value) => handleInputChange('payment', value)}>
+              <Select value={formData.payment} onValueChange={(value) => handleInputChange('payment', value)} required>
                 <SelectTrigger suppressHydrationWarning>
                   <SelectValue placeholder="Select payment method" />
                 </SelectTrigger>
@@ -1495,6 +1663,21 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
                   <SelectItem value="layaway">Layaway</SelectItem>
                 </SelectContent>
               </Select>
+              {/* Hidden input for native browser validation */}
+              <input
+                type="text"
+                value={formData.payment}
+                required
+                tabIndex={-1}
+                style={{
+                  position: 'absolute',
+                  opacity: 0,
+                  pointerEvents: 'none',
+                  width: 0,
+                  height: 0,
+                }}
+                onChange={() => {}}
+              />
             </div>
           </div>
 
