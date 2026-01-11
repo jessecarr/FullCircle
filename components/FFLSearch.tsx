@@ -16,7 +16,7 @@ interface FFLSearchProps {
 
 export default function FFLSearch({
   onSelect,
-  placeholder = 'Search by FFL number (1-23-456-01-2A-12345) or business name...',
+  placeholder = 'Search by FFL number (1-23-12345) or business name...',
   label = 'FFL Search',
   showSyncButton = true,
   className = ''
@@ -29,8 +29,35 @@ export default function FFLSearch({
   const [syncMessage, setSyncMessage] = useState<string | null>(null)
   const [highlightedIndex, setHighlightedIndex] = useState(-1)
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
+  const [searchByFFL, setSearchByFFL] = useState(true) // Default ON for FFL number search
   const searchRef = useRef<HTMLDivElement>(null)
   const debounceRef = useRef<NodeJS.Timeout | null>(null)
+
+  // Auto-format FFL number input: X-XX-XXXXX format
+  const formatFFLInput = (value: string): string => {
+    // Remove all non-alphanumeric characters
+    const cleaned = value.replace(/[^a-zA-Z0-9]/g, '').toUpperCase()
+    
+    // Format as X-XX-XXXXX
+    let formatted = ''
+    for (let i = 0; i < cleaned.length && i < 8; i++) {
+      if (i === 1 || i === 3) {
+        formatted += '-'
+      }
+      formatted += cleaned[i]
+    }
+    return formatted
+  }
+
+  // Handle input change with optional auto-formatting
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value
+    if (searchByFFL) {
+      setQuery(formatFFLInput(value))
+    } else {
+      setQuery(value)
+    }
+  }
 
   // Close dropdown when clicking outside
   useEffect(() => {
@@ -157,14 +184,34 @@ export default function FFLSearch({
     <div ref={searchRef} className={`space-y-2 ${className}`}>
       {label && <Label className="text-medium mb-2 block">{label}</Label>}
       
+      {/* Search by FFL checkbox */}
+      <div className="flex items-center gap-2 mb-2">
+        <input
+          type="checkbox"
+          id="searchByFFL"
+          checked={searchByFFL}
+          onChange={(e) => {
+            setSearchByFFL(e.target.checked)
+            // Clear query when switching modes
+            setQuery('')
+            setResults([])
+            setShowResults(false)
+          }}
+          className="w-4 h-4 rounded border-white bg-[rgba(17,24,39,0.8)] accent-blue-500"
+        />
+        <label htmlFor="searchByFFL" className="text-sm text-white cursor-pointer">
+          Search by FFL Number (auto-format: X-XX-XXXXX)
+        </label>
+      </div>
+      
       <div className="flex gap-2">
         <div className="relative flex-1">
           <input
             type="text"
             value={query}
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) => setQuery(e.target.value)}
+            onChange={handleInputChange}
             onKeyDown={handleKeyDown}
-            placeholder={placeholder}
+            placeholder={searchByFFL ? 'Enter FFL: X-XX-XXXXX (e.g., 1-59-32325)' : placeholder}
             className="w-full p-3 border-2 border-white rounded bg-[rgba(17,24,39,0.8)] text-white placeholder-[#9ca3af]"
             onFocus={() => {
               if (results.length > 0 || noResults) {

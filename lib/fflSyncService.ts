@@ -195,8 +195,23 @@ export async function searchFFLContacts(
   const looksLikeFFL = trimmedQuery.includes('-') && /\d/.test(trimmedQuery)
 
   if (searchType === 'ffl' || (searchType === 'both' && looksLikeFFL)) {
-    // Partial FFL number match using ilike
-    queryBuilder = queryBuilder.ilike('license_number', `%${trimmedQuery}%`)
+    // Check if it's the shortened X-XX-XXXXX format (3 parts)
+    const parts = trimmedQuery.split('-')
+    
+    if (parts.length === 3) {
+      // Shortened format: X-XX-XXXXX (region-district-sequence)
+      // Full format is: X-XX-XXX-XX-XX-XXXXX (region-district-county-type-exp-sequence)
+      // Search where first part matches region, second matches district, last matches sequence
+      const [region, district, sequence] = parts
+      
+      // Build pattern: region-district%-%-%-%-sequence
+      // This matches: 1-59-???-??-??-32325 when searching for 1-59-32325
+      const pattern = `${region}-${district}%-%-%-${sequence}`
+      queryBuilder = queryBuilder.ilike('license_number', pattern)
+    } else {
+      // Full or partial FFL number match using ilike
+      queryBuilder = queryBuilder.ilike('license_number', `%${trimmedQuery}%`)
+    }
   } else if (searchType === 'name' || (searchType === 'both' && !looksLikeFFL)) {
     // Name search - check both license_name and trade_name
     queryBuilder = queryBuilder.or(
