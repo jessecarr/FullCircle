@@ -1,67 +1,51 @@
 // Utility function to load an image as base64 for print layouts
+// Uses Image element to ensure the image is actually loaded before converting
 export async function loadImageAsBase64(imagePath: string): Promise<string | null> {
-  try {
-    // Ensure we have a full URL
-    const fullPath = imagePath.startsWith('http') 
-      ? imagePath 
-      : `${window.location.origin}${imagePath.startsWith('/') ? '' : '/'}${imagePath}`;
-    
-    console.log('Loading image from:', fullPath);
-    
-    const response = await fetch(fullPath, { 
-      cache: 'no-store',
-      credentials: 'same-origin'
-    });
-    
-    if (!response.ok) {
-      console.warn(`Failed to load image: ${fullPath} (status: ${response.status})`);
-      return null;
-    }
-    
-    const contentType = response.headers.get('content-type');
-    console.log('Image content type:', contentType);
-    
-    const blob = await response.blob();
-    console.log('Blob size:', blob.size, 'type:', blob.type);
-    
-    // If blob type is empty but we got data, try to use the content-type header
-    const effectiveType = blob.type || contentType || 'image/png';
-    
-    // Verify it's actually an image
-    if (!effectiveType.startsWith('image/')) {
-      console.warn(`File is not an image: ${fullPath} (type: ${effectiveType})`);
-      return null;
-    }
-    
-    return new Promise((resolve) => {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        const result = reader.result as string;
-        console.log('Base64 result length:', result?.length, 'starts with:', result?.substring(0, 50));
-        // Verify we got a valid data URL
-        if (result && (result.startsWith('data:image/') || result.startsWith('data:application/octet-stream'))) {
-          // If it's octet-stream, fix the mime type
-          if (result.startsWith('data:application/octet-stream')) {
-            const fixed = result.replace('data:application/octet-stream', 'data:image/png');
-            resolve(fixed);
-          } else {
-            resolve(result);
+  return new Promise((resolve) => {
+    try {
+      // Ensure we have a full URL
+      const fullPath = imagePath.startsWith('http') 
+        ? imagePath 
+        : `${window.location.origin}${imagePath.startsWith('/') ? '' : '/'}${imagePath}`;
+      
+      const img = new Image();
+      img.crossOrigin = 'anonymous';
+      
+      img.onload = () => {
+        try {
+          // Create canvas and draw image
+          const canvas = document.createElement('canvas');
+          canvas.width = img.naturalWidth;
+          canvas.height = img.naturalHeight;
+          const ctx = canvas.getContext('2d');
+          if (!ctx) {
+            console.warn('Could not get canvas context');
+            resolve(null);
+            return;
           }
-        } else {
-          console.warn(`Invalid base64 result for: ${fullPath}`);
+          ctx.drawImage(img, 0, 0);
+          
+          // Convert to base64
+          const dataUrl = canvas.toDataURL('image/png');
+          resolve(dataUrl);
+        } catch (e) {
+          console.warn('Canvas conversion failed:', e);
           resolve(null);
         }
       };
-      reader.onerror = () => {
-        console.warn(`FileReader error for: ${fullPath}`);
+      
+      img.onerror = () => {
+        console.warn(`Failed to load image: ${fullPath}`);
         resolve(null);
       };
-      reader.readAsDataURL(blob);
-    });
-  } catch (error) {
-    console.warn(`Error loading image ${imagePath}:`, error);
-    return null;
-  }
+      
+      // Add timestamp to bypass cache
+      img.src = fullPath + '?t=' + Date.now();
+    } catch (error) {
+      console.warn(`Error loading image ${imagePath}:`, error);
+      resolve(null);
+    }
+  });
 }
 
 // Get the full URL for an image (for use in print where base64 fails)

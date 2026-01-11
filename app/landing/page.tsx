@@ -7,7 +7,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { useAuth } from '@/hooks/useAuth'
 import { Header } from '@/components/Header'
 import { supabase } from '@/lib/supabase'
-import { FileText, Users, ArrowRight, Package, Shield, List, Settings } from 'lucide-react'
+import { FileText, Users, ArrowRight, Package, Shield, List, Settings, Archive, Truck, Calendar } from 'lucide-react'
 
 export default function LandingPage() {
   const { user, loading, userRole } = useAuth()
@@ -160,6 +160,84 @@ export default function LandingPage() {
                 </Card>
               )
             })}
+          </div>
+
+          {/* Management Tools Section */}
+          <div className="mt-12">
+            <h3 className="text-xl font-semibold text-foreground mb-4">Management Tools</h3>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {/* Deleted Forms Archive */}
+              <Card 
+                className="hover:shadow-lg transition-shadow cursor-pointer group landing-card"
+                onClick={() => router.push('/archive')}
+              >
+                <CardHeader className="flex flex-row items-center space-y-0 pb-2">
+                  <div className="p-3 rounded-lg bg-slate-500 hover:bg-slate-600 transition-colors mr-3">
+                    <Archive className="h-6 w-6 text-white" />
+                  </div>
+                  <div className="flex-1">
+                    <CardTitle className="text-lg">Deleted Forms</CardTitle>
+                  </div>
+                </CardHeader>
+                <CardContent>
+                  <CardDescription className="text-sm mb-3">
+                    View and restore deleted forms from archive
+                  </CardDescription>
+                  <Button variant="ghost" size="sm" className="group-hover:bg-accent w-full justify-between">
+                    <span>Open Archive</span>
+                    <ArrowRight className="h-4 w-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                  </Button>
+                </CardContent>
+              </Card>
+
+              {/* Graf's Delivery Schedule */}
+              <Card 
+                className="hover:shadow-lg transition-shadow cursor-pointer group landing-card"
+                onClick={() => router.push('/grafs-schedule')}
+              >
+                <CardHeader className="flex flex-row items-center space-y-0 pb-2">
+                  <div className="p-3 rounded-lg bg-blue-500 hover:bg-blue-600 transition-colors mr-3">
+                    <Calendar className="h-6 w-6 text-white" />
+                  </div>
+                  <div className="flex-1">
+                    <CardTitle className="text-lg">Graf's Schedule</CardTitle>
+                  </div>
+                </CardHeader>
+                <CardContent>
+                  <CardDescription className="text-sm mb-3">
+                    Manage Graf & Sons delivery dates
+                  </CardDescription>
+                  <Button variant="ghost" size="sm" className="group-hover:bg-accent w-full justify-between">
+                    <span>Open Schedule</span>
+                    <ArrowRight className="h-4 w-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                  </Button>
+                </CardContent>
+              </Card>
+
+              {/* Graf's Arriving Orders */}
+              <Card 
+                className="hover:shadow-lg transition-shadow cursor-pointer group landing-card"
+                onClick={() => router.push('/grafs-arriving')}
+              >
+                <CardHeader className="flex flex-row items-center space-y-0 pb-2">
+                  <div className="p-3 rounded-lg bg-green-500 hover:bg-green-600 transition-colors mr-3">
+                    <Truck className="h-6 w-6 text-white" />
+                  </div>
+                  <div className="flex-1">
+                    <CardTitle className="text-lg">Graf's Arriving</CardTitle>
+                  </div>
+                </CardHeader>
+                <CardContent>
+                  <CardDescription className="text-sm mb-3">
+                    Track orders arriving from Graf & Sons
+                  </CardDescription>
+                  <Button variant="ghost" size="sm" className="group-hover:bg-accent w-full justify-between">
+                    <span>View Orders</span>
+                    <ArrowRight className="h-4 w-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                  </Button>
+                </CardContent>
+              </Card>
+            </div>
           </div>
 
           {/* Quick Stats */}

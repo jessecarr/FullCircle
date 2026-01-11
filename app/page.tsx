@@ -484,6 +484,8 @@ function HomeContent() {
         onNext={handleNext}
         hasPrevious={currentViewIndex > 0}
         hasNext={currentViewIndex < allItems.length - 1}
+        currentIndex={currentViewIndex}
+        totalCount={allItems.length}
         onToggleItemCompleted={handleToggleItemCompleted}
       />
 

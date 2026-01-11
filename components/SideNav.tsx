@@ -24,7 +24,10 @@ import {
   List, 
   Settings,
   Home,
-  Users
+  Users,
+  Calendar,
+  Truck,
+  Archive
 } from 'lucide-react'
 
 interface NavItem {
@@ -32,17 +35,29 @@ interface NavItem {
   href: string
   icon: React.ElementType
   adminOnly?: boolean
+  separator?: boolean  // Add separator after this item
 }
 
 const navItems: NavItem[] = [
+  // Main Navigation
   { title: 'Dashboard', href: '/landing', icon: Home },
+  { title: 'View All Forms', href: '/?tab=view-all', icon: List, separator: true },
+  
+  // Form Types
   { title: 'Special Order', href: '/?tab=special-order', icon: FileText },
   { title: 'Inbound Transfer', href: '/?tab=inbound-transfer', icon: Package },
-  { title: 'Outbound Transfer', href: '/?tab=outbound-transfer', icon: Package },
   { title: 'Suppressor Approval', href: '/?tab=suppressor-approval', icon: Shield },
   { title: 'Consignment', href: '/?tab=consignment', icon: FileText },
-  { title: 'View All Forms', href: '/?tab=view-all', icon: List },
-  { title: 'Customers', href: '/customers', icon: Users },
+  { title: 'Outbound Transfer', href: '/?tab=outbound-transfer', icon: Package, separator: true },
+  
+  // Graf & Sons
+  { title: "Graf's Schedule", href: '/grafs-schedule', icon: Calendar },
+  { title: "Graf's Arriving", href: '/grafs-arriving', icon: Truck, separator: true },
+  
+  // Admin & Settings
+  { title: 'Manage Users', href: '/admin/users', icon: Users, adminOnly: true },
+  { title: 'Manage Customers', href: '/customers', icon: Users },
+  { title: 'Deleted Forms', href: '/archive', icon: Archive },
   { title: 'Settings', href: '/settings', icon: Settings, adminOnly: true },
 ]
 
@@ -126,17 +141,21 @@ export function SideNav() {
 
         {/* Nav Items */}
         <nav className="py-4">
-          {filteredNavItems.map((item) => {
+          {filteredNavItems.map((item, index) => {
             const Icon = item.icon
             return (
-              <button
-                key={item.href}
-                onClick={() => handleNavClick(item.href)}
-                className="w-full flex items-center gap-3 px-4 py-3 text-left text-slate-300 hover:bg-slate-700/50 hover:text-white transition-colors"
-              >
-                <Icon className="h-5 w-5" />
-                <span className="text-sm font-medium">{item.title}</span>
-              </button>
+              <div key={item.href}>
+                <button
+                  onClick={() => handleNavClick(item.href)}
+                  className="w-full flex items-center gap-3 px-4 py-3 text-left text-slate-300 hover:bg-slate-700/50 hover:text-white transition-colors"
+                >
+                  <Icon className="h-5 w-5" />
+                  <span className="text-sm font-medium">{item.title}</span>
+                </button>
+                {item.separator && (
+                  <div className="my-2 mx-4 border-t border-slate-700" />
+                )}
+              </div>
             )
           })}
         </nav>

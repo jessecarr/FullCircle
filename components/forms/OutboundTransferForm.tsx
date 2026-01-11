@@ -16,7 +16,7 @@ import FastBoundSearch from '../FastBoundSearch'
 import FFLSearch from '../FFLSearch'
 import { PrintSubmitDialog } from '@/components/ui/print-submit-dialog'
 import { FFLContact } from '@/lib/fflTypes'
-import { loadImageAsBase64, getImageUrl } from '@/lib/imageUtils'
+import { COMPANY_FFL_BASE64 } from '@/lib/imageConstants'
 
 interface FastBoundInventoryItem {
   id: string
@@ -584,13 +584,8 @@ export function OutboundTransferForm({ initialData, onSuccess, onCancel }: Outbo
   };
 
   const handlePrint = async () => {
-    // Load company FFL image as base64, with fallback to direct URL
-    let fflSrc = await loadImageAsBase64('/company-ffl.png');
-    if (!fflSrc) {
-      // Fallback to direct URL if base64 fails
-      fflSrc = getImageUrl('/company-ffl.png');
-      console.log('Using fallback URL for FFL:', fflSrc);
-    }
+    // Use embedded base64 FFL - guaranteed to work in print window
+    const fflSrc = COMPANY_FFL_BASE64;
     
     // Helper to generate transferor section (full or limited for packing slip)
     const generateTransferorSection = (isPackingSlip: boolean) => {

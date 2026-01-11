@@ -92,10 +92,14 @@ export default function GrafsSchedulePage() {
     }
 
     try {
+      // Parse the date and format as YYYY-MM-DD to avoid timezone issues
+      // The input date is already in YYYY-MM-DD format from the date picker
+      const dateToSave = selectedDate; // Already in correct format
+      
       const { data, error } = await supabase
         .from('grafs_delivery_schedule')
         .insert({
-          delivery_date: selectedDate,
+          delivery_date: dateToSave,
           created_by: user?.id,
         })
         .select()
@@ -176,7 +180,9 @@ export default function GrafsSchedulePage() {
     today.setHours(0, 0, 0, 0)
     
     const futureDate = deliveryDates.find(d => {
-      const date = new Date(d.delivery_date)
+      // Parse date string as local date to avoid timezone issues
+      const [year, month, day] = d.delivery_date.split('-').map(Number)
+      const date = new Date(year, month - 1, day)
       date.setHours(0, 0, 0, 0)
       return date >= today
     })
@@ -202,11 +208,11 @@ export default function GrafsSchedulePage() {
         <div className="mb-6">
           <Button 
             variant="outline" 
-            onClick={() => router.push('/settings')}
+            onClick={() => router.push('/landing')}
             className="styled-button flex items-center gap-2"
           >
             <ArrowLeft className="h-4 w-4" />
-            Back to Settings
+            Back to Dashboard
           </Button>
         </div>
 
@@ -228,12 +234,15 @@ export default function GrafsSchedulePage() {
                 <div>
                   <div className="text-sm text-muted-foreground">Next Delivery</div>
                   <div className="text-xl font-bold text-blue-400">
-                    {new Date(nextDelivery.delivery_date).toLocaleDateString('en-US', {
-                      weekday: 'long',
-                      year: 'numeric',
-                      month: 'long',
-                      day: 'numeric'
-                    })}
+                    {(() => {
+                      const [year, month, day] = nextDelivery.delivery_date.split('-').map(Number)
+                      return new Date(year, month - 1, day).toLocaleDateString('en-US', {
+                        weekday: 'long',
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric'
+                      })
+                    })()}
                   </div>
                 </div>
                 <Button
@@ -286,7 +295,9 @@ export default function GrafsSchedulePage() {
             ) : (
               <div className="space-y-2">
                 {deliveryDates.map((date) => {
-                  const deliveryDate = new Date(date.delivery_date)
+                  // Parse date string as local date (not UTC) to avoid timezone issues
+                  const [year, month, day] = date.delivery_date.split('-').map(Number)
+                  const deliveryDate = new Date(year, month - 1, day)
                   const today = new Date()
                   today.setHours(0, 0, 0, 0)
                   deliveryDate.setHours(0, 0, 0, 0)

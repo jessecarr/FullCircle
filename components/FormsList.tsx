@@ -67,7 +67,7 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger, on
   const [deleteItem, setDeleteItem] = useState<any>(null)
   const [showDeleteDialog, setShowDeleteDialog] = useState(false)
   const [deleteConfirmation, setDeleteConfirmation] = useState('')
-  const [sortBy, setSortBy] = useState<'name_asc' | 'name_desc' | 'status' | 'date_desc' | 'date_asc'>('date_desc')
+  const [sortBy, setSortBy] = useState<'name_asc' | 'name_desc' | 'status_asc' | 'status_desc' | 'date_desc' | 'date_asc'>('date_desc')
   const [showSortDropdown, setShowSortDropdown] = useState(false)
   const [emailItem, setEmailItem] = useState<any>(null)
   const [showEmailDialog, setShowEmailDialog] = useState(false)
@@ -411,11 +411,17 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger, on
           const nameB = (b.customer_name || '').toLowerCase()
           return nameB.localeCompare(nameA)
         })
-      case 'status':
+      case 'status_asc':
         return sorted.sort((a, b) => {
           const statusA = (a.status || '').toLowerCase()
           const statusB = (b.status || '').toLowerCase()
           return statusA.localeCompare(statusB)
+        })
+      case 'status_desc':
+        return sorted.sort((a, b) => {
+          const statusA = (a.status || '').toLowerCase()
+          const statusB = (b.status || '').toLowerCase()
+          return statusB.localeCompare(statusA)
         })
       case 'date_asc':
         return sorted.sort((a, b) => new Date(a.created_at).getTime() - new Date(b.created_at).getTime())
@@ -429,7 +435,8 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger, on
     switch (sortBy) {
       case 'name_asc': return 'Name (A-Z)'
       case 'name_desc': return 'Name (Z-A)'
-      case 'status': return 'Status'
+      case 'status_asc': return 'Status (A-Z)'
+      case 'status_desc': return 'Status (Z-A)'
       case 'date_asc': return 'Date (Oldest)'
       case 'date_desc': return 'Date (Newest)'
       default: return 'Sort By'
@@ -688,7 +695,8 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger, on
                   {[
                     { value: 'name_asc', label: 'Name (A-Z)' },
                     { value: 'name_desc', label: 'Name (Z-A)' },
-                    { value: 'status', label: 'Status' },
+                    { value: 'status_asc', label: 'Status (A-Z)' },
+                    { value: 'status_desc', label: 'Status (Z-A)' },
                     { value: 'date_desc', label: 'Date (Newest)' },
                     { value: 'date_asc', label: 'Date (Oldest)' },
                   ].map(option => (
@@ -938,6 +946,11 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger, on
                 id="delete-confirmation"
                 value={deleteConfirmation}
                 onChange={(e) => setDeleteConfirmation(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' && deleteConfirmation.toLowerCase() === 'delete') {
+                    confirmDelete()
+                  }
+                }}
                 placeholder="Type delete to confirm"
                 style={{
                   backgroundColor: 'rgba(31, 41, 55, 0.8)',
@@ -945,6 +958,7 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger, on
                   color: '#ffffff'
                 }}
                 className="placeholder:text-gray-400"
+                autoFocus
               />
             </div>
           </div>

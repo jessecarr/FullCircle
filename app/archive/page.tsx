@@ -9,7 +9,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { supabase } from '@/lib/supabase'
 import { useToast } from '@/components/ui/use-toast'
-import { Trash2, Search, RotateCcw, FileText, Package, Shield, ArrowLeft } from 'lucide-react'
+import { Trash2, Search, RotateCcw, FileText, Package, Shield, ArrowLeft, Eye, ChevronLeft, ChevronRight } from 'lucide-react'
 import {
   AlertDialog,
   AlertDialogAction,
@@ -37,6 +37,7 @@ interface ArchivedForm {
   created_at: string
   _formType: string
   _tableName: string
+  fullData?: any
 }
 
 export default function ArchivePage() {
@@ -50,6 +51,12 @@ export default function ArchivePage() {
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false)
   const [restoreDialogOpen, setRestoreDialogOpen] = useState(false)
   const [selectedForm, setSelectedForm] = useState<ArchivedForm | null>(null)
+  const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set())
+  const [viewingForm, setViewingForm] = useState<ArchivedForm | null>(null)
+  const [viewingFormIndex, setViewingFormIndex] = useState<number>(-1)
+  const [bulkDeleteDialogOpen, setBulkDeleteDialogOpen] = useState(false)
+  const [deleteConfirmation, setDeleteConfirmation] = useState('')
+  const [bulkDeleteConfirmation, setBulkDeleteConfirmation] = useState('')
 
   useEffect(() => {
     if (!loading && !user) {
@@ -192,6 +199,101 @@ export default function ArchivePage() {
     }
   }
 
+  // Selection handlers
+  const toggleSelection = (id: string) => {
+    setSelectedIds(prev => {
+      const newSet = new Set(prev)
+      if (newSet.has(id)) {
+        newSet.delete(id)
+      } else {
+        newSet.add(id)
+      }
+      return newSet
+    })
+  }
+
+  const selectAll = () => {
+    if (selectedIds.size === filteredForms.length) {
+      setSelectedIds(new Set())
+    } else {
+      setSelectedIds(new Set(filteredForms.map(f => `${f._tableName}-${f.id}`)))
+    }
+  }
+
+  // Viewing handlers
+  const viewForm = async (form: ArchivedForm, index: number) => {
+    // Fetch full form data
+    const { data, error } = await supabase
+      .from(form._tableName)
+      .select('*')
+      .eq('id', form.id)
+      .single()
+    
+    if (!error && data) {
+      setViewingForm({ ...form, fullData: data })
+      setViewingFormIndex(index)
+    } else {
+      setViewingForm(form)
+      setViewingFormIndex(index)
+    }
+  }
+
+  const closeViewer = () => {
+    setViewingForm(null)
+    setViewingFormIndex(-1)
+  }
+
+  const navigateForm = async (direction: 'prev' | 'next') => {
+    const newIndex = direction === 'prev' ? viewingFormIndex - 1 : viewingFormIndex + 1
+    if (newIndex >= 0 && newIndex < filteredForms.length) {
+      await viewForm(filteredForms[newIndex], newIndex)
+    }
+  }
+
+  // Bulk delete handler
+  const handleBulkDelete = async () => {
+    if (selectedIds.size === 0 || bulkDeleteConfirmation.toLowerCase() !== 'delete') return
+
+    try {
+      // Group by table name for batch deletes
+      const byTable = new Map<string, string[]>()
+      selectedIds.forEach(id => {
+        const [tableName, formId] = id.split('-')
+        if (!byTable.has(tableName)) {
+          byTable.set(tableName, [])
+        }
+        byTable.get(tableName)!.push(formId)
+      })
+
+      for (const [tableName, ids] of byTable) {
+        const { error } = await supabase
+          .from(tableName)
+          .delete()
+          .in('id', ids)
+
+        if (error) throw error
+      }
+
+      toast({
+        title: 'Deleted',
+        description: `${selectedIds.size} form(s) have been permanently deleted.`,
+      })
+
+      setArchivedForms(prev => prev.filter(f => !selectedIds.has(`${f._tableName}-${f.id}`)))
+      setSelectedIds(new Set())
+    } catch (error) {
+      console.error('Error deleting forms:', error)
+      toast({
+        title: 'Error',
+        description: 'Failed to delete forms',
+        variant: 'destructive',
+      })
+    } finally {
+      setBulkDeleteDialogOpen(false)
+      setBulkDeleteConfirmation('')
+    }
+  }
+
   const filteredForms = archivedForms.filter(form => {
     const matchesSearch = form.customer_name?.toLowerCase().includes(searchQuery.toLowerCase()) ||
       form.customer_phone?.includes(searchQuery)
@@ -215,11 +317,11 @@ export default function ArchivePage() {
         <div className="mb-6">
           <Button 
             variant="outline" 
-            onClick={() => router.push('/settings')}
+            onClick={() => router.push('/landing')}
             className="styled-button flex items-center gap-2"
           >
             <ArrowLeft className="h-4 w-4" />
-            Back to Settings
+            Back to Dashboard
           </Button>
         </div>
 
@@ -256,28 +358,68 @@ export default function ArchivePage() {
           </Select>
         </div>
 
+        {/* Bulk Actions Bar */}
+        {filteredForms.length > 0 && (
+          <div className="mb-4 p-3 rounded-lg bg-slate-800/50 border border-slate-700 flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              <input
+                type="checkbox"
+                checked={selectedIds.size === filteredForms.length && filteredForms.length > 0}
+                onChange={selectAll}
+                className="w-4 h-4 rounded"
+              />
+              <span className="text-sm text-muted-foreground">
+                {selectedIds.size > 0 ? `${selectedIds.size} selected` : 'Select all'}
+              </span>
+            </div>
+            {selectedIds.size > 0 && (
+              <Button 
+                size="sm" 
+                variant="destructive"
+                onClick={() => setBulkDeleteDialogOpen(true)}
+              >
+                <Trash2 className="h-4 w-4 mr-2" />
+                Delete {selectedIds.size} Selected
+              </Button>
+            )}
+          </div>
+        )}
+
         {/* Forms List */}
         {isLoading ? (
           <div className="flex justify-center py-12">
             <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
           </div>
         ) : filteredForms.length === 0 ? (
-          <Card>
+          <Card className="landing-card">
             <CardContent className="py-12 text-center">
               <p className="text-muted-foreground">No archived forms found.</p>
             </CardContent>
           </Card>
         ) : (
           <div className="space-y-3">
-            {filteredForms.map((form) => (
-              <Card key={`${form._tableName}-${form.id}`} className="hover:shadow-md transition-shadow">
+            {filteredForms.map((form, index) => (
+              <Card key={`${form._tableName}-${form.id}`} className={`landing-card hover:shadow-md transition-shadow ${selectedIds.has(`${form._tableName}-${form.id}`) ? 'ring-2 ring-blue-500' : ''}`}>
                 <CardContent className="py-4">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-4">
-                      <div className="p-2 rounded-lg bg-slate-700/50">
+                      <input
+                        type="checkbox"
+                        checked={selectedIds.has(`${form._tableName}-${form.id}`)}
+                        onChange={() => toggleSelection(`${form._tableName}-${form.id}`)}
+                        onClick={(e) => e.stopPropagation()}
+                        className="w-4 h-4 rounded"
+                      />
+                      <div 
+                        className="p-2 rounded-lg bg-slate-700/50 cursor-pointer"
+                        onClick={() => viewForm(form, index)}
+                      >
                         {getFormIcon(form._formType)}
                       </div>
-                      <div>
+                      <div 
+                        className="cursor-pointer flex-1"
+                        onClick={() => viewForm(form, index)}
+                      >
                         <div className="font-medium">{form.customer_name || 'No Name'}</div>
                         <div className="text-sm text-muted-foreground">
                           {form._formType} • {form.customer_phone || 'No Phone'}
@@ -294,6 +436,14 @@ export default function ArchivePage() {
                       </div>
                     </div>
                     <div className="flex gap-2">
+                      <Button
+                        size="sm"
+                        variant="outline"
+                        onClick={() => viewForm(form, index)}
+                      >
+                        <Eye className="h-4 w-4 mr-1" />
+                        View
+                      </Button>
                       <Button
                         variant="outline"
                         size="sm"
@@ -325,7 +475,10 @@ export default function ArchivePage() {
         )}
 
         {/* Permanent Delete Dialog */}
-        <AlertDialog open={deleteDialogOpen} onOpenChange={setDeleteDialogOpen}>
+        <AlertDialog open={deleteDialogOpen} onOpenChange={(open) => {
+          setDeleteDialogOpen(open)
+          if (!open) setDeleteConfirmation('')
+        }}>
           <AlertDialogContent>
             <AlertDialogHeader>
               <AlertDialogTitle>Permanently Delete Form?</AlertDialogTitle>
@@ -334,9 +487,30 @@ export default function ArchivePage() {
                 <strong>{selectedForm?.customer_name}</strong> from the database.
               </AlertDialogDescription>
             </AlertDialogHeader>
+            <div className="py-4">
+              <label className="text-sm text-muted-foreground">
+                Type <span className="text-red-500 font-bold">"delete"</span> to confirm:
+              </label>
+              <Input
+                value={deleteConfirmation}
+                onChange={(e) => setDeleteConfirmation(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' && deleteConfirmation.toLowerCase() === 'delete') {
+                    handlePermanentDelete()
+                  }
+                }}
+                placeholder="Type delete to confirm"
+                className="mt-2"
+                autoFocus
+              />
+            </div>
             <AlertDialogFooter>
-              <AlertDialogCancel>Cancel</AlertDialogCancel>
-              <Button variant="destructive" onClick={handlePermanentDelete}>
+              <AlertDialogCancel onClick={() => setDeleteConfirmation('')}>Cancel</AlertDialogCancel>
+              <Button 
+                variant="destructive" 
+                onClick={handlePermanentDelete}
+                disabled={deleteConfirmation.toLowerCase() !== 'delete'}
+              >
                 Delete Forever
               </Button>
             </AlertDialogFooter>
@@ -355,6 +529,194 @@ export default function ArchivePage() {
             <AlertDialogFooter>
               <AlertDialogCancel>Cancel</AlertDialogCancel>
               <Button onClick={handleRestore}>Restore</Button>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialog>
+
+        {/* Bulk Delete Dialog */}
+        <AlertDialog open={bulkDeleteDialogOpen} onOpenChange={(open) => {
+          setBulkDeleteDialogOpen(open)
+          if (!open) setBulkDeleteConfirmation('')
+        }}>
+          <AlertDialogContent>
+            <AlertDialogHeader>
+              <AlertDialogTitle>Permanently Delete {selectedIds.size} Forms?</AlertDialogTitle>
+              <AlertDialogDescription>
+                This action cannot be undone. This will permanently delete {selectedIds.size} selected form(s) from the database.
+              </AlertDialogDescription>
+            </AlertDialogHeader>
+            <div className="py-4">
+              <label className="text-sm text-muted-foreground">
+                Type <span className="text-red-500 font-bold">"delete"</span> to confirm:
+              </label>
+              <Input
+                value={bulkDeleteConfirmation}
+                onChange={(e) => setBulkDeleteConfirmation(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' && bulkDeleteConfirmation.toLowerCase() === 'delete') {
+                    handleBulkDelete()
+                  }
+                }}
+                placeholder="Type delete to confirm"
+                className="mt-2"
+                autoFocus
+              />
+            </div>
+            <AlertDialogFooter>
+              <AlertDialogCancel onClick={() => setBulkDeleteConfirmation('')}>Cancel</AlertDialogCancel>
+              <Button 
+                variant="destructive" 
+                onClick={handleBulkDelete}
+                disabled={bulkDeleteConfirmation.toLowerCase() !== 'delete'}
+              >
+                Delete {selectedIds.size} Forms Forever
+              </Button>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialog>
+
+        {/* Form Viewer Dialog */}
+        <AlertDialog open={!!viewingForm} onOpenChange={(open) => !open && closeViewer()}>
+          <AlertDialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto bg-slate-900 border-slate-700">
+            <AlertDialogHeader>
+              <div className="flex items-center justify-between">
+                <AlertDialogTitle>Form Details</AlertDialogTitle>
+                <div className="flex items-center gap-2">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => navigateForm('prev')}
+                    disabled={viewingFormIndex <= 0}
+                  >
+                    <ChevronLeft className="h-4 w-4" />
+                    Previous
+                  </Button>
+                  <span className="text-sm text-muted-foreground">
+                    {viewingFormIndex + 1} of {filteredForms.length}
+                  </span>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => navigateForm('next')}
+                    disabled={viewingFormIndex >= filteredForms.length - 1}
+                  >
+                    Next
+                    <ChevronRight className="h-4 w-4" />
+                  </Button>
+                </div>
+              </div>
+            </AlertDialogHeader>
+            
+            {viewingForm && (
+              <div className="space-y-4 py-4">
+                {/* Customer Info */}
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <div className="text-sm text-muted-foreground">Customer Name</div>
+                    <div className="font-medium">{viewingForm.customer_name || 'N/A'}</div>
+                  </div>
+                  <div>
+                    <div className="text-sm text-muted-foreground">Phone</div>
+                    <div className="font-medium">{viewingForm.customer_phone || 'N/A'}</div>
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <div className="text-sm text-muted-foreground">Form Type</div>
+                    <div className="font-medium">{viewingForm._formType}</div>
+                  </div>
+                  <div>
+                    <div className="text-sm text-muted-foreground">Deleted</div>
+                    <div className="font-medium">
+                      {new Date(viewingForm.deleted_at).toLocaleDateString('en-US', {
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric',
+                        hour: '2-digit',
+                        minute: '2-digit'
+                      })}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Full Form Data */}
+                {viewingForm.fullData && (
+                  <>
+                    {viewingForm.fullData.status && (
+                      <div>
+                        <div className="text-sm text-muted-foreground">Status</div>
+                        <div className="font-medium capitalize">{viewingForm.fullData.status}</div>
+                      </div>
+                    )}
+
+                    {viewingForm.fullData.product_lines && viewingForm.fullData.product_lines.length > 0 && (
+                      <div>
+                        <div className="text-sm text-muted-foreground mb-2">Order Items</div>
+                        <div className="border rounded-lg overflow-hidden">
+                          <table className="w-full">
+                            <thead className="bg-slate-800">
+                              <tr>
+                                <th className="text-left p-2 text-sm">Description</th>
+                                <th className="text-left p-2 text-sm">SKU</th>
+                                <th className="text-right p-2 text-sm">Qty</th>
+                                <th className="text-right p-2 text-sm">Price</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {viewingForm.fullData.product_lines.map((line: any, idx: number) => (
+                                <tr key={idx} className="border-t border-slate-700">
+                                  <td className="p-2 text-sm">{line.description || 'N/A'}</td>
+                                  <td className="p-2 text-sm">{line.sku || 'N/A'}</td>
+                                  <td className="p-2 text-sm text-right">{line.quantity || 1}</td>
+                                  <td className="p-2 text-sm text-right">${(line.total_price || 0).toFixed(2)}</td>
+                                </tr>
+                              ))}
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    )}
+
+                    {viewingForm.fullData.notes && (
+                      <div>
+                        <div className="text-sm text-muted-foreground">Notes</div>
+                        <div className="p-3 bg-slate-800/50 rounded-lg mt-1">{viewingForm.fullData.notes}</div>
+                      </div>
+                    )}
+                  </>
+                )}
+              </div>
+            )}
+
+            <AlertDialogFooter>
+              <AlertDialogCancel onClick={closeViewer}>Close</AlertDialogCancel>
+              <Button 
+                variant="outline"
+                onClick={() => {
+                  if (viewingForm) {
+                    setSelectedForm(viewingForm)
+                    setRestoreDialogOpen(true)
+                    closeViewer()
+                  }
+                }}
+              >
+                <RotateCcw className="h-4 w-4 mr-2" />
+                Restore
+              </Button>
+              <Button 
+                variant="destructive"
+                onClick={() => {
+                  if (viewingForm) {
+                    setSelectedForm(viewingForm)
+                    setDeleteDialogOpen(true)
+                    closeViewer()
+                  }
+                }}
+              >
+                <Trash2 className="h-4 w-4 mr-2" />
+                Delete Forever
+              </Button>
             </AlertDialogFooter>
           </AlertDialogContent>
         </AlertDialog>

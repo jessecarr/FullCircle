@@ -15,7 +15,7 @@ import VendorSearch from '../VendorSearch'
 import { lookupZipCode, isValidZipCode } from '@/lib/zipLookup'
 import { Printer, Search } from 'lucide-react'
 import { PrintSubmitDialog } from '@/components/ui/print-submit-dialog'
-import { loadImageAsBase64, getImageUrl } from '@/lib/imageUtils'
+import { COMPANY_LOGO_BASE64 } from '@/lib/imageConstants'
 
 interface SpecialOrderFormProps {
   initialData?: SpecialOrderFormType
@@ -555,13 +555,8 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
   };
 
   const handlePrint = async () => {
-    // Load company logo as base64, with fallback to direct URL
-    let logoSrc = await loadImageAsBase64('/company-logo.png');
-    if (!logoSrc) {
-      // Fallback to direct URL if base64 fails
-      logoSrc = getImageUrl('/company-logo.png');
-      console.log('Using fallback URL for logo:', logoSrc);
-    }
+    // Use embedded base64 logo - guaranteed to work in print window
+    const logoSrc = COMPANY_LOGO_BASE64;
     
     // Calculate totals
     const subtotal = productLines.reduce((acc, line) => acc + line.total_price, 0);
