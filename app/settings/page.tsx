@@ -4,13 +4,16 @@ import { useEffect, useState, useRef } from 'react'
 import { useRouter } from 'next/navigation'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
+import { Label } from '@/components/ui/label'
 import { useToast } from '@/components/ui/use-toast'
 import { useAuth } from '@/hooks/useAuth'
 import { Header } from '@/components/Header'
-import { Settings, Users, FileText, Package, ArrowRight, ArrowLeft, User, Shield, Database, RefreshCw, Upload, Building2 } from 'lucide-react'
+import { supabase } from '@/lib/supabase'
+import { Settings, Users, FileText, Package, ArrowRight, ArrowLeft, User, Shield, Database, RefreshCw, Upload, Building2, Lock, AlertTriangle } from 'lucide-react'
 
 export default function SettingsPage() {
-  const { user, loading } = useAuth()
+  const { user, loading, userRole } = useAuth()
   const router = useRouter()
   const { toast } = useToast()
   const [isSyncing, setIsSyncing] = useState(false)
@@ -19,6 +22,13 @@ export default function SettingsPage() {
     lastSyncedAt: string | null
   } | null>(null)
   const fileInputRef = useRef<HTMLInputElement>(null)
+  const [showPasswordDialog, setShowPasswordDialog] = useState(false)
+  const [password, setPassword] = useState('')
+  const [pendingFile, setPendingFile] = useState<File | null>(null)
+  const [isVerifying, setIsVerifying] = useState(false)
+
+  // Check if user is admin
+  const isAdmin = userRole === 'admin'
 
   useEffect(() => {
     if (!loading && !user) {
@@ -87,10 +97,101 @@ export default function SettingsPage() {
     }
   }
 
-  const handleFileUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
+  // File validation constants
+  const MAX_FILE_SIZE = 50 * 1024 * 1024 // 50MB
+  const ALLOWED_FILE_TYPES = [
+    'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', // .xlsx
+    'application/vnd.ms-excel', // .xls
+    'text/csv' // .csv
+  ]
+  const ALLOWED_EXTENSIONS = ['.xlsx', '.xls', '.csv']
+
+  // Validate file before upload
+  const validateFile = (file: File): { valid: boolean; error?: string } => {
+    // Check file size
+    if (file.size > MAX_FILE_SIZE) {
+      return { valid: false, error: `File size exceeds 50MB limit (${(file.size / 1024 / 1024).toFixed(2)}MB)` }
+    }
+
+    // Check file extension
+    const extension = '.' + file.name.split('.').pop()?.toLowerCase()
+    if (!ALLOWED_EXTENSIONS.includes(extension)) {
+      return { valid: false, error: `Invalid file type. Allowed: ${ALLOWED_EXTENSIONS.join(', ')}` }
+    }
+
+    // Check MIME type (basic validation)
+    if (!ALLOWED_FILE_TYPES.includes(file.type) && file.type !== '') {
+      return { valid: false, error: `Invalid file format. Please upload an Excel or CSV file.` }
+    }
+
+    return { valid: true }
+  }
+
+  // Handle file selection - requires password verification first
+  const handleFileSelect = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0]
     if (!file) return
 
+    // Validate file first
+    const validation = validateFile(file)
+    if (!validation.valid) {
+      toast({
+        title: 'Invalid File',
+        description: validation.error,
+        variant: 'destructive'
+      })
+      if (fileInputRef.current) {
+        fileInputRef.current.value = ''
+      }
+      return
+    }
+
+    // Store file and show password dialog
+    setPendingFile(file)
+    setShowPasswordDialog(true)
+    setPassword('')
+  }
+
+  // Verify password and process upload
+  const handlePasswordVerify = async () => {
+    if (!password || !pendingFile || !user?.email) return
+
+    setIsVerifying(true)
+    try {
+      // Re-authenticate user with password
+      const { error: authError } = await supabase.auth.signInWithPassword({
+        email: user.email,
+        password: password
+      })
+
+      if (authError) {
+        toast({
+          title: 'Authentication Failed',
+          description: 'Incorrect password. Please try again.',
+          variant: 'destructive'
+        })
+        setPassword('')
+        return
+      }
+
+      // Password verified - proceed with upload
+      setShowPasswordDialog(false)
+      await processFileUpload(pendingFile)
+    } catch (error) {
+      toast({
+        title: 'Verification Error',
+        description: (error as Error).message,
+        variant: 'destructive'
+      })
+    } finally {
+      setIsVerifying(false)
+      setPassword('')
+      setPendingFile(null)
+    }
+  }
+
+  // Process the actual file upload
+  const processFileUpload = async (file: File) => {
     setIsSyncing(true)
     toast({
       title: 'Uploading FFL File',
@@ -134,6 +235,16 @@ export default function SettingsPage() {
       if (fileInputRef.current) {
         fileInputRef.current.value = ''
       }
+    }
+  }
+
+  // Cancel password dialog
+  const handleCancelPasswordDialog = () => {
+    setShowPasswordDialog(false)
+    setPassword('')
+    setPendingFile(null)
+    if (fileInputRef.current) {
+      fileInputRef.current.value = ''
     }
   }
 
@@ -278,62 +389,58 @@ export default function SettingsPage() {
               </CardContent>
             </Card>
 
-            <Card className="landing-card hover:shadow-lg transition-shadow">
-              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium">FFL Database</CardTitle>
-                <Building2 className="h-4 w-4 text-muted-foreground" />
-              </CardHeader>
-              <CardContent>
-                <div className="text-2xl font-bold">FFL Lookup</div>
-                <p className="text-xs text-muted-foreground mb-2">
-                  Import ATF FFL database for quick lookups
-                </p>
-                {syncStats && (
-                  <div className="text-xs text-muted-foreground mb-3 space-y-1">
-                    <p>Records: <span className="text-foreground font-medium">{syncStats.totalRecords.toLocaleString()}</span></p>
-                    <p>Last Sync: <span className="text-foreground font-medium">{formatDate(syncStats.lastSyncedAt)}</span></p>
-                  </div>
-                )}
-                <div className="space-y-2">
-                  <a 
-                    href="https://www.atf.gov/firearms/listing-federal-firearms-licensees"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block"
-                  >
+{isAdmin && (
+              <Card className="landing-card hover:shadow-lg transition-shadow">
+                <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                  <CardTitle className="text-sm font-medium">FFL Database</CardTitle>
+                  <Building2 className="h-4 w-4 text-muted-foreground" />
+                </CardHeader>
+                <CardContent>
+                  <div className="text-2xl font-bold">FFL Lookup</div>
+                  <p className="text-xs text-muted-foreground mb-4">
+                    Import ATF FFL database for quick lookups
+                  </p>
+                  <div className="space-y-2">
+                    <a 
+                      href="https://www.atf.gov/firearms/listing-federal-firearms-licensees"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block"
+                    >
+                      <Button 
+                        variant="outline" 
+                        size="sm" 
+                        className="w-full"
+                        type="button"
+                      >
+                        <RefreshCw className="h-4 w-4 mr-2" />
+                        Download from ATF Website
+                      </Button>
+                    </a>
                     <Button 
-                      variant="outline" 
+                      variant="default" 
                       size="sm" 
                       className="w-full"
-                      type="button"
+                      onClick={() => fileInputRef.current?.click()}
+                      disabled={isSyncing}
                     >
-                      <RefreshCw className="h-4 w-4 mr-2" />
-                      Download from ATF Website
+                      <Upload className={`h-4 w-4 mr-2 ${isSyncing ? 'animate-spin' : ''}`} />
+                      {isSyncing ? 'Importing...' : 'Upload FFL File'}
                     </Button>
-                  </a>
-                  <Button 
-                    variant="default" 
-                    size="sm" 
-                    className="w-full"
-                    onClick={() => fileInputRef.current?.click()}
-                    disabled={isSyncing}
-                  >
-                    <Upload className={`h-4 w-4 mr-2 ${isSyncing ? 'animate-spin' : ''}`} />
-                    {isSyncing ? 'Importing...' : 'Upload FFL File'}
-                  </Button>
-                  <input
-                    ref={fileInputRef}
-                    type="file"
-                    accept=".xlsx,.xls,.csv"
-                    onChange={handleFileUpload}
-                    className="hidden"
-                  />
-                  <p className="text-xs text-muted-foreground text-center">
-                    Download the Excel file from ATF, then upload it here
-                  </p>
-                </div>
-              </CardContent>
-            </Card>
+                    <input
+                      ref={fileInputRef}
+                      type="file"
+                      accept=".xlsx,.xls,.csv"
+                      onChange={handleFileSelect}
+                      className="hidden"
+                    />
+                    <p className="text-xs text-muted-foreground text-center">
+                      Password required • Max 50MB
+                    </p>
+                  </div>
+                </CardContent>
+              </Card>
+            )}
           </div>
 
           {/* Quick Links */}
@@ -383,6 +490,81 @@ export default function SettingsPage() {
           </Card>
         </div>
       </main>
+
+      {/* Password Verification Dialog */}
+      {showPasswordDialog && (
+        <div 
+          className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-50"
+          onClick={handleCancelPasswordDialog}
+        >
+          <div 
+            className="border border-border rounded-lg p-6 max-w-md w-full mx-4 shadow-2xl"
+            style={{
+              background: 'linear-gradient(145deg, hsl(222 47% 11%) 0%, hsl(217 33% 17%) 50%, hsl(215 25% 20%) 100%)',
+              boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.05)'
+            }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex items-center gap-3 mb-4">
+              <div className="p-2 rounded-full bg-yellow-500/20">
+                <Lock className="h-5 w-5 text-yellow-500" />
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold text-white">Password Required</h3>
+                <p className="text-sm text-slate-400">
+                  Re-enter your password to upload FFL database
+                </p>
+              </div>
+            </div>
+
+            <div className="mb-4 p-3 rounded-md bg-blue-500/10 border border-blue-500/30">
+              <div className="flex items-center gap-2 text-blue-400 text-sm">
+                <AlertTriangle className="h-4 w-4" />
+                <span>File: {pendingFile?.name}</span>
+              </div>
+              <div className="text-xs text-slate-400 mt-1">
+                Size: {pendingFile ? (pendingFile.size / 1024 / 1024).toFixed(2) : 0} MB
+              </div>
+            </div>
+
+            <div className="space-y-2 mb-6">
+              <Label htmlFor="password" className="text-slate-300">Password</Label>
+              <Input
+                id="password"
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="Enter your password"
+                className="bg-slate-900/50 border-slate-700 text-white placeholder:text-slate-500"
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter') {
+                    handlePasswordVerify()
+                  }
+                }}
+                autoFocus
+              />
+            </div>
+
+            <div className="flex gap-3">
+              <Button
+                variant="outline"
+                className="flex-1 border-slate-600 hover:bg-slate-800"
+                onClick={handleCancelPasswordDialog}
+                disabled={isVerifying}
+              >
+                Cancel
+              </Button>
+              <Button
+                className="flex-1"
+                onClick={handlePasswordVerify}
+                disabled={isVerifying || !password}
+              >
+                {isVerifying ? 'Verifying...' : 'Verify & Upload'}
+              </Button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   )
 }

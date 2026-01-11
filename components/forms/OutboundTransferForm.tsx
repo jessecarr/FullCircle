@@ -583,127 +583,171 @@ export function OutboundTransferForm({ initialData, onSuccess, onCancel }: Outbo
   };
 
   const handlePrint = () => {
-    // Create print content with bordered sections matching the form layout
-    const printContent = `
-      <!DOCTYPE html>
-      <html>
-      <head>
-        <title>Outbound Transfer Form</title>
-        <style>
-          @page {
-            size: portrait;
-            margin: 0.4in;
-          }
-          
-          * {
-            box-sizing: border-box;
-          }
-          
-          body {
-            font-family: 'Arial', sans-serif;
-            color: #000;
-            background: white;
-            padding: 15px;
-            max-width: 8in;
-            margin: 0 auto;
-            font-size: 12px;
-          }
-          
-          .print-header {
-            text-align: center;
-            margin-bottom: 20px;
-          }
-          
-          .print-date {
-            text-align: left;
-            font-size: 10px;
-            color: #666;
-            margin-bottom: 5px;
-          }
-          
-          .print-title {
-            font-size: 22px;
-            font-weight: bold;
-          }
-          
-          .section-box {
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            padding: 15px;
-            margin-bottom: 15px;
-          }
-          
-          .section-title {
-            font-size: 16px;
-            font-weight: bold;
-            text-decoration: underline;
-            margin-bottom: 12px;
-          }
-          
-          .two-column {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-          }
-          
-          .field-group {
-            margin-bottom: 10px;
-          }
-          
-          .field-label {
-            font-size: 11px;
-            font-weight: bold;
-            color: #333;
-            margin-bottom: 3px;
-          }
-          
-          .field-value {
-            font-size: 12px;
-            padding: 6px 8px;
-            background-color: #f9f9f9;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            min-height: 28px;
-          }
-          
-          .field-value.address {
-            min-height: 60px;
-            white-space: pre-wrap;
-          }
-          
-          .address-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-          }
-          
-          .address-right {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-          }
-          
-          .items-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 10px;
-          }
-          
-          .items-table th,
-          .items-table td {
-            border: 1px solid #000;
-            padding: 8px;
-            text-align: left;
-            font-size: 11px;
-          }
-          
-          .items-table th {
-            background-color: #f0f0f0;
-            font-weight: bold;
-          }
-        </style>
-      </head>
-      <body>
+    // Helper to generate transferor section (full or limited for packing slip)
+    const generateTransferorSection = (isPackingSlip: boolean) => {
+      if (isPackingSlip) {
+        // Packing Slip: Only name and phone in clean 2-column layout
+        return `
+          <div class="section-box">
+            <div class="section-title">Transferor</div>
+            <div class="form-grid">
+              <div class="form-field">
+                <label>Name</label>
+                <div class="input-box">${formData.customer_name || ''}</div>
+              </div>
+              <div class="form-field">
+                <label>Phone</label>
+                <div class="input-box">${formatPhoneNumber(formData.customer_phone) || ''}</div>
+              </div>
+            </div>
+          </div>
+        `
+      }
+      // Full Circle Copy / Customer Copy: All fields in clean layout matching the form
+      return `
+        <div class="section-box">
+          <div class="section-title">Transferor</div>
+          <div class="form-grid">
+            <div class="form-column">
+              <div class="form-field">
+                <label>Name</label>
+                <div class="input-box">${formData.customer_name || ''}</div>
+              </div>
+              <div class="form-field">
+                <label>Phone</label>
+                <div class="input-box">${formatPhoneNumber(formData.customer_phone) || ''}</div>
+              </div>
+              <div class="form-field">
+                <label>Email</label>
+                <div class="input-box">${formData.customer_email || ''}</div>
+              </div>
+              <div class="form-field-row">
+                <div class="form-field half">
+                  <label>Driver's License</label>
+                  <div class="input-box">${formData.drivers_license || ''}</div>
+                </div>
+                <div class="form-field half">
+                  <label>License Expiration</label>
+                  <div class="input-box">${formData.license_expiration ? new Date(formData.license_expiration).toLocaleDateString() : ''}</div>
+                </div>
+              </div>
+            </div>
+            <div class="form-column">
+              <div class="form-field">
+                <label>Street Address</label>
+                <div class="input-box textarea">${formData.customer_street || ''}</div>
+              </div>
+              <div class="form-field-row thirds">
+                <div class="form-field">
+                  <label>Zip</label>
+                  <div class="input-box">${formData.customer_zip || ''}</div>
+                </div>
+                <div class="form-field">
+                  <label>State</label>
+                  <div class="input-box">${formData.customer_state || ''}</div>
+                </div>
+                <div class="form-field">
+                  <label>City</label>
+                  <div class="input-box">${formData.customer_city || ''}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      `
+    }
+
+    // Helper to generate transferee section - matches form layout
+    const generateTransfereeSection = () => `
+      <div class="section-box">
+        <div class="section-title">Transferee</div>
+        <div class="form-grid">
+          <div class="form-field">
+            <label>Transferee Name</label>
+            <div class="input-box">${formData.transferee_name || ''}</div>
+          </div>
+          <div class="form-field">
+            <label>Transferee Phone</label>
+            <div class="input-box">${formatPhoneNumber(formData.transferee_phone) || ''}</div>
+          </div>
+        </div>
+        <div class="subsection-title">FFL Information</div>
+        <div class="form-grid">
+          <div class="form-column">
+            <div class="form-field">
+              <label>FFL Name</label>
+              <div class="input-box">${formData.transferee_ffl_name || ''}</div>
+            </div>
+            <div class="form-field">
+              <label>FFL Phone</label>
+              <div class="input-box">${formatPhoneNumber(formData.transferee_ffl_phone) || ''}</div>
+            </div>
+          </div>
+          <div class="form-column">
+            <div class="form-field">
+              <label>Street Address</label>
+              <div class="input-box textarea">${formData.transferee_ffl_address || ''}</div>
+            </div>
+            <div class="form-field-row thirds">
+              <div class="form-field">
+                <label>Zip</label>
+                <div class="input-box">${formData.transferee_ffl_zip || ''}</div>
+              </div>
+              <div class="form-field">
+                <label>State</label>
+                <div class="input-box">${formData.transferee_ffl_state || ''}</div>
+              </div>
+              <div class="form-field">
+                <label>City</label>
+                <div class="input-box">${formData.transferee_ffl_city || ''}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    `
+
+    // Helper to generate items section
+    const generateItemsSection = () => `
+      <div class="section-box">
+        <div class="section-title">Transfer Items</div>
+        <table class="items-table">
+          <thead>
+            <tr>
+              <th>Control #</th>
+              <th>Manufacturer</th>
+              <th>Model</th>
+              <th>Serial #</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${productLines.map((line) => `
+              <tr>
+                <td>${line.control_number || ''}</td>
+                <td>${line.manufacturer || ''}</td>
+                <td>${line.model || ''}</td>
+                <td>${line.serial_number || ''}</td>
+              </tr>
+            `).join('')}
+          </tbody>
+        </table>
+      </div>
+    `
+
+    // Helper to generate disposition section (always shows with space for handwriting)
+    const generateDispositionSection = () => `
+      <div class="section-box">
+        <div class="section-title">Disposition</div>
+        <div class="form-field" style="max-width: 250px;">
+          <label>Disposition Date</label>
+          <div class="input-box">${formData.disposition_date ? new Date(formData.disposition_date).toLocaleDateString() : ''}</div>
+        </div>
+      </div>
+    `
+
+    // Helper to generate a complete page
+    const generatePage = (copyType: string, isPackingSlip: boolean = false) => `
+      <div class="page">
         <div class="print-header">
           <div class="print-date">
             ${new Date().toLocaleDateString('en-US', {
@@ -713,100 +757,284 @@ export function OutboundTransferForm({ initialData, onSuccess, onCancel }: Outbo
             })}
           </div>
           <div class="print-title">Outbound Transfer Form</div>
+          <div class="copy-type">${copyType}</div>
         </div>
 
-        <!-- Transferor Section -->
-        <div class="section-box">
-          <div class="section-title">Transferor</div>
-          <div class="two-column">
-            <div class="field-group">
-              <div class="field-label">Name</div>
-              <div class="field-value">${formData.customer_name || ''}</div>
-            </div>
-            <div class="field-group">
-              <div class="field-label">Phone</div>
-              <div class="field-value">${formatPhoneNumber(formData.customer_phone) || ''}</div>
-            </div>
-          </div>
-        </div>
+        ${generateTransferorSection(isPackingSlip)}
+        ${generateTransfereeSection()}
+        ${generateItemsSection()}
+        ${generateDispositionSection()}
+      </div>
+    `
 
-        <!-- Transferee Section -->
-        <div class="section-box">
-          <div class="section-title">Transferee</div>
-          <div class="two-column">
-            <div class="field-group">
-              <div class="field-label">Transferee Name</div>
-              <div class="field-value">${formData.transferee_name || ''}</div>
-            </div>
-            <div class="field-group">
-              <div class="field-label">Transferee Phone</div>
-              <div class="field-value">${formatPhoneNumber(formData.transferee_phone) || ''}</div>
-            </div>
-            <div class="field-group">
-              <div class="field-label">Transferee FFL Name</div>
-              <div class="field-value">${formData.transferee_ffl_name || ''}</div>
-            </div>
-            <div class="field-group">
-              <div class="field-label">Transferee FFL Phone</div>
-              <div class="field-value">${formatPhoneNumber(formData.transferee_ffl_phone) || ''}</div>
-            </div>
-          </div>
-          <div class="address-grid" style="margin-top: 15px;">
-            <div class="field-group">
-              <div class="field-label">Street Address</div>
-              <div class="field-value address">${formData.transferee_ffl_address || ''}</div>
-            </div>
-            <div class="address-right">
-              <div class="field-group">
-                <div class="field-label">Zip</div>
-                <div class="field-value">${formData.transferee_ffl_zip || ''}</div>
-              </div>
-              <div class="field-group">
-                <div class="field-label">State</div>
-                <div class="field-value">${formData.transferee_ffl_state || ''}</div>
-              </div>
-              <div class="field-group">
-                <div class="field-label">City</div>
-                <div class="field-value">${formData.transferee_ffl_city || ''}</div>
-              </div>
-            </div>
+    // Helper to generate the Company FFL page
+    const generateCompanyFFLPage = () => `
+      <div class="page ffl-page">
+        <div class="print-header">
+          <div class="print-title">Company FFL Copy</div>
+          <div class="copy-type">Full Circle Firearms - Federal Firearms License</div>
+        </div>
+        <div class="ffl-notice">
+          <p>Please attach a copy of your company's FFL document here, or configure it in:</p>
+          <p><strong>public/company-ffl.png</strong></p>
+          <p class="ffl-instructions">To add your FFL: Save your FFL as an image file named "company-ffl.png" in the public folder of your project.</p>
+        </div>
+        <div class="ffl-image-container">
+          <img src="/company-ffl.png" alt="Company FFL" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+          <div class="ffl-placeholder">
+            <p>FFL Image Not Found</p>
+            <p class="small">Add your FFL image to: public/company-ffl.png</p>
           </div>
         </div>
+      </div>
+    `
 
-        <!-- Transfer Items Section -->
-        <div class="section-box">
-          <div class="section-title">Transfer Items</div>
-          <table class="items-table">
-            <thead>
-              <tr>
-                <th style="width: 20%">Control #</th>
-                <th style="width: 25%">Manufacturer</th>
-                <th style="width: 25%">Model</th>
-                <th style="width: 30%">Serial #</th>
-              </tr>
-            </thead>
-            <tbody>
-              ${productLines.map((line, index) => `
-                <tr>
-                  <td>${line.control_number || '-'}</td>
-                  <td>${line.manufacturer || '-'}</td>
-                  <td>${line.model || '-'}</td>
-                  <td>${line.serial_number || '-'}</td>
-                </tr>
-              `).join('')}
-            </tbody>
-          </table>
-        </div>
-
-        ${formData.disposition_date ? `
-        <div class="section-box">
-          <div class="section-title">Disposition</div>
-          <div class="field-group">
-            <div class="field-label">Disposition Date</div>
-            <div class="field-value">${new Date(formData.disposition_date).toLocaleDateString()}</div>
-          </div>
-        </div>
-        ` : ''}
+    // Create print content with 4 pages
+    const printContent = `
+      <!DOCTYPE html>
+      <html>
+      <head>
+        <title>Outbound Transfer Form</title>
+        <style>
+          @page {
+            size: portrait;
+            margin: 0.5in;
+          }
+          
+          @media print {
+            .page {
+              page-break-after: always;
+            }
+            .page:last-child {
+              page-break-after: avoid;
+            }
+          }
+          
+          * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+          }
+          
+          body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            color: #1a1a1a;
+            background: white;
+            font-size: 11px;
+            line-height: 1.4;
+          }
+          
+          .page {
+            padding: 20px;
+            max-width: 8in;
+            margin: 0 auto;
+          }
+          
+          .print-header {
+            text-align: center;
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid #e5e5e5;
+          }
+          
+          .print-date {
+            font-size: 9px;
+            color: #666;
+            margin-bottom: 4px;
+          }
+          
+          .print-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #111;
+            margin-bottom: 4px;
+          }
+          
+          .copy-type {
+            font-size: 12px;
+            font-weight: 600;
+            color: #555;
+            background: #f5f5f5;
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 4px;
+          }
+          
+          .section-box {
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            padding: 12px 14px;
+            margin-bottom: 12px;
+            background: #fafafa;
+          }
+          
+          .section-title {
+            font-size: 13px;
+            font-weight: 700;
+            color: #111;
+            margin-bottom: 10px;
+            padding-bottom: 6px;
+            border-bottom: 1px solid #ddd;
+          }
+          
+          .subsection-title {
+            font-size: 11px;
+            font-weight: 600;
+            color: #444;
+            margin: 12px 0 8px 0;
+            padding-top: 8px;
+            border-top: 1px dashed #ddd;
+          }
+          
+          .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+          }
+          
+          .form-column {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+          }
+          
+          .form-field {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+          }
+          
+          .form-field label {
+            font-size: 9px;
+            font-weight: 600;
+            color: #555;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+          }
+          
+          .input-box {
+            background: white;
+            border: 1px solid #d0d0d0;
+            border-radius: 4px;
+            padding: 6px 8px;
+            font-size: 11px;
+            min-height: 28px;
+            color: #111;
+          }
+          
+          .input-box.textarea {
+            min-height: 50px;
+            white-space: pre-wrap;
+          }
+          
+          .form-field-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+          }
+          
+          .form-field-row.thirds {
+            grid-template-columns: 1fr 1fr 1fr;
+          }
+          
+          .form-field.half {
+            flex: 1;
+          }
+          
+          .items-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 8px;
+            font-size: 10px;
+          }
+          
+          .items-table th,
+          .items-table td {
+            border: 1px solid #d0d0d0;
+            padding: 8px 10px;
+            text-align: left;
+          }
+          
+          .items-table th {
+            background: #f0f0f0;
+            font-weight: 600;
+            font-size: 9px;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            color: #444;
+          }
+          
+          .items-table td {
+            background: white;
+          }
+          
+          .items-table tr:nth-child(even) td {
+            background: #fafafa;
+          }
+          
+          /* Company FFL Page Styles */
+          .ffl-page .print-header {
+            border-bottom: 2px solid #3b82f6;
+          }
+          
+          .ffl-page .copy-type {
+            background: #dbeafe;
+            color: #1e40af;
+          }
+          
+          .ffl-notice {
+            text-align: center;
+            padding: 20px;
+            color: #666;
+            font-size: 11px;
+          }
+          
+          .ffl-notice p {
+            margin: 8px 0;
+          }
+          
+          .ffl-instructions {
+            font-size: 10px;
+            color: #888;
+            font-style: italic;
+          }
+          
+          .ffl-image-container {
+            text-align: center;
+            padding: 20px;
+            border: 2px dashed #ddd;
+            border-radius: 8px;
+            margin: 20px 0;
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          }
+          
+          .ffl-image-container img {
+            max-width: 100%;
+            max-height: 600px;
+            border: 1px solid #ddd;
+          }
+          
+          .ffl-placeholder {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            color: #999;
+          }
+          
+          .ffl-placeholder .small {
+            font-size: 10px;
+            margin-top: 8px;
+          }
+        </style>
+      </head>
+      <body>
+        ${generatePage('Full Circle Copy', false)}
+        ${generatePage('Customer Copy', false)}
+        ${generatePage('Packing Slip', true)}
+        ${generateCompanyFFLPage()}
       </body>
       </html>
     `;
@@ -1093,20 +1321,8 @@ export function OutboundTransferForm({ initialData, onSuccess, onCancel }: Outbo
             <div className="space-y-4">
               <h3 className="text-xl font-bold underline mb-4">Transferee</h3>
               
-              {/* FFL Search */}
-              <div className="mb-4">
-                <FFLSearch
-                  onSelect={handleFFLSelect}
-                  label="Search FFL Database"
-                  placeholder="Search by FFL number (X-XX-XXXXX) or business name..."
-                  showSyncButton={true}
-                />
-                <p className="text-xs text-muted-foreground mt-1">
-                  Search for an FFL to auto-fill the transferee information below
-                </p>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {/* Transferee Name and Phone - First */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                 <div className="space-y-2">
                   <Label className="text-medium" htmlFor="transferee_name">Transferee Name *</Label>
                   <Input
@@ -1120,7 +1336,7 @@ export function OutboundTransferForm({ initialData, onSuccess, onCancel }: Outbo
                       }
                     }}
                     required
-                    className="uppercase"
+                    className="uppercase text-base"
                   />
                 </div>
 
@@ -1143,106 +1359,143 @@ export function OutboundTransferForm({ initialData, onSuccess, onCancel }: Outbo
                     required
                     maxLength={14}
                     placeholder="(123) 456-7890"
-                  />
-                </div>
-
-                <div className="space-y-2">
-                  <Label className="text-medium" htmlFor="transferee_ffl_name">Transferee FFL Name *</Label>
-                  <Input
-                    id="transferee_ffl_name"
-                    value={formData.transferee_ffl_name}
-                    onChange={(e) => handleInputChange('transferee_ffl_name', e.target.value.toUpperCase())}
-                    onKeyDown={(e) => {
-                      if (e.key === 'Enter') {
-                        e.preventDefault();
-                        document.getElementById('transferee_ffl_phone')?.focus();
-                      }
-                    }}
-                    required
-                    className="uppercase"
-                  />
-                </div>
-
-                <div className="space-y-2">
-                  <Label className="text-medium" htmlFor="transferee_ffl_phone">Transferee FFL Phone *</Label>
-                  <Input
-                    id="transferee_ffl_phone"
-                    type="tel"
-                    value={formatPhoneNumber(formData.transferee_ffl_phone)}
-                    onChange={(e) => {
-                      const digits = e.target.value.replace(/\D/g, '');
-                      handleInputChange('transferee_ffl_phone', digits);
-                    }}
-                    onKeyDown={(e) => {
-                      if (e.key === 'Enter') {
-                        e.preventDefault();
-                        document.getElementById('transferee_ffl_address')?.focus();
-                      }
-                    }}
-                    required
-                    maxLength={14}
-                    placeholder="(123) 456-7890"
+                    className="text-base"
                   />
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
-                <div className="space-y-2">
-                  <Label className="text-medium" htmlFor="transferee_ffl_address">Street Address *</Label>
-                  <Textarea
-                    id="transferee_ffl_address"
-                    value={formData.transferee_ffl_address}
-                    onChange={(e) => handleInputChange('transferee_ffl_address', e.target.value.toUpperCase())}
-                    className="min-h-[192px] text-base uppercase"
-                    required
-                  />
+              {/* FFL Search - Styled like FastBound search */}
+              <div className="p-4 rounded-lg mb-4" style={{
+                backgroundColor: 'rgba(59, 130, 246, 0.2)',
+                border: '1px solid rgba(59, 130, 246, 0.4)',
+                padding: '1rem',
+                borderRadius: '0.5rem'
+              }}>
+                <div className="text-xl font-semibold flex items-center gap-2 mb-3" style={{ color: '#dbeafe' }}>
+                  <Search className="h-6 w-6" />
+                  Search FFL Database
                 </div>
-                <div className="grid grid-cols-1 gap-4">
+                <p className="text-base mb-3" style={{ color: '#dbeafe' }}>
+                  Search for an FFL by number (X-XX-XXXXX) or business name. Select an FFL to auto-fill the information below.
+                </p>
+                <FFLSearch
+                  onSelect={handleFFLSelect}
+                  label=""
+                  placeholder="Search by FFL number or business name..."
+                  showSyncButton={true}
+                />
+              </div>
+
+              {/* FFL Information - Styled like Customer Info section */}
+              <div className="grid grid-cols-2 gap-6">
+                <div className="space-y-4">
                   <div className="space-y-2">
-                    <Label className="text-medium" htmlFor="transferee_ffl_zip">Zip *</Label>
+                    <Label className="text-medium" htmlFor="transferee_ffl_name">FFL Name *</Label>
                     <Input
-                      id="transferee_ffl_zip"
-                      value={formData.transferee_ffl_zip}
-                      onChange={(e) => handleTransfereeZipCodeChange(e.target.value.toUpperCase())}
+                      id="transferee_ffl_name"
+                      value={formData.transferee_ffl_name}
+                      onChange={(e) => handleInputChange('transferee_ffl_name', e.target.value.toUpperCase())}
                       onKeyDown={(e) => {
                         if (e.key === 'Enter') {
                           e.preventDefault();
-                          document.getElementById('transferee_ffl_state')?.focus();
+                          document.getElementById('transferee_ffl_phone')?.focus();
                         }
                       }}
-                      placeholder="Enter 5-digit zip code"
-                      maxLength={5}
-                      className="text-base uppercase"
                       required
+                      className="text-base uppercase"
                     />
                   </div>
 
                   <div className="space-y-2">
-                    <Label className="text-medium" htmlFor="transferee_ffl_state">State *</Label>
+                    <Label className="text-medium" htmlFor="transferee_ffl_phone">FFL Phone *</Label>
                     <Input
-                      id="transferee_ffl_state"
-                      value={formData.transferee_ffl_state}
-                      onChange={(e) => handleInputChange('transferee_ffl_state', e.target.value.toUpperCase())}
+                      id="transferee_ffl_phone"
+                      type="tel"
+                      value={formatPhoneNumber(formData.transferee_ffl_phone)}
+                      onChange={(e) => {
+                        const digits = e.target.value.replace(/\D/g, '');
+                        handleInputChange('transferee_ffl_phone', digits);
+                      }}
                       onKeyDown={(e) => {
                         if (e.key === 'Enter') {
                           e.preventDefault();
-                          document.getElementById('transferee_ffl_city')?.focus();
+                          document.getElementById('transferee_ffl_address')?.focus();
                         }
                       }}
-                      className="text-base uppercase"
+                      required
+                      maxLength={14}
+                      placeholder="(123) 456-7890"
+                      className="text-base"
+                    />
+                  </div>
+                </div>
+
+                <div className="space-y-4">
+                  <div className="space-y-2">
+                    <Label className="text-medium" htmlFor="transferee_ffl_address">Street Address *</Label>
+                    <Textarea
+                      id="transferee_ffl_address"
+                      value={formData.transferee_ffl_address}
+                      onChange={(e) => handleInputChange('transferee_ffl_address', e.target.value.toUpperCase())}
+                      onKeyDown={(e) => {
+                        if (e.key === 'Enter') {
+                          e.preventDefault();
+                          document.getElementById('transferee_ffl_zip')?.focus();
+                        }
+                      }}
+                      rows={2}
+                      className="text-base uppercase resize-none"
                       required
                     />
                   </div>
+                  
+                  <div className="grid grid-cols-3 gap-2">
+                    <div className="space-y-2">
+                      <Label className="text-medium" htmlFor="transferee_ffl_zip">Zip *</Label>
+                      <Input
+                        id="transferee_ffl_zip"
+                        value={formData.transferee_ffl_zip}
+                        onChange={(e) => handleTransfereeZipCodeChange(e.target.value.toUpperCase())}
+                        onKeyDown={(e) => {
+                          if (e.key === 'Enter') {
+                            e.preventDefault();
+                            document.getElementById('transferee_ffl_state')?.focus();
+                          }
+                        }}
+                        placeholder="Zip"
+                        maxLength={5}
+                        className="text-base uppercase"
+                        required
+                      />
+                    </div>
 
-                  <div className="space-y-2">
-                    <Label className="text-medium" htmlFor="transferee_ffl_city">City *</Label>
-                    <Input
-                      id="transferee_ffl_city"
-                      value={formData.transferee_ffl_city}
-                      onChange={(e) => handleInputChange('transferee_ffl_city', e.target.value.toUpperCase())}
-                      className="text-base uppercase"
-                      required
-                    />
+                    <div className="space-y-2">
+                      <Label className="text-medium" htmlFor="transferee_ffl_state">State *</Label>
+                      <Input
+                        id="transferee_ffl_state"
+                        value={formData.transferee_ffl_state}
+                        onChange={(e) => handleInputChange('transferee_ffl_state', e.target.value.toUpperCase())}
+                        onKeyDown={(e) => {
+                          if (e.key === 'Enter') {
+                            e.preventDefault();
+                            document.getElementById('transferee_ffl_city')?.focus();
+                          }
+                        }}
+                        className="text-base uppercase"
+                        required
+                      />
+                    </div>
+
+                    <div className="space-y-2">
+                      <Label className="text-medium" htmlFor="transferee_ffl_city">City *</Label>
+                      <Input
+                        id="transferee_ffl_city"
+                        value={formData.transferee_ffl_city}
+                        onChange={(e) => handleInputChange('transferee_ffl_city', e.target.value.toUpperCase())}
+                        className="text-base uppercase"
+                        required
+                      />
+                    </div>
                   </div>
                 </div>
               </div>
