@@ -10,7 +10,7 @@ import { useToast } from '@/components/ui/use-toast'
 import { useAuth } from '@/hooks/useAuth'
 import { Header } from '@/components/Header'
 import { supabase } from '@/lib/supabase'
-import { Settings, Users, FileText, Package, ArrowRight, ArrowLeft, User, Shield, Database, RefreshCw, Upload, Building2, Lock, AlertTriangle } from 'lucide-react'
+import { Settings, Users, FileText, Package, ArrowRight, ArrowLeft, User, Shield, Database, RefreshCw, Upload, Building2, Lock, AlertTriangle, Truck, Archive } from 'lucide-react'
 
 export default function SettingsPage() {
   const { user, loading, userRole } = useAuth()
@@ -398,6 +398,56 @@ export default function SettingsPage() {
                     Password required • Max 50MB
                   </p>
                 </div>
+              </CardContent>
+            </Card>
+
+            {/* Graf's Delivery Schedule Card */}
+            <Card 
+              className="landing-card hover:shadow-lg transition-shadow cursor-pointer"
+              onClick={() => router.push('/grafs-schedule')}
+            >
+              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                <CardTitle className="text-sm font-medium">Deliveries</CardTitle>
+                <Truck className="h-4 w-4 text-muted-foreground" />
+              </CardHeader>
+              <CardContent>
+                <div className="text-2xl font-bold">Graf & Sons Schedule</div>
+                <p className="text-xs text-muted-foreground">
+                  Manage delivery dates and track arriving orders
+                </p>
+                <Button 
+                  variant="ghost" 
+                  size="sm" 
+                  className="mt-2 w-full"
+                >
+                  Open Delivery Schedule
+                  <ArrowRight className="h-4 w-4 ml-2" />
+                </Button>
+              </CardContent>
+            </Card>
+
+            {/* Deleted Forms Archive Card */}
+            <Card 
+              className="landing-card hover:shadow-lg transition-shadow cursor-pointer"
+              onClick={() => router.push('/archive')}
+            >
+              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                <CardTitle className="text-sm font-medium">Archive</CardTitle>
+                <Archive className="h-4 w-4 text-muted-foreground" />
+              </CardHeader>
+              <CardContent>
+                <div className="text-2xl font-bold">Deleted Forms</div>
+                <p className="text-xs text-muted-foreground">
+                  View and restore deleted forms
+                </p>
+                <Button 
+                  variant="ghost" 
+                  size="sm" 
+                  className="mt-2 w-full"
+                >
+                  Open Archive
+                  <ArrowRight className="h-4 w-4 ml-2" />
+                </Button>
               </CardContent>
             </Card>
           </div>

@@ -15,7 +15,7 @@ import VendorSearch from '../VendorSearch'
 import { lookupZipCode, isValidZipCode } from '@/lib/zipLookup'
 import { Printer, Search } from 'lucide-react'
 import { PrintSubmitDialog } from '@/components/ui/print-submit-dialog'
-import { loadImageAsBase64 } from '@/lib/imageUtils'
+import { loadImageAsBase64, getImageUrl } from '@/lib/imageUtils'
 
 interface SpecialOrderFormProps {
   initialData?: SpecialOrderFormType
@@ -465,7 +465,7 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
         }
       } else {
         // Create new order
-        const { error } = await supabase
+        const { data: newOrder, error } = await supabase
           .from('special_orders')
           .insert([{
             customer_name: formData.customer_name,
@@ -484,6 +484,8 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
             special_requests: formData.special_requests,
             status: formData.status
           }])
+          .select()
+          .single()
 
         if (error) {
           console.error('Supabase error:', {
@@ -492,6 +494,41 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
             code: error.code
           });
           throw error;
+        }
+
+        // Check for Graf & Sons vendor items and create tracking records
+        if (newOrder) {
+          const grafsItems = productLines
+            .map((line, index) => ({ line, index }))
+            .filter(({ line }) => {
+              const vendor = (line.vendor || '').toUpperCase()
+              return vendor.includes('GRAF') || vendor.includes('GRAFS')
+            })
+
+          if (grafsItems.length > 0) {
+            // Get the next Graf delivery date
+            const today = new Date().toISOString().split('T')[0]
+            const { data: nextDelivery } = await supabase
+              .from('grafs_delivery_schedule')
+              .select('delivery_date')
+              .gte('delivery_date', today)
+              .order('delivery_date', { ascending: true })
+              .limit(1)
+              .single()
+
+            if (nextDelivery) {
+              // Create tracking records for each Graf item
+              const trackingRecords = grafsItems.map(({ index }) => ({
+                special_order_id: newOrder.id,
+                product_line_index: index,
+                expected_delivery_date: nextDelivery.delivery_date,
+              }))
+
+              await supabase
+                .from('grafs_order_tracking')
+                .insert(trackingRecords)
+            }
+          }
         }
 
         toast({ title: 'Success', description: 'Order created successfully' });
@@ -518,8 +555,13 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
   };
 
   const handlePrint = async () => {
-    // Load company logo as base64
-    const logoBase64 = await loadImageAsBase64('/company-logo.png');
+    // Load company logo as base64, with fallback to direct URL
+    let logoSrc = await loadImageAsBase64('/company-logo.png');
+    if (!logoSrc) {
+      // Fallback to direct URL if base64 fails
+      logoSrc = getImageUrl('/company-logo.png');
+      console.log('Using fallback URL for logo:', logoSrc);
+    }
     
     // Calculate totals
     const subtotal = productLines.reduce((acc, line) => acc + line.total_price, 0);
@@ -737,24 +779,23 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
           
           .company-header {
             display: flex;
-            flex-direction: column;
+            flex-direction: row;
             align-items: center;
             justify-content: center;
-            gap: 15px;
+            gap: 25px;
             margin-bottom: 40px;
             padding-bottom: 20px;
             border-bottom: 2px solid #000;
           }
           
           .company-logo {
-            max-width: 180px;
-            max-height: 100px;
+            width: 120px;
+            height: auto;
             object-fit: contain;
-            margin-bottom: 10px;
           }
           
           .company-details {
-            text-align: center;
+            text-align: left;
           }
           
           .company-name {
@@ -1015,7 +1056,7 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
           <div class="print-copy company-info-copy">
             <div class="company-info-content">
               <div class="company-header">
-                ${logoBase64 ? `<img src="${logoBase64}" alt="Full Circle" class="company-logo" />` : ''}
+                ${logoSrc ? `<img src="${logoSrc}" alt="Full Circle" class="company-logo" />` : ''}
                 <div class="company-details">
                   <div class="company-name">Full Circle</div>
                   <div class="company-address">923 South 5th Street</div>

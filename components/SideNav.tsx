@@ -3,7 +3,18 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { useAuth } from '@/hooks/useAuth'
+import { useNavigationGuard } from '@/hooks/useNavigationGuard'
 import { Button } from '@/components/ui/button'
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from '@/components/ui/alert-dialog'
 import { 
   Menu, 
   X, 
@@ -39,10 +50,35 @@ export function SideNav() {
   const [isOpen, setIsOpen] = useState(false)
   const router = useRouter()
   const { userRole } = useAuth()
+  const { 
+    isFormActive, 
+    pendingNavigation, 
+    setPendingNavigation, 
+    showNavigationDialog, 
+    setShowNavigationDialog,
+    requestNavigation 
+  } = useNavigationGuard()
 
   const handleNavClick = (href: string) => {
-    router.push(href)
-    setIsOpen(false)
+    if (requestNavigation(href)) {
+      router.push(href)
+      setIsOpen(false)
+    } else {
+      setIsOpen(false) // Close menu while dialog is shown
+    }
+  }
+
+  const confirmNavigation = () => {
+    if (pendingNavigation) {
+      router.push(pendingNavigation)
+    }
+    setShowNavigationDialog(false)
+    setPendingNavigation(null)
+  }
+
+  const cancelNavigation = () => {
+    setShowNavigationDialog(false)
+    setPendingNavigation(null)
   }
 
   const filteredNavItems = navItems.filter(item => !item.adminOnly || userRole === 'admin')
@@ -112,6 +148,31 @@ export function SideNav() {
           </p>
         </div>
       </div>
+
+      {/* Navigation Confirmation Dialog */}
+      <AlertDialog open={showNavigationDialog} onOpenChange={setShowNavigationDialog}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Leave Page?</AlertDialogTitle>
+            <AlertDialogDescription>
+              The current form will not be saved. Are you sure you want to continue?
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel onClick={cancelNavigation}>Cancel</AlertDialogCancel>
+            <Button 
+              onClick={confirmNavigation}
+              style={{
+                background: 'linear-gradient(135deg, #3b82f6 0%, #2563eb 50%, #1d4ed8 100%)',
+                color: 'white',
+                border: 'none'
+              }}
+            >
+              Continue
+            </Button>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </>
   )
 }

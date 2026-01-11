@@ -13,6 +13,7 @@ import { FormViewDialog } from '@/components/FormViewDialog'
 import { Button } from '@/components/ui/button'
 import { ChevronDown, List, ArrowLeft, Printer } from 'lucide-react'
 import { useAuth } from '@/hooks/useAuth'
+import { useNavigationGuard } from '@/hooks/useNavigationGuard'
 import { Header } from '@/components/Header'
 import {
   DropdownMenu,
@@ -32,6 +33,7 @@ import {
 } from '@/components/ui/alert-dialog'
 function HomeContent() {
   const { user, loading } = useAuth()
+  const { setFormActive } = useNavigationGuard()
   const router = useRouter()
   const searchParams = useSearchParams()
   const tabParam = searchParams.get('tab')
@@ -52,7 +54,14 @@ function HomeContent() {
       }
     }
   }, [tabParam])
+
   const [viewMode, setViewMode] = useState<'form' | 'list'>(tabParam === 'view-all' ? 'list' : 'form')
+
+  // Track form active state for navigation guard
+  useEffect(() => {
+    setFormActive(viewMode === 'form')
+    return () => setFormActive(false) // Cleanup on unmount
+  }, [viewMode, setFormActive])
   const [editingItem, setEditingItem] = useState<any>(null)
   const [viewingItem, setViewingItem] = useState<any>(null)
   const [refreshTrigger, setRefreshTrigger] = useState(0)

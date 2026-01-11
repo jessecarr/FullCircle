@@ -118,10 +118,23 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger, on
           : selectedFormTypes.filter(t => t !== 'all') as Array<'special_orders' | 'inbound_transfers' | 'suppressor_approvals' | 'outbound_transfers' | 'consignment_forms'>
       
       for (const table of tablesToFetch) {
-        const { data, error } = await supabase
-          .from(table)
-          .select('*')
+        // Try to filter out soft-deleted items, but fall back if column doesn't exist
+        let query = supabase.from(table).select('*')
+        
+        // First try with deleted_at filter
+        let { data, error } = await query
+          .is('deleted_at', null)
           .order('created_at', { ascending: false })
+        
+        // If error (likely column doesn't exist), try without the filter
+        if (error) {
+          const fallbackResult = await supabase
+            .from(table)
+            .select('*')
+            .order('created_at', { ascending: false })
+          data = fallbackResult.data
+          error = fallbackResult.error
+        }
         
         if (!error && data) {
           const itemsWithType = data.map(item => {
@@ -223,23 +236,27 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger, on
     if (!deleteItem || deleteConfirmation.toLowerCase() !== 'delete') return
 
     try {
+      // Soft delete - set deleted_at timestamp instead of permanently deleting
       const { error } = await supabase
         .from(deleteItem._formType)
-        .delete()
+        .update({
+          deleted_at: new Date().toISOString(),
+          deleted_by: (await supabase.auth.getUser()).data.user?.id
+        })
         .eq('id', deleteItem.id)
 
       if (error) throw error
 
       toast({
         title: 'Success',
-        description: 'Item deleted successfully',
+        description: 'Item moved to archive',
       })
 
       fetchAllItems()
     } catch (error) {
       toast({
         title: 'Error',
-        description: 'Failed to delete item',
+        description: 'Failed to archive item',
         variant: 'destructive',
       })
     } finally {

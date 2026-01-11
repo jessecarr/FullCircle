@@ -16,7 +16,7 @@ import FastBoundSearch from '../FastBoundSearch'
 import FFLSearch from '../FFLSearch'
 import { PrintSubmitDialog } from '@/components/ui/print-submit-dialog'
 import { FFLContact } from '@/lib/fflTypes'
-import { loadImageAsBase64 } from '@/lib/imageUtils'
+import { loadImageAsBase64, getImageUrl } from '@/lib/imageUtils'
 
 interface FastBoundInventoryItem {
   id: string
@@ -584,8 +584,13 @@ export function OutboundTransferForm({ initialData, onSuccess, onCancel }: Outbo
   };
 
   const handlePrint = async () => {
-    // Load company FFL image as base64
-    const fflBase64 = await loadImageAsBase64('/company-ffl.png');
+    // Load company FFL image as base64, with fallback to direct URL
+    let fflSrc = await loadImageAsBase64('/company-ffl.png');
+    if (!fflSrc) {
+      // Fallback to direct URL if base64 fails
+      fflSrc = getImageUrl('/company-ffl.png');
+      console.log('Using fallback URL for FFL:', fflSrc);
+    }
     
     // Helper to generate transferor section (full or limited for packing slip)
     const generateTransferorSection = (isPackingSlip: boolean) => {
@@ -778,9 +783,9 @@ export function OutboundTransferForm({ initialData, onSuccess, onCancel }: Outbo
           <div class="print-title">Company FFL Copy</div>
           <div class="copy-type">Full Circle Firearms - Federal Firearms License</div>
         </div>
-        ${fflBase64 ? `
+        ${fflSrc ? `
           <div class="ffl-image-container">
-            <img src="${fflBase64}" alt="Company FFL" />
+            <img src="${fflSrc}" alt="Company FFL" />
           </div>
         ` : `
           <div class="ffl-notice">
