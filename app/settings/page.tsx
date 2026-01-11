@@ -297,74 +297,34 @@ export default function SettingsPage() {
             </p>
           </div>
 
-          {/* Settings Grid */}
+          {/* Settings Grid - Manage Users, Manage Customers, FFL Lookup */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
-            <Card className="landing-card hover:shadow-lg transition-shadow cursor-pointer">
+            {/* Manage Users Card */}
+            <Card 
+              className="landing-card hover:shadow-lg transition-shadow cursor-pointer"
+              onClick={() => router.push('/admin/users')}
+            >
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium">Profile Settings</CardTitle>
-                <User className="h-4 w-4 text-muted-foreground" />
+                <CardTitle className="text-sm font-medium">Users</CardTitle>
+                <Users className="h-4 w-4 text-muted-foreground" />
               </CardHeader>
               <CardContent>
-                <div className="text-2xl font-bold">Account</div>
+                <div className="text-2xl font-bold">Manage Users</div>
                 <p className="text-xs text-muted-foreground">
-                  Manage your profile information
+                  Add, edit, and manage user accounts
                 </p>
                 <Button 
                   variant="ghost" 
                   size="sm" 
                   className="mt-2 w-full"
-                  onClick={() => toast({ title: 'Coming Soon', description: 'Profile settings will be available soon.' })}
                 >
-                  Edit Profile
+                  Open User Management
                   <ArrowRight className="h-4 w-4 ml-2" />
                 </Button>
               </CardContent>
             </Card>
 
-            <Card className="landing-card hover:shadow-lg transition-shadow cursor-pointer">
-              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium">Security</CardTitle>
-                <Shield className="h-4 w-4 text-muted-foreground" />
-              </CardHeader>
-              <CardContent>
-                <div className="text-2xl font-bold">Security</div>
-                <p className="text-xs text-muted-foreground">
-                  Password and authentication settings
-                </p>
-                <Button 
-                  variant="ghost" 
-                  size="sm" 
-                  className="mt-2 w-full"
-                  onClick={() => toast({ title: 'Coming Soon', description: 'Security settings will be available soon.' })}
-                >
-                  Manage Security
-                  <ArrowRight className="h-4 w-4 ml-2" />
-                </Button>
-              </CardContent>
-            </Card>
-
-            <Card className="landing-card hover:shadow-lg transition-shadow cursor-pointer">
-              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium">System</CardTitle>
-                <Database className="h-4 w-4 text-muted-foreground" />
-              </CardHeader>
-              <CardContent>
-                <div className="text-2xl font-bold">System</div>
-                <p className="text-xs text-muted-foreground">
-                  Database and system preferences
-                </p>
-                <Button 
-                  variant="ghost" 
-                  size="sm" 
-                  className="mt-2 w-full"
-                  onClick={() => toast({ title: 'Coming Soon', description: 'System settings will be available soon.' })}
-                >
-                  System Settings
-                  <ArrowRight className="h-4 w-4 ml-2" />
-                </Button>
-              </CardContent>
-            </Card>
-
+            {/* Manage Customers Card */}
             <Card 
               className="landing-card hover:shadow-lg transition-shadow cursor-pointer"
               onClick={() => router.push('/customers')}
@@ -389,105 +349,58 @@ export default function SettingsPage() {
               </CardContent>
             </Card>
 
-{isAdmin && (
-              <Card className="landing-card hover:shadow-lg transition-shadow">
-                <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                  <CardTitle className="text-sm font-medium">FFL Database</CardTitle>
-                  <Building2 className="h-4 w-4 text-muted-foreground" />
-                </CardHeader>
-                <CardContent>
-                  <div className="text-2xl font-bold">FFL Lookup</div>
-                  <p className="text-xs text-muted-foreground mb-4">
-                    Import ATF FFL database for quick lookups
-                  </p>
-                  <div className="space-y-2">
-                    <a 
-                      href="https://www.atf.gov/firearms/listing-federal-firearms-licensees"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="block"
-                    >
-                      <Button 
-                        variant="outline" 
-                        size="sm" 
-                        className="w-full"
-                        type="button"
-                      >
-                        <RefreshCw className="h-4 w-4 mr-2" />
-                        Download from ATF Website
-                      </Button>
-                    </a>
+            {/* FFL Lookup Card */}
+            <Card className="landing-card hover:shadow-lg transition-shadow">
+              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                <CardTitle className="text-sm font-medium">FFL Database</CardTitle>
+                <Building2 className="h-4 w-4 text-muted-foreground" />
+              </CardHeader>
+              <CardContent>
+                <div className="text-2xl font-bold">FFL Lookup</div>
+                <p className="text-xs text-muted-foreground mb-4">
+                  Import ATF FFL database for quick lookups
+                </p>
+                <div className="space-y-2">
+                  <a 
+                    href="https://www.atf.gov/firearms/listing-federal-firearms-licensees"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block"
+                  >
                     <Button 
-                      variant="default" 
+                      variant="outline" 
                       size="sm" 
                       className="w-full"
-                      onClick={() => fileInputRef.current?.click()}
-                      disabled={isSyncing}
+                      type="button"
                     >
-                      <Upload className={`h-4 w-4 mr-2 ${isSyncing ? 'animate-spin' : ''}`} />
-                      {isSyncing ? 'Importing...' : 'Upload FFL File'}
+                      <RefreshCw className="h-4 w-4 mr-2" />
+                      Download from ATF Website
                     </Button>
-                    <input
-                      ref={fileInputRef}
-                      type="file"
-                      accept=".xlsx,.xls,.csv"
-                      onChange={handleFileSelect}
-                      className="hidden"
-                    />
-                    <p className="text-xs text-muted-foreground text-center">
-                      Password required • Max 50MB
-                    </p>
-                  </div>
-                </CardContent>
-              </Card>
-            )}
+                  </a>
+                  <Button 
+                    variant="default" 
+                    size="sm" 
+                    className="w-full"
+                    onClick={() => fileInputRef.current?.click()}
+                    disabled={isSyncing}
+                  >
+                    <Upload className={`h-4 w-4 mr-2 ${isSyncing ? 'animate-spin' : ''}`} />
+                    {isSyncing ? 'Importing...' : 'Upload FFL File'}
+                  </Button>
+                  <input
+                    ref={fileInputRef}
+                    type="file"
+                    accept=".xlsx,.xls,.csv"
+                    onChange={handleFileSelect}
+                    className="hidden"
+                  />
+                  <p className="text-xs text-muted-foreground text-center">
+                    Password required • Max 50MB
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
           </div>
-
-          {/* Quick Links */}
-          <Card className="landing-card">
-            <CardHeader>
-              <CardTitle>Quick Links</CardTitle>
-              <CardDescription>
-                Quick access to frequently used features
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <Button 
-                  variant="outline" 
-                  className="flex items-center justify-center gap-2"
-                  onClick={() => router.push('/')}
-                >
-                  <FileText className="h-4 w-4" />
-                  Special Orders
-                </Button>
-                <Button 
-                  variant="outline" 
-                  className="flex items-center justify-center gap-2"
-                  onClick={() => router.push('/')}
-                >
-                  <Users className="h-4 w-4" />
-                  Customers
-                </Button>
-                <Button 
-                  variant="outline" 
-                  className="flex items-center justify-center gap-2"
-                  onClick={() => router.push('/')}
-                >
-                  <Package className="h-4 w-4" />
-                  Transfers
-                </Button>
-                <Button 
-                  variant="outline" 
-                  className="flex items-center justify-center gap-2"
-                  onClick={() => router.push('/')}
-                >
-                  <FileText className="h-4 w-4" />
-                  Suppressors
-                </Button>
-              </div>
-            </CardContent>
-          </Card>
         </div>
       </main>
 

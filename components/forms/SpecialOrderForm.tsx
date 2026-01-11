@@ -712,6 +712,95 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
             padding-top: 2px;
             margin-bottom: 0;
           }
+          
+          /* Page 2 Styles - Company Info and Returns */
+          .page-two {
+            page-break-before: always;
+          }
+          
+          .company-info-copy {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          }
+          
+          .company-info-content {
+            width: 100%;
+            max-width: 6in;
+            text-align: center;
+            padding: 30px;
+          }
+          
+          .company-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #000;
+          }
+          
+          .company-logo {
+            max-width: 150px;
+            max-height: 80px;
+            object-fit: contain;
+          }
+          
+          .company-details {
+            text-align: left;
+          }
+          
+          .company-name {
+            font-size: 20px;
+            font-weight: bold;
+            text-decoration: underline;
+            margin-bottom: 5px;
+          }
+          
+          .company-address {
+            font-size: 16px;
+            line-height: 1.4;
+          }
+          
+          .company-phone {
+            font-size: 16px;
+            margin-top: 3px;
+          }
+          
+          .returns-section {
+            margin-top: 30px;
+            padding: 25px;
+            border: 2px solid #000;
+          }
+          
+          .returns-title {
+            font-size: 22px;
+            font-weight: bold;
+            text-decoration: underline;
+            margin-bottom: 20px;
+          }
+          
+          .returns-text {
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 15px;
+          }
+          
+          .returns-fee {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 0;
+          }
+          
+          .returns-fee em {
+            font-style: italic;
+            text-decoration: underline;
+          }
+          
+          .blank-half {
+            border-bottom: none;
+          }
         </style>
       </head>
       <body>
@@ -913,6 +1002,37 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
           </div>
           </div>
         </div>
+        </div>
+
+        <!-- Page 2: Company Info and Returns (Top Half for Customer) -->
+        <div class="page-container page-two">
+          <div class="print-copy company-info-copy">
+            <div class="company-info-content">
+              <div class="company-header">
+                <img src="${typeof window !== 'undefined' ? window.location.origin : ''}/company-logo.png" alt="Full Circle Reloading and Firearms" class="company-logo" onerror="this.style.display='none'" />
+                <div class="company-details">
+                  <div class="company-name">Full Circle Reloading and Firearms</div>
+                  <div class="company-address">923 South 5th Street</div>
+                  <div class="company-address">St. Charles, MO 63301</div>
+                  <div class="company-phone">636-946-7468</div>
+                </div>
+              </div>
+              
+              <div class="returns-section">
+                <div class="returns-title">RETURNS</div>
+                <p class="returns-text">
+                  If you are not satisfied with your purchase, please contact us within 15 business days of purchase.
+                </p>
+                <p class="returns-text returns-fee">
+                  All cancelled and returned items are subject to a 25% restocking fee <em>without exception</em>
+                </p>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Bottom half intentionally blank for cutting -->
+          <div class="print-copy blank-half">
+          </div>
         </div>
 
       </body>

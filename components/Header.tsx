@@ -2,7 +2,7 @@
 
 import { useAuth } from '@/hooks/useAuth'
 import { Button } from '@/components/ui/button'
-import { LogOut, User, Users } from 'lucide-react'
+import { LogOut, User, Settings } from 'lucide-react'
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -83,13 +83,11 @@ export function Header({ onTitleClick }: HeaderProps = {}) {
                   )}
                 </div>
                 <DropdownMenuSeparator />
-                {userRole === 'admin' && (
-                  <DropdownMenuItem onClick={() => router.push('/admin/users')} className="cursor-pointer">
-                    <Users className="mr-2 h-4 w-4" />
-                    <span>Manage Users</span>
-                  </DropdownMenuItem>
-                )}
-                {userRole === 'admin' && <DropdownMenuSeparator />}
+                <DropdownMenuItem onClick={() => router.push('/settings')} className="cursor-pointer">
+                  <Settings className="mr-2 h-4 w-4" />
+                  <span>Settings</span>
+                </DropdownMenuItem>
+                <DropdownMenuSeparator />
                 <DropdownMenuItem onClick={signOut} className="text-red-600 cursor-pointer">
                   <LogOut className="mr-2 h-4 w-4" />
                   <span>Log out</span>

@@ -10,7 +10,7 @@ import { supabase } from '@/lib/supabase'
 import { FileText, Users, ArrowRight, Package, Shield, List, Settings } from 'lucide-react'
 
 export default function LandingPage() {
-  const { user, loading } = useAuth()
+  const { user, loading, userRole } = useAuth()
   const router = useRouter()
   const [activeOrdersCount, setActiveOrdersCount] = useState(0)
 
@@ -37,7 +37,8 @@ export default function LandingPage() {
     }
   }, [user])
 
-  const formOptions = [
+  // Base form options available to all users
+  const baseFormOptions = [
     {
       title: 'Special Order Form',
       description: 'Create and manage special customer orders',
@@ -85,16 +86,20 @@ export default function LandingPage() {
       href: '/?tab=view-all',
       color: 'bg-green-500',
       hoverColor: 'hover:bg-green-600'
-    },
-    {
-      title: 'Settings',
-      description: 'Manage account settings and preferences',
-      icon: Settings,
-      href: '/settings',
-      color: 'bg-slate-500',
-      hoverColor: 'hover:bg-slate-600'
     }
   ]
+
+  // Add Settings card only for admin users
+  const formOptions = userRole === 'admin' 
+    ? [...baseFormOptions, {
+        title: 'Settings',
+        description: 'Manage account settings and preferences',
+        icon: Settings,
+        href: '/settings',
+        color: 'bg-slate-500',
+        hoverColor: 'hover:bg-slate-600'
+      }]
+    : baseFormOptions
 
   if (loading) {
     return (

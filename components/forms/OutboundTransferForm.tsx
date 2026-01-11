@@ -780,7 +780,7 @@ export function OutboundTransferForm({ initialData, onSuccess, onCancel }: Outbo
           <p class="ffl-instructions">To add your FFL: Save your FFL as an image file named "company-ffl.png" in the public folder of your project.</p>
         </div>
         <div class="ffl-image-container">
-          <img src="/company-ffl.png" alt="Company FFL" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+          <img src="${typeof window !== 'undefined' ? window.location.origin : ''}/company-ffl.png" alt="Company FFL" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
           <div class="ffl-placeholder">
             <p>FFL Image Not Found</p>
             <p class="small">Add your FFL image to: public/company-ffl.png</p>
