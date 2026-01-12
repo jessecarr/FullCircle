@@ -10,6 +10,7 @@ import { Input } from '@/components/ui/input'
 import { supabase } from '@/lib/supabase'
 import { useToast } from '@/components/ui/use-toast'
 import { Trash2, Search, RotateCcw, FileText, Package, Shield, ArrowLeft, Eye, ChevronLeft, ChevronRight } from 'lucide-react'
+import { PageNavigation } from '@/components/PageNavigation'
 import {
   AlertDialog,
   AlertDialogAction,
@@ -313,17 +314,7 @@ export default function ArchivePage() {
     <div className="min-h-screen bg-background">
       <Header />
       <main className="container mx-auto px-4 py-8">
-        {/* Back Button */}
-        <div className="mb-6">
-          <Button 
-            variant="outline" 
-            onClick={() => router.push('/landing')}
-            className="styled-button flex items-center gap-2"
-          >
-            <ArrowLeft className="h-4 w-4" />
-            Back to Dashboard
-          </Button>
-        </div>
+        <PageNavigation backButtonText="Back to Dashboard" />
 
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-foreground mb-2">Deleted Forms Archive</h1>

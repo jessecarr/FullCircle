@@ -18,6 +18,14 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from '@/components/ui/alert-dialog'
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogFooter,
+} from '@/components/ui/dialog'
+import { PageNavigation } from '@/components/PageNavigation'
 
 interface GrafsOrder {
   id: string
@@ -30,7 +38,9 @@ interface GrafsOrder {
   // Joined data from special_orders
   customer_name: string
   customer_phone: string
+  customer_email: string
   product_lines: any[]
+  order_status: string
   // Full special order data for viewing
   fullOrderData?: any
 }
@@ -47,6 +57,9 @@ export default function GrafsArrivingPage() {
   const [viewingOrder, setViewingOrder] = useState<GrafsOrder | null>(null)
   const [viewingOrderIndex, setViewingOrderIndex] = useState<number>(-1)
   const [bulkMarkDialogOpen, setBulkMarkDialogOpen] = useState(false)
+  const [emailPromptOpen, setEmailPromptOpen] = useState(false)
+  const [orderToEmail, setOrderToEmail] = useState<GrafsOrder | null>(null)
+  const [emailSending, setEmailSending] = useState(false)
 
   useEffect(() => {
     if (!loading && !user) {
@@ -78,25 +91,31 @@ export default function GrafsArrivingPage() {
         return
       }
 
-      // Get the special orders data (include all orders, not just non-deleted)
+      // Get the special orders data (exclude deleted orders)
       const specialOrderIds = [...new Set(trackingData.map(t => t.special_order_id))]
       const { data: specialOrders, error: ordersError } = await supabase
         .from('special_orders')
-        .select('id, customer_name, customer_phone, product_lines')
+        .select('id, customer_name, customer_phone, customer_email, product_lines, status')
         .in('id', specialOrderIds)
+        .is('deleted_at', null)
 
       if (ordersError) throw ordersError
 
-      // Merge the data
-      const mergedOrders = trackingData.map(tracking => {
-        const specialOrder = specialOrders?.find(so => so.id === tracking.special_order_id)
-        return {
-          ...tracking,
-          customer_name: specialOrder?.customer_name || 'Unknown',
-          customer_phone: specialOrder?.customer_phone || '',
-          product_lines: specialOrder?.product_lines || [],
-        }
-      })
+      // Merge the data - filter out tracking for deleted special orders
+      const mergedOrders = trackingData
+        .map(tracking => {
+          const specialOrder = specialOrders?.find(so => so.id === tracking.special_order_id)
+          if (!specialOrder) return null // Skip if special order was deleted
+          return {
+            ...tracking,
+            customer_name: specialOrder.customer_name || 'Unknown',
+            customer_phone: specialOrder.customer_phone || '',
+            customer_email: specialOrder.customer_email || '',
+            product_lines: specialOrder.product_lines || [],
+            order_status: specialOrder.status || 'pending',
+          }
+        })
+        .filter((order): order is NonNullable<typeof order> => order !== null)
 
       setOrders(mergedOrders)
     } catch (error) {
@@ -115,6 +134,7 @@ export default function GrafsArrivingPage() {
     if (!selectedOrder) return
 
     try {
+      // 1. Mark the tracking record as arrived
       const { error } = await supabase
         .from('grafs_order_tracking')
         .update({
@@ -126,10 +146,43 @@ export default function GrafsArrivingPage() {
 
       if (error) throw error
 
+      // 2. Update the product line item as completed in the special order
+      const updatedProductLines = [...selectedOrder.product_lines]
+      if (updatedProductLines[selectedOrder.product_line_index]) {
+        updatedProductLines[selectedOrder.product_line_index] = {
+          ...updatedProductLines[selectedOrder.product_line_index],
+          completed: true
+        }
+      }
+
+      // 3. Check if all items are now completed
+      const allItemsCompleted = updatedProductLines.every((line: any) => line.completed === true)
+
+      // 4. Update the special order with completed items and potentially update status
+      const updateData: any = { product_lines: updatedProductLines }
+      if (allItemsCompleted) {
+        updateData.status = 'completed'
+      }
+
+      const { error: updateError } = await supabase
+        .from('special_orders')
+        .update(updateData)
+        .eq('id', selectedOrder.special_order_id)
+
+      if (updateError) throw updateError
+
       toast({
         title: 'Marked as Arrived',
-        description: 'The order has been marked as arrived.',
+        description: allItemsCompleted 
+          ? 'All items arrived! Order marked as completed.'
+          : 'The item has been marked as arrived.',
       })
+
+      // 5. If all items completed and customer has email, prompt to send email
+      if (allItemsCompleted && selectedOrder.customer_email) {
+        setOrderToEmail(selectedOrder)
+        setEmailPromptOpen(true)
+      }
 
       setOrders(prev => prev.filter(o => o.id !== selectedOrder.id))
     } catch (error) {
@@ -142,6 +195,101 @@ export default function GrafsArrivingPage() {
     } finally {
       setMarkArrivedDialogOpen(false)
       setSelectedOrder(null)
+    }
+  }
+
+  const handleSendPickupEmail = async () => {
+    if (!orderToEmail) return
+
+    setEmailSending(true)
+    try {
+      // Fetch full order data for the email
+      const { data: fullOrder, error: fetchError } = await supabase
+        .from('special_orders')
+        .select('*')
+        .eq('id', orderToEmail.special_order_id)
+        .single()
+
+      if (fetchError) throw fetchError
+
+      const { sendFormEmail } = await import('@/lib/emailUtils')
+      
+      // Create custom email content for pickup notification
+      const pickupMessage = `
+        <!DOCTYPE html>
+        <html>
+        <head>
+          <style>
+            body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
+            .container { max-width: 600px; margin: 0 auto; padding: 20px; }
+            .header { background: #1e3a5f; color: white; padding: 20px; text-align: center; border-radius: 8px 8px 0 0; }
+            .content { background: #f9f9f9; padding: 20px; border: 1px solid #ddd; border-top: none; border-radius: 0 0 8px 8px; }
+            .highlight { background: #e8f4e8; padding: 15px; border-radius: 8px; margin: 15px 0; }
+            .footer { text-align: center; margin-top: 20px; font-size: 12px; color: #666; }
+          </style>
+        </head>
+        <body>
+          <div class="container">
+            <div class="header">
+              <h1>Full Circle Reloading</h1>
+            </div>
+            <div class="content">
+              <p>Dear ${orderToEmail.customer_name || 'Valued Customer'},</p>
+              <div class="highlight">
+                <p><strong>Great news!</strong> Your special order has arrived and is ready for pickup at your earliest convenience.</p>
+              </div>
+              <p><strong>Store Hours:</strong><br>
+              Tuesday - Saturday: 9am - 5pm</p>
+              <p><strong>Questions?</strong><br>
+              Give us a call at <strong>636-946-7468</strong></p>
+              <p>Thank you for your business!</p>
+              <p>Best regards,<br>Full Circle Reloading</p>
+            </div>
+            <div class="footer">
+              <p>This is an automated message. Please do not reply directly to this email.</p>
+            </div>
+          </div>
+        </body>
+        </html>
+      `
+
+      // Generate form image for attachment
+      const { generateFormImageBase64 } = await import('@/lib/printUtils')
+      const imageBase64 = await generateFormImageBase64(fullOrder, 'special_orders')
+
+      const response = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          to: orderToEmail.customer_email,
+          subject: 'Your Special Order is Ready for Pickup - Full Circle Reloading',
+          htmlContent: pickupMessage,
+          imageBase64,
+          imageFilename: `Special_Order_${fullOrder.id}.jpg`,
+        }),
+      })
+
+      const result = await response.json()
+
+      if (result.success) {
+        toast({
+          title: 'Email Sent',
+          description: `Pickup notification sent to ${orderToEmail.customer_email}`,
+        })
+      } else {
+        throw new Error(result.error || 'Failed to send email')
+      }
+    } catch (error) {
+      console.error('Error sending pickup email:', error)
+      toast({
+        title: 'Email Failed',
+        description: error instanceof Error ? error.message : 'Failed to send email',
+        variant: 'destructive',
+      })
+    } finally {
+      setEmailSending(false)
+      setEmailPromptOpen(false)
+      setOrderToEmail(null)
     }
   }
 
@@ -338,17 +486,7 @@ export default function GrafsArrivingPage() {
     <div className="min-h-screen bg-background">
       <Header />
       <main className="container mx-auto px-4 py-8">
-        {/* Back Button */}
-        <div className="mb-6">
-          <Button 
-            variant="outline" 
-            onClick={() => router.push('/landing')}
-            className="styled-button flex items-center gap-2"
-          >
-            <ArrowLeft className="h-4 w-4" />
-            Back to Dashboard
-          </Button>
-        </div>
+        <PageNavigation backButtonText="Back to Dashboard" />
 
         <div className="mb-8">
           <div className="flex items-center justify-between flex-wrap gap-4">
@@ -562,12 +700,12 @@ export default function GrafsArrivingPage() {
           </AlertDialogContent>
         </AlertDialog>
 
-        {/* Order Viewer Dialog */}
-        <AlertDialog open={!!viewingOrder} onOpenChange={(open) => !open && closeViewer()}>
-          <AlertDialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto bg-slate-900 border-slate-700">
-            <AlertDialogHeader>
+        {/* Order Viewer Dialog - uses Dialog component which closes on outside click */}
+        <Dialog open={!!viewingOrder} onOpenChange={(open) => !open && closeViewer()}>
+          <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto bg-slate-900 border-slate-700 text-white">
+            <DialogHeader>
               <div className="flex items-center justify-between">
-                <AlertDialogTitle>Order Details</AlertDialogTitle>
+                <DialogTitle>Order Details</DialogTitle>
                 <div className="flex items-center gap-2">
                   <Button
                     variant="outline"
@@ -592,7 +730,7 @@ export default function GrafsArrivingPage() {
                   </Button>
                 </div>
               </div>
-            </AlertDialogHeader>
+            </DialogHeader>
             
             {viewingOrder && (
               <div className="space-y-4 py-4">
@@ -683,8 +821,8 @@ export default function GrafsArrivingPage() {
               </div>
             )}
 
-            <AlertDialogFooter>
-              <AlertDialogCancel onClick={closeViewer}>Close</AlertDialogCancel>
+            <DialogFooter>
+              <Button variant="outline" onClick={closeViewer}>Close</Button>
               <Button 
                 className="bg-blue-600 hover:bg-blue-700 text-white"
                 onClick={() => {
@@ -696,6 +834,35 @@ export default function GrafsArrivingPage() {
                 }}
               >
                 Mark Arrived
+              </Button>
+            </DialogFooter>
+          </DialogContent>
+        </Dialog>
+
+        {/* Email Prompt Dialog */}
+        <AlertDialog open={emailPromptOpen} onOpenChange={setEmailPromptOpen}>
+          <AlertDialogContent>
+            <AlertDialogHeader>
+              <AlertDialogTitle>Send Pickup Notification?</AlertDialogTitle>
+              <AlertDialogDescription>
+                All items for this order have arrived. Would you like to send an email to{' '}
+                <strong>{orderToEmail?.customer_name}</strong> at{' '}
+                <strong>{orderToEmail?.customer_email}</strong> to notify them that their order is ready for pickup?
+              </AlertDialogDescription>
+            </AlertDialogHeader>
+            <AlertDialogFooter>
+              <AlertDialogCancel onClick={() => {
+                setEmailPromptOpen(false)
+                setOrderToEmail(null)
+              }}>
+                Skip
+              </AlertDialogCancel>
+              <Button 
+                onClick={handleSendPickupEmail}
+                disabled={emailSending}
+                className="bg-blue-600 hover:bg-blue-700 text-white"
+              >
+                {emailSending ? 'Sending...' : 'Send Email'}
               </Button>
             </AlertDialogFooter>
           </AlertDialogContent>

@@ -11,6 +11,7 @@ import { useAuth } from '@/hooks/useAuth'
 import { Header } from '@/components/Header'
 import { supabase } from '@/lib/supabase'
 import { Settings, Users, FileText, Package, ArrowRight, ArrowLeft, User, Shield, Database, RefreshCw, Upload, Building2, Lock, AlertTriangle, Truck, Archive } from 'lucide-react'
+import { PageNavigation } from '@/components/PageNavigation'
 
 export default function SettingsPage() {
   const { user, loading, userRole } = useAuth()
@@ -275,17 +276,7 @@ export default function SettingsPage() {
       {/* Main Content */}
       <main className="landing-page max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
         <div className="px-4 py-6 sm:px-0">
-          {/* Return Button */}
-          <div className="mb-4">
-            <Button 
-              variant="outline" 
-              onClick={() => router.push('/landing')}
-              className="styled-button flex items-center gap-2"
-            >
-              <ArrowLeft className="h-4 w-4" />
-              Return to Dashboard
-            </Button>
-          </div>
+          <PageNavigation backButtonText="Return to Dashboard" />
 
           {/* Welcome Section */}
           <div className="mb-8">

@@ -8,6 +8,7 @@ import { InboundTransferForm } from '@/components/forms/InboundTransferForm'
 import { SuppressorApprovalForm } from '@/components/forms/SuppressorApprovalForm'
 import { OutboundTransferForm } from '@/components/forms/OutboundTransferForm'
 import { ConsignmentForm } from '@/components/forms/ConsignmentForm'
+import { QuoteForm } from '@/components/forms/QuoteForm'
 import { FormsList } from '@/components/FormsList'
 import { FormViewDialog } from '@/components/FormViewDialog'
 import { Button } from '@/components/ui/button'
@@ -87,7 +88,8 @@ function HomeContent() {
         'inbound_transfers': 'inbound-transfer',
         'suppressor_approvals': 'suppressor-approval',
         'outbound_transfers': 'outbound-transfer',
-        'consignment_forms': 'consignment'
+        'consignment_forms': 'consignment',
+        'quotes': 'quote'
       }
       setActiveTab(tabMap[formType] || 'special-order')
     }
@@ -247,19 +249,77 @@ function HomeContent() {
           completed: completed
         }
       }
+
+      // Check completion status of all items
+      const completedCount = updatedProductLines.filter((line: any) => line.completed).length
+      const totalItems = updatedProductLines.length
+      const currentStatus = viewingItem.status
+      const previousStatus = viewingItem.previous_status
+
+      // Determine if status needs to change
+      let newStatus = currentStatus
+      let newPreviousStatus = previousStatus
+
+      if (completed && completedCount > 0 && completedCount < totalItems) {
+        // Some items completed but not all - set to partially_received
+        if (currentStatus !== 'partially_received' && currentStatus !== 'completed') {
+          newPreviousStatus = currentStatus
+          newStatus = 'partially_received'
+        }
+      } else if (!completed && completedCount === 0) {
+        // All items unchecked - revert to previous status if we were partially_received
+        if (currentStatus === 'partially_received' && previousStatus) {
+          newStatus = previousStatus
+          newPreviousStatus = null
+        }
+      } else if (completedCount === totalItems) {
+        // All items completed - could set to completed or received
+        // Keep as partially_received or let user manually change
+      }
+
+      // Build update object
+      const updateData: any = { product_lines: updatedProductLines }
+      if (newStatus !== currentStatus) {
+        updateData.status = newStatus
+      }
+      if (newPreviousStatus !== previousStatus) {
+        updateData.previous_status = newPreviousStatus
+      }
       
       // Update in database
       const { error } = await supabase
         .from('special_orders')
-        .update({ product_lines: updatedProductLines })
+        .update(updateData)
         .eq('id', viewingItem.id)
       
       if (error) throw error
+
+      // If item is being unmarked as complete, reset the grafs_order_tracking record
+      // so it reappears in the Grafs Arriving section
+      if (!completed) {
+        const productLine = updatedProductLines[itemIndex]
+        // Check if this is a Graf & Sons item
+        const vendorName = productLine?.vendor_name || productLine?.vendor || ''
+        if (vendorName.toLowerCase().includes('graf')) {
+          // Reset the tracking record for this item
+          await supabase
+            .from('grafs_order_tracking')
+            .update({
+              arrived: false,
+              arrived_at: null,
+              arrived_by: null
+            })
+            .eq('special_order_id', viewingItem.id)
+            .eq('product_line_index', itemIndex)
+        }
+      }
       
       // Update local state
       const updatedItem = {
         ...viewingItem,
-        product_lines: updatedProductLines
+        product_lines: updatedProductLines,
+        status: newStatus,
+        previous_status: newPreviousStatus
       }
       setViewingItem(updatedItem)
       
@@ -296,6 +356,8 @@ function HomeContent() {
         return 'Outbound Transfers'
       case 'consignment':
         return 'Consignments'
+      case 'quote':
+        return 'Quotes'
       default:
         return ''
     }
@@ -313,6 +375,8 @@ function HomeContent() {
         return 'outbound_transfers' as const
       case 'consignment':
         return 'consignment_forms' as const
+      case 'quote':
+        return 'quotes' as const
       default:
         return 'special_orders' as const
     }
@@ -391,6 +455,12 @@ function HomeContent() {
                   >
                     Consignment
                   </DropdownMenuItem>
+                  <DropdownMenuItem 
+                    onClick={() => handleFormSelect('quote')}
+                    className="cursor-pointer"
+                  >
+                    Quote
+                  </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
               {viewMode === 'form' && (
@@ -459,6 +529,13 @@ function HomeContent() {
 
               <TabsContent value="consignment">
                 <ConsignmentForm
+                  initialData={editingItem}
+                  onSuccess={handleFormSuccess}
+                />
+              </TabsContent>
+
+              <TabsContent value="quote">
+                <QuoteForm
                   initialData={editingItem}
                   onSuccess={handleFormSuccess}
                 />

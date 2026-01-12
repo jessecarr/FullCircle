@@ -48,6 +48,7 @@ const navItems: NavItem[] = [
   { title: 'Inbound Transfer', href: '/?tab=inbound-transfer', icon: Package },
   { title: 'Suppressor Approval', href: '/?tab=suppressor-approval', icon: Shield },
   { title: 'Consignment', href: '/?tab=consignment', icon: FileText },
+  { title: 'Quote', href: '/?tab=quote', icon: FileText },
   { title: 'Outbound Transfer', href: '/?tab=outbound-transfer', icon: Package, separator: true },
   
   // Graf & Sons
