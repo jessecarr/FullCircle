@@ -8,7 +8,7 @@ import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { supabase, type SpecialOrderForm as SpecialOrderFormType } from '@/lib/supabase'
+import { supabase } from '@/lib/supabase'
 import { useToast } from '@/components/ui/use-toast'
 import CustomerSearch from '../CustomerSearch'
 import VendorSearch from '../VendorSearch'
@@ -17,8 +17,8 @@ import { Printer, Search } from 'lucide-react'
 import { PrintSubmitDialog } from '@/components/ui/print-submit-dialog'
 import { COMPANY_LOGO_BASE64 } from '@/lib/imageConstants'
 
-interface SpecialOrderFormProps {
-  initialData?: SpecialOrderFormType
+interface QuoteFormProps {
+  initialData?: any
   onSuccess?: () => void
   onCancel?: () => void
 }
@@ -33,7 +33,7 @@ interface ProductLine {
   completed: boolean
 }
 
-export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOrderFormProps) {
+export function QuoteForm({ initialData, onSuccess, onCancel }: QuoteFormProps) {
   const { toast } = useToast()
   const [loading, setLoading] = useState(false)
   const [emailLoading, setEmailLoading] = useState(false)
@@ -411,7 +411,7 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
 
         try {
           const { data, error } = await supabase
-            .from('special_orders')
+            .from('quotes')
             .update({
               customer_name: formData.customer_name,
               customer_email: formData.customer_email,
@@ -466,7 +466,7 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
       } else {
         // Create new order
         const { data: newOrder, error } = await supabase
-          .from('special_orders')
+          .from('quotes')
           .insert([{
             customer_name: formData.customer_name,
             customer_email: formData.customer_email,
@@ -596,7 +596,7 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
       <!DOCTYPE html>
       <html>
       <head>
-        <title>Special Order Form</title>
+        <title>Quote Form</title>
         <style>
           @page {
             size: letter portrait;
@@ -858,7 +858,7 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
             })}
           </div>
           <div class="print-header">
-            <div class="print-title">Special Order Form</div>
+            <div class="print-title">Quote Form</div>
           </div>
 
           <div class="info-row">
@@ -957,7 +957,7 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
             })}
           </div>
           <div class="print-header">
-            <div class="print-title">Special Order Form</div>
+            <div class="print-title">Quote Form</div>
           </div>
 
           <div class="info-row">
@@ -1149,7 +1149,7 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
       const result = await sendFormEmail({
         customerEmail: formData.customer_email,
         customerName: formData.customer_name || 'Customer',
-        formType: 'special_orders',
+        formType: 'quotes',
         formData: formDataForEmail,
       });
 
@@ -1180,7 +1180,7 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
     <>
       <Card>
         <CardHeader className="text-center">
-          <CardTitle className="font-bold underline text-6xl">Special Order Form</CardTitle>
+          <CardTitle className="font-bold underline text-6xl">Quote Form</CardTitle>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-6">

@@ -47,7 +47,7 @@ const FORM_TYPE_LABELS: Record<FormType, string> = {
   consignment_forms: 'Consignment',
 }
 
-const ALL_STATUSES = ['pending', 'ordered', 'received', 'completed', 'cancelled', 'shipped', 'delivered', 'active', 'sold', 'returned']
+const ALL_STATUSES = ['backorder', 'cancelled', 'completed', 'layaway', 'ordered', 'partially_received', 'pending', 'quote', 'received']
 
 export function FormsList({ tableName, title, onEdit, onView, refreshTrigger, onItemsChange }: FormsListProps) {
   const [items, setItems] = useState<any[]>([])
@@ -59,6 +59,7 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger, on
   const [selectedStatuses, setSelectedStatuses] = useState<string[]>(['pending', 'ordered', 'received'])
   const [selectedVendors, setSelectedVendors] = useState<string[]>([])
   const [availableVendors, setAvailableVendors] = useState<string[]>([])
+  const [vendorSearchQuery, setVendorSearchQuery] = useState('')
   const [searchQuery, setSearchQuery] = useState('')
   const [activeSearchQuery, setActiveSearchQuery] = useState('')
   const [statusUpdateItem, setStatusUpdateItem] = useState<any>(null)
@@ -72,6 +73,12 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger, on
   const [emailItem, setEmailItem] = useState<any>(null)
   const [showEmailDialog, setShowEmailDialog] = useState(false)
   const [emailLoading, setEmailLoading] = useState(false)
+  const [selectedItems, setSelectedItems] = useState<Set<string>>(new Set())
+  const [showBulkStatusDialog, setShowBulkStatusDialog] = useState(false)
+  const [bulkNewStatus, setBulkNewStatus] = useState('')
+  const [showBulkDeleteDialog, setShowBulkDeleteDialog] = useState(false)
+  const [bulkDeleteConfirmation, setBulkDeleteConfirmation] = useState('')
+  const [bulkActionLoading, setBulkActionLoading] = useState(false)
   const sortRef = useRef<HTMLDivElement>(null)
   const { toast } = useToast()
   const printRef = useRef<HTMLDivElement>(null)
@@ -352,6 +359,224 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger, on
     }
   }
 
+  // Bulk selection helpers
+  const getItemKey = (item: any) => `${item._formType}-${item.id}`
+  
+  const toggleItemSelection = (item: any) => {
+    const key = getItemKey(item)
+    setSelectedItems(prev => {
+      const newSet = new Set(prev)
+      if (newSet.has(key)) {
+        newSet.delete(key)
+      } else {
+        newSet.add(key)
+      }
+      return newSet
+    })
+  }
+
+  const toggleSelectAll = () => {
+    if (selectedItems.size === items.length) {
+      setSelectedItems(new Set())
+    } else {
+      setSelectedItems(new Set(items.map(getItemKey)))
+    }
+  }
+
+  const getSelectedItemObjects = () => {
+    return items.filter(item => selectedItems.has(getItemKey(item)))
+  }
+
+  // Bulk actions
+  const handleBulkStatusUpdate = async () => {
+    if (!bulkNewStatus || selectedItems.size === 0) return
+    
+    setBulkActionLoading(true)
+    try {
+      const selectedObjects = getSelectedItemObjects()
+      
+      // Group by form type for batch updates
+      const byFormType: Record<string, string[]> = {}
+      selectedObjects.forEach(item => {
+        if (!byFormType[item._formType]) {
+          byFormType[item._formType] = []
+        }
+        byFormType[item._formType].push(item.id)
+      })
+      
+      // Update each form type
+      for (const [formType, ids] of Object.entries(byFormType)) {
+        const { error } = await supabase
+          .from(formType)
+          .update({ status: bulkNewStatus })
+          .in('id', ids)
+        
+        if (error) throw error
+      }
+      
+      toast({
+        title: 'Success',
+        description: `Updated status to "${bulkNewStatus}" for ${selectedItems.size} item(s)`,
+      })
+      
+      setSelectedItems(new Set())
+      setShowBulkStatusDialog(false)
+      setBulkNewStatus('')
+      fetchAllItems()
+    } catch (error) {
+      toast({
+        title: 'Error',
+        description: 'Failed to update status',
+        variant: 'destructive',
+      })
+    } finally {
+      setBulkActionLoading(false)
+    }
+  }
+
+  const handleBulkDelete = async () => {
+    if (bulkDeleteConfirmation.toLowerCase() !== 'delete' || selectedItems.size === 0) return
+    
+    setBulkActionLoading(true)
+    try {
+      const selectedObjects = getSelectedItemObjects()
+      const userId = (await supabase.auth.getUser()).data.user?.id
+      
+      // Group by form type for batch updates
+      const byFormType: Record<string, string[]> = {}
+      selectedObjects.forEach(item => {
+        if (!byFormType[item._formType]) {
+          byFormType[item._formType] = []
+        }
+        byFormType[item._formType].push(item.id)
+      })
+      
+      // Soft delete each form type
+      for (const [formType, ids] of Object.entries(byFormType)) {
+        const { error } = await supabase
+          .from(formType)
+          .update({
+            deleted_at: new Date().toISOString(),
+            deleted_by: userId
+          })
+          .in('id', ids)
+        
+        if (error) throw error
+      }
+      
+      toast({
+        title: 'Success',
+        description: `Moved ${selectedItems.size} item(s) to archive`,
+      })
+      
+      setSelectedItems(new Set())
+      setShowBulkDeleteDialog(false)
+      setBulkDeleteConfirmation('')
+      fetchAllItems()
+    } catch (error) {
+      toast({
+        title: 'Error',
+        description: 'Failed to delete items',
+        variant: 'destructive',
+      })
+    } finally {
+      setBulkActionLoading(false)
+    }
+  }
+
+  const handleBulkPrint = async () => {
+    const selectedObjects = getSelectedItemObjects()
+    if (selectedObjects.length === 0) return
+    
+    const { printForm } = await import('@/lib/printUtils')
+    
+    // Print each item with a small delay
+    for (let i = 0; i < selectedObjects.length; i++) {
+      const item = selectedObjects[i]
+      setTimeout(() => {
+        printForm(item, item._formType)
+      }, i * 500) // 500ms delay between prints
+    }
+    
+    toast({
+      title: 'Printing',
+      description: `Printing ${selectedObjects.length} form(s)...`,
+    })
+  }
+
+  const handleBulkDownload = async () => {
+    const selectedObjects = getSelectedItemObjects()
+    if (selectedObjects.length === 0) return
+    
+    const { downloadFormPDF } = await import('@/lib/printUtils')
+    
+    toast({
+      title: 'Downloading',
+      description: `Generating ${selectedObjects.length} PDF(s)...`,
+    })
+    
+    // Download each item with a small delay
+    for (let i = 0; i < selectedObjects.length; i++) {
+      const item = selectedObjects[i]
+      setTimeout(() => {
+        downloadFormPDF(item, item._formType)
+      }, i * 300) // 300ms delay between downloads
+    }
+  }
+
+  const handleBulkEmail = async () => {
+    const selectedObjects = getSelectedItemObjects()
+    const itemsWithEmail = selectedObjects.filter(item => item.customer_email)
+    
+    if (itemsWithEmail.length === 0) {
+      toast({
+        title: 'No Emails',
+        description: 'None of the selected items have customer email addresses.',
+        variant: 'destructive',
+      })
+      return
+    }
+    
+    setBulkActionLoading(true)
+    const { sendFormEmail } = await import('@/lib/emailUtils')
+    
+    let successCount = 0
+    let failCount = 0
+    
+    for (const item of itemsWithEmail) {
+      try {
+        const result = await sendFormEmail({
+          customerEmail: item.customer_email,
+          customerName: item.customer_name || 'Customer',
+          formType: item._formType,
+          formData: item,
+        })
+        if (result.success) {
+          successCount++
+        } else {
+          failCount++
+        }
+      } catch {
+        failCount++
+      }
+    }
+    
+    setBulkActionLoading(false)
+    
+    if (successCount > 0) {
+      toast({
+        title: 'Emails Sent',
+        description: `Successfully sent ${successCount} email(s)${failCount > 0 ? `, ${failCount} failed` : ''}`,
+      })
+    } else {
+      toast({
+        title: 'Email Failed',
+        description: 'Failed to send emails',
+        variant: 'destructive',
+      })
+    }
+  }
+
   const openStatusDialog = (item: any) => {
     setStatusUpdateItem(item)
     setNewStatus(item.status)
@@ -474,14 +699,13 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger, on
     switch (status?.toLowerCase()) {
       case 'pending': return 'bg-yellow-100 text-yellow-800'
       case 'ordered': return 'bg-blue-100 text-blue-800'
+      case 'backorder': return 'bg-orange-100 text-orange-800'
+      case 'layaway': return 'bg-purple-100 text-purple-800'
+      case 'quote': return 'bg-indigo-100 text-indigo-800'
+      case 'partially_received': return 'bg-teal-100 text-teal-800'
       case 'received': return 'bg-green-100 text-green-800'
       case 'completed': return 'bg-gray-100 text-gray-800'
       case 'cancelled': return 'bg-red-100 text-red-800'
-      case 'shipped': return 'bg-purple-100 text-purple-800'
-      case 'delivered': return 'bg-teal-100 text-teal-800'
-      case 'active': return 'bg-emerald-100 text-emerald-800'
-      case 'sold': return 'bg-indigo-100 text-indigo-800'
-      case 'returned': return 'bg-orange-100 text-orange-800'
       default: return 'bg-gray-100 text-gray-800'
     }
   }
@@ -640,7 +864,10 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger, on
               <Label className="text-lg block">Vendor Filter</Label>
               <Button
                 variant="outline"
-                onClick={() => setShowVendorDropdown(!showVendorDropdown)}
+                onClick={() => {
+                  setShowVendorDropdown(!showVendorDropdown)
+                  if (!showVendorDropdown) setVendorSearchQuery('')
+                }}
                 className="styled-button w-[200px] justify-between"
               >
                 <span>
@@ -653,25 +880,47 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger, on
                 <ChevronDown className="h-4 w-4" />
               </Button>
               {showVendorDropdown && (
-                <div className="absolute top-full mt-1 w-[200px] bg-[rgba(17,24,39,0.95)] border border-[rgba(59,130,246,0.3)] rounded-md shadow-lg z-50 p-2 max-h-[300px] overflow-y-auto backdrop-blur-[10px]">
-                  {availableVendors.length === 0 ? (
-                    <p className="text-sm text-muted-foreground p-2">No vendors found</p>
-                  ) : (
-                    availableVendors.map(vendor => (
-                      <label
-                        key={vendor}
-                        className="flex items-center gap-2 p-2 hover:bg-[rgba(59,130,246,0.2)] cursor-pointer rounded text-white"
-                      >
-                        <input
-                          type="checkbox"
-                          checked={selectedVendors.includes(vendor)}
-                          onChange={() => toggleVendor(vendor)}
-                          className="w-4 h-4"
-                        />
-                        <span>{vendor}</span>
-                      </label>
-                    ))
-                  )}
+                <div className="absolute top-full mt-1 w-[250px] bg-[rgba(17,24,39,0.95)] border border-[rgba(59,130,246,0.3)] rounded-md shadow-lg z-50 backdrop-blur-[10px]">
+                  <div className="p-2 border-b border-[rgba(59,130,246,0.2)]">
+                    <Input
+                      type="text"
+                      placeholder="Search vendors..."
+                      value={vendorSearchQuery}
+                      onChange={(e) => setVendorSearchQuery(e.target.value)}
+                      className="w-full h-8 text-sm"
+                      autoFocus
+                    />
+                  </div>
+                  <div className="p-2 max-h-[250px] overflow-y-auto">
+                    {availableVendors.length === 0 ? (
+                      <p className="text-sm text-muted-foreground p-2">No vendors found</p>
+                    ) : (
+                      availableVendors
+                        .filter(vendor => 
+                          vendorSearchQuery === '' || 
+                          vendor.toLowerCase().includes(vendorSearchQuery.toLowerCase())
+                        )
+                        .map(vendor => (
+                          <label
+                            key={vendor}
+                            className="flex items-center gap-2 p-2 hover:bg-[rgba(59,130,246,0.2)] cursor-pointer rounded text-white"
+                          >
+                            <input
+                              type="checkbox"
+                              checked={selectedVendors.includes(vendor)}
+                              onChange={() => toggleVendor(vendor)}
+                              className="w-4 h-4"
+                            />
+                            <span>{vendor}</span>
+                          </label>
+                        ))
+                    )}
+                    {availableVendors.length > 0 && 
+                     vendorSearchQuery !== '' && 
+                     availableVendors.filter(v => v.toLowerCase().includes(vendorSearchQuery.toLowerCase())).length === 0 && (
+                      <p className="text-sm text-muted-foreground p-2">No matching vendors</p>
+                    )}
+                  </div>
                 </div>
               )}
             </div>
@@ -735,10 +984,81 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger, on
         </CardContent>
       </Card>
 
-      {/* Results Count */}
-      <p className="text-base text-muted-foreground">
-        Showing {items.length} form{items.length !== 1 ? 's' : ''}
-      </p>
+      {/* Results Count & Bulk Actions */}
+      <div className="flex items-center justify-between">
+        <p className="text-base text-muted-foreground">
+          Showing {items.length} form{items.length !== 1 ? 's' : ''}
+          {selectedItems.size > 0 && ` (${selectedItems.size} selected)`}
+        </p>
+        {items.length > 0 && (
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={toggleSelectAll}
+            className="styled-button"
+          >
+            {selectedItems.size === items.length ? 'Deselect All' : 'Select All'}
+          </Button>
+        )}
+      </div>
+
+      {/* Bulk Actions Bar */}
+      {selectedItems.size > 0 && (
+        <Card className="border-primary/50 bg-primary/5">
+          <CardContent className="p-4">
+            <div className="flex items-center justify-between">
+              <span className="text-sm font-medium">{selectedItems.size} item{selectedItems.size !== 1 ? 's' : ''} selected</span>
+              <div className="flex gap-2 flex-wrap">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => setShowBulkStatusDialog(true)}
+                  className="styled-button"
+                >
+                  <RefreshCw className="h-4 w-4 mr-2" />
+                  Update Status
+                </Button>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={handleBulkPrint}
+                  className="styled-button"
+                >
+                  <Printer className="h-4 w-4 mr-2" />
+                  Print
+                </Button>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={handleBulkEmail}
+                  disabled={bulkActionLoading}
+                  className="styled-button"
+                >
+                  <Mail className="h-4 w-4 mr-2" />
+                  Email
+                </Button>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={handleBulkDownload}
+                  className="styled-button"
+                >
+                  <Download className="h-4 w-4 mr-2" />
+                  Download
+                </Button>
+                <Button
+                  variant="destructive"
+                  size="sm"
+                  onClick={() => setShowBulkDeleteDialog(true)}
+                >
+                  <Trash2 className="h-4 w-4 mr-2" />
+                  Delete
+                </Button>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      )}
 
       {/* Items List */}
       {items.length === 0 ? (
@@ -751,13 +1071,24 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger, on
         sortItems(items).map((item) => (
           <Card 
             key={`${item._formType}-${item.id}`} 
-            className="view-all-form-card cursor-pointer hover:shadow-lg transition-shadow"
+            className={`view-all-form-card cursor-pointer hover:shadow-lg transition-shadow ${selectedItems.has(getItemKey(item)) ? 'ring-2 ring-primary' : ''}`}
             onClick={() => onView && onView(item, item._formType)}
           >
             <CardHeader>
               <div className="flex items-center justify-between">
-                <div className="space-y-2 flex-1">
-                  <CardTitle className="text-2xl">{getCustomerName(item)}</CardTitle>
+                <div className="flex items-start gap-3 flex-1">
+                  <input
+                    type="checkbox"
+                    checked={selectedItems.has(getItemKey(item))}
+                    onChange={(e) => {
+                      e.stopPropagation()
+                      toggleItemSelection(item)
+                    }}
+                    onClick={(e) => e.stopPropagation()}
+                    className="h-5 w-5 mt-1 rounded border-gray-300 text-primary focus:ring-primary cursor-pointer"
+                  />
+                  <div className="space-y-2 flex-1">
+                    <CardTitle className="text-2xl">{getCustomerName(item)}</CardTitle>
                   <div className="flex flex-wrap gap-4 text-base text-muted-foreground">
                     <span><strong>Form Type:</strong> {FORM_TYPE_LABELS[item._formType as FormType]}</span>
                     <span><strong>Created:</strong> {formatDate(item.created_at)}</span>
@@ -767,6 +1098,7 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger, on
                     {getVendors(item).length > 0 && (
                       <span><strong>Vendor{getVendors(item).length > 1 ? 's' : ''}:</strong> {getVendors(item).join(', ')}</span>
                     )}
+                    </div>
                   </div>
                 </div>
                 <div className="flex gap-2 flex-wrap justify-end" onClick={(e) => e.stopPropagation()}>
@@ -1012,6 +1344,126 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger, on
         onConfirm={handleEmailConfirm}
         loading={emailLoading}
       />
+
+      {/* Bulk Status Update Dialog */}
+      <AlertDialog open={showBulkStatusDialog} onOpenChange={setShowBulkStatusDialog}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Update Status for {selectedItems.size} Item{selectedItems.size !== 1 ? 's' : ''}</AlertDialogTitle>
+            <AlertDialogDescription>
+              Select a new status for the selected items.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <div className="py-4">
+            <Select value={bulkNewStatus} onValueChange={setBulkNewStatus}>
+              <SelectTrigger className="w-full">
+                <SelectValue placeholder="Select status" />
+              </SelectTrigger>
+              <SelectContent>
+                {ALL_STATUSES.map(status => (
+                  <SelectItem key={status} value={status} className="capitalize">
+                    {status.charAt(0).toUpperCase() + status.slice(1)}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+          <AlertDialogFooter>
+            <AlertDialogCancel onClick={() => {
+              setShowBulkStatusDialog(false)
+              setBulkNewStatus('')
+            }}>Cancel</AlertDialogCancel>
+            <Button 
+              onClick={handleBulkStatusUpdate}
+              disabled={!bulkNewStatus || bulkActionLoading}
+              style={{
+                backgroundColor: '#1e40af',
+                borderColor: '#1e40af',
+                color: 'white'
+              }}
+            >
+              {bulkActionLoading ? 'Updating...' : 'Update All'}
+            </Button>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
+
+      {/* Bulk Delete Confirmation Dialog */}
+      <AlertDialog open={showBulkDeleteDialog} onOpenChange={(open) => {
+        setShowBulkDeleteDialog(open)
+        if (!open) setBulkDeleteConfirmation('')
+      }}>
+        <AlertDialogContent style={{
+          backgroundColor: 'rgba(17, 24, 39, 0.98)',
+          border: '2px solid rgba(59, 130, 246, 0.3)',
+          boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.8)',
+          backdropFilter: 'blur(10px)'
+        }}>
+          <AlertDialogHeader>
+            <AlertDialogTitle style={{ color: '#ffffff' }}>Delete {selectedItems.size} Item{selectedItems.size !== 1 ? 's' : ''}?</AlertDialogTitle>
+            <AlertDialogDescription style={{ color: '#9ca3af' }}>
+              Are you sure you want to delete the selected items? This will move them to the archive.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <div className="py-4">
+            <div className="space-y-2">
+              <label htmlFor="bulk-delete-confirmation" style={{ color: '#e5e7eb', fontSize: '14px', fontWeight: '500' }}>
+                Type <span style={{ color: '#ef4444', fontWeight: 'bold' }}>"delete"</span> to confirm:
+              </label>
+              <Input
+                id="bulk-delete-confirmation"
+                value={bulkDeleteConfirmation}
+                onChange={(e) => setBulkDeleteConfirmation(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' && bulkDeleteConfirmation.toLowerCase() === 'delete') {
+                    handleBulkDelete()
+                  }
+                }}
+                placeholder="Type delete to confirm"
+                style={{
+                  backgroundColor: 'rgba(31, 41, 55, 0.8)',
+                  border: '1px solid rgba(59, 130, 246, 0.3)',
+                  color: '#ffffff'
+                }}
+                className="placeholder:text-gray-400"
+                autoFocus
+              />
+            </div>
+          </div>
+          <AlertDialogFooter>
+            <AlertDialogCancel 
+              onClick={() => {
+                setShowBulkDeleteDialog(false)
+                setBulkDeleteConfirmation('')
+              }}
+              style={{
+                backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                border: '1px solid rgba(59, 130, 246, 0.3)',
+                color: '#ffffff'
+              }}
+            >
+              Cancel
+            </AlertDialogCancel>
+            <AlertDialogAction 
+              onClick={handleBulkDelete}
+              disabled={bulkDeleteConfirmation.toLowerCase() !== 'delete' || bulkActionLoading}
+              style={{
+                backgroundColor: bulkDeleteConfirmation.toLowerCase() === 'delete' 
+                  ? 'rgba(220, 38, 38, 0.8)' 
+                  : 'rgba(107, 114, 128, 0.5)',
+                border: bulkDeleteConfirmation.toLowerCase() === 'delete'
+                  ? '1px solid rgba(220, 38, 38, 0.5)'
+                  : '1px solid rgba(107, 114, 128, 0.3)',
+                color: '#ffffff',
+                cursor: bulkDeleteConfirmation.toLowerCase() === 'delete' ? 'pointer' : 'not-allowed',
+                opacity: bulkDeleteConfirmation.toLowerCase() === 'delete' ? 1 : 0.6
+              }}
+            >
+              {bulkActionLoading ? 'Deleting...' : `Delete ${selectedItems.size} Item${selectedItems.size !== 1 ? 's' : ''}`}
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </div>
   )
 }

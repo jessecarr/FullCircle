@@ -8,7 +8,7 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { supabase } from '@/lib/supabase'
 import { useToast } from '@/components/ui/use-toast'
-import { Calendar, Plus, Trash2, Truck, ArrowLeft } from 'lucide-react'
+import { Calendar as CalendarIcon, Plus, Trash2, Truck, ArrowLeft, X, Pencil, Check } from 'lucide-react'
 import {
   AlertDialog,
   AlertDialogCancel,
@@ -18,6 +18,15 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from '@/components/ui/alert-dialog'
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogFooter,
+} from '@/components/ui/dialog'
+import { Calendar } from '@/components/ui/calendar'
+import { PageNavigation } from '@/components/PageNavigation'
 
 interface DeliveryDate {
   id: string
@@ -32,9 +41,14 @@ export default function GrafsSchedulePage() {
   const { toast } = useToast()
   const [deliveryDates, setDeliveryDates] = useState<DeliveryDate[]>([])
   const [isLoading, setIsLoading] = useState(true)
-  const [selectedDate, setSelectedDate] = useState<string>('')
+  const [calendarDialogOpen, setCalendarDialogOpen] = useState(false)
+  const [selectedCalendarDates, setSelectedCalendarDates] = useState<Date[]>([])
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false)
   const [dateToDelete, setDateToDelete] = useState<DeliveryDate | null>(null)
+  const [selectedDateIds, setSelectedDateIds] = useState<Set<string>>(new Set())
+  const [bulkDeleteDialogOpen, setBulkDeleteDialogOpen] = useState(false)
+  const [editingDateId, setEditingDateId] = useState<string | null>(null)
+  const [editingDateValue, setEditingDateValue] = useState<string>('')
 
   useEffect(() => {
     if (!loading && !user) {
@@ -81,40 +95,36 @@ export default function GrafsSchedulePage() {
     }
   }
 
-  const handleAddDate = async () => {
-    if (!selectedDate) {
+  const handleAddDates = async () => {
+    if (selectedCalendarDates.length === 0) {
       toast({
         title: 'Error',
-        description: 'Please select a date',
+        description: 'Please select at least one date',
         variant: 'destructive',
       })
       return
     }
 
     try {
-      // Parse the date and format as YYYY-MM-DD to avoid timezone issues
-      // The input date is already in YYYY-MM-DD format from the date picker
-      const dateToSave = selectedDate; // Already in correct format
+      const insertData = selectedCalendarDates.map(date => ({
+        delivery_date: date.toISOString().split('T')[0],
+        created_by: user?.id,
+      }))
       
       const { data, error } = await supabase
         .from('grafs_delivery_schedule')
-        .insert({
-          delivery_date: dateToSave,
-          created_by: user?.id,
-        })
+        .insert(insertData)
         .select()
-        .single()
 
       if (error) {
         if (error.code === '23505') {
           toast({
             title: 'Error',
-            description: 'This date is already scheduled',
+            description: 'One or more dates are already scheduled',
             variant: 'destructive',
           })
           return
         }
-        // Table doesn't exist - migration not run
         if (error.code === '42P01' || error.message?.includes('does not exist')) {
           toast({
             title: 'Migration Required',
@@ -128,18 +138,123 @@ export default function GrafsSchedulePage() {
 
       toast({
         title: 'Success',
-        description: 'Delivery date added',
+        description: `${data.length} delivery date${data.length > 1 ? 's' : ''} added`,
       })
 
-      setDeliveryDates(prev => [...prev, data].sort((a, b) => 
+      setDeliveryDates(prev => [...prev, ...data].sort((a, b) => 
         new Date(a.delivery_date).getTime() - new Date(b.delivery_date).getTime()
       ))
-      setSelectedDate('')
+      setSelectedCalendarDates([])
+      setCalendarDialogOpen(false)
     } catch (error) {
-      console.error('Error adding delivery date:', error)
+      console.error('Error adding delivery dates:', error)
       toast({
         title: 'Error',
-        description: 'Failed to add delivery date',
+        description: 'Failed to add delivery dates',
+        variant: 'destructive',
+      })
+    }
+  }
+
+  const toggleDateSelection = (id: string) => {
+    setSelectedDateIds(prev => {
+      const newSet = new Set(prev)
+      if (newSet.has(id)) {
+        newSet.delete(id)
+      } else {
+        newSet.add(id)
+      }
+      return newSet
+    })
+  }
+
+  const toggleSelectAll = () => {
+    if (selectedDateIds.size === deliveryDates.length) {
+      setSelectedDateIds(new Set())
+    } else {
+      setSelectedDateIds(new Set(deliveryDates.map(d => d.id)))
+    }
+  }
+
+  const handleBulkDelete = async () => {
+    if (selectedDateIds.size === 0) return
+
+    try {
+      const { error } = await supabase
+        .from('grafs_delivery_schedule')
+        .delete()
+        .in('id', Array.from(selectedDateIds))
+
+      if (error) throw error
+
+      toast({
+        title: 'Deleted',
+        description: `${selectedDateIds.size} delivery date${selectedDateIds.size > 1 ? 's' : ''} removed`,
+      })
+
+      setDeliveryDates(prev => prev.filter(d => !selectedDateIds.has(d.id)))
+      setSelectedDateIds(new Set())
+    } catch (error) {
+      console.error('Error deleting delivery dates:', error)
+      toast({
+        title: 'Error',
+        description: 'Failed to delete delivery dates',
+        variant: 'destructive',
+      })
+    } finally {
+      setBulkDeleteDialogOpen(false)
+    }
+  }
+
+  const startEditing = (date: DeliveryDate) => {
+    setEditingDateId(date.id)
+    setEditingDateValue(date.delivery_date)
+  }
+
+  const cancelEditing = () => {
+    setEditingDateId(null)
+    setEditingDateValue('')
+  }
+
+  const saveEditedDate = async () => {
+    if (!editingDateId || !editingDateValue) return
+
+    try {
+      const { data, error } = await supabase
+        .from('grafs_delivery_schedule')
+        .update({ delivery_date: editingDateValue })
+        .eq('id', editingDateId)
+        .select()
+        .single()
+
+      if (error) {
+        if (error.code === '23505') {
+          toast({
+            title: 'Error',
+            description: 'This date is already scheduled',
+            variant: 'destructive',
+          })
+          return
+        }
+        throw error
+      }
+
+      toast({
+        title: 'Success',
+        description: 'Delivery date updated',
+      })
+
+      setDeliveryDates(prev => 
+        prev.map(d => d.id === editingDateId ? data : d)
+          .sort((a, b) => new Date(a.delivery_date).getTime() - new Date(b.delivery_date).getTime())
+      )
+      setEditingDateId(null)
+      setEditingDateValue('')
+    } catch (error) {
+      console.error('Error updating delivery date:', error)
+      toast({
+        title: 'Error',
+        description: 'Failed to update delivery date',
         variant: 'destructive',
       })
     }
@@ -204,17 +319,7 @@ export default function GrafsSchedulePage() {
     <div className="min-h-screen bg-background">
       <Header />
       <main className="container mx-auto px-4 py-8">
-        {/* Back Button */}
-        <div className="mb-6">
-          <Button 
-            variant="outline" 
-            onClick={() => router.push('/landing')}
-            className="styled-button flex items-center gap-2"
-          >
-            <ArrowLeft className="h-4 w-4" />
-            Back to Dashboard
-          </Button>
-        </div>
+        <PageNavigation backButtonText="Back to Dashboard" />
 
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-foreground mb-2">Graf & Sons Delivery Schedule</h1>
@@ -257,31 +362,41 @@ export default function GrafsSchedulePage() {
           </Card>
         )}
 
-        {/* Add New Date */}
-        <Card className="mb-6">
-          <CardHeader>
-            <CardTitle className="text-lg">Add Delivery Date</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="flex gap-4">
-              <input
-                type="date"
-                value={selectedDate}
-                onChange={(e) => setSelectedDate(e.target.value)}
-                className="flex h-10 w-full max-w-xs rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-              />
-              <Button onClick={handleAddDate}>
-                <Plus className="h-4 w-4 mr-2" />
-                Add Date
-              </Button>
-            </div>
-          </CardContent>
-        </Card>
+        {/* Add New Dates Button */}
+        <div className="mb-6">
+          <Button onClick={() => setCalendarDialogOpen(true)} className="w-full sm:w-auto">
+            <Plus className="h-4 w-4 mr-2" />
+            Add Delivery Dates
+          </Button>
+        </div>
 
         {/* Delivery Dates List */}
         <Card>
           <CardHeader>
-            <CardTitle className="text-lg">Scheduled Deliveries</CardTitle>
+            <div className="flex items-center justify-between">
+              <CardTitle className="text-lg">Scheduled Deliveries</CardTitle>
+              {deliveryDates.length > 0 && (
+                <div className="flex items-center gap-2">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={toggleSelectAll}
+                  >
+                    {selectedDateIds.size === deliveryDates.length ? 'Deselect All' : 'Select All'}
+                  </Button>
+                  {selectedDateIds.size > 0 && (
+                    <Button
+                      variant="destructive"
+                      size="sm"
+                      onClick={() => setBulkDeleteDialogOpen(true)}
+                    >
+                      <Trash2 className="h-4 w-4 mr-2" />
+                      Delete Selected ({selectedDateIds.size})
+                    </Button>
+                  )}
+                </div>
+              )}
+            </div>
           </CardHeader>
           <CardContent>
             {isLoading ? (
@@ -295,7 +410,6 @@ export default function GrafsSchedulePage() {
             ) : (
               <div className="space-y-2">
                 {deliveryDates.map((date) => {
-                  // Parse date string as local date (not UTC) to avoid timezone issues
                   const [year, month, day] = date.delivery_date.split('-').map(Number)
                   const deliveryDate = new Date(year, month - 1, day)
                   const today = new Date()
@@ -304,11 +418,14 @@ export default function GrafsSchedulePage() {
                   const isPast = deliveryDate < today
                   const isToday = deliveryDate.getTime() === today.getTime()
                   const isNext = nextDelivery?.id === date.id
+                  const isEditing = editingDateId === date.id
+                  const isSelected = selectedDateIds.has(date.id)
 
                   return (
                     <div
                       key={date.id}
                       className={`flex items-center justify-between p-3 rounded-lg border ${
+                        isSelected ? 'border-primary bg-primary/10' :
                         isToday ? 'border-green-500/50 bg-green-500/10' :
                         isNext ? 'border-blue-500/50 bg-blue-500/10' :
                         isPast ? 'border-slate-700 bg-slate-800/50 opacity-60' :
@@ -316,41 +433,77 @@ export default function GrafsSchedulePage() {
                       }`}
                     >
                       <div className="flex items-center gap-3">
-                        <Calendar className={`h-5 w-5 ${
+                        <input
+                          type="checkbox"
+                          checked={isSelected}
+                          onChange={() => toggleDateSelection(date.id)}
+                          className="h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary cursor-pointer"
+                        />
+                        <CalendarIcon className={`h-5 w-5 ${
                           isToday ? 'text-green-400' :
                           isNext ? 'text-blue-400' :
                           'text-muted-foreground'
                         }`} />
                         <div>
-                          <div className={`font-medium ${isPast ? 'line-through' : ''}`}>
-                            {deliveryDate.toLocaleDateString('en-US', {
-                              weekday: 'long',
-                              year: 'numeric',
-                              month: 'long',
-                              day: 'numeric'
-                            })}
-                          </div>
-                          {isToday && (
-                            <span className="text-xs text-green-400 font-medium">TODAY</span>
-                          )}
-                          {isNext && !isToday && (
-                            <span className="text-xs text-blue-400 font-medium">NEXT DELIVERY</span>
-                          )}
-                          {isPast && (
-                            <span className="text-xs text-muted-foreground">PAST</span>
+                          {isEditing ? (
+                            <div className="flex items-center gap-2">
+                              <input
+                                type="date"
+                                value={editingDateValue}
+                                onChange={(e) => setEditingDateValue(e.target.value)}
+                                className="flex h-8 rounded-md border border-input bg-background px-2 py-1 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                              />
+                              <Button variant="ghost" size="sm" onClick={saveEditedDate}>
+                                <Check className="h-4 w-4 text-green-400" />
+                              </Button>
+                              <Button variant="ghost" size="sm" onClick={cancelEditing}>
+                                <X className="h-4 w-4 text-red-400" />
+                              </Button>
+                            </div>
+                          ) : (
+                            <>
+                              <div className={`font-medium ${isPast ? 'line-through' : ''}`}>
+                                {deliveryDate.toLocaleDateString('en-US', {
+                                  weekday: 'long',
+                                  year: 'numeric',
+                                  month: 'long',
+                                  day: 'numeric'
+                                })}
+                              </div>
+                              {isToday && (
+                                <span className="text-xs text-green-400 font-medium">TODAY</span>
+                              )}
+                              {isNext && !isToday && (
+                                <span className="text-xs text-blue-400 font-medium">NEXT DELIVERY</span>
+                              )}
+                              {isPast && (
+                                <span className="text-xs text-muted-foreground">PAST</span>
+                              )}
+                            </>
                           )}
                         </div>
                       </div>
-                      <Button
-                        variant="ghost"
-                        size="sm"
-                        onClick={() => {
-                          setDateToDelete(date)
-                          setDeleteDialogOpen(true)
-                        }}
-                      >
-                        <Trash2 className="h-4 w-4 text-red-400" />
-                      </Button>
+                      {!isEditing && (
+                        <div className="flex items-center gap-1">
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            onClick={() => startEditing(date)}
+                          >
+                            <Pencil className="h-4 w-4 text-muted-foreground hover:text-foreground" />
+                          </Button>
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            onClick={() => {
+                              setDateToDelete(date)
+                              setDeleteDialogOpen(true)
+                            }}
+                          >
+                            <Trash2 className="h-4 w-4 text-red-400" />
+                          </Button>
+                        </div>
+                      )}
                     </div>
                   )
                 })}
@@ -376,6 +529,54 @@ export default function GrafsSchedulePage() {
             </AlertDialogFooter>
           </AlertDialogContent>
         </AlertDialog>
+
+        {/* Bulk Delete Confirmation Dialog */}
+        <AlertDialog open={bulkDeleteDialogOpen} onOpenChange={setBulkDeleteDialogOpen}>
+          <AlertDialogContent>
+            <AlertDialogHeader>
+              <AlertDialogTitle>Delete {selectedDateIds.size} Delivery Date{selectedDateIds.size > 1 ? 's' : ''}?</AlertDialogTitle>
+              <AlertDialogDescription>
+                Are you sure you want to remove the selected delivery dates from the schedule? This action cannot be undone.
+              </AlertDialogDescription>
+            </AlertDialogHeader>
+            <AlertDialogFooter>
+              <AlertDialogCancel>Cancel</AlertDialogCancel>
+              <Button variant="destructive" onClick={handleBulkDelete}>
+                Delete {selectedDateIds.size} Date{selectedDateIds.size > 1 ? 's' : ''}
+              </Button>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialog>
+
+        {/* Calendar Dialog for Adding Multiple Dates */}
+        <Dialog open={calendarDialogOpen} onOpenChange={setCalendarDialogOpen}>
+          <DialogContent className="max-w-md bg-slate-900 border-slate-700">
+            <DialogHeader>
+              <DialogTitle>Select Delivery Dates</DialogTitle>
+            </DialogHeader>
+            <div className="py-4">
+              <Calendar
+                selectedDates={selectedCalendarDates}
+                onDatesChange={setSelectedCalendarDates}
+              />
+            </div>
+            <DialogFooter>
+              <Button variant="outline" onClick={() => {
+                setCalendarDialogOpen(false)
+                setSelectedCalendarDates([])
+              }}>
+                Cancel
+              </Button>
+              <Button 
+                onClick={handleAddDates}
+                disabled={selectedCalendarDates.length === 0}
+              >
+                <Check className="h-4 w-4 mr-2" />
+                Add {selectedCalendarDates.length} Date{selectedCalendarDates.length !== 1 ? 's' : ''}
+              </Button>
+            </DialogFooter>
+          </DialogContent>
+        </Dialog>
       </main>
     </div>
   )

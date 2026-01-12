@@ -80,6 +80,14 @@ export default function LandingPage() {
       hoverColor: 'hover:bg-teal-600'
     },
     {
+      title: 'Quote',
+      description: 'Create quotes for customers',
+      icon: FileText,
+      href: '/?tab=quote',
+      color: 'bg-cyan-500',
+      hoverColor: 'hover:bg-cyan-600'
+    },
+    {
       title: 'View All Forms',
       description: 'Browse and manage all submitted forms',
       icon: List,
