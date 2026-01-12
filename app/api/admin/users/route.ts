@@ -59,7 +59,7 @@ export async function POST(request: Request) {
 
 export async function PUT(request: Request) {
   try {
-    const { userId, role, password } = await request.json()
+    const { userId, role, name, password } = await request.json()
 
     // Get current user metadata to preserve other fields
     const { data: currentUser } = await supabaseAdmin.auth.admin.getUserById(userId)
@@ -69,6 +69,11 @@ export async function PUT(request: Request) {
       const updateData: any = {
         ...currentUser.user.user_metadata,
         role
+      }
+      
+      // Update name if provided
+      if (name !== undefined) {
+        updateData.name = name
       }
 
       // Update user metadata first

@@ -72,6 +72,9 @@ function HomeContent() {
   const [showViewAllDialog, setShowViewAllDialog] = useState(false)
   const [allItems, setAllItems] = useState<any[]>([])
   const [currentViewIndex, setCurrentViewIndex] = useState(-1)
+  const [showCompleteEmailPrompt, setShowCompleteEmailPrompt] = useState(false)
+  const [orderToEmail, setOrderToEmail] = useState<any>(null)
+  const [isSendingEmail, setIsSendingEmail] = useState(false)
 
   const handleFormSuccess = () => {
     setRefreshTrigger(prev => prev + 1)
@@ -259,22 +262,34 @@ function HomeContent() {
       // Determine if status needs to change
       let newStatus = currentStatus
       let newPreviousStatus = previousStatus
+      let shouldPromptEmail = false
 
-      if (completed && completedCount > 0 && completedCount < totalItems) {
+      if (completedCount === totalItems && totalItems > 0) {
+        // All items completed - set to completed and prompt for email
+        if (currentStatus !== 'completed') {
+          newPreviousStatus = currentStatus
+          newStatus = 'completed'
+          shouldPromptEmail = true
+        }
+      } else if (completed && completedCount > 0 && completedCount < totalItems) {
         // Some items completed but not all - set to partially_received
         if (currentStatus !== 'partially_received' && currentStatus !== 'completed') {
           newPreviousStatus = currentStatus
           newStatus = 'partially_received'
         }
       } else if (!completed && completedCount === 0) {
-        // All items unchecked - revert to previous status if we were partially_received
-        if (currentStatus === 'partially_received' && previousStatus) {
+        // All items unchecked - revert to previous status
+        if ((currentStatus === 'partially_received' || currentStatus === 'completed') && previousStatus) {
           newStatus = previousStatus
           newPreviousStatus = null
         }
-      } else if (completedCount === totalItems) {
-        // All items completed - could set to completed or received
-        // Keep as partially_received or let user manually change
+      } else if (!completed && currentStatus === 'completed' && completedCount < totalItems) {
+        // Was completed but now an item is unchecked - revert to previous status or partially_received
+        if (previousStatus) {
+          newStatus = completedCount > 0 ? 'partially_received' : previousStatus
+        } else {
+          newStatus = completedCount > 0 ? 'partially_received' : 'pending'
+        }
       }
 
       // Build update object
@@ -333,9 +348,93 @@ function HomeContent() {
       
       // Trigger refresh for the list
       setRefreshTrigger(prev => prev + 1)
+
+      // If all items are now completed, prompt for email
+      if (shouldPromptEmail && updatedItem.customer_email) {
+        setOrderToEmail(updatedItem)
+        setShowCompleteEmailPrompt(true)
+      }
     } catch (error) {
       console.error('Failed to update item completion status:', error)
       alert('Failed to update completion status')
+    }
+  }
+
+  const handleSendCompletionEmail = async () => {
+    if (!orderToEmail) return
+    
+    setIsSendingEmail(true)
+    try {
+      // Create custom email content for pickup notification (same as Grafs Arriving)
+      const pickupMessage = `
+        <!DOCTYPE html>
+        <html>
+        <head>
+          <style>
+            body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
+            .container { max-width: 600px; margin: 0 auto; padding: 20px; }
+            .header { background: #1e3a5f; color: white; padding: 20px; text-align: center; border-radius: 8px 8px 0 0; }
+            .content { background: #f9f9f9; padding: 20px; border: 1px solid #ddd; border-top: none; border-radius: 0 0 8px 8px; }
+            .highlight { background: #e8f4e8; padding: 15px; border-radius: 8px; margin: 15px 0; }
+            .footer { text-align: center; margin-top: 20px; font-size: 12px; color: #666; }
+          </style>
+        </head>
+        <body>
+          <div class="container">
+            <div class="header">
+              <h1>Full Circle Reloading</h1>
+            </div>
+            <div class="content">
+              <p>Dear ${orderToEmail.customer_name || 'Valued Customer'},</p>
+              <div class="highlight">
+                <p><strong>Great news!</strong> Your special order has arrived and is ready for pickup at your earliest convenience.</p>
+              </div>
+              <p><strong>Store Hours:</strong><br>
+              Tuesday - Saturday: 9am - 5pm</p>
+              <p><strong>Questions?</strong><br>
+              Give us a call at <strong>636-946-7468</strong></p>
+              <p>Thank you for your business!</p>
+              <p>Best regards,<br>Full Circle Reloading</p>
+            </div>
+            <div class="footer">
+              <p>This is an automated message. Please do not reply directly to this email.</p>
+            </div>
+          </div>
+        </body>
+        </html>
+      `
+
+      // Generate form image for attachment
+      const { generateFormImageBase64 } = await import('@/lib/printUtils')
+      const imageBase64 = await generateFormImageBase64(orderToEmail, 'special_orders')
+
+      const response = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          to: orderToEmail.customer_email,
+          subject: 'Your Special Order is Ready for Pickup - Full Circle Reloading',
+          htmlContent: pickupMessage,
+          imageBase64,
+          imageFilename: `Special_Order_${orderToEmail.id}.jpg`,
+        }),
+      })
+
+      const result = await response.json()
+
+      if (result.success) {
+        alert('Email sent successfully!')
+      } else {
+        throw new Error(result.error || 'Failed to send email')
+      }
+      
+      setShowCompleteEmailPrompt(false)
+      setOrderToEmail(null)
+    } catch (error) {
+      console.error('Failed to send email:', error)
+      alert('Failed to send email. Please try again.')
+    } finally {
+      setIsSendingEmail(false)
     }
   }
 
@@ -659,6 +758,43 @@ function HomeContent() {
               }}
             >
               Continue
+            </Button>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
+
+      {/* Order Complete Email Prompt Dialog */}
+      <AlertDialog open={showCompleteEmailPrompt} onOpenChange={setShowCompleteEmailPrompt}>
+        <AlertDialogContent className="z-[9999999]" overlayClassName="z-[9999998]">
+          <AlertDialogHeader>
+            <AlertDialogTitle>Order Complete!</AlertDialogTitle>
+            <AlertDialogDescription>
+              All items in this order have been marked as completed. Would you like to send an email notification to the customer ({orderToEmail?.customer_email})?
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel onClick={() => {
+              setShowCompleteEmailPrompt(false)
+              setOrderToEmail(null)
+            }}>No, Skip Email</AlertDialogCancel>
+            <Button 
+              onClick={handleSendCompletionEmail}
+              disabled={isSendingEmail}
+              style={{
+                backgroundColor: '#1e40af',
+                borderColor: '#1e40af',
+                color: 'white'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = '#1d4ed8'
+                e.currentTarget.style.borderColor = '#1d4ed8'
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = '#1e40af'
+                e.currentTarget.style.borderColor = '#1e40af'
+              }}
+            >
+              {isSendingEmail ? 'Sending...' : 'Yes, Send Email'}
             </Button>
           </AlertDialogFooter>
         </AlertDialogContent>
