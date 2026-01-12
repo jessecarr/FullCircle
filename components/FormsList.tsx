@@ -56,12 +56,13 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger, on
   const [showFormTypeDropdown, setShowFormTypeDropdown] = useState(false)
   const [showStatusDropdown, setShowStatusDropdown] = useState(false)
   const [showVendorDropdown, setShowVendorDropdown] = useState(false)
-  const [selectedStatuses, setSelectedStatuses] = useState<string[]>(['pending', 'ordered', 'received'])
+  const [selectedStatuses, setSelectedStatuses] = useState<string[]>(['pending', 'ordered', 'partially_received', 'received'])
   const [selectedVendors, setSelectedVendors] = useState<string[]>([])
   const [availableVendors, setAvailableVendors] = useState<string[]>([])
   const [vendorSearchQuery, setVendorSearchQuery] = useState('')
   const [searchQuery, setSearchQuery] = useState('')
   const [activeSearchQuery, setActiveSearchQuery] = useState('')
+  const [applyFiltersToSearch, setApplyFiltersToSearch] = useState(false)
   const [statusUpdateItem, setStatusUpdateItem] = useState<any>(null)
   const [showStatusDialog, setShowStatusDialog] = useState(false)
   const [newStatus, setNewStatus] = useState('')
@@ -167,20 +168,27 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger, on
       // Update available vendors list (sorted alphabetically)
       setAvailableVendors(Array.from(vendors).sort())
       
-      // Filter by selected statuses
-      let filteredData = allItems.filter(item => 
-        selectedStatuses.length === 0 || selectedStatuses.includes(item.status)
-      )
+      let filteredData = allItems
       
-      // Filter by selected vendors
-      if (selectedVendors.length > 0) {
-        filteredData = filteredData.filter(item => {
-          if (!item.product_lines || !Array.isArray(item.product_lines)) return false
-          return item.product_lines.some((line: any) => {
-            const vendor = line.vendor_name || line.vendor
-            return vendor && selectedVendors.includes(vendor)
+      // Only apply status and vendor filters if toggle is on OR if there's no search query
+      const shouldApplyFilters = applyFiltersToSearch || !activeSearchQuery.trim()
+      
+      if (shouldApplyFilters) {
+        // Filter by selected statuses
+        filteredData = filteredData.filter(item => 
+          selectedStatuses.length === 0 || selectedStatuses.includes(item.status)
+        )
+        
+        // Filter by selected vendors
+        if (selectedVendors.length > 0) {
+          filteredData = filteredData.filter(item => {
+            if (!item.product_lines || !Array.isArray(item.product_lines)) return false
+            return item.product_lines.some((line: any) => {
+              const vendor = line.vendor_name || line.vendor
+              return vendor && selectedVendors.includes(vendor)
+            })
           })
-        })
+        }
       }
       
       // Filter by search query
@@ -232,7 +240,7 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger, on
 
   useEffect(() => {
     fetchAllItems()
-  }, [selectedFormTypes, selectedStatuses, selectedVendors, activeSearchQuery, refreshTrigger])
+  }, [selectedFormTypes, selectedStatuses, selectedVendors, activeSearchQuery, applyFiltersToSearch, refreshTrigger])
 
   const handleDelete = (item: any) => {
     setDeleteItem(item)
@@ -710,6 +718,14 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger, on
     }
   }
 
+  const formatStatus = (status: string) => {
+    if (!status) return 'N/A'
+    return status
+      .split('_')
+      .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(' ')
+  }
+
   if (loading) {
     return (
       <Card>
@@ -751,6 +767,14 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger, on
                 </button>
               )}
             </div>
+            <Button
+              onClick={() => setApplyFiltersToSearch(!applyFiltersToSearch)}
+              variant={applyFiltersToSearch ? "default" : "outline"}
+              className={`flex items-center gap-2 min-w-[140px] ${applyFiltersToSearch ? '' : 'border-dashed'}`}
+              title={applyFiltersToSearch ? "Filters are applied to search" : "Search ignores filters"}
+            >
+              {applyFiltersToSearch ? "Filters: On" : "Filters: Off"}
+            </Button>
             <Button
               onClick={handleSearch}
               variant="default"
@@ -812,7 +836,7 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger, on
               >
                 <span>
                   {selectedStatuses.length === 1 
-                    ? selectedStatuses[0].charAt(0).toUpperCase() + selectedStatuses[0].slice(1) 
+                    ? formatStatus(selectedStatuses[0])
                     : `${selectedStatuses.length} selected`}
                 </span>
                 <ChevronDown className="h-4 w-4" />
@@ -844,7 +868,7 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger, on
                   {ALL_STATUSES.map(status => (
                     <label
                       key={status}
-                      className="flex items-center gap-2 p-2 hover:bg-[rgba(59,130,246,0.2)] cursor-pointer rounded capitalize text-white"
+                      className="flex items-center gap-2 p-2 hover:bg-[rgba(59,130,246,0.2)] cursor-pointer rounded text-white"
                     >
                       <input
                         type="checkbox"
@@ -852,7 +876,7 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger, on
                         onChange={() => toggleStatus(status)}
                         className="w-4 h-4"
                       />
-                      <span>{status}</span>
+                      <span>{formatStatus(status)}</span>
                     </label>
                   ))}
                 </div>
@@ -1093,7 +1117,7 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger, on
                     <span><strong>Form Type:</strong> {FORM_TYPE_LABELS[item._formType as FormType]}</span>
                     <span><strong>Created:</strong> {formatDate(item.created_at)}</span>
                     <span className={`px-3 py-1 rounded-full text-sm font-medium ${getStatusColor(item.status)}`}>
-                      {item.status?.charAt(0).toUpperCase() + item.status?.slice(1) || 'N/A'}
+                      {formatStatus(item.status)}
                     </span>
                     {getVendors(item).length > 0 && (
                       <span><strong>Vendor{getVendors(item).length > 1 ? 's' : ''}:</strong> {getVendors(item).join(', ')}</span>
@@ -1214,8 +1238,8 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger, on
               </SelectTrigger>
               <SelectContent>
                 {ALL_STATUSES.map(status => (
-                  <SelectItem key={status} value={status} className="capitalize">
-                    {status.charAt(0).toUpperCase() + status.slice(1)}
+                  <SelectItem key={status} value={status}>
+                    {formatStatus(status)}
                   </SelectItem>
                 ))}
               </SelectContent>
@@ -1361,8 +1385,8 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger, on
               </SelectTrigger>
               <SelectContent>
                 {ALL_STATUSES.map(status => (
-                  <SelectItem key={status} value={status} className="capitalize">
-                    {status.charAt(0).toUpperCase() + status.slice(1)}
+                  <SelectItem key={status} value={status}>
+                    {formatStatus(status)}
                   </SelectItem>
                 ))}
               </SelectContent>

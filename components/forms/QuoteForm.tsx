@@ -223,9 +223,9 @@ export function QuoteForm({ initialData, onSuccess, onCancel }: QuoteFormProps) 
     customer_state: initialData?.customer_state || '',
     customer_zip: initialData?.customer_zip || '',
     delivery_method: initialData?.delivery_method || 'in_store_pickup',
-    payment: initialData?.payment || '',
+    payment: initialData?.payment || 'not_paid',
     special_requests: initialData?.special_requests || '',
-    status: initialData?.status || 'pending' as const
+    status: initialData?.status || 'quote' as const
   })
 
   const addProductLine = () => {
@@ -1408,22 +1408,18 @@ export function QuoteForm({ initialData, onSuccess, onCancel }: QuoteFormProps) 
 
           <div className="border rounded-lg p-6 mb-6">
             <h3 className="text-xl underline font-bold mb-4">Items</h3>
-            <div className="grid grid-cols-16 gap-4 items-end mb-2">
+            <div className="grid grid-cols-14 gap-4 items-end mb-2">
               <div className="col-span-2"><Label className="text-lg">SKU *</Label></div>
               <div className="col-span-4"><Label className="text-lg">Description *</Label></div>
               <div className="col-span-1"><Label className="text-lg">Qty *</Label></div>
               <div className="col-span-1"><Label className="text-lg">Price *</Label></div>
               <div className="col-span-1"><Label className="text-lg">Total *</Label></div>
               <div className="col-span-2"><Label className="text-lg">Vendor *</Label></div>
-              <div className="col-span-2 text-center">
-                <Label className="text-lg">Completed</Label>
-              </div>
-              <div className="col-span-1"><Label className="text-lg"></Label></div> {/* Clear button */}
-              <div className="col-span-2"><Label className="text-lg"></Label></div> {/* Delete button */}
+              <div className="col-span-3"><Label className="text-lg"></Label></div> {/* Actions */}
             </div>
             
             {productLines.map((line, index) => (
-              <div key={index} className="grid grid-cols-16 gap-4 items-center mb-2">
+              <div key={index} className="grid grid-cols-14 gap-4 items-center mb-2">
                 <div className="col-span-2">
                   <Textarea
                     id={`sku-${index}`}
@@ -1565,29 +1561,6 @@ export function QuoteForm({ initialData, onSuccess, onCancel }: QuoteFormProps) 
                   />
                 </div>
 
-                <div className="col-span-2 flex items-center justify-center gap-4">
-                  <div className="flex flex-col items-center gap-1">
-                    <span className="text-xs text-muted-foreground">Yes</span>
-                    <input
-                      type="checkbox"
-                      id={`completed-yes-${index}`}
-                      checked={line.completed === true}
-                      onChange={() => updateProductLine(index, 'completed', true)}
-                      className="w-5 h-5 rounded border-gray-400 text-green-600 focus:ring-green-500 cursor-pointer"
-                    />
-                  </div>
-                  <div className="flex flex-col items-center gap-1">
-                    <span className="text-xs text-muted-foreground">No</span>
-                    <input
-                      type="checkbox"
-                      id={`completed-no-${index}`}
-                      checked={line.completed === false}
-                      onChange={() => updateProductLine(index, 'completed', false)}
-                      className="w-5 h-5 rounded border-gray-400 text-red-600 focus:ring-red-500 cursor-pointer"
-                    />
-                  </div>
-                </div>
-
                 <div className="col-span-3 flex gap-2 justify-end">
                   <Button
                     type="button"
@@ -1678,31 +1651,6 @@ export function QuoteForm({ initialData, onSuccess, onCancel }: QuoteFormProps) 
                 }}
                 onChange={() => {}}
               />
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="space-y-2">
-              <Label className="text-medium" htmlFor="status">Status *</Label>
-              <Select value={formData.status} onValueChange={(value) => handleInputChange('status', value)}>
-                <SelectTrigger suppressHydrationWarning>
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="backorder">Backorder</SelectItem>
-                  <SelectItem value="cancelled">Cancelled</SelectItem>
-                  <SelectItem value="completed">Completed</SelectItem>
-                  <SelectItem value="layaway">Layaway</SelectItem>
-                  <SelectItem value="ordered">Ordered</SelectItem>
-                  <SelectItem value="partially_received">Partially Received</SelectItem>
-                  <SelectItem value="pending">Pending</SelectItem>
-                  <SelectItem value="quote">Quote</SelectItem>
-                  <SelectItem value="received">Received</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-            <div className="space-y-2">
-              {/* Empty space for layout balance */}
             </div>
           </div>
 

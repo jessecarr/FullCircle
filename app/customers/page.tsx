@@ -61,6 +61,31 @@ export default function CustomersPage() {
     drivers_license: '',
     license_expiration: ''
   })
+  const [originalEditForm, setOriginalEditForm] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    street: '',
+    city: '',
+    state: '',
+    zip: '',
+    drivers_license: '',
+    license_expiration: ''
+  })
+  const [showUnsavedDialog, setShowUnsavedDialog] = useState(false)
+  const [showCreateDialog, setShowCreateDialog] = useState(false)
+  const [createForm, setCreateForm] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    street: '',
+    city: '',
+    state: '',
+    zip: '',
+    drivers_license: '',
+    license_expiration: ''
+  })
+  const [showCreateUnsavedDialog, setShowCreateUnsavedDialog] = useState(false)
 
   useEffect(() => {
     if (!authLoading && !user) {
@@ -115,7 +140,7 @@ export default function CustomersPage() {
 
   const handleEditClick = (customer: Customer) => {
     setEditingCustomer(customer)
-    setEditForm({
+    const formData = {
       name: customer.name || '',
       email: customer.email || '',
       phone: customer.phone || '',
@@ -125,8 +150,97 @@ export default function CustomersPage() {
       zip: customer.zip || '',
       drivers_license: customer.drivers_license || '',
       license_expiration: customer.license_expiration || ''
-    })
+    }
+    setEditForm(formData)
+    setOriginalEditForm(formData)
     setShowEditDialog(true)
+  }
+
+  const hasUnsavedChanges = () => {
+    return JSON.stringify(editForm) !== JSON.stringify(originalEditForm)
+  }
+
+  const handleEditDialogClose = () => {
+    if (hasUnsavedChanges()) {
+      setShowUnsavedDialog(true)
+    } else {
+      setShowEditDialog(false)
+      setEditingCustomer(null)
+    }
+  }
+
+  const hasCreateFormData = () => {
+    return createForm.name || createForm.email || createForm.phone || 
+           createForm.street || createForm.city || createForm.state || 
+           createForm.zip || createForm.drivers_license
+  }
+
+  const handleCreateDialogClose = () => {
+    if (hasCreateFormData()) {
+      setShowCreateUnsavedDialog(true)
+    } else {
+      setShowCreateDialog(false)
+      resetCreateForm()
+    }
+  }
+
+  const resetCreateForm = () => {
+    setCreateForm({
+      name: '',
+      email: '',
+      phone: '',
+      street: '',
+      city: '',
+      state: '',
+      zip: '',
+      drivers_license: '',
+      license_expiration: ''
+    })
+  }
+
+  const handleCreateCustomer = async () => {
+    if (!createForm.name.trim()) {
+      toast({
+        title: 'Error',
+        description: 'Customer name is required',
+        variant: 'destructive'
+      })
+      return
+    }
+
+    try {
+      const { error } = await supabase
+        .from('customers')
+        .insert({
+          name: createForm.name,
+          email: createForm.email || `${Date.now()}@placeholder.local`,
+          phone: createForm.phone,
+          street: createForm.street,
+          city: createForm.city,
+          state: createForm.state,
+          zip: createForm.zip,
+          drivers_license: createForm.drivers_license,
+          license_expiration: createForm.license_expiration || null
+        })
+
+      if (error) throw error
+
+      toast({
+        title: 'Success',
+        description: 'Customer created successfully'
+      })
+
+      setShowCreateDialog(false)
+      resetCreateForm()
+      fetchCustomers()
+    } catch (error) {
+      console.error('Error creating customer:', error)
+      toast({
+        title: 'Error',
+        description: 'Failed to create customer',
+        variant: 'destructive'
+      })
+    }
   }
 
   const handleSaveEdit = async () => {
@@ -205,11 +319,16 @@ export default function CustomersPage() {
 
   const formatPhoneNumber = (phone: string): string => {
     if (!phone) return ''
-    const cleaned = phone.replace(/\D/g, '')
-    if (cleaned.length === 10) {
-      return `(${cleaned.slice(0, 3)}) ${cleaned.slice(3, 6)}-${cleaned.slice(6)}`
-    }
-    return phone
+    const cleaned = phone.replace(/\D/g, '').slice(0, 10)
+    if (cleaned.length === 0) return ''
+    if (cleaned.length <= 3) return `(${cleaned}`
+    if (cleaned.length <= 6) return `(${cleaned.slice(0, 3)}) ${cleaned.slice(3)}`
+    return `(${cleaned.slice(0, 3)}) ${cleaned.slice(3, 6)}-${cleaned.slice(6)}`
+  }
+
+  const handlePhoneChange = (value: string, setter: (form: any) => void, currentForm: any) => {
+    const cleaned = value.replace(/\D/g, '').slice(0, 10)
+    setter({ ...currentForm, phone: cleaned })
   }
 
   const formatDate = (dateString: string): string => {
@@ -239,9 +358,17 @@ export default function CustomersPage() {
 
       <main className="container mx-auto py-8 px-4">
         <PageNavigation backButtonText="Back to Dashboard" />
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold">Customer Management</h1>
-          <p className="text-muted-foreground">View, search, and edit customer information</p>
+        <div className="mb-8 flex items-center justify-between">
+          <div>
+            <h1 className="text-3xl font-bold">Customer Management</h1>
+            <p className="text-muted-foreground">View, search, and edit customer information</p>
+          </div>
+          <Button 
+            onClick={() => setShowCreateDialog(true)}
+            className="bg-blue-600 hover:bg-blue-700 text-white"
+          >
+            Create Customer
+          </Button>
         </div>
 
         {/* Search Bar */}
@@ -265,34 +392,38 @@ export default function CustomersPage() {
         {/* Customers List */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {filteredCustomers.map((customer) => (
-            <Card key={customer.id} className="landing-card hover:shadow-lg transition-shadow">
+            <Card 
+              key={customer.id} 
+              className="landing-card hover:shadow-lg transition-shadow cursor-pointer"
+              onClick={() => handleEditClick(customer)}
+            >
               <CardHeader className="pb-2">
                 <div className="flex items-start justify-between">
                   <div className="flex items-center gap-2">
                     <User className="h-5 w-5 text-blue-400" />
-                    <CardTitle className="text-lg">{customer.name || 'No Name'}</CardTitle>
+                    <CardTitle className="text-lg uppercase">{customer.name?.toUpperCase() || 'NO NAME'}</CardTitle>
                   </div>
-                  <div className="flex gap-1">
+                  <div className="flex gap-1" onClick={(e) => e.stopPropagation()}>
                     <Button
                       variant="ghost"
                       size="sm"
                       onClick={() => handleEditClick(customer)}
-                      className="h-8 w-8 p-0"
+                      className="h-16 w-16 p-0"
                     >
-                      <Edit className="h-4 w-4" />
+                      <Edit className="h-8 w-8" />
                     </Button>
                     <Button
                       variant="ghost"
                       size="sm"
                       onClick={() => handleDeleteClick(customer)}
-                      className="h-8 w-8 p-0 text-red-500 hover:text-red-600"
+                      className="h-16 w-16 p-0 text-red-500 hover:text-red-600"
                     >
-                      <Trash2 className="h-4 w-4" />
+                      <Trash2 className="h-8 w-8" />
                     </Button>
                   </div>
                 </div>
               </CardHeader>
-              <CardContent className="space-y-2 text-sm">
+              <CardContent className="space-y-2 text-sm uppercase">
                 {customer.email && !customer.email.includes('@placeholder.local') && (
                   <div className="flex items-center gap-2 text-muted-foreground">
                     <Mail className="h-4 w-4" />
@@ -339,7 +470,7 @@ export default function CustomersPage() {
         )}
 
         {/* Edit Dialog */}
-        <AlertDialog open={showEditDialog} onOpenChange={setShowEditDialog}>
+        <AlertDialog open={showEditDialog} onOpenChange={(open) => !open && handleEditDialogClose()}>
           <AlertDialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
             <AlertDialogHeader>
               <AlertDialogTitle>Edit Customer</AlertDialogTitle>
@@ -363,7 +494,8 @@ export default function CustomersPage() {
                 <Input
                   id="edit-phone"
                   value={formatPhoneNumber(editForm.phone)}
-                  onChange={(e) => setEditForm({ ...editForm, phone: e.target.value.replace(/\D/g, '') })}
+                  onChange={(e) => handlePhoneChange(e.target.value, setEditForm, editForm)}
+                  maxLength={14}
                 />
               </div>
               <div className="space-y-2 md:col-span-2">
@@ -432,8 +564,170 @@ export default function CustomersPage() {
             </div>
 
             <AlertDialogFooter>
-              <AlertDialogCancel onClick={() => setShowEditDialog(false)}>Cancel</AlertDialogCancel>
-              <Button onClick={handleSaveEdit}>Save Changes</Button>
+              <AlertDialogCancel onClick={handleEditDialogClose}>Cancel</AlertDialogCancel>
+              <Button onClick={handleSaveEdit} className="bg-blue-600 hover:bg-blue-700 text-white">Save Changes</Button>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialog>
+
+        {/* Unsaved Changes Dialog */}
+        <AlertDialog open={showUnsavedDialog} onOpenChange={setShowUnsavedDialog}>
+          <AlertDialogContent>
+            <AlertDialogHeader>
+              <AlertDialogTitle>Unsaved Changes</AlertDialogTitle>
+              <AlertDialogDescription>
+                You have unsaved changes. Do you want to save them before closing?
+              </AlertDialogDescription>
+            </AlertDialogHeader>
+            <AlertDialogFooter>
+              <AlertDialogCancel onClick={() => {
+                setShowUnsavedDialog(false)
+                setShowEditDialog(false)
+                setEditingCustomer(null)
+              }}>Discard</AlertDialogCancel>
+              <Button 
+                onClick={() => {
+                  setShowUnsavedDialog(false)
+                  handleSaveEdit()
+                }}
+                className="bg-blue-600 hover:bg-blue-700 text-white"
+              >
+                Save Changes
+              </Button>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialog>
+
+        {/* Create Customer Dialog */}
+        <AlertDialog open={showCreateDialog} onOpenChange={(open) => !open && handleCreateDialogClose()}>
+          <AlertDialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
+            <AlertDialogHeader>
+              <AlertDialogTitle>Create Customer</AlertDialogTitle>
+              <AlertDialogDescription>
+                Enter customer information below.
+              </AlertDialogDescription>
+            </AlertDialogHeader>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 py-4">
+              <div className="space-y-2">
+                <Label htmlFor="create-name">Name *</Label>
+                <Input
+                  id="create-name"
+                  value={createForm.name}
+                  onChange={(e) => setCreateForm({ ...createForm, name: e.target.value.toUpperCase() })}
+                  className="uppercase"
+                  placeholder="Customer name"
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="create-phone">Phone</Label>
+                <Input
+                  id="create-phone"
+                  value={formatPhoneNumber(createForm.phone)}
+                  onChange={(e) => handlePhoneChange(e.target.value, setCreateForm, createForm)}
+                  placeholder="(555) 555-5555"
+                  maxLength={14}
+                />
+              </div>
+              <div className="space-y-2 md:col-span-2">
+                <Label htmlFor="create-email">Email</Label>
+                <Input
+                  id="create-email"
+                  type="email"
+                  value={createForm.email}
+                  onChange={(e) => setCreateForm({ ...createForm, email: e.target.value })}
+                  placeholder="customer@example.com"
+                />
+              </div>
+              <div className="space-y-2 md:col-span-2">
+                <Label htmlFor="create-street">Street Address</Label>
+                <Input
+                  id="create-street"
+                  value={createForm.street}
+                  onChange={(e) => setCreateForm({ ...createForm, street: e.target.value.toUpperCase() })}
+                  className="uppercase"
+                  placeholder="123 Main St"
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="create-city">City</Label>
+                <Input
+                  id="create-city"
+                  value={createForm.city}
+                  onChange={(e) => setCreateForm({ ...createForm, city: e.target.value.toUpperCase() })}
+                  className="uppercase"
+                  placeholder="City"
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="create-state">State</Label>
+                <Input
+                  id="create-state"
+                  value={createForm.state}
+                  onChange={(e) => setCreateForm({ ...createForm, state: e.target.value.toUpperCase() })}
+                  className="uppercase"
+                  maxLength={2}
+                  placeholder="MO"
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="create-zip">ZIP Code</Label>
+                <Input
+                  id="create-zip"
+                  value={createForm.zip}
+                  onChange={(e) => setCreateForm({ ...createForm, zip: e.target.value })}
+                  placeholder="12345"
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="create-drivers-license">Driver's License</Label>
+                <Input
+                  id="create-drivers-license"
+                  value={createForm.drivers_license}
+                  onChange={(e) => setCreateForm({ ...createForm, drivers_license: e.target.value.toUpperCase() })}
+                  className="uppercase"
+                  placeholder="License number"
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="create-license-expiration">License Expiration</Label>
+                <Input
+                  id="create-license-expiration"
+                  type="date"
+                  value={createForm.license_expiration}
+                  onChange={(e) => setCreateForm({ ...createForm, license_expiration: e.target.value })}
+                />
+              </div>
+            </div>
+
+            <AlertDialogFooter>
+              <AlertDialogCancel onClick={handleCreateDialogClose}>Cancel</AlertDialogCancel>
+              <Button onClick={handleCreateCustomer} className="bg-blue-600 hover:bg-blue-700 text-white">Create Customer</Button>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialog>
+
+        {/* Create Unsaved Changes Dialog */}
+        <AlertDialog open={showCreateUnsavedDialog} onOpenChange={setShowCreateUnsavedDialog}>
+          <AlertDialogContent>
+            <AlertDialogHeader>
+              <AlertDialogTitle>Unsaved Changes</AlertDialogTitle>
+              <AlertDialogDescription>
+                You have entered customer information. Do you want to discard these changes?
+              </AlertDialogDescription>
+            </AlertDialogHeader>
+            <AlertDialogFooter>
+              <AlertDialogCancel onClick={() => setShowCreateUnsavedDialog(false)}>Continue Editing</AlertDialogCancel>
+              <Button 
+                onClick={() => {
+                  setShowCreateUnsavedDialog(false)
+                  setShowCreateDialog(false)
+                  resetCreateForm()
+                }}
+                variant="destructive"
+              >
+                Discard
+              </Button>
             </AlertDialogFooter>
           </AlertDialogContent>
         </AlertDialog>

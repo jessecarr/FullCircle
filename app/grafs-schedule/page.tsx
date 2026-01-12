@@ -146,6 +146,15 @@ export default function GrafsSchedulePage() {
       ))
       setSelectedCalendarDates([])
       setCalendarDialogOpen(false)
+
+      // Sync arriving orders - update to sooner dates if applicable
+      for (const addedDate of data) {
+        await fetch('/api/sync-grafs-orders', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ action: 'add', newDate: addedDate.delivery_date })
+        })
+      }
     } catch (error) {
       console.error('Error adding delivery dates:', error)
       toast({
@@ -244,12 +253,27 @@ export default function GrafsSchedulePage() {
         description: 'Delivery date updated',
       })
 
+      // Get old date before updating state
+      const oldDate = deliveryDates.find(d => d.id === editingDateId)?.delivery_date
+
       setDeliveryDates(prev => 
         prev.map(d => d.id === editingDateId ? data : d)
           .sort((a, b) => new Date(a.delivery_date).getTime() - new Date(b.delivery_date).getTime())
       )
       setEditingDateId(null)
       setEditingDateValue('')
+
+      // Sync arriving orders - update orders from old date to new date
+      if (oldDate && oldDate !== editingDateValue) {
+        await fetch('/api/sync-grafs-orders', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ 
+            action: 'change', 
+            changedDate: { oldDate, newDate: editingDateValue } 
+          })
+        })
+      }
     } catch (error) {
       console.error('Error updating delivery date:', error)
       toast({
@@ -276,7 +300,15 @@ export default function GrafsSchedulePage() {
         description: 'Delivery date removed',
       })
 
+      const deletedDateValue = dateToDelete.delivery_date
       setDeliveryDates(prev => prev.filter(d => d.id !== dateToDelete.id))
+
+      // Sync arriving orders - move orders from deleted date to next available
+      await fetch('/api/sync-grafs-orders', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action: 'delete', deletedDate: deletedDateValue })
+      })
     } catch (error) {
       console.error('Error deleting delivery date:', error)
       toast({

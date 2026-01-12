@@ -55,6 +55,7 @@ export default function UserManagementPage() {
   })
   const [editingUser, setEditingUser] = useState<AuthUser | null>(null)
   const [editRole, setEditRole] = useState<'admin' | 'manager' | 'employee'>('employee')
+  const [editName, setEditName] = useState('')
   const [editPassword, setEditPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
   const [showEditPassword, setShowEditPassword] = useState(false)
@@ -172,6 +173,7 @@ export default function UserManagementPage() {
         body: JSON.stringify({
           userId: editingUser.id,
           role: editRole,
+          name: editName || undefined,
           password: editPassword || undefined
         })
       })
@@ -188,6 +190,7 @@ export default function UserManagementPage() {
       })
 
       setEditingUser(null)
+      setEditName('')
       setEditPassword('')
       setConfirmPassword('')
       setShowEditDialog(false)
@@ -380,6 +383,7 @@ export default function UserManagementPage() {
                           onClick={() => {
                             setEditingUser(authUser)
                             setEditRole((authUser.user_metadata?.role || 'employee') as 'admin' | 'manager' | 'employee')
+                            setEditName(authUser.user_metadata?.name || '')
                             setEditPassword('')
                             setConfirmPassword('')
                             setShowEditPassword(false)
@@ -436,7 +440,17 @@ export default function UserManagementPage() {
           </AlertDialogHeader>
           <div className="py-4 space-y-4">
             <div className="space-y-2">
-              <Label htmlFor="editRole">New Role</Label>
+              <Label htmlFor="editName">Name</Label>
+              <Input
+                id="editName"
+                type="text"
+                value={editName}
+                onChange={(e) => setEditName(e.target.value)}
+                placeholder="Enter user's name"
+              />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="editRole">Role</Label>
               <Select value={editRole} onValueChange={(value) => setEditRole(value as 'admin' | 'manager' | 'employee')}>
                 <SelectTrigger className="w-full">
                   <SelectValue placeholder="Select role" />
@@ -509,6 +523,7 @@ export default function UserManagementPage() {
               setShowEditDialog(false)
               setEditingUser(null)
               setEditRole('employee')
+              setEditName('')
               setEditPassword('')
               setConfirmPassword('')
               setShowEditPassword(false)

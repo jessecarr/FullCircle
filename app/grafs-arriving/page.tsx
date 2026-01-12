@@ -41,6 +41,7 @@ interface GrafsOrder {
   customer_email: string
   product_lines: any[]
   order_status: string
+  payment: string
   // Full special order data for viewing
   fullOrderData?: any
 }
@@ -60,6 +61,10 @@ export default function GrafsArrivingPage() {
   const [emailPromptOpen, setEmailPromptOpen] = useState(false)
   const [orderToEmail, setOrderToEmail] = useState<GrafsOrder | null>(null)
   const [emailSending, setEmailSending] = useState(false)
+  const [scheduleDates, setScheduleDates] = useState<string[]>([])
+  const [changeDateDialogOpen, setChangeDateDialogOpen] = useState(false)
+  const [orderToChangeDate, setOrderToChangeDate] = useState<GrafsOrder | null>(null)
+  const [selectedNewDate, setSelectedNewDate] = useState<string>('')
 
   useEffect(() => {
     if (!loading && !user) {
@@ -70,8 +75,23 @@ export default function GrafsArrivingPage() {
   useEffect(() => {
     if (user) {
       fetchOrders()
+      fetchScheduleDates()
     }
   }, [user])
+
+  const fetchScheduleDates = async () => {
+    try {
+      const { data, error } = await supabase
+        .from('grafs_delivery_schedule')
+        .select('delivery_date')
+        .order('delivery_date', { ascending: true })
+
+      if (error) throw error
+      setScheduleDates(data?.map(d => d.delivery_date) || [])
+    } catch (error) {
+      console.error('Error fetching schedule dates:', error)
+    }
+  }
 
   const fetchOrders = async () => {
     setIsLoading(true)
@@ -95,7 +115,7 @@ export default function GrafsArrivingPage() {
       const specialOrderIds = [...new Set(trackingData.map(t => t.special_order_id))]
       const { data: specialOrders, error: ordersError } = await supabase
         .from('special_orders')
-        .select('id, customer_name, customer_phone, customer_email, product_lines, status')
+        .select('id, customer_name, customer_phone, customer_email, product_lines, status, payment')
         .in('id', specialOrderIds)
         .is('deleted_at', null)
 
@@ -113,6 +133,7 @@ export default function GrafsArrivingPage() {
             customer_email: specialOrder.customer_email || '',
             product_lines: specialOrder.product_lines || [],
             order_status: specialOrder.status || 'pending',
+            payment: specialOrder.payment || '',
           }
         })
         .filter((order): order is NonNullable<typeof order> => order !== null)
@@ -347,6 +368,50 @@ export default function GrafsArrivingPage() {
     setViewingOrderIndex(-1)
   }
 
+  const openChangeDateDialog = (order: GrafsOrder) => {
+    setOrderToChangeDate(order)
+    setSelectedNewDate(order.expected_delivery_date)
+    setChangeDateDialogOpen(true)
+  }
+
+  const handleChangeDate = async () => {
+    if (!orderToChangeDate || !selectedNewDate) return
+
+    try {
+      const response = await fetch('/api/sync-grafs-orders', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ 
+          trackingId: orderToChangeDate.id, 
+          newDate: selectedNewDate 
+        })
+      })
+
+      const data = await response.json()
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Failed to update date')
+      }
+
+      toast({
+        title: 'Date Updated',
+        description: 'Expected delivery date has been changed.',
+      })
+
+      setChangeDateDialogOpen(false)
+      setOrderToChangeDate(null)
+      setSelectedNewDate('')
+      fetchOrders()
+    } catch (error: any) {
+      console.error('Error changing date:', error)
+      toast({
+        title: 'Error',
+        description: error.message || 'Failed to change date',
+        variant: 'destructive',
+      })
+    }
+  }
+
   const navigateOrder = async (direction: 'prev' | 'next') => {
     const flatOrders = orders
     const newIndex = direction === 'prev' ? viewingOrderIndex - 1 : viewingOrderIndex + 1
@@ -423,17 +488,19 @@ export default function GrafsArrivingPage() {
     }
 
     // Build CSV data
-    const headers = ['Customer Name', 'Phone', 'Product', 'SKU', 'Quantity', 'Expected Delivery Date']
+    const headers = ['Customer Name', 'Phone', 'Product', 'SKU', 'Quantity', 'Payment Method', 'Expected Delivery Date']
     const rows = orders.map(order => {
       const product = getProductInfo(order)
       const [year, month, day] = order.expected_delivery_date.split('-').map(Number)
       const formattedDate = new Date(year, month - 1, day).toLocaleDateString('en-US')
+      const paymentDisplay = order.payment ? order.payment.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase()) : 'Not Specified'
       return [
         order.customer_name,
         order.customer_phone,
         product.description,
         product.sku,
         product.quantity.toString(),
+        paymentDisplay,
         formattedDate
       ]
     })
@@ -628,9 +695,9 @@ export default function GrafsArrivingPage() {
                                 <div className="flex-1">
                                   <div className="font-medium">{order.customer_name}</div>
                                   <div className="text-sm text-muted-foreground">
+                                    {product.sku && `${product.sku} - `}
                                     {product.description}
-                                    {product.sku && ` (${product.sku})`}
-                                    {product.quantity > 1 && ` × ${product.quantity}`}
+                                    {` (Qty: ${product.quantity})`}
                                   </div>
                                   {order.customer_phone && (
                                     <div className="text-xs text-muted-foreground">
@@ -640,6 +707,14 @@ export default function GrafsArrivingPage() {
                                 </div>
                               </div>
                               <div className="flex gap-2" onClick={(e) => e.stopPropagation()}>
+                                <Button
+                                  size="sm"
+                                  variant="outline"
+                                  onClick={() => openChangeDateDialog(order)}
+                                >
+                                  <Calendar className="h-4 w-4 mr-1" />
+                                  Change Date
+                                </Button>
                                 <Button
                                   size="sm"
                                   onClick={() => {
@@ -863,6 +938,55 @@ export default function GrafsArrivingPage() {
                 className="bg-blue-600 hover:bg-blue-700 text-white"
               >
                 {emailSending ? 'Sending...' : 'Send Email'}
+              </Button>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialog>
+
+        {/* Change Date Dialog */}
+        <AlertDialog open={changeDateDialogOpen} onOpenChange={setChangeDateDialogOpen}>
+          <AlertDialogContent>
+            <AlertDialogHeader>
+              <AlertDialogTitle>Change Expected Delivery Date</AlertDialogTitle>
+              <AlertDialogDescription>
+                Select a new delivery date for this order. Only dates from the Graf's delivery schedule are available.
+              </AlertDialogDescription>
+            </AlertDialogHeader>
+            <div className="py-4">
+              <label className="block text-sm font-medium mb-2">
+                Current Date: {orderToChangeDate?.expected_delivery_date ? 
+                  new Date(orderToChangeDate.expected_delivery_date + 'T00:00:00').toLocaleDateString('en-US', { 
+                    weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' 
+                  }) : 'N/A'}
+              </label>
+              <select
+                value={selectedNewDate}
+                onChange={(e) => setSelectedNewDate(e.target.value)}
+                className="w-full p-2 rounded-md border border-input bg-background"
+              >
+                {scheduleDates.map(date => (
+                  <option key={date} value={date}>
+                    {new Date(date + 'T00:00:00').toLocaleDateString('en-US', { 
+                      weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' 
+                    })}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <AlertDialogFooter>
+              <AlertDialogCancel onClick={() => {
+                setChangeDateDialogOpen(false)
+                setOrderToChangeDate(null)
+                setSelectedNewDate('')
+              }}>
+                Cancel
+              </AlertDialogCancel>
+              <Button 
+                onClick={handleChangeDate}
+                disabled={!selectedNewDate || selectedNewDate === orderToChangeDate?.expected_delivery_date}
+                className="bg-blue-600 hover:bg-blue-700 text-white"
+              >
+                Change Date
               </Button>
             </AlertDialogFooter>
           </AlertDialogContent>
