@@ -523,15 +523,25 @@ export function FormViewDialog({ open, onOpenChange, data, title, formType, onEd
         </div>
         
         <div>
-          {/* Status Badge */}
-          {data.status && (
-            <div className="mb-6 flex items-center gap-3">
-              <span className="text-sm text-gray-400">Status:</span>
-              <span className={`px-3 py-1 rounded-full text-sm font-medium border ${getStatusBadgeColor(data.status)}`}>
-                {formatStatus(data.status)}
-              </span>
-            </div>
-          )}
+          {/* Order Number and Status */}
+          <div className="mb-6 flex items-center gap-4 flex-wrap">
+            {data.order_number && (
+              <div className="flex items-center gap-2">
+                <span className="text-sm text-gray-400">Order #:</span>
+                <span className="px-3 py-1 rounded-full text-sm font-semibold bg-blue-500/20 text-blue-400 border border-blue-500/30">
+                  {data.order_number}
+                </span>
+              </div>
+            )}
+            {data.status && (
+              <div className="flex items-center gap-2">
+                <span className="text-sm text-gray-400">Status:</span>
+                <span className={`px-3 py-1 rounded-full text-sm font-medium border ${getStatusBadgeColor(data.status)}`}>
+                  {formatStatus(data.status)}
+                </span>
+              </div>
+            )}
+          </div>
           
           {renderCustomerSection()}
           {renderTransfereeSection()}

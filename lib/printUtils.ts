@@ -209,6 +209,7 @@ export function printSpecialOrder(data: any) {
         </div>
         <div class="print-header">
           <div class="print-title">Special Order Form</div>
+          ${data.order_number ? `<div style="font-size: 14px; font-weight: bold; margin-top: 4px;">Order #: ${data.order_number}</div>` : ''}
         </div>
 
         <div class="info-row">
@@ -304,6 +305,7 @@ export function printSpecialOrder(data: any) {
         </div>
         <div class="print-header">
           <div class="print-title">Special Order Form</div>
+          ${data.order_number ? `<div style="font-size: 14px; font-weight: bold; margin-top: 4px;">Order #: ${data.order_number}</div>` : ''}
         </div>
 
         <div class="info-row">
@@ -571,6 +573,7 @@ export function printInboundTransfer(data: any) {
         </div>
         <div class="print-header">
           <div class="print-title">Inbound Transfer Form</div>
+          ${data.order_number ? `<div style="font-size: 14px; font-weight: bold; margin-top: 4px;">Order #: ${data.order_number}</div>` : ''}
         </div>
 
         <div class="print-section">
@@ -655,6 +658,7 @@ export function printInboundTransfer(data: any) {
         </div>
         <div class="print-header">
           <div class="print-title">Inbound Transfer Form</div>
+          ${data.order_number ? `<div style="font-size: 14px; font-weight: bold; margin-top: 4px;">Order #: ${data.order_number}</div>` : ''}
         </div>
 
         <div class="print-section">
@@ -911,6 +915,7 @@ export function printSuppressorApproval(data: any) {
         </div>
         <div class="print-header">
           <div class="print-title">Suppressor Approval Form</div>
+          ${data.order_number ? `<div style="font-size: 14px; font-weight: bold; margin-top: 4px;">Order #: ${data.order_number}</div>` : ''}
         </div>
 
         <div class="print-section">
@@ -995,6 +1000,7 @@ export function printSuppressorApproval(data: any) {
         </div>
         <div class="print-header">
           <div class="print-title">Suppressor Approval Form</div>
+          ${data.order_number ? `<div style="font-size: 14px; font-weight: bold; margin-top: 4px;">Order #: ${data.order_number}</div>` : ''}
         </div>
 
         <div class="print-section">
@@ -1210,6 +1216,7 @@ export function printOutboundTransfer(data: any) {
           })}
         </div>
         <div class="print-title">Outbound Transfer Form</div>
+        ${data.order_number ? `<div style="font-size: 14px; font-weight: bold; margin-top: 4px;">Order #: ${data.order_number}</div>` : ''}
       </div>
 
       <!-- Transferor Section -->
@@ -1420,6 +1427,7 @@ export function printConsignment(data: any) {
         <div class="print-date">${dateStr}</div>
         <div class="print-header">
           <div class="print-title">Consignment Form</div>
+          ${data.order_number ? `<div style="font-size: 14px; font-weight: bold; margin-top: 4px;">Order #: ${data.order_number}</div>` : ''}
         </div>
         <div class="print-section">
           <div class="print-section-title">Customer Information</div>

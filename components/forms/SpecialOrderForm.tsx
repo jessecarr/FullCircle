@@ -464,10 +464,33 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
           throw supabaseError;
         }
       } else {
+        // Generate order number
+        let orderNumber = null
+        try {
+          const orderNumResponse = await fetch('/api/generate-order-number', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ formType: 'special_order' })
+          })
+          if (!orderNumResponse.ok) {
+            console.error('Order number API error:', orderNumResponse.status, orderNumResponse.statusText)
+          }
+          const orderNumData = await orderNumResponse.json()
+          console.log('Order number API response:', orderNumData)
+          if (orderNumData.orderNumber) {
+            orderNumber = orderNumData.orderNumber
+          } else if (orderNumData.error) {
+            console.error('Order number generation error:', orderNumData.error, orderNumData.details)
+          }
+        } catch (orderNumError) {
+          console.error('Failed to generate order number:', orderNumError)
+        }
+
         // Create new order
         const { data: newOrder, error } = await supabase
           .from('special_orders')
           .insert([{
+            order_number: orderNumber,
             customer_name: formData.customer_name,
             customer_email: formData.customer_email,
             customer_phone: formData.customer_phone,
@@ -506,28 +529,86 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
             })
 
           if (grafsItems.length > 0) {
-            // Get the next Graf delivery date
+            // Get current time in CST (UTC-6)
+            const now = new Date()
+            const cstOffset = -6 * 60 // CST is UTC-6
+            const utcOffset = now.getTimezoneOffset()
+            const cstTime = new Date(now.getTime() + (utcOffset + cstOffset) * 60 * 1000)
+            
+            // Check if it's past Tuesday noon CST
+            const dayOfWeek = cstTime.getDay() // 0 = Sunday, 2 = Tuesday
+            const hour = cstTime.getHours()
+            const isPastTuesdayCutoff = dayOfWeek > 2 || (dayOfWeek === 2 && hour >= 12)
+            
+            // Get all scheduled delivery dates
             const today = new Date().toISOString().split('T')[0]
-            const { data: nextDelivery } = await supabase
+            const { data: deliveryDates } = await supabase
               .from('grafs_delivery_schedule')
               .select('delivery_date')
               .gte('delivery_date', today)
               .order('delivery_date', { ascending: true })
-              .limit(1)
-              .single()
 
-            if (nextDelivery) {
+            let targetDeliveryDate: string | null = null
+
+            if (deliveryDates && deliveryDates.length > 0) {
+              if (isPastTuesdayCutoff && deliveryDates.length > 1) {
+                // Past cutoff - use second delivery date (skip current week)
+                targetDeliveryDate = deliveryDates[1].delivery_date
+              } else if (isPastTuesdayCutoff && deliveryDates.length === 1) {
+                // Past cutoff but only one date - auto-generate next date (14 days later)
+                const currentDate = new Date(deliveryDates[0].delivery_date + 'T00:00:00')
+                const nextDate = new Date(currentDate.getTime() + 14 * 24 * 60 * 60 * 1000)
+                const nextDateStr = nextDate.toISOString().split('T')[0]
+                
+                // Insert the new date into schedule
+                await supabase
+                  .from('grafs_delivery_schedule')
+                  .insert({ delivery_date: nextDateStr })
+                
+                targetDeliveryDate = nextDateStr
+              } else {
+                // Before cutoff - use first available date
+                targetDeliveryDate = deliveryDates[0].delivery_date
+              }
+            }
+
+            if (targetDeliveryDate) {
               // Create tracking records for each Graf item
               const trackingRecords = grafsItems.map(({ index }) => ({
                 special_order_id: newOrder.id,
                 product_line_index: index,
-                expected_delivery_date: nextDelivery.delivery_date,
+                expected_delivery_date: targetDeliveryDate,
               }))
 
               await supabase
                 .from('grafs_order_tracking')
                 .insert(trackingRecords)
             }
+          }
+        }
+
+        // Send pending notification email if status is pending
+        if (formData.status === 'pending') {
+          console.log('Sending pending notification email for order:', orderNumber || 'no order number')
+          try {
+            const emailResponse = await fetch('/api/send-pending-notification', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                orderNumber: orderNumber || `PENDING-${Date.now()}`,
+                formType: 'special_order',
+                customerName: formData.customer_name,
+                customerPhone: formData.customer_phone,
+                customerEmail: formData.customer_email,
+                productLines,
+                totalPrice: totalAmount,
+                createdAt: new Date().toISOString()
+              })
+            })
+            const emailResult = await emailResponse.json()
+            console.log('Pending notification result:', emailResult)
+          } catch (emailError) {
+            console.error('Failed to send pending notification:', emailError)
           }
         }
 

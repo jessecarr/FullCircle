@@ -480,10 +480,27 @@ export function InboundTransferForm({ initialData, onSuccess, onCancel }: Specia
           throw supabaseError;
         }
       } else {
+        // Generate order number
+        let orderNumber = null
+        try {
+          const orderNumResponse = await fetch('/api/generate-order-number', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ formType: 'inbound_transfer' })
+          })
+          const orderNumData = await orderNumResponse.json()
+          if (orderNumData.orderNumber) {
+            orderNumber = orderNumData.orderNumber
+          }
+        } catch (orderNumError) {
+          console.error('Failed to generate order number:', orderNumError)
+        }
+
         // Create new order
         const { error } = await supabase
           .from('inbound_transfers')
           .insert([{
+            order_number: orderNumber,
             customer_name: formData.customer_name,
             customer_email: formData.customer_email,
             customer_phone: formData.customer_phone,

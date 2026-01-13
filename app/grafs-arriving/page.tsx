@@ -42,6 +42,7 @@ interface GrafsOrder {
   product_lines: any[]
   order_status: string
   payment: string
+  order_number: string
   // Full special order data for viewing
   fullOrderData?: any
 }
@@ -115,7 +116,7 @@ export default function GrafsArrivingPage() {
       const specialOrderIds = [...new Set(trackingData.map(t => t.special_order_id))]
       const { data: specialOrders, error: ordersError } = await supabase
         .from('special_orders')
-        .select('id, customer_name, customer_phone, customer_email, product_lines, status, payment')
+        .select('id, customer_name, customer_phone, customer_email, product_lines, status, payment, order_number')
         .in('id', specialOrderIds)
         .is('deleted_at', null)
 
@@ -134,6 +135,7 @@ export default function GrafsArrivingPage() {
             product_lines: specialOrder.product_lines || [],
             order_status: specialOrder.status || 'pending',
             payment: specialOrder.payment || '',
+            order_number: specialOrder.order_number || '',
           }
         })
         .filter((order): order is NonNullable<typeof order> => order !== null)
@@ -693,7 +695,14 @@ export default function GrafsArrivingPage() {
                                   }`} />
                                 </div>
                                 <div className="flex-1">
-                                  <div className="font-medium">{order.customer_name}</div>
+                                  <div className="flex items-center gap-2">
+                                    <span className="font-medium">{order.customer_name}</span>
+                                    {order.order_number && (
+                                      <span className="px-2 py-0.5 text-xs font-semibold bg-blue-500/20 text-blue-400 border border-blue-500/30 rounded-full">
+                                        {order.order_number}
+                                      </span>
+                                    )}
+                                  </div>
                                   <div className="text-sm text-muted-foreground">
                                     {product.sku && `${product.sku} - `}
                                     {product.description}
@@ -809,6 +818,16 @@ export default function GrafsArrivingPage() {
             
             {viewingOrder && (
               <div className="space-y-4 py-4">
+                {/* Order Number */}
+                {viewingOrder.order_number && (
+                  <div className="flex items-center gap-2 mb-2">
+                    <span className="text-sm text-muted-foreground">Order #:</span>
+                    <span className="px-3 py-1 text-sm font-semibold bg-blue-500/20 text-blue-400 border border-blue-500/30 rounded-full">
+                      {viewingOrder.order_number}
+                    </span>
+                  </div>
+                )}
+                
                 {/* Customer Info */}
                 <div className="grid grid-cols-2 gap-4">
                   <div>

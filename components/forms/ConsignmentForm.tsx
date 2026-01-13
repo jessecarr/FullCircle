@@ -432,9 +432,32 @@ export function ConsignmentForm({ initialData, onSuccess, onCancel }: Consignmen
 
         toast({ title: 'Success', description: 'Consignment updated successfully' });
       } else {
+        // Generate order number
+        let orderNumber = null
+        try {
+          const orderNumResponse = await fetch('/api/generate-order-number', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ formType: 'consignment' })
+          })
+          if (!orderNumResponse.ok) {
+            console.error('Order number API error:', orderNumResponse.status, orderNumResponse.statusText)
+          }
+          const orderNumData = await orderNumResponse.json()
+          console.log('Order number API response:', orderNumData)
+          if (orderNumData.orderNumber) {
+            orderNumber = orderNumData.orderNumber
+          } else if (orderNumData.error) {
+            console.error('Order number generation error:', orderNumData.error)
+          }
+        } catch (orderNumError) {
+          console.error('Failed to generate order number:', orderNumError)
+        }
+
         const { error } = await supabase
           .from('consignment_forms')
           .insert([{
+            order_number: orderNumber,
             customer_name: formData.customer_name,
             customer_email: formData.customer_email,
             customer_phone: formData.customer_phone,
@@ -442,6 +465,8 @@ export function ConsignmentForm({ initialData, onSuccess, onCancel }: Consignmen
             customer_city: formData.customer_city,
             customer_state: formData.customer_state,
             customer_zip: formData.customer_zip,
+            drivers_license: formData.drivers_license,
+            license_expiration: formData.license_expiration,
             product_lines: productLines,
             total_price: totalAmount,
             special_requests: formData.special_requests
@@ -735,13 +760,8 @@ export function ConsignmentForm({ initialData, onSuccess, onCancel }: Consignmen
   return (
     <>
     <Card>
-      <CardHeader>
-        <CardTitle className="text-3xl">
-          {initialData ? 'Edit Consignment' : 'New Consignment'}
-        </CardTitle>
-        <CardDescription className="text-lg">
-          {initialData ? 'Update the consignment information below' : 'Enter the consignment information below'}
-        </CardDescription>
+      <CardHeader className="text-center">
+        <CardTitle className="font-bold underline text-6xl">Consignment Form</CardTitle>
       </CardHeader>
       <CardContent>
         <form onSubmit={handleSubmit} className="space-y-8">
