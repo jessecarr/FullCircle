@@ -32,7 +32,6 @@ export default function VendorSearch({ value, onSelect, placeholder = "Search or
   const [newVendorName, setNewVendorName] = useState('')
   const [isAdding, setIsAdding] = useState(false)
   const [highlightedIndex, setHighlightedIndex] = useState(0)
-  const [hasUserTyped, setHasUserTyped] = useState(false)
   const containerRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLTextAreaElement>(null)
 
@@ -61,55 +60,44 @@ export default function VendorSearch({ value, onSelect, placeholder = "Search or
     return () => document.removeEventListener('mousedown', handleClickOutside)
   }, [])
 
-  useEffect(() => {
-    const searchVendors = async () => {
-      if (!query.trim()) {
-        setResults([])
-        setShowResults(false)
-        return
-      }
-
-      try {
-        let queryBuilder = supabase
-          .from('vendors')
-          .select('id, name')
-          .ilike('name', `%${query}%`)
-          .order('name')
-          .limit(10)
-
-        // Only exclude current value if it's different from the search query
-        if (value && value.trim() !== query.trim()) {
-          queryBuilder = queryBuilder.neq('name', value || '')
-        }
-
-        const { data, error } = await queryBuilder
-
-        if (error) throw error
-
-        const results = data || []
-        setResults(results)
-        
-        // Check if the current query exactly matches any vendor in the database
-        const exactMatch = results.some(vendor => 
-          vendor.name.toLowerCase() === query.trim().toLowerCase()
-        )
-        
-        // Don't show dropdown if there's an exact match and no other results
-        if (exactMatch && results.length === 1) {
-          setShowResults(false)
-        } else {
-          setShowResults(true)
-        }
-      } catch (error) {
-        console.error('Vendor search error:', error)
-        setResults([])
-        setShowResults(false)
-      }
+  // Fast search - no debounce, immediate results
+  const searchVendors = async (searchQuery: string) => {
+    if (!searchQuery.trim()) {
+      setResults([])
+      setShowResults(false)
+      return
     }
 
-    const debounceTimer = setTimeout(searchVendors, 300)
-    return () => clearTimeout(debounceTimer)
-  }, [query, value])
+    try {
+      const { data, error } = await supabase
+        .from('vendors')
+        .select('id, name')
+        .ilike('name', `%${searchQuery}%`)
+        .order('name')
+        .limit(10)
+
+      if (error) throw error
+
+      const vendorResults = data || []
+      setResults(vendorResults)
+      
+      // Check if the current query exactly matches any vendor
+      const exactMatch = vendorResults.some(vendor => 
+        vendor.name.toLowerCase() === searchQuery.trim().toLowerCase()
+      )
+      
+      // Don't show dropdown if there's an exact match and no other results
+      if (exactMatch && vendorResults.length === 1) {
+        setShowResults(false)
+      } else {
+        setShowResults(true)
+      }
+    } catch (error) {
+      console.error('Vendor search error:', error)
+      setResults([])
+      setShowResults(false)
+    }
+  }
 
   const handleSelect = (vendorName: string) => {
     setQuery(vendorName)
@@ -235,8 +223,9 @@ export default function VendorSearch({ value, onSelect, placeholder = "Search or
   const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const newValue = e.target.value
     setQuery(newValue)
-    setHasUserTyped(true)
     onSelect(newValue)
+    // Trigger immediate search
+    searchVendors(newValue)
   }
 
   return (
@@ -246,27 +235,10 @@ export default function VendorSearch({ value, onSelect, placeholder = "Search or
           ref={inputRef}
           value={query}
           onChange={handleInputChange}
-          onFocus={async () => {
-            if (hasUserTyped && query) {
-              // Check if current query exactly matches a vendor before showing dropdown
-              try {
-                const { data, error } = await supabase
-                  .from('vendors')
-                  .select('id, name')
-                  .eq('name', query.trim())
-                  .single()
-
-                if (!error && data) {
-                  // Exact match found, don't show dropdown
-                  setShowResults(false)
-                } else {
-                  // No exact match, show dropdown
-                  setShowResults(true)
-                }
-              } catch (error) {
-                // Error checking, show dropdown as fallback
-                setShowResults(true)
-              }
+          onFocus={() => {
+            // Show results on focus if there's a query
+            if (query.trim()) {
+              searchVendors(query)
             }
           }}
           onKeyDown={handleKeyDown}

@@ -195,6 +195,8 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger, on
       if (activeSearchQuery.trim()) {
         const query = activeSearchQuery.toLowerCase().trim()
         filteredData = filteredData.filter(item => {
+          // Search in order number
+          if (item.order_number?.toLowerCase().includes(query)) return true
           // Search in customer name
           if (item.customer_name?.toLowerCase().includes(query)) return true
           // Search in customer phone
@@ -1112,7 +1114,14 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger, on
                     className="h-5 w-5 mt-1 rounded border-gray-300 text-primary focus:ring-primary cursor-pointer"
                   />
                   <div className="space-y-2 flex-1">
-                    <CardTitle className="text-2xl">{getCustomerName(item)}</CardTitle>
+                    <div className="flex items-center gap-3">
+                      <CardTitle className="text-2xl">{getCustomerName(item)}</CardTitle>
+                      {item.order_number && (
+                        <span className="px-3 py-1 bg-blue-600 text-white rounded-md text-sm font-mono font-bold">
+                          {item.order_number}
+                        </span>
+                      )}
+                    </div>
                   <div className="flex flex-wrap gap-4 text-base text-muted-foreground">
                     <span><strong>Form Type:</strong> {FORM_TYPE_LABELS[item._formType as FormType]}</span>
                     <span><strong>Created:</strong> {formatDate(item.created_at)}</span>

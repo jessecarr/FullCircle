@@ -464,10 +464,27 @@ export function QuoteForm({ initialData, onSuccess, onCancel }: QuoteFormProps) 
           throw supabaseError;
         }
       } else {
+        // Generate order number
+        let orderNumber = null
+        try {
+          const orderNumResponse = await fetch('/api/generate-order-number', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ formType: 'quote' })
+          })
+          const orderNumData = await orderNumResponse.json()
+          if (orderNumData.orderNumber) {
+            orderNumber = orderNumData.orderNumber
+          }
+        } catch (orderNumError) {
+          console.error('Failed to generate order number:', orderNumError)
+        }
+
         // Create new order
         const { data: newOrder, error } = await supabase
           .from('quotes')
           .insert([{
+            order_number: orderNumber,
             customer_name: formData.customer_name,
             customer_email: formData.customer_email,
             customer_phone: formData.customer_phone,
@@ -528,6 +545,31 @@ export function QuoteForm({ initialData, onSuccess, onCancel }: QuoteFormProps) 
                 .from('grafs_order_tracking')
                 .insert(trackingRecords)
             }
+          }
+        }
+
+        // Send pending notification email if status is pending
+        if (formData.status === 'pending') {
+          console.log('Sending pending notification email for quote:', orderNumber || 'no order number')
+          try {
+            const emailResponse = await fetch('/api/send-pending-notification', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                orderNumber: orderNumber || `PENDING-${Date.now()}`,
+                formType: 'quote',
+                customerName: formData.customer_name,
+                customerPhone: formData.customer_phone,
+                customerEmail: formData.customer_email,
+                productLines,
+                totalPrice: totalAmount,
+                createdAt: new Date().toISOString()
+              })
+            })
+            const emailResult = await emailResponse.json()
+            console.log('Pending notification result:', emailResult)
+          } catch (emailError) {
+            console.error('Failed to send pending notification:', emailError)
           }
         }
 

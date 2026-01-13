@@ -167,9 +167,8 @@ function HomeContent() {
   const handleFormSelect = (formType: string) => {
     // Skip confirmation dialog if we're on the view all page (no form being edited)
     if (viewMode === 'list') {
-      setActiveTab(formType)
-      setViewMode('form')
-      setEditingItem(null)
+      // Update URL and navigate
+      window.location.href = `/?tab=${formType}`
       return
     }
     setPendingFormSwitch(formType)
@@ -178,16 +177,9 @@ function HomeContent() {
 
   const confirmFormSwitch = () => {
     if (pendingFormSwitch) {
-      setEditingItem(null)
-      setViewMode('form')
-      // Force tab change even if it's the same form type
-      if (activeTab === pendingFormSwitch) {
-        // Force re-render by incrementing a key or using a different approach
-        setActiveTab('temp')
-        setTimeout(() => setActiveTab(pendingFormSwitch), 0)
-      } else {
-        setActiveTab(pendingFormSwitch)
-      }
+      // Update URL and navigate - this ensures browser refresh works
+      window.location.href = `/?tab=${pendingFormSwitch}`
+      return
     }
     setShowConfirmDialog(false)
     setPendingFormSwitch(null)
@@ -224,14 +216,16 @@ function HomeContent() {
     if (viewMode === 'form') {
       setShowViewAllDialog(true)
     } else {
-      setViewMode('list')
+      // Update URL and navigate
+      window.location.href = '/?tab=view-all'
     }
   }
 
   const confirmViewAllNavigation = () => {
     console.log('Confirming view all navigation');
     setShowViewAllDialog(false)
-    setViewMode('list')
+    // Update URL and navigate
+    window.location.href = '/?tab=view-all'
   }
 
   const cancelViewAllNavigation = () => {
