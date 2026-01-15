@@ -56,6 +56,7 @@ export default function ArchivePage() {
   const [viewingForm, setViewingForm] = useState<ArchivedForm | null>(null)
   const [viewingFormIndex, setViewingFormIndex] = useState<number>(-1)
   const [bulkDeleteDialogOpen, setBulkDeleteDialogOpen] = useState(false)
+  const [bulkRestoreDialogOpen, setBulkRestoreDialogOpen] = useState(false)
   const [deleteConfirmation, setDeleteConfirmation] = useState('')
   const [bulkDeleteConfirmation, setBulkDeleteConfirmation] = useState('')
 
@@ -251,6 +252,49 @@ export default function ArchivePage() {
     }
   }
 
+  // Bulk restore handler
+  const handleBulkRestore = async () => {
+    if (selectedIds.size === 0) return
+
+    try {
+      // Group by table name for batch updates
+      const byTable = new Map<string, string[]>()
+      selectedIds.forEach(id => {
+        const [tableName, formId] = id.split('-')
+        if (!byTable.has(tableName)) {
+          byTable.set(tableName, [])
+        }
+        byTable.get(tableName)!.push(formId)
+      })
+
+      for (const [tableName, ids] of byTable) {
+        const { error } = await supabase
+          .from(tableName)
+          .update({ deleted_at: null, deleted_by: null })
+          .in('id', ids)
+
+        if (error) throw error
+      }
+
+      toast({
+        title: 'Restored',
+        description: `${selectedIds.size} form(s) have been restored.`,
+      })
+
+      setArchivedForms(prev => prev.filter(f => !selectedIds.has(`${f._tableName}-${f.id}`)))
+      setSelectedIds(new Set())
+    } catch (error) {
+      console.error('Error restoring forms:', error)
+      toast({
+        title: 'Error',
+        description: 'Failed to restore forms',
+        variant: 'destructive',
+      })
+    } finally {
+      setBulkRestoreDialogOpen(false)
+    }
+  }
+
   // Bulk delete handler
   const handleBulkDelete = async () => {
     if (selectedIds.size === 0 || bulkDeleteConfirmation.toLowerCase() !== 'delete') return
@@ -364,14 +408,24 @@ export default function ArchivePage() {
               </span>
             </div>
             {selectedIds.size > 0 && (
-              <Button 
-                size="sm" 
-                variant="destructive"
-                onClick={() => setBulkDeleteDialogOpen(true)}
-              >
-                <Trash2 className="h-4 w-4 mr-2" />
-                Delete {selectedIds.size} Selected
-              </Button>
+              <div className="flex gap-2">
+                <Button 
+                  size="sm" 
+                  variant="outline"
+                  onClick={() => setBulkRestoreDialogOpen(true)}
+                >
+                  <RotateCcw className="h-4 w-4 mr-2" />
+                  Restore {selectedIds.size} Selected
+                </Button>
+                <Button 
+                  size="sm" 
+                  variant="destructive"
+                  onClick={() => setBulkDeleteDialogOpen(true)}
+                >
+                  <Trash2 className="h-4 w-4 mr-2" />
+                  Delete {selectedIds.size} Selected
+                </Button>
+              </div>
             )}
           </div>
         )}
@@ -553,6 +607,24 @@ export default function ArchivePage() {
                 disabled={bulkDeleteConfirmation.toLowerCase() !== 'delete'}
               >
                 Delete {selectedIds.size} Forms Forever
+              </Button>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialog>
+
+        {/* Bulk Restore Confirmation Dialog */}
+        <AlertDialog open={bulkRestoreDialogOpen} onOpenChange={setBulkRestoreDialogOpen}>
+          <AlertDialogContent>
+            <AlertDialogHeader>
+              <AlertDialogTitle>Restore {selectedIds.size} Form{selectedIds.size > 1 ? 's' : ''}?</AlertDialogTitle>
+              <AlertDialogDescription>
+                This will restore the selected form(s) back to the main forms list.
+              </AlertDialogDescription>
+            </AlertDialogHeader>
+            <AlertDialogFooter>
+              <AlertDialogCancel>Cancel</AlertDialogCancel>
+              <Button onClick={handleBulkRestore}>
+                Restore {selectedIds.size} Form{selectedIds.size > 1 ? 's' : ''}
               </Button>
             </AlertDialogFooter>
           </AlertDialogContent>

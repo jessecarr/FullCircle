@@ -49,6 +49,8 @@ export default function GrafsSchedulePage() {
   const [bulkDeleteDialogOpen, setBulkDeleteDialogOpen] = useState(false)
   const [editingDateId, setEditingDateId] = useState<string | null>(null)
   const [editingDateValue, setEditingDateValue] = useState<string>('')
+  const [editCalendarOpen, setEditCalendarOpen] = useState(false)
+  const [editSelectedDate, setEditSelectedDate] = useState<Date | null>(null)
 
   useEffect(() => {
     if (!loading && !user) {
@@ -218,11 +220,17 @@ export default function GrafsSchedulePage() {
   const startEditing = (date: DeliveryDate) => {
     setEditingDateId(date.id)
     setEditingDateValue(date.delivery_date)
+    // Parse the date string to a Date object for the calendar
+    const [year, month, day] = date.delivery_date.split('-').map(Number)
+    setEditSelectedDate(new Date(year, month - 1, day))
+    setEditCalendarOpen(true)
   }
 
   const cancelEditing = () => {
     setEditingDateId(null)
     setEditingDateValue('')
+    setEditCalendarOpen(false)
+    setEditSelectedDate(null)
   }
 
   const saveEditedDate = async () => {
@@ -262,6 +270,8 @@ export default function GrafsSchedulePage() {
       )
       setEditingDateId(null)
       setEditingDateValue('')
+      setEditCalendarOpen(false)
+      setEditSelectedDate(null)
 
       // Sync arriving orders - update orders from old date to new date
       if (oldDate && oldDate !== editingDateValue) {
@@ -396,7 +406,10 @@ export default function GrafsSchedulePage() {
 
         {/* Add New Dates Button */}
         <div className="mb-6">
-          <Button onClick={() => setCalendarDialogOpen(true)} className="w-full sm:w-auto">
+          <Button 
+            onClick={() => setCalendarDialogOpen(true)} 
+            className="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white"
+          >
             <Plus className="h-4 w-4 mr-2" />
             Add Delivery Dates
           </Button>
@@ -602,9 +615,46 @@ export default function GrafsSchedulePage() {
               <Button 
                 onClick={handleAddDates}
                 disabled={selectedCalendarDates.length === 0}
+                className="bg-blue-600 hover:bg-blue-700 text-white"
               >
                 <Check className="h-4 w-4 mr-2" />
                 Add {selectedCalendarDates.length} Date{selectedCalendarDates.length !== 1 ? 's' : ''}
+              </Button>
+            </DialogFooter>
+          </DialogContent>
+        </Dialog>
+
+        {/* Calendar Dialog for Editing a Date */}
+        <Dialog open={editCalendarOpen} onOpenChange={(open) => {
+          if (!open) cancelEditing()
+        }}>
+          <DialogContent className="max-w-md bg-slate-900 border-slate-700">
+            <DialogHeader>
+              <DialogTitle>Select New Date</DialogTitle>
+            </DialogHeader>
+            <div className="py-4">
+              <Calendar
+                selectedDates={editSelectedDate ? [editSelectedDate] : []}
+                onDatesChange={(dates) => {
+                  if (dates.length > 0) {
+                    const selectedDate = dates[dates.length - 1]
+                    setEditSelectedDate(selectedDate)
+                    setEditingDateValue(selectedDate.toISOString().split('T')[0])
+                  }
+                }}
+              />
+            </div>
+            <DialogFooter>
+              <Button variant="outline" onClick={cancelEditing}>
+                Cancel
+              </Button>
+              <Button 
+                onClick={saveEditedDate}
+                disabled={!editSelectedDate}
+                className="bg-blue-600 hover:bg-blue-700 text-white"
+              >
+                <Check className="h-4 w-4 mr-2" />
+                Save Date
               </Button>
             </DialogFooter>
           </DialogContent>

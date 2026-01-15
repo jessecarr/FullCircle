@@ -36,7 +36,7 @@ interface FormsListProps {
   onItemsChange?: (items: any[]) => void
 }
 
-type FormType = 'all' | 'special_orders' | 'inbound_transfers' | 'suppressor_approvals' | 'outbound_transfers' | 'consignment_forms'
+type FormType = 'all' | 'special_orders' | 'inbound_transfers' | 'suppressor_approvals' | 'outbound_transfers' | 'consignment_forms' | 'quotes'
 
 const FORM_TYPE_LABELS: Record<FormType, string> = {
   all: 'All Forms',
@@ -45,6 +45,7 @@ const FORM_TYPE_LABELS: Record<FormType, string> = {
   suppressor_approvals: 'Suppressor Approval',
   outbound_transfers: 'Outbound Transfer',
   consignment_forms: 'Consignment',
+  quotes: 'Quote',
 }
 
 const ALL_STATUSES = ['backorder', 'cancelled', 'completed', 'layaway', 'ordered', 'partially_received', 'pending', 'quote', 'received']
@@ -80,6 +81,9 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger, on
   const [showBulkDeleteDialog, setShowBulkDeleteDialog] = useState(false)
   const [bulkDeleteConfirmation, setBulkDeleteConfirmation] = useState('')
   const [bulkActionLoading, setBulkActionLoading] = useState(false)
+  const [showBulkEmailDialog, setShowBulkEmailDialog] = useState(false)
+  const [itemsPerPage, setItemsPerPage] = useState(25)
+  const [currentPage, setCurrentPage] = useState(1)
   const sortRef = useRef<HTMLDivElement>(null)
   const { toast } = useToast()
   const printRef = useRef<HTMLDivElement>(null)
@@ -120,10 +124,10 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger, on
       const vendors = new Set<string>()
       
       // Determine which tables to fetch from
-      const tablesToFetch: Array<'special_orders' | 'inbound_transfers' | 'suppressor_approvals' | 'outbound_transfers' | 'consignment_forms'> = 
+      const tablesToFetch: Array<'special_orders' | 'inbound_transfers' | 'suppressor_approvals' | 'outbound_transfers' | 'consignment_forms' | 'quotes'> = 
         selectedFormTypes.includes('all')
-          ? ['special_orders', 'inbound_transfers', 'suppressor_approvals', 'outbound_transfers', 'consignment_forms']
-          : selectedFormTypes.filter(t => t !== 'all') as Array<'special_orders' | 'inbound_transfers' | 'suppressor_approvals' | 'outbound_transfers' | 'consignment_forms'>
+          ? ['special_orders', 'inbound_transfers', 'suppressor_approvals', 'outbound_transfers', 'consignment_forms', 'quotes']
+          : selectedFormTypes.filter(t => t !== 'all') as Array<'special_orders' | 'inbound_transfers' | 'suppressor_approvals' | 'outbound_transfers' | 'consignment_forms' | 'quotes'>
       
       for (const table of tablesToFetch) {
         // Try to filter out soft-deleted items, but fall back if column doesn't exist
@@ -534,7 +538,7 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger, on
     }
   }
 
-  const handleBulkEmail = async () => {
+  const handleBulkEmailClick = () => {
     const selectedObjects = getSelectedItemObjects()
     const itemsWithEmail = selectedObjects.filter(item => item.customer_email)
     
@@ -547,6 +551,14 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger, on
       return
     }
     
+    setShowBulkEmailDialog(true)
+  }
+
+  const handleBulkEmailConfirm = async () => {
+    const selectedObjects = getSelectedItemObjects()
+    const itemsWithEmail = selectedObjects.filter(item => item.customer_email)
+    
+    setShowBulkEmailDialog(false)
     setBulkActionLoading(true)
     const { sendFormEmail } = await import('@/lib/emailUtils')
     
@@ -597,7 +609,7 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger, on
     setSelectedFormTypes(prev => {
       if (formType === 'all') {
         // If 'all' is selected, select all form types
-        return prev.includes('all') ? [] : ['all', 'special_orders', 'inbound_transfers', 'suppressor_approvals', 'outbound_transfers', 'consignment_forms']
+        return prev.includes('all') ? [] : ['all', 'special_orders', 'inbound_transfers', 'suppressor_approvals', 'outbound_transfers', 'consignment_forms', 'quotes']
       } else {
         // Toggle individual form type
         const newTypes = prev.includes(formType)
@@ -605,7 +617,7 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger, on
           : [...prev.filter(t => t !== 'all'), formType]
         
         // If all individual types are selected, also select 'all'
-        const allIndividualTypes = ['special_orders', 'inbound_transfers', 'suppressor_approvals', 'outbound_transfers', 'consignment_forms']
+        const allIndividualTypes = ['special_orders', 'inbound_transfers', 'suppressor_approvals', 'outbound_transfers', 'consignment_forms', 'quotes']
         if (allIndividualTypes.every(t => newTypes.includes(t as FormType))) {
           return ['all', ...allIndividualTypes] as FormType[]
         }
@@ -810,7 +822,7 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger, on
               </Button>
               {showFormTypeDropdown && (
                 <div className="absolute top-full mt-1 w-[200px] bg-[rgba(17,24,39,0.95)] border border-[rgba(59,130,246,0.3)] rounded-md shadow-lg z-50 p-2 max-h-[300px] overflow-y-auto backdrop-blur-[10px]">
-                  {(['all', 'inbound_transfers', 'outbound_transfers', 'special_orders', 'suppressor_approvals', 'consignment_forms'] as FormType[]).map(formType => (
+                  {(['all', 'inbound_transfers', 'outbound_transfers', 'special_orders', 'suppressor_approvals', 'consignment_forms', 'quotes'] as FormType[]).map(formType => (
                     <label
                       key={formType}
                       className="flex items-center gap-2 p-2 hover:bg-[rgba(59,130,246,0.2)] cursor-pointer rounded text-white"
@@ -1010,22 +1022,39 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger, on
         </CardContent>
       </Card>
 
-      {/* Results Count & Bulk Actions */}
-      <div className="flex items-center justify-between">
+      {/* Results Count, Pagination & Bulk Actions */}
+      <div className="flex items-center justify-between flex-wrap gap-4">
         <p className="text-base text-muted-foreground">
-          Showing {items.length} form{items.length !== 1 ? 's' : ''}
+          Showing {Math.min((currentPage - 1) * itemsPerPage + 1, items.length)}-{Math.min(currentPage * itemsPerPage, items.length)} of {items.length} form{items.length !== 1 ? 's' : ''}
           {selectedItems.size > 0 && ` (${selectedItems.size} selected)`}
         </p>
-        {items.length > 0 && (
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={toggleSelectAll}
-            className="styled-button"
-          >
-            {selectedItems.size === items.length ? 'Deselect All' : 'Select All'}
-          </Button>
-        )}
+        <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2">
+            <Label className="text-sm text-muted-foreground">Show:</Label>
+            <Select value={String(itemsPerPage)} onValueChange={(val) => { setItemsPerPage(Number(val)); setCurrentPage(1); }}>
+              <SelectTrigger className="w-[80px] h-8">
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="15">15</SelectItem>
+                <SelectItem value="25">25</SelectItem>
+                <SelectItem value="50">50</SelectItem>
+                <SelectItem value="75">75</SelectItem>
+                <SelectItem value="100">100</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+          {items.length > 0 && (
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={toggleSelectAll}
+              className="styled-button"
+            >
+              {selectedItems.size === items.length ? 'Deselect All' : 'Select All'}
+            </Button>
+          )}
+        </div>
       </div>
 
       {/* Bulk Actions Bar */}
@@ -1056,7 +1085,7 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger, on
                 <Button
                   variant="outline"
                   size="sm"
-                  onClick={handleBulkEmail}
+                  onClick={handleBulkEmailClick}
                   disabled={bulkActionLoading}
                   className="styled-button"
                 >
@@ -1094,7 +1123,7 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger, on
           </CardContent>
         </Card>
       ) : (
-        sortItems(items).map((item) => (
+        sortItems(items).slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage).map((item) => (
           <Card 
             key={`${item._formType}-${item.id}`} 
             className={`view-all-form-card cursor-pointer hover:shadow-lg transition-shadow ${selectedItems.has(getItemKey(item)) ? 'ring-2 ring-primary' : ''}`}
@@ -1229,6 +1258,33 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger, on
             </CardHeader>
           </Card>
         ))
+      )}
+
+      {/* Pagination Controls */}
+      {items.length > itemsPerPage && (
+        <div className="flex items-center justify-center gap-4 mt-4">
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => setCurrentPage(prev => Math.max(1, prev - 1))}
+            disabled={currentPage === 1}
+            className="styled-button"
+          >
+            Previous
+          </Button>
+          <span className="text-sm text-muted-foreground">
+            Page {currentPage} of {Math.ceil(items.length / itemsPerPage)}
+          </span>
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => setCurrentPage(prev => Math.min(Math.ceil(items.length / itemsPerPage), prev + 1))}
+            disabled={currentPage >= Math.ceil(items.length / itemsPerPage)}
+            className="styled-button"
+          >
+            Next
+          </Button>
+        </div>
       )}
 
       {/* Status Update Dialog */}
@@ -1494,6 +1550,46 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger, on
             >
               {bulkActionLoading ? 'Deleting...' : `Delete ${selectedItems.size} Item${selectedItems.size !== 1 ? 's' : ''}`}
             </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
+
+      {/* Bulk Email Confirmation Dialog */}
+      <AlertDialog open={showBulkEmailDialog} onOpenChange={setShowBulkEmailDialog}>
+        <AlertDialogContent style={{
+          backgroundColor: 'rgba(17, 24, 39, 0.98)',
+          border: '2px solid rgba(59, 130, 246, 0.3)',
+          boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.8)',
+          backdropFilter: 'blur(10px)'
+        }}>
+          <AlertDialogHeader>
+            <AlertDialogTitle style={{ color: '#ffffff' }}>Send Emails?</AlertDialogTitle>
+            <AlertDialogDescription style={{ color: '#9ca3af' }}>
+              Are you sure you want to send emails to {getSelectedItemObjects().filter(item => item.customer_email).length} customer(s)?
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel 
+              onClick={() => setShowBulkEmailDialog(false)}
+              style={{
+                backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                border: '1px solid rgba(59, 130, 246, 0.3)',
+                color: '#ffffff'
+              }}
+            >
+              Cancel
+            </AlertDialogCancel>
+            <Button 
+              onClick={handleBulkEmailConfirm}
+              disabled={bulkActionLoading}
+              style={{
+                backgroundColor: '#1e40af',
+                borderColor: '#1e40af',
+                color: 'white'
+              }}
+            >
+              {bulkActionLoading ? 'Sending...' : 'Send Emails'}
+            </Button>
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>

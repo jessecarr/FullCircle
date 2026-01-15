@@ -414,19 +414,19 @@ export function QuoteForm({ initialData, onSuccess, onCancel }: QuoteFormProps) 
             .from('quotes')
             .update({
               customer_name: formData.customer_name,
-              customer_email: formData.customer_email,
+              customer_email: formData.customer_email || null,
               customer_phone: formData.customer_phone,
-              drivers_license: formData.drivers_license,
-              license_expiration: formData.license_expiration,
-              customer_street: formData.customer_street,
-              customer_city: formData.customer_city,
-              customer_state: formData.customer_state,
-              customer_zip: formData.customer_zip,
+              drivers_license: formData.drivers_license || null,
+              license_expiration: formData.license_expiration || null,
+              customer_street: formData.customer_street || null,
+              customer_city: formData.customer_city || null,
+              customer_state: formData.customer_state || null,
+              customer_zip: formData.customer_zip || null,
               product_lines: productLines,
               total_price: totalAmount,
               delivery_method: formData.delivery_method,
               payment: formData.payment,
-              special_requests: formData.special_requests,
+              special_requests: formData.special_requests || null,
               status: formData.status
             })
             .eq('id', initialData.id)
@@ -486,19 +486,19 @@ export function QuoteForm({ initialData, onSuccess, onCancel }: QuoteFormProps) 
           .insert([{
             order_number: orderNumber,
             customer_name: formData.customer_name,
-            customer_email: formData.customer_email,
+            customer_email: formData.customer_email || null,
             customer_phone: formData.customer_phone,
-            drivers_license: formData.drivers_license,
-            license_expiration: formData.license_expiration,
-            customer_street: formData.customer_street,
-            customer_city: formData.customer_city,
-            customer_state: formData.customer_state,
-            customer_zip: formData.customer_zip,
+            drivers_license: formData.drivers_license || null,
+            license_expiration: formData.license_expiration || null,
+            customer_street: formData.customer_street || null,
+            customer_city: formData.customer_city || null,
+            customer_state: formData.customer_state || null,
+            customer_zip: formData.customer_zip || null,
             product_lines: productLines,
             total_price: totalAmount,
             delivery_method: formData.delivery_method,
             payment: formData.payment,
-            special_requests: formData.special_requests,
+            special_requests: formData.special_requests || null,
             status: formData.status
           }])
           .select()
