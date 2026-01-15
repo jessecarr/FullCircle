@@ -57,7 +57,7 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger, on
   const [showFormTypeDropdown, setShowFormTypeDropdown] = useState(false)
   const [showStatusDropdown, setShowStatusDropdown] = useState(false)
   const [showVendorDropdown, setShowVendorDropdown] = useState(false)
-  const [selectedStatuses, setSelectedStatuses] = useState<string[]>(['pending', 'ordered', 'partially_received', 'received'])
+  const [selectedStatuses, setSelectedStatuses] = useState<string[]>([])
   const [selectedVendors, setSelectedVendors] = useState<string[]>([])
   const [availableVendors, setAvailableVendors] = useState<string[]>([])
   const [vendorSearchQuery, setVendorSearchQuery] = useState('')
