@@ -36,6 +36,12 @@ export function HolidayPicker({ hours, holidayName, onSave, onCancel }: HolidayP
     setMounted(true)
   }, [])
   
+  // Update state when props change
+  useEffect(() => {
+    setSelectedHours(hours || 8)
+    setSelectedHoliday(holidayName || '')
+  }, [hours, holidayName])
+  
   // Close on escape key, save on enter
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {

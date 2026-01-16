@@ -1104,22 +1104,20 @@ export default function TimesheetPage() {
           ) : selectedEmployee ? (
             <>
               {weeks.map((week, weekIndex) => (
-                <Card key={weekIndex} className="mb-6">
-                  <CardHeader className="pb-2">
-                    <div className="flex items-center justify-between">
-                      <CardTitle className="text-base">
+                <Card key={weekIndex} className="mb-6 border-slate-600" style={{ backgroundColor: '#1e293b' }}>
+                  <CardHeader className="pb-2" style={{ backgroundColor: '#1e3a5f', borderTopLeftRadius: '0.5rem', borderTopRightRadius: '0.5rem' }}>
+                    <div className="flex flex-col items-center gap-3">
+                      <CardTitle className="text-xl font-bold text-white text-center">
                         WEEKLY TIME REPORT FOR {formatDate(week.startDate)} TO {formatDate(week.endDate)}
                       </CardTitle>
                       {isAdmin && (
-                        <Button
-                          size="sm"
-                          variant="outline"
-                          className="text-xs border-blue-500 text-blue-400 hover:bg-blue-500/20"
+                        <button
+                          className="px-4 py-2 text-sm font-semibold rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition-all flex items-center gap-2"
                           onClick={() => handleFullTimeEmployee(weekIndex)}
                         >
-                          <Clock className="h-3 w-3 mr-1" />
+                          <Clock className="h-4 w-4" />
                           Full Time Employee
-                        </Button>
+                        </button>
                       )}
                     </div>
                   </CardHeader>

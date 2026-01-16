@@ -57,7 +57,7 @@ export async function GET(request: Request) {
 export async function POST(request: Request) {
   try {
     const body = await request.json()
-    const { employee_id, date, time_in, time_out, regular_hours, overtime_hours, pto_hours, holiday_hours, pay_period_start, pay_period_end, notes } = body
+    const { employee_id, date, time_in, time_out, regular_hours, overtime_hours, pto_hours, holiday_hours, pay_period_start, pay_period_end, notes, pto_notes, holiday_name } = body
 
     // Check if entry already exists for this employee and date
     const { data: existing } = await supabaseAdmin
@@ -79,6 +79,8 @@ export async function POST(request: Request) {
           pto_hours: pto_hours || 0,
           holiday_hours: holiday_hours || 0,
           notes,
+          pto_notes,
+          holiday_name,
           updated_at: new Date().toISOString()
         })
         .eq('id', existing.id)
@@ -105,7 +107,9 @@ export async function POST(request: Request) {
           holiday_hours: holiday_hours || 0,
           pay_period_start,
           pay_period_end,
-          notes
+          notes,
+          pto_notes,
+          holiday_name
         })
         .select()
         .single()

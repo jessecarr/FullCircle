@@ -21,6 +21,12 @@ export function PTOPicker({ hours, notes, onSave, onCancel }: PTOPickerProps) {
     setMounted(true)
   }, [])
   
+  // Update state when props change
+  useEffect(() => {
+    setSelectedHours(hours || 8)
+    setPtoNotes(notes || '')
+  }, [hours, notes])
+  
   // Close on escape key, save on enter
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {

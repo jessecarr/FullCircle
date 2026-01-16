@@ -69,8 +69,8 @@ export function TimePicker({ timeIn, timeOut, onSave, onCancel }: TimePickerProp
   
   // Handle hour input change
   const handleHourChange = (val: string, field: 'in' | 'out') => {
-    const num = parseInt(val) || 0
-    if (num >= 0 && num <= 12) {
+    // Allow empty string or valid numbers
+    if (val === '' || (parseInt(val) >= 0 && parseInt(val) <= 12)) {
       if (field === 'in') setInHour(val)
       else setOutHour(val)
     }
@@ -78,12 +78,18 @@ export function TimePicker({ timeIn, timeOut, onSave, onCancel }: TimePickerProp
   
   // Handle minute input change
   const handleMinuteChange = (val: string, field: 'in' | 'out') => {
-    const num = parseInt(val) || 0
-    if (num >= 0 && num <= 59) {
-      const padded = val.length === 1 && num > 5 ? val.padStart(2, '0') : val
-      if (field === 'in') setInMinute(padded)
-      else setOutMinute(padded)
+    // Allow empty string or valid numbers up to 59
+    if (val === '' || (parseInt(val) >= 0 && parseInt(val) <= 59)) {
+      // Keep the raw value - don't auto-pad while typing
+      if (field === 'in') setInMinute(val)
+      else setOutMinute(val)
     }
+  }
+  
+  // Select all text on focus
+  const handleInputFocus = (e: React.FocusEvent<HTMLInputElement>, field: 'in' | 'out') => {
+    e.target.select()
+    setActiveField(field)
   }
   
   // Handle period toggle
@@ -131,77 +137,6 @@ export function TimePicker({ timeIn, timeOut, onSave, onCancel }: TimePickerProp
   
   if (!mounted) return null
   
-  // Time input row component
-  const TimeInputRow = ({ 
-    label, 
-    hour, 
-    minute, 
-    period, 
-    field,
-    isActive 
-  }: { 
-    label: string
-    hour: string
-    minute: string
-    period: 'AM' | 'PM'
-    field: 'in' | 'out'
-    isActive: boolean
-  }) => (
-    <div 
-      className={`p-3 rounded-lg border-2 cursor-pointer transition-all ${
-        isActive ? 'border-blue-500 bg-blue-500/10' : 'border-slate-600 bg-slate-800/50 hover:border-slate-500'
-      }`}
-      onClick={() => setActiveField(field)}
-    >
-      <div className="text-xs text-slate-400 mb-2 font-medium">{label}</div>
-      <div className="flex items-center gap-2">
-        <Input
-          type="number"
-          min="1"
-          max="12"
-          value={hour}
-          onChange={(e) => handleHourChange(e.target.value, field)}
-          onFocus={() => setActiveField(field)}
-          className="w-14 h-9 text-center text-lg font-bold bg-slate-900 border-slate-600 text-white"
-        />
-        <span className="text-xl font-bold text-white">:</span>
-        <Input
-          type="number"
-          min="0"
-          max="59"
-          value={minute}
-          onChange={(e) => handleMinuteChange(e.target.value, field)}
-          onFocus={() => setActiveField(field)}
-          className="w-14 h-9 text-center text-lg font-bold bg-slate-900 border-slate-600 text-white"
-        />
-        <div className="flex ml-2">
-          <button
-            type="button"
-            className={`px-3 py-1.5 text-sm font-bold rounded-l border-2 transition-all ${
-              period === 'AM' 
-                ? 'bg-blue-600 border-blue-600 text-white' 
-                : 'bg-slate-800 border-slate-600 text-slate-400 hover:bg-slate-700'
-            }`}
-            onClick={() => handlePeriodChange('AM', field)}
-          >
-            AM
-          </button>
-          <button
-            type="button"
-            className={`px-3 py-1.5 text-sm font-bold rounded-r border-2 border-l-0 transition-all ${
-              period === 'PM' 
-                ? 'bg-blue-600 border-blue-600 text-white' 
-                : 'bg-slate-800 border-slate-600 text-slate-400 hover:bg-slate-700'
-            }`}
-            onClick={() => handlePeriodChange('PM', field)}
-          >
-            PM
-          </button>
-        </div>
-      </div>
-    </div>
-  )
-  
   const popupContent = (
     <>
       {/* Backdrop */}
@@ -231,22 +166,115 @@ export function TimePicker({ timeIn, timeOut, onSave, onCancel }: TimePickerProp
         
         {/* Time In / Time Out Inputs */}
         <div className="space-y-3 mb-5">
-          <TimeInputRow 
-            label="TIME IN"
-            hour={inHour}
-            minute={inMinute}
-            period={inPeriod}
-            field="in"
-            isActive={activeField === 'in'}
-          />
-          <TimeInputRow 
-            label="TIME OUT"
-            hour={outHour}
-            minute={outMinute}
-            period={outPeriod}
-            field="out"
-            isActive={activeField === 'out'}
-          />
+          {/* TIME IN */}
+          <div 
+            className={`p-3 rounded-lg border-2 cursor-pointer transition-all ${
+              activeField === 'in' ? 'border-blue-500 bg-blue-500/10' : 'border-slate-600 bg-slate-800/50 hover:border-slate-500'
+            }`}
+            onClick={() => setActiveField('in')}
+          >
+            <div className="text-xs text-slate-400 mb-2 font-medium">TIME IN</div>
+            <div className="flex items-center gap-2">
+              <input
+                type="text"
+                inputMode="numeric"
+                maxLength={2}
+                value={inHour}
+                onChange={(e) => handleHourChange(e.target.value.replace(/\D/g, ''), 'in')}
+                onFocus={(e) => handleInputFocus(e, 'in')}
+                className="w-14 h-9 text-center text-lg font-bold bg-slate-900 border border-slate-600 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+              <span className="text-xl font-bold text-white">:</span>
+              <input
+                type="text"
+                inputMode="numeric"
+                maxLength={2}
+                value={inMinute}
+                onChange={(e) => handleMinuteChange(e.target.value.replace(/\D/g, ''), 'in')}
+                onFocus={(e) => handleInputFocus(e, 'in')}
+                className="w-14 h-9 text-center text-lg font-bold bg-slate-900 border border-slate-600 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+              <div className="flex ml-2">
+                <button
+                  type="button"
+                  className={`px-3 py-1.5 text-sm font-bold rounded-l border-2 transition-all ${
+                    inPeriod === 'AM' 
+                      ? 'bg-blue-600 border-blue-600 text-white' 
+                      : 'bg-slate-800 border-slate-600 text-slate-400 hover:bg-slate-700'
+                  }`}
+                  onClick={() => handlePeriodChange('AM', 'in')}
+                >
+                  AM
+                </button>
+                <button
+                  type="button"
+                  className={`px-3 py-1.5 text-sm font-bold rounded-r border-2 border-l-0 transition-all ${
+                    inPeriod === 'PM' 
+                      ? 'bg-blue-600 border-blue-600 text-white' 
+                      : 'bg-slate-800 border-slate-600 text-slate-400 hover:bg-slate-700'
+                  }`}
+                  onClick={() => handlePeriodChange('PM', 'in')}
+                >
+                  PM
+                </button>
+              </div>
+            </div>
+          </div>
+          
+          {/* TIME OUT */}
+          <div 
+            className={`p-3 rounded-lg border-2 cursor-pointer transition-all ${
+              activeField === 'out' ? 'border-blue-500 bg-blue-500/10' : 'border-slate-600 bg-slate-800/50 hover:border-slate-500'
+            }`}
+            onClick={() => setActiveField('out')}
+          >
+            <div className="text-xs text-slate-400 mb-2 font-medium">TIME OUT</div>
+            <div className="flex items-center gap-2">
+              <input
+                type="text"
+                inputMode="numeric"
+                maxLength={2}
+                value={outHour}
+                onChange={(e) => handleHourChange(e.target.value.replace(/\D/g, ''), 'out')}
+                onFocus={(e) => handleInputFocus(e, 'out')}
+                className="w-14 h-9 text-center text-lg font-bold bg-slate-900 border border-slate-600 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+              <span className="text-xl font-bold text-white">:</span>
+              <input
+                type="text"
+                inputMode="numeric"
+                maxLength={2}
+                value={outMinute}
+                onChange={(e) => handleMinuteChange(e.target.value.replace(/\D/g, ''), 'out')}
+                onFocus={(e) => handleInputFocus(e, 'out')}
+                className="w-14 h-9 text-center text-lg font-bold bg-slate-900 border border-slate-600 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+              <div className="flex ml-2">
+                <button
+                  type="button"
+                  className={`px-3 py-1.5 text-sm font-bold rounded-l border-2 transition-all ${
+                    outPeriod === 'AM' 
+                      ? 'bg-blue-600 border-blue-600 text-white' 
+                      : 'bg-slate-800 border-slate-600 text-slate-400 hover:bg-slate-700'
+                  }`}
+                  onClick={() => handlePeriodChange('AM', 'out')}
+                >
+                  AM
+                </button>
+                <button
+                  type="button"
+                  className={`px-3 py-1.5 text-sm font-bold rounded-r border-2 border-l-0 transition-all ${
+                    outPeriod === 'PM' 
+                      ? 'bg-blue-600 border-blue-600 text-white' 
+                      : 'bg-slate-800 border-slate-600 text-slate-400 hover:bg-slate-700'
+                  }`}
+                  onClick={() => handlePeriodChange('PM', 'out')}
+                >
+                  PM
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
         
         {/* Quick Select */}

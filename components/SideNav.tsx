@@ -28,7 +28,8 @@ import {
   Calendar,
   Truck,
   Archive,
-  Clock
+  Clock,
+  BarChart3
 } from 'lucide-react'
 
 interface NavItem {
@@ -58,6 +59,7 @@ const navItems: NavItem[] = [
   
   // Admin & Settings
   { title: 'Time Sheets', href: '/timesheet', icon: Clock },
+  { title: 'Timesheet Stats', href: '/timesheet-stats', icon: BarChart3, adminOnly: true },
   { title: 'Manage Users', href: '/admin/users', icon: Users, adminOnly: true },
   { title: 'Manage Customers', href: '/customers', icon: Users },
   { title: 'Deleted Forms', href: '/archive', icon: Archive },
