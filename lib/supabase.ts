@@ -242,6 +242,8 @@ export interface Timesheet {
   pay_period_start: string
   pay_period_end: string
   notes?: string
+  pto_notes?: string
+  holiday_name?: string
   created_at: string
   updated_at: string
 }

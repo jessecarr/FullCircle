@@ -116,14 +116,18 @@ export function TimePicker({ timeIn, timeOut, onSave, onCancel }: TimePickerProp
     onSave(finalTimeIn, finalTimeOut)
   }
   
-  // Close on escape key
+  // Close on escape key, save on enter
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') onCancel()
+      if (e.key === 'Enter') {
+        e.preventDefault()
+        handleSave()
+      }
     }
     document.addEventListener('keydown', handleKeyDown)
     return () => document.removeEventListener('keydown', handleKeyDown)
-  }, [onCancel])
+  }, [onCancel, inHour, inMinute, inPeriod, outHour, outMinute, outPeriod])
   
   if (!mounted) return null
   

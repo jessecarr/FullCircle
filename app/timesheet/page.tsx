@@ -13,6 +13,8 @@ import { PageNavigation } from '@/components/PageNavigation'
 import { Clock, Play, Square, ChevronLeft, ChevronRight, Users, Calendar, Edit2, Save, X } from 'lucide-react'
 import { Timesheet } from '@/lib/supabase'
 import { TimePicker } from '@/components/TimePicker'
+import { HolidayPicker } from '@/components/HolidayPicker'
+import { PTOPicker } from '@/components/PTOPicker'
 
 interface Employee {
   id: string
@@ -167,6 +169,15 @@ export default function TimesheetPage() {
   const [editingTimeForDate, setEditingTimeForDate] = useState<string | null>(null)
   const [editTimeIn, setEditTimeIn] = useState('')
   const [editTimeOut, setEditTimeOut] = useState('')
+  const [editingPTOForDate, setEditingPTOForDate] = useState<string | null>(null)
+  const [editPTOHours, setEditPTOHours] = useState(0)
+  const [editPTONotes, setEditPTONotes] = useState('')
+  const [editingHolidayForDate, setEditingHolidayForDate] = useState<string | null>(null)
+  const [editHolidayHours, setEditHolidayHours] = useState(0)
+  const [editHolidayName, setEditHolidayName] = useState('')
+  const [bulkSelectMode, setBulkSelectMode] = useState<'time_in' | 'time_out' | null>(null)
+  const [bulkSelectedDates, setBulkSelectedDates] = useState<string[]>([])
+  const [showClockOutConfirm, setShowClockOutConfirm] = useState(false)
   
   const isAdmin = userRole === 'admin'
   
@@ -448,6 +459,320 @@ export default function TimesheetPage() {
     setEditingTimeForDate(null)
   }
   
+  // Handle PTO edit - opens picker
+  const handleStartPTOEdit = (date: string, timesheet: Timesheet | null) => {
+    if (!isAdmin) return
+    setEditingPTOForDate(date)
+    setEditPTOHours(timesheet?.pto_hours || 8)
+    setEditPTONotes(timesheet?.pto_notes || '')
+  }
+  
+  // Handle saving PTO
+  const handleSavePTO = async (hours: number, notes: string) => {
+    if (!selectedEmployee || !editingPTOForDate) return
+    
+    const date = editingPTOForDate
+    const existingTimesheet = timesheets.find(ts => ts.date === date)
+    
+    try {
+      const body: any = {
+        employee_id: selectedEmployee.id,
+        date,
+        pay_period_start: payPeriod.start,
+        pay_period_end: payPeriod.end,
+        regular_hours: existingTimesheet?.regular_hours || 0,
+        overtime_hours: existingTimesheet?.overtime_hours || 0,
+        pto_hours: hours,
+        holiday_hours: existingTimesheet?.holiday_hours || 0,
+        time_in: existingTimesheet?.time_in || null,
+        time_out: existingTimesheet?.time_out || null,
+        pto_notes: notes,
+        holiday_name: existingTimesheet?.holiday_name || null
+      }
+      
+      const res = await fetch('/api/timesheets', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body)
+      })
+      
+      const data = await res.json()
+      
+      if (data.success) {
+        toast({ title: 'Saved', description: 'PTO updated successfully' })
+        fetchTimesheets()
+      } else {
+        toast({ title: 'Error', description: data.error, variant: 'destructive' })
+      }
+    } catch (err) {
+      toast({ title: 'Error', description: 'Failed to save PTO', variant: 'destructive' })
+    }
+    
+    setEditingPTOForDate(null)
+  }
+  
+  const handleCancelPTOPicker = () => {
+    setEditingPTOForDate(null)
+  }
+  
+  // Handle clearing PTO directly
+  const handleClearPTO = async (date: string) => {
+    if (!selectedEmployee) return
+    
+    const existingTimesheet = timesheets.find(ts => ts.date === date)
+    
+    try {
+      const body: any = {
+        employee_id: selectedEmployee.id,
+        date,
+        pay_period_start: payPeriod.start,
+        pay_period_end: payPeriod.end,
+        regular_hours: existingTimesheet?.regular_hours || 0,
+        overtime_hours: existingTimesheet?.overtime_hours || 0,
+        pto_hours: 0,
+        holiday_hours: existingTimesheet?.holiday_hours || 0,
+        time_in: existingTimesheet?.time_in || null,
+        time_out: existingTimesheet?.time_out || null,
+        pto_notes: null,
+        holiday_name: existingTimesheet?.holiday_name || null
+      }
+      
+      const res = await fetch('/api/timesheets', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body)
+      })
+      
+      const data = await res.json()
+      
+      if (data.success) {
+        toast({ title: 'Cleared', description: 'PTO cleared' })
+        fetchTimesheets()
+      } else {
+        toast({ title: 'Error', description: data.error, variant: 'destructive' })
+      }
+    } catch (err) {
+      toast({ title: 'Error', description: 'Failed to clear PTO', variant: 'destructive' })
+    }
+  }
+  
+  // Handle Holiday edit - opens picker
+  const handleStartHolidayEdit = (date: string, timesheet: Timesheet | null) => {
+    if (!isAdmin) return
+    setEditingHolidayForDate(date)
+    setEditHolidayHours(timesheet?.holiday_hours || 8)
+    setEditHolidayName(timesheet?.holiday_name || '')
+  }
+  
+  // Handle saving Holiday
+  const handleSaveHoliday = async (hours: number, holidayName: string) => {
+    if (!selectedEmployee || !editingHolidayForDate) return
+    
+    const date = editingHolidayForDate
+    const existingTimesheet = timesheets.find(ts => ts.date === date)
+    
+    try {
+      const body: any = {
+        employee_id: selectedEmployee.id,
+        date,
+        pay_period_start: payPeriod.start,
+        pay_period_end: payPeriod.end,
+        regular_hours: existingTimesheet?.regular_hours || 0,
+        overtime_hours: existingTimesheet?.overtime_hours || 0,
+        pto_hours: existingTimesheet?.pto_hours || 0,
+        holiday_hours: hours,
+        time_in: existingTimesheet?.time_in || null,
+        time_out: existingTimesheet?.time_out || null,
+        pto_notes: existingTimesheet?.pto_notes || null,
+        holiday_name: holidayName
+      }
+      
+      const res = await fetch('/api/timesheets', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body)
+      })
+      
+      const data = await res.json()
+      
+      if (data.success) {
+        toast({ title: 'Saved', description: 'Holiday updated successfully' })
+        fetchTimesheets()
+      } else {
+        toast({ title: 'Error', description: data.error, variant: 'destructive' })
+      }
+    } catch (err) {
+      toast({ title: 'Error', description: 'Failed to save Holiday', variant: 'destructive' })
+    }
+    
+    setEditingHolidayForDate(null)
+  }
+  
+  const handleCancelHolidayPicker = () => {
+    setEditingHolidayForDate(null)
+  }
+  
+  // Handle clearing Holiday directly
+  const handleClearHoliday = async (date: string) => {
+    if (!selectedEmployee) return
+    
+    const existingTimesheet = timesheets.find(ts => ts.date === date)
+    
+    try {
+      const body: any = {
+        employee_id: selectedEmployee.id,
+        date,
+        pay_period_start: payPeriod.start,
+        pay_period_end: payPeriod.end,
+        regular_hours: existingTimesheet?.regular_hours || 0,
+        overtime_hours: existingTimesheet?.overtime_hours || 0,
+        pto_hours: existingTimesheet?.pto_hours || 0,
+        holiday_hours: 0,
+        time_in: existingTimesheet?.time_in || null,
+        time_out: existingTimesheet?.time_out || null,
+        pto_notes: existingTimesheet?.pto_notes || null,
+        holiday_name: null
+      }
+      
+      const res = await fetch('/api/timesheets', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body)
+      })
+      
+      const data = await res.json()
+      
+      if (data.success) {
+        toast({ title: 'Cleared', description: 'Holiday cleared' })
+        fetchTimesheets()
+      } else {
+        toast({ title: 'Error', description: data.error, variant: 'destructive' })
+      }
+    } catch (err) {
+      toast({ title: 'Error', description: 'Failed to clear Holiday', variant: 'destructive' })
+    }
+  }
+  
+  // Bulk selection handlers
+  const handleToggleBulkMode = (field: 'time_in' | 'time_out') => {
+    if (bulkSelectMode === field) {
+      setBulkSelectMode(null)
+      setBulkSelectedDates([])
+    } else {
+      setBulkSelectMode(field)
+      setBulkSelectedDates([])
+    }
+  }
+  
+  const handleToggleBulkDate = (date: string) => {
+    setBulkSelectedDates(prev => 
+      prev.includes(date) 
+        ? prev.filter(d => d !== date)
+        : [...prev, date]
+    )
+  }
+  
+  const handleBulkSetTime = async (timeHHMM: string) => {
+    if (!selectedEmployee || !bulkSelectMode || bulkSelectedDates.length === 0) return
+    
+    try {
+      for (const date of bulkSelectedDates) {
+        const existingTimesheet = timesheets.find(ts => ts.date === date)
+        const [hours, minutes] = timeHHMM.split(':')
+        const timeDate = new Date(date + 'T00:00:00')
+        timeDate.setHours(parseInt(hours), parseInt(minutes), 0, 0)
+        
+        const body: any = {
+          employee_id: selectedEmployee.id,
+          date,
+          pay_period_start: payPeriod.start,
+          pay_period_end: payPeriod.end,
+          regular_hours: existingTimesheet?.regular_hours || 0,
+          overtime_hours: existingTimesheet?.overtime_hours || 0,
+          pto_hours: existingTimesheet?.pto_hours || 0,
+          holiday_hours: existingTimesheet?.holiday_hours || 0,
+          time_in: existingTimesheet?.time_in || null,
+          time_out: existingTimesheet?.time_out || null
+        }
+        
+        body[bulkSelectMode] = timeDate.toISOString()
+        
+        // Recalculate hours if both times are set
+        if (body.time_in && body.time_out) {
+          const totalHours = calculateHoursBetween(body.time_in, body.time_out)
+          const weekNum = getWeekNumber(date)
+          const existingWeeklyHours = calculateWeeklyHoursExcluding(weekNum, date)
+          const availableRegularHours = Math.max(0, 40 - existingWeeklyHours)
+          
+          if (totalHours <= availableRegularHours) {
+            body.regular_hours = Math.round(totalHours * 100) / 100
+            body.overtime_hours = 0
+          } else {
+            body.regular_hours = Math.round(availableRegularHours * 100) / 100
+            body.overtime_hours = Math.round((totalHours - availableRegularHours) * 100) / 100
+          }
+        }
+        
+        await fetch('/api/timesheets', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(body)
+        })
+      }
+      
+      toast({ title: 'Success', description: `Updated ${bulkSelectedDates.length} entries` })
+      fetchTimesheets()
+      setBulkSelectMode(null)
+      setBulkSelectedDates([])
+    } catch (err) {
+      toast({ title: 'Error', description: 'Failed to bulk update', variant: 'destructive' })
+    }
+  }
+  
+  const handleBulkDelete = async () => {
+    if (!selectedEmployee || !bulkSelectMode || bulkSelectedDates.length === 0) return
+    
+    try {
+      for (const date of bulkSelectedDates) {
+        const existingTimesheet = timesheets.find(ts => ts.date === date)
+        
+        const body: any = {
+          employee_id: selectedEmployee.id,
+          date,
+          pay_period_start: payPeriod.start,
+          pay_period_end: payPeriod.end,
+          regular_hours: existingTimesheet?.regular_hours || 0,
+          overtime_hours: existingTimesheet?.overtime_hours || 0,
+          pto_hours: existingTimesheet?.pto_hours || 0,
+          holiday_hours: existingTimesheet?.holiday_hours || 0,
+          time_in: existingTimesheet?.time_in || null,
+          time_out: existingTimesheet?.time_out || null
+        }
+        
+        body[bulkSelectMode] = null
+        
+        // Clear hours if one time is missing
+        if (!body.time_in || !body.time_out) {
+          body.regular_hours = 0
+          body.overtime_hours = 0
+        }
+        
+        await fetch('/api/timesheets', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(body)
+        })
+      }
+      
+      toast({ title: 'Success', description: `Cleared ${bulkSelectedDates.length} entries` })
+      fetchTimesheets()
+      setBulkSelectMode(null)
+      setBulkSelectedDates([])
+    } catch (err) {
+      toast({ title: 'Error', description: 'Failed to bulk delete', variant: 'destructive' })
+    }
+  }
+  
   // Handle Full Time Employee button - fills Tue-Sat with 9am-5pm
   const handleFullTimeEmployee = async (weekIndex: number) => {
     if (!selectedEmployee) return
@@ -692,7 +1017,7 @@ export default function TimesheetPage() {
                   Clock In
                 </Button>
                 <Button
-                  onClick={() => handleClock('clock_out')}
+                  onClick={() => setShowClockOutConfirm(true)}
                   disabled={!clockStatus.isClockedIn || clockStatus.isClockedOut}
                   variant="destructive"
                 >
@@ -799,31 +1124,69 @@ export default function TimesheetPage() {
                     </div>
                   </CardHeader>
                   <CardContent className="p-0">
-                    <div className="overflow-x-auto border border-border rounded-md">
+                    <div className="overflow-x-auto border border-slate-600 rounded-md" style={{ backgroundColor: '#0f172a' }}>
                       <table className="w-full text-sm border-collapse">
                         <thead>
-                          <tr className="bg-muted">
-                            <th className="px-3 py-2 text-left font-semibold border border-border">DAY</th>
-                            <th className="px-3 py-2 text-left font-semibold border border-border">DATE</th>
-                            <th className="px-3 py-2 text-center font-semibold border border-border">TIME IN</th>
-                            <th className="px-3 py-2 text-center font-semibold border border-border">TIME OUT</th>
-                            <th className="px-3 py-2 text-center font-semibold border border-border">REG. HOURS</th>
-                            <th className="px-3 py-2 text-center font-semibold border border-border">OVER TIME</th>
-                            <th className="px-3 py-2 text-center font-semibold border border-border">PTO</th>
-                            <th className="px-3 py-2 text-center font-semibold border border-border">HOLIDAY</th>
+                          <tr style={{ backgroundColor: '#1e3a5f' }}>
+                            <th className="px-3 py-2 text-left font-semibold border border-slate-600 text-white">DAY</th>
+                            <th className="px-3 py-2 text-left font-semibold border border-slate-600 text-white">DATE</th>
+                            <th className="px-3 py-2 text-center font-semibold border border-slate-600 text-white">
+                              <div className="flex items-center justify-center gap-1">
+                                <span>TIME IN</span>
+                                {isAdmin && (
+                                  <button
+                                    className={`p-1 rounded text-xs ${bulkSelectMode === 'time_in' ? 'bg-blue-600 text-white' : 'hover:bg-blue-500/20 text-blue-400'}`}
+                                    onClick={() => handleToggleBulkMode('time_in')}
+                                    title="Bulk select"
+                                  >
+                                    ☑
+                                  </button>
+                                )}
+                              </div>
+                            </th>
+                            <th className="px-3 py-2 text-center font-semibold border border-slate-600 text-white">
+                              <div className="flex items-center justify-center gap-1">
+                                <span>TIME OUT</span>
+                                {isAdmin && (
+                                  <button
+                                    className={`p-1 rounded text-xs ${bulkSelectMode === 'time_out' ? 'bg-blue-600 text-white' : 'hover:bg-blue-500/20 text-blue-400'}`}
+                                    onClick={() => handleToggleBulkMode('time_out')}
+                                    title="Bulk select"
+                                  >
+                                    ☑
+                                  </button>
+                                )}
+                              </div>
+                            </th>
+                            <th className="px-3 py-2 text-center font-semibold border border-slate-600 text-white">REG. HOURS</th>
+                            <th className="px-3 py-2 text-center font-semibold border border-slate-600 text-white">OVER TIME</th>
+                            <th className="px-3 py-2 text-center font-semibold border border-slate-600 text-white">PTO</th>
+                            <th className="px-3 py-2 text-center font-semibold border border-slate-600 text-white">HOLIDAY</th>
                           </tr>
                         </thead>
                         <tbody>
                           {week.days.map((day, dayIndex) => (
-                            <tr key={dayIndex} className={`${dayIndex % 2 === 0 ? 'bg-background' : 'bg-muted/30'} hover:bg-muted/50 transition-colors`}>
-                              <td className="px-3 py-2 font-medium border border-border">{day.dayName}</td>
-                              <td className="px-3 py-2 border border-border">{formatDate(day.date)}</td>
+                            <tr 
+                              key={dayIndex} 
+                              className="hover:brightness-110 transition-colors"
+                              style={{ backgroundColor: dayIndex % 2 === 0 ? '#0f172a' : '#1e293b' }}
+                            >
+                              <td className="px-3 py-2 font-medium border border-slate-600 text-slate-200">{day.dayName}</td>
+                              <td className="px-3 py-2 border border-slate-600 text-slate-200">{formatDate(day.date)}</td>
                               
                               {/* Time In - Editable by admin */}
-                              <td className="px-3 py-2 text-center border border-border">
+                              <td className="px-3 py-2 text-center border border-slate-600 text-slate-200">
                                 <div className="flex items-center justify-center gap-1">
+                                  {bulkSelectMode === 'time_in' && (
+                                    <input
+                                      type="checkbox"
+                                      checked={bulkSelectedDates.includes(day.date)}
+                                      onChange={() => handleToggleBulkDate(day.date)}
+                                      className="h-4 w-4 rounded border-slate-600"
+                                    />
+                                  )}
                                   <span>{formatTime(day.timesheet?.time_in)}</span>
-                                  {isAdmin && (
+                                  {isAdmin && !bulkSelectMode && (
                                     <>
                                       <button
                                         className="p-1 rounded hover:bg-blue-500/20 text-blue-400"
@@ -847,10 +1210,18 @@ export default function TimesheetPage() {
                               </td>
                               
                               {/* Time Out - Editable by admin */}
-                              <td className="px-3 py-2 text-center border border-border">
+                              <td className="px-3 py-2 text-center border border-slate-600 text-slate-200">
                                 <div className="flex items-center justify-center gap-1">
+                                  {bulkSelectMode === 'time_out' && (
+                                    <input
+                                      type="checkbox"
+                                      checked={bulkSelectedDates.includes(day.date)}
+                                      onChange={() => handleToggleBulkDate(day.date)}
+                                      className="h-4 w-4 rounded border-slate-600"
+                                    />
+                                  )}
                                   <span>{formatTime(day.timesheet?.time_out)}</span>
-                                  {isAdmin && (
+                                  {isAdmin && !bulkSelectMode && (
                                     <>
                                       <button
                                         className="p-1 rounded hover:bg-blue-500/20 text-blue-400"
@@ -874,7 +1245,7 @@ export default function TimesheetPage() {
                               </td>
                               
                               {/* Regular Hours */}
-                              <td className="px-3 py-2 text-center border border-border">
+                              <td className="px-3 py-2 text-center border border-slate-600 text-slate-200">
                                 {editingCell?.date === day.date && editingCell?.field === 'regular_hours' ? (
                                   <div className="flex items-center gap-1 justify-center">
                                     <Input
@@ -904,7 +1275,7 @@ export default function TimesheetPage() {
                               </td>
                               
                               {/* Overtime Hours */}
-                              <td className="px-3 py-2 text-center border border-border">
+                              <td className="px-3 py-2 text-center border border-slate-600 text-slate-200">
                                 {editingCell?.date === day.date && editingCell?.field === 'overtime_hours' ? (
                                   <div className="flex items-center gap-1 justify-center">
                                     <Input
@@ -934,74 +1305,82 @@ export default function TimesheetPage() {
                               </td>
                               
                               {/* PTO Hours */}
-                              <td className="px-3 py-2 text-center border border-border">
-                                {editingCell?.date === day.date && editingCell?.field === 'pto_hours' ? (
-                                  <div className="flex items-center gap-1 justify-center">
-                                    <Input
-                                      type="number"
-                                      step="0.25"
-                                      value={editValue}
-                                      onChange={(e) => setEditValue(e.target.value)}
-                                      className="w-16 h-7 text-center p-1"
-                                      autoFocus
-                                    />
-                                    <Button size="sm" variant="ghost" className="h-7 w-7 p-0" onClick={() => handleSaveEdit(day.date, 'pto_hours')}>
-                                      <Save className="h-3 w-3" />
-                                    </Button>
-                                    <Button size="sm" variant="ghost" className="h-7 w-7 p-0" onClick={handleCancelEdit}>
-                                      <X className="h-3 w-3" />
-                                    </Button>
+                              <td className="px-3 py-2 text-center border border-slate-600 text-slate-200">
+                                <div className="flex items-center justify-center gap-1">
+                                  <div className="flex flex-col items-center">
+                                    <span>{day.timesheet?.pto_hours || '-'}</span>
+                                    {day.timesheet?.pto_notes && (
+                                      <span className="text-xs text-purple-400 truncate max-w-[80px]" title={day.timesheet.pto_notes}>
+                                        {day.timesheet.pto_notes}
+                                      </span>
+                                    )}
                                   </div>
-                                ) : (
-                                  <span 
-                                    className={isAdmin ? 'cursor-pointer hover:bg-muted px-2 py-1 rounded' : ''}
-                                    onClick={() => handleStartEdit(day.date, 'pto_hours', day.timesheet?.pto_hours || 0)}
-                                  >
-                                    {day.timesheet?.pto_hours || '-'}
-                                    {isAdmin && <Edit2 className="h-3 w-3 inline ml-1 opacity-30" />}
-                                  </span>
-                                )}
+                                  {isAdmin && (
+                                    <>
+                                      <button
+                                        className="p-1 rounded hover:bg-purple-500/20 text-purple-400"
+                                        onClick={() => handleStartPTOEdit(day.date, day.timesheet)}
+                                        title="Edit PTO"
+                                      >
+                                        <Edit2 className="h-3 w-3" />
+                                      </button>
+                                      {day.timesheet?.pto_hours ? (
+                                        <button
+                                          className="p-1 rounded hover:bg-red-500/20 text-red-400"
+                                          onClick={() => handleClearPTO(day.date)}
+                                          title="Clear PTO"
+                                        >
+                                          <X className="h-3 w-3" />
+                                        </button>
+                                      ) : null}
+                                    </>
+                                  )}
+                                </div>
                               </td>
                               
                               {/* Holiday Hours */}
-                              <td className="px-3 py-2 text-center border border-border">
-                                {editingCell?.date === day.date && editingCell?.field === 'holiday_hours' ? (
-                                  <div className="flex items-center gap-1 justify-center">
-                                    <Input
-                                      type="number"
-                                      step="0.25"
-                                      value={editValue}
-                                      onChange={(e) => setEditValue(e.target.value)}
-                                      className="w-16 h-7 text-center p-1"
-                                      autoFocus
-                                    />
-                                    <Button size="sm" variant="ghost" className="h-7 w-7 p-0" onClick={() => handleSaveEdit(day.date, 'holiday_hours')}>
-                                      <Save className="h-3 w-3" />
-                                    </Button>
-                                    <Button size="sm" variant="ghost" className="h-7 w-7 p-0" onClick={handleCancelEdit}>
-                                      <X className="h-3 w-3" />
-                                    </Button>
+                              <td className="px-3 py-2 text-center border border-slate-600 text-slate-200">
+                                <div className="flex items-center justify-center gap-1">
+                                  <div className="flex flex-col items-center">
+                                    <span>{day.timesheet?.holiday_hours || '-'}</span>
+                                    {day.timesheet?.holiday_name && (
+                                      <span className="text-xs text-green-400 truncate max-w-[80px]" title={day.timesheet.holiday_name}>
+                                        {day.timesheet.holiday_name}
+                                      </span>
+                                    )}
                                   </div>
-                                ) : (
-                                  <span 
-                                    className={isAdmin ? 'cursor-pointer hover:bg-muted px-2 py-1 rounded' : ''}
-                                    onClick={() => handleStartEdit(day.date, 'holiday_hours', day.timesheet?.holiday_hours || 0)}
-                                  >
-                                    {day.timesheet?.holiday_hours || '-'}
-                                    {isAdmin && <Edit2 className="h-3 w-3 inline ml-1 opacity-30" />}
-                                  </span>
-                                )}
+                                  {isAdmin && (
+                                    <>
+                                      <button
+                                        className="p-1 rounded hover:bg-green-500/20 text-green-400"
+                                        onClick={() => handleStartHolidayEdit(day.date, day.timesheet)}
+                                        title="Edit Holiday"
+                                      >
+                                        <Edit2 className="h-3 w-3" />
+                                      </button>
+                                      {day.timesheet?.holiday_hours ? (
+                                        <button
+                                          className="p-1 rounded hover:bg-red-500/20 text-red-400"
+                                          onClick={() => handleClearHoliday(day.date)}
+                                          title="Clear Holiday"
+                                        >
+                                          <X className="h-3 w-3" />
+                                        </button>
+                                      ) : null}
+                                    </>
+                                  )}
+                                </div>
                               </td>
                             </tr>
                           ))}
                           
                           {/* Weekly Totals Row */}
-                          <tr className="bg-muted font-semibold">
-                            <td colSpan={4} className="px-3 py-2 text-right border border-border">TOTALS</td>
-                            <td className="px-3 py-2 text-center border border-border">{week.totals.regular.toFixed(2)}</td>
-                            <td className="px-3 py-2 text-center border border-border">{week.totals.overtime.toFixed(2)}</td>
-                            <td className="px-3 py-2 text-center border border-border">{week.totals.pto.toFixed(2)}</td>
-                            <td className="px-3 py-2 text-center border border-border">{week.totals.holiday.toFixed(2)}</td>
+                          <tr style={{ backgroundColor: '#334155' }}>
+                            <td colSpan={4} className="px-3 py-2 text-right border border-slate-600 font-semibold text-white">TOTALS</td>
+                            <td className="px-3 py-2 text-center border border-slate-600 font-semibold text-white">{week.totals.regular.toFixed(2)}</td>
+                            <td className="px-3 py-2 text-center border border-slate-600 font-semibold text-white">{week.totals.overtime.toFixed(2)}</td>
+                            <td className="px-3 py-2 text-center border border-slate-600 font-semibold text-white">{week.totals.pto.toFixed(2)}</td>
+                            <td className="px-3 py-2 text-center border border-slate-600 font-semibold text-white">{week.totals.holiday.toFixed(2)}</td>
                           </tr>
                         </tbody>
                       </table>
@@ -1067,6 +1446,98 @@ export default function TimesheetPage() {
           onSave={handleSaveBothTimes}
           onCancel={handleCancelTimePicker}
         />
+      )}
+      
+      {/* PTO Picker Modal */}
+      {editingPTOForDate && (
+        <PTOPicker
+          hours={editPTOHours}
+          notes={editPTONotes}
+          onSave={handleSavePTO}
+          onCancel={handleCancelPTOPicker}
+        />
+      )}
+      
+      {/* Holiday Picker Modal */}
+      {editingHolidayForDate && (
+        <HolidayPicker
+          hours={editHolidayHours}
+          holidayName={editHolidayName}
+          onSave={handleSaveHoliday}
+          onCancel={handleCancelHolidayPicker}
+        />
+      )}
+      
+      {/* Bulk Action Bar */}
+      {bulkSelectMode && bulkSelectedDates.length > 0 && (
+        <div className="fixed bottom-4 left-1/2 -translate-x-1/2 z-[9000] bg-slate-800 border-2 border-slate-600 rounded-xl shadow-2xl p-4 flex items-center gap-4">
+          <span className="text-white font-semibold">
+            {bulkSelectedDates.length} selected for {bulkSelectMode === 'time_in' ? 'Time In' : 'Time Out'}
+          </span>
+          <div className="flex gap-2">
+            <button
+              className="px-3 py-1.5 text-sm font-semibold rounded bg-slate-700 text-white hover:bg-slate-600"
+              onClick={() => handleBulkSetTime('09:00')}
+            >
+              Set 9 AM
+            </button>
+            <button
+              className="px-3 py-1.5 text-sm font-semibold rounded bg-slate-700 text-white hover:bg-slate-600"
+              onClick={() => handleBulkSetTime('17:00')}
+            >
+              Set 5 PM
+            </button>
+            <button
+              className="px-3 py-1.5 text-sm font-semibold rounded bg-red-600 text-white hover:bg-red-700"
+              onClick={handleBulkDelete}
+            >
+              Clear Selected
+            </button>
+          </div>
+          <button
+            className="px-3 py-1.5 text-sm font-semibold rounded border border-slate-500 text-slate-300 hover:bg-slate-700"
+            onClick={() => {
+              setBulkSelectMode(null)
+              setBulkSelectedDates([])
+            }}
+          >
+            Cancel
+          </button>
+        </div>
+      )}
+      
+      {/* Clock Out Confirmation Dialog */}
+      {showClockOutConfirm && (
+        <>
+          <div 
+            className="fixed inset-0 bg-black/70 z-[9998]"
+            onClick={() => setShowClockOutConfirm(false)}
+          />
+          <div 
+            className="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-[9999] rounded-xl shadow-2xl p-6 min-w-[340px]"
+            style={{ backgroundColor: '#1e293b', border: '2px solid #334155' }}
+          >
+            <div className="text-lg font-bold text-white mb-4">Confirm Clock Out</div>
+            <p className="text-slate-300 mb-6">Are you sure you want to clock out?</p>
+            <div className="flex justify-end gap-3">
+              <button
+                className="px-5 py-2 text-sm font-semibold rounded border-2 border-slate-600 bg-slate-800 text-white hover:bg-slate-700 transition-all"
+                onClick={() => setShowClockOutConfirm(false)}
+              >
+                Cancel
+              </button>
+              <button
+                className="px-5 py-2 text-sm font-semibold rounded bg-red-600 text-white hover:bg-red-700 transition-all"
+                onClick={() => {
+                  setShowClockOutConfirm(false)
+                  handleClock('clock_out')
+                }}
+              >
+                Clock Out
+              </button>
+            </div>
+          </div>
+        </>
       )}
     </div>
   )
