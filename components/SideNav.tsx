@@ -27,7 +27,8 @@ import {
   Users,
   Calendar,
   Truck,
-  Archive
+  Archive,
+  Clock
 } from 'lucide-react'
 
 interface NavItem {
@@ -56,6 +57,7 @@ const navItems: NavItem[] = [
   { title: "Graf's Arriving", href: '/grafs-arriving', icon: Truck, separator: true },
   
   // Admin & Settings
+  { title: 'Time Sheets', href: '/timesheet', icon: Clock },
   { title: 'Manage Users', href: '/admin/users', icon: Users, adminOnly: true },
   { title: 'Manage Customers', href: '/customers', icon: Users },
   { title: 'Deleted Forms', href: '/archive', icon: Archive },

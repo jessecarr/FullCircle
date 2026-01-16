@@ -10,7 +10,7 @@ import { useToast } from '@/components/ui/use-toast'
 import { useAuth } from '@/hooks/useAuth'
 import { Header } from '@/components/Header'
 import { supabase } from '@/lib/supabase'
-import { Settings, Users, FileText, Package, ArrowRight, ArrowLeft, User, Shield, Database, RefreshCw, Upload, Building2, Lock, AlertTriangle, Truck, Archive } from 'lucide-react'
+import { Settings, Users, FileText, Package, ArrowRight, ArrowLeft, User, Shield, Database, RefreshCw, Upload, Building2, Lock, AlertTriangle, Truck, Archive, Clock } from 'lucide-react'
 import { PageNavigation } from '@/components/PageNavigation'
 
 export default function SettingsPage() {
@@ -437,6 +437,31 @@ export default function SettingsPage() {
                   className="mt-2 w-full"
                 >
                   Open Archive
+                  <ArrowRight className="h-4 w-4 ml-2" />
+                </Button>
+              </CardContent>
+            </Card>
+
+            {/* Time Sheets Card */}
+            <Card 
+              className="landing-card hover:shadow-lg transition-shadow cursor-pointer"
+              onClick={() => router.push('/timesheet')}
+            >
+              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                <CardTitle className="text-sm font-medium">Time Tracking</CardTitle>
+                <Clock className="h-4 w-4 text-muted-foreground" />
+              </CardHeader>
+              <CardContent>
+                <div className="text-2xl font-bold">Time Sheets</div>
+                <p className="text-xs text-muted-foreground">
+                  Track employee hours, clock in/out, and manage timesheets
+                </p>
+                <Button 
+                  variant="ghost" 
+                  size="sm" 
+                  className="mt-2 w-full"
+                >
+                  Open Time Sheets
                   <ArrowRight className="h-4 w-4 ml-2" />
                 </Button>
               </CardContent>

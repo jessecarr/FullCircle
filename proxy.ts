@@ -7,7 +7,7 @@ export async function proxy(req: NextRequest) {
   
   // TEMPORARILY DISABLED FOR TESTING
   // Remove this return statement to re-enable middleware
-  if (req.nextUrl.pathname.startsWith('/landing') || req.nextUrl.pathname.startsWith('/dashboard') || req.nextUrl.pathname.startsWith('/admin') || req.nextUrl.pathname.startsWith('/settings') || req.nextUrl.pathname.startsWith('/customers') || req.nextUrl.pathname.startsWith('/archive') || req.nextUrl.pathname.startsWith('/grafs-schedule') || req.nextUrl.pathname.startsWith('/grafs-arriving') || req.nextUrl.pathname === '/') {
+  if (req.nextUrl.pathname.startsWith('/landing') || req.nextUrl.pathname.startsWith('/dashboard') || req.nextUrl.pathname.startsWith('/admin') || req.nextUrl.pathname.startsWith('/settings') || req.nextUrl.pathname.startsWith('/customers') || req.nextUrl.pathname.startsWith('/archive') || req.nextUrl.pathname.startsWith('/grafs-schedule') || req.nextUrl.pathname.startsWith('/grafs-arriving') || req.nextUrl.pathname.startsWith('/timesheet') || req.nextUrl.pathname === '/') {
     return res
   }
   
@@ -30,7 +30,7 @@ export async function proxy(req: NextRequest) {
   } = await supabase.auth.getUser()
 
   // Public routes that don't require authentication
-  const publicRoutes = ['/login', '/landing', '/dashboard', '/settings', '/customers', '/archive', '/grafs-schedule', '/grafs-arriving']
+  const publicRoutes = ['/login', '/landing', '/dashboard', '/settings', '/customers', '/archive', '/grafs-schedule', '/grafs-arriving', '/timesheet']
   const isPublicRoute = publicRoutes.some(route => 
     req.nextUrl.pathname.startsWith(route)
   )

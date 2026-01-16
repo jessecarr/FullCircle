@@ -228,3 +228,20 @@ export interface ConsignmentForm {
   created_at: string
   updated_at: string
 }
+
+export interface Timesheet {
+  id: string
+  employee_id: string
+  date: string
+  time_in?: string
+  time_out?: string
+  regular_hours: number
+  overtime_hours: number
+  pto_hours: number
+  holiday_hours: number
+  pay_period_start: string
+  pay_period_end: string
+  notes?: string
+  created_at: string
+  updated_at: string
+}
