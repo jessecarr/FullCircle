@@ -804,3 +804,42 @@ button svg {
   width: 1.25rem !important;
   height: 1.25rem !important;
 }
+
+/* Print-only section - hidden on screen */
+.print-only-section {
+  display: none !important;
+}
+
+/* Print Styles for Timesheet */
+@media print {
+  /* Page setup - landscape */
+  @page {
+    size: landscape;
+    margin: 0.2in;
+  }
+  
+  /* Hide gradient background */
+  body::before {
+    display: none !important;
+  }
+  
+  /* Reset body styles for print */
+  body {
+    background: white !important;
+    color: black !important;
+  }
+  
+  /* Show the print-only-section - NO SCALING, natural sizing */
+  .print-only-section {
+    display: block !important;
+    background: white !important;
+    color: black !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+  
+  /* Compact table columns */
+  .print-only-section table {
+    table-layout: fixed !important;
+  }
+}

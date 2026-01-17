@@ -35,6 +35,7 @@ export default function TimesheetStatsPage() {
   const [selectedYear, setSelectedYear] = useState(new Date().getFullYear().toString())
   const [ptoStats, setPtoStats] = useState<PTOStats[]>([])
   const [isLoading, setIsLoading] = useState(true)
+  const [selectedEmployeeFilter, setSelectedEmployeeFilter] = useState<string>('all')
   
   // Generate year options (current year and 5 years back)
   const currentYear = new Date().getFullYear()
@@ -54,7 +55,13 @@ export default function TimesheetStatsPage() {
         const res = await fetch('/api/admin/users')
         if (res.ok) {
           const data = await res.json()
-          setEmployees(data.users || [])
+          // Map users to include name from user_metadata
+          const mappedUsers = (data.users || []).map((u: any) => ({
+            id: u.id,
+            email: u.email,
+            name: u.user_metadata?.name || u.email?.split('@')[0] || 'Unknown'
+          }))
+          setEmployees(mappedUsers)
         }
       } catch (error) {
         console.error('Failed to fetch employees:', error)
@@ -116,7 +123,7 @@ export default function TimesheetStatsPage() {
           stats.entries.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
         })
         
-        setPtoStats(Array.from(statsMap.values()).sort((a, b) => a.employee_name.localeCompare(b.employee_name)))
+        setPtoStats(Array.from(statsMap.values()).sort((a, b) => (a.employee_name || '').localeCompare(b.employee_name || '')))
       } catch (error) {
         console.error('Failed to fetch PTO stats:', error)
       } finally {
@@ -149,7 +156,7 @@ export default function TimesheetStatsPage() {
       {/* Header */}
       <div className="flex items-center gap-4 mb-6">
         <Link 
-          href="/settings" 
+          href="/timesheet" 
           className="p-2 rounded-lg hover:bg-slate-800 transition-colors"
         >
           <ArrowLeft className="h-5 w-5" />
@@ -248,8 +255,37 @@ export default function TimesheetStatsPage() {
         </CardContent>
       </Card>
       
+      {/* PTO Details Section with Employee Filter */}
+      <Card className="mb-4 border-slate-600" style={{ backgroundColor: '#1e293b' }}>
+        <CardHeader style={{ backgroundColor: '#1e3a5f', borderTopLeftRadius: '0.5rem', borderTopRightRadius: '0.5rem' }}>
+          <div className="flex items-center justify-between">
+            <CardTitle className="text-lg text-white flex items-center gap-2">
+              <Clock className="h-5 w-5 text-purple-400" />
+              PTO Details
+            </CardTitle>
+            <div className="flex items-center gap-2">
+              <span className="text-sm text-slate-300">Filter by Employee:</span>
+              <Select value={selectedEmployeeFilter} onValueChange={setSelectedEmployeeFilter}>
+                <SelectTrigger className="w-48 bg-slate-800 border-slate-600">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="all">All Employees</SelectItem>
+                  {employees.map(emp => (
+                    <SelectItem key={emp.id} value={emp.id}>{emp.name}</SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+          </div>
+        </CardHeader>
+      </Card>
+
       {/* Detailed Breakdown per Employee */}
-      {!isLoading && ptoStats.filter(s => s.entries.length > 0).map(stats => (
+      {!isLoading && ptoStats
+        .filter(s => s.entries.length > 0)
+        .filter(s => selectedEmployeeFilter === 'all' || s.employee_id === selectedEmployeeFilter)
+        .map(stats => (
         <Card key={stats.employee_id} className="mb-4 border-slate-600" style={{ backgroundColor: '#1e293b' }}>
           <CardHeader className="pb-2">
             <CardTitle className="text-base text-white flex items-center gap-2">
@@ -281,11 +317,15 @@ export default function TimesheetStatsPage() {
         </Card>
       ))}
       
-      {!isLoading && ptoStats.every(s => s.entries.length === 0) && (
+      {!isLoading && ptoStats
+        .filter(s => selectedEmployeeFilter === 'all' || s.employee_id === selectedEmployeeFilter)
+        .every(s => s.entries.length === 0) && (
         <Card className="border-slate-600" style={{ backgroundColor: '#1e293b' }}>
           <CardContent className="py-12 text-center">
             <Calendar className="h-12 w-12 mx-auto mb-4 text-slate-500" />
-            <p className="text-slate-400">No PTO entries found for {selectedYear}</p>
+            <p className="text-slate-400">
+              No PTO entries found for {selectedEmployeeFilter === 'all' ? 'any employee' : employees.find(e => e.id === selectedEmployeeFilter)?.name || 'selected employee'} in {selectedYear}
+            </p>
           </CardContent>
         </Card>
       )}
