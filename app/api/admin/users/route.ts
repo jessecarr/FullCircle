@@ -20,11 +20,19 @@ export async function GET() {
       return NextResponse.json({ error: error.message }, { status: 400 })
     }
 
+    // Fetch is_active status from employees table
+    const { data: employees } = await supabaseAdmin
+      .from('employees')
+      .select('id, is_active')
+
+    const employeeMap = new Map(employees?.map(e => [e.id, e.is_active]) || [])
+
     const users = data.users.map(user => ({
       id: user.id,
       email: user.email || '',
       created_at: user.created_at,
-      user_metadata: user.user_metadata || {}
+      user_metadata: user.user_metadata || {},
+      is_active: employeeMap.get(user.id) ?? true
     }))
 
     return NextResponse.json({ users })
@@ -85,7 +93,7 @@ export async function POST(request: Request) {
 
 export async function PUT(request: Request) {
   try {
-    const { userId, role, name, password } = await request.json()
+    const { userId, role, name, password, is_active } = await request.json()
 
     // Get current user metadata to preserve other fields
     const { data: currentUser } = await supabaseAdmin.auth.admin.getUserById(userId)
@@ -131,7 +139,7 @@ export async function PUT(request: Request) {
           password_hash: 'auth_managed', // Placeholder - actual auth is handled by Supabase Auth
           name: updateData.name || currentUser.user.email?.split('@')[0] || 'Unknown',
           role: role || 'employee',
-          is_active: true,
+          is_active: is_active !== undefined ? is_active : true,
           created_at: new Date().toISOString(),
           updated_at: new Date().toISOString()
         }, { onConflict: 'id' })

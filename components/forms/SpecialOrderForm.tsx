@@ -529,35 +529,49 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
             })
 
           if (grafsItems.length > 0) {
-            // Get current time in CST (UTC-6)
-            const now = new Date()
-            const cstOffset = -6 * 60 // CST is UTC-6
-            const utcOffset = now.getTimezoneOffset()
-            const cstTime = new Date(now.getTime() + (utcOffset + cstOffset) * 60 * 1000)
-            
-            // Check if it's past Tuesday noon CST
-            const dayOfWeek = cstTime.getDay() // 0 = Sunday, 2 = Tuesday
-            const hour = cstTime.getHours()
-            const isPastTuesdayCutoff = dayOfWeek > 2 || (dayOfWeek === 2 && hour >= 12)
-            
             // Get all scheduled delivery dates
-            const today = new Date().toISOString().split('T')[0]
+            const today = new Date()
+            today.setHours(0, 0, 0, 0)
+            const todayStr = today.toISOString().split('T')[0]
+            
             const { data: deliveryDates } = await supabase
               .from('grafs_delivery_schedule')
               .select('delivery_date')
-              .gte('delivery_date', today)
+              .gte('delivery_date', todayStr)
               .order('delivery_date', { ascending: true })
 
             let targetDeliveryDate: string | null = null
 
             if (deliveryDates && deliveryDates.length > 0) {
-              if (isPastTuesdayCutoff && deliveryDates.length > 1) {
-                // Past cutoff - use second delivery date (skip current week)
-                targetDeliveryDate = deliveryDates[1].delivery_date
-              } else if (isPastTuesdayCutoff && deliveryDates.length === 1) {
-                // Past cutoff but only one date - auto-generate next date (14 days later)
-                const currentDate = new Date(deliveryDates[0].delivery_date + 'T00:00:00')
-                const nextDate = new Date(currentDate.getTime() + 14 * 24 * 60 * 60 * 1000)
+              // Find the first delivery date where we haven't passed the cutoff (2 days before)
+              let foundValidDate = false
+              
+              for (let i = 0; i < deliveryDates.length; i++) {
+                const deliveryDateStr = deliveryDates[i].delivery_date
+                const [year, month, day] = deliveryDateStr.split('-').map(Number)
+                const deliveryDate = new Date(year, month - 1, day)
+                
+                // Calculate cutoff date (2 days before delivery)
+                const cutoffDate = new Date(deliveryDate)
+                cutoffDate.setDate(cutoffDate.getDate() - 2)
+                cutoffDate.setHours(0, 0, 0, 0)
+                
+                // If today is before or on the cutoff date, this delivery is valid
+                if (today <= cutoffDate) {
+                  targetDeliveryDate = deliveryDateStr
+                  foundValidDate = true
+                  break
+                }
+              }
+              
+              // If no valid date found (all are past cutoff), use the last one or create new
+              if (!foundValidDate) {
+                const lastDeliveryStr = deliveryDates[deliveryDates.length - 1].delivery_date
+                const [year, month, day] = lastDeliveryStr.split('-').map(Number)
+                const lastDelivery = new Date(year, month - 1, day)
+                
+                // Auto-generate next date (14 days after last scheduled date)
+                const nextDate = new Date(lastDelivery.getTime() + 14 * 24 * 60 * 60 * 1000)
                 const nextDateStr = nextDate.toISOString().split('T')[0]
                 
                 // Insert the new date into schedule
@@ -566,9 +580,6 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
                   .insert({ delivery_date: nextDateStr })
                 
                 targetDeliveryDate = nextDateStr
-              } else {
-                // Before cutoff - use first available date
-                targetDeliveryDate = deliveryDates[0].delivery_date
               }
             }
 
@@ -1543,7 +1554,17 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
                   <Textarea
                     id={`description-${index}`}
                     value={line.description}
-                    onChange={(e) => updateProductLine(index, 'description', e.target.value.toUpperCase())}
+                    onChange={(e) => {
+                      const target = e.target as HTMLTextAreaElement;
+                      const start = target.selectionStart;
+                      const end = target.selectionEnd;
+                      const upperValue = e.target.value.toUpperCase();
+                      updateProductLine(index, 'description', upperValue);
+                      // Restore cursor position after React re-render
+                      requestAnimationFrame(() => {
+                        target.setSelectionRange(start, end);
+                      });
+                    }}
                     onKeyDown={(e) => {
                       if (e.key === 'Enter') {
                         e.preventDefault();
@@ -1594,7 +1615,7 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
                     type="number"
                     min="0"
                     step="0.01"
-                    value={line.unit_price || ''}
+                    value={line.unit_price === 0 ? '0' : (line.unit_price || '')}
                     onChange={(e) => updateProductLine(index, 'unit_price', e.target.value ? parseFloat(e.target.value) : 0)}
                     placeholder="0"
                     onKeyDown={(e) => {

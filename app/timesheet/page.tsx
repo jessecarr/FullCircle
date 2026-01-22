@@ -10,7 +10,7 @@ import { useToast } from '@/components/ui/use-toast'
 import { useAuth } from '@/hooks/useAuth'
 import { Header } from '@/components/Header'
 import { PageNavigation } from '@/components/PageNavigation'
-import { Clock, Play, Square, ChevronLeft, ChevronRight, Users, Calendar, Edit2, Save, X, BarChart3, Printer } from 'lucide-react'
+import { Clock, Play, Square, ChevronLeft, ChevronRight, Users, Calendar, Edit2, Save, X, BarChart3, Printer, Eye } from 'lucide-react'
 import Link from 'next/link'
 import { Timesheet } from '@/lib/supabase'
 import { TimePicker } from '@/components/TimePicker'
@@ -88,6 +88,15 @@ function getPayPeriodDates(date: Date): PayPeriod {
     end: formatDateString(periodEnd),
     label: `${formatDisplay(periodStart)} - ${formatDisplay(periodEnd)}`
   }
+}
+
+// Get ISO week number of the year (1-52)
+function getWeekOfYear(date: Date): number {
+  const d = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()))
+  const dayNum = d.getUTCDay() || 7
+  d.setUTCDate(d.getUTCDate() + 4 - dayNum)
+  const yearStart = new Date(Date.UTC(d.getUTCFullYear(), 0, 1))
+  return Math.ceil((((d.getTime() - yearStart.getTime()) / 86400000) + 1) / 7)
 }
 
 // Navigate to next/previous pay period
@@ -182,6 +191,11 @@ export default function TimesheetPage() {
   const [bulkPTOHours, setBulkPTOHours] = useState(8)
   const [bulkPTONotes, setBulkPTONotes] = useState('')
   const [showClockOutConfirm, setShowClockOutConfirm] = useState(false)
+  const [showViewAllDialog, setShowViewAllDialog] = useState(false)
+  const [viewAllPayPeriod, setViewAllPayPeriod] = useState<PayPeriod | null>(null)
+  const [viewAllEmployeeIndex, setViewAllEmployeeIndex] = useState(0)
+  const [viewAllTimesheets, setViewAllTimesheets] = useState<Timesheet[]>([])
+  const [viewAllWeeks, setViewAllWeeks] = useState<WeekData[]>([])
   
   const isAdmin = userRole === 'admin'
   
@@ -1049,6 +1063,81 @@ export default function TimesheetPage() {
     total: acc.total + week.totals.total
   }), { regular: 0, overtime: 0, pto: 0, holiday: 0, total: 0 })
 
+  // View All functionality - get last completed pay period
+  const getLastPayPeriod = (): PayPeriod => {
+    const today = new Date()
+    const currentPeriod = getPayPeriodDates(today)
+    // Go to previous pay period (the last completed one)
+    return navigatePayPeriod(currentPeriod.start, 'prev')
+  }
+
+  // Fetch timesheets for View All dialog
+  const fetchViewAllTimesheets = async (employeeId: string, period: PayPeriod) => {
+    try {
+      const params = new URLSearchParams({
+        employee_id: employeeId,
+        pay_period_start: period.start,
+        pay_period_end: period.end,
+        is_admin: 'true'
+      })
+      
+      const res = await fetch(`/api/timesheets?${params}`)
+      const data = await res.json()
+      
+      if (data.timesheets) {
+        setViewAllTimesheets(data.timesheets)
+        const weeksData = getWeeksInPayPeriod(period.start, period.end, data.timesheets)
+        setViewAllWeeks(weeksData)
+      }
+    } catch (err) {
+      console.error('Failed to fetch View All timesheets:', err)
+    }
+  }
+
+  const handleOpenViewAll = () => {
+    const lastPeriod = getLastPayPeriod()
+    setViewAllPayPeriod(lastPeriod)
+    setViewAllEmployeeIndex(0)
+    if (employees.length > 0) {
+      fetchViewAllTimesheets(employees[0].id, lastPeriod)
+    }
+    setShowViewAllDialog(true)
+  }
+
+  const handleViewAllPayPeriodNav = (direction: 'prev' | 'next') => {
+    if (!viewAllPayPeriod) return
+    const newPeriod = navigatePayPeriod(viewAllPayPeriod.start, direction)
+    setViewAllPayPeriod(newPeriod)
+    if (employees.length > 0 && employees[viewAllEmployeeIndex]) {
+      fetchViewAllTimesheets(employees[viewAllEmployeeIndex].id, newPeriod)
+    }
+  }
+
+  const handleViewAllEmployeeNav = (direction: 'prev' | 'next') => {
+    if (employees.length === 0 || !viewAllPayPeriod) return
+    let newIndex = viewAllEmployeeIndex
+    if (direction === 'next') {
+      newIndex = (viewAllEmployeeIndex + 1) % employees.length
+    } else {
+      newIndex = viewAllEmployeeIndex === 0 ? employees.length - 1 : viewAllEmployeeIndex - 1
+    }
+    setViewAllEmployeeIndex(newIndex)
+    fetchViewAllTimesheets(employees[newIndex].id, viewAllPayPeriod)
+  }
+
+  // Calculate View All totals and check which columns have data
+  const viewAllTotals = viewAllWeeks.reduce((acc, week) => ({
+    regular: acc.regular + week.totals.regular,
+    overtime: acc.overtime + week.totals.overtime,
+    pto: acc.pto + week.totals.pto,
+    holiday: acc.holiday + week.totals.holiday,
+    total: acc.total + week.totals.total
+  }), { regular: 0, overtime: 0, pto: 0, holiday: 0, total: 0 })
+
+  const viewAllHasOvertime = viewAllTotals.overtime > 0
+  const viewAllHasPTO = viewAllTotals.pto > 0
+  const viewAllHasHoliday = viewAllTotals.holiday > 0
+
   useEffect(() => {
     if (!loading && !user) {
       router.push('/login')
@@ -1181,6 +1270,15 @@ export default function TimesheetPage() {
                     Next
                     <ChevronRight className="h-5 w-5 ml-1" />
                   </Button>
+                  {isAdmin && employees.length > 0 && (
+                    <Button
+                      className="text-lg px-5 py-2 bg-purple-600 hover:bg-purple-700 text-white"
+                      onClick={() => handleOpenViewAll()}
+                    >
+                      <Eye className="h-5 w-5 mr-1" />
+                      View All
+                    </Button>
+                  )}
                   {selectedEmployee && (
                     <Button
                       className="text-lg px-5 py-2 bg-green-600 hover:bg-green-700 text-white"
@@ -1215,8 +1313,9 @@ export default function TimesheetPage() {
                   <CardHeader className="pb-2 py-4" style={{ backgroundColor: '#1e3a5f', borderTopLeftRadius: '0.5rem', borderTopRightRadius: '0.5rem' }}>
                     <div className="flex items-center justify-between relative min-h-[48px]">
                       <div className="w-[160px] print:hidden"></div>
-                      <CardTitle className="text-3xl font-bold text-white text-center flex-1 flex items-center justify-center">
-                        WEEKLY TIME REPORT {formatDate(week.startDate)} - {formatDate(week.endDate)}
+                      <CardTitle className="text-3xl font-bold text-white text-center flex-1 flex flex-col items-center justify-center">
+                        <span>{formatDate(week.startDate)} - {formatDate(week.endDate)}</span>
+                        <span className="text-lg font-normal">(Week {getWeekOfYear(parseLocalDate(week.startDate))})</span>
                       </CardTitle>
                       {isAdmin && (
                         <button
@@ -1746,7 +1845,8 @@ export default function TimesheetPage() {
             <div key={weekIndex} style={{ marginBottom: '6px' }}>
               {/* Week Header */}
               <h2 style={{ fontSize: '14pt', fontWeight: 'bold', textAlign: 'center', margin: '0 0 4px 0', backgroundColor: '#ddd', padding: '4px' }}>
-                WEEKLY TIME REPORT {formatDate(week.startDate)} - {formatDate(week.endDate)}
+                <div>{formatDate(week.startDate)} - {formatDate(week.endDate)}</div>
+                <div style={{ fontSize: '12pt', fontWeight: 'normal' }}>(Week {getWeekOfYear(parseLocalDate(week.startDate))})</div>
               </h2>
               
               {/* Week Table - narrow columns */}
@@ -1831,6 +1931,180 @@ export default function TimesheetPage() {
                 </tr>
               </tbody>
             </table>
+          </div>
+        </div>
+      )}
+
+      {/* View All Dialog */}
+      {showViewAllDialog && viewAllPayPeriod && employees.length > 0 && (
+        <div className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4">
+          <div className="bg-slate-900 border border-slate-600 rounded-lg max-w-5xl w-full max-h-[90vh] overflow-y-auto">
+            {/* Header with close button */}
+            <div className="sticky top-0 bg-slate-800 border-b border-slate-600 p-4 flex items-center justify-between">
+              <h2 className="text-2xl font-bold text-white flex items-center gap-2">
+                <Eye className="h-6 w-6" />
+                View All Timesheets
+              </h2>
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => setShowViewAllDialog(false)}
+                className="text-white hover:bg-slate-700"
+              >
+                <X className="h-5 w-5" />
+              </Button>
+            </div>
+
+            {/* Pay Period Navigation */}
+            <div className="bg-slate-800 p-4 border-b border-slate-600">
+              <div className="flex items-center justify-between">
+                <Button
+                  className="bg-blue-600 hover:bg-blue-700 text-white"
+                  onClick={() => handleViewAllPayPeriodNav('prev')}
+                >
+                  <ChevronLeft className="h-4 w-4 mr-1" />
+                  Previous Period
+                </Button>
+                <div className="text-center">
+                  <div className="flex items-center gap-2 justify-center">
+                    <Calendar className="h-5 w-5 text-white" />
+                    <span className="font-bold text-xl text-white">Pay Period</span>
+                  </div>
+                  <p className="text-lg text-slate-300">{viewAllPayPeriod.label}</p>
+                </div>
+                <Button
+                  className="bg-blue-600 hover:bg-blue-700 text-white"
+                  onClick={() => handleViewAllPayPeriodNav('next')}
+                >
+                  Next Period
+                  <ChevronRight className="h-4 w-4 ml-1" />
+                </Button>
+              </div>
+            </div>
+
+            {/* Employee Navigation */}
+            <div className="bg-slate-700 p-4 border-b border-slate-600">
+              <div className="flex items-center justify-between">
+                <Button
+                  className="bg-purple-600 hover:bg-purple-700 text-white"
+                  onClick={() => handleViewAllEmployeeNav('prev')}
+                >
+                  <ChevronLeft className="h-4 w-4 mr-1" />
+                  Previous Employee
+                </Button>
+                <div className="text-center">
+                  <div className="flex items-center gap-2 justify-center">
+                    <Users className="h-5 w-5 text-white" />
+                    <span className="font-bold text-xl text-white">
+                      {employees[viewAllEmployeeIndex]?.name?.toUpperCase() || 'Unknown'}
+                    </span>
+                  </div>
+                  <p className="text-sm text-slate-300">
+                    Employee {viewAllEmployeeIndex + 1} of {employees.length}
+                  </p>
+                </div>
+                <Button
+                  className="bg-purple-600 hover:bg-purple-700 text-white"
+                  onClick={() => handleViewAllEmployeeNav('next')}
+                >
+                  Next Employee
+                  <ChevronRight className="h-4 w-4 ml-1" />
+                </Button>
+              </div>
+            </div>
+
+            {/* Timesheet Content */}
+            <div className="p-4 space-y-4">
+              {/* Pay Period Totals - Now at the top */}
+              <div className="border border-slate-600 rounded-lg overflow-hidden">
+                <div className="bg-blue-800 p-3">
+                  <h3 className="text-lg font-bold text-white text-center">PAY PERIOD TOTALS</h3>
+                </div>
+                <table className="w-full text-sm border-collapse">
+                  <thead>
+                    <tr className="bg-slate-800">
+                      <th className="px-4 py-3 text-center text-white border-x border-slate-600">REG. HOURS</th>
+                      <th className="px-4 py-3 text-center text-white border-x border-slate-600">OVERTIME</th>
+                      <th className="px-4 py-3 text-center text-white border-x border-slate-600">PTO</th>
+                      <th className="px-4 py-3 text-center text-white border-x border-slate-600">HOLIDAY</th>
+                      <th className="px-4 py-3 text-center text-white border-x border-slate-600">TOTAL HOURS</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr className="bg-slate-900 font-bold text-lg">
+                      <td className="px-4 py-3 text-center text-green-400 border-x border-slate-600">{viewAllTotals.regular.toFixed(2)}</td>
+                      <td className="px-4 py-3 text-center text-yellow-400 border-x border-slate-600">{viewAllTotals.overtime.toFixed(2)}</td>
+                      <td className="px-4 py-3 text-center text-purple-400 border-x border-slate-600">{viewAllTotals.pto.toFixed(2)}</td>
+                      <td className="px-4 py-3 text-center text-blue-400 border-x border-slate-600">{viewAllTotals.holiday.toFixed(2)}</td>
+                      <td className="px-4 py-3 text-center text-white border-x border-slate-600">{viewAllTotals.total.toFixed(2)}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              {/* Weeks */}
+              {viewAllWeeks.map((week, weekIndex) => (
+                <div key={weekIndex} className="border border-slate-600 rounded-lg overflow-hidden">
+                  <div className="bg-slate-700 p-3">
+                    <h3 className="text-lg font-bold text-white text-center">
+                      <div>{formatDate(week.startDate)} - {formatDate(week.endDate)}</div>
+                      <div className="text-base font-normal">(Week {getWeekOfYear(parseLocalDate(week.startDate))})</div>
+                    </h3>
+                  </div>
+                  <table className="w-full text-sm border-collapse">
+                    <thead>
+                      <tr className="bg-slate-800">
+                        <th className="px-3 py-2 text-left text-white border-x border-b border-slate-600">DAY</th>
+                        <th className="px-3 py-2 text-left text-white border-x border-b border-slate-600">DATE</th>
+                        <th className="px-3 py-2 text-center text-white border-x border-b border-slate-600">TIME IN</th>
+                        <th className="px-3 py-2 text-center text-white border-x border-b border-slate-600">TIME OUT</th>
+                        <th className="px-3 py-2 text-center text-white border-x border-b border-slate-600">REG. HOURS</th>
+                        <th className="px-3 py-2 text-center text-white border-x border-b border-slate-600">OVERTIME</th>
+                        <th className="px-3 py-2 text-center text-white border-x border-b border-slate-600">PTO</th>
+                        <th className="px-3 py-2 text-center text-white border-x border-b border-slate-600">HOLIDAY</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {week.days.map((day, dayIndex) => (
+                        <tr 
+                          key={dayIndex} 
+                          className={dayIndex % 2 === 0 ? 'bg-slate-900' : 'bg-slate-800'}
+                        >
+                          <td className="px-3 py-2 text-slate-200 border-x border-b border-slate-700">{day.dayName}</td>
+                          <td className="px-3 py-2 text-slate-200 border-x border-b border-slate-700">{formatDate(day.date)}</td>
+                          <td className="px-3 py-2 text-center text-slate-200 border-x border-b border-slate-700">
+                            {formatTime(day.timesheet?.time_in)}
+                          </td>
+                          <td className="px-3 py-2 text-center text-slate-200 border-x border-b border-slate-700">
+                            {formatTime(day.timesheet?.time_out)}
+                          </td>
+                          <td className="px-3 py-2 text-center text-slate-200 border-x border-b border-slate-700">
+                            {day.timesheet?.regular_hours || '-'}
+                          </td>
+                          <td className="px-3 py-2 text-center text-slate-200 border-x border-b border-slate-700">
+                            {day.timesheet?.overtime_hours || '-'}
+                          </td>
+                          <td className="px-3 py-2 text-center text-slate-200 border-x border-b border-slate-700">
+                            {day.timesheet?.pto_hours || '-'}
+                          </td>
+                          <td className="px-3 py-2 text-center text-slate-200 border-x border-b border-slate-700">
+                            {day.timesheet?.holiday_hours || '-'}
+                          </td>
+                        </tr>
+                      ))}
+                      {/* Week Totals Row */}
+                      <tr className="bg-slate-700 font-bold">
+                        <td colSpan={4} className="px-3 py-2 text-right text-white border-x border-slate-600">WEEK TOTALS:</td>
+                        <td className="px-3 py-2 text-center text-white border-x border-slate-600">{week.totals.regular.toFixed(2)}</td>
+                        <td className="px-3 py-2 text-center text-white border-x border-slate-600">{week.totals.overtime.toFixed(2)}</td>
+                        <td className="px-3 py-2 text-center text-white border-x border-slate-600">{week.totals.pto.toFixed(2)}</td>
+                        <td className="px-3 py-2 text-center text-white border-x border-slate-600">{week.totals.holiday.toFixed(2)}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       )}
