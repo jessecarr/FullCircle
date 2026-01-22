@@ -523,22 +523,66 @@ export function QuoteForm({ initialData, onSuccess, onCancel }: QuoteFormProps) 
             })
 
           if (grafsItems.length > 0) {
-            // Get the next Graf delivery date
-            const today = new Date().toISOString().split('T')[0]
-            const { data: nextDelivery } = await supabase
+            // Get all scheduled delivery dates
+            const today = new Date()
+            today.setHours(0, 0, 0, 0)
+            const todayStr = today.toISOString().split('T')[0]
+            
+            const { data: deliveryDates } = await supabase
               .from('grafs_delivery_schedule')
               .select('delivery_date')
-              .gte('delivery_date', today)
+              .gte('delivery_date', todayStr)
               .order('delivery_date', { ascending: true })
-              .limit(1)
-              .single()
 
-            if (nextDelivery) {
+            let targetDeliveryDate: string | null = null
+
+            if (deliveryDates && deliveryDates.length > 0) {
+              // Find the first delivery date where we haven't passed the cutoff (2 days before)
+              let foundValidDate = false
+              
+              for (let i = 0; i < deliveryDates.length; i++) {
+                const deliveryDateStr = deliveryDates[i].delivery_date
+                const [year, month, day] = deliveryDateStr.split('-').map(Number)
+                const deliveryDate = new Date(year, month - 1, day)
+                
+                // Calculate cutoff date (2 days before delivery)
+                const cutoffDate = new Date(deliveryDate)
+                cutoffDate.setDate(cutoffDate.getDate() - 2)
+                cutoffDate.setHours(0, 0, 0, 0)
+                
+                // If today is before or on the cutoff date, this delivery is valid
+                if (today <= cutoffDate) {
+                  targetDeliveryDate = deliveryDateStr
+                  foundValidDate = true
+                  break
+                }
+              }
+              
+              // If no valid date found (all are past cutoff), use the last one or create new
+              if (!foundValidDate) {
+                const lastDeliveryStr = deliveryDates[deliveryDates.length - 1].delivery_date
+                const [year, month, day] = lastDeliveryStr.split('-').map(Number)
+                const lastDelivery = new Date(year, month - 1, day)
+                
+                // Auto-generate next date (14 days after last scheduled date)
+                const nextDate = new Date(lastDelivery.getTime() + 14 * 24 * 60 * 60 * 1000)
+                const nextDateStr = nextDate.toISOString().split('T')[0]
+                
+                // Insert the new date into schedule
+                await supabase
+                  .from('grafs_delivery_schedule')
+                  .insert({ delivery_date: nextDateStr })
+                
+                targetDeliveryDate = nextDateStr
+              }
+            }
+
+            if (targetDeliveryDate) {
               // Create tracking records for each Graf item
               const trackingRecords = grafsItems.map(({ index }) => ({
                 special_order_id: newOrder.id,
                 product_line_index: index,
-                expected_delivery_date: nextDelivery.delivery_date,
+                expected_delivery_date: targetDeliveryDate,
               }))
 
               await supabase
