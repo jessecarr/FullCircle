@@ -28,6 +28,7 @@ interface NewUser {
   password: string
   name: string
   role: 'admin' | 'manager' | 'employee'
+  is_active: boolean
 }
 
 interface AuthUser {
@@ -39,6 +40,7 @@ interface AuthUser {
     role?: string
     employee_id?: string
   }
+  is_active?: boolean
 }
 
 export default function UserManagementPage() {
@@ -51,7 +53,8 @@ export default function UserManagementPage() {
     email: '',
     password: '',
     name: '',
-    role: 'employee'
+    role: 'employee',
+    is_active: true
   })
   const [editingUser, setEditingUser] = useState<AuthUser | null>(null)
   const [editRole, setEditRole] = useState<'admin' | 'manager' | 'employee'>('employee')
@@ -60,6 +63,7 @@ export default function UserManagementPage() {
   const [confirmPassword, setConfirmPassword] = useState('')
   const [showEditPassword, setShowEditPassword] = useState(false)
   const [showConfirmPassword, setShowConfirmPassword] = useState(false)
+  const [editIsActive, setEditIsActive] = useState(true)
   const [showEditDialog, setShowEditDialog] = useState(false)
   const [deleteUser, setDeleteUser] = useState<AuthUser | null>(null)
   const [showDeleteDialog, setShowDeleteDialog] = useState(false)
@@ -105,7 +109,8 @@ export default function UserManagementPage() {
           email: newUser.email,
           password: newUser.password,
           name: newUser.name,
-          role: newUser.role
+          role: newUser.role,
+          is_active: newUser.is_active
         })
       })
       
@@ -134,7 +139,8 @@ export default function UserManagementPage() {
         email: '',
         password: '',
         name: '',
-        role: 'employee'
+        role: 'employee',
+        is_active: true
       })
 
       // Refresh users list
@@ -174,7 +180,8 @@ export default function UserManagementPage() {
           userId: editingUser.id,
           role: editRole,
           name: editName || undefined,
-          password: editPassword || undefined
+          password: editPassword || undefined,
+          is_active: editIsActive
         })
       })
       
@@ -331,6 +338,19 @@ export default function UserManagementPage() {
                 </Select>
               </div>
 
+              <div className="flex items-center space-x-3">
+                <input
+                  type="checkbox"
+                  id="is_active"
+                  checked={newUser.is_active}
+                  onChange={(e) => setNewUser({ ...newUser, is_active: e.target.checked })}
+                  className="h-5 w-5 rounded border-gray-400 text-blue-600 focus:ring-blue-500 cursor-pointer"
+                />
+                <Label htmlFor="is_active" className="cursor-pointer">
+                  Active Employee (shows in timesheet dropdown)
+                </Label>
+              </div>
+
               <Button
                 type="submit"
                 disabled={loading}
@@ -373,7 +393,14 @@ export default function UserManagementPage() {
                           </CardDescription>
                         </div>
                       </div>
-                      <div className="flex items-center gap-8">
+                      <div className="flex items-center gap-4">
+                        <span className={`inline-block px-2 py-1 text-sm rounded font-semibold uppercase ${
+                          authUser.is_active !== false 
+                            ? 'bg-green-100 text-green-800' 
+                            : 'bg-red-100 text-red-800'
+                        }`}>
+                          {authUser.is_active !== false ? 'Active' : 'Inactive'}
+                        </span>
                         <span className="inline-block px-2 py-1 text-sm rounded bg-blue-100 text-blue-800 font-semibold uppercase">
                           {authUser.user_metadata?.role || 'No role'}
                         </span>
@@ -388,6 +415,7 @@ export default function UserManagementPage() {
                             setConfirmPassword('')
                             setShowEditPassword(false)
                             setShowConfirmPassword(false)
+                            setEditIsActive(authUser.is_active !== false)
                             setShowEditDialog(true)
                           }}
                           className="flex items-center gap-2 group-hover:bg-accent"
@@ -516,6 +544,18 @@ export default function UserManagementPage() {
               {editPassword && confirmPassword && editPassword !== confirmPassword && (
                 <p className="text-sm text-red-500">Passwords do not match</p>
               )}
+            </div>
+            <div className="flex items-center space-x-3 pt-2">
+              <input
+                type="checkbox"
+                id="editIsActive"
+                checked={editIsActive}
+                onChange={(e) => setEditIsActive(e.target.checked)}
+                className="h-5 w-5 rounded border-gray-400 text-blue-600 focus:ring-blue-500 cursor-pointer"
+              />
+              <Label htmlFor="editIsActive" className="cursor-pointer">
+                Active Employee (shows in timesheet dropdown)
+              </Label>
             </div>
           </div>
           <AlertDialogFooter>
