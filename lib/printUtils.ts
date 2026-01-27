@@ -1580,6 +1580,9 @@ export function printForm(data: any, formType: string) {
     case 'consignment_forms':
       printConsignment(processedData)
       break
+    case 'quotes':
+      printQuote(processedData)
+      break
     default:
       console.error('Unknown form type:', formType)
   }
@@ -1624,6 +1627,9 @@ export function downloadFormPDF(data: any, formType: string) {
       break
     case 'consignment_forms':
       downloadConsignmentPDF(processedData)
+      break
+    case 'quotes':
+      downloadQuotePDF(processedData)
       break
     default:
       console.error('Unknown form type:', formType)
@@ -1996,6 +2002,8 @@ function getFormHTMLContent(data: any, formType: string): string {
       return getOutboundTransferContent(processedData)
     case 'consignment_forms':
       return getConsignmentContent(processedData)
+    case 'quotes':
+      return getQuoteContent(processedData)
     default:
       return '<div>Unknown form type</div>'
   }
@@ -2233,4 +2241,499 @@ function getConsignmentContent(data: any): string {
       ${data.status ? `<p style="color: #000;"><strong>Status:</strong> ${data.status.charAt(0).toUpperCase() + data.status.slice(1)}</p>` : ''}
     </div>
   `
+}
+
+function getQuoteContent(data: any): string {
+  const productLines: ProductLine[] = data.product_lines || []
+  const subtotal = productLines.reduce((acc, line) => acc + (line.total_price || 0), 0)
+  const tax = subtotal * 0.0795
+  const total = subtotal * 1.0795
+
+  return `
+    <div style="font-family: Arial, sans-serif; padding: 20px; max-width: 800px; margin: 0 auto; color: #000; background-color: #fff;">
+      <div style="text-align: center; border-bottom: 2px solid #1e40af; padding-bottom: 15px; margin-bottom: 20px;">
+        <h1 style="margin: 0; font-size: 24px; color: #1e40af;">Quote Form</h1>
+        <p style="margin: 5px 0 0 0; color: #666;">${new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+      </div>
+      <div style="margin-bottom: 20px;">
+        <h3 style="border-bottom: 1px solid #1e40af; padding-bottom: 5px; color: #1e40af;">Customer Information</h3>
+        <p style="color: #000;"><strong>Name:</strong> ${data.customer_name || ''}</p>
+        <p style="color: #000;"><strong>Phone:</strong> ${formatPhoneNumber(data.customer_phone || '')}</p>
+        <p style="color: #000;"><strong>Email:</strong> ${data.customer_email || ''}</p>
+        ${data.customer_street ? `<p style="color: #000;"><strong>Address:</strong> ${data.customer_street}, ${data.customer_city || ''} ${data.customer_state || ''} ${data.customer_zip || ''}</p>` : ''}
+      </div>
+      <div style="margin-bottom: 20px;">
+        <h3 style="border-bottom: 1px solid #1e40af; padding-bottom: 5px; color: #1e40af;">Quote Items</h3>
+        <table style="width: 100%; border-collapse: collapse; color: #000;">
+          <thead>
+            <tr style="background-color: #1e40af;">
+              <th style="border: 1px solid #1e40af; padding: 8px; text-align: left; color: #fff;">SKU</th>
+              <th style="border: 1px solid #1e40af; padding: 8px; text-align: left; color: #fff;">Description</th>
+              <th style="border: 1px solid #1e40af; padding: 8px; text-align: left; color: #fff;">Vendor</th>
+              <th style="border: 1px solid #1e40af; padding: 8px; text-align: center; color: #fff;">Qty</th>
+              <th style="border: 1px solid #1e40af; padding: 8px; text-align: right; color: #fff;">Unit Price</th>
+              <th style="border: 1px solid #1e40af; padding: 8px; text-align: right; color: #fff;">Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${productLines.map(line => `
+              <tr>
+                <td style="border: 1px solid #ccc; padding: 8px; color: #000;">${line.sku || '-'}</td>
+                <td style="border: 1px solid #ccc; padding: 8px; color: #000;">${line.description || '-'}</td>
+                <td style="border: 1px solid #ccc; padding: 8px; color: #000;">${line.vendor || '-'}</td>
+                <td style="border: 1px solid #ccc; padding: 8px; text-align: center; color: #000;">${line.quantity || 0}</td>
+                <td style="border: 1px solid #ccc; padding: 8px; text-align: right; color: #000;">$${(line.unit_price || 0).toFixed(2)}</td>
+                <td style="border: 1px solid #ccc; padding: 8px; text-align: right; color: #000;">$${((line.unit_price || 0) * (line.quantity || 0)).toFixed(2)}</td>
+              </tr>
+            `).join('')}
+          </tbody>
+        </table>
+        <div style="margin-top: 15px; padding: 10px; background-color: rgba(30, 64, 175, 0.1); border: 1px solid #1e40af; border-radius: 4px;">
+          <p style="margin: 5px 0; color: #000;"><strong>Subtotal:</strong> $${subtotal.toFixed(2)}</p>
+          <p style="margin: 5px 0; color: #000;"><strong>Tax (7.95%):</strong> $${tax.toFixed(2)}</p>
+          <p style="margin: 5px 0; font-size: 18px; border-top: 1px solid #1e40af; padding-top: 5px; color: #1e40af;"><strong>Total:</strong> $${total.toFixed(2)}</p>
+        </div>
+      </div>
+      ${data.delivery_method ? `<p style="color: #000;"><strong>Delivery Method:</strong> ${data.delivery_method === 'in_store_pickup' ? 'In-Store Pickup' : 'Ship to Customer'}</p>` : ''}
+      ${data.status ? `<p style="color: #000;"><strong>Status:</strong> ${data.status.charAt(0).toUpperCase() + data.status.slice(1)}</p>` : ''}
+      ${data.special_requests ? `<div style="margin-top: 20px;"><h3 style="color: #1e40af;">Special Requests</h3><p style="color: #000;">${data.special_requests}</p></div>` : ''}
+    </div>
+  `
+}
+
+export function printQuote(data: any) {
+  const productLines: ProductLine[] = data.product_lines || []
+  const subtotal = productLines.reduce((acc, line) => acc + (line.total_price || 0), 0)
+  const tax = subtotal * 0.0795
+  const total = subtotal * 1.0795
+
+  const itemCount = productLines.length
+  let scaleFactor = 1.0
+  if (itemCount >= 4) scaleFactor = 0.93
+  if (itemCount >= 5) scaleFactor = 0.90
+  if (itemCount >= 6) scaleFactor = 0.87
+  if (itemCount >= 7) scaleFactor = 0.84
+  if (itemCount >= 8) scaleFactor = 0.80
+  if (itemCount >= 10) scaleFactor = 0.78
+
+  const printContent = `
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <title>Quote Form</title>
+      <style>
+        @page {
+          size: letter portrait;
+          margin: 0;
+        }
+        
+        * {
+          box-sizing: border-box;
+          margin: 0;
+          padding: 0;
+        }
+        
+        html, body {
+          height: 100%;
+          width: 100%;
+          font-family: 'Arial', sans-serif;
+          color: #000;
+          background: white;
+        }
+        
+        .page-container {
+          height: 100vh;
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+        }
+        
+        .print-copy {
+          height: 50%;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          padding: 0.15in 0.3in;
+          overflow: hidden;
+        }
+        
+        .print-copy:first-child {
+          border-bottom: 1px dashed #999;
+        }
+        
+        .form-content {
+          width: 100%;
+          max-width: 7.5in;
+          height: 100%;
+          display: flex;
+          flex-direction: column;
+          border: 1px solid #000;
+          padding: 15px 20px;
+          transform: scale(${scaleFactor});
+          transform-origin: top center;
+        }
+        
+        .print-header {
+          text-align: center;
+          border-bottom: 2px solid #000;
+          padding-bottom: 12px;
+          margin-bottom: 15px;
+        }
+        
+        .print-date {
+          text-align: left;
+          font-size: 11px;
+          margin-bottom: 8px;
+        }
+        
+        .print-title {
+          font-size: 22px;
+          font-weight: bold;
+        }
+        
+        .info-row {
+          display: flex;
+          gap: 20px;
+          margin-bottom: 8px;
+        }
+        
+        .info-column {
+          flex: 1;
+        }
+        
+        .print-section {
+          margin-bottom: 12px;
+        }
+        
+        .print-section-title {
+          font-size: 14px;
+          font-weight: bold;
+          margin-bottom: 6px;
+          border-bottom: 1px solid #ccc;
+          padding-bottom: 3px;
+        }
+        
+        .print-field {
+          margin-bottom: 4px;
+          display: flex;
+        }
+        
+        .print-label {
+          font-weight: bold;
+          width: 90px;
+          flex-shrink: 0;
+          font-size: 13px;
+        }
+        
+        .print-value {
+          flex: 1;
+          font-size: 13px;
+        }
+        
+        .print-table {
+          width: 100%;
+          border-collapse: collapse;
+          margin-bottom: 10px;
+        }
+        
+        .print-table th,
+        .print-table td {
+          border: 1px solid #000;
+          padding: 6px 8px;
+          text-align: left;
+          font-size: 12px;
+        }
+        
+        .print-table th {
+          background-color: #f5f5f5;
+          font-weight: bold;
+        }
+        
+        .print-total-summary {
+          margin-top: auto;
+          padding: 8px 12px;
+          background-color: #f5f5f5;
+          border: 1px solid #000;
+        }
+        
+        .print-total-row {
+          display: flex;
+          justify-content: space-between;
+          margin-bottom: 3px;
+          font-size: 12px;
+        }
+        
+        .print-total-row.final {
+          font-size: 14px;
+          font-weight: bold;
+          border-top: 1px solid #000;
+          padding-top: 2px;
+          margin-bottom: 0;
+        }
+      </style>
+    </head>
+    <body>
+      <div class="page-container">
+      <!-- Customer Copy (Top Half) -->
+      <div class="print-copy">
+        <div class="form-content">
+        <div class="print-date">
+          ${new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+        </div>
+        <div class="print-header">
+          <div class="print-title">Quote Form</div>
+          ${data.order_number ? `<div style="font-size: 14px; font-weight: bold; margin-top: 4px;">Quote #: ${data.order_number}</div>` : ''}
+        </div>
+
+        <div class="info-row">
+          <div class="info-column">
+            <div class="print-section">
+              <div class="print-section-title">Customer Information</div>
+              <div class="print-field">
+                <div class="print-label">Name:</div>
+                <div class="print-value">${data.customer_name || ''}</div>
+              </div>
+              <div class="print-field">
+                <div class="print-label">Phone:</div>
+                <div class="print-value">${formatPhoneNumber(data.customer_phone || '')}</div>
+              </div>
+              ${data.customer_street ? `
+                <div class="print-field">
+                  <div class="print-label">Address:</div>
+                  <div class="print-value">
+                    ${data.customer_street}
+                    ${data.customer_city ? `, ${data.customer_city}` : ''}
+                    ${data.customer_state ? ` ${data.customer_state}` : ''}
+                    ${data.customer_zip ? ` ${data.customer_zip}` : ''}
+                  </div>
+                </div>
+              ` : ''}
+            </div>
+          </div>
+          <div class="info-column">
+            <div class="print-section">
+              <div class="print-section-title">Quote Details</div>
+              <div class="print-field">
+                <div class="print-label">Delivery:</div>
+                <div class="print-value">${data.delivery_method === 'in_store_pickup' ? 'In-Store Pickup' : 'Ship to Customer'}</div>
+              </div>
+              <div class="print-field">
+                <div class="print-label">Payment:</div>
+                <div class="print-value">${formatPayment(data.payment || '')}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="print-section">
+          <div class="print-section-title">Quote Items</div>
+          <table class="print-table">
+            <thead>
+              <tr>
+                <th style="width: 15%">SKU</th>
+                <th style="width: 35%">Description</th>
+                <th style="width: 15%">Vendor</th>
+                <th style="width: 10%">Qty</th>
+                <th style="width: 15%">Unit Price</th>
+                <th style="width: 10%">Total</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${productLines.map((line) => `
+                <tr>
+                  <td>${line.sku || '-'}</td>
+                  <td>${line.description || '-'}</td>
+                  <td>${line.vendor || '-'}</td>
+                  <td>${line.quantity || 0}</td>
+                  <td>$${(line.unit_price || 0).toFixed(2)}</td>
+                  <td>$${((line.unit_price || 0) * (line.quantity || 0)).toFixed(2)}</td>
+                </tr>
+              `).join('')}
+            </tbody>
+          </table>
+          
+          <div class="print-total-summary">
+            <div class="print-total-row">
+              <span style="font-weight: bold">Subtotal:</span>
+              <span>$${subtotal.toFixed(2)}</span>
+            </div>
+            <div class="print-total-row">
+              <span style="font-weight: bold">Tax (7.95%):</span>
+              <span>$${tax.toFixed(2)}</span>
+            </div>
+            <div class="print-total-row final">
+              <span>Total:</span>
+              <span>$${total.toFixed(2)}</span>
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>
+
+      <!-- Merchant Copy (Bottom Half) -->
+      <div class="print-copy">
+        <div class="form-content">
+        <div class="print-date">
+          ${new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+        </div>
+        <div class="print-header">
+          <div class="print-title">Quote Form</div>
+          ${data.order_number ? `<div style="font-size: 14px; font-weight: bold; margin-top: 4px;">Quote #: ${data.order_number}</div>` : ''}
+        </div>
+
+        <div class="info-row">
+          <div class="info-column">
+            <div class="print-section">
+              <div class="print-section-title">Customer Information</div>
+              <div class="print-field">
+                <div class="print-label">Name:</div>
+                <div class="print-value">${data.customer_name || ''}</div>
+              </div>
+              <div class="print-field">
+                <div class="print-label">Phone:</div>
+                <div class="print-value">${formatPhoneNumber(data.customer_phone || '')}</div>
+              </div>
+              ${data.customer_street ? `
+                <div class="print-field">
+                  <div class="print-label">Address:</div>
+                  <div class="print-value">
+                    ${data.customer_street}
+                    ${data.customer_city ? `, ${data.customer_city}` : ''}
+                    ${data.customer_state ? ` ${data.customer_state}` : ''}
+                    ${data.customer_zip ? ` ${data.customer_zip}` : ''}
+                  </div>
+                </div>
+              ` : ''}
+            </div>
+          </div>
+          <div class="info-column">
+            <div class="print-section">
+              <div class="print-section-title">Quote Details</div>
+              <div class="print-field">
+                <div class="print-label">Delivery:</div>
+                <div class="print-value">${data.delivery_method === 'in_store_pickup' ? 'In-Store Pickup' : 'Ship to Customer'}</div>
+              </div>
+              <div class="print-field">
+                <div class="print-label">Payment:</div>
+                <div class="print-value">${formatPayment(data.payment || '')}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="print-section">
+          <div class="print-section-title">Quote Items</div>
+          <table class="print-table">
+            <thead>
+              <tr>
+                <th style="width: 15%">SKU</th>
+                <th style="width: 35%">Description</th>
+                <th style="width: 15%">Vendor</th>
+                <th style="width: 10%">Qty</th>
+                <th style="width: 15%">Unit Price</th>
+                <th style="width: 10%">Total</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${productLines.map((line) => `
+                <tr>
+                  <td>${line.sku || '-'}</td>
+                  <td>${line.description || '-'}</td>
+                  <td>${line.vendor || '-'}</td>
+                  <td>${line.quantity || 0}</td>
+                  <td>$${(line.unit_price || 0).toFixed(2)}</td>
+                  <td>$${((line.unit_price || 0) * (line.quantity || 0)).toFixed(2)}</td>
+                </tr>
+              `).join('')}
+            </tbody>
+          </table>
+          
+          <div class="print-total-summary">
+            <div class="print-total-row">
+              <span style="font-weight: bold">Subtotal:</span>
+              <span>$${subtotal.toFixed(2)}</span>
+            </div>
+            <div class="print-total-row">
+              <span style="font-weight: bold">Tax (7.95%):</span>
+              <span>$${tax.toFixed(2)}</span>
+            </div>
+            <div class="print-total-row final">
+              <span>Total:</span>
+              <span>$${total.toFixed(2)}</span>
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>
+      </div>
+    </body>
+    </html>
+  `
+
+  executePrint(printContent)
+}
+
+function downloadQuotePDF(data: any) {
+  const productLines: ProductLine[] = data.product_lines || []
+  const subtotal = productLines.reduce((acc, line) => acc + (line.total_price || 0), 0)
+  const tax = subtotal * 0.0795
+  const total = subtotal * 1.0795
+
+  const content = `
+    <div style="font-family: Arial, sans-serif; padding: 20px; max-width: 800px; margin: 0 auto; color: #000; background-color: #fff;">
+      <div style="text-align: center; border-bottom: 2px solid #1e40af; padding-bottom: 15px; margin-bottom: 20px;">
+        <h1 style="margin: 0; font-size: 24px; color: #1e40af;">Quote Form</h1>
+        <p style="margin: 5px 0 0 0; color: #666;">${new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+      </div>
+
+      <div style="margin-bottom: 20px;">
+        <h3 style="border-bottom: 1px solid #1e40af; padding-bottom: 5px; color: #1e40af;">Customer Information</h3>
+        <p style="color: #000;"><strong>Name:</strong> ${data.customer_name || ''}</p>
+        <p style="color: #000;"><strong>Phone:</strong> ${formatPhoneNumber(data.customer_phone || '')}</p>
+        <p style="color: #000;"><strong>Email:</strong> ${data.customer_email || ''}</p>
+        ${data.customer_street ? `<p style="color: #000;"><strong>Address:</strong> ${data.customer_street}, ${data.customer_city || ''} ${data.customer_state || ''} ${data.customer_zip || ''}</p>` : ''}
+      </div>
+
+      <div style="margin-bottom: 20px;">
+        <h3 style="border-bottom: 1px solid #1e40af; padding-bottom: 5px; color: #1e40af;">Quote Items</h3>
+        <table style="width: 100%; border-collapse: collapse; color: #000;">
+          <thead>
+            <tr style="background-color: #1e40af;">
+              <th style="border: 1px solid #1e40af; padding: 8px; text-align: left; color: #fff;">SKU</th>
+              <th style="border: 1px solid #1e40af; padding: 8px; text-align: left; color: #fff;">Description</th>
+              <th style="border: 1px solid #1e40af; padding: 8px; text-align: left; color: #fff;">Vendor</th>
+              <th style="border: 1px solid #1e40af; padding: 8px; text-align: center; color: #fff;">Qty</th>
+              <th style="border: 1px solid #1e40af; padding: 8px; text-align: right; color: #fff;">Unit Price</th>
+              <th style="border: 1px solid #1e40af; padding: 8px; text-align: right; color: #fff;">Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${productLines.map(line => `
+              <tr>
+                <td style="border: 1px solid #ccc; padding: 8px; color: #000;">${line.sku || '-'}</td>
+                <td style="border: 1px solid #ccc; padding: 8px; color: #000;">${line.description || '-'}</td>
+                <td style="border: 1px solid #ccc; padding: 8px; color: #000;">${line.vendor || '-'}</td>
+                <td style="border: 1px solid #ccc; padding: 8px; text-align: center; color: #000;">${line.quantity || 0}</td>
+                <td style="border: 1px solid #ccc; padding: 8px; text-align: right; color: #000;">$${(line.unit_price || 0).toFixed(2)}</td>
+                <td style="border: 1px solid #ccc; padding: 8px; text-align: right; color: #000;">$${((line.unit_price || 0) * (line.quantity || 0)).toFixed(2)}</td>
+              </tr>
+            `).join('')}
+          </tbody>
+        </table>
+        
+        <div style="margin-top: 15px; padding: 10px; background-color: rgba(30, 64, 175, 0.1); border: 1px solid #1e40af; border-radius: 4px;">
+          <p style="margin: 5px 0; color: #000;"><strong>Subtotal:</strong> $${subtotal.toFixed(2)}</p>
+          <p style="margin: 5px 0; color: #000;"><strong>Tax (7.95%):</strong> $${tax.toFixed(2)}</p>
+          <p style="margin: 5px 0; font-size: 18px; border-top: 1px solid #1e40af; padding-top: 5px; color: #1e40af;"><strong>Total:</strong> $${total.toFixed(2)}</p>
+        </div>
+      </div>
+
+      ${data.delivery_method ? `<p style="color: #000;"><strong>Delivery Method:</strong> ${data.delivery_method === 'in_store_pickup' ? 'In-Store Pickup' : 'Ship to Customer'}</p>` : ''}
+      ${data.status ? `<p style="color: #000;"><strong>Status:</strong> ${data.status.charAt(0).toUpperCase() + data.status.slice(1)}</p>` : ''}
+      ${data.special_requests ? `<div style="margin-top: 20px;"><h3 style="color: #1e40af;">Special Requests</h3><p style="color: #000;">${data.special_requests}</p></div>` : ''}
+    </div>
+  `
+
+  generateImage(content, `Quote_${data.customer_name || 'Form'}_${new Date().toISOString().split('T')[0]}.pdf`)
 }
