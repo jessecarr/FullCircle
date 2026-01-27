@@ -25,6 +25,57 @@ interface FastBoundSearchProps {
   className?: string
 }
 
+// Helper function to split batch-acquired items into individual entries and filter by search query
+// When multiple items are acquired at once in FastBound, they may be stored with comma-separated values
+function expandBatchItems(items: FastBoundItem[], searchQuery: string): FastBoundItem[] {
+  const expanded: FastBoundItem[] = []
+  const query = searchQuery.toLowerCase().trim()
+  
+  for (const item of items) {
+    // Check if serial_number contains multiple values (comma-separated)
+    // Serial numbers should be unique per firearm, so commas indicate batch data
+    const serialNumbers = item.serial_number?.split(',').map(s => s.trim()).filter(s => s) || []
+    
+    if (serialNumbers.length > 1) {
+      // This is a batch item - split into individual items
+      const manufacturers = item.manufacturer?.split(',').map(s => s.trim()) || []
+      const models = item.model?.split(',').map(s => s.trim()) || []
+      const calibers = item.caliber?.split(',').map(s => s.trim()) || []
+      const firearmTypes = item.firearm_type?.split(',').map(s => s.trim()) || []
+      const controlNumbers = item.control_number?.split(',').map(s => s.trim()) || []
+      
+      for (let i = 0; i < serialNumbers.length; i++) {
+        const individualItem: FastBoundItem = {
+          ...item,
+          id: `${item.id}-${i}`, // Create unique ID for each split item
+          serial_number: serialNumbers[i] || null,
+          manufacturer: manufacturers[i] || manufacturers[0] || null,
+          model: models[i] || models[0] || null,
+          caliber: calibers[i] || calibers[0] || null,
+          firearm_type: firearmTypes[i] || firearmTypes[0] || null,
+          control_number: controlNumbers[i] || controlNumbers[0] || null,
+        }
+        
+        // Only include items that match the search query
+        const matchesQuery = 
+          (individualItem.serial_number?.toLowerCase().includes(query)) ||
+          (individualItem.control_number?.toLowerCase().includes(query)) ||
+          (individualItem.manufacturer?.toLowerCase().includes(query)) ||
+          (individualItem.model?.toLowerCase().includes(query))
+        
+        if (matchesQuery) {
+          expanded.push(individualItem)
+        }
+      }
+    } else {
+      // Single item - add as-is (already matched by database query)
+      expanded.push(item)
+    }
+  }
+  
+  return expanded
+}
+
 export default function FastBoundSearch({ 
   onSelect, 
   placeholder = "Search by control number...",
@@ -101,7 +152,10 @@ export default function FastBoundSearch({
         console.error('FastBound search error:', error)
         setResults([])
       } else {
-        setResults(data || [])
+        // Split batch-acquired items (those with comma-separated values) into individual items
+        // Filter to only show items that match the search query
+        const expandedResults = expandBatchItems(data || [], searchQuery)
+        setResults(expandedResults)
         setIsOpen(true)
         setHighlightedIndex(0) // Auto-highlight first result when new results arrive
       }
