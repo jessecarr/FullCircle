@@ -195,7 +195,7 @@ export function SuppressorApprovalForm({ initialData, onSuccess, onCancel }: Spe
           state: formData.customer_state || null,
           zip: formData.customer_zip || null,
           drivers_license: formData.drivers_license || null,
-          license_expiration: formData.license_expiration || null,
+          license_expiration: formData.license_expiration ? formData.license_expiration : null,
           created_at: new Date().toISOString(),
           updated_at: new Date().toISOString()
         };
@@ -502,8 +502,8 @@ export function SuppressorApprovalForm({ initialData, onSuccess, onCancel }: Spe
             customer_city: formData.customer_city,
             customer_state: formData.customer_state,
             customer_zip: formData.customer_zip,
-            drivers_license: formData.drivers_license,
-            license_expiration: formData.license_expiration,
+            drivers_license: formData.drivers_license || null,
+            license_expiration: formData.license_expiration ? formData.license_expiration : null,
             product_lines: productLines,
             total_price: totalAmount,
             special_requests: formData.special_requests,
