@@ -14,6 +14,7 @@ import { lookupZipCode, isValidZipCode } from '@/lib/zipLookup'
 import { Printer, Search } from 'lucide-react'
 import FastBoundSearch from '../FastBoundSearch'
 import { PrintSubmitDialog } from '@/components/ui/print-submit-dialog'
+import { useFormValidation, isNotEmpty } from '@/hooks/useFormValidation'
 
 interface FastBoundInventoryItem {
   id: string
@@ -48,6 +49,7 @@ interface ProductLine {
 
 export function InboundTransferForm({ initialData, onSuccess, onCancel }: SpecialOrderFormProps) {
   const { toast } = useToast()
+  const { collectFieldErrors, collectProductLineErrors, setErrors, hasError, clearFieldError, formatErrorMessage } = useFormValidation()
   const [loading, setLoading] = useState(false)
   const [emailLoading, setEmailLoading] = useState(false)
   const [showPrintSubmitDialog, setShowPrintSubmitDialog] = useState(false)
@@ -376,11 +378,33 @@ export function InboundTransferForm({ initialData, onSuccess, onCancel }: Specia
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     
-    // Validate required fields
-    if (!formData.customer_name || !formData.customer_phone) {
+    // Collect all validation errors first, then set them all at once
+    const allErrors: { field: string; label: string }[] = []
+
+    // Define required field validations
+    const validations = [
+      { field: 'customer_name', label: 'Customer Name', validate: isNotEmpty },
+      { field: 'customer_phone', label: 'Customer Phone', validate: isNotEmpty },
+    ]
+    allErrors.push(...collectFieldErrors(validations, formData))
+
+    // Validate product line required fields
+    const productLineValidations = [
+      { field: 'control_number', label: 'Control #', validate: isNotEmpty },
+      { field: 'manufacturer', label: 'Manufacturer', validate: isNotEmpty },
+      { field: 'model', label: 'Model', validate: isNotEmpty },
+      { field: 'serial_number', label: 'Serial #', validate: isNotEmpty },
+      { field: 'order_type', label: 'Order Type', validate: isNotEmpty },
+    ]
+    const checkHasData = (line: any) => line.control_number || line.manufacturer || line.model || line.serial_number
+    allErrors.push(...collectProductLineErrors(productLines, productLineValidations, checkHasData, true))
+
+    // If there are any errors, set them all and show toast
+    if (allErrors.length > 0) {
+      setErrors(allErrors)
       toast({
         title: 'Validation Error',
-        description: 'Please fill in all required customer fields',
+        description: formatErrorMessage(allErrors),
         variant: 'destructive',
       })
       return
@@ -1059,42 +1083,50 @@ export function InboundTransferForm({ initialData, onSuccess, onCancel }: Specia
                 <div className="space-y-4">
                   <div className="space-y-2">
                     <Label className="text-medium" htmlFor="customer_name">Name *</Label>
-                    <Input
-                      id="customer_name"
-                      value={formData.customer_name}
-                      onChange={(e) => handleInputChange('customer_name', e.target.value.toUpperCase())}
-                      onKeyDown={(e) => {
-                        if (e.key === 'Enter') {
-                          e.preventDefault();
-                          document.getElementById('customer_phone')?.focus();
-                        }
-                      }}
-                      required
-                      className="text-base uppercase"
-                    />
+                    <div className="field-error-wrapper">
+                      {hasError('customer_name') && <span className="field-error-tooltip">Required</span>}
+                      <Input
+                        id="customer_name"
+                        value={formData.customer_name}
+                        onChange={(e) => {
+                          handleInputChange('customer_name', e.target.value.toUpperCase())
+                          clearFieldError('customer_name')
+                        }}
+                        onKeyDown={(e) => {
+                          if (e.key === 'Enter') {
+                            e.preventDefault();
+                            document.getElementById('customer_phone')?.focus();
+                          }
+                        }}
+                        className={`text-base uppercase ${hasError('customer_name') ? 'field-error' : ''}`}
+                      />
+                    </div>
                   </div>
 
                   <div className="space-y-2">
                     <Label className="text-medium" htmlFor="customer_phone">Phone *</Label>
-                    <Input
-                      id="customer_phone"
-                      type="tel"
-                      value={formatPhoneNumber(formData.customer_phone)}
-                      onChange={(e) => {
-                        const digits = e.target.value.replace(/\D/g, '');
-                        handleInputChange('customer_phone', digits);
-                      }}
-                      onKeyDown={(e) => {
-                        if (e.key === 'Enter') {
-                          e.preventDefault();
-                          document.getElementById('customer_email')?.focus();
-                        }
-                      }}
-                      required
-                      maxLength={14}
-                      placeholder="(___) ___-____"
-                      className="text-base"
-                    />
+                    <div className="field-error-wrapper">
+                      {hasError('customer_phone') && <span className="field-error-tooltip">Required</span>}
+                      <Input
+                        id="customer_phone"
+                        type="tel"
+                        value={formatPhoneNumber(formData.customer_phone)}
+                        onChange={(e) => {
+                          const digits = e.target.value.replace(/\D/g, '');
+                          handleInputChange('customer_phone', digits);
+                          clearFieldError('customer_phone')
+                        }}
+                        onKeyDown={(e) => {
+                          if (e.key === 'Enter') {
+                            e.preventDefault();
+                            document.getElementById('customer_email')?.focus();
+                          }
+                        }}
+                        maxLength={14}
+                        placeholder="(___) ___-____"
+                        className={`text-base ${hasError('customer_phone') ? 'field-error' : ''}`}
+                      />
+                    </div>
                   </div>
 
                   <div className="space-y-2">
@@ -1283,13 +1315,15 @@ export function InboundTransferForm({ initialData, onSuccess, onCancel }: Specia
             
             {productLines.map((line, index) => (
               <div key={index} className="grid grid-cols-12 gap-4 items-end mb-2">
-                <div className="col-span-2">
+                <div className="col-span-2 field-error-wrapper">
+                  {hasError(`control_number-${index}`) && <span className="field-error-tooltip">Required</span>}
                   <Textarea
                     id={`control_number-${index}`}
                     value={line.control_number}
                     onChange={(e) => {
                       console.log('Control Number input changed:', e.target.value);
                       updateProductLine(index, 'control_number', e.target.value.toUpperCase());
+                      clearFieldError(`control_number-${index}`)
                     }}
                     onKeyDown={(e) => {
                       if (e.key === 'Enter') {
@@ -1301,8 +1335,7 @@ export function InboundTransferForm({ initialData, onSuccess, onCancel }: Specia
                         }
                       }
                     }}
-                    required
-                    className="text-base w-full min-h-[48px] resize-none overflow-hidden uppercase text-center text-left"
+                    className={`text-base w-full min-h-[48px] resize-none overflow-hidden uppercase text-center text-left ${hasError(`control_number-${index}`) ? 'field-error' : ''}`}
                     rows={1}
                     style={{
                       height: isClient ? (rowHeights[index] || '48px') : '48px',
@@ -1322,19 +1355,22 @@ export function InboundTransferForm({ initialData, onSuccess, onCancel }: Specia
                   />
                 </div>
 
-                <div className="col-span-2">
+                <div className="col-span-2 field-error-wrapper">
+                  {hasError(`manufacturer-${index}`) && <span className="field-error-tooltip">Required</span>}
                   <Textarea
                     id={`manufacturer-${index}`}
                     value={line.manufacturer}
-                    onChange={(e) => updateProductLine(index, 'manufacturer', e.target.value.toUpperCase())}
+                    onChange={(e) => {
+                      updateProductLine(index, 'manufacturer', e.target.value.toUpperCase())
+                      clearFieldError(`manufacturer-${index}`)
+                    }}
                     onKeyDown={(e) => {
                       if (e.key === 'Enter') {
                         e.preventDefault();
                         document.getElementById(`model-${index}`)?.focus();
                       }
                     }}
-                    required
-                    className="min-h-[48px] w-full text-base resize-none overflow-hidden uppercase text-left"
+                    className={`min-h-[48px] w-full text-base resize-none overflow-hidden uppercase text-left ${hasError(`manufacturer-${index}`) ? 'field-error' : ''}`}
                     rows={1}
                     style={{
                       height: isClient ? (rowHeights[index] || '48px') : '48px',
@@ -1352,19 +1388,22 @@ export function InboundTransferForm({ initialData, onSuccess, onCancel }: Specia
                   />
                 </div>
 
-                <div className="col-span-2">
+                <div className="col-span-2 field-error-wrapper">
+                  {hasError(`model-${index}`) && <span className="field-error-tooltip">Required</span>}
                   <Textarea
                     id={`model-${index}`}
                     value={line.model}
-                    onChange={(e) => updateProductLine(index, 'model', e.target.value.toUpperCase())}
+                    onChange={(e) => {
+                      updateProductLine(index, 'model', e.target.value.toUpperCase())
+                      clearFieldError(`model-${index}`)
+                    }}
                     onKeyDown={(e) => {
                       if (e.key === 'Enter') {
                         e.preventDefault();
                         document.getElementById(`serial_number-${index}`)?.focus();
                       }
                     }}
-                    required
-                    className="min-h-[48px] w-full text-base resize-none overflow-hidden uppercase text-left"
+                    className={`min-h-[48px] w-full text-base resize-none overflow-hidden uppercase text-left ${hasError(`model-${index}`) ? 'field-error' : ''}`}
                     rows={1}
                     style={{
                       height: isClient ? (rowHeights[index] || '48px') : '48px',
@@ -1382,11 +1421,15 @@ export function InboundTransferForm({ initialData, onSuccess, onCancel }: Specia
                   />
                 </div>
 
-                <div className="col-span-2">
+                <div className="col-span-2 field-error-wrapper">
+                  {hasError(`serial_number-${index}`) && <span className="field-error-tooltip">Required</span>}
                   <Textarea
                     id={`serial_number-${index}`}
                     value={line.serial_number}
-                    onChange={(e) => updateProductLine(index, 'serial_number', e.target.value.toUpperCase())}
+                    onChange={(e) => {
+                      updateProductLine(index, 'serial_number', e.target.value.toUpperCase())
+                      clearFieldError(`serial_number-${index}`)
+                    }}
                     onKeyDown={(e) => {
                       if (e.key === 'Enter') {
                         e.preventDefault();
@@ -1396,8 +1439,7 @@ export function InboundTransferForm({ initialData, onSuccess, onCancel }: Specia
                         }
                       }
                     }}
-                    required
-                    className="min-h-[48px] w-full text-base resize-none overflow-hidden uppercase text-left"
+                    className={`min-h-[48px] w-full text-base resize-none overflow-hidden uppercase text-left ${hasError(`serial_number-${index}`) ? 'field-error' : ''}`}
                     rows={1}
                     style={{
                       height: isClient ? (rowHeights[index] || '48px') : '48px',
@@ -1415,7 +1457,8 @@ export function InboundTransferForm({ initialData, onSuccess, onCancel }: Specia
                   />
                 </div>
 
-                <div className="col-span-2">
+                <div className="col-span-2 field-error-wrapper">
+                  {hasError(`order_type-${index}`) && <span className="field-error-tooltip">Required</span>}
                   <Select 
                     value={line.order_type} 
                     onValueChange={(value) => {
@@ -1429,12 +1472,15 @@ export function InboundTransferForm({ initialData, onSuccess, onCancel }: Specia
                       unit_price: newPrice
                     }
                     setProductLines(updated)
+                    clearFieldError(`order_type-${index}`)
                     // Recalculate row height after value change to sync all fields
                     setTimeout(() => recalculateRowHeight(index), 10)
                   }}
                   >
                     <SelectTrigger 
+                      id={`order_type-${index}`}
                       suppressHydrationWarning
+                      className={hasError(`order_type-${index}`) ? 'field-error' : ''}
                       style={{ 
                         height: isClient ? (rowHeights[index] || '48px') : '48px',
                         minHeight: '48px',

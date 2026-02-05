@@ -17,6 +17,7 @@ import FFLSearch from '../FFLSearch'
 import { PrintSubmitDialog } from '@/components/ui/print-submit-dialog'
 import { FFLContact } from '@/lib/fflTypes'
 import { COMPANY_FFL_BASE64 } from '@/lib/imageConstants'
+import { useFormValidation, isNotEmpty } from '@/hooks/useFormValidation'
 
 interface FastBoundInventoryItem {
   id: string
@@ -51,6 +52,7 @@ interface ProductLine {
 
 export function OutboundTransferForm({ initialData, onSuccess, onCancel }: OutboundTransferFormProps) {
   const { toast } = useToast()
+  const { collectFieldErrors, collectProductLineErrors, setErrors, hasError, clearFieldError, formatErrorMessage } = useFormValidation()
   const [loading, setLoading] = useState(false)
   const [emailLoading, setEmailLoading] = useState(false)
   const [showPrintSubmitDialog, setShowPrintSubmitDialog] = useState(false)
@@ -411,21 +413,49 @@ export function OutboundTransferForm({ initialData, onSuccess, onCancel }: Outbo
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     
-    // Validate required fields
-    if (!formData.customer_name || !formData.customer_phone || !formData.customer_street || !formData.customer_city || !formData.customer_state || !formData.customer_zip) {
-      toast({
-        title: 'Validation Error',
-        description: 'Please fill in all required transferor fields',
-        variant: 'destructive',
-      })
-      return
-    }
+    // Collect all validation errors first, then set them all at once
+    const allErrors: { field: string; label: string }[] = []
 
-    // Validate transferee required fields
-    if (!formData.transferee_name || !formData.transferee_phone || !formData.transferee_ffl_name || !formData.transferee_ffl_phone || !formData.transferee_ffl_address || !formData.transferee_ffl_zip || !formData.transferee_ffl_state || !formData.transferee_ffl_city) {
+    // Define required field validations for transferor
+    const transferorValidations = [
+      { field: 'customer_name', label: 'Transferor Name', validate: isNotEmpty },
+      { field: 'customer_phone', label: 'Transferor Phone', validate: isNotEmpty },
+      { field: 'customer_street', label: 'Transferor Street', validate: isNotEmpty },
+      { field: 'customer_city', label: 'Transferor City', validate: isNotEmpty },
+      { field: 'customer_state', label: 'Transferor State', validate: isNotEmpty },
+      { field: 'customer_zip', label: 'Transferor Zip', validate: isNotEmpty },
+    ]
+    allErrors.push(...collectFieldErrors(transferorValidations, formData))
+
+    // Define required field validations for transferee
+    const transfereeValidations = [
+      { field: 'transferee_name', label: 'Transferee Name', validate: isNotEmpty },
+      { field: 'transferee_phone', label: 'Transferee Phone', validate: isNotEmpty },
+      { field: 'transferee_ffl_name', label: 'FFL Name', validate: isNotEmpty },
+      { field: 'transferee_ffl_phone', label: 'FFL Phone', validate: isNotEmpty },
+      { field: 'transferee_ffl_address', label: 'FFL Address', validate: isNotEmpty },
+      { field: 'transferee_ffl_city', label: 'FFL City', validate: isNotEmpty },
+      { field: 'transferee_ffl_state', label: 'FFL State', validate: isNotEmpty },
+      { field: 'transferee_ffl_zip', label: 'FFL Zip', validate: isNotEmpty },
+    ]
+    allErrors.push(...collectFieldErrors(transfereeValidations, formData))
+
+    // Validate product line required fields
+    const productLineValidations = [
+      { field: 'control_number', label: 'Control #', validate: isNotEmpty },
+      { field: 'manufacturer', label: 'Manufacturer', validate: isNotEmpty },
+      { field: 'model', label: 'Model', validate: isNotEmpty },
+      { field: 'serial_number', label: 'Serial #', validate: isNotEmpty },
+    ]
+    const checkHasData = (line: any) => line.control_number || line.manufacturer || line.model || line.serial_number
+    allErrors.push(...collectProductLineErrors(productLines, productLineValidations, checkHasData, true))
+
+    // If there are any errors, set them all and show toast
+    if (allErrors.length > 0) {
+      setErrors(allErrors)
       toast({
         title: 'Validation Error',
-        description: 'Please fill in all required transferee fields',
+        description: formatErrorMessage(allErrors),
         variant: 'destructive',
       })
       return
@@ -1179,42 +1209,50 @@ export function OutboundTransferForm({ initialData, onSuccess, onCancel }: Outbo
                 <div className="space-y-4">
                   <div className="space-y-2">
                     <Label className="text-medium" htmlFor="customer_name">Name *</Label>
-                    <Input
-                      id="customer_name"
-                      value={formData.customer_name}
-                      onChange={(e) => handleInputChange('customer_name', e.target.value.toUpperCase())}
-                      onKeyDown={(e) => {
-                        if (e.key === 'Enter') {
-                          e.preventDefault();
-                          document.getElementById('customer_phone')?.focus();
-                        }
-                      }}
-                      required
-                      className="text-base uppercase"
-                    />
+                    <div className="field-error-wrapper">
+                      {hasError('customer_name') && <span className="field-error-tooltip">Required</span>}
+                      <Input
+                        id="customer_name"
+                        value={formData.customer_name}
+                        onChange={(e) => {
+                          handleInputChange('customer_name', e.target.value.toUpperCase())
+                          clearFieldError('customer_name')
+                        }}
+                        onKeyDown={(e) => {
+                          if (e.key === 'Enter') {
+                            e.preventDefault();
+                            document.getElementById('customer_phone')?.focus();
+                          }
+                        }}
+                        className={`text-base uppercase ${hasError('customer_name') ? 'field-error' : ''}`}
+                      />
+                    </div>
                   </div>
 
                   <div className="space-y-2">
                     <Label className="text-medium" htmlFor="customer_phone">Phone *</Label>
-                    <Input
-                      id="customer_phone"
-                      type="tel"
-                      value={formatPhoneNumber(formData.customer_phone)}
-                      onChange={(e) => {
-                        const digits = e.target.value.replace(/\D/g, '');
-                        handleInputChange('customer_phone', digits);
-                      }}
-                      onKeyDown={(e) => {
-                        if (e.key === 'Enter') {
-                          e.preventDefault();
-                          document.getElementById('customer_email')?.focus();
-                        }
-                      }}
-                      required
-                      maxLength={14}
-                      placeholder="(___) ___-____"
-                      className="text-base"
-                    />
+                    <div className="field-error-wrapper">
+                      {hasError('customer_phone') && <span className="field-error-tooltip">Required</span>}
+                      <Input
+                        id="customer_phone"
+                        type="tel"
+                        value={formatPhoneNumber(formData.customer_phone)}
+                        onChange={(e) => {
+                          const digits = e.target.value.replace(/\D/g, '');
+                          handleInputChange('customer_phone', digits);
+                          clearFieldError('customer_phone')
+                        }}
+                        onKeyDown={(e) => {
+                          if (e.key === 'Enter') {
+                            e.preventDefault();
+                            document.getElementById('customer_email')?.focus();
+                          }
+                        }}
+                        maxLength={14}
+                        placeholder="(___) ___-____"
+                        className={`text-base ${hasError('customer_phone') ? 'field-error' : ''}`}
+                      />
+                    </div>
                   </div>
 
                   <div className="space-y-2">
@@ -1272,66 +1310,86 @@ export function OutboundTransferForm({ initialData, onSuccess, onCancel }: Outbo
                 <div className="space-y-4">
                   <div className="space-y-2">
                     <Label className="text-medium" htmlFor="customer_street">Street Address *</Label>
-                    <Textarea
-                      id="customer_street"
-                      value={formData.customer_street}
-                      onChange={(e) => handleInputChange('customer_street', e.target.value.toUpperCase())}
-                      onKeyDown={(e) => {
-                        if (e.key === 'Enter') {
-                          e.preventDefault();
-                          document.getElementById('customer_zip')?.focus();
-                        }
-                      }}
-                      rows={2}
-                      className="text-base uppercase resize-none"
-                      required
-                    />
+                    <div className="field-error-wrapper">
+                      {hasError('customer_street') && <span className="field-error-tooltip">Required</span>}
+                      <Textarea
+                        id="customer_street"
+                        value={formData.customer_street}
+                        onChange={(e) => {
+                          handleInputChange('customer_street', e.target.value.toUpperCase())
+                          clearFieldError('customer_street')
+                        }}
+                        onKeyDown={(e) => {
+                          if (e.key === 'Enter') {
+                            e.preventDefault();
+                            document.getElementById('customer_zip')?.focus();
+                          }
+                        }}
+                        rows={2}
+                        className={`text-base uppercase resize-none ${hasError('customer_street') ? 'field-error' : ''}`}
+                      />
+                    </div>
                   </div>
                   
                   <div className="grid grid-cols-3 gap-2">
                     <div className="space-y-2">
                       <Label className="text-medium" htmlFor="customer_zip">Zip *</Label>
-                      <Input
-                        id="customer_zip"
-                        value={formData.customer_zip}
-                        onChange={(e) => handleZipCodeChange(e.target.value.toUpperCase())}
-                        onKeyDown={(e) => {
-                          if (e.key === 'Enter') {
-                            e.preventDefault();
-                            document.getElementById('customer_state')?.focus();
-                          }
-                        }}
-                        className="text-base uppercase"
-                        required
-                      />
+                      <div className="field-error-wrapper">
+                        {hasError('customer_zip') && <span className="field-error-tooltip">Required</span>}
+                        <Input
+                          id="customer_zip"
+                          value={formData.customer_zip}
+                          onChange={(e) => {
+                            handleZipCodeChange(e.target.value.toUpperCase())
+                            clearFieldError('customer_zip')
+                          }}
+                          onKeyDown={(e) => {
+                            if (e.key === 'Enter') {
+                              e.preventDefault();
+                              document.getElementById('customer_state')?.focus();
+                            }
+                          }}
+                          className={`text-base uppercase ${hasError('customer_zip') ? 'field-error' : ''}`}
+                        />
+                      </div>
                     </div>
 
                     <div className="space-y-2">
                       <Label className="text-medium" htmlFor="customer_state">State *</Label>
-                      <Input
-                        id="customer_state"
-                        value={formData.customer_state}
-                        onChange={(e) => handleInputChange('customer_state', e.target.value.toUpperCase())}
-                        onKeyDown={(e) => {
-                          if (e.key === 'Enter') {
-                            e.preventDefault();
-                            document.getElementById('customer_city')?.focus();
-                          }
-                        }}
-                        className="text-base uppercase"
-                        required
-                      />
+                      <div className="field-error-wrapper">
+                        {hasError('customer_state') && <span className="field-error-tooltip">Required</span>}
+                        <Input
+                          id="customer_state"
+                          value={formData.customer_state}
+                          onChange={(e) => {
+                            handleInputChange('customer_state', e.target.value.toUpperCase())
+                            clearFieldError('customer_state')
+                          }}
+                          onKeyDown={(e) => {
+                            if (e.key === 'Enter') {
+                              e.preventDefault();
+                              document.getElementById('customer_city')?.focus();
+                            }
+                          }}
+                          className={`text-base uppercase ${hasError('customer_state') ? 'field-error' : ''}`}
+                        />
+                      </div>
                     </div>
 
                     <div className="space-y-2">
                       <Label className="text-medium" htmlFor="customer_city">City *</Label>
-                      <Input
-                        id="customer_city"
-                        value={formData.customer_city}
-                        onChange={(e) => handleInputChange('customer_city', e.target.value.toUpperCase())}
-                        className="text-base uppercase"
-                        required
-                      />
+                      <div className="field-error-wrapper">
+                        {hasError('customer_city') && <span className="field-error-tooltip">Required</span>}
+                        <Input
+                          id="customer_city"
+                          value={formData.customer_city}
+                          onChange={(e) => {
+                            handleInputChange('customer_city', e.target.value.toUpperCase())
+                            clearFieldError('customer_city')
+                          }}
+                          className={`text-base uppercase ${hasError('customer_city') ? 'field-error' : ''}`}
+                        />
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -1347,42 +1405,50 @@ export function OutboundTransferForm({ initialData, onSuccess, onCancel }: Outbo
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                 <div className="space-y-2">
                   <Label className="text-medium" htmlFor="transferee_name">Transferee Name *</Label>
-                  <Input
-                    id="transferee_name"
-                    value={formData.transferee_name}
-                    onChange={(e) => handleInputChange('transferee_name', e.target.value.toUpperCase())}
-                    onKeyDown={(e) => {
-                      if (e.key === 'Enter') {
-                        e.preventDefault();
-                        document.getElementById('transferee_phone')?.focus();
-                      }
-                    }}
-                    required
-                    className="uppercase text-base"
-                  />
+                  <div className="field-error-wrapper">
+                    {hasError('transferee_name') && <span className="field-error-tooltip">Required</span>}
+                    <Input
+                      id="transferee_name"
+                      value={formData.transferee_name}
+                      onChange={(e) => {
+                        handleInputChange('transferee_name', e.target.value.toUpperCase())
+                        clearFieldError('transferee_name')
+                      }}
+                      onKeyDown={(e) => {
+                        if (e.key === 'Enter') {
+                          e.preventDefault();
+                          document.getElementById('transferee_phone')?.focus();
+                        }
+                      }}
+                      className={`uppercase text-base ${hasError('transferee_name') ? 'field-error' : ''}`}
+                    />
+                  </div>
                 </div>
 
                 <div className="space-y-2">
                   <Label className="text-medium" htmlFor="transferee_phone">Transferee Phone *</Label>
-                  <Input
-                    id="transferee_phone"
-                    type="tel"
-                    value={formatPhoneNumber(formData.transferee_phone)}
-                    onChange={(e) => {
-                      const digits = e.target.value.replace(/\D/g, '');
-                      handleInputChange('transferee_phone', digits);
-                    }}
-                    onKeyDown={(e) => {
-                      if (e.key === 'Enter') {
-                        e.preventDefault();
-                        document.getElementById('transferee_ffl_name')?.focus();
-                      }
-                    }}
-                    required
-                    maxLength={14}
-                    placeholder="(123) 456-7890"
-                    className="text-base"
-                  />
+                  <div className="field-error-wrapper">
+                    {hasError('transferee_phone') && <span className="field-error-tooltip">Required</span>}
+                    <Input
+                      id="transferee_phone"
+                      type="tel"
+                      value={formatPhoneNumber(formData.transferee_phone)}
+                      onChange={(e) => {
+                        const digits = e.target.value.replace(/\D/g, '');
+                        handleInputChange('transferee_phone', digits);
+                        clearFieldError('transferee_phone')
+                      }}
+                      onKeyDown={(e) => {
+                        if (e.key === 'Enter') {
+                          e.preventDefault();
+                          document.getElementById('transferee_ffl_name')?.focus();
+                        }
+                      }}
+                      maxLength={14}
+                      placeholder="(123) 456-7890"
+                      className={`text-base ${hasError('transferee_phone') ? 'field-error' : ''}`}
+                    />
+                  </div>
                 </div>
               </div>
 
@@ -1413,110 +1479,138 @@ export function OutboundTransferForm({ initialData, onSuccess, onCancel }: Outbo
                 <div className="space-y-4">
                   <div className="space-y-2">
                     <Label className="text-medium" htmlFor="transferee_ffl_name">FFL Name *</Label>
-                    <Input
-                      id="transferee_ffl_name"
-                      value={formData.transferee_ffl_name}
-                      onChange={(e) => handleInputChange('transferee_ffl_name', e.target.value.toUpperCase())}
-                      onKeyDown={(e) => {
-                        if (e.key === 'Enter') {
-                          e.preventDefault();
-                          document.getElementById('transferee_ffl_phone')?.focus();
-                        }
-                      }}
-                      required
-                      className="text-base uppercase"
-                    />
+                    <div className="field-error-wrapper">
+                      {hasError('transferee_ffl_name') && <span className="field-error-tooltip">Required</span>}
+                      <Input
+                        id="transferee_ffl_name"
+                        value={formData.transferee_ffl_name}
+                        onChange={(e) => {
+                          handleInputChange('transferee_ffl_name', e.target.value.toUpperCase())
+                          clearFieldError('transferee_ffl_name')
+                        }}
+                        onKeyDown={(e) => {
+                          if (e.key === 'Enter') {
+                            e.preventDefault();
+                            document.getElementById('transferee_ffl_phone')?.focus();
+                          }
+                        }}
+                        className={`text-base uppercase ${hasError('transferee_ffl_name') ? 'field-error' : ''}`}
+                      />
+                    </div>
                   </div>
 
                   <div className="space-y-2">
                     <Label className="text-medium" htmlFor="transferee_ffl_phone">FFL Phone *</Label>
-                    <Input
-                      id="transferee_ffl_phone"
-                      type="tel"
-                      value={formatPhoneNumber(formData.transferee_ffl_phone)}
-                      onChange={(e) => {
-                        const digits = e.target.value.replace(/\D/g, '');
-                        handleInputChange('transferee_ffl_phone', digits);
-                      }}
-                      onKeyDown={(e) => {
-                        if (e.key === 'Enter') {
-                          e.preventDefault();
-                          document.getElementById('transferee_ffl_address')?.focus();
-                        }
-                      }}
-                      required
-                      maxLength={14}
-                      placeholder="(123) 456-7890"
-                      className="text-base"
-                    />
+                    <div className="field-error-wrapper">
+                      {hasError('transferee_ffl_phone') && <span className="field-error-tooltip">Required</span>}
+                      <Input
+                        id="transferee_ffl_phone"
+                        type="tel"
+                        value={formatPhoneNumber(formData.transferee_ffl_phone)}
+                        onChange={(e) => {
+                          const digits = e.target.value.replace(/\D/g, '');
+                          handleInputChange('transferee_ffl_phone', digits);
+                          clearFieldError('transferee_ffl_phone')
+                        }}
+                        onKeyDown={(e) => {
+                          if (e.key === 'Enter') {
+                            e.preventDefault();
+                            document.getElementById('transferee_ffl_address')?.focus();
+                          }
+                        }}
+                        maxLength={14}
+                        placeholder="(123) 456-7890"
+                        className={`text-base ${hasError('transferee_ffl_phone') ? 'field-error' : ''}`}
+                      />
+                    </div>
                   </div>
                 </div>
 
                 <div className="space-y-4">
                   <div className="space-y-2">
                     <Label className="text-medium" htmlFor="transferee_ffl_address">Street Address *</Label>
-                    <Textarea
-                      id="transferee_ffl_address"
-                      value={formData.transferee_ffl_address}
-                      onChange={(e) => handleInputChange('transferee_ffl_address', e.target.value.toUpperCase())}
-                      onKeyDown={(e) => {
-                        if (e.key === 'Enter') {
-                          e.preventDefault();
-                          document.getElementById('transferee_ffl_zip')?.focus();
-                        }
-                      }}
-                      rows={2}
-                      className="text-base uppercase resize-none"
-                      required
-                    />
+                    <div className="field-error-wrapper">
+                      {hasError('transferee_ffl_address') && <span className="field-error-tooltip">Required</span>}
+                      <Textarea
+                        id="transferee_ffl_address"
+                        value={formData.transferee_ffl_address}
+                        onChange={(e) => {
+                          handleInputChange('transferee_ffl_address', e.target.value.toUpperCase())
+                          clearFieldError('transferee_ffl_address')
+                        }}
+                        onKeyDown={(e) => {
+                          if (e.key === 'Enter') {
+                            e.preventDefault();
+                            document.getElementById('transferee_ffl_zip')?.focus();
+                          }
+                        }}
+                        rows={2}
+                        className={`text-base uppercase resize-none ${hasError('transferee_ffl_address') ? 'field-error' : ''}`}
+                      />
+                    </div>
                   </div>
                   
                   <div className="grid grid-cols-3 gap-2">
                     <div className="space-y-2">
                       <Label className="text-medium" htmlFor="transferee_ffl_zip">Zip *</Label>
-                      <Input
-                        id="transferee_ffl_zip"
-                        value={formData.transferee_ffl_zip}
-                        onChange={(e) => handleTransfereeZipCodeChange(e.target.value.toUpperCase())}
-                        onKeyDown={(e) => {
-                          if (e.key === 'Enter') {
-                            e.preventDefault();
-                            document.getElementById('transferee_ffl_state')?.focus();
-                          }
-                        }}
-                        placeholder="Zip"
-                        maxLength={5}
-                        className="text-base uppercase"
-                        required
-                      />
+                      <div className="field-error-wrapper">
+                        {hasError('transferee_ffl_zip') && <span className="field-error-tooltip">Required</span>}
+                        <Input
+                          id="transferee_ffl_zip"
+                          value={formData.transferee_ffl_zip}
+                          onChange={(e) => {
+                            handleTransfereeZipCodeChange(e.target.value.toUpperCase())
+                            clearFieldError('transferee_ffl_zip')
+                          }}
+                          onKeyDown={(e) => {
+                            if (e.key === 'Enter') {
+                              e.preventDefault();
+                              document.getElementById('transferee_ffl_state')?.focus();
+                            }
+                          }}
+                          placeholder="Zip"
+                          maxLength={5}
+                          className={`text-base uppercase ${hasError('transferee_ffl_zip') ? 'field-error' : ''}`}
+                        />
+                      </div>
                     </div>
 
                     <div className="space-y-2">
                       <Label className="text-medium" htmlFor="transferee_ffl_state">State *</Label>
-                      <Input
-                        id="transferee_ffl_state"
-                        value={formData.transferee_ffl_state}
-                        onChange={(e) => handleInputChange('transferee_ffl_state', e.target.value.toUpperCase())}
-                        onKeyDown={(e) => {
-                          if (e.key === 'Enter') {
-                            e.preventDefault();
-                            document.getElementById('transferee_ffl_city')?.focus();
-                          }
-                        }}
-                        className="text-base uppercase"
-                        required
-                      />
+                      <div className="field-error-wrapper">
+                        {hasError('transferee_ffl_state') && <span className="field-error-tooltip">Required</span>}
+                        <Input
+                          id="transferee_ffl_state"
+                          value={formData.transferee_ffl_state}
+                          onChange={(e) => {
+                            handleInputChange('transferee_ffl_state', e.target.value.toUpperCase())
+                            clearFieldError('transferee_ffl_state')
+                          }}
+                          onKeyDown={(e) => {
+                            if (e.key === 'Enter') {
+                              e.preventDefault();
+                              document.getElementById('transferee_ffl_city')?.focus();
+                            }
+                          }}
+                          className={`text-base uppercase ${hasError('transferee_ffl_state') ? 'field-error' : ''}`}
+                        />
+                      </div>
                     </div>
 
                     <div className="space-y-2">
                       <Label className="text-medium" htmlFor="transferee_ffl_city">City *</Label>
-                      <Input
-                        id="transferee_ffl_city"
-                        value={formData.transferee_ffl_city}
-                        onChange={(e) => handleInputChange('transferee_ffl_city', e.target.value.toUpperCase())}
-                        className="text-base uppercase"
-                        required
-                      />
+                      <div className="field-error-wrapper">
+                        {hasError('transferee_ffl_city') && <span className="field-error-tooltip">Required</span>}
+                        <Input
+                          id="transferee_ffl_city"
+                          value={formData.transferee_ffl_city}
+                          onChange={(e) => {
+                            handleInputChange('transferee_ffl_city', e.target.value.toUpperCase())
+                            clearFieldError('transferee_ffl_city')
+                          }}
+                          className={`text-base uppercase ${hasError('transferee_ffl_city') ? 'field-error' : ''}`}
+                        />
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -1593,13 +1687,15 @@ export function OutboundTransferForm({ initialData, onSuccess, onCancel }: Outbo
             
             {productLines.map((line, index) => (
               <div key={index} className="grid grid-cols-10 gap-4 items-center mb-2">
-                <div className="col-span-2">
+                <div className="col-span-2 field-error-wrapper">
+                  {hasError(`control_number-${index}`) && <span className="field-error-tooltip">Required</span>}
                   <Textarea
                     id={`control_number-${index}`}
                     value={line.control_number}
                     onChange={(e) => {
                       console.log('Control Number input changed:', e.target.value);
                       updateProductLine(index, 'control_number', e.target.value.toUpperCase());
+                      clearFieldError(`control_number-${index}`)
                     }}
                     onKeyDown={(e) => {
                       if (e.key === 'Enter') {
@@ -1611,8 +1707,7 @@ export function OutboundTransferForm({ initialData, onSuccess, onCancel }: Outbo
                         }
                       }
                     }}
-                    required
-                    className="text-base w-full min-h-[48px] resize-none overflow-hidden uppercase text-center text-left"
+                    className={`text-base w-full min-h-[48px] resize-none overflow-hidden uppercase text-center text-left ${hasError(`control_number-${index}`) ? 'field-error' : ''}`}
                     rows={1}
                     style={{
                       height: isClient ? (rowHeights[index] || '48px') : '48px',
@@ -1632,19 +1727,22 @@ export function OutboundTransferForm({ initialData, onSuccess, onCancel }: Outbo
                   />
                 </div>
 
-                <div className="col-span-2">
+                <div className="col-span-2 field-error-wrapper">
+                  {hasError(`manufacturer-${index}`) && <span className="field-error-tooltip">Required</span>}
                   <Textarea
                     id={`manufacturer-${index}`}
                     value={line.manufacturer}
-                    onChange={(e) => updateProductLine(index, 'manufacturer', e.target.value.toUpperCase())}
+                    onChange={(e) => {
+                      updateProductLine(index, 'manufacturer', e.target.value.toUpperCase())
+                      clearFieldError(`manufacturer-${index}`)
+                    }}
                     onKeyDown={(e) => {
                       if (e.key === 'Enter') {
                         e.preventDefault();
                         document.getElementById(`model-${index}`)?.focus();
                       }
                     }}
-                    required
-                    className="min-h-[48px] w-full text-base resize-none overflow-hidden uppercase text-left"
+                    className={`min-h-[48px] w-full text-base resize-none overflow-hidden uppercase text-left ${hasError(`manufacturer-${index}`) ? 'field-error' : ''}`}
                     rows={1}
                     style={{
                       height: isClient ? (rowHeights[index] || '48px') : '48px',
@@ -1662,19 +1760,22 @@ export function OutboundTransferForm({ initialData, onSuccess, onCancel }: Outbo
                   />
                 </div>
 
-                <div className="col-span-2">
+                <div className="col-span-2 field-error-wrapper">
+                  {hasError(`model-${index}`) && <span className="field-error-tooltip">Required</span>}
                   <Textarea
                     id={`model-${index}`}
                     value={line.model}
-                    onChange={(e) => updateProductLine(index, 'model', e.target.value.toUpperCase())}
+                    onChange={(e) => {
+                      updateProductLine(index, 'model', e.target.value.toUpperCase())
+                      clearFieldError(`model-${index}`)
+                    }}
                     onKeyDown={(e) => {
                       if (e.key === 'Enter') {
                         e.preventDefault();
                         document.getElementById(`serial_number-${index}`)?.focus();
                       }
                     }}
-                    required
-                    className="min-h-[48px] w-full text-base resize-none overflow-hidden uppercase text-left"
+                    className={`min-h-[48px] w-full text-base resize-none overflow-hidden uppercase text-left ${hasError(`model-${index}`) ? 'field-error' : ''}`}
                     rows={1}
                     style={{
                       height: isClient ? (rowHeights[index] || '48px') : '48px',
@@ -1692,11 +1793,15 @@ export function OutboundTransferForm({ initialData, onSuccess, onCancel }: Outbo
                   />
                 </div>
 
-                <div className="col-span-2">
+                <div className="col-span-2 field-error-wrapper">
+                  {hasError(`serial_number-${index}`) && <span className="field-error-tooltip">Required</span>}
                   <Textarea
                     id={`serial_number-${index}`}
                     value={line.serial_number}
-                    onChange={(e) => updateProductLine(index, 'serial_number', e.target.value.toUpperCase())}
+                    onChange={(e) => {
+                      updateProductLine(index, 'serial_number', e.target.value.toUpperCase())
+                      clearFieldError(`serial_number-${index}`)
+                    }}
                     onKeyDown={(e) => {
                       if (e.key === 'Enter') {
                         e.preventDefault();
@@ -1706,8 +1811,7 @@ export function OutboundTransferForm({ initialData, onSuccess, onCancel }: Outbo
                         }
                       }
                     }}
-                    required
-                    className="min-h-[48px] w-full text-base resize-none overflow-hidden uppercase text-left"
+                    className={`min-h-[48px] w-full text-base resize-none overflow-hidden uppercase text-left ${hasError(`serial_number-${index}`) ? 'field-error' : ''}`}
                     rows={1}
                     style={{
                       height: isClient ? (rowHeights[index] || '48px') : '48px',
