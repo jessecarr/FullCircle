@@ -13,6 +13,7 @@ import CustomerSearch from '../CustomerSearch'
 import { lookupZipCode, isValidZipCode } from '@/lib/zipLookup'
 import { Printer, Search } from 'lucide-react'
 import { PrintSubmitDialog } from '@/components/ui/print-submit-dialog'
+import { useFormValidation, isNotEmpty } from '@/hooks/useFormValidation'
 import FastBoundSearch from '../FastBoundSearch'
 
 interface FastBoundInventoryItem {
@@ -48,6 +49,7 @@ interface ProductLine {
 
 export function SuppressorApprovalForm({ initialData, onSuccess, onCancel }: SpecialOrderFormProps) {
   const { toast } = useToast()
+  const { collectFieldErrors, collectProductLineErrors, setErrors, hasError, clearFieldError, formatErrorMessage } = useFormValidation()
   const [loading, setLoading] = useState(false)
   const [emailLoading, setEmailLoading] = useState(false)
   const [showPrintSubmitDialog, setShowPrintSubmitDialog] = useState(false)
@@ -370,11 +372,36 @@ export function SuppressorApprovalForm({ initialData, onSuccess, onCancel }: Spe
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     
-    // Validate required fields
-    if (!formData.customer_name || !formData.customer_phone) {
+    // Collect all validation errors first, then set them all at once
+    const allErrors: { field: string; label: string }[] = []
+
+    // Define required field validations
+    const validations = [
+      { field: 'customer_name', label: 'Customer Name', validate: isNotEmpty },
+      { field: 'customer_phone', label: 'Customer Phone', validate: isNotEmpty },
+      { field: 'customer_street', label: 'Street Address', validate: isNotEmpty },
+      { field: 'customer_city', label: 'City', validate: isNotEmpty },
+      { field: 'customer_state', label: 'State', validate: isNotEmpty },
+      { field: 'customer_zip', label: 'Zip Code', validate: isNotEmpty },
+    ]
+    allErrors.push(...collectFieldErrors(validations, formData))
+
+    // Validate product line required fields
+    const productLineValidations = [
+      { field: 'control_number', label: 'Control #', validate: isNotEmpty },
+      { field: 'manufacturer', label: 'Manufacturer', validate: isNotEmpty },
+      { field: 'model', label: 'Model', validate: isNotEmpty },
+      { field: 'serial_number', label: 'Serial #', validate: isNotEmpty },
+    ]
+    const checkHasData = (line: any) => line.control_number || line.manufacturer || line.model || line.serial_number
+    allErrors.push(...collectProductLineErrors(productLines, productLineValidations, checkHasData, true))
+
+    // If there are any errors, set them all and show toast
+    if (allErrors.length > 0) {
+      setErrors(allErrors)
       toast({
         title: 'Validation Error',
-        description: 'Please fill in all required customer fields',
+        description: formatErrorMessage(allErrors),
         variant: 'destructive',
       })
       return
@@ -1005,42 +1032,50 @@ export function SuppressorApprovalForm({ initialData, onSuccess, onCancel }: Spe
                 <div className="space-y-4">
                   <div className="space-y-2">
                     <Label className="text-medium" htmlFor="customer_name">Name *</Label>
-                    <Input
-                      id="customer_name"
-                      value={formData.customer_name}
-                      onChange={(e) => handleInputChange('customer_name', e.target.value.toUpperCase())}
-                      onKeyDown={(e) => {
-                        if (e.key === 'Enter') {
-                          e.preventDefault();
-                          document.getElementById('customer_phone')?.focus();
-                        }
-                      }}
-                      required
-                      className="text-base uppercase"
-                    />
+                    <div className="field-error-wrapper">
+                      {hasError('customer_name') && <span className="field-error-tooltip">Required</span>}
+                      <Input
+                        id="customer_name"
+                        value={formData.customer_name}
+                        onChange={(e) => {
+                          handleInputChange('customer_name', e.target.value.toUpperCase())
+                          clearFieldError('customer_name')
+                        }}
+                        onKeyDown={(e) => {
+                          if (e.key === 'Enter') {
+                            e.preventDefault();
+                            document.getElementById('customer_phone')?.focus();
+                          }
+                        }}
+                        className={`text-base uppercase ${hasError('customer_name') ? 'field-error' : ''}`}
+                      />
+                    </div>
                   </div>
 
                   <div className="space-y-2">
                     <Label className="text-medium" htmlFor="customer_phone">Phone *</Label>
-                    <Input
-                      id="customer_phone"
-                      type="tel"
-                      value={formatPhoneNumber(formData.customer_phone)}
-                      onChange={(e) => {
-                        const digits = e.target.value.replace(/\D/g, '');
-                        handleInputChange('customer_phone', digits);
-                      }}
-                      onKeyDown={(e) => {
-                        if (e.key === 'Enter') {
-                          e.preventDefault();
-                          document.getElementById('customer_email')?.focus();
-                        }
-                      }}
-                      required
-                      maxLength={14}
-                      placeholder="(___) ___-____"
-                      className="text-base"
-                    />
+                    <div className="field-error-wrapper">
+                      {hasError('customer_phone') && <span className="field-error-tooltip">Required</span>}
+                      <Input
+                        id="customer_phone"
+                        type="tel"
+                        value={formatPhoneNumber(formData.customer_phone)}
+                        onChange={(e) => {
+                          const digits = e.target.value.replace(/\D/g, '');
+                          handleInputChange('customer_phone', digits);
+                          clearFieldError('customer_phone')
+                        }}
+                        onKeyDown={(e) => {
+                          if (e.key === 'Enter') {
+                            e.preventDefault();
+                            document.getElementById('customer_email')?.focus();
+                          }
+                        }}
+                        maxLength={14}
+                        placeholder="(___) ___-____"
+                        className={`text-base ${hasError('customer_phone') ? 'field-error' : ''}`}
+                      />
+                    </div>
                   </div>
 
                   <div className="space-y-2">
@@ -1097,63 +1132,87 @@ export function SuppressorApprovalForm({ initialData, onSuccess, onCancel }: Spe
 
                 <div className="space-y-4">
                   <div className="space-y-2">
-                    <Label className="text-medium" htmlFor="customer_street">Street Address</Label>
-                    <Textarea
-                      id="customer_street"
-                      value={formData.customer_street}
-                      onChange={(e) => handleInputChange('customer_street', e.target.value.toUpperCase())}
-                      onKeyDown={(e) => {
-                        if (e.key === 'Enter') {
-                          e.preventDefault();
-                          document.getElementById('customer_zip')?.focus();
-                        }
-                      }}
-                      rows={2}
-                      className="text-base uppercase resize-none"
-                    />
+                    <Label className="text-medium" htmlFor="customer_street">Street Address *</Label>
+                    <div className="field-error-wrapper">
+                      {hasError('customer_street') && <span className="field-error-tooltip">Required</span>}
+                      <Textarea
+                        id="customer_street"
+                        value={formData.customer_street}
+                        onChange={(e) => {
+                          handleInputChange('customer_street', e.target.value.toUpperCase())
+                          clearFieldError('customer_street')
+                        }}
+                        onKeyDown={(e) => {
+                          if (e.key === 'Enter') {
+                            e.preventDefault();
+                            document.getElementById('customer_zip')?.focus();
+                          }
+                        }}
+                        rows={2}
+                        className={`text-base uppercase resize-none ${hasError('customer_street') ? 'field-error' : ''}`}
+                      />
+                    </div>
                   </div>
                   
                   <div className="grid grid-cols-3 gap-2">
                     <div className="space-y-2">
-                      <Label className="text-medium" htmlFor="customer_zip">Zip</Label>
-                      <Input
-                        id="customer_zip"
-                        value={formData.customer_zip}
-                        onChange={(e) => handleZipCodeChange(e.target.value.toUpperCase())}
-                        onKeyDown={(e) => {
-                          if (e.key === 'Enter') {
-                            e.preventDefault();
-                            document.getElementById('customer_state')?.focus();
-                          }
-                        }}
-                        className="text-base uppercase"
-                      />
+                      <Label className="text-medium" htmlFor="customer_zip">Zip *</Label>
+                      <div className="field-error-wrapper">
+                        {hasError('customer_zip') && <span className="field-error-tooltip">Required</span>}
+                        <Input
+                          id="customer_zip"
+                          value={formData.customer_zip}
+                          onChange={(e) => {
+                            handleZipCodeChange(e.target.value.toUpperCase())
+                            clearFieldError('customer_zip')
+                          }}
+                          onKeyDown={(e) => {
+                            if (e.key === 'Enter') {
+                              e.preventDefault();
+                              document.getElementById('customer_state')?.focus();
+                            }
+                          }}
+                          className={`text-base uppercase ${hasError('customer_zip') ? 'field-error' : ''}`}
+                        />
+                      </div>
                     </div>
 
                     <div className="space-y-2">
-                      <Label className="text-medium" htmlFor="customer_state">State</Label>
-                      <Input
-                        id="customer_state"
-                        value={formData.customer_state}
-                        onChange={(e) => handleInputChange('customer_state', e.target.value.toUpperCase())}
-                        onKeyDown={(e) => {
-                          if (e.key === 'Enter') {
-                            e.preventDefault();
-                            document.getElementById('customer_city')?.focus();
-                          }
-                        }}
-                        className="text-base uppercase"
-                      />
+                      <Label className="text-medium" htmlFor="customer_state">State *</Label>
+                      <div className="field-error-wrapper">
+                        {hasError('customer_state') && <span className="field-error-tooltip">Required</span>}
+                        <Input
+                          id="customer_state"
+                          value={formData.customer_state}
+                          onChange={(e) => {
+                            handleInputChange('customer_state', e.target.value.toUpperCase())
+                            clearFieldError('customer_state')
+                          }}
+                          onKeyDown={(e) => {
+                            if (e.key === 'Enter') {
+                              e.preventDefault();
+                              document.getElementById('customer_city')?.focus();
+                            }
+                          }}
+                          className={`text-base uppercase ${hasError('customer_state') ? 'field-error' : ''}`}
+                        />
+                      </div>
                     </div>
 
                     <div className="space-y-2">
-                      <Label className="text-medium" htmlFor="customer_city">City</Label>
-                      <Input
-                        id="customer_city"
-                        value={formData.customer_city}
-                        onChange={(e) => handleInputChange('customer_city', e.target.value.toUpperCase())}
-                        className="text-base uppercase"
-                      />
+                      <Label className="text-medium" htmlFor="customer_city">City *</Label>
+                      <div className="field-error-wrapper">
+                        {hasError('customer_city') && <span className="field-error-tooltip">Required</span>}
+                        <Input
+                          id="customer_city"
+                          value={formData.customer_city}
+                          onChange={(e) => {
+                            handleInputChange('customer_city', e.target.value.toUpperCase())
+                            clearFieldError('customer_city')
+                          }}
+                          className={`text-base uppercase ${hasError('customer_city') ? 'field-error' : ''}`}
+                        />
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -1230,13 +1289,15 @@ export function SuppressorApprovalForm({ initialData, onSuccess, onCancel }: Spe
             
             {productLines.map((line, index) => (
               <div key={index} className="grid grid-cols-10 gap-4 items-center mb-2">
-                <div className="col-span-2">
+                <div className="col-span-2 field-error-wrapper">
+                  {hasError(`control_number-${index}`) && <span className="field-error-tooltip">Required</span>}
                   <Textarea
                     id={`control_number-${index}`}
                     value={line.control_number}
                     onChange={(e) => {
                       console.log('Control Number input changed:', e.target.value);
                       updateProductLine(index, 'control_number', e.target.value.toUpperCase());
+                      clearFieldError(`control_number-${index}`)
                     }}
                     onKeyDown={(e) => {
                       if (e.key === 'Enter') {
@@ -1248,8 +1309,7 @@ export function SuppressorApprovalForm({ initialData, onSuccess, onCancel }: Spe
                         }
                       }
                     }}
-                    required
-                    className="text-base w-full min-h-[48px] resize-none overflow-hidden uppercase text-center text-left"
+                    className={`text-base w-full min-h-[48px] resize-none overflow-hidden uppercase text-center text-left ${hasError(`control_number-${index}`) ? 'field-error' : ''}`}
                     rows={1}
                     style={{
                       height: isClient ? (rowHeights[index] || '48px') : '48px',
@@ -1269,19 +1329,22 @@ export function SuppressorApprovalForm({ initialData, onSuccess, onCancel }: Spe
                   />
                 </div>
 
-                <div className="col-span-2">
+                <div className="col-span-2 field-error-wrapper">
+                  {hasError(`manufacturer-${index}`) && <span className="field-error-tooltip">Required</span>}
                   <Textarea
                     id={`manufacturer-${index}`}
                     value={line.manufacturer}
-                    onChange={(e) => updateProductLine(index, 'manufacturer', e.target.value.toUpperCase())}
+                    onChange={(e) => {
+                      updateProductLine(index, 'manufacturer', e.target.value.toUpperCase())
+                      clearFieldError(`manufacturer-${index}`)
+                    }}
                     onKeyDown={(e) => {
                       if (e.key === 'Enter') {
                         e.preventDefault();
                         document.getElementById(`model-${index}`)?.focus();
                       }
                     }}
-                    required
-                    className="min-h-[48px] w-full text-base resize-none overflow-hidden uppercase text-left"
+                    className={`min-h-[48px] w-full text-base resize-none overflow-hidden uppercase text-left ${hasError(`manufacturer-${index}`) ? 'field-error' : ''}`}
                     rows={1}
                     style={{
                       height: isClient ? (rowHeights[index] || '48px') : '48px',
@@ -1299,19 +1362,22 @@ export function SuppressorApprovalForm({ initialData, onSuccess, onCancel }: Spe
                   />
                 </div>
 
-                <div className="col-span-2">
+                <div className="col-span-2 field-error-wrapper">
+                  {hasError(`model-${index}`) && <span className="field-error-tooltip">Required</span>}
                   <Textarea
                     id={`model-${index}`}
                     value={line.model}
-                    onChange={(e) => updateProductLine(index, 'model', e.target.value.toUpperCase())}
+                    onChange={(e) => {
+                      updateProductLine(index, 'model', e.target.value.toUpperCase())
+                      clearFieldError(`model-${index}`)
+                    }}
                     onKeyDown={(e) => {
                       if (e.key === 'Enter') {
                         e.preventDefault();
                         document.getElementById(`serial_number-${index}`)?.focus();
                       }
                     }}
-                    required
-                    className="min-h-[48px] w-full text-base resize-none overflow-hidden uppercase text-left"
+                    className={`min-h-[48px] w-full text-base resize-none overflow-hidden uppercase text-left ${hasError(`model-${index}`) ? 'field-error' : ''}`}
                     rows={1}
                     style={{
                       height: isClient ? (rowHeights[index] || '48px') : '48px',
@@ -1329,11 +1395,15 @@ export function SuppressorApprovalForm({ initialData, onSuccess, onCancel }: Spe
                   />
                 </div>
 
-                <div className="col-span-2">
+                <div className="col-span-2 field-error-wrapper">
+                  {hasError(`serial_number-${index}`) && <span className="field-error-tooltip">Required</span>}
                   <Textarea
                     id={`serial_number-${index}`}
                     value={line.serial_number}
-                    onChange={(e) => updateProductLine(index, 'serial_number', e.target.value.toUpperCase())}
+                    onChange={(e) => {
+                      updateProductLine(index, 'serial_number', e.target.value.toUpperCase())
+                      clearFieldError(`serial_number-${index}`)
+                    }}
                     onKeyDown={(e) => {
                       if (e.key === 'Enter') {
                         e.preventDefault();
@@ -1343,8 +1413,7 @@ export function SuppressorApprovalForm({ initialData, onSuccess, onCancel }: Spe
                         }
                       }
                     }}
-                    required
-                    className="min-h-[48px] w-full text-base resize-none overflow-hidden uppercase text-left"
+                    className={`min-h-[48px] w-full text-base resize-none overflow-hidden uppercase text-left ${hasError(`serial_number-${index}`) ? 'field-error' : ''}`}
                     rows={1}
                     style={{
                       height: isClient ? (rowHeights[index] || '48px') : '48px',

@@ -16,6 +16,7 @@ import { lookupZipCode, isValidZipCode } from '@/lib/zipLookup'
 import { Printer, Search } from 'lucide-react'
 import { PrintSubmitDialog } from '@/components/ui/print-submit-dialog'
 import { COMPANY_LOGO_BASE64 } from '@/lib/imageConstants'
+import { useFormValidation, isNotEmpty } from '@/hooks/useFormValidation'
 
 interface QuoteFormProps {
   initialData?: any
@@ -35,6 +36,7 @@ interface ProductLine {
 
 export function QuoteForm({ initialData, onSuccess, onCancel }: QuoteFormProps) {
   const { toast } = useToast()
+  const { collectFieldErrors, collectProductLineErrors, setErrors, hasError, clearFieldError, formatErrorMessage } = useFormValidation()
   const [loading, setLoading] = useState(false)
   const [emailLoading, setEmailLoading] = useState(false)
   const [showPrintSubmitDialog, setShowPrintSubmitDialog] = useState(false)
@@ -336,27 +338,32 @@ export function QuoteForm({ initialData, onSuccess, onCancel }: QuoteFormProps) 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     
-    // Validate required fields and collect missing field names
-    const missingFields: string[] = []
-    if (!formData.customer_name) missingFields.push('Customer Name')
-    if (!formData.customer_phone) missingFields.push('Customer Phone')
-    if (!formData.payment) missingFields.push('Payment Method')
-    
-    if (missingFields.length > 0) {
-      toast({
-        title: 'Validation Error',
-        description: `Please fill in the following required fields: ${missingFields.join(', ')}`,
-        variant: 'destructive',
-      })
-      return
-    }
+    // Collect all validation errors first, then set them all at once
+    const allErrors: { field: string; label: string }[] = []
 
-    // Validate vendor is filled for all product lines
-    const missingVendor = productLines.some(line => !line.vendor || line.vendor.trim() === '')
-    if (missingVendor) {
+    // Define required field validations
+    const validations = [
+      { field: 'customer_name', label: 'Customer Name', validate: isNotEmpty },
+      { field: 'customer_phone', label: 'Customer Phone', validate: isNotEmpty },
+      { field: 'payment', label: 'Payment Method', validate: isNotEmpty },
+    ]
+    allErrors.push(...collectFieldErrors(validations, formData))
+
+    // Validate product line required fields
+    const productLineValidations = [
+      { field: 'sku', label: 'SKU', validate: isNotEmpty },
+      { field: 'description', label: 'Description', validate: isNotEmpty },
+      { field: 'vendor', label: 'Vendor', validate: isNotEmpty },
+    ]
+    const checkHasData = (line: any) => line.sku || line.description || line.vendor
+    allErrors.push(...collectProductLineErrors(productLines, productLineValidations, checkHasData, true))
+
+    // If there are any errors, set them all and show toast
+    if (allErrors.length > 0) {
+      setErrors(allErrors)
       toast({
         title: 'Validation Error',
-        description: 'Please select a vendor for all product lines',
+        description: formatErrorMessage(allErrors),
         variant: 'destructive',
       })
       return
@@ -1307,42 +1314,50 @@ export function QuoteForm({ initialData, onSuccess, onCancel }: QuoteFormProps) 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div className="space-y-2">
                   <Label className="text-medium" htmlFor="customer_name">Customer Name *</Label>
-                  <Input
-                    id="customer_name"
-                    value={formData.customer_name}
-                    onChange={(e) => handleInputChange('customer_name', e.target.value.toUpperCase())}
-                    onKeyDown={(e) => {
-                      if (e.key === 'Enter') {
-                        e.preventDefault();
-                        document.getElementById('customer_phone')?.focus();
-                      }
-                    }}
-                    required
-                    className="uppercase"
-                  />
+                  <div className="field-error-wrapper">
+                    {hasError('customer_name') && <span className="field-error-tooltip">Required</span>}
+                    <Input
+                      id="customer_name"
+                      value={formData.customer_name}
+                      onChange={(e) => {
+                        handleInputChange('customer_name', e.target.value.toUpperCase())
+                        clearFieldError('customer_name')
+                      }}
+                      onKeyDown={(e) => {
+                        if (e.key === 'Enter') {
+                          e.preventDefault();
+                          document.getElementById('customer_phone')?.focus();
+                        }
+                      }}
+                      className={`uppercase ${hasError('customer_name') ? 'field-error' : ''}`}
+                    />
+                  </div>
                 </div>
 
                 <div className="space-y-2">
                   <Label className="text-medium" htmlFor="customer_phone">Customer Phone *</Label>
-                  <Input
-                    id="customer_phone"
-                    type="tel"
-                    value={formatPhoneNumber(formData.customer_phone)}
-                    onChange={(e) => {
-                      const digits = e.target.value.replace(/\D/g, '');
-                      handleInputChange('customer_phone', digits);
-                    }}
-                    onKeyDown={(e) => {
-                      if (e.key === 'Enter') {
-                        e.preventDefault();
-                        document.getElementById('customer_email')?.focus();
-                      }
-                    }}
-                    required
-                    maxLength={14}
-                    placeholder="(123) 456-7890"
-                    className="uppercase"
-                  />
+                  <div className="field-error-wrapper">
+                    {hasError('customer_phone') && <span className="field-error-tooltip">Required</span>}
+                    <Input
+                      id="customer_phone"
+                      type="tel"
+                      value={formatPhoneNumber(formData.customer_phone)}
+                      onChange={(e) => {
+                        const digits = e.target.value.replace(/\D/g, '');
+                        handleInputChange('customer_phone', digits);
+                        clearFieldError('customer_phone')
+                      }}
+                      onKeyDown={(e) => {
+                        if (e.key === 'Enter') {
+                          e.preventDefault();
+                          document.getElementById('customer_email')?.focus();
+                        }
+                      }}
+                      maxLength={14}
+                      placeholder="(123) 456-7890"
+                      className={`uppercase ${hasError('customer_phone') ? 'field-error' : ''}`}
+                    />
+                  </div>
                 </div>
 
                 <div className="space-y-2">
@@ -1506,13 +1521,15 @@ export function QuoteForm({ initialData, onSuccess, onCancel }: QuoteFormProps) 
             
             {productLines.map((line, index) => (
               <div key={index} className="grid grid-cols-14 gap-4 items-center mb-2">
-                <div className="col-span-2">
+                <div className="col-span-2 field-error-wrapper">
+                  {hasError(`sku-${index}`) && <span className="field-error-tooltip">Required</span>}
                   <Textarea
                     id={`sku-${index}`}
                     value={line.sku}
                     onChange={(e) => {
                       console.log('SKU input changed:', e.target.value);
                       updateProductLine(index, 'sku', e.target.value.toUpperCase());
+                      clearFieldError(`sku-${index}`)
                     }}
                     onKeyDown={(e) => {
                       if (e.key === 'Enter') {
@@ -1520,8 +1537,7 @@ export function QuoteForm({ initialData, onSuccess, onCancel }: QuoteFormProps) 
                         document.getElementById(`description-${index}`)?.focus();
                       }
                     }}
-                    required
-                    className="text-base w-full min-h-[48px] resize-none overflow-hidden uppercase"
+                    className={`text-base w-full min-h-[48px] resize-none overflow-hidden uppercase ${hasError(`sku-${index}`) ? 'field-error' : ''}`}
                     rows={1}
                     style={{
                       height: isClient ? (rowHeights[index] || '48px') : '48px',
@@ -1540,19 +1556,22 @@ export function QuoteForm({ initialData, onSuccess, onCancel }: QuoteFormProps) 
                   />
                 </div>
 
-                <div className="col-span-4">
+                <div className="col-span-4 field-error-wrapper">
+                  {hasError(`description-${index}`) && <span className="field-error-tooltip">Required</span>}
                   <Textarea
                     id={`description-${index}`}
                     value={line.description}
-                    onChange={(e) => updateProductLine(index, 'description', e.target.value.toUpperCase())}
+                    onChange={(e) => {
+                      updateProductLine(index, 'description', e.target.value.toUpperCase())
+                      clearFieldError(`description-${index}`)
+                    }}
                     onKeyDown={(e) => {
                       if (e.key === 'Enter') {
                         e.preventDefault();
                         document.getElementById(`quantity-${index}`)?.focus();
                       }
                     }}
-                    required
-                    className="min-h-[48px] w-full text-base resize-none overflow-hidden uppercase"
+                    className={`min-h-[48px] w-full text-base resize-none overflow-hidden uppercase ${hasError(`description-${index}`) ? 'field-error' : ''}`}
                     rows={1}
                     style={{
                       height: isClient ? (rowHeights[index] || '48px') : '48px',
@@ -1583,7 +1602,6 @@ export function QuoteForm({ initialData, onSuccess, onCancel }: QuoteFormProps) 
                         document.getElementById(`unit_price-${index}`)?.focus();
                       }
                     }}
-                    required
                     className="w-20 text-base"
                     style={{ height: isClient ? (rowHeights[index] || '48px') : '48px' }}
                   />
@@ -1605,7 +1623,6 @@ export function QuoteForm({ initialData, onSuccess, onCancel }: QuoteFormProps) 
                         document.getElementById(`total_price-${index}`)?.focus();
                       }
                     }}
-                    required
                     className="w-20 text-base text-center text-left"
                     style={{ 
                       height: isClient ? (rowHeights[index] || '48px') : '48px',
@@ -1636,10 +1653,14 @@ export function QuoteForm({ initialData, onSuccess, onCancel }: QuoteFormProps) 
                   />
                 </div>
 
-                <div className="col-span-2">
+                <div className={`col-span-2 field-error-wrapper ${hasError(`vendor-${index}`) ? 'field-error' : ''}`}>
+                  {hasError(`vendor-${index}`) && <span className="field-error-tooltip">Required</span>}
                   <VendorSearch
                     value={line.vendor}
-                    onSelect={(vendorName) => updateProductLine(index, 'vendor', vendorName)}
+                    onSelect={(vendorName) => {
+                      updateProductLine(index, 'vendor', vendorName)
+                      clearFieldError(`vendor-${index}`)
+                    }}
                     placeholder="Select vendor"
                     height={rowHeights[index]}
                     onHeightChange={(newHeight) => handleFieldHeightChange(index, `vendor-${index}`, newHeight)}
@@ -1712,31 +1733,19 @@ export function QuoteForm({ initialData, onSuccess, onCancel }: QuoteFormProps) 
             </div>
             <div className="space-y-2">
               <Label className="text-medium" htmlFor="payment">Payment *</Label>
-              <Select value={formData.payment} onValueChange={(value) => handleInputChange('payment', value)} required>
-                <SelectTrigger suppressHydrationWarning>
-                  <SelectValue placeholder="Select payment method" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="paid">Paid</SelectItem>
-                  <SelectItem value="not_paid">Not Paid</SelectItem>
-                  <SelectItem value="layaway">Layaway</SelectItem>
-                </SelectContent>
-              </Select>
-              {/* Hidden input for native browser validation */}
-              <input
-                type="text"
-                value={formData.payment}
-                required
-                tabIndex={-1}
-                style={{
-                  position: 'absolute',
-                  opacity: 0,
-                  pointerEvents: 'none',
-                  width: 0,
-                  height: 0,
-                }}
-                onChange={() => {}}
-              />
+              <div className="field-error-wrapper">
+                {hasError('payment') && <span className="field-error-tooltip">Required</span>}
+                <Select value={formData.payment} onValueChange={(value) => { handleInputChange('payment', value); clearFieldError('payment'); }} required>
+                  <SelectTrigger suppressHydrationWarning className={hasError('payment') ? 'field-error' : ''}>
+                    <SelectValue placeholder="Select payment method" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="paid">Paid</SelectItem>
+                    <SelectItem value="not_paid">Not Paid</SelectItem>
+                    <SelectItem value="layaway">Layaway</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
             </div>
           </div>
 

@@ -14,6 +14,7 @@ import { lookupZipCode, isValidZipCode } from '@/lib/zipLookup'
 import { Printer, Search } from 'lucide-react'
 import FastBoundSearch from '../FastBoundSearch'
 import { PrintSubmitDialog } from '@/components/ui/print-submit-dialog'
+import { useFormValidation, isNotEmpty } from '@/hooks/useFormValidation'
 
 interface FastBoundInventoryItem {
   id: string
@@ -50,6 +51,7 @@ interface ProductLine {
 
 export function ConsignmentForm({ initialData, onSuccess, onCancel }: ConsignmentFormProps) {
   const { toast } = useToast()
+  const { collectFieldErrors, collectProductLineErrors, setErrors, hasError, clearFieldError, formatErrorMessage } = useFormValidation()
   const [loading, setLoading] = useState(false)
   const [emailLoading, setEmailLoading] = useState(false)
   const [showPrintSubmitDialog, setShowPrintSubmitDialog] = useState(false)
@@ -357,28 +359,32 @@ export function ConsignmentForm({ initialData, onSuccess, onCancel }: Consignmen
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     
-    if (!formData.customer_name || !formData.customer_phone) {
+    // Collect all validation errors first, then set them all at once
+    const allErrors: { field: string; label: string }[] = []
+
+    // Define required field validations
+    const validations = [
+      { field: 'customer_name', label: 'Customer Name', validate: isNotEmpty },
+      { field: 'customer_phone', label: 'Customer Phone', validate: isNotEmpty },
+      { field: 'drivers_license', label: "Driver's License", validate: isNotEmpty },
+      { field: 'license_expiration', label: 'License Expiration', validate: isNotEmpty },
+    ]
+    allErrors.push(...collectFieldErrors(validations, formData))
+
+    // Validate product line required fields
+    const productLineValidations = [
+      { field: 'method', label: 'Method', validate: isNotEmpty },
+      { field: 'sale_price', label: 'Sale Price', validate: (v: any) => v !== null && v !== undefined && v !== '' && v !== 0 },
+    ]
+    const checkHasData = (line: any) => line.control_number || line.manufacturer || line.model || line.serial_number
+    allErrors.push(...collectProductLineErrors(productLines, productLineValidations, checkHasData, false))
+
+    // If there are any errors, set them all and show toast
+    if (allErrors.length > 0) {
+      setErrors(allErrors)
       toast({
         title: 'Validation Error',
-        description: 'Please fill in all required customer fields',
-        variant: 'destructive',
-      })
-      return
-    }
-
-    // Validate that all product lines have method and sale_price
-    const invalidLines = productLines.filter((line, index) => {
-      const hasData = line.control_number || line.manufacturer || line.model || line.serial_number
-      if (hasData) {
-        return !line.method || !line.sale_price
-      }
-      return false
-    })
-
-    if (invalidLines.length > 0) {
-      toast({
-        title: 'Validation Error',
-        description: 'Method and Sale Price are required for all items',
+        description: formatErrorMessage(allErrors),
         variant: 'destructive',
       })
       return
@@ -804,40 +810,48 @@ export function ConsignmentForm({ initialData, onSuccess, onCancel }: Consignmen
               <div className="space-y-4">
                 <div className="space-y-2">
                   <Label className="text-medium" htmlFor="customer_name">Name *</Label>
-                  <Input
-                    id="customer_name"
-                    value={formData.customer_name}
-                    onChange={(e) => handleInputChange('customer_name', e.target.value.toUpperCase())}
-                    onKeyDown={(e) => {
-                      if (e.key === 'Enter') {
-                        e.preventDefault();
-                        document.getElementById('customer_phone')?.focus();
-                      }
-                    }}
-                    required
-                    className="text-base uppercase"
-                  />
+                  <div className="field-error-wrapper">
+                    {hasError('customer_name') && <span className="field-error-tooltip">Required</span>}
+                    <Input
+                      id="customer_name"
+                      value={formData.customer_name}
+                      onChange={(e) => {
+                        handleInputChange('customer_name', e.target.value.toUpperCase())
+                        clearFieldError('customer_name')
+                      }}
+                      onKeyDown={(e) => {
+                        if (e.key === 'Enter') {
+                          e.preventDefault();
+                          document.getElementById('customer_phone')?.focus();
+                        }
+                      }}
+                      className={`text-base uppercase ${hasError('customer_name') ? 'field-error' : ''}`}
+                    />
+                  </div>
                 </div>
 
                 <div className="space-y-2">
                   <Label className="text-medium" htmlFor="customer_phone">Phone *</Label>
-                  <Input
-                    id="customer_phone"
-                    value={formData.customer_phone}
-                    onChange={(e) => {
-                      const formatted = formatPhoneNumber(e.target.value)
-                      handleInputChange('customer_phone', formatted)
-                    }}
-                    onKeyDown={(e) => {
-                      if (e.key === 'Enter') {
-                        e.preventDefault();
-                        document.getElementById('customer_email')?.focus();
-                      }
-                    }}
-                    required
-                    className="text-base"
-                    placeholder="(___) ___-____"
-                  />
+                  <div className="field-error-wrapper">
+                    {hasError('customer_phone') && <span className="field-error-tooltip">Required</span>}
+                    <Input
+                      id="customer_phone"
+                      value={formData.customer_phone}
+                      onChange={(e) => {
+                        const formatted = formatPhoneNumber(e.target.value)
+                        handleInputChange('customer_phone', formatted)
+                        clearFieldError('customer_phone')
+                      }}
+                      onKeyDown={(e) => {
+                        if (e.key === 'Enter') {
+                          e.preventDefault();
+                          document.getElementById('customer_email')?.focus();
+                        }
+                      }}
+                      className={`text-base ${hasError('customer_phone') ? 'field-error' : ''}`}
+                      placeholder="(___) ___-____"
+                    />
+                  </div>
                 </div>
 
                 <div className="space-y-2">
@@ -859,35 +873,47 @@ export function ConsignmentForm({ initialData, onSuccess, onCancel }: Consignmen
 
                 <div className="grid grid-cols-2 gap-4">
                   <div className="space-y-2">
-                    <Label className="text-medium" htmlFor="drivers_license">Driver's License</Label>
-                    <Input
-                      id="drivers_license"
-                      value={formData.drivers_license}
-                      onChange={(e) => handleInputChange('drivers_license', e.target.value.toUpperCase())}
-                      onKeyDown={(e) => {
-                        if (e.key === 'Enter') {
-                          e.preventDefault();
-                          document.getElementById('license_expiration')?.focus();
-                        }
-                      }}
-                      className="text-base uppercase"
-                    />
+                    <Label className="text-medium" htmlFor="drivers_license">Driver's License *</Label>
+                    <div className="field-error-wrapper">
+                      {hasError('drivers_license') && <span className="field-error-tooltip">Required</span>}
+                      <Input
+                        id="drivers_license"
+                        value={formData.drivers_license}
+                        onChange={(e) => {
+                          handleInputChange('drivers_license', e.target.value.toUpperCase())
+                          clearFieldError('drivers_license')
+                        }}
+                        onKeyDown={(e) => {
+                          if (e.key === 'Enter') {
+                            e.preventDefault();
+                            document.getElementById('license_expiration')?.focus();
+                          }
+                        }}
+                        className={`text-base uppercase ${hasError('drivers_license') ? 'field-error' : ''}`}
+                      />
+                    </div>
                   </div>
                   <div className="space-y-2">
-                    <Label className="text-medium" htmlFor="license_expiration">Expiration Date</Label>
-                    <Input
-                      id="license_expiration"
-                      type="date"
-                      value={formData.license_expiration}
-                      onChange={(e) => handleInputChange('license_expiration', e.target.value)}
-                      onKeyDown={(e) => {
-                        if (e.key === 'Enter') {
-                          e.preventDefault();
-                          document.getElementById('customer_street')?.focus();
-                        }
-                      }}
-                      className="text-base"
-                    />
+                    <Label className="text-medium" htmlFor="license_expiration">Expiration Date *</Label>
+                    <div className="field-error-wrapper">
+                      {hasError('license_expiration') && <span className="field-error-tooltip">Required</span>}
+                      <Input
+                        id="license_expiration"
+                        type="date"
+                        value={formData.license_expiration}
+                        onChange={(e) => {
+                          handleInputChange('license_expiration', e.target.value)
+                          clearFieldError('license_expiration')
+                        }}
+                        onKeyDown={(e) => {
+                          if (e.key === 'Enter') {
+                            e.preventDefault();
+                            document.getElementById('customer_street')?.focus();
+                          }
+                        }}
+                        className={`text-base ${hasError('license_expiration') ? 'field-error' : ''}`}
+                      />
+                    </div>
                   </div>
                 </div>
               </div>
@@ -1178,13 +1204,19 @@ export function ConsignmentForm({ initialData, onSuccess, onCancel }: Consignmen
                       />
                     </div>
 
-                    <div>
+                    <div className="field-error-wrapper">
+                      {hasError(`method-${index}`) && <span className="field-error-tooltip">Required</span>}
                       <Select 
                         value={line.method} 
-                        onValueChange={(value) => updateProductLine(index, 'method', value)}
+                        onValueChange={(value) => {
+                          updateProductLine(index, 'method', value)
+                          clearFieldError(`method-${index}`)
+                        }}
                       >
                         <SelectTrigger 
+                          id={`method-${index}`}
                           suppressHydrationWarning
+                          className={hasError(`method-${index}`) ? 'field-error' : ''}
                           style={{ 
                             height: isClient ? (rowHeights[index] || '40px') : '40px',
                             minHeight: '40px'
@@ -1199,16 +1231,20 @@ export function ConsignmentForm({ initialData, onSuccess, onCancel }: Consignmen
                       </Select>
                     </div>
 
-                    <div>
+                    <div className="field-error-wrapper">
+                      {hasError(`sale_price-${index}`) && <span className="field-error-tooltip">Required</span>}
                       <Input
                         id={`sale_price-${index}`}
                         type="number"
                         min="0"
                         step="0.01"
                         value={line.sale_price || ''}
-                        onChange={(e) => updateProductLine(index, 'sale_price', e.target.value ? parseFloat(e.target.value) : 0)}
+                        onChange={(e) => {
+                          updateProductLine(index, 'sale_price', e.target.value ? parseFloat(e.target.value) : 0)
+                          clearFieldError(`sale_price-${index}`)
+                        }}
                         placeholder="0"
-                        className="text-sm"
+                        className={`text-sm ${hasError(`sale_price-${index}`) ? 'field-error' : ''}`}
                         style={{ 
                           height: isClient ? (rowHeights[index] || '40px') : '40px',
                           minHeight: '40px',
