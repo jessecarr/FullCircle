@@ -22,7 +22,7 @@ for (let i = 1; i < lines.length; i++) {
   // 7: PHYSICAL CITY, 8: PHYSICAL STATE, 9: PHYSICAL ZIP, 10: PHYSICAL ZIP 4
   
   const zipCode = columns[4]?.trim();
-  const city = columns[5]?.trim();
+  const city = columns[7]?.trim(); // Use PHYSICAL CITY (col 7) not LOCALE NAME (col 5)
   const state = columns[8]?.trim();
   
   // Only process valid US zip codes (5 digits, not PR)

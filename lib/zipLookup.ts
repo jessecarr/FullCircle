@@ -1,5 +1,5 @@
 // Auto-generated zip code lookup data from ZIP_DETAIL.csv
-// Generated on: 2025-12-31T17:02:09.331Z
+// Generated on: 2026-02-05T17:20:10.231Z
 
 export interface ZipCodeData {
   city: string;
@@ -8,367 +8,367 @@ export interface ZipCodeData {
 
 export const zipCodeDatabase: Record<string, ZipCodeData> = {
   "10001": {
-    "city": "GREELEY SQUARE",
+    "city": "NEW YORK",
     "state": "NY"
   },
   "10002": {
-    "city": "KNICKERBOCKER",
+    "city": "NEW YORK",
     "state": "NY"
   },
   "10003": {
-    "city": "COOPER",
+    "city": "NEW YORK",
     "state": "NY"
   },
   "10004": {
-    "city": "BOWLING GREEN ANNEX",
+    "city": "NEW YORK",
     "state": "NY"
   },
   "10005": {
-    "city": "WALL STREET ANNEX",
+    "city": "NEW YORK",
     "state": "NY"
   },
   "10006": {
-    "city": "TRINITY CARRIER ANNEX",
+    "city": "NEW YORK",
     "state": "NY"
   },
   "10007": {
-    "city": "CHURCH STREET",
+    "city": "NEW YORK",
     "state": "NY"
   },
   "10008": {
-    "city": "CHURCH STREET",
+    "city": "NEW YORK",
     "state": "NY"
   },
   "10009": {
-    "city": "PETER STUYVESANT",
+    "city": "NEW YORK",
     "state": "NY"
   },
   "10010": {
-    "city": "MADISON SQUARE",
+    "city": "NEW YORK",
     "state": "NY"
   },
   "10011": {
-    "city": "LONDON TERRACE",
+    "city": "NEW YORK",
     "state": "NY"
   },
   "10012": {
-    "city": "CANAL STREET",
+    "city": "NEW YORK",
     "state": "NY"
   },
   "10013": {
-    "city": "CANAL STREET",
+    "city": "NEW YORK",
     "state": "NY"
   },
   "10014": {
-    "city": "VILLAGE",
+    "city": "NEW YORK",
     "state": "NY"
   },
   "10016": {
-    "city": "MURRAY HILL ANNEX",
+    "city": "NEW YORK",
     "state": "NY"
   },
   "10017": {
-    "city": "GRAND CENTRAL",
+    "city": "NEW YORK",
     "state": "NY"
   },
   "10018": {
-    "city": "MIDTOWN",
+    "city": "NEW YORK",
     "state": "NY"
   },
   "10019": {
-    "city": "RADIO CITY",
+    "city": "NEW YORK",
     "state": "NY"
   },
   "10020": {
-    "city": "RCU ANNEX",
+    "city": "NEW YORK",
     "state": "NY"
   },
   "10021": {
-    "city": "CHEROKEE",
+    "city": "NEW YORK",
     "state": "NY"
   },
   "10022": {
-    "city": "FDR STATION",
+    "city": "NEW YORK",
     "state": "NY"
   },
   "10023": {
-    "city": "ANSONIA",
+    "city": "NEW YORK",
     "state": "NY"
   },
   "10024": {
-    "city": "PLANETARIUM",
+    "city": "NEW YORK",
     "state": "NY"
   },
   "10025": {
-    "city": "CATHEDRAL",
+    "city": "NEW YORK",
     "state": "NY"
   },
   "10026": {
-    "city": "MANHATTANVILLE",
+    "city": "NEW YORK",
     "state": "NY"
   },
   "10027": {
-    "city": "MANHATTANVILLE",
+    "city": "NEW YORK",
     "state": "NY"
   },
   "10028": {
-    "city": "GRACIE",
+    "city": "NEW YORK",
     "state": "NY"
   },
   "10029": {
-    "city": "HELLGATE STATION",
+    "city": "NEW YORK",
     "state": "NY"
   },
   "10030": {
-    "city": "COLLEGE STATION",
+    "city": "NEW YORK",
     "state": "NY"
   },
   "10031": {
-    "city": "HAMILTON GRANGE CARR SECT",
+    "city": "NEW YORK",
     "state": "NY"
   },
   "10032": {
-    "city": "AUDUBON",
+    "city": "NEW YORK",
     "state": "NY"
   },
   "10033": {
-    "city": "FORT GEORGE",
+    "city": "NEW YORK",
     "state": "NY"
   },
   "10034": {
-    "city": "INWOOD",
+    "city": "NEW YORK",
     "state": "NY"
   },
   "10035": {
-    "city": "TRIBOROUGH",
+    "city": "NEW YORK",
     "state": "NY"
   },
   "10036": {
-    "city": "TIMES SQUARE",
+    "city": "NEW YORK",
     "state": "NY"
   },
   "10037": {
-    "city": "LINCOLNTON",
+    "city": "NEW YORK",
     "state": "NY"
   },
   "10038": {
-    "city": "PECK SLIP ANNEX",
+    "city": "NEW YORK",
     "state": "NY"
   },
   "10039": {
-    "city": "COLONIAL PARK",
+    "city": "NEW YORK",
     "state": "NY"
   },
   "10040": {
-    "city": "FORT GEORGE",
+    "city": "NEW YORK",
     "state": "NY"
   },
   "10044": {
-    "city": "ROOSEVELT ISLAND",
+    "city": "NEW YORK",
     "state": "NY"
   },
   "10065": {
-    "city": "LENOX HILL SOUTH",
+    "city": "NEW YORK",
     "state": "NY"
   },
   "10069": {
-    "city": "ANSONIA",
+    "city": "NEW YORK",
     "state": "NY"
   },
   "10075": {
-    "city": "LENOX HILL NORTH",
+    "city": "NEW YORK",
     "state": "NY"
   },
   "10101": {
-    "city": "RADIO CITY",
+    "city": "NEW YORK",
     "state": "NY"
   },
   "10104": {
-    "city": "RADIO CITY",
+    "city": "NEW YORK",
     "state": "NY"
   },
   "10105": {
-    "city": "RADIO CITY",
+    "city": "NEW YORK",
     "state": "NY"
   },
   "10106": {
-    "city": "RADIO CITY",
+    "city": "NEW YORK",
     "state": "NY"
   },
   "10107": {
-    "city": "RADIO CITY",
+    "city": "NEW YORK",
     "state": "NY"
   },
   "10108": {
-    "city": "TIMES SQUARE",
+    "city": "NEW YORK",
     "state": "NY"
   },
   "10111": {
-    "city": "RCU ANNEX",
+    "city": "NEW YORK",
     "state": "NY"
   },
   "10112": {
-    "city": "RCU ANNEX",
+    "city": "NEW YORK",
     "state": "NY"
   },
   "10113": {
-    "city": "OLD CHELSEA",
+    "city": "NEW YORK",
     "state": "NY"
   },
   "10116": {
-    "city": "JAMES A FARLEY",
+    "city": "NEW YORK",
     "state": "NY"
   },
   "10118": {
-    "city": "JAMES A FARLEY",
+    "city": "NEW YORK",
     "state": "NY"
   },
   "10119": {
-    "city": "JAMES A FARLEY",
+    "city": "NEW YORK",
     "state": "NY"
   },
   "10128": {
-    "city": "GRACIE",
+    "city": "NEW YORK",
     "state": "NY"
   },
   "10129": {
-    "city": "TIMES SQUARE",
+    "city": "NEW YORK",
     "state": "NY"
   },
   "10150": {
-    "city": "FDR STATION",
+    "city": "NEW YORK",
     "state": "NY"
   },
   "10151": {
-    "city": "FDR STATION",
+    "city": "NEW YORK",
     "state": "NY"
   },
   "10153": {
-    "city": "FDR STATION",
+    "city": "NEW YORK",
     "state": "NY"
   },
   "10156": {
-    "city": "MURRAY HILL",
+    "city": "NEW YORK",
     "state": "NY"
   },
   "10159": {
-    "city": "MADISON SQUARE",
+    "city": "NEW YORK",
     "state": "NY"
   },
   "10162": {
-    "city": "LENOX HILL",
+    "city": "NEW YORK",
     "state": "NY"
   },
   "10163": {
-    "city": "GRAND CENTRAL",
+    "city": "NEW YORK",
     "state": "NY"
   },
   "10165": {
-    "city": "GRAND CENTRAL",
+    "city": "NEW YORK",
     "state": "NY"
   },
   "10168": {
-    "city": "GRAND CENTRAL",
+    "city": "NEW YORK",
     "state": "NY"
   },
   "10169": {
-    "city": "GRAND CENTRAL",
+    "city": "NEW YORK",
     "state": "NY"
   },
   "10170": {
-    "city": "GRAND CENTRAL",
+    "city": "NEW YORK",
     "state": "NY"
   },
   "10174": {
-    "city": "GRAND CENTRAL",
+    "city": "NEW YORK",
     "state": "NY"
   },
   "10175": {
-    "city": "GRAND CENTRAL",
+    "city": "NEW YORK",
     "state": "NY"
   },
   "10176": {
-    "city": "GRAND CENTRAL",
+    "city": "NEW YORK",
     "state": "NY"
   },
   "10178": {
-    "city": "GRAND CENTRAL",
+    "city": "NEW YORK",
     "state": "NY"
   },
   "10185": {
-    "city": "ROCKEFELLER CENTER",
+    "city": "NEW YORK",
     "state": "NY"
   },
   "10268": {
-    "city": "WALL STREET ANNEX",
+    "city": "NEW YORK",
     "state": "NY"
   },
   "10272": {
-    "city": "PECK SLIP",
+    "city": "NEW YORK",
     "state": "NY"
   },
   "10274": {
-    "city": "BOWLING GREEN ANNEX",
+    "city": "NEW YORK",
     "state": "NY"
   },
   "10276": {
-    "city": "COOPER",
+    "city": "NEW YORK",
     "state": "NY"
   },
   "10280": {
-    "city": "TRINITY CARRIER ANNEX",
+    "city": "NEW YORK",
     "state": "NY"
   },
   "10282": {
-    "city": "CHURCH STREET",
+    "city": "NEW YORK",
     "state": "NY"
   },
   "10301": {
-    "city": "SAINT GEORGE",
+    "city": "STATEN ISLAND",
     "state": "NY"
   },
   "10302": {
-    "city": "PORT RICHMOND",
+    "city": "STATEN ISLAND",
     "state": "NY"
   },
   "10303": {
-    "city": "MARINERS HARBOR CARRIER",
+    "city": "STATEN ISLAND",
     "state": "NY"
   },
   "10304": {
-    "city": "STAPLETON",
+    "city": "STATEN ISLAND",
     "state": "NY"
   },
   "10305": {
-    "city": "ROSEBANK",
+    "city": "STATEN ISLAND",
     "state": "NY"
   },
   "10306": {
-    "city": "NEW DORP",
+    "city": "STATEN ISLAND",
     "state": "NY"
   },
   "10307": {
-    "city": "TOTTENVILLE",
+    "city": "STATEN ISLAND",
     "state": "NY"
   },
   "10308": {
-    "city": "ELTINGVILLE",
+    "city": "STATEN ISLAND",
     "state": "NY"
   },
   "10309": {
-    "city": "PRINCES BAY",
+    "city": "STATEN ISLAND",
     "state": "NY"
   },
   "10310": {
-    "city": "WEST NEW BRIGHTON",
+    "city": "STATEN ISLAND",
     "state": "NY"
   },
   "10312": {
-    "city": "ELTINGVILLE",
+    "city": "STATEN ISLAND",
     "state": "NY"
   },
   "10313": {
-    "city": "NEW SPRINGVILLE",
+    "city": "STATEN ISLAND",
     "state": "NY"
   },
   "10314": {
@@ -380,99 +380,99 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NY"
   },
   "10452": {
-    "city": "HIGHBRIDGE",
+    "city": "BRONX",
     "state": "NY"
   },
   "10453": {
-    "city": "MORRIS HEIGHTS",
+    "city": "BRONX",
     "state": "NY"
   },
   "10454": {
-    "city": "MOTT HAVEN",
+    "city": "BRONX",
     "state": "NY"
   },
   "10455": {
-    "city": "HUB",
+    "city": "BRONX",
     "state": "NY"
   },
   "10456": {
-    "city": "MORRISANIA",
+    "city": "BRONX",
     "state": "NY"
   },
   "10457": {
-    "city": "TREMONT",
+    "city": "BRONX",
     "state": "NY"
   },
   "10458": {
-    "city": "FORDHAM",
+    "city": "BRONX",
     "state": "NY"
   },
   "10459": {
-    "city": "BOULEVARD",
+    "city": "BRONX",
     "state": "NY"
   },
   "10460": {
-    "city": "WEST FARMS",
+    "city": "BRONX",
     "state": "NY"
   },
   "10461": {
-    "city": "PILGRIM",
+    "city": "BRONX",
     "state": "NY"
   },
   "10462": {
-    "city": "PARKCHESTER",
+    "city": "BRONX",
     "state": "NY"
   },
   "10463": {
-    "city": "KINGSBRIDGE",
+    "city": "BRONX",
     "state": "NY"
   },
   "10464": {
-    "city": "CITY ISLAND",
+    "city": "BRONX",
     "state": "NY"
   },
   "10465": {
-    "city": "THROGGS NECK",
+    "city": "BRONX",
     "state": "NY"
   },
   "10466": {
-    "city": "WAKEFIELD",
+    "city": "BRONX",
     "state": "NY"
   },
   "10467": {
-    "city": "ALLERTON",
+    "city": "BRONX",
     "state": "NY"
   },
   "10468": {
-    "city": "JEROME STATION",
+    "city": "BRONX",
     "state": "NY"
   },
   "10469": {
-    "city": "BAYCHESTER",
+    "city": "BRONX",
     "state": "NY"
   },
   "10470": {
-    "city": "WOODLAWN",
+    "city": "BRONX",
     "state": "NY"
   },
   "10471": {
-    "city": "RIVERDALE",
+    "city": "BRONX",
     "state": "NY"
   },
   "10472": {
-    "city": "SOUNDVIEW",
+    "city": "BRONX",
     "state": "NY"
   },
   "10473": {
-    "city": "CORNELL",
+    "city": "BRONX",
     "state": "NY"
   },
   "10474": {
-    "city": "HUNTS POINT",
+    "city": "BRONX",
     "state": "NY"
   },
   "10475": {
-    "city": "CO OP CITY",
+    "city": "BRONX",
     "state": "NY"
   },
   "10501": {
@@ -492,7 +492,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NY"
   },
   "10505": {
-    "city": "BALDWIN PLACE",
+    "city": "MAHOPAC",
     "state": "NY"
   },
   "10506": {
@@ -544,7 +544,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NY"
   },
   "10521": {
-    "city": "CRUGERS",
+    "city": "CROTON ON HUDSON",
     "state": "NY"
   },
   "10522": {
@@ -572,7 +572,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NY"
   },
   "10530": {
-    "city": "HARTSDALE",
+    "city": "SCARSDALE",
     "state": "NY"
   },
   "10532": {
@@ -644,7 +644,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NY"
   },
   "10552": {
-    "city": "FLEETWOOD",
+    "city": "MOUNT VERNON",
     "state": "NY"
   },
   "10553": {
@@ -696,7 +696,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NY"
   },
   "10583": {
-    "city": "HEATHCOTE",
+    "city": "SCARSDALE",
     "state": "NY"
   },
   "10587": {
@@ -716,7 +716,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NY"
   },
   "10591": {
-    "city": "NORTH TARRYTOWN",
+    "city": "SLEEPY HOLLOW",
     "state": "NY"
   },
   "10594": {
@@ -732,7 +732,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NY"
   },
   "10597": {
-    "city": "SOUTH SALEM ANNEX",
+    "city": "SOUTH SALEM",
     "state": "NY"
   },
   "10598": {
@@ -744,11 +744,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NY"
   },
   "10602": {
-    "city": "MARTINE",
+    "city": "WHITE PLAINS",
     "state": "NY"
   },
   "10603": {
-    "city": "NORTH WHITE PLAINS",
+    "city": "WHITE PLAINS",
     "state": "NY"
   },
   "10604": {
@@ -756,7 +756,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NY"
   },
   "10605": {
-    "city": "GEDNEY",
+    "city": "WHITE PLAINS",
     "state": "NY"
   },
   "10606": {
@@ -776,15 +776,15 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NY"
   },
   "10703": {
-    "city": "GREYSTONE",
+    "city": "YONKERS",
     "state": "NY"
   },
   "10704": {
-    "city": "YONKERS EAST",
+    "city": "YONKERS",
     "state": "NY"
   },
   "10705": {
-    "city": "YONKERS SOUTH",
+    "city": "YONKERS",
     "state": "NY"
   },
   "10706": {
@@ -804,7 +804,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NY"
   },
   "10710": {
-    "city": "CENTUCK",
+    "city": "YONKERS",
     "state": "NY"
   },
   "10801": {
@@ -820,7 +820,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NY"
   },
   "10804": {
-    "city": "WYKAGYL",
+    "city": "NEW ROCHELLE",
     "state": "NY"
   },
   "10805": {
@@ -948,7 +948,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NY"
   },
   "10954": {
-    "city": "BARDONIA",
+    "city": "NANUET",
     "state": "NY"
   },
   "10956": {
@@ -1016,7 +1016,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NY"
   },
   "10979": {
-    "city": "STERLING FOREST NPU",
+    "city": "STERLING FOREST",
     "state": "NY"
   },
   "10980": {
@@ -1080,7 +1080,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NY"
   },
   "10997": {
-    "city": "U S C C",
+    "city": "WEST POINT",
     "state": "NY"
   },
   "10998": {
@@ -1096,7 +1096,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NY"
   },
   "11003": {
-    "city": "ALDEN MANOR",
+    "city": "ELMONT",
     "state": "NY"
   },
   "11004": {
@@ -1112,11 +1112,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NY"
   },
   "11020": {
-    "city": "GREAT NECK CARRIER ANNEX",
+    "city": "GREAT NECK",
     "state": "NY"
   },
   "11021": {
-    "city": "GREAT NECK CARRIER ANNEX",
+    "city": "GREAT NECK",
     "state": "NY"
   },
   "11022": {
@@ -1124,11 +1124,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NY"
   },
   "11023": {
-    "city": "GREAT NECK CARRIER ANNEX",
+    "city": "GREAT NECK",
     "state": "NY"
   },
   "11024": {
-    "city": "GREAT NECK CARRIER ANNEX",
+    "city": "GREAT NECK",
     "state": "NY"
   },
   "11030": {
@@ -1136,7 +1136,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NY"
   },
   "11040": {
-    "city": "HILLSIDE MANOR",
+    "city": "NEW HYDE PARK",
     "state": "NY"
   },
   "11042": {
@@ -1160,7 +1160,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NY"
   },
   "11103": {
-    "city": "GRAND",
+    "city": "ASTORIA",
     "state": "NY"
   },
   "11104": {
@@ -1168,11 +1168,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NY"
   },
   "11105": {
-    "city": "WOOLSEY",
+    "city": "LONG ISLAND CITY",
     "state": "NY"
   },
   "11106": {
-    "city": "BROADWAY",
+    "city": "ASTORIA",
     "state": "NY"
   },
   "11109": {
@@ -1180,163 +1180,163 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NY"
   },
   "11201": {
-    "city": "CADMAN PLAZA",
+    "city": "BROOKLYN",
     "state": "NY"
   },
   "11202": {
-    "city": "CADMAN PLAZA",
+    "city": "BROOKLYN",
     "state": "NY"
   },
   "11203": {
-    "city": "RUGBY",
+    "city": "BROOKLYN",
     "state": "NY"
   },
   "11204": {
-    "city": "PARKVILLE",
+    "city": "BROOKLYN",
     "state": "NY"
   },
   "11205": {
-    "city": "METROPOLITAN",
+    "city": "BROOKLYN",
     "state": "NY"
   },
   "11206": {
-    "city": "METROPOLITAN",
+    "city": "BROOKLYN",
     "state": "NY"
   },
   "11207": {
-    "city": "EAST NEW YORK",
+    "city": "BROOKLYN",
     "state": "NY"
   },
   "11208": {
-    "city": "NEW LOTS",
+    "city": "BROOKLYN",
     "state": "NY"
   },
   "11209": {
-    "city": "FORT HAMILTON",
+    "city": "BROOKLYN",
     "state": "NY"
   },
   "11210": {
-    "city": "VANDERVEER",
+    "city": "BROOKLYN",
     "state": "NY"
   },
   "11211": {
-    "city": "WILLIAMSBURG",
+    "city": "BROOKLYN",
     "state": "NY"
   },
   "11212": {
-    "city": "BROWNSVILLE",
+    "city": "BROOKLYN",
     "state": "NY"
   },
   "11213": {
-    "city": "MAJOR ROBERT OWENS",
+    "city": "BROOKLYN",
     "state": "NY"
   },
   "11214": {
-    "city": "BATH BEACH",
+    "city": "BROOKLYN",
     "state": "NY"
   },
   "11215": {
-    "city": "VAN BRUNT",
+    "city": "BROOKLYN",
     "state": "NY"
   },
   "11216": {
-    "city": "BREVOORT",
+    "city": "BROOKLYN",
     "state": "NY"
   },
   "11217": {
-    "city": "TIMES PLAZA",
+    "city": "BROOKLYN",
     "state": "NY"
   },
   "11218": {
-    "city": "KENSINGTON",
+    "city": "BROOKLYN",
     "state": "NY"
   },
   "11219": {
-    "city": "BLYTHEBOURNE",
+    "city": "BROOKLYN",
     "state": "NY"
   },
   "11220": {
-    "city": "BAY RIDGE",
+    "city": "BROOKLYN",
     "state": "NY"
   },
   "11221": {
-    "city": "BUSHWICK",
+    "city": "BROOKLYN",
     "state": "NY"
   },
   "11222": {
-    "city": "GREENPOINT",
+    "city": "BROOKLYN",
     "state": "NY"
   },
   "11223": {
-    "city": "GRAVESEND",
+    "city": "BROOKLYN",
     "state": "NY"
   },
   "11224": {
-    "city": "CONEY ISLAND",
+    "city": "BROOKLYN",
     "state": "NY"
   },
   "11225": {
-    "city": "JAMES E DAVIS",
+    "city": "BROOKLYN",
     "state": "NY"
   },
   "11226": {
-    "city": "FLATBUSH",
+    "city": "BROOKLYN",
     "state": "NY"
   },
   "11228": {
-    "city": "DYKER HEIGHTS",
+    "city": "BROOKLYN",
     "state": "NY"
   },
   "11229": {
-    "city": "HOMECREST",
+    "city": "BROOKLYN",
     "state": "NY"
   },
   "11230": {
-    "city": "MIDWOOD",
+    "city": "BROOKLYN",
     "state": "NY"
   },
   "11231": {
-    "city": "RED HOOK",
+    "city": "BROOKLYN",
     "state": "NY"
   },
   "11232": {
-    "city": "BUSH TERMINAL CARRIER ANNEX",
+    "city": "BROOKLYN",
     "state": "NY"
   },
   "11233": {
-    "city": "SHIRLEY A CHISHOLM",
+    "city": "BROOKLYN",
     "state": "NY"
   },
   "11234": {
-    "city": "RYDER",
+    "city": "BROOKLYN",
     "state": "NY"
   },
   "11235": {
-    "city": "BAY",
+    "city": "BROOKLYN",
     "state": "NY"
   },
   "11236": {
-    "city": "CANARSIE",
+    "city": "BROOKLYN",
     "state": "NY"
   },
   "11237": {
-    "city": "WYCKOFF HEIGHTS",
+    "city": "BROOKLYN",
     "state": "NY"
   },
   "11238": {
-    "city": "ADELPHI",
+    "city": "BROOKLYN",
     "state": "NY"
   },
   "11239": {
-    "city": "CANARSIE",
+    "city": "BROOKLYN",
     "state": "NY"
   },
   "11247": {
-    "city": "RESTORATION PLAZA",
+    "city": "BROOKLYN",
     "state": "NY"
   },
   "11249": {
-    "city": "WILLIAMSBURG",
+    "city": "BROOKLYN",
     "state": "NY"
   },
   "11352": {
@@ -1344,7 +1344,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NY"
   },
   "11354": {
-    "city": "LINDEN HILL",
+    "city": "FLUSHING",
     "state": "NY"
   },
   "11355": {
@@ -1360,11 +1360,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NY"
   },
   "11358": {
-    "city": "STATION A",
+    "city": "FLUSHING",
     "state": "NY"
   },
   "11360": {
-    "city": "BAY TERRACE",
+    "city": "BAYSIDE",
     "state": "NY"
   },
   "11361": {
@@ -1372,7 +1372,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NY"
   },
   "11362": {
-    "city": "HORACE HARDING",
+    "city": "LITTLE NECK",
     "state": "NY"
   },
   "11363": {
@@ -1388,15 +1388,15 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NY"
   },
   "11366": {
-    "city": "FRESH MEADOWS CARRIER ANNEX",
+    "city": "FRESH MEADOWS",
     "state": "NY"
   },
   "11367": {
-    "city": "KEW GARDENS HILLS",
+    "city": "FLUSHING",
     "state": "NY"
   },
   "11368": {
-    "city": "CORONA-A",
+    "city": "CORONA",
     "state": "NY"
   },
   "11369": {
@@ -1440,7 +1440,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NY"
   },
   "11380": {
-    "city": "ELMHURST A",
+    "city": "ELMHURST",
     "state": "NY"
   },
   "11385": {
@@ -1472,7 +1472,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NY"
   },
   "11416": {
-    "city": "OZONE PARK CARRIER ANNEX",
+    "city": "BROOKLYN",
     "state": "NY"
   },
   "11417": {
@@ -1504,7 +1504,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NY"
   },
   "11424": {
-    "city": "BOROUGH HALL",
+    "city": "JAMAICA",
     "state": "NY"
   },
   "11426": {
@@ -1524,7 +1524,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NY"
   },
   "11430": {
-    "city": "JOHN F KENNEDY AIRPORT",
+    "city": "JAMAICA",
     "state": "NY"
   },
   "11431": {
@@ -1540,11 +1540,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NY"
   },
   "11434": {
-    "city": "ROCHDALE CARRIER ANNEX",
+    "city": "JAMAICA",
     "state": "NY"
   },
   "11435": {
-    "city": "ARCHER AVE",
+    "city": "JAMAICA",
     "state": "NY"
   },
   "11436": {
@@ -1588,7 +1588,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NY"
   },
   "11531": {
-    "city": "ROOSEVELT FIELD",
+    "city": "GARDEN CITY",
     "state": "NY"
   },
   "11542": {
@@ -1656,7 +1656,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NY"
   },
   "11566": {
-    "city": "BANK PLAZA",
+    "city": "MERRICK",
     "state": "NY"
   },
   "11568": {
@@ -1768,7 +1768,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NY"
   },
   "11707": {
-    "city": "SANTAPOGUE",
+    "city": "WEST BABYLON",
     "state": "NY"
   },
   "11709": {
@@ -1880,15 +1880,15 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NY"
   },
   "11743": {
-    "city": "HALESITE",
+    "city": "HUNTINGTON",
     "state": "NY"
   },
   "11746": {
-    "city": "HUNTINGTON STATION NY S&DC",
+    "city": "HUNTINGTON STATION",
     "state": "NY"
   },
   "11747": {
-    "city": "HUNTINGTON STATION NY S&DC",
+    "city": "HUNTINGTON STATION",
     "state": "NY"
   },
   "11749": {
@@ -1904,7 +1904,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NY"
   },
   "11753": {
-    "city": "HICKSVILLE NY S&DC",
+    "city": "HICKSVILLE",
     "state": "NY"
   },
   "11754": {
@@ -1984,7 +1984,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NY"
   },
   "11779": {
-    "city": "LAKE RONKONKOMA",
+    "city": "RONKONKOMA",
     "state": "NY"
   },
   "11780": {
@@ -2032,7 +2032,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NY"
   },
   "11793": {
-    "city": "NORTH WANTAGH",
+    "city": "WANTAGH",
     "state": "NY"
   },
   "11795": {
@@ -2048,15 +2048,15 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NY"
   },
   "11798": {
-    "city": "WHEATLEY HEIGHTS",
+    "city": "WYANDANCH",
     "state": "NY"
   },
   "11801": {
-    "city": "HICKSVILLE NY S&DC",
+    "city": "HICKSVILLE",
     "state": "NY"
   },
   "11802": {
-    "city": "HICKSVILLE NY S&DC",
+    "city": "HICKSVILLE",
     "state": "NY"
   },
   "11803": {
@@ -2096,7 +2096,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NY"
   },
   "11937": {
-    "city": "CPU THE CORNER STORE LLC",
+    "city": "EAST HAMPTON",
     "state": "NY"
   },
   "11939": {
@@ -2420,7 +2420,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NY"
   },
   "12065": {
-    "city": "CLIFTON PARK",
+    "city": "HALFMOON",
     "state": "NY"
   },
   "12066": {
@@ -2500,7 +2500,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NY"
   },
   "12089": {
-    "city": "HOOSICK DPOBU",
+    "city": "HOOSICK",
     "state": "NY"
   },
   "12090": {
@@ -2528,7 +2528,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NY"
   },
   "12107": {
-    "city": "KNOX DPOBU",
+    "city": "ALTAMONT",
     "state": "NY"
   },
   "12108": {
@@ -2580,7 +2580,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NY"
   },
   "12128": {
-    "city": "NEWTONVILLE",
+    "city": "LATHAM",
     "state": "NY"
   },
   "12130": {
@@ -2752,11 +2752,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NY"
   },
   "12182": {
-    "city": "LANSINGBURGH",
+    "city": "TROY",
     "state": "NY"
   },
   "12183": {
-    "city": "GREEN ISLAND",
+    "city": "TROY",
     "state": "NY"
   },
   "12184": {
@@ -2816,11 +2816,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NY"
   },
   "12201": {
-    "city": "HUDSON AVENUE",
+    "city": "ALBANY",
     "state": "NY"
   },
   "12202": {
-    "city": "ALBANY ANNEX",
+    "city": "ALBANY",
     "state": "NY"
   },
   "12203": {
@@ -2828,7 +2828,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NY"
   },
   "12204": {
-    "city": "ALBANY ANNEX",
+    "city": "ALBANY",
     "state": "NY"
   },
   "12205": {
@@ -2836,27 +2836,27 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NY"
   },
   "12206": {
-    "city": "FORT ORANGE",
+    "city": "ALBANY",
     "state": "NY"
   },
   "12207": {
-    "city": "ALBANY ANNEX",
+    "city": "ALBANY",
     "state": "NY"
   },
   "12208": {
-    "city": "ACADEMY",
+    "city": "ALBANY",
     "state": "NY"
   },
   "12209": {
-    "city": "ALBANY ANNEX",
+    "city": "ALBANY",
     "state": "NY"
   },
   "12210": {
-    "city": "ALBANY ANNEX",
+    "city": "ALBANY",
     "state": "NY"
   },
   "12211": {
-    "city": "KIMBERLY SQUARE",
+    "city": "LOUDONVILLE",
     "state": "NY"
   },
   "12212": {
@@ -2864,15 +2864,15 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NY"
   },
   "12220": {
-    "city": "EMPIRE STATE PLAZA",
+    "city": "ALBANY",
     "state": "NY"
   },
   "12223": {
-    "city": "ALBANY ANNEX",
+    "city": "ALBANY",
     "state": "NY"
   },
   "12224": {
-    "city": "CAPITOL",
+    "city": "ALBANY",
     "state": "NY"
   },
   "12301": {
@@ -2880,15 +2880,15 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NY"
   },
   "12302": {
-    "city": "GLENVILLE",
+    "city": "SCHENECTADY",
     "state": "NY"
   },
   "12303": {
-    "city": "HERITAGE",
+    "city": "SCHENECTADY",
     "state": "NY"
   },
   "12304": {
-    "city": "HERITAGE",
+    "city": "SCHENECTADY",
     "state": "NY"
   },
   "12305": {
@@ -2896,7 +2896,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NY"
   },
   "12306": {
-    "city": "HERITAGE",
+    "city": "SCHENECTADY",
     "state": "NY"
   },
   "12307": {
@@ -2908,11 +2908,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NY"
   },
   "12309": {
-    "city": "NISKAYUNA",
+    "city": "SCHENECTADY",
     "state": "NY"
   },
   "12325": {
-    "city": "GLENVILLE",
+    "city": "SCHENECTADY",
     "state": "NY"
   },
   "12401": {
@@ -3352,7 +3352,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NY"
   },
   "12533": {
-    "city": "HOPEWELL CARRIER ANNEX",
+    "city": "LAGRANGEVILLE",
     "state": "NY"
   },
   "12534": {
@@ -3368,7 +3368,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NY"
   },
   "12540": {
-    "city": "HOPEWELL CARRIER ANNEX",
+    "city": "LAGRANGEVILLE",
     "state": "NY"
   },
   "12541": {
@@ -3408,7 +3408,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NY"
   },
   "12550": {
-    "city": "STEWART NY S&DC",
+    "city": "NEWBURGH",
     "state": "NY"
   },
   "12551": {
@@ -3416,7 +3416,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NY"
   },
   "12552": {
-    "city": "STEWART NY S&DC",
+    "city": "NEWBURGH",
     "state": "NY"
   },
   "12553": {
@@ -3452,11 +3452,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NY"
   },
   "12569": {
-    "city": "ARLINGTON CARRIER ANNEX",
+    "city": "POUGHKEEPSIE",
     "state": "NY"
   },
   "12570": {
-    "city": "HOPEWELL CARRIER ANNEX",
+    "city": "LAGRANGEVILLE",
     "state": "NY"
   },
   "12571": {
@@ -3480,7 +3480,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NY"
   },
   "12578": {
-    "city": "ARLINGTON CARRIER ANNEX",
+    "city": "POUGHKEEPSIE",
     "state": "NY"
   },
   "12580": {
@@ -3492,7 +3492,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NY"
   },
   "12582": {
-    "city": "HOPEWELL CARRIER ANNEX",
+    "city": "LAGRANGEVILLE",
     "state": "NY"
   },
   "12583": {
@@ -3508,7 +3508,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NY"
   },
   "12586": {
-    "city": "STEWART NY S&DC",
+    "city": "NEWBURGH",
     "state": "NY"
   },
   "12588": {
@@ -3516,7 +3516,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NY"
   },
   "12589": {
-    "city": "STEWART NY S&DC",
+    "city": "NEWBURGH",
     "state": "NY"
   },
   "12590": {
@@ -3540,7 +3540,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NY"
   },
   "12603": {
-    "city": "ARLINGTON",
+    "city": "POUGHKEEPSIE",
     "state": "NY"
   },
   "12701": {
@@ -3996,7 +3996,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NY"
   },
   "12866": {
-    "city": "BROADWAY SARATOGA SPRINGS",
+    "city": "SARATOGA SPRINGS",
     "state": "NY"
   },
   "12870": {
@@ -4340,7 +4340,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NY"
   },
   "13022": {
-    "city": "FINGERLAKES MALL DPOBU",
+    "city": "AUBURN",
     "state": "NY"
   },
   "13026": {
@@ -4532,11 +4532,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NY"
   },
   "13089": {
-    "city": "BAYBERRY",
+    "city": "LIVERPOOL",
     "state": "NY"
   },
   "13090": {
-    "city": "BAYBERRY",
+    "city": "LIVERPOOL",
     "state": "NY"
   },
   "13092": {
@@ -4608,7 +4608,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NY"
   },
   "13120": {
-    "city": "COLVIN ELMWOOD",
+    "city": "SYRACUSE",
     "state": "NY"
   },
   "13121": {
@@ -4760,47 +4760,47 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NY"
   },
   "13201": {
-    "city": "DOWNTOWN SYRACUSE",
+    "city": "SYRACUSE",
     "state": "NY"
   },
   "13202": {
-    "city": "FRANKLIN SQUARE",
+    "city": "SYRACUSE",
     "state": "NY"
   },
   "13203": {
-    "city": "TEALL",
+    "city": "SYRACUSE",
     "state": "NY"
   },
   "13204": {
-    "city": "FRANKLIN SQUARE",
+    "city": "SYRACUSE",
     "state": "NY"
   },
   "13205": {
-    "city": "COLVIN ELMWOOD",
+    "city": "SYRACUSE",
     "state": "NY"
   },
   "13206": {
-    "city": "EASTWOOD",
+    "city": "SYRACUSE",
     "state": "NY"
   },
   "13207": {
-    "city": "COLVIN ELMWOOD",
+    "city": "SYRACUSE",
     "state": "NY"
   },
   "13208": {
-    "city": "FRANKLIN SQUARE",
+    "city": "SYRACUSE",
     "state": "NY"
   },
   "13209": {
-    "city": "SOLVAY",
+    "city": "SYRACUSE",
     "state": "NY"
   },
   "13210": {
-    "city": "TEALL",
+    "city": "SYRACUSE",
     "state": "NY"
   },
   "13211": {
-    "city": "MATTYDALE",
+    "city": "SYRACUSE",
     "state": "NY"
   },
   "13212": {
@@ -4808,23 +4808,23 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NY"
   },
   "13214": {
-    "city": "DE WITT",
+    "city": "SYRACUSE",
     "state": "NY"
   },
   "13215": {
-    "city": "ONONDAGA",
+    "city": "SYRACUSE",
     "state": "NY"
   },
   "13217": {
-    "city": "TEALL",
+    "city": "SYRACUSE",
     "state": "NY"
   },
   "13218": {
-    "city": "FRANKLIN SQUARE",
+    "city": "SYRACUSE",
     "state": "NY"
   },
   "13219": {
-    "city": "SOLVAY",
+    "city": "SYRACUSE",
     "state": "NY"
   },
   "13220": {
@@ -4836,19 +4836,19 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NY"
   },
   "13224": {
-    "city": "TEALL",
+    "city": "SYRACUSE",
     "state": "NY"
   },
   "13235": {
-    "city": "SYRACUSE UNIVERSITY",
+    "city": "SYRACUSE",
     "state": "NY"
   },
   "13261": {
-    "city": "FEDERAL STA",
+    "city": "SYRACUSE",
     "state": "NY"
   },
   "13290": {
-    "city": "FRANKLIN SQUARE",
+    "city": "SYRACUSE",
     "state": "NY"
   },
   "13301": {
@@ -4968,7 +4968,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NY"
   },
   "13334": {
-    "city": "EATON CARRIER",
+    "city": "MORRISVILLE",
     "state": "NY"
   },
   "13335": {
@@ -5188,7 +5188,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NY"
   },
   "13442": {
-    "city": "GRIFFIS AFB",
+    "city": "ROME",
     "state": "NY"
   },
   "13450": {
@@ -5264,7 +5264,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NY"
   },
   "13477": {
-    "city": "UTICA NY S&DC",
+    "city": "UTICA",
     "state": "NY"
   },
   "13478": {
@@ -5316,7 +5316,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NY"
   },
   "13492": {
-    "city": "UTICA NY S&DC",
+    "city": "UTICA",
     "state": "NY"
   },
   "13493": {
@@ -5328,31 +5328,31 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NY"
   },
   "13495": {
-    "city": "UTICA NY S&DC",
+    "city": "UTICA",
     "state": "NY"
   },
   "13501": {
-    "city": "UTICA NY S&DC",
+    "city": "UTICA",
     "state": "NY"
   },
   "13502": {
-    "city": "UTICA NY S&DC",
+    "city": "UTICA",
     "state": "NY"
   },
   "13503": {
-    "city": "BUTTERFIELD",
+    "city": "UTICA",
     "state": "NY"
   },
   "13504": {
-    "city": "UTICA NY S&DC",
+    "city": "UTICA",
     "state": "NY"
   },
   "13505": {
-    "city": "KERNAN",
+    "city": "UTICA",
     "state": "NY"
   },
   "13601": {
-    "city": "WATERTOWN NY SDC",
+    "city": "WATERTOWN",
     "state": "NY"
   },
   "13602": {
@@ -5360,7 +5360,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NY"
   },
   "13603": {
-    "city": "WATERTOWN NY SDC",
+    "city": "WATERTOWN",
     "state": "NY"
   },
   "13605": {
@@ -5464,7 +5464,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NY"
   },
   "13633": {
-    "city": "DE PEYSTER DPOBU",
+    "city": "DE PEYSTER",
     "state": "NY"
   },
   "13634": {
@@ -5492,7 +5492,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NY"
   },
   "13640": {
-    "city": "FINEVIEW",
+    "city": "WELLESLEY ISLAND",
     "state": "NY"
   },
   "13641": {
@@ -5620,7 +5620,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NY"
   },
   "13677": {
-    "city": "PYRITES DPOBU",
+    "city": "PYRITES",
     "state": "NY"
   },
   "13678": {
@@ -5668,7 +5668,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NY"
   },
   "13692": {
-    "city": "FINEVIEW",
+    "city": "WELLESLEY ISLAND",
     "state": "NY"
   },
   "13693": {
@@ -5736,7 +5736,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NY"
   },
   "13744": {
-    "city": "BINGHAMTON NY S&DC",
+    "city": "BINGHAMTON",
     "state": "NY"
   },
   "13745": {
@@ -5744,7 +5744,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NY"
   },
   "13746": {
-    "city": "BINGHAMTON NY S&DC",
+    "city": "BINGHAMTON",
     "state": "NY"
   },
   "13747": {
@@ -5752,7 +5752,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NY"
   },
   "13748": {
-    "city": "BINGHAMTON NY S&DC",
+    "city": "BINGHAMTON",
     "state": "NY"
   },
   "13749": {
@@ -5796,7 +5796,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NY"
   },
   "13760": {
-    "city": "BINGHAMTON NY S&DC",
+    "city": "BINGHAMTON",
     "state": "NY"
   },
   "13761": {
@@ -5808,7 +5808,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NY"
   },
   "13763": {
-    "city": "UNION STATION",
+    "city": "ENDICOTT",
     "state": "NY"
   },
   "13774": {
@@ -5860,7 +5860,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NY"
   },
   "13790": {
-    "city": "BINGHAMTON NY S&DC",
+    "city": "BINGHAMTON",
     "state": "NY"
   },
   "13794": {
@@ -5868,7 +5868,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NY"
   },
   "13795": {
-    "city": "BINGHAMTON NY S&DC",
+    "city": "BINGHAMTON",
     "state": "NY"
   },
   "13796": {
@@ -5884,7 +5884,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NY"
   },
   "13802": {
-    "city": "BINGHAMTON NY S&DC",
+    "city": "BINGHAMTON",
     "state": "NY"
   },
   "13803": {
@@ -5944,7 +5944,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NY"
   },
   "13826": {
-    "city": "BINGHAMTON NY S&DC",
+    "city": "BINGHAMTON",
     "state": "NY"
   },
   "13827": {
@@ -5960,7 +5960,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NY"
   },
   "13833": {
-    "city": "BINGHAMTON NY S&DC",
+    "city": "BINGHAMTON",
     "state": "NY"
   },
   "13834": {
@@ -6044,7 +6044,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NY"
   },
   "13862": {
-    "city": "BINGHAMTON NY S&DC",
+    "city": "BINGHAMTON",
     "state": "NY"
   },
   "13863": {
@@ -6056,27 +6056,27 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NY"
   },
   "13865": {
-    "city": "BINGHAMTON NY S&DC",
+    "city": "BINGHAMTON",
     "state": "NY"
   },
   "13901": {
-    "city": "BINGHAMTON NY S&DC",
+    "city": "BINGHAMTON",
     "state": "NY"
   },
   "13902": {
-    "city": "BINGHAMTON NY S&DC",
+    "city": "BINGHAMTON",
     "state": "NY"
   },
   "13903": {
-    "city": "BINGHAMTON NY S&DC",
+    "city": "BINGHAMTON",
     "state": "NY"
   },
   "13904": {
-    "city": "BINGHAMTON NY S&DC",
+    "city": "BINGHAMTON",
     "state": "NY"
   },
   "13905": {
-    "city": "BINGHAMTON NY S&DC",
+    "city": "BINGHAMTON",
     "state": "NY"
   },
   "14001": {
@@ -6496,127 +6496,127 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NY"
   },
   "14201": {
-    "city": "NIAGARA SQUARE",
+    "city": "BUFFALO",
     "state": "NY"
   },
   "14202": {
-    "city": "NIAGARA SQUARE",
+    "city": "BUFFALO",
     "state": "NY"
   },
   "14203": {
-    "city": "NIAGARA SQUARE",
+    "city": "BUFFALO",
     "state": "NY"
   },
   "14204": {
-    "city": "NIAGARA SQUARE",
+    "city": "BUFFALO",
     "state": "NY"
   },
   "14205": {
-    "city": "ELLICOTT",
+    "city": "BUFFALO",
     "state": "NY"
   },
   "14206": {
-    "city": "EASTSIDE CARRIER ANNEX",
+    "city": "BUFFALO",
     "state": "NY"
   },
   "14207": {
-    "city": "NORTHSIDE BUFFALO",
+    "city": "BUFFALO",
     "state": "NY"
   },
   "14208": {
-    "city": "EASTSIDE CARRIER ANNEX",
+    "city": "BUFFALO",
     "state": "NY"
   },
   "14209": {
-    "city": "CENTRAL PARK",
+    "city": "BUFFALO",
     "state": "NY"
   },
   "14210": {
-    "city": "EASTSIDE CARRIER ANNEX",
+    "city": "BUFFALO",
     "state": "NY"
   },
   "14211": {
-    "city": "EASTSIDE CARRIER ANNEX",
+    "city": "BUFFALO",
     "state": "NY"
   },
   "14212": {
-    "city": "BROADWAY BUFFALO",
+    "city": "BUFFALO",
     "state": "NY"
   },
   "14213": {
-    "city": "WEST SIDE BUFFALO",
+    "city": "BUFFALO",
     "state": "NY"
   },
   "14214": {
-    "city": "CENTRAL PARK",
+    "city": "BUFFALO",
     "state": "NY"
   },
   "14215": {
-    "city": "CENTRAL PARK",
+    "city": "BUFFALO",
     "state": "NY"
   },
   "14216": {
-    "city": "NORTHSIDE BUFFALO",
+    "city": "BUFFALO",
     "state": "NY"
   },
   "14217": {
-    "city": "KENMORE",
+    "city": "BUFFALO",
     "state": "NY"
   },
   "14218": {
-    "city": "LACKAWANNA",
+    "city": "BUFFALO",
     "state": "NY"
   },
   "14219": {
-    "city": "BLASDELL",
+    "city": "BUFFALO",
     "state": "NY"
   },
   "14220": {
-    "city": "SOUTH SIDE BUFFALO",
+    "city": "BUFFALO",
     "state": "NY"
   },
   "14221": {
-    "city": "WILLIAMSVILLE",
+    "city": "BUFFALO",
     "state": "NY"
   },
   "14222": {
-    "city": "WEST SIDE BUFFALO",
+    "city": "BUFFALO",
     "state": "NY"
   },
   "14223": {
-    "city": "HILER",
+    "city": "BUFFALO",
     "state": "NY"
   },
   "14224": {
-    "city": "WEST SENECA",
+    "city": "BUFFALO",
     "state": "NY"
   },
   "14225": {
-    "city": "CHEEKTOWAGA",
+    "city": "BUFFALO",
     "state": "NY"
   },
   "14226": {
-    "city": "AMHERST",
+    "city": "BUFFALO",
     "state": "NY"
   },
   "14227": {
-    "city": "CHEEKTOWAGA",
+    "city": "BUFFALO",
     "state": "NY"
   },
   "14228": {
-    "city": "AMHERST",
+    "city": "BUFFALO",
     "state": "NY"
   },
   "14231": {
-    "city": "WILLIAMSVILLE",
+    "city": "BUFFALO",
     "state": "NY"
   },
   "14240": {
-    "city": "EASTSIDE CARRIER ANNEX",
+    "city": "BUFFALO",
     "state": "NY"
   },
   "14301": {
-    "city": "NEW MARKET",
+    "city": "NIAGARA FALLS",
     "state": "NY"
   },
   "14302": {
@@ -6628,11 +6628,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NY"
   },
   "14304": {
-    "city": "LA SALLE",
+    "city": "NIAGARA FALLS",
     "state": "NY"
   },
   "14305": {
-    "city": "BRIDGE",
+    "city": "NIAGARA FALLS",
     "state": "NY"
   },
   "14410": {
@@ -6892,7 +6892,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NY"
   },
   "14516": {
-    "city": "NORTH ROSE CARRIERS",
+    "city": "SODUS",
     "state": "NY"
   },
   "14517": {
@@ -7100,99 +7100,99 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NY"
   },
   "14603": {
-    "city": "DOWNTOWN ROCHESTER",
+    "city": "ROCHESTER",
     "state": "NY"
   },
   "14604": {
-    "city": "DOWNTOWN ROCHESTER",
+    "city": "ROCHESTER",
     "state": "NY"
   },
   "14605": {
-    "city": "DOWNTOWN ROCHESTER",
+    "city": "ROCHESTER",
     "state": "NY"
   },
   "14606": {
-    "city": "LEXINGTON ROCHESTER",
+    "city": "ROCHESTER",
     "state": "NY"
   },
   "14607": {
-    "city": "DOWNTOWN ROCHESTER",
+    "city": "ROCHESTER",
     "state": "NY"
   },
   "14608": {
-    "city": "DOWNTOWN ROCHESTER",
+    "city": "ROCHESTER",
     "state": "NY"
   },
   "14609": {
-    "city": "BEECHWOOD",
+    "city": "ROCHESTER",
     "state": "NY"
   },
   "14610": {
-    "city": "BRIGHTON ROCHESTER",
+    "city": "ROCHESTER",
     "state": "NY"
   },
   "14611": {
-    "city": "WESTGATE",
+    "city": "ROCHESTER",
     "state": "NY"
   },
   "14612": {
-    "city": "CHARLOTTE",
+    "city": "ROCHESTER",
     "state": "NY"
   },
   "14613": {
-    "city": "DEWEY",
+    "city": "ROCHESTER",
     "state": "NY"
   },
   "14614": {
-    "city": "DOWNTOWN ROCHESTER",
+    "city": "ROCHESTER",
     "state": "NY"
   },
   "14615": {
-    "city": "LEXINGTON ROCHESTER",
+    "city": "ROCHESTER",
     "state": "NY"
   },
   "14616": {
-    "city": "GREECE",
+    "city": "ROCHESTER",
     "state": "NY"
   },
   "14617": {
-    "city": "IRONDEQUOIT",
+    "city": "ROCHESTER",
     "state": "NY"
   },
   "14618": {
-    "city": "LOEHMANNS PLAZA",
+    "city": "ROCHESTER",
     "state": "NY"
   },
   "14619": {
-    "city": "THURSTON ROAD",
+    "city": "ROCHESTER",
     "state": "NY"
   },
   "14620": {
-    "city": "ROCHESTER CARRIER ANNEX",
+    "city": "ROCHESTER",
     "state": "NY"
   },
   "14621": {
-    "city": "IRONDEQUOIT",
+    "city": "ROCHESTER",
     "state": "NY"
   },
   "14622": {
-    "city": "IRONDEQUOIT",
+    "city": "ROCHESTER",
     "state": "NY"
   },
   "14623": {
-    "city": "ROCHESTER CARRIER ANNEX",
+    "city": "ROCHESTER",
     "state": "NY"
   },
   "14624": {
-    "city": "WESTGATE",
+    "city": "ROCHESTER",
     "state": "NY"
   },
   "14625": {
-    "city": "PANORAMA",
+    "city": "ROCHESTER",
     "state": "NY"
   },
   "14626": {
-    "city": "GREECE",
+    "city": "ROCHESTER",
     "state": "NY"
   },
   "14692": {
@@ -7592,7 +7592,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NY"
   },
   "14838": {
-    "city": "ELMIRA NY SDC",
+    "city": "ELMIRA",
     "state": "NY"
   },
   "14839": {
@@ -7616,7 +7616,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NY"
   },
   "14845": {
-    "city": "ELMIRA NY SDC",
+    "city": "ELMIRA",
     "state": "NY"
   },
   "14846": {
@@ -7632,7 +7632,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NY"
   },
   "14851": {
-    "city": "DOWNTOWN ITHACA",
+    "city": "ITHACA",
     "state": "NY"
   },
   "14852": {
@@ -7668,7 +7668,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NY"
   },
   "14861": {
-    "city": "ELMIRA NY SDC",
+    "city": "ELMIRA",
     "state": "NY"
   },
   "14863": {
@@ -7676,11 +7676,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NY"
   },
   "14864": {
-    "city": "ELMIRA NY SDC",
+    "city": "ELMIRA",
     "state": "NY"
   },
   "14865": {
-    "city": "ELMIRA NY SDC",
+    "city": "ELMIRA",
     "state": "NY"
   },
   "14867": {
@@ -7688,7 +7688,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NY"
   },
   "14869": {
-    "city": "ELMIRA NY SDC",
+    "city": "ELMIRA",
     "state": "NY"
   },
   "14870": {
@@ -7696,11 +7696,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NY"
   },
   "14871": {
-    "city": "ELMIRA NY SDC",
+    "city": "ELMIRA",
     "state": "NY"
   },
   "14872": {
-    "city": "ELMIRA NY SDC",
+    "city": "ELMIRA",
     "state": "NY"
   },
   "14873": {
@@ -7776,7 +7776,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NY"
   },
   "14894": {
-    "city": "ELMIRA NY SDC",
+    "city": "ELMIRA",
     "state": "NY"
   },
   "14895": {
@@ -7792,23 +7792,23 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NY"
   },
   "14901": {
-    "city": "ELMIRA NY SDC",
+    "city": "ELMIRA",
     "state": "NY"
   },
   "14902": {
-    "city": "DOWNTOWN ELMIRA",
+    "city": "ELMIRA",
     "state": "NY"
   },
   "14903": {
-    "city": "ELMIRA HEIGHTS",
+    "city": "ELMIRA",
     "state": "NY"
   },
   "14904": {
-    "city": "ELMIRA NY SDC",
+    "city": "ELMIRA",
     "state": "NY"
   },
   "14905": {
-    "city": "DOWNTOWN ELMIRA",
+    "city": "ELMIRA",
     "state": "NY"
   },
   "15001": {
@@ -7844,7 +7844,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "PA"
   },
   "15012": {
-    "city": "BELLE VERNON",
+    "city": "ROSTRAVER TOWNSHIP",
     "state": "PA"
   },
   "15014": {
@@ -8028,7 +8028,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "PA"
   },
   "15068": {
-    "city": "ARNOLD",
+    "city": "NEW KENSINGTON",
     "state": "PA"
   },
   "15071": {
@@ -8104,7 +8104,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "PA"
   },
   "15095": {
-    "city": "NETWORK DISTRIBUTION CT",
+    "city": "WARRENDALE",
     "state": "PA"
   },
   "15101": {
@@ -8144,7 +8144,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "PA"
   },
   "15122": {
-    "city": "PITTSBURGH PA PLSNT HLS SDC",
+    "city": "PITTSBURGH",
     "state": "PA"
   },
   "15126": {
@@ -8156,7 +8156,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "PA"
   },
   "15129": {
-    "city": "PITTSBURGH PA PLSNT HLS SDC",
+    "city": "PITTSBURGH",
     "state": "PA"
   },
   "15131": {
@@ -8176,7 +8176,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "PA"
   },
   "15135": {
-    "city": "BOSTON",
+    "city": "MCKEESPORT",
     "state": "PA"
   },
   "15136": {
@@ -8224,7 +8224,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "PA"
   },
   "15201": {
-    "city": "ARSENAL",
+    "city": "PITTSBURGH",
     "state": "PA"
   },
   "15202": {
@@ -8232,123 +8232,123 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "PA"
   },
   "15203": {
-    "city": "CARSON",
+    "city": "PITTSBURGH",
     "state": "PA"
   },
   "15204": {
-    "city": "GREENTREE",
+    "city": "PITTSBURGH",
     "state": "PA"
   },
   "15205": {
-    "city": "CRAFTON",
+    "city": "PITTSBURGH",
     "state": "PA"
   },
   "15206": {
-    "city": "EAST LIBERTY",
+    "city": "PITTSBURGH",
     "state": "PA"
   },
   "15207": {
-    "city": "HAZELWOOD",
+    "city": "PITTSBURGH",
     "state": "PA"
   },
   "15208": {
-    "city": "EAST LIBERTY",
+    "city": "PITTSBURGH",
     "state": "PA"
   },
   "15209": {
-    "city": "MC KNIGHT",
+    "city": "PITTSBURGH",
     "state": "PA"
   },
   "15210": {
-    "city": "MOUNT OLIVER",
+    "city": "PITTSBURGH",
     "state": "PA"
   },
   "15211": {
-    "city": "MOUNT OLIVER",
+    "city": "PITTSBURGH",
     "state": "PA"
   },
   "15212": {
-    "city": "ALLEGHENY",
+    "city": "PITTSBURGH",
     "state": "PA"
   },
   "15213": {
-    "city": "OAKLAND",
+    "city": "PITTSBURGH",
     "state": "PA"
   },
   "15214": {
-    "city": "PITTSBURGH PA NORTHSIDE SDC",
+    "city": "PITTSBURGH",
     "state": "PA"
   },
   "15215": {
-    "city": "SHARPSBURG",
+    "city": "PITTSBURGH",
     "state": "PA"
   },
   "15216": {
-    "city": "SOUTH HILLS",
+    "city": "PITTSBURGH",
     "state": "PA"
   },
   "15217": {
-    "city": "EAST LIBERTY",
+    "city": "PITTSBURGH",
     "state": "PA"
   },
   "15218": {
-    "city": "SWISSVALE",
+    "city": "PITTSBURGH",
     "state": "PA"
   },
   "15219": {
-    "city": "GRANT STREET CARRIERS",
+    "city": "PITTSBURGH",
     "state": "PA"
   },
   "15220": {
-    "city": "GREENTREE",
+    "city": "PITTSBURGH",
     "state": "PA"
   },
   "15221": {
-    "city": "PENN HILLS",
+    "city": "PITTSBURGH",
     "state": "PA"
   },
   "15222": {
-    "city": "FOURTH AVENUE",
+    "city": "PITTSBURGH",
     "state": "PA"
   },
   "15223": {
-    "city": "ETNA",
+    "city": "PITTSBURGH",
     "state": "PA"
   },
   "15224": {
-    "city": "BLOOMFIELD",
+    "city": "PITTSBURGH",
     "state": "PA"
   },
   "15225": {
-    "city": "PITTSBURGH PA NORTHSIDE SDC",
+    "city": "PITTSBURGH",
     "state": "PA"
   },
   "15226": {
-    "city": "BROOKLINE",
+    "city": "PITTSBURGH",
     "state": "PA"
   },
   "15227": {
-    "city": "BRENTWOOD",
+    "city": "PITTSBURGH",
     "state": "PA"
   },
   "15228": {
-    "city": "CASTLE SHANNON",
+    "city": "PITTSBURGH",
     "state": "PA"
   },
   "15229": {
-    "city": "MC KNIGHT",
+    "city": "PITTSBURGH",
     "state": "PA"
   },
   "15230": {
-    "city": "LIBERTY CENTER",
+    "city": "PITTSBURGH",
     "state": "PA"
   },
   "15231": {
-    "city": "GREENTREE",
+    "city": "PITTSBURGH",
     "state": "PA"
   },
   "15232": {
-    "city": "BLOOMFIELD",
+    "city": "PITTSBURGH",
     "state": "PA"
   },
   "15233": {
@@ -8356,23 +8356,23 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "PA"
   },
   "15234": {
-    "city": "CASTLE SHANNON",
+    "city": "PITTSBURGH",
     "state": "PA"
   },
   "15235": {
-    "city": "PENN HILLS",
+    "city": "PITTSBURGH",
     "state": "PA"
   },
   "15236": {
-    "city": "PITTSBURGH PA PLSNT HLS SDC",
+    "city": "PITTSBURGH",
     "state": "PA"
   },
   "15237": {
-    "city": "MC KNIGHT",
+    "city": "PITTSBURGH",
     "state": "PA"
   },
   "15238": {
-    "city": "BLAWNOX",
+    "city": "PITTSBURGH",
     "state": "PA"
   },
   "15239": {
@@ -8380,15 +8380,15 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "PA"
   },
   "15241": {
-    "city": "UPPER SAINT CLAIR",
+    "city": "PITTSBURGH",
     "state": "PA"
   },
   "15242": {
-    "city": "GREENTREE",
+    "city": "PITTSBURGH",
     "state": "PA"
   },
   "15243": {
-    "city": "CEDARHURST",
+    "city": "PITTSBURGH",
     "state": "PA"
   },
   "15244": {
@@ -8396,15 +8396,15 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "PA"
   },
   "15253": {
-    "city": "GRANT STREET",
+    "city": "PITTSBURGH",
     "state": "PA"
   },
   "15275": {
-    "city": "GREENTREE",
+    "city": "PITTSBURGH",
     "state": "PA"
   },
   "15301": {
-    "city": "CENTRAL WASHINGTON",
+    "city": "WASHINGTON",
     "state": "PA"
   },
   "15310": {
@@ -8512,7 +8512,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "PA"
   },
   "15342": {
-    "city": "CANONSBURG CARRIER ANNEX",
+    "city": "CANONSBURG",
     "state": "PA"
   },
   "15344": {
@@ -8580,7 +8580,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "PA"
   },
   "15363": {
-    "city": "CANONSBURG CARRIER ANNEX",
+    "city": "CANONSBURG",
     "state": "PA"
   },
   "15364": {
@@ -8628,7 +8628,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "PA"
   },
   "15401": {
-    "city": "DOWNTOWN UNIONTOWN",
+    "city": "UNIONTOWN",
     "state": "PA"
   },
   "15410": {
@@ -9212,7 +9212,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "PA"
   },
   "15660": {
-    "city": "NORTH HUNTINGDON",
+    "city": "IRWIN",
     "state": "PA"
   },
   "15661": {
@@ -9276,7 +9276,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "PA"
   },
   "15678": {
-    "city": "NORTH HUNTINGDON",
+    "city": "IRWIN",
     "state": "PA"
   },
   "15679": {
@@ -9996,11 +9996,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "PA"
   },
   "16051": {
-    "city": "NEW CASTLE PA SDC",
+    "city": "NEW CASTLE",
     "state": "PA"
   },
   "16052": {
-    "city": "NEW CASTLE PA SDC",
+    "city": "NEW CASTLE",
     "state": "PA"
   },
   "16053": {
@@ -10020,7 +10020,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "PA"
   },
   "16057": {
-    "city": "NEW CASTLE PA SDC",
+    "city": "NEW CASTLE",
     "state": "PA"
   },
   "16058": {
@@ -10044,23 +10044,23 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "PA"
   },
   "16101": {
-    "city": "NEW CASTLE PA SDC",
+    "city": "NEW CASTLE",
     "state": "PA"
   },
   "16102": {
-    "city": "NEW CASTLE PA SDC",
+    "city": "NEW CASTLE",
     "state": "PA"
   },
   "16103": {
-    "city": "DOWNTOWN NEW CASTLE",
+    "city": "NEW CASTLE",
     "state": "PA"
   },
   "16105": {
-    "city": "NESHANNOCK",
+    "city": "NEW CASTLE",
     "state": "PA"
   },
   "16107": {
-    "city": "NEW CASTLE PA SDC",
+    "city": "NEW CASTLE",
     "state": "PA"
   },
   "16110": {
@@ -10196,7 +10196,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "PA"
   },
   "16156": {
-    "city": "NEW CASTLE PA SDC",
+    "city": "NEW CASTLE",
     "state": "PA"
   },
   "16157": {
@@ -10204,7 +10204,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "PA"
   },
   "16159": {
-    "city": "NEW CASTLE PA SDC",
+    "city": "NEW CASTLE",
     "state": "PA"
   },
   "16160": {
@@ -10620,7 +10620,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "PA"
   },
   "16421": {
-    "city": "ERIE PA S&DC",
+    "city": "ERIE",
     "state": "PA"
   },
   "16422": {
@@ -10636,7 +10636,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "PA"
   },
   "16426": {
-    "city": "ERIE PA S&DC",
+    "city": "ERIE",
     "state": "PA"
   },
   "16427": {
@@ -10680,7 +10680,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "PA"
   },
   "16442": {
-    "city": "ERIE PA S&DC",
+    "city": "ERIE",
     "state": "PA"
   },
   "16443": {
@@ -10688,55 +10688,55 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "PA"
   },
   "16501": {
-    "city": "ERIE PA S&DC",
+    "city": "ERIE",
     "state": "PA"
   },
   "16502": {
-    "city": "ERIE PA S&DC",
+    "city": "ERIE",
     "state": "PA"
   },
   "16503": {
-    "city": "ERIE PA S&DC",
+    "city": "ERIE",
     "state": "PA"
   },
   "16504": {
-    "city": "ERIE PA S&DC",
+    "city": "ERIE",
     "state": "PA"
   },
   "16505": {
-    "city": "PRESQUE ISLE",
+    "city": "ERIE",
     "state": "PA"
   },
   "16506": {
-    "city": "PRESQUE ISLE",
+    "city": "ERIE",
     "state": "PA"
   },
   "16507": {
-    "city": "ERIE PA S&DC",
+    "city": "ERIE",
     "state": "PA"
   },
   "16508": {
-    "city": "ERIE PA S&DC",
+    "city": "ERIE",
     "state": "PA"
   },
   "16509": {
-    "city": "ERIE PA S&DC",
+    "city": "ERIE",
     "state": "PA"
   },
   "16510": {
-    "city": "ERIE PA S&DC",
+    "city": "ERIE",
     "state": "PA"
   },
   "16511": {
-    "city": "ERIE PA S&DC",
+    "city": "ERIE",
     "state": "PA"
   },
   "16512": {
-    "city": "DOWNTOWN ERIE",
+    "city": "ERIE",
     "state": "PA"
   },
   "16514": {
-    "city": "ERIE PA S&DC",
+    "city": "ERIE",
     "state": "PA"
   },
   "16601": {
@@ -11824,19 +11824,19 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "PA"
   },
   "17101": {
-    "city": "UPTOWN",
+    "city": "HARRISBURG",
     "state": "PA"
   },
   "17102": {
-    "city": "UPTOWN",
+    "city": "HARRISBURG",
     "state": "PA"
   },
   "17103": {
-    "city": "UPTOWN",
+    "city": "HARRISBURG",
     "state": "PA"
   },
   "17104": {
-    "city": "SWATARA",
+    "city": "HARRISBURG",
     "state": "PA"
   },
   "17105": {
@@ -11848,23 +11848,23 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "PA"
   },
   "17108": {
-    "city": "FEDERAL SQUARE",
+    "city": "HARRISBURG",
     "state": "PA"
   },
   "17109": {
-    "city": "LOWER PAXTON",
+    "city": "HARRISBURG",
     "state": "PA"
   },
   "17110": {
-    "city": "UPTOWN",
+    "city": "HARRISBURG",
     "state": "PA"
   },
   "17111": {
-    "city": "SWATARA",
+    "city": "HARRISBURG",
     "state": "PA"
   },
   "17112": {
-    "city": "LOWER PAXTON",
+    "city": "HARRISBURG",
     "state": "PA"
   },
   "17113": {
@@ -12276,7 +12276,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "PA"
   },
   "17370": {
-    "city": "YORK EAST PA S&DC",
+    "city": "YORK",
     "state": "PA"
   },
   "17371": {
@@ -12288,35 +12288,35 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "PA"
   },
   "17401": {
-    "city": "YORK PA WEST SDC",
+    "city": "YORK",
     "state": "PA"
   },
   "17402": {
-    "city": "YORK EAST PA S&DC",
+    "city": "YORK",
     "state": "PA"
   },
   "17403": {
-    "city": "YORK PA WEST SDC",
+    "city": "YORK",
     "state": "PA"
   },
   "17404": {
-    "city": "WEST YORK",
+    "city": "YORK",
     "state": "PA"
   },
   "17405": {
-    "city": "DOWNTOWN YORK",
+    "city": "YORK",
     "state": "PA"
   },
   "17406": {
-    "city": "YORK EAST PA S&DC",
+    "city": "YORK",
     "state": "PA"
   },
   "17407": {
-    "city": "JACOBUS",
+    "city": "YORK",
     "state": "PA"
   },
   "17408": {
-    "city": "YORK PA WEST SDC",
+    "city": "YORK",
     "state": "PA"
   },
   "17501": {
@@ -12444,7 +12444,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "PA"
   },
   "17549": {
-    "city": "MARTINDALE",
+    "city": "EPHRATA",
     "state": "PA"
   },
   "17550": {
@@ -12552,15 +12552,15 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "PA"
   },
   "17601": {
-    "city": "LANCASTER PA SDC",
+    "city": "LANCASTER",
     "state": "PA"
   },
   "17602": {
-    "city": "LANCASTER PA SDC",
+    "city": "LANCASTER",
     "state": "PA"
   },
   "17603": {
-    "city": "LANCASTER PA SDC",
+    "city": "LANCASTER",
     "state": "PA"
   },
   "17604": {
@@ -12568,31 +12568,31 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "PA"
   },
   "17605": {
-    "city": "EAST LANCASTER",
+    "city": "LANCASTER",
     "state": "PA"
   },
   "17606": {
-    "city": "NEFFSVILLE",
+    "city": "LANCASTER",
     "state": "PA"
   },
   "17607": {
-    "city": "ROHRERSTOWN",
+    "city": "LANCASTER",
     "state": "PA"
   },
   "17608": {
-    "city": "DOWNTOWN LANCASTER",
+    "city": "LANCASTER",
     "state": "PA"
   },
   "17701": {
-    "city": "NEWBERRY",
+    "city": "WILLIAMSPORT",
     "state": "PA"
   },
   "17702": {
-    "city": "SOUTH WILLIAMSPORT",
+    "city": "WILLIAMSPORT",
     "state": "PA"
   },
   "17703": {
-    "city": "CENTER CITY",
+    "city": "WILLIAMSPORT",
     "state": "PA"
   },
   "17720": {
@@ -13124,7 +13124,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "PA"
   },
   "17974": {
-    "city": "SELTZER",
+    "city": "POTTSVILLE",
     "state": "PA"
   },
   "17976": {
@@ -13160,7 +13160,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "PA"
   },
   "18002": {
-    "city": "LEHIGH VALLEY POSTAL STORE",
+    "city": "BETHLEHEM",
     "state": "PA"
   },
   "18011": {
@@ -13188,7 +13188,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "PA"
   },
   "18017": {
-    "city": "BETHLEHEM AIRPORT",
+    "city": "ALLENTOWN",
     "state": "PA"
   },
   "18018": {
@@ -13196,7 +13196,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "PA"
   },
   "18020": {
-    "city": "BETHLEHEM AIRPORT",
+    "city": "ALLENTOWN",
     "state": "PA"
   },
   "18030": {
@@ -13208,7 +13208,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "PA"
   },
   "18032": {
-    "city": "ALLENTOWN AIRPORT",
+    "city": "ALLENTOWN",
     "state": "PA"
   },
   "18034": {
@@ -13236,7 +13236,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "PA"
   },
   "18040": {
-    "city": "PALMER",
+    "city": "EASTON",
     "state": "PA"
   },
   "18041": {
@@ -13248,7 +13248,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "PA"
   },
   "18043": {
-    "city": "PALMER",
+    "city": "EASTON",
     "state": "PA"
   },
   "18044": {
@@ -13256,7 +13256,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "PA"
   },
   "18045": {
-    "city": "PALMER",
+    "city": "EASTON",
     "state": "PA"
   },
   "18046": {
@@ -13412,19 +13412,19 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "PA"
   },
   "18101": {
-    "city": "ALLENTOWN AIRPORT",
+    "city": "ALLENTOWN",
     "state": "PA"
   },
   "18102": {
-    "city": "ALLENTOWN AIRPORT",
+    "city": "ALLENTOWN",
     "state": "PA"
   },
   "18103": {
-    "city": "ALLENTOWN AIRPORT",
+    "city": "ALLENTOWN",
     "state": "PA"
   },
   "18104": {
-    "city": "ALLENTOWN AIRPORT",
+    "city": "ALLENTOWN",
     "state": "PA"
   },
   "18105": {
@@ -13432,15 +13432,15 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "PA"
   },
   "18106": {
-    "city": "ALLENTOWN AIRPORT",
+    "city": "ALLENTOWN",
     "state": "PA"
   },
   "18109": {
-    "city": "ALLENTOWN AIRPORT",
+    "city": "ALLENTOWN",
     "state": "PA"
   },
   "18195": {
-    "city": "ALLENTOWN AIRPORT",
+    "city": "ALLENTOWN",
     "state": "PA"
   },
   "18201": {
@@ -13968,11 +13968,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "PA"
   },
   "18501": {
-    "city": "DOWNTOWN SCRANTON",
+    "city": "SCRANTON",
     "state": "PA"
   },
   "18502": {
-    "city": "STEAMTOWN",
+    "city": "SCRANTON",
     "state": "PA"
   },
   "18503": {
@@ -13980,7 +13980,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "PA"
   },
   "18504": {
-    "city": "WEST SCRANTON",
+    "city": "SCRANTON",
     "state": "PA"
   },
   "18505": {
@@ -14020,7 +14020,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "PA"
   },
   "18602": {
-    "city": "BEAR CREEK NPU",
+    "city": "BEAR CREEK",
     "state": "PA"
   },
   "18603": {
@@ -14176,15 +14176,15 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "PA"
   },
   "18701": {
-    "city": "WILKES BARRE PA S&DC",
+    "city": "WILKES BARRE",
     "state": "PA"
   },
   "18702": {
-    "city": "WILKES BARRE PA S&DC",
+    "city": "WILKES BARRE",
     "state": "PA"
   },
   "18703": {
-    "city": "WILKES BARRE PA S&DC",
+    "city": "WILKES BARRE",
     "state": "PA"
   },
   "18704": {
@@ -14196,7 +14196,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "PA"
   },
   "18706": {
-    "city": "WILKES BARRE PA S&DC",
+    "city": "WILKES BARRE",
     "state": "PA"
   },
   "18707": {
@@ -14212,11 +14212,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "PA"
   },
   "18710": {
-    "city": "WILKES BARRE PA S&DC",
+    "city": "WILKES BARRE",
     "state": "PA"
   },
   "18773": {
-    "city": "WILKES BARRE PA S&DC",
+    "city": "WILKES BARRE",
     "state": "PA"
   },
   "18801": {
@@ -14716,7 +14716,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "PA"
   },
   "19037": {
-    "city": "GLEN RIDDLE LIMA",
+    "city": "MEDIA",
     "state": "PA"
   },
   "19038": {
@@ -14744,7 +14744,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "PA"
   },
   "19046": {
-    "city": "FOXCROFT SQUARE",
+    "city": "JENKINTOWN",
     "state": "PA"
   },
   "19047": {
@@ -14784,15 +14784,15 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "PA"
   },
   "19060": {
-    "city": "LINWOOD",
+    "city": "MARCUS HOOK",
     "state": "PA"
   },
   "19061": {
-    "city": "BOOTHWYN",
+    "city": "UPPER CHICHESTER",
     "state": "PA"
   },
   "19063": {
-    "city": "ELWYN",
+    "city": "MEDIA",
     "state": "PA"
   },
   "19064": {
@@ -14800,7 +14800,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "PA"
   },
   "19065": {
-    "city": "MOYLAN",
+    "city": "MEDIA",
     "state": "PA"
   },
   "19066": {
@@ -14820,7 +14820,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "PA"
   },
   "19073": {
-    "city": "NEWTOWN SQ CARRIER ANNEX",
+    "city": "NEWTOWN SQUARE",
     "state": "PA"
   },
   "19074": {
@@ -14856,7 +14856,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "PA"
   },
   "19085": {
-    "city": "SOUTHEASTERN PA S&DC",
+    "city": "SOUTHEASTERN",
     "state": "PA"
   },
   "19086": {
@@ -14864,7 +14864,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "PA"
   },
   "19087": {
-    "city": "SOUTHEASTERN PA S&DC",
+    "city": "SOUTHEASTERN",
     "state": "PA"
   },
   "19090": {
@@ -14888,11 +14888,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "PA"
   },
   "19102": {
-    "city": "PENN CENTER",
+    "city": "PHILADELPHIA",
     "state": "PA"
   },
   "19103": {
-    "city": "MIDDLE CITY",
+    "city": "PHILADELPHIA",
     "state": "PA"
   },
   "19104": {
@@ -14900,7 +14900,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "PA"
   },
   "19105": {
-    "city": "WILLIAM PENN RETAIL",
+    "city": "PHILADELPHIA",
     "state": "PA"
   },
   "19106": {
@@ -14912,15 +14912,15 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "PA"
   },
   "19110": {
-    "city": "LAND TITLE BLDG",
+    "city": "PHILADELPHIA",
     "state": "PA"
   },
   "19111": {
-    "city": "FOX CHASE",
+    "city": "PHILADELPHIA",
     "state": "PA"
   },
   "19112": {
-    "city": "POINT BREEZE",
+    "city": "PHILADELPHIA",
     "state": "PA"
   },
   "19113": {
@@ -14928,171 +14928,171 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "PA"
   },
   "19114": {
-    "city": "TORRESDALE",
+    "city": "PHILADELPHIA",
     "state": "PA"
   },
   "19115": {
-    "city": "BUSTLETON",
+    "city": "PHILADELPHIA",
     "state": "PA"
   },
   "19116": {
-    "city": "BUSTLETON",
+    "city": "PHILADELPHIA",
     "state": "PA"
   },
   "19118": {
-    "city": "CHESTNUT HILL",
+    "city": "PHILADELPHIA",
     "state": "PA"
   },
   "19119": {
-    "city": "GERMANTOWN",
+    "city": "PHILADELPHIA",
     "state": "PA"
   },
   "19120": {
-    "city": "HUNTING PARK",
+    "city": "PHILADELPHIA",
     "state": "PA"
   },
   "19121": {
-    "city": "NORTH PHILADELPHIA",
+    "city": "PHILADELPHIA",
     "state": "PA"
   },
   "19122": {
-    "city": "SPRING GARDEN",
+    "city": "PHILADELPHIA",
     "state": "PA"
   },
   "19123": {
-    "city": "SPRING GARDEN",
+    "city": "PHILADELPHIA",
     "state": "PA"
   },
   "19124": {
-    "city": "FRANKFORD",
+    "city": "PHILADELPHIA",
     "state": "PA"
   },
   "19125": {
-    "city": "KENSINGTON",
+    "city": "PHILADELPHIA",
     "state": "PA"
   },
   "19126": {
-    "city": "LOGAN",
+    "city": "PHILADELPHIA",
     "state": "PA"
   },
   "19127": {
-    "city": "MANAYUNK",
+    "city": "PHILADELPHIA",
     "state": "PA"
   },
   "19128": {
-    "city": "ROXBOROUGH",
+    "city": "PHILADELPHIA",
     "state": "PA"
   },
   "19129": {
-    "city": "EAST FALLS",
+    "city": "PHILADELPHIA",
     "state": "PA"
   },
   "19130": {
-    "city": "FAIRMOUNT",
+    "city": "PHILADELPHIA",
     "state": "PA"
   },
   "19131": {
-    "city": "WEST PARK",
+    "city": "PHILADELPHIA",
     "state": "PA"
   },
   "19132": {
-    "city": "NORTH PHILADELPHIA",
+    "city": "PHILADELPHIA",
     "state": "PA"
   },
   "19133": {
-    "city": "FAIRHILL",
+    "city": "PHILADELPHIA",
     "state": "PA"
   },
   "19134": {
-    "city": "RICHMOND",
+    "city": "PHILADELPHIA",
     "state": "PA"
   },
   "19135": {
-    "city": "TACONY",
+    "city": "PHILADELPHIA",
     "state": "PA"
   },
   "19136": {
-    "city": "HOLMESBURG POSTAL STORE",
+    "city": "PHILADELPHIA",
     "state": "PA"
   },
   "19137": {
-    "city": "BRIDESBURG",
+    "city": "PHILADELPHIA",
     "state": "PA"
   },
   "19138": {
-    "city": "EAST GERMANTOWN",
+    "city": "PHILADELPHIA",
     "state": "PA"
   },
   "19139": {
-    "city": "WEST MARKET",
+    "city": "PHILADELPHIA",
     "state": "PA"
   },
   "19140": {
-    "city": "HUNTING PARK",
+    "city": "PHILADELPHIA",
     "state": "PA"
   },
   "19141": {
-    "city": "LOGAN",
+    "city": "PHILADELPHIA",
     "state": "PA"
   },
   "19142": {
-    "city": "PASCHALL",
+    "city": "PHILADELPHIA",
     "state": "PA"
   },
   "19143": {
-    "city": "KINGSESSING",
+    "city": "PHILADELPHIA",
     "state": "PA"
   },
   "19144": {
-    "city": "GERMANTOWN",
+    "city": "PHILADELPHIA",
     "state": "PA"
   },
   "19145": {
-    "city": "POINT BREEZE",
+    "city": "PHILADELPHIA",
     "state": "PA"
   },
   "19146": {
-    "city": "PASCHALL",
+    "city": "PHILADELPHIA",
     "state": "PA"
   },
   "19147": {
-    "city": "PENNS LANDING",
+    "city": "PHILADELPHIA",
     "state": "PA"
   },
   "19148": {
-    "city": "CASTLE",
+    "city": "PHILADELPHIA",
     "state": "PA"
   },
   "19149": {
-    "city": "BOULEVARD",
+    "city": "PHILADELPHIA",
     "state": "PA"
   },
   "19150": {
-    "city": "MARKET SQUARE",
+    "city": "PHILADELPHIA",
     "state": "PA"
   },
   "19151": {
-    "city": "OVERBROOK",
+    "city": "PHILADELPHIA",
     "state": "PA"
   },
   "19152": {
-    "city": "BUSTLETON",
+    "city": "PHILADELPHIA",
     "state": "PA"
   },
   "19153": {
-    "city": "PASCHALL",
+    "city": "PHILADELPHIA",
     "state": "PA"
   },
   "19154": {
-    "city": "TORRESDALE",
+    "city": "PHILADELPHIA",
     "state": "PA"
   },
   "19155": {
-    "city": "HOLMESBURG POSTAL STORE",
+    "city": "PHILADELPHIA",
     "state": "PA"
   },
   "19160": {
-    "city": "HUNTING PARK",
+    "city": "PHILADELPHIA",
     "state": "PA"
   },
   "19176": {
@@ -15140,7 +15140,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "PA"
   },
   "19331": {
-    "city": "GLEN MILLS CARRIER ANNEX",
+    "city": "GLEN MILLS",
     "state": "PA"
   },
   "19333": {
@@ -15192,7 +15192,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "PA"
   },
   "19353": {
-    "city": "CPU LIONVILLE",
+    "city": "EXTON",
     "state": "PA"
   },
   "19354": {
@@ -15200,7 +15200,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "PA"
   },
   "19355": {
-    "city": "FRAZER",
+    "city": "MALVERN",
     "state": "PA"
   },
   "19357": {
@@ -15244,7 +15244,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "PA"
   },
   "19373": {
-    "city": "GLEN MILLS CARRIER ANNEX",
+    "city": "GLEN MILLS",
     "state": "PA"
   },
   "19374": {
@@ -15260,15 +15260,15 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "PA"
   },
   "19380": {
-    "city": "GAY STREET",
+    "city": "WEST CHESTER",
     "state": "PA"
   },
   "19381": {
-    "city": "GAY STREET",
+    "city": "WEST CHESTER",
     "state": "PA"
   },
   "19382": {
-    "city": "SOUTHEASTERN PA S&DC",
+    "city": "SOUTHEASTERN",
     "state": "PA"
   },
   "19390": {
@@ -15280,19 +15280,19 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "PA"
   },
   "19398": {
-    "city": "SOUTHEASTERN PA S&DC",
+    "city": "SOUTHEASTERN",
     "state": "PA"
   },
   "19399": {
-    "city": "SOUTHEASTERN PA S&DC",
+    "city": "SOUTHEASTERN",
     "state": "PA"
   },
   "19401": {
-    "city": "CONSHOHOCKEN CARRIER ANNEX",
+    "city": "CONSHOHOCKEN",
     "state": "PA"
   },
   "19403": {
-    "city": "EAGLEVILLE CARRIER ANNEX",
+    "city": "NORRISTOWN",
     "state": "PA"
   },
   "19404": {
@@ -15312,7 +15312,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "PA"
   },
   "19408": {
-    "city": "EAGLEVILLE",
+    "city": "NORRISTOWN",
     "state": "PA"
   },
   "19409": {
@@ -15380,7 +15380,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "PA"
   },
   "19444": {
-    "city": "CONSHOHOCKEN CARRIER ANNEX",
+    "city": "CONSHOHOCKEN",
     "state": "PA"
   },
   "19446": {
@@ -15396,7 +15396,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "PA"
   },
   "19453": {
-    "city": "SOUTHEASTERN PA S&DC",
+    "city": "SOUTHEASTERN",
     "state": "PA"
   },
   "19454": {
@@ -15428,7 +15428,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "PA"
   },
   "19468": {
-    "city": "LIMERICK",
+    "city": "ROYERSFORD",
     "state": "PA"
   },
   "19470": {
@@ -15660,51 +15660,51 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "PA"
   },
   "19601": {
-    "city": "READING PA SDC",
+    "city": "READING",
     "state": "PA"
   },
   "19602": {
-    "city": "READING STATION",
+    "city": "READING",
     "state": "PA"
   },
   "19603": {
-    "city": "READING PA SDC",
+    "city": "READING",
     "state": "PA"
   },
   "19604": {
-    "city": "READING PA SDC",
+    "city": "READING",
     "state": "PA"
   },
   "19605": {
-    "city": "READING PA SDC",
+    "city": "READING",
     "state": "PA"
   },
   "19606": {
-    "city": "READING STATION",
+    "city": "READING",
     "state": "PA"
   },
   "19607": {
-    "city": "SHILLINGTON",
+    "city": "READING",
     "state": "PA"
   },
   "19608": {
-    "city": "SINKING SPRING",
+    "city": "READING",
     "state": "PA"
   },
   "19609": {
-    "city": "WYOMISSING",
+    "city": "READING",
     "state": "PA"
   },
   "19610": {
-    "city": "READING PA SDC",
+    "city": "READING",
     "state": "PA"
   },
   "19611": {
-    "city": "READING PA SDC",
+    "city": "READING",
     "state": "PA"
   },
   "19612": {
-    "city": "READING PA SDC",
+    "city": "READING",
     "state": "PA"
   },
   "19701": {
@@ -15712,7 +15712,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "DE"
   },
   "19702": {
-    "city": "NEWARK CARRIER ANNEX",
+    "city": "BEAR",
     "state": "DE"
   },
   "19703": {
@@ -15740,7 +15740,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "DE"
   },
   "19711": {
-    "city": "CPU ZINGOS",
+    "city": "NEWARK",
     "state": "DE"
   },
   "19713": {
@@ -15752,7 +15752,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "DE"
   },
   "19715": {
-    "city": "FEDERAL",
+    "city": "NEWARK",
     "state": "DE"
   },
   "19717": {
@@ -15760,7 +15760,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "DE"
   },
   "19720": {
-    "city": "CENTERPOINT",
+    "city": "HISTORIC NEW CASTLE",
     "state": "DE"
   },
   "19730": {
@@ -15788,55 +15788,55 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "DE"
   },
   "19801": {
-    "city": "RODNEY SQ",
+    "city": "WILMINGTON",
     "state": "DE"
   },
   "19802": {
-    "city": "EDGEMOOR",
+    "city": "WILMINGTON",
     "state": "DE"
   },
   "19803": {
-    "city": "TALLEYVILLE",
+    "city": "WILMINGTON",
     "state": "DE"
   },
   "19804": {
-    "city": "NEWPORT",
+    "city": "WILMINGTON",
     "state": "DE"
   },
   "19805": {
-    "city": "LANCASTER AVE",
+    "city": "WILMINGTON",
     "state": "DE"
   },
   "19806": {
-    "city": "LANCASTER AVE",
+    "city": "WILMINGTON",
     "state": "DE"
   },
   "19807": {
-    "city": "GREENVILLE",
+    "city": "WILMINGTON",
     "state": "DE"
   },
   "19808": {
-    "city": "MARSHALLTON",
+    "city": "WILMINGTON",
     "state": "DE"
   },
   "19809": {
-    "city": "EDGEMOOR",
+    "city": "WILMINGTON",
     "state": "DE"
   },
   "19810": {
-    "city": "EDGEMOOR",
+    "city": "WILMINGTON",
     "state": "DE"
   },
   "19850": {
-    "city": "WILMINGTON BOX",
+    "city": "HISTORIC NEW CASTLE",
     "state": "DE"
   },
   "19880": {
-    "city": "WILMINGTON BOX",
+    "city": "HISTORIC NEW CASTLE",
     "state": "DE"
   },
   "19899": {
-    "city": "RODNEY SQ",
+    "city": "WILMINGTON",
     "state": "DE"
   },
   "19901": {
@@ -15900,7 +15900,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "DE"
   },
   "19944": {
-    "city": "SUSSEX COUNTY CARRIER ANNEX",
+    "city": "FRANKFORD",
     "state": "DE"
   },
   "19945": {
@@ -16012,99 +16012,99 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "DE"
   },
   "20001": {
-    "city": "LE DROIT PARK",
+    "city": "WASHINGTON",
     "state": "DC"
   },
   "20002": {
-    "city": "NORTHEAST",
+    "city": "WASHINGTON",
     "state": "DC"
   },
   "20003": {
-    "city": "SOUTHEAST",
+    "city": "WASHINGTON",
     "state": "DC"
   },
   "20004": {
-    "city": "SECTION 4 CARRIER ANNEX",
+    "city": "WASHINGTON",
     "state": "DC"
   },
   "20005": {
-    "city": "14TH ST",
+    "city": "WASHINGTON",
     "state": "DC"
   },
   "20006": {
-    "city": "WARD PLACE CARRIER ANNEX",
+    "city": "WASHINGTON",
     "state": "DC"
   },
   "20007": {
-    "city": "CALVERT",
+    "city": "WASHINGTON",
     "state": "DC"
   },
   "20008": {
-    "city": "CLEVELAND PARK",
+    "city": "WASHINGTON",
     "state": "DC"
   },
   "20009": {
-    "city": "14TH ST",
+    "city": "WASHINGTON",
     "state": "DC"
   },
   "20010": {
-    "city": "COLUMBIA HEIGHTS",
+    "city": "WASHINGTON",
     "state": "DC"
   },
   "20011": {
-    "city": "LAMMOND RIGGS",
+    "city": "WASHINGTON",
     "state": "DC"
   },
   "20012": {
-    "city": "SECTION 12 CARRIER ANNEX",
+    "city": "WASHINGTON",
     "state": "DC"
   },
   "20013": {
-    "city": "NATIONAL CAPITOL",
+    "city": "WASHINGTON",
     "state": "DC"
   },
   "20015": {
-    "city": "NORTHWEST",
+    "city": "WASHINGTON",
     "state": "DC"
   },
   "20016": {
-    "city": "FRIENDSHIP",
+    "city": "WASHINGTON",
     "state": "DC"
   },
   "20017": {
-    "city": "BROOKLAND",
+    "city": "WASHINGTON",
     "state": "DC"
   },
   "20018": {
-    "city": "CUSTOMS HOUSE",
+    "city": "WASHINGTON",
     "state": "DC"
   },
   "20019": {
-    "city": "SECTION 19 CARRIER ANNEX",
+    "city": "WASHINGTON",
     "state": "DC"
   },
   "20020": {
-    "city": "ANACOSTIA CARRIER ANNEX",
+    "city": "TEMPLE HILLS",
     "state": "MD"
   },
   "20024": {
-    "city": "SOUTHWEST",
+    "city": "WASHINGTON",
     "state": "DC"
   },
   "20026": {
-    "city": "LENFANT PLAZA",
+    "city": "WASHINGTON",
     "state": "DC"
   },
   "20027": {
-    "city": "GEORGETOWN",
+    "city": "WASHINGTON",
     "state": "DC"
   },
   "20029": {
-    "city": "BENNING",
+    "city": "WASHINGTON",
     "state": "DC"
   },
   "20030": {
-    "city": "FREDERICK DOUGLASS",
+    "city": "WASHINGTON",
     "state": "DC"
   },
   "20032": {
@@ -16112,51 +16112,51 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "DC"
   },
   "20033": {
-    "city": "FARRAGUT",
+    "city": "WASHINGTON",
     "state": "DC"
   },
   "20035": {
-    "city": "WASHINGTON SQUARE",
+    "city": "WASHINGTON",
     "state": "DC"
   },
   "20036": {
-    "city": "22ND STREET",
+    "city": "WASHINGTON",
     "state": "DC"
   },
   "20037": {
-    "city": "22ND STREET",
+    "city": "WASHINGTON",
     "state": "DC"
   },
   "20038": {
-    "city": "MCPHERSON",
+    "city": "WASHINGTON",
     "state": "DC"
   },
   "20039": {
-    "city": "LAMMOND RIGGS",
+    "city": "WASHINGTON",
     "state": "DC"
   },
   "20040": {
-    "city": "BRIGHTWOOD",
+    "city": "WASHINGTON",
     "state": "DC"
   },
   "20041": {
-    "city": "DULLES",
+    "city": "STERLING",
     "state": "VA"
   },
   "20043": {
-    "city": "MARTIN LUTHER KING JR",
+    "city": "WASHINGTON",
     "state": "DC"
   },
   "20044": {
-    "city": "BENJAMIN FRANKLIN",
+    "city": "WASHINGTON",
     "state": "DC"
   },
   "20045": {
-    "city": "SECTION 1 CARRIER ANNEX",
+    "city": "WASHINGTON",
     "state": "DC"
   },
   "20056": {
-    "city": "14TH ST",
+    "city": "WASHINGTON",
     "state": "DC"
   },
   "20090": {
@@ -16164,7 +16164,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "DC"
   },
   "20091": {
-    "city": "TECHWORLD",
+    "city": "WASHINGTON",
     "state": "DC"
   },
   "20105": {
@@ -16176,7 +16176,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "VA"
   },
   "20108": {
-    "city": "DOWNTOWN MANASSAS",
+    "city": "MANASSAS",
     "state": "VA"
   },
   "20109": {
@@ -16188,11 +16188,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "VA"
   },
   "20111": {
-    "city": "MANASSAS ANNEX",
+    "city": "MANASSAS",
     "state": "VA"
   },
   "20112": {
-    "city": "MANASSAS ANNEX",
+    "city": "MANASSAS",
     "state": "VA"
   },
   "20113": {
@@ -16220,7 +16220,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "VA"
   },
   "20120": {
-    "city": "SULLY STATION",
+    "city": "CENTREVILLE",
     "state": "VA"
   },
   "20121": {
@@ -16300,15 +16300,15 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "VA"
   },
   "20146": {
-    "city": "ASHBURN",
+    "city": "DULLES",
     "state": "VA"
   },
   "20147": {
-    "city": "ASHBURN",
+    "city": "DULLES",
     "state": "VA"
   },
   "20148": {
-    "city": "ASHBURN",
+    "city": "DULLES",
     "state": "VA"
   },
   "20151": {
@@ -16324,7 +16324,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "VA"
   },
   "20155": {
-    "city": "TRI CITY GAINESVILLE",
+    "city": "GAINESVILLE",
     "state": "VA"
   },
   "20156": {
@@ -16340,7 +16340,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "VA"
   },
   "20160": {
-    "city": "CPU LINCOLN",
+    "city": "LINCOLN",
     "state": "VA"
   },
   "20164": {
@@ -16348,11 +16348,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "VA"
   },
   "20165": {
-    "city": "POTOMAC FALLS",
+    "city": "STERLING",
     "state": "VA"
   },
   "20166": {
-    "city": "POTOMAC FALLS",
+    "city": "STERLING",
     "state": "VA"
   },
   "20167": {
@@ -16364,7 +16364,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "VA"
   },
   "20169": {
-    "city": "TRI CITY GAINESVILLE",
+    "city": "GAINESVILLE",
     "state": "VA"
   },
   "20170": {
@@ -16372,7 +16372,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "VA"
   },
   "20171": {
-    "city": "OAK HILL",
+    "city": "HERNDON",
     "state": "VA"
   },
   "20172": {
@@ -16380,7 +16380,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "VA"
   },
   "20175": {
-    "city": "LEESBURG ANNEX",
+    "city": "LEESBURG",
     "state": "VA"
   },
   "20176": {
@@ -16392,7 +16392,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "VA"
   },
   "20178": {
-    "city": "DOWNTOWN LEESBURG",
+    "city": "LEESBURG",
     "state": "VA"
   },
   "20180": {
@@ -16416,11 +16416,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "VA"
   },
   "20186": {
-    "city": "WARRENTON CARRIER ANNEX",
+    "city": "WARRENTON",
     "state": "VA"
   },
   "20187": {
-    "city": "VINT HILL FARMS",
+    "city": "WARRENTON",
     "state": "VA"
   },
   "20188": {
@@ -16452,15 +16452,15 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "VA"
   },
   "20601": {
-    "city": "WALDORF MD SDC",
+    "city": "WALDORF",
     "state": "MD"
   },
   "20602": {
-    "city": "WALDORF MD SDC",
+    "city": "WALDORF",
     "state": "MD"
   },
   "20603": {
-    "city": "SAINT CHARLES CENTER",
+    "city": "WALDORF",
     "state": "MD"
   },
   "20604": {
@@ -16700,7 +16700,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MD"
   },
   "20695": {
-    "city": "WALDORF MD SDC",
+    "city": "WALDORF",
     "state": "MD"
   },
   "20701": {
@@ -16708,7 +16708,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MD"
   },
   "20703": {
-    "city": "LANHAM SEABROOK",
+    "city": "LANHAM",
     "state": "MD"
   },
   "20704": {
@@ -16720,23 +16720,23 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MD"
   },
   "20706": {
-    "city": "LANHAM SEABROOK",
+    "city": "LANHAM",
     "state": "MD"
   },
   "20707": {
-    "city": "LAUREL CARRIER ANNEX",
+    "city": "LAUREL",
     "state": "MD"
   },
   "20708": {
-    "city": "LAUREL CARRIER ANNEX",
+    "city": "LAUREL",
     "state": "MD"
   },
   "20709": {
-    "city": "MONTPELIER",
+    "city": "LAUREL",
     "state": "MD"
   },
   "20710": {
-    "city": "SOUTHERN MARYLAND MD S&DC",
+    "city": "HYATTSVILLE",
     "state": "MD"
   },
   "20711": {
@@ -16744,7 +16744,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MD"
   },
   "20712": {
-    "city": "SOUTHERN MARYLAND MD S&DC",
+    "city": "HYATTSVILLE",
     "state": "MD"
   },
   "20714": {
@@ -16756,11 +16756,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MD"
   },
   "20716": {
-    "city": "MITCHELLVILLE",
+    "city": "BOWIE",
     "state": "MD"
   },
   "20717": {
-    "city": "MITCHELLVILLE",
+    "city": "BOWIE",
     "state": "MD"
   },
   "20718": {
@@ -16768,7 +16768,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MD"
   },
   "20719": {
-    "city": "WEST BOWIE",
+    "city": "BOWIE",
     "state": "MD"
   },
   "20720": {
@@ -16776,7 +16776,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MD"
   },
   "20721": {
-    "city": "MITCHELLVILLE CARRIER ANNEX",
+    "city": "BOWIE",
     "state": "MD"
   },
   "20722": {
@@ -16784,11 +16784,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MD"
   },
   "20723": {
-    "city": "LAUREL CARRIER ANNEX",
+    "city": "LAUREL",
     "state": "MD"
   },
   "20724": {
-    "city": "LAUREL CARRIER ANNEX",
+    "city": "LAUREL",
     "state": "MD"
   },
   "20725": {
@@ -16796,7 +16796,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MD"
   },
   "20726": {
-    "city": "MONTPELIER",
+    "city": "LAUREL",
     "state": "MD"
   },
   "20731": {
@@ -16820,19 +16820,19 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MD"
   },
   "20737": {
-    "city": "SOUTHERN MARYLAND MD S&DC",
+    "city": "HYATTSVILLE",
     "state": "MD"
   },
   "20738": {
-    "city": "KENILWORTH",
+    "city": "RIVERDALE",
     "state": "MD"
   },
   "20740": {
-    "city": "NORTH COLLEGE PARK",
+    "city": "COLLEGE PARK",
     "state": "MD"
   },
   "20741": {
-    "city": "NORTH COLLEGE PARK",
+    "city": "COLLEGE PARK",
     "state": "MD"
   },
   "20743": {
@@ -16936,11 +16936,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MD"
   },
   "20774": {
-    "city": "LARGO",
+    "city": "UPPER MARLBORO",
     "state": "MD"
   },
   "20775": {
-    "city": "KETTERING",
+    "city": "UPPER MARLBORO",
     "state": "MD"
   },
   "20776": {
@@ -16964,35 +16964,35 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MD"
   },
   "20782": {
-    "city": "SOUTHERN MARYLAND MD S&DC",
+    "city": "HYATTSVILLE",
     "state": "MD"
   },
   "20783": {
-    "city": "SOUTHERN MARYLAND MD S&DC",
+    "city": "HYATTSVILLE",
     "state": "MD"
   },
   "20784": {
-    "city": "LANDOVER HILLS",
+    "city": "HYATTSVILLE",
     "state": "MD"
   },
   "20785": {
-    "city": "LANDOVER",
+    "city": "HYATTSVILLE",
     "state": "MD"
   },
   "20787": {
-    "city": "LANGLEY PARK",
+    "city": "HYATTSVILLE",
     "state": "MD"
   },
   "20788": {
-    "city": "PRINCE GEORGES PLAZA",
+    "city": "HYATTSVILLE",
     "state": "MD"
   },
   "20791": {
-    "city": "HAMPTON PARK",
+    "city": "CAPITOL HEIGHTS",
     "state": "MD"
   },
   "20792": {
-    "city": "LARGO",
+    "city": "UPPER MARLBORO",
     "state": "MD"
   },
   "20794": {
@@ -17004,23 +17004,23 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MD"
   },
   "20813": {
-    "city": "FRIENDSHIP HEIGHTS",
+    "city": "CHEVY CHASE",
     "state": "MD"
   },
   "20814": {
-    "city": "WESTLAKE",
+    "city": "BETHESDA",
     "state": "MD"
   },
   "20815": {
-    "city": "WESTLAKE",
+    "city": "BETHESDA",
     "state": "MD"
   },
   "20816": {
-    "city": "WESTLAKE",
+    "city": "BETHESDA",
     "state": "MD"
   },
   "20817": {
-    "city": "WESTLAKE",
+    "city": "BETHESDA",
     "state": "MD"
   },
   "20818": {
@@ -17028,7 +17028,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MD"
   },
   "20824": {
-    "city": "BETHESDA",
+    "city": "CHEVY CHASE",
     "state": "MD"
   },
   "20825": {
@@ -17036,7 +17036,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MD"
   },
   "20827": {
-    "city": "WESTLAKE",
+    "city": "BETHESDA",
     "state": "MD"
   },
   "20830": {
@@ -17072,11 +17072,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MD"
   },
   "20847": {
-    "city": "PIKE",
+    "city": "ROCKVILLE",
     "state": "MD"
   },
   "20848": {
-    "city": "TWINBROOK",
+    "city": "ROCKVILLE",
     "state": "MD"
   },
   "20849": {
@@ -17088,15 +17088,15 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MD"
   },
   "20851": {
-    "city": "TWINBROOK",
+    "city": "ROCKVILLE",
     "state": "MD"
   },
   "20852": {
-    "city": "ROCKVILLE CARRIER ANNEX",
+    "city": "ROCKVILLE",
     "state": "MD"
   },
   "20853": {
-    "city": "TWINBROOK",
+    "city": "ROCKVILLE",
     "state": "MD"
   },
   "20854": {
@@ -17156,7 +17156,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MD"
   },
   "20878": {
-    "city": "DIAMOND FARMS",
+    "city": "GAITHERSBURG",
     "state": "MD"
   },
   "20879": {
@@ -17172,7 +17172,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MD"
   },
   "20883": {
-    "city": "KENTLANDS",
+    "city": "GAITHERSBURG",
     "state": "MD"
   },
   "20884": {
@@ -17180,7 +17180,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MD"
   },
   "20885": {
-    "city": "DIAMOND FARMS",
+    "city": "GAITHERSBURG",
     "state": "MD"
   },
   "20886": {
@@ -17188,7 +17188,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MD"
   },
   "20891": {
-    "city": "WHITE FLINT STATION",
+    "city": "ROCKVILLE",
     "state": "MD"
   },
   "20895": {
@@ -17200,31 +17200,31 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MD"
   },
   "20898": {
-    "city": "SUBURBAN WINDOW SCV",
+    "city": "GAITHERSBURG",
     "state": "MD"
   },
   "20901": {
-    "city": "SILVER SPRING CARRIER ANNEX",
+    "city": "SILVER SPRING",
     "state": "MD"
   },
   "20902": {
-    "city": "WHEATON",
+    "city": "SILVER SPRING",
     "state": "MD"
   },
   "20903": {
-    "city": "SILVER SPRING CARRIER ANNEX",
+    "city": "SILVER SPRING",
     "state": "MD"
   },
   "20904": {
-    "city": "COLESVILLE CARRIER ANNEX",
+    "city": "SILVER SPRING",
     "state": "MD"
   },
   "20905": {
-    "city": "COLESVILLE",
+    "city": "SILVER SPRING",
     "state": "MD"
   },
   "20906": {
-    "city": "ASPEN HILL",
+    "city": "SILVER SPRING",
     "state": "MD"
   },
   "20907": {
@@ -17232,7 +17232,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MD"
   },
   "20908": {
-    "city": "LEISURE WORLD FINANCE",
+    "city": "SILVER SPRING",
     "state": "MD"
   },
   "20910": {
@@ -17244,7 +17244,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MD"
   },
   "20912": {
-    "city": "TAKOMA PARK CARRIER ANNEX",
+    "city": "SILVER SPRING",
     "state": "MD"
   },
   "20913": {
@@ -17252,19 +17252,19 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MD"
   },
   "20914": {
-    "city": "COLESVILLE",
+    "city": "SILVER SPRING",
     "state": "MD"
   },
   "20915": {
-    "city": "WHEATON",
+    "city": "SILVER SPRING",
     "state": "MD"
   },
   "20916": {
-    "city": "ASPEN HILL",
+    "city": "SILVER SPRING",
     "state": "MD"
   },
   "20918": {
-    "city": "WOODMOOR",
+    "city": "SILVER SPRING",
     "state": "MD"
   },
   "21001": {
@@ -17284,7 +17284,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MD"
   },
   "21012": {
-    "city": "ANNAPOLIS MD S&DC",
+    "city": "ANNAPOLIS",
     "state": "MD"
   },
   "21013": {
@@ -17328,15 +17328,15 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MD"
   },
   "21030": {
-    "city": "COCKEYSVILLE HUNT VALLEY",
+    "city": "COCKEYSVILLE",
     "state": "MD"
   },
   "21031": {
-    "city": "COCKEYSVILLE HUNT VALLEY",
+    "city": "COCKEYSVILLE",
     "state": "MD"
   },
   "21032": {
-    "city": "ANNAPOLIS MD S&DC",
+    "city": "ANNAPOLIS",
     "state": "MD"
   },
   "21034": {
@@ -17344,7 +17344,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MD"
   },
   "21035": {
-    "city": "ANNAPOLIS MD S&DC",
+    "city": "ANNAPOLIS",
     "state": "MD"
   },
   "21036": {
@@ -17372,15 +17372,15 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MD"
   },
   "21044": {
-    "city": "AMERICAN CITIES",
+    "city": "COLUMBIA",
     "state": "MD"
   },
   "21045": {
-    "city": "COLUMBIA MD SDC",
+    "city": "COLUMBIA",
     "state": "MD"
   },
   "21046": {
-    "city": "COLUMBIA MD SDC",
+    "city": "COLUMBIA",
     "state": "MD"
   },
   "21047": {
@@ -17400,7 +17400,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MD"
   },
   "21052": {
-    "city": "DUNDALK SPARROWS POINT",
+    "city": "DUNDALK",
     "state": "MD"
   },
   "21053": {
@@ -17520,7 +17520,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MD"
   },
   "21122": {
-    "city": "SEVERNA PARK MD S&DC",
+    "city": "SEVERNA PARK",
     "state": "MD"
   },
   "21123": {
@@ -17564,7 +17564,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MD"
   },
   "21146": {
-    "city": "SEVERNA PARK MD S&DC",
+    "city": "SEVERNA PARK",
     "state": "MD"
   },
   "21150": {
@@ -17616,11 +17616,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MD"
   },
   "21201": {
-    "city": "BALTIMORE MD E LEXINGTON SDC",
+    "city": "BALTIMORE",
     "state": "MD"
   },
   "21202": {
-    "city": "BALTIMORE MD E LEXINGTON SDC",
+    "city": "BALTIMORE",
     "state": "MD"
   },
   "21203": {
@@ -17628,15 +17628,15 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MD"
   },
   "21204": {
-    "city": "LOCH RAVEN",
+    "city": "TOWSON",
     "state": "MD"
   },
   "21205": {
-    "city": "CLIFTON EAST END",
+    "city": "BALTIMORE",
     "state": "MD"
   },
   "21206": {
-    "city": "RASPEBURG",
+    "city": "BALTIMORE",
     "state": "MD"
   },
   "21207": {
@@ -17644,51 +17644,51 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MD"
   },
   "21208": {
-    "city": "PIKESVILLE CARRIER ANNEX",
+    "city": "PIKESVILLE",
     "state": "MD"
   },
   "21209": {
-    "city": "MOUNT WASHINGTON",
+    "city": "BALTIMORE",
     "state": "MD"
   },
   "21210": {
-    "city": "HAMPDEN ROLAND PARK",
+    "city": "BALTIMORE",
     "state": "MD"
   },
   "21211": {
-    "city": "HAMPDEN ROLAND PARK",
+    "city": "BALTIMORE",
     "state": "MD"
   },
   "21212": {
-    "city": "GOVANS",
+    "city": "BALTIMORE",
     "state": "MD"
   },
   "21213": {
-    "city": "CLIFTON EAST END",
+    "city": "BALTIMORE",
     "state": "MD"
   },
   "21214": {
-    "city": "HAMILTON",
+    "city": "BALTIMORE",
     "state": "MD"
   },
   "21215": {
-    "city": "ARLINGTON",
+    "city": "BALTIMORE",
     "state": "MD"
   },
   "21216": {
-    "city": "WALBROOK",
+    "city": "BALTIMORE",
     "state": "MD"
   },
   "21217": {
-    "city": "DRUID",
+    "city": "BALTIMORE",
     "state": "MD"
   },
   "21218": {
-    "city": "WAVERLY",
+    "city": "BALTIMORE",
     "state": "MD"
   },
   "21219": {
-    "city": "DUNDALK SPARROWS POINT",
+    "city": "DUNDALK",
     "state": "MD"
   },
   "21220": {
@@ -17700,23 +17700,23 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MD"
   },
   "21222": {
-    "city": "DUNDALK SPARROWS POINT",
+    "city": "DUNDALK",
     "state": "MD"
   },
   "21223": {
-    "city": "FRANKLIN",
+    "city": "BALTIMORE",
     "state": "MD"
   },
   "21224": {
-    "city": "HIGHLANDTOWN",
+    "city": "BALTIMORE",
     "state": "MD"
   },
   "21225": {
-    "city": "BROOKLYN CURTIS BAY",
+    "city": "BROOKLYN",
     "state": "MD"
   },
   "21226": {
-    "city": "BROOKLYN SOUTH",
+    "city": "BROOKLYN",
     "state": "MD"
   },
   "21227": {
@@ -17728,15 +17728,15 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MD"
   },
   "21229": {
-    "city": "BALTIMORE MD E LEXINGTON SDC",
+    "city": "BALTIMORE",
     "state": "MD"
   },
   "21230": {
-    "city": "BROOKLYN SOUTH",
+    "city": "BROOKLYN",
     "state": "MD"
   },
   "21231": {
-    "city": "BALTIMORE MD E LEXINGTON SDC",
+    "city": "BALTIMORE",
     "state": "MD"
   },
   "21234": {
@@ -17752,7 +17752,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MD"
   },
   "21239": {
-    "city": "NORTHWOOD",
+    "city": "BALTIMORE",
     "state": "MD"
   },
   "21240": {
@@ -17764,11 +17764,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MD"
   },
   "21270": {
-    "city": "ARLINGTON",
+    "city": "BALTIMORE",
     "state": "MD"
   },
   "21281": {
-    "city": "SOUTHEAST",
+    "city": "BALTIMORE",
     "state": "MD"
   },
   "21282": {
@@ -17776,7 +17776,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MD"
   },
   "21284": {
-    "city": "LOCH RAVEN",
+    "city": "TOWSON",
     "state": "MD"
   },
   "21285": {
@@ -17784,7 +17784,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MD"
   },
   "21286": {
-    "city": "LOCH RAVEN",
+    "city": "TOWSON",
     "state": "MD"
   },
   "21297": {
@@ -17792,15 +17792,15 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MD"
   },
   "21401": {
-    "city": "ANNAPOLIS MD S&DC",
+    "city": "ANNAPOLIS",
     "state": "MD"
   },
   "21402": {
-    "city": "ANNAPOLIS MD S&DC",
+    "city": "ANNAPOLIS",
     "state": "MD"
   },
   "21403": {
-    "city": "ANNAPOLIS MD S&DC",
+    "city": "ANNAPOLIS",
     "state": "MD"
   },
   "21404": {
@@ -17808,11 +17808,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MD"
   },
   "21409": {
-    "city": "ANNAPOLIS MD S&DC",
+    "city": "ANNAPOLIS",
     "state": "MD"
   },
   "21412": {
-    "city": "NAVAL ACADEMY",
+    "city": "ANNAPOLIS",
     "state": "MD"
   },
   "21501": {
@@ -17824,15 +17824,15 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MD"
   },
   "21503": {
-    "city": "STATION A",
+    "city": "CUMBERLAND",
     "state": "MD"
   },
   "21504": {
-    "city": "LAVALE",
+    "city": "CUMBERLAND",
     "state": "MD"
   },
   "21505": {
-    "city": "CRESAPTOWN",
+    "city": "CUMBERLAND",
     "state": "MD"
   },
   "21520": {
@@ -17900,7 +17900,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MD"
   },
   "21550": {
-    "city": "MOUNTAIN LAKE PARK",
+    "city": "OAKLAND",
     "state": "MD"
   },
   "21555": {
@@ -18172,7 +18172,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MD"
   },
   "21702": {
-    "city": "COLLEGE ESTATES",
+    "city": "FREDERICK",
     "state": "MD"
   },
   "21703": {
@@ -18268,7 +18268,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MD"
   },
   "21742": {
-    "city": "NORTHERN",
+    "city": "HAGERSTOWN",
     "state": "MD"
   },
   "21747": {
@@ -18412,11 +18412,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MD"
   },
   "21802": {
-    "city": "ROUTE 13",
+    "city": "SALISBURY",
     "state": "MD"
   },
   "21803": {
-    "city": "MAIN STREET",
+    "city": "SALISBURY",
     "state": "MD"
   },
   "21804": {
@@ -18524,7 +18524,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MD"
   },
   "21862": {
-    "city": "OCEAN PINES",
+    "city": "BERLIN",
     "state": "MD"
   },
   "21863": {
@@ -18556,7 +18556,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MD"
   },
   "21872": {
-    "city": "OCEAN PINES",
+    "city": "BERLIN",
     "state": "MD"
   },
   "21874": {
@@ -18648,7 +18648,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "VA"
   },
   "22025": {
-    "city": "WOODBRIDGE VA SDC",
+    "city": "WOODBRIDGE",
     "state": "VA"
   },
   "22026": {
@@ -18664,11 +18664,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "VA"
   },
   "22031": {
-    "city": "TURNPIKE",
+    "city": "FAIRFAX",
     "state": "VA"
   },
   "22032": {
-    "city": "TURNPIKE",
+    "city": "FAIRFAX",
     "state": "VA"
   },
   "22033": {
@@ -18688,27 +18688,27 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "VA"
   },
   "22040": {
-    "city": "FALLS CHURCH FINANCE",
+    "city": "FALLS CHURCH",
     "state": "VA"
   },
   "22041": {
-    "city": "BAILEYS CROSSROADS",
+    "city": "FALLS CHURCH",
     "state": "VA"
   },
   "22042": {
-    "city": "FALLS CHURCH 43 ANNEX",
+    "city": "FAIRFAX",
     "state": "VA"
   },
   "22043": {
-    "city": "FALLS CHURCH 43 ANNEX",
+    "city": "FAIRFAX",
     "state": "VA"
   },
   "22044": {
-    "city": "BAILEYS CROSSROADS",
+    "city": "FALLS CHURCH",
     "state": "VA"
   },
   "22046": {
-    "city": "BAILEYS CROSSROADS",
+    "city": "FALLS CHURCH",
     "state": "VA"
   },
   "22060": {
@@ -18728,15 +18728,15 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "VA"
   },
   "22102": {
-    "city": "WEST MCLEAN",
+    "city": "MC LEAN",
     "state": "VA"
   },
   "22103": {
-    "city": "WEST MCLEAN",
+    "city": "MC LEAN",
     "state": "VA"
   },
   "22106": {
-    "city": "CENTRAL MCLEAN DPOBU",
+    "city": "MC LEAN",
     "state": "VA"
   },
   "22116": {
@@ -18772,7 +18772,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "VA"
   },
   "22152": {
-    "city": "WEST SPRINGFIELD",
+    "city": "SPRINGFIELD",
     "state": "VA"
   },
   "22153": {
@@ -18796,7 +18796,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "VA"
   },
   "22183": {
-    "city": "TYSONS SELF SERV PO",
+    "city": "VIENNA",
     "state": "VA"
   },
   "22191": {
@@ -18804,11 +18804,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "VA"
   },
   "22192": {
-    "city": "WOODBRIDGE VA SDC",
+    "city": "WOODBRIDGE",
     "state": "VA"
   },
   "22193": {
-    "city": "WOODBRIDGE VA SDC",
+    "city": "WOODBRIDGE",
     "state": "VA"
   },
   "22194": {
@@ -18816,7 +18816,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "VA"
   },
   "22195": {
-    "city": "WOODBRIDGE VA SDC",
+    "city": "WOODBRIDGE",
     "state": "VA"
   },
   "22199": {
@@ -18828,31 +18828,31 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "VA"
   },
   "22202": {
-    "city": "EADS CARRIER ANNEX",
+    "city": "ARLINGTON",
     "state": "VA"
   },
   "22203": {
-    "city": "BUCKINGHAM",
+    "city": "ARLINGTON",
     "state": "VA"
   },
   "22204": {
-    "city": "SOUTH",
+    "city": "ARLINGTON",
     "state": "VA"
   },
   "22205": {
-    "city": "PRESTON KING",
+    "city": "ARLINGTON",
     "state": "VA"
   },
   "22206": {
-    "city": "SHIRLINGTON",
+    "city": "ARLINGTON",
     "state": "VA"
   },
   "22207": {
-    "city": "NORTH ARLINGTON",
+    "city": "ARLINGTON",
     "state": "VA"
   },
   "22209": {
-    "city": "ROSSLYN CARRIER ANNEX",
+    "city": "ARLINGTON",
     "state": "VA"
   },
   "22210": {
@@ -18864,19 +18864,19 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "VA"
   },
   "22213": {
-    "city": "PRESTON KING",
+    "city": "ARLINGTON",
     "state": "VA"
   },
   "22215": {
-    "city": "CRYSTAL CITY NEW",
+    "city": "ARLINGTON",
     "state": "VA"
   },
   "22216": {
-    "city": "COURT HOUSE ARLINGTON",
+    "city": "ARLINGTON",
     "state": "VA"
   },
   "22219": {
-    "city": "ROSSLYN",
+    "city": "ARLINGTON",
     "state": "VA"
   },
   "22301": {
@@ -18884,15 +18884,15 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "VA"
   },
   "22302": {
-    "city": "PARKFAIRFAX",
+    "city": "ALEXANDRIA",
     "state": "VA"
   },
   "22303": {
-    "city": "JEFFERSON MANOR",
+    "city": "ALEXANDRIA",
     "state": "VA"
   },
   "22304": {
-    "city": "FRANCONIA",
+    "city": "ALEXANDRIA",
     "state": "VA"
   },
   "22305": {
@@ -18900,31 +18900,31 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "VA"
   },
   "22306": {
-    "city": "COMMUNITY NEW",
+    "city": "ALEXANDRIA",
     "state": "VA"
   },
   "22307": {
-    "city": "BELLEVIEW",
+    "city": "ALEXANDRIA",
     "state": "VA"
   },
   "22308": {
-    "city": "ENGLESIDE",
+    "city": "ALEXANDRIA",
     "state": "VA"
   },
   "22309": {
-    "city": "ENGLESIDE",
+    "city": "ALEXANDRIA",
     "state": "VA"
   },
   "22310": {
-    "city": "FRANCONIA",
+    "city": "ALEXANDRIA",
     "state": "VA"
   },
   "22311": {
-    "city": "LINCOLNIA",
+    "city": "ALEXANDRIA",
     "state": "VA"
   },
   "22312": {
-    "city": "LINCOLNIA",
+    "city": "ALEXANDRIA",
     "state": "VA"
   },
   "22313": {
@@ -18932,15 +18932,15 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "VA"
   },
   "22314": {
-    "city": "MEMORIAL ANNEX",
+    "city": "ALEXANDRIA",
     "state": "VA"
   },
   "22315": {
-    "city": "KINGSTOWNE",
+    "city": "ALEXANDRIA",
     "state": "VA"
   },
   "22320": {
-    "city": "GEORGE MASON",
+    "city": "ALEXANDRIA",
     "state": "VA"
   },
   "22401": {
@@ -18952,7 +18952,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "VA"
   },
   "22403": {
-    "city": "CPU EARLS TRUE VALUE",
+    "city": "FREDERICKSBURG",
     "state": "VA"
   },
   "22404": {
@@ -18960,11 +18960,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "VA"
   },
   "22405": {
-    "city": "FALMOUTH",
+    "city": "FREDERICKSBURG",
     "state": "VA"
   },
   "22406": {
-    "city": "FALMOUTH",
+    "city": "FREDERICKSBURG",
     "state": "VA"
   },
   "22407": {
@@ -19008,7 +19008,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "VA"
   },
   "22442": {
-    "city": "COLES POINT",
+    "city": "HAGUE",
     "state": "VA"
   },
   "22443": {
@@ -19260,7 +19260,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "VA"
   },
   "22604": {
-    "city": "DOWNTOWN WINCHESTER",
+    "city": "WINCHESTER",
     "state": "VA"
   },
   "22610": {
@@ -19528,7 +19528,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "VA"
   },
   "22803": {
-    "city": "DOWNTOWN HARRISONBURG",
+    "city": "HARRISONBURG",
     "state": "VA"
   },
   "22810": {
@@ -19636,27 +19636,27 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "VA"
   },
   "22901": {
-    "city": "CHARLOTTESVILLE VA S&DC",
+    "city": "CHARLOTTESVILLE",
     "state": "VA"
   },
   "22902": {
-    "city": "CHARLOTTESVILLE VA S&DC",
+    "city": "CHARLOTTESVILLE",
     "state": "VA"
   },
   "22903": {
-    "city": "CHARLOTTESVILLE VA S&DC",
+    "city": "CHARLOTTESVILLE",
     "state": "VA"
   },
   "22905": {
-    "city": "BARRACKS ROAD",
+    "city": "CHARLOTTESVILLE",
     "state": "VA"
   },
   "22906": {
-    "city": "CHARLOTTESVILLE VA S&DC",
+    "city": "CHARLOTTESVILLE",
     "state": "VA"
   },
   "22911": {
-    "city": "CHARLOTTESVILLE VA S&DC",
+    "city": "CHARLOTTESVILLE",
     "state": "VA"
   },
   "22920": {
@@ -19676,7 +19676,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "VA"
   },
   "22931": {
-    "city": "CHARLOTTESVILLE VA S&DC",
+    "city": "CHARLOTTESVILLE",
     "state": "VA"
   },
   "22932": {
@@ -19688,11 +19688,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "VA"
   },
   "22936": {
-    "city": "CHARLOTTESVILLE VA S&DC",
+    "city": "CHARLOTTESVILLE",
     "state": "VA"
   },
   "22937": {
-    "city": "CHARLOTTESVILLE VA S&DC",
+    "city": "CHARLOTTESVILLE",
     "state": "VA"
   },
   "22938": {
@@ -19704,7 +19704,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "VA"
   },
   "22940": {
-    "city": "CHARLOTTESVILLE VA S&DC",
+    "city": "CHARLOTTESVILLE",
     "state": "VA"
   },
   "22942": {
@@ -19720,11 +19720,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "VA"
   },
   "22946": {
-    "city": "CHARLOTTESVILLE VA S&DC",
+    "city": "CHARLOTTESVILLE",
     "state": "VA"
   },
   "22947": {
-    "city": "CHARLOTTESVILLE VA S&DC",
+    "city": "CHARLOTTESVILLE",
     "state": "VA"
   },
   "22948": {
@@ -19748,7 +19748,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "VA"
   },
   "22959": {
-    "city": "CHARLOTTESVILLE VA S&DC",
+    "city": "CHARLOTTESVILLE",
     "state": "VA"
   },
   "22960": {
@@ -19792,7 +19792,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "VA"
   },
   "22974": {
-    "city": "CHARLOTTESVILLE VA S&DC",
+    "city": "CHARLOTTESVILLE",
     "state": "VA"
   },
   "22976": {
@@ -19800,7 +19800,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "VA"
   },
   "22980": {
-    "city": "PARK",
+    "city": "WAYNESBORO",
     "state": "VA"
   },
   "22987": {
@@ -19976,7 +19976,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "VA"
   },
   "23075": {
-    "city": "HIGHLAND SPRINGS",
+    "city": "HENRICO",
     "state": "VA"
   },
   "23076": {
@@ -20048,15 +20048,15 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "VA"
   },
   "23111": {
-    "city": "ATLEE",
+    "city": "MECHANICSVILLE",
     "state": "VA"
   },
   "23112": {
-    "city": "GENITO",
+    "city": "MIDLOTHIAN",
     "state": "VA"
   },
   "23113": {
-    "city": "BRANDERMILL",
+    "city": "MIDLOTHIAN",
     "state": "VA"
   },
   "23114": {
@@ -20068,7 +20068,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "VA"
   },
   "23116": {
-    "city": "ATLEE",
+    "city": "MECHANICSVILLE",
     "state": "VA"
   },
   "23117": {
@@ -20080,7 +20080,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "VA"
   },
   "23120": {
-    "city": "GENITO",
+    "city": "MIDLOTHIAN",
     "state": "VA"
   },
   "23123": {
@@ -20232,7 +20232,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "VA"
   },
   "23188": {
-    "city": "MONTICELLO",
+    "city": "WILLIAMSBURG",
     "state": "VA"
   },
   "23192": {
@@ -20240,115 +20240,115 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "VA"
   },
   "23218": {
-    "city": "CAPITOL",
+    "city": "RICHMOND",
     "state": "VA"
   },
   "23219": {
-    "city": "RICHMOND VA S&DC",
+    "city": "RICHMOND",
     "state": "VA"
   },
   "23220": {
-    "city": "RICHMOND VA S&DC",
+    "city": "RICHMOND",
     "state": "VA"
   },
   "23221": {
-    "city": "WESTHAMPTON",
+    "city": "RICHMOND",
     "state": "VA"
   },
   "23222": {
-    "city": "BELLEVUE",
+    "city": "RICHMOND",
     "state": "VA"
   },
   "23223": {
-    "city": "EAST END",
+    "city": "RICHMOND",
     "state": "VA"
   },
   "23224": {
-    "city": "SOUTHSIDE",
+    "city": "RICHMOND",
     "state": "VA"
   },
   "23225": {
-    "city": "FOREST HILL",
+    "city": "RICHMOND",
     "state": "VA"
   },
   "23226": {
-    "city": "WESTHAMPTON",
+    "city": "RICHMOND",
     "state": "VA"
   },
   "23227": {
-    "city": "BELLEVUE",
+    "city": "RICHMOND",
     "state": "VA"
   },
   "23228": {
-    "city": "LAKESIDE",
+    "city": "HENRICO",
     "state": "VA"
   },
   "23229": {
-    "city": "REGENCY",
+    "city": "HENRICO",
     "state": "VA"
   },
   "23230": {
-    "city": "WEST END",
+    "city": "RICHMOND",
     "state": "VA"
   },
   "23231": {
-    "city": "MONTROSE HEIGHTS",
+    "city": "HENRICO",
     "state": "VA"
   },
   "23233": {
-    "city": "RIDGE",
+    "city": "HENRICO",
     "state": "VA"
   },
   "23234": {
-    "city": "AMPTHILL",
+    "city": "NORTH CHESTERFIELD",
     "state": "VA"
   },
   "23235": {
-    "city": "BON AIR",
+    "city": "NORTH CHESTERFIELD",
     "state": "VA"
   },
   "23236": {
-    "city": "POCOSHOCK CREEK",
+    "city": "NORTH CHESTERFIELD",
     "state": "VA"
   },
   "23237": {
-    "city": "AMPTHILL",
+    "city": "NORTH CHESTERFIELD",
     "state": "VA"
   },
   "23238": {
-    "city": "RIDGE",
+    "city": "HENRICO",
     "state": "VA"
   },
   "23241": {
-    "city": "CENTRAL RICHMOND",
+    "city": "RICHMOND",
     "state": "VA"
   },
   "23242": {
-    "city": "RIDGE",
+    "city": "HENRICO",
     "state": "VA"
   },
   "23250": {
-    "city": "MONTROSE HEIGHTS",
+    "city": "HENRICO",
     "state": "VA"
   },
   "23255": {
-    "city": "REGENCY",
+    "city": "HENRICO",
     "state": "VA"
   },
   "23260": {
-    "city": "RICHMOND VA S&DC",
+    "city": "RICHMOND",
     "state": "VA"
   },
   "23261": {
-    "city": "RICHMOND VA S&DC",
+    "city": "RICHMOND",
     "state": "VA"
   },
   "23285": {
-    "city": "RICHMOND VA S&DC",
+    "city": "RICHMOND",
     "state": "VA"
   },
   "23294": {
-    "city": "REGENCY",
+    "city": "HENRICO",
     "state": "VA"
   },
   "23301": {
@@ -20404,23 +20404,23 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "VA"
   },
   "23321": {
-    "city": "JOLLIFF",
+    "city": "CHESAPEAKE",
     "state": "VA"
   },
   "23322": {
-    "city": "GREAT BRIDGE",
+    "city": "CHESAPEAKE",
     "state": "VA"
   },
   "23323": {
-    "city": "DEEP CREEK",
+    "city": "CHESAPEAKE",
     "state": "VA"
   },
   "23324": {
-    "city": "NORFOLK VA S&DC",
+    "city": "NORFOLK",
     "state": "VA"
   },
   "23325": {
-    "city": "INDIAN RIVER",
+    "city": "CHESAPEAKE",
     "state": "VA"
   },
   "23327": {
@@ -20428,7 +20428,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "VA"
   },
   "23328": {
-    "city": "GREAT BRIDGE",
+    "city": "CHESAPEAKE",
     "state": "VA"
   },
   "23336": {
@@ -20580,11 +20580,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "VA"
   },
   "23432": {
-    "city": "CHUCKATUCK",
+    "city": "SUFFOLK",
     "state": "VA"
   },
   "23433": {
-    "city": "CRITTENDEN",
+    "city": "SUFFOLK",
     "state": "VA"
   },
   "23434": {
@@ -20592,19 +20592,19 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "VA"
   },
   "23435": {
-    "city": "DRIVER",
+    "city": "SUFFOLK",
     "state": "VA"
   },
   "23436": {
-    "city": "DRIVER",
+    "city": "SUFFOLK",
     "state": "VA"
   },
   "23437": {
-    "city": "HOLLAND",
+    "city": "SUFFOLK",
     "state": "VA"
   },
   "23438": {
-    "city": "HOLLAND",
+    "city": "SUFFOLK",
     "state": "VA"
   },
   "23439": {
@@ -20632,7 +20632,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "VA"
   },
   "23451": {
-    "city": "SEAPINES CARRIER ANNEX",
+    "city": "VIRGINIA BEACH",
     "state": "VA"
   },
   "23452": {
@@ -20640,43 +20640,43 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "VA"
   },
   "23453": {
-    "city": "PRINCESS ANNE",
+    "city": "VIRGINIA BEACH",
     "state": "VA"
   },
   "23454": {
-    "city": "HILLTOP OCEANA",
+    "city": "VIRGINIA BEACH",
     "state": "VA"
   },
   "23455": {
-    "city": "BAYSIDE",
+    "city": "VIRGINIA BEACH",
     "state": "VA"
   },
   "23456": {
-    "city": "PRINCESS ANNE",
+    "city": "VIRGINIA BEACH",
     "state": "VA"
   },
   "23457": {
-    "city": "BACKBAY",
+    "city": "VIRGINIA BEACH",
     "state": "VA"
   },
   "23462": {
-    "city": "WITCHDUCK",
+    "city": "VIRGINIA BEACH",
     "state": "VA"
   },
   "23464": {
-    "city": "ACREDALE ANNEX",
+    "city": "VIRGINIA BEACH",
     "state": "VA"
   },
   "23466": {
-    "city": "WITCHDUCK",
+    "city": "VIRGINIA BEACH",
     "state": "VA"
   },
   "23467": {
-    "city": "ACREDALE",
+    "city": "VIRGINIA BEACH",
     "state": "VA"
   },
   "23471": {
-    "city": "BAYSIDE",
+    "city": "VIRGINIA BEACH",
     "state": "VA"
   },
   "23480": {
@@ -20700,79 +20700,79 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "VA"
   },
   "23501": {
-    "city": "NORFOLK VA S&DC",
+    "city": "NORFOLK",
     "state": "VA"
   },
   "23502": {
-    "city": "THOMAS CORNER",
+    "city": "NORFOLK",
     "state": "VA"
   },
   "23503": {
-    "city": "OCEAN VIEW",
+    "city": "NORFOLK",
     "state": "VA"
   },
   "23504": {
-    "city": "NORFOLK VA S&DC",
+    "city": "NORFOLK",
     "state": "VA"
   },
   "23505": {
-    "city": "WRIGHT",
+    "city": "NORFOLK",
     "state": "VA"
   },
   "23507": {
-    "city": "NORFOLK VA S&DC",
+    "city": "NORFOLK",
     "state": "VA"
   },
   "23508": {
-    "city": "MILAN",
+    "city": "NORFOLK",
     "state": "VA"
   },
   "23509": {
-    "city": "LAFAYETTE",
+    "city": "NORFOLK",
     "state": "VA"
   },
   "23510": {
-    "city": "NORFOLK VA S&DC",
+    "city": "NORFOLK",
     "state": "VA"
   },
   "23511": {
-    "city": "NAVAL BASE",
+    "city": "NORFOLK",
     "state": "VA"
   },
   "23513": {
-    "city": "NORVIEW",
+    "city": "NORFOLK",
     "state": "VA"
   },
   "23514": {
-    "city": "CUSTOMHOUSE",
+    "city": "NORFOLK",
     "state": "VA"
   },
   "23517": {
-    "city": "DEBREE",
+    "city": "NORFOLK",
     "state": "VA"
   },
   "23518": {
-    "city": "L C PAGE",
+    "city": "NORFOLK",
     "state": "VA"
   },
   "23523": {
-    "city": "BERKLEY",
+    "city": "NORFOLK",
     "state": "VA"
   },
   "23541": {
-    "city": "THOMAS CORNER",
+    "city": "NORFOLK",
     "state": "VA"
   },
   "23601": {
-    "city": "WARWICK",
+    "city": "NEWPORT NEWS",
     "state": "VA"
   },
   "23602": {
-    "city": "DENBIGH",
+    "city": "NEWPORT NEWS",
     "state": "VA"
   },
   "23603": {
-    "city": "LEE HALL",
+    "city": "NEWPORT NEWS",
     "state": "VA"
   },
   "23604": {
@@ -20780,11 +20780,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "VA"
   },
   "23605": {
-    "city": "HAMPTON VA S&DC",
+    "city": "HAMPTON",
     "state": "VA"
   },
   "23606": {
-    "city": "HIDENWOOD",
+    "city": "NEWPORT NEWS",
     "state": "VA"
   },
   "23607": {
@@ -20792,67 +20792,67 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "VA"
   },
   "23608": {
-    "city": "PATRICK HENRY",
+    "city": "NEWPORT NEWS",
     "state": "VA"
   },
   "23609": {
-    "city": "DENBIGH",
+    "city": "NEWPORT NEWS",
     "state": "VA"
   },
   "23612": {
-    "city": "OYSTER POINT",
+    "city": "NEWPORT NEWS",
     "state": "VA"
   },
   "23651": {
-    "city": "PHOEBUS",
+    "city": "HAMPTON",
     "state": "VA"
   },
   "23661": {
-    "city": "HAMPTON VA S&DC",
+    "city": "HAMPTON",
     "state": "VA"
   },
   "23662": {
-    "city": "HAMPTON VA S&DC",
+    "city": "HAMPTON",
     "state": "VA"
   },
   "23663": {
-    "city": "PHOEBUS",
+    "city": "HAMPTON",
     "state": "VA"
   },
   "23664": {
-    "city": "RIVERDALE",
+    "city": "HAMPTON",
     "state": "VA"
   },
   "23665": {
-    "city": "HAMPTON VA S&DC",
+    "city": "HAMPTON",
     "state": "VA"
   },
   "23666": {
-    "city": "HAMPTON VA S&DC",
+    "city": "HAMPTON",
     "state": "VA"
   },
   "23669": {
-    "city": "HAMPTON VA S&DC",
+    "city": "HAMPTON",
     "state": "VA"
   },
   "23670": {
-    "city": "HAMPTON VA S&DC",
+    "city": "HAMPTON",
     "state": "VA"
   },
   "23690": {
-    "city": "COAST GUARD FINANCE UNIT",
+    "city": "YORKTOWN",
     "state": "VA"
   },
   "23691": {
-    "city": "GRAFTON",
+    "city": "YORKTOWN",
     "state": "VA"
   },
   "23692": {
-    "city": "GRAFTON",
+    "city": "YORKTOWN",
     "state": "VA"
   },
   "23693": {
-    "city": "GRAFTON",
+    "city": "YORKTOWN",
     "state": "VA"
   },
   "23694": {
@@ -20864,7 +20864,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "VA"
   },
   "23701": {
-    "city": "OLIVE",
+    "city": "PORTSMOUTH",
     "state": "VA"
   },
   "23702": {
@@ -20872,7 +20872,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "VA"
   },
   "23703": {
-    "city": "CHURCHLAND",
+    "city": "PORTSMOUTH",
     "state": "VA"
   },
   "23704": {
@@ -20880,7 +20880,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "VA"
   },
   "23705": {
-    "city": "PORTSIDE",
+    "city": "PORTSMOUTH",
     "state": "VA"
   },
   "23707": {
@@ -21244,83 +21244,83 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "VA"
   },
   "24001": {
-    "city": "DOWNTOWN ROANOKE",
+    "city": "ROANOKE",
     "state": "VA"
   },
   "24002": {
-    "city": "DOWNTOWN ROANOKE",
+    "city": "ROANOKE",
     "state": "VA"
   },
   "24003": {
-    "city": "DOWNTOWN ROANOKE",
+    "city": "ROANOKE",
     "state": "VA"
   },
   "24004": {
-    "city": "DOWNTOWN ROANOKE",
+    "city": "ROANOKE",
     "state": "VA"
   },
   "24005": {
-    "city": "DOWNTOWN ROANOKE",
+    "city": "ROANOKE",
     "state": "VA"
   },
   "24006": {
-    "city": "DOWNTOWN ROANOKE",
+    "city": "ROANOKE",
     "state": "VA"
   },
   "24007": {
-    "city": "DOWNTOWN ROANOKE",
+    "city": "ROANOKE",
     "state": "VA"
   },
   "24008": {
-    "city": "DOWNTOWN ROANOKE",
+    "city": "ROANOKE",
     "state": "VA"
   },
   "24009": {
-    "city": "DOWNTOWN ROANOKE",
+    "city": "ROANOKE",
     "state": "VA"
   },
   "24010": {
-    "city": "DOWNTOWN ROANOKE",
+    "city": "ROANOKE",
     "state": "VA"
   },
   "24011": {
-    "city": "ROANOKE CARRIER ANNEX",
+    "city": "ROANOKE",
     "state": "VA"
   },
   "24012": {
-    "city": "ROANOKE CARRIER ANNEX",
+    "city": "ROANOKE",
     "state": "VA"
   },
   "24013": {
-    "city": "ROANOKE CARRIER ANNEX",
+    "city": "ROANOKE",
     "state": "VA"
   },
   "24014": {
-    "city": "ROANOKE CARRIER ANNEX",
+    "city": "ROANOKE",
     "state": "VA"
   },
   "24015": {
-    "city": "GRANDIN ROAD",
+    "city": "ROANOKE",
     "state": "VA"
   },
   "24016": {
-    "city": "ROANOKE CARRIER ANNEX",
+    "city": "ROANOKE",
     "state": "VA"
   },
   "24017": {
-    "city": "MELROSE",
+    "city": "ROANOKE",
     "state": "VA"
   },
   "24018": {
-    "city": "CAVE SPRING",
+    "city": "ROANOKE",
     "state": "VA"
   },
   "24019": {
-    "city": "HOLLINS",
+    "city": "ROANOKE",
     "state": "VA"
   },
   "24020": {
-    "city": "HOLLINS",
+    "city": "ROANOKE",
     "state": "VA"
   },
   "24022": {
@@ -21420,7 +21420,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "VA"
   },
   "24063": {
-    "city": "DOWNTOWN BLACKSBURG",
+    "city": "BLACKSBURG",
     "state": "VA"
   },
   "24064": {
@@ -21528,7 +21528,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "VA"
   },
   "24101": {
-    "city": "CPU SMITH MOUNTAIN",
+    "city": "HARDY",
     "state": "VA"
   },
   "24102": {
@@ -21552,7 +21552,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "VA"
   },
   "24114": {
-    "city": "CENTRAL MARTINSVILLE",
+    "city": "MARTINSVILLE",
     "state": "VA"
   },
   "24115": {
@@ -21724,7 +21724,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "VA"
   },
   "24209": {
-    "city": "DOMINION",
+    "city": "BRISTOL",
     "state": "VA"
   },
   "24210": {
@@ -22252,7 +22252,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "VA"
   },
   "24502": {
-    "city": "FORT HILL",
+    "city": "LYNCHBURG",
     "state": "VA"
   },
   "24503": {
@@ -22264,7 +22264,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "VA"
   },
   "24505": {
-    "city": "COURTHOUSE LYNCHBURG",
+    "city": "LYNCHBURG",
     "state": "VA"
   },
   "24506": {
@@ -22348,7 +22348,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "VA"
   },
   "24543": {
-    "city": "COURTHOUSE DANVILLE",
+    "city": "DANVILLE",
     "state": "VA"
   },
   "24549": {
@@ -22544,7 +22544,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "VA"
   },
   "24620": {
-    "city": "HURLEY CARRIERS",
+    "city": "WOLFORD",
     "state": "VA"
   },
   "24622": {
@@ -22804,7 +22804,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "WV"
   },
   "24854": {
-    "city": "CPU KOPPERSTON UNIT",
+    "city": "KOPPERSTON",
     "state": "WV"
   },
   "24857": {
@@ -23636,11 +23636,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "WV"
   },
   "25312": {
-    "city": "SISSONVILLE",
+    "city": "CHARLESTON",
     "state": "WV"
   },
   "25313": {
-    "city": "CROSS LANES",
+    "city": "CHARLESTON",
     "state": "WV"
   },
   "25314": {
@@ -23652,7 +23652,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "WV"
   },
   "25320": {
-    "city": "SISSONVILLE",
+    "city": "CHARLESTON",
     "state": "WV"
   },
   "25321": {
@@ -23732,19 +23732,19 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "WV"
   },
   "25356": {
-    "city": "CROSS LANES",
+    "city": "CHARLESTON",
     "state": "WV"
   },
   "25357": {
-    "city": "STATION C",
+    "city": "CHARLESTON",
     "state": "WV"
   },
   "25358": {
-    "city": "SOUTHRIDGE CENTRE",
+    "city": "SOUTH CHARLESTON",
     "state": "WV"
   },
   "25360": {
-    "city": "SISSONVILLE",
+    "city": "CHARLESTON",
     "state": "WV"
   },
   "25361": {
@@ -23752,19 +23752,19 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "WV"
   },
   "25362": {
-    "city": "STONEWALL",
+    "city": "CHARLESTON",
     "state": "WV"
   },
   "25364": {
-    "city": "KANAWHA CITY",
+    "city": "CHARLESTON",
     "state": "WV"
   },
   "25365": {
-    "city": "MARMET",
+    "city": "CHARLESTON",
     "state": "WV"
   },
   "25375": {
-    "city": "TOWN CENTER",
+    "city": "CHARLESTON",
     "state": "WV"
   },
   "25387": {
@@ -23772,23 +23772,23 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "WV"
   },
   "25401": {
-    "city": "MARTINSBURG WV SDC",
+    "city": "MARTINSBURG",
     "state": "WV"
   },
   "25402": {
-    "city": "MARTINSBURG WV SDC",
+    "city": "MARTINSBURG",
     "state": "WV"
   },
   "25403": {
-    "city": "MARTINSBURG WV SDC",
+    "city": "MARTINSBURG",
     "state": "WV"
   },
   "25404": {
-    "city": "MARTINSBURG WV SDC",
+    "city": "MARTINSBURG",
     "state": "WV"
   },
   "25405": {
-    "city": "MARTINSBURG WV SDC",
+    "city": "MARTINSBURG",
     "state": "WV"
   },
   "25411": {
@@ -24228,151 +24228,151 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "WV"
   },
   "25701": {
-    "city": "HUNTINGTON WV S&DC",
+    "city": "HUNTINGTON",
     "state": "WV"
   },
   "25702": {
-    "city": "GUYANDOTTE",
+    "city": "HUNTINGTON",
     "state": "WV"
   },
   "25703": {
-    "city": "DOWNTOWN HUNTINGTON",
+    "city": "HUNTINGTON",
     "state": "WV"
   },
   "25704": {
-    "city": "HUNTINGTON WV S&DC",
+    "city": "HUNTINGTON",
     "state": "WV"
   },
   "25705": {
-    "city": "BEVERLY HILLS",
+    "city": "HUNTINGTON",
     "state": "WV"
   },
   "25706": {
-    "city": "DOWNTOWN HUNTINGTON",
+    "city": "HUNTINGTON",
     "state": "WV"
   },
   "25707": {
-    "city": "DOWNTOWN HUNTINGTON",
+    "city": "HUNTINGTON",
     "state": "WV"
   },
   "25708": {
-    "city": "DOWNTOWN HUNTINGTON",
+    "city": "HUNTINGTON",
     "state": "WV"
   },
   "25709": {
-    "city": "DOWNTOWN HUNTINGTON",
+    "city": "HUNTINGTON",
     "state": "WV"
   },
   "25710": {
-    "city": "DOWNTOWN HUNTINGTON",
+    "city": "HUNTINGTON",
     "state": "WV"
   },
   "25711": {
-    "city": "DOWNTOWN HUNTINGTON",
+    "city": "HUNTINGTON",
     "state": "WV"
   },
   "25712": {
-    "city": "DOWNTOWN HUNTINGTON",
+    "city": "HUNTINGTON",
     "state": "WV"
   },
   "25713": {
-    "city": "DOWNTOWN HUNTINGTON",
+    "city": "HUNTINGTON",
     "state": "WV"
   },
   "25714": {
-    "city": "DOWNTOWN HUNTINGTON",
+    "city": "HUNTINGTON",
     "state": "WV"
   },
   "25715": {
-    "city": "DOWNTOWN HUNTINGTON",
+    "city": "HUNTINGTON",
     "state": "WV"
   },
   "25716": {
-    "city": "DOWNTOWN HUNTINGTON",
+    "city": "HUNTINGTON",
     "state": "WV"
   },
   "25717": {
-    "city": "DOWNTOWN HUNTINGTON",
+    "city": "HUNTINGTON",
     "state": "WV"
   },
   "25718": {
-    "city": "DOWNTOWN HUNTINGTON",
+    "city": "HUNTINGTON",
     "state": "WV"
   },
   "25719": {
-    "city": "DOWNTOWN HUNTINGTON",
+    "city": "HUNTINGTON",
     "state": "WV"
   },
   "25720": {
-    "city": "DOWNTOWN HUNTINGTON",
+    "city": "HUNTINGTON",
     "state": "WV"
   },
   "25721": {
-    "city": "DOWNTOWN HUNTINGTON",
+    "city": "HUNTINGTON",
     "state": "WV"
   },
   "25722": {
-    "city": "DOWNTOWN HUNTINGTON",
+    "city": "HUNTINGTON",
     "state": "WV"
   },
   "25723": {
-    "city": "DOWNTOWN HUNTINGTON",
+    "city": "HUNTINGTON",
     "state": "WV"
   },
   "25724": {
-    "city": "DOWNTOWN HUNTINGTON",
+    "city": "HUNTINGTON",
     "state": "WV"
   },
   "25725": {
-    "city": "DOWNTOWN HUNTINGTON",
+    "city": "HUNTINGTON",
     "state": "WV"
   },
   "25726": {
-    "city": "DOWNTOWN HUNTINGTON",
+    "city": "HUNTINGTON",
     "state": "WV"
   },
   "25727": {
-    "city": "DOWNTOWN HUNTINGTON",
+    "city": "HUNTINGTON",
     "state": "WV"
   },
   "25728": {
-    "city": "DOWNTOWN HUNTINGTON",
+    "city": "HUNTINGTON",
     "state": "WV"
   },
   "25729": {
-    "city": "DOWNTOWN HUNTINGTON",
+    "city": "HUNTINGTON",
     "state": "WV"
   },
   "25772": {
-    "city": "HUNTINGTON WV S&DC",
+    "city": "HUNTINGTON",
     "state": "WV"
   },
   "25773": {
-    "city": "HUNTINGTON WV S&DC",
+    "city": "HUNTINGTON",
     "state": "WV"
   },
   "25774": {
-    "city": "HUNTINGTON WV S&DC",
+    "city": "HUNTINGTON",
     "state": "WV"
   },
   "25775": {
-    "city": "HUNTINGTON WV S&DC",
+    "city": "HUNTINGTON",
     "state": "WV"
   },
   "25776": {
-    "city": "HUNTINGTON WV S&DC",
+    "city": "HUNTINGTON",
     "state": "WV"
   },
   "25777": {
-    "city": "HUNTINGTON WV S&DC",
+    "city": "HUNTINGTON",
     "state": "WV"
   },
   "25778": {
-    "city": "HUNTINGTON WV S&DC",
+    "city": "HUNTINGTON",
     "state": "WV"
   },
   "25779": {
-    "city": "HUNTINGTON WV S&DC",
+    "city": "HUNTINGTON",
     "state": "WV"
   },
   "25801": {
@@ -24712,7 +24712,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "WV"
   },
   "26003": {
-    "city": "DOWNTOWN WHEELING",
+    "city": "WHEELING",
     "state": "WV"
   },
   "26030": {
@@ -24792,7 +24792,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "WV"
   },
   "26062": {
-    "city": "COVE",
+    "city": "WEIRTON",
     "state": "WV"
   },
   "26070": {
@@ -24808,23 +24808,23 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "WV"
   },
   "26101": {
-    "city": "PARKERSBURG CARRIER ANNEX",
+    "city": "PARKERSBURG",
     "state": "WV"
   },
   "26102": {
-    "city": "SIMMONS",
+    "city": "PARKERSBURG",
     "state": "WV"
   },
   "26103": {
-    "city": "FORT NEAL",
+    "city": "PARKERSBURG",
     "state": "WV"
   },
   "26104": {
-    "city": "NORTH PARKERSBURG",
+    "city": "PARKERSBURG",
     "state": "WV"
   },
   "26105": {
-    "city": "GRAND CENTRAL MALL",
+    "city": "PARKERSBURG",
     "state": "WV"
   },
   "26133": {
@@ -24932,11 +24932,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "WV"
   },
   "26180": {
-    "city": "PARKERSBURG CARRIER ANNEX",
+    "city": "PARKERSBURG",
     "state": "WV"
   },
   "26181": {
-    "city": "PARKERSBURG CARRIER ANNEX",
+    "city": "PARKERSBURG",
     "state": "WV"
   },
   "26184": {
@@ -24972,7 +24972,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "WV"
   },
   "26209": {
-    "city": "SNOWSHOE DPOBU",
+    "city": "SNOWSHOE",
     "state": "WV"
   },
   "26210": {
@@ -24992,7 +24992,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "WV"
   },
   "26222": {
-    "city": "CPU HACKER VALLEY",
+    "city": "HACKER VALLEY",
     "state": "WV"
   },
   "26224": {
@@ -25236,7 +25236,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "WV"
   },
   "26354": {
-    "city": "CPU STA #A",
+    "city": "GRAFTON",
     "state": "WV"
   },
   "26361": {
@@ -25408,27 +25408,27 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "WV"
   },
   "26501": {
-    "city": "MORGANTOWN WV S&DC",
+    "city": "MORGANTOWN",
     "state": "WV"
   },
   "26504": {
-    "city": "STAR CITY",
+    "city": "MORGANTOWN",
     "state": "WV"
   },
   "26505": {
-    "city": "MORGANTOWN WV S&DC",
+    "city": "MORGANTOWN",
     "state": "WV"
   },
   "26506": {
-    "city": "MORGANTOWN WV S&DC",
+    "city": "MORGANTOWN",
     "state": "WV"
   },
   "26507": {
-    "city": "CPU MOUNTAINEER",
+    "city": "MORGANTOWN",
     "state": "WV"
   },
   "26508": {
-    "city": "MORGANTOWN WV S&DC",
+    "city": "MORGANTOWN",
     "state": "WV"
   },
   "26519": {
@@ -25476,7 +25476,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "WV"
   },
   "26543": {
-    "city": "MORGANTOWN WV S&DC",
+    "city": "MORGANTOWN",
     "state": "WV"
   },
   "26544": {
@@ -25484,7 +25484,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "WV"
   },
   "26546": {
-    "city": "MORGANTOWN WV S&DC",
+    "city": "MORGANTOWN",
     "state": "WV"
   },
   "26547": {
@@ -25496,7 +25496,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "WV"
   },
   "26555": {
-    "city": "CPU MONONGAH",
+    "city": "FAIRMONT",
     "state": "WV"
   },
   "26559": {
@@ -26028,63 +26028,63 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NC"
   },
   "27101": {
-    "city": "WINSTON SALEM NC SDC",
+    "city": "WINSTON SALEM",
     "state": "NC"
   },
   "27102": {
-    "city": "WINSTON SALEM NC SDC",
+    "city": "WINSTON SALEM",
     "state": "NC"
   },
   "27103": {
-    "city": "MANOR",
+    "city": "WINSTON SALEM",
     "state": "NC"
   },
   "27104": {
-    "city": "MANOR",
+    "city": "WINSTON SALEM",
     "state": "NC"
   },
   "27105": {
-    "city": "WINSTON SALEM NC SDC",
+    "city": "WINSTON SALEM",
     "state": "NC"
   },
   "27106": {
-    "city": "NORTH POINT",
+    "city": "WINSTON SALEM",
     "state": "NC"
   },
   "27107": {
-    "city": "WAUGHTOWN",
+    "city": "WINSTON SALEM",
     "state": "NC"
   },
   "27113": {
-    "city": "CENTER CITY",
+    "city": "WINSTON SALEM",
     "state": "NC"
   },
   "27114": {
-    "city": "MANOR",
+    "city": "WINSTON SALEM",
     "state": "NC"
   },
   "27115": {
-    "city": "WINSTON SALEM NC SDC",
+    "city": "WINSTON SALEM",
     "state": "NC"
   },
   "27116": {
-    "city": "NORTH POINT",
+    "city": "WINSTON SALEM",
     "state": "NC"
   },
   "27117": {
-    "city": "WAUGHTOWN",
+    "city": "WINSTON SALEM",
     "state": "NC"
   },
   "27120": {
-    "city": "CENTER CITY",
+    "city": "WINSTON SALEM",
     "state": "NC"
   },
   "27127": {
-    "city": "WAUGHTOWN",
+    "city": "WINSTON SALEM",
     "state": "NC"
   },
   "27130": {
-    "city": "HANES MALL",
+    "city": "WINSTON SALEM",
     "state": "NC"
   },
   "27201": {
@@ -26144,7 +26144,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NC"
   },
   "27228": {
-    "city": "BYNUM",
+    "city": "PITTSBORO",
     "state": "NC"
   },
   "27229": {
@@ -26216,15 +26216,15 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NC"
   },
   "27260": {
-    "city": "HIGH POINT NC S&DC",
+    "city": "HIGH POINT",
     "state": "NC"
   },
   "27261": {
-    "city": "HIGH POINT NC S&DC",
+    "city": "HIGH POINT",
     "state": "NC"
   },
   "27262": {
-    "city": "EMERYWOOD",
+    "city": "HIGH POINT",
     "state": "NC"
   },
   "27263": {
@@ -26236,7 +26236,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NC"
   },
   "27265": {
-    "city": "HIGH POINT NC S&DC",
+    "city": "HIGH POINT",
     "state": "NC"
   },
   "27278": {
@@ -26476,19 +26476,19 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NC"
   },
   "27404": {
-    "city": "FRIENDLY",
+    "city": "GREENSBORO",
     "state": "NC"
   },
   "27405": {
-    "city": "SUMMIT",
+    "city": "GREENSBORO",
     "state": "NC"
   },
   "27406": {
-    "city": "SPRING VALLEY",
+    "city": "GREENSBORO",
     "state": "NC"
   },
   "27407": {
-    "city": "WESTSIDE ANNEX",
+    "city": "GREENSBORO",
     "state": "NC"
   },
   "27408": {
@@ -26496,27 +26496,27 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NC"
   },
   "27409": {
-    "city": "PLEASANT RIDGE ANNEX",
+    "city": "GREENSBORO",
     "state": "NC"
   },
   "27410": {
-    "city": "WESTSIDE ANNEX",
+    "city": "GREENSBORO",
     "state": "NC"
   },
   "27415": {
-    "city": "SUMMIT",
+    "city": "GREENSBORO",
     "state": "NC"
   },
   "27416": {
-    "city": "SPRING VALLEY",
+    "city": "GREENSBORO",
     "state": "NC"
   },
   "27417": {
-    "city": "HILLTOP FINANCE",
+    "city": "GREENSBORO",
     "state": "NC"
   },
   "27419": {
-    "city": "GUILFORD",
+    "city": "GREENSBORO",
     "state": "NC"
   },
   "27420": {
@@ -26524,11 +26524,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NC"
   },
   "27425": {
-    "city": "GUILFORD",
+    "city": "GREENSBORO",
     "state": "NC"
   },
   "27427": {
-    "city": "FOUR SEASONS",
+    "city": "GREENSBORO",
     "state": "NC"
   },
   "27429": {
@@ -26540,7 +26540,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NC"
   },
   "27438": {
-    "city": "BATTLEGROUND",
+    "city": "GREENSBORO",
     "state": "NC"
   },
   "27455": {
@@ -26620,7 +26620,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NC"
   },
   "27519": {
-    "city": "ACADEMY ST",
+    "city": "CARY",
     "state": "NC"
   },
   "27520": {
@@ -26668,7 +26668,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NC"
   },
   "27532": {
-    "city": "BERKELEY",
+    "city": "GOLDSBORO",
     "state": "NC"
   },
   "27533": {
@@ -26676,7 +26676,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NC"
   },
   "27534": {
-    "city": "BERKELEY",
+    "city": "GOLDSBORO",
     "state": "NC"
   },
   "27536": {
@@ -26688,7 +26688,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NC"
   },
   "27539": {
-    "city": "APEX ANNEX",
+    "city": "HOLLY SPRINGS",
     "state": "NC"
   },
   "27540": {
@@ -26768,7 +26768,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NC"
   },
   "27568": {
-    "city": "PINE LEVEL",
+    "city": "SELMA",
     "state": "NC"
   },
   "27569": {
@@ -26860,131 +26860,131 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NC"
   },
   "27601": {
-    "city": "SUNNYBROOK",
+    "city": "RALEIGH",
     "state": "NC"
   },
   "27602": {
-    "city": "CENTURY",
+    "city": "RALEIGH",
     "state": "NC"
   },
   "27603": {
-    "city": "AVENT FERRY RALEIGH",
+    "city": "RALEIGH",
     "state": "NC"
   },
   "27604": {
-    "city": "BRENTWOOD",
+    "city": "RALEIGH",
     "state": "NC"
   },
   "27605": {
-    "city": "CAPITOL",
+    "city": "RALEIGH",
     "state": "NC"
   },
   "27606": {
-    "city": "AVENT FERRY RALEIGH",
+    "city": "RALEIGH",
     "state": "NC"
   },
   "27607": {
-    "city": "AVENT FERRY RALEIGH",
+    "city": "RALEIGH",
     "state": "NC"
   },
   "27608": {
-    "city": "CAPITOL",
+    "city": "RALEIGH",
     "state": "NC"
   },
   "27609": {
-    "city": "NORTH RIDGE",
+    "city": "RALEIGH",
     "state": "NC"
   },
   "27610": {
-    "city": "SUNNYBROOK",
+    "city": "RALEIGH",
     "state": "NC"
   },
   "27611": {
-    "city": "CAPITOL",
+    "city": "RALEIGH",
     "state": "NC"
   },
   "27612": {
-    "city": "HILBURN ANNEX",
+    "city": "RALEIGH",
     "state": "NC"
   },
   "27613": {
-    "city": "HILBURN ANNEX",
+    "city": "RALEIGH",
     "state": "NC"
   },
   "27614": {
-    "city": "NORTH RIDGE",
+    "city": "RALEIGH",
     "state": "NC"
   },
   "27615": {
-    "city": "NORTH RIDGE",
+    "city": "RALEIGH",
     "state": "NC"
   },
   "27616": {
-    "city": "BRENTWOOD",
+    "city": "RALEIGH",
     "state": "NC"
   },
   "27617": {
-    "city": "WESTGATE",
+    "city": "RALEIGH",
     "state": "NC"
   },
   "27619": {
-    "city": "NORTH HILLS",
+    "city": "RALEIGH",
     "state": "NC"
   },
   "27620": {
-    "city": "SUNNYBROOK",
+    "city": "RALEIGH",
     "state": "NC"
   },
   "27622": {
-    "city": "NORTH HILLS",
+    "city": "RALEIGH",
     "state": "NC"
   },
   "27623": {
-    "city": "WESTGATE",
+    "city": "RALEIGH",
     "state": "NC"
   },
   "27624": {
-    "city": "NORTH RIDGE",
+    "city": "RALEIGH",
     "state": "NC"
   },
   "27626": {
-    "city": "CAPITOL",
+    "city": "RALEIGH",
     "state": "NC"
   },
   "27627": {
-    "city": "AVENT FERRY RALEIGH",
+    "city": "RALEIGH",
     "state": "NC"
   },
   "27628": {
-    "city": "FIVE POINTS",
+    "city": "RALEIGH",
     "state": "NC"
   },
   "27629": {
-    "city": "BRENTWOOD",
+    "city": "RALEIGH",
     "state": "NC"
   },
   "27636": {
-    "city": "METHOD",
+    "city": "RALEIGH",
     "state": "NC"
   },
   "27650": {
-    "city": "OBERLIN VILLAGE",
+    "city": "RALEIGH",
     "state": "NC"
   },
   "27658": {
-    "city": "MILLBROOK",
+    "city": "RALEIGH",
     "state": "NC"
   },
   "27661": {
-    "city": "NEUSE",
+    "city": "RALEIGH",
     "state": "NC"
   },
   "27675": {
-    "city": "WESTGATE",
+    "city": "RALEIGH",
     "state": "NC"
   },
   "27701": {
-    "city": "EAST DURHAM",
+    "city": "DURHAM",
     "state": "NC"
   },
   "27702": {
@@ -26992,47 +26992,47 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NC"
   },
   "27703": {
-    "city": "EAST DURHAM",
+    "city": "DURHAM",
     "state": "NC"
   },
   "27704": {
-    "city": "ENO VALLEY",
+    "city": "DURHAM",
     "state": "NC"
   },
   "27705": {
-    "city": "WEST DURHAM",
+    "city": "DURHAM",
     "state": "NC"
   },
   "27707": {
-    "city": "CPU SHEPARD STATION",
+    "city": "DURHAM",
     "state": "NC"
   },
   "27709": {
-    "city": "RESEARCH TRIANGLE PARK",
+    "city": "DURHAM",
     "state": "NC"
   },
   "27712": {
-    "city": "ENO VALLEY",
+    "city": "DURHAM",
     "state": "NC"
   },
   "27713": {
-    "city": "RESEARCH TRIANGLE PARK",
+    "city": "DURHAM",
     "state": "NC"
   },
   "27715": {
-    "city": "WEST DURHAM",
+    "city": "DURHAM",
     "state": "NC"
   },
   "27717": {
-    "city": "SHANNON PLAZA",
+    "city": "DURHAM",
     "state": "NC"
   },
   "27722": {
-    "city": "ENO VALLEY",
+    "city": "DURHAM",
     "state": "NC"
   },
   "27801": {
-    "city": "ROCKY MOUNT ANNEX",
+    "city": "ROCKY MOUNT",
     "state": "NC"
   },
   "27802": {
@@ -27044,7 +27044,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NC"
   },
   "27804": {
-    "city": "ROCKY MOUNT ANNEX",
+    "city": "ROCKY MOUNT",
     "state": "NC"
   },
   "27805": {
@@ -27156,11 +27156,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NC"
   },
   "27833": {
-    "city": "SOUTH MEMORIAL",
+    "city": "GREENVILLE",
     "state": "NC"
   },
   "27834": {
-    "city": "SOUTH MEMORIAL",
+    "city": "GREENVILLE",
     "state": "NC"
   },
   "27835": {
@@ -27168,7 +27168,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NC"
   },
   "27836": {
-    "city": "ECU STATION",
+    "city": "GREENVILLE",
     "state": "NC"
   },
   "27837": {
@@ -27252,7 +27252,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NC"
   },
   "27861": {
-    "city": "PARMELE",
+    "city": "ROBERSONVILLE",
     "state": "NC"
   },
   "27862": {
@@ -27380,7 +27380,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NC"
   },
   "27893": {
-    "city": "CPU BRENTWOOD BUNN ASSOC.",
+    "city": "WILSON",
     "state": "NC"
   },
   "27894": {
@@ -27388,7 +27388,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NC"
   },
   "27895": {
-    "city": "PARKWOOD",
+    "city": "WILSON",
     "state": "NC"
   },
   "27896": {
@@ -27524,7 +27524,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NC"
   },
   "27949": {
-    "city": "CPU DUCK",
+    "city": "KITTY HAWK",
     "state": "NC"
   },
   "27950": {
@@ -27708,7 +27708,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NC"
   },
   "28027": {
-    "city": "CONCORD PKWY",
+    "city": "CONCORD",
     "state": "NC"
   },
   "28031": {
@@ -27768,15 +27768,15 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NC"
   },
   "28054": {
-    "city": "CPU EASTRIDGE",
+    "city": "GASTONIA",
     "state": "NC"
   },
   "28055": {
-    "city": "NEW HOPE",
+    "city": "GASTONIA",
     "state": "NC"
   },
   "28056": {
-    "city": "NEW HOPE",
+    "city": "GASTONIA",
     "state": "NC"
   },
   "28070": {
@@ -27908,7 +27908,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NC"
   },
   "28110": {
-    "city": "MONROE ANNEX",
+    "city": "MONROE",
     "state": "NC"
   },
   "28111": {
@@ -27916,7 +27916,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NC"
   },
   "28112": {
-    "city": "MONROE ANNEX",
+    "city": "MONROE",
     "state": "NC"
   },
   "28114": {
@@ -27928,7 +27928,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NC"
   },
   "28117": {
-    "city": "NORTH LAKE",
+    "city": "MOORESVILLE",
     "state": "NC"
   },
   "28119": {
@@ -27940,7 +27940,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NC"
   },
   "28123": {
-    "city": "MOUNT MOURNE",
+    "city": "MOORESVILLE",
     "state": "NC"
   },
   "28124": {
@@ -27984,7 +27984,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NC"
   },
   "28136": {
-    "city": "POLKVILLE",
+    "city": "SHELBY",
     "state": "NC"
   },
   "28137": {
@@ -28072,99 +28072,99 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NC"
   },
   "28201": {
-    "city": "CHARLOTTE NC LPC",
+    "city": "CHARLOTTE",
     "state": "NC"
   },
   "28202": {
-    "city": "CPU TWO WACHOVIA CENTER",
+    "city": "CHARLOTTE",
     "state": "NC"
   },
   "28203": {
-    "city": "DOWNTOWN CHARLOTTE",
+    "city": "CHARLOTTE",
     "state": "NC"
   },
   "28204": {
-    "city": "DOWNTOWN CHARLOTTE",
+    "city": "CHARLOTTE",
     "state": "NC"
   },
   "28205": {
-    "city": "INDEPENDENCE ANNEX",
+    "city": "CHARLOTTE",
     "state": "NC"
   },
   "28206": {
-    "city": "30TH STREET",
+    "city": "CHARLOTTE",
     "state": "NC"
   },
   "28207": {
-    "city": "INDEPENDENCE ANNEX",
+    "city": "CHARLOTTE",
     "state": "NC"
   },
   "28208": {
-    "city": "CHARLOTTE NC WESTSIDE SDC",
+    "city": "CHARLOTTE",
     "state": "NC"
   },
   "28209": {
-    "city": "MINUET ANNEX",
+    "city": "CHARLOTTE",
     "state": "NC"
   },
   "28210": {
-    "city": "MINUET ANNEX",
+    "city": "CHARLOTTE",
     "state": "NC"
   },
   "28211": {
-    "city": "INDEPENDENCE ANNEX",
+    "city": "CHARLOTTE",
     "state": "NC"
   },
   "28212": {
-    "city": "IDLEWILD",
+    "city": "CHARLOTTE",
     "state": "NC"
   },
   "28213": {
-    "city": "NORTH TRYON",
+    "city": "CHARLOTTE",
     "state": "NC"
   },
   "28214": {
-    "city": "CHARLOTTE NC WESTSIDE SDC",
+    "city": "CHARLOTTE",
     "state": "NC"
   },
   "28215": {
-    "city": "PLAZA CHARLOTTE",
+    "city": "CHARLOTTE",
     "state": "NC"
   },
   "28216": {
-    "city": "OAKDALE",
+    "city": "CHARLOTTE",
     "state": "NC"
   },
   "28217": {
-    "city": "CHARLOTTE NC WESTSIDE SDC",
+    "city": "CHARLOTTE",
     "state": "NC"
   },
   "28218": {
-    "city": "MIDWOOD",
+    "city": "CHARLOTTE",
     "state": "NC"
   },
   "28219": {
-    "city": "AIRPORT",
+    "city": "CHARLOTTE",
     "state": "NC"
   },
   "28220": {
-    "city": "PARK ROAD",
+    "city": "CHARLOTTE",
     "state": "NC"
   },
   "28221": {
-    "city": "DERITA",
+    "city": "CHARLOTTE",
     "state": "NC"
   },
   "28222": {
-    "city": "RANDOLPH",
+    "city": "CHARLOTTE",
     "state": "NC"
   },
   "28224": {
-    "city": "STARMOUNT",
+    "city": "CHARLOTTE",
     "state": "NC"
   },
   "28226": {
-    "city": "BALLANTYNE",
+    "city": "CHARLOTTE",
     "state": "NC"
   },
   "28227": {
@@ -28172,99 +28172,99 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NC"
   },
   "28229": {
-    "city": "IDLEWILD",
+    "city": "CHARLOTTE",
     "state": "NC"
   },
   "28230": {
-    "city": "DOWNTOWN CHARLOTTE",
+    "city": "CHARLOTTE",
     "state": "NC"
   },
   "28231": {
-    "city": "DOWNTOWN CHARLOTTE",
+    "city": "CHARLOTTE",
     "state": "NC"
   },
   "28232": {
-    "city": "DOWNTOWN CHARLOTTE",
+    "city": "CHARLOTTE",
     "state": "NC"
   },
   "28233": {
-    "city": "DOWNTOWN CHARLOTTE",
+    "city": "CHARLOTTE",
     "state": "NC"
   },
   "28234": {
-    "city": "DOWNTOWN CHARLOTTE",
+    "city": "CHARLOTTE",
     "state": "NC"
   },
   "28235": {
-    "city": "DOWNTOWN CHARLOTTE",
+    "city": "CHARLOTTE",
     "state": "NC"
   },
   "28236": {
-    "city": "DOWNTOWN CHARLOTTE",
+    "city": "CHARLOTTE",
     "state": "NC"
   },
   "28237": {
-    "city": "DOWNTOWN CHARLOTTE",
+    "city": "CHARLOTTE",
     "state": "NC"
   },
   "28241": {
-    "city": "STEELE CREEK",
+    "city": "CHARLOTTE",
     "state": "NC"
   },
   "28247": {
-    "city": "CARMEL ROAD",
+    "city": "CHARLOTTE",
     "state": "NC"
   },
   "28256": {
-    "city": "NORTH TRYON",
+    "city": "CHARLOTTE",
     "state": "NC"
   },
   "28262": {
-    "city": "NORTHEAST",
+    "city": "CHARLOTTE",
     "state": "NC"
   },
   "28266": {
-    "city": "FREEDOM",
+    "city": "CHARLOTTE",
     "state": "NC"
   },
   "28269": {
-    "city": "WT HARRIS",
+    "city": "CHARLOTTE",
     "state": "NC"
   },
   "28270": {
-    "city": "BALLANTYNE CARRIERS",
+    "city": "MATTHEWS",
     "state": "NC"
   },
   "28271": {
-    "city": "SOUTH PROVIDENCE NEW",
+    "city": "CHARLOTTE",
     "state": "NC"
   },
   "28272": {
-    "city": "CHARLOTTE NC LPC",
+    "city": "CHARLOTTE",
     "state": "NC"
   },
   "28273": {
-    "city": "STEELE CREEK",
+    "city": "CHARLOTTE",
     "state": "NC"
   },
   "28277": {
-    "city": "BALLANTYNE",
+    "city": "CHARLOTTE",
     "state": "NC"
   },
   "28278": {
-    "city": "STEELE CREEK",
+    "city": "CHARLOTTE",
     "state": "NC"
   },
   "28297": {
-    "city": "JIM RICHARDSON",
+    "city": "CHARLOTTE",
     "state": "NC"
   },
   "28299": {
-    "city": "MIDWOOD",
+    "city": "CHARLOTTE",
     "state": "NC"
   },
   "28301": {
-    "city": "CPU EAST FAYETTEVILLE",
+    "city": "FAYETTEVILLE",
     "state": "NC"
   },
   "28302": {
@@ -28272,19 +28272,19 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NC"
   },
   "28303": {
-    "city": "EUTAW",
+    "city": "FAYETTEVILLE",
     "state": "NC"
   },
   "28304": {
-    "city": "HIGHLAND",
+    "city": "FAYETTEVILLE",
     "state": "NC"
   },
   "28305": {
-    "city": "HAYMOUNT",
+    "city": "FAYETTEVILLE",
     "state": "NC"
   },
   "28306": {
-    "city": "LAKEDALE",
+    "city": "FAYETTEVILLE",
     "state": "NC"
   },
   "28307": {
@@ -28292,19 +28292,19 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NC"
   },
   "28309": {
-    "city": "LAFAYETTE",
+    "city": "FAYETTEVILLE",
     "state": "NC"
   },
   "28311": {
-    "city": "TOKAY ANNEX",
+    "city": "FAYETTEVILLE",
     "state": "NC"
   },
   "28312": {
-    "city": "TOKAY ANNEX",
+    "city": "FAYETTEVILLE",
     "state": "NC"
   },
   "28314": {
-    "city": "CLIFFDALE",
+    "city": "FAYETTEVILLE",
     "state": "NC"
   },
   "28315": {
@@ -28404,7 +28404,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NC"
   },
   "28347": {
-    "city": "HOFFMAN",
+    "city": "MARSTON",
     "state": "NC"
   },
   "28348": {
@@ -28460,7 +28460,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NC"
   },
   "28363": {
-    "city": "HOFFMAN",
+    "city": "MARSTON",
     "state": "NC"
   },
   "28364": {
@@ -28604,35 +28604,35 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NC"
   },
   "28403": {
-    "city": "AZALEA",
+    "city": "WILMINGTON",
     "state": "NC"
   },
   "28404": {
-    "city": "MAGNOLIA",
+    "city": "WILMINGTON",
     "state": "NC"
   },
   "28405": {
-    "city": "DOGWOOD",
+    "city": "WILMINGTON",
     "state": "NC"
   },
   "28406": {
-    "city": "AZALEA",
+    "city": "WILMINGTON",
     "state": "NC"
   },
   "28408": {
-    "city": "MYRTLE GROVE",
+    "city": "WILMINGTON",
     "state": "NC"
   },
   "28409": {
-    "city": "MYRTLE GROVE",
+    "city": "WILMINGTON",
     "state": "NC"
   },
   "28411": {
-    "city": "MAGNOLIA",
+    "city": "WILMINGTON",
     "state": "NC"
   },
   "28412": {
-    "city": "MYRTLE GROVE",
+    "city": "WILMINGTON",
     "state": "NC"
   },
   "28420": {
@@ -28720,7 +28720,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NC"
   },
   "28445": {
-    "city": "CPU TOPSAIL BEACH",
+    "city": "HOLLY RIDGE",
     "state": "NC"
   },
   "28447": {
@@ -28780,7 +28780,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NC"
   },
   "28461": {
-    "city": "CPU BALD HEAD ISLAND",
+    "city": "BALD HEAD ISLAND",
     "state": "NC"
   },
   "28462": {
@@ -28796,7 +28796,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NC"
   },
   "28465": {
-    "city": "CPU OAK ISLAND",
+    "city": "OAK ISLAND",
     "state": "NC"
   },
   "28466": {
@@ -28804,15 +28804,15 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NC"
   },
   "28467": {
-    "city": "SOUTH BRUNSWICK",
+    "city": "OCEAN ISLE BEACH",
     "state": "NC"
   },
   "28468": {
-    "city": "SOUTH BRUNSWICK",
+    "city": "OCEAN ISLE BEACH",
     "state": "NC"
   },
   "28469": {
-    "city": "SOUTH BRUNSWICK",
+    "city": "OCEAN ISLE BEACH",
     "state": "NC"
   },
   "28470": {
@@ -28844,7 +28844,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NC"
   },
   "28503": {
-    "city": "PLAZA KINSTON",
+    "city": "KINSTON",
     "state": "NC"
   },
   "28504": {
@@ -28940,7 +28940,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NC"
   },
   "28532": {
-    "city": "CHERRY POINT",
+    "city": "HAVELOCK",
     "state": "NC"
   },
   "28537": {
@@ -28968,15 +28968,15 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NC"
   },
   "28544": {
-    "city": "BRYNN MARR",
+    "city": "JACKSONVILLE",
     "state": "NC"
   },
   "28546": {
-    "city": "BRYNN MARR",
+    "city": "JACKSONVILLE",
     "state": "NC"
   },
   "28547": {
-    "city": "BRYNN MARR",
+    "city": "JACKSONVILLE",
     "state": "NC"
   },
   "28551": {
@@ -29020,11 +29020,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NC"
   },
   "28563": {
-    "city": "DOWNTOWN NEW BERN",
+    "city": "NEW BERN",
     "state": "NC"
   },
   "28564": {
-    "city": "NEUSE FOREST",
+    "city": "NEW BERN",
     "state": "NC"
   },
   "28570": {
@@ -29116,7 +29116,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NC"
   },
   "28603": {
-    "city": "CPU BETHLEHEM REALTY",
+    "city": "HICKORY",
     "state": "NC"
   },
   "28604": {
@@ -29384,7 +29384,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NC"
   },
   "28679": {
-    "city": "SUGAR GROVE CARRIERS",
+    "city": "ZIONVILLE",
     "state": "NC"
   },
   "28680": {
@@ -29412,7 +29412,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NC"
   },
   "28687": {
-    "city": "CPU DOWNTOWN POSTAL UNIT",
+    "city": "STATESVILLE",
     "state": "NC"
   },
   "28688": {
@@ -29428,7 +29428,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NC"
   },
   "28691": {
-    "city": "VALLE CRUCIS",
+    "city": "BANNER ELK",
     "state": "NC"
   },
   "28692": {
@@ -29596,11 +29596,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NC"
   },
   "28738": {
-    "city": "HAZELWOOD",
+    "city": "WAYNESVILLE",
     "state": "NC"
   },
   "28739": {
-    "city": "HENDERSONVILLE ANNEX",
+    "city": "HENDERSONVILLE",
     "state": "NC"
   },
   "28740": {
@@ -29656,7 +29656,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NC"
   },
   "28753": {
-    "city": "MARSHALL CARRIERS",
+    "city": "WEAVERVILLE",
     "state": "NC"
   },
   "28754": {
@@ -29792,55 +29792,55 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NC"
   },
   "28791": {
-    "city": "HENDERSONVILLE ANNEX",
+    "city": "HENDERSONVILLE",
     "state": "NC"
   },
   "28792": {
-    "city": "HENDERSONVILLE ANNEX",
+    "city": "HENDERSONVILLE",
     "state": "NC"
   },
   "28793": {
-    "city": "CPU FOUR SEASONS",
+    "city": "HENDERSONVILLE",
     "state": "NC"
   },
   "28801": {
-    "city": "ASHEVILLE NC S&DC",
+    "city": "ASHEVILLE",
     "state": "NC"
   },
   "28802": {
-    "city": "DOWNTOWN ASHEVILLE",
+    "city": "ASHEVILLE",
     "state": "NC"
   },
   "28803": {
-    "city": "LONDON RD ANNEX",
+    "city": "ASHEVILLE",
     "state": "NC"
   },
   "28804": {
-    "city": "ASHEVILLE NC S&DC",
+    "city": "ASHEVILLE",
     "state": "NC"
   },
   "28805": {
-    "city": "LONDON RD ANNEX",
+    "city": "ASHEVILLE",
     "state": "NC"
   },
   "28806": {
-    "city": "ASHEVILLE NC S&DC",
+    "city": "ASHEVILLE",
     "state": "NC"
   },
   "28813": {
-    "city": "BILTMORE",
+    "city": "ASHEVILLE",
     "state": "NC"
   },
   "28814": {
-    "city": "GRACE",
+    "city": "ASHEVILLE",
     "state": "NC"
   },
   "28815": {
-    "city": "OTEEN",
+    "city": "ASHEVILLE",
     "state": "NC"
   },
   "28816": {
-    "city": "WEST ASHEVILLE",
+    "city": "ASHEVILLE",
     "state": "NC"
   },
   "28901": {
@@ -29884,7 +29884,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "SC"
   },
   "29006": {
-    "city": "BATESBURG LEESVILLE",
+    "city": "LEESVILLE",
     "state": "SC"
   },
   "29009": {
@@ -29912,7 +29912,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "SC"
   },
   "29020": {
-    "city": "KING HAIGLER",
+    "city": "CAMDEN",
     "state": "SC"
   },
   "29021": {
@@ -29932,7 +29932,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "SC"
   },
   "29033": {
-    "city": "CAYCE WEST COLUMBIA",
+    "city": "WEST COLUMBIA",
     "state": "SC"
   },
   "29036": {
@@ -30040,11 +30040,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "SC"
   },
   "29070": {
-    "city": "BATESBURG LEESVILLE",
+    "city": "LEESVILLE",
     "state": "SC"
   },
   "29071": {
-    "city": "DOWNTOWN LEXINGTON",
+    "city": "LEXINGTON",
     "state": "SC"
   },
   "29072": {
@@ -30096,7 +30096,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "SC"
   },
   "29105": {
-    "city": "BATESBURG LEESVILLE",
+    "city": "LEESVILLE",
     "state": "SC"
   },
   "29107": {
@@ -30160,7 +30160,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "SC"
   },
   "29129": {
-    "city": "BATESBURG LEESVILLE",
+    "city": "LEESVILLE",
     "state": "SC"
   },
   "29130": {
@@ -30244,7 +30244,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "SC"
   },
   "29166": {
-    "city": "BATESBURG LEESVILLE",
+    "city": "LEESVILLE",
     "state": "SC"
   },
   "29168": {
@@ -30252,19 +30252,19 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "SC"
   },
   "29169": {
-    "city": "CAYCE WEST COLUMBIA",
+    "city": "WEST COLUMBIA",
     "state": "SC"
   },
   "29170": {
-    "city": "CAYCE WEST COLUMBIA",
+    "city": "WEST COLUMBIA",
     "state": "SC"
   },
   "29171": {
-    "city": "CAYCE WEST COLUMBIA",
+    "city": "WEST COLUMBIA",
     "state": "SC"
   },
   "29172": {
-    "city": "CAYCE WEST COLUMBIA",
+    "city": "WEST COLUMBIA",
     "state": "SC"
   },
   "29175": {
@@ -30284,87 +30284,87 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "SC"
   },
   "29201": {
-    "city": "COLUMBIA SC S&DC",
+    "city": "COLUMBIA",
     "state": "SC"
   },
   "29202": {
-    "city": "COLUMBIA SC S&DC",
+    "city": "COLUMBIA",
     "state": "SC"
   },
   "29203": {
-    "city": "COLUMBIA SC S&DC",
+    "city": "COLUMBIA",
     "state": "SC"
   },
   "29204": {
-    "city": "COLUMBIA SC S&DC",
+    "city": "COLUMBIA",
     "state": "SC"
   },
   "29205": {
-    "city": "COLUMBIA SC S&DC",
+    "city": "COLUMBIA",
     "state": "SC"
   },
   "29206": {
-    "city": "FOREST ACRES",
+    "city": "COLUMBIA",
     "state": "SC"
   },
   "29207": {
-    "city": "FORT JACKSON",
+    "city": "COLUMBIA",
     "state": "SC"
   },
   "29209": {
-    "city": "LEESBURG",
+    "city": "COLUMBIA",
     "state": "SC"
   },
   "29210": {
-    "city": "DUTCH FORK",
+    "city": "COLUMBIA",
     "state": "SC"
   },
   "29211": {
-    "city": "CAPITOL",
+    "city": "COLUMBIA",
     "state": "SC"
   },
   "29212": {
-    "city": "DUTCH FORK",
+    "city": "COLUMBIA",
     "state": "SC"
   },
   "29221": {
-    "city": "DUTCH FORK",
+    "city": "COLUMBIA",
     "state": "SC"
   },
   "29223": {
-    "city": "NORTHEAST",
+    "city": "COLUMBIA",
     "state": "SC"
   },
   "29224": {
-    "city": "NORTHEAST",
+    "city": "COLUMBIA",
     "state": "SC"
   },
   "29229": {
-    "city": "SANDHILLS",
+    "city": "COLUMBIA",
     "state": "SC"
   },
   "29230": {
-    "city": "EAU CLAIRE",
+    "city": "COLUMBIA",
     "state": "SC"
   },
   "29240": {
-    "city": "EDGEWOOD",
+    "city": "COLUMBIA",
     "state": "SC"
   },
   "29250": {
-    "city": "FIVE POINTS",
+    "city": "COLUMBIA",
     "state": "SC"
   },
   "29260": {
-    "city": "FOREST ACRES",
+    "city": "COLUMBIA",
     "state": "SC"
   },
   "29290": {
-    "city": "LEESBURG",
+    "city": "COLUMBIA",
     "state": "SC"
   },
   "29301": {
-    "city": "WESTSIDE",
+    "city": "SPARTANBURG",
     "state": "SC"
   },
   "29302": {
@@ -30568,7 +30568,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "SC"
   },
   "29401": {
-    "city": "EAST BAY",
+    "city": "CHARLESTON",
     "state": "SC"
   },
   "29402": {
@@ -30576,15 +30576,15 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "SC"
   },
   "29403": {
-    "city": "EAST BAY",
+    "city": "CHARLESTON",
     "state": "SC"
   },
   "29404": {
-    "city": "CROSS COUNTY",
+    "city": "NORTH CHARLESTON",
     "state": "SC"
   },
   "29405": {
-    "city": "PINEHAVEN",
+    "city": "NORTH CHARLESTON",
     "state": "SC"
   },
   "29406": {
@@ -30592,7 +30592,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "SC"
   },
   "29407": {
-    "city": "SAINT ANDREWS",
+    "city": "CHARLESTON",
     "state": "SC"
   },
   "29410": {
@@ -30600,31 +30600,31 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "SC"
   },
   "29412": {
-    "city": "JAMES ISLAND",
+    "city": "CHARLESTON",
     "state": "SC"
   },
   "29413": {
-    "city": "EAST BAY",
+    "city": "CHARLESTON",
     "state": "SC"
   },
   "29414": {
-    "city": "ASHLEY RIVER",
+    "city": "CHARLESTON",
     "state": "SC"
   },
   "29415": {
-    "city": "PINEHAVEN",
+    "city": "NORTH CHARLESTON",
     "state": "SC"
   },
   "29416": {
-    "city": "ASHLEY RIVER",
+    "city": "CHARLESTON",
     "state": "SC"
   },
   "29417": {
-    "city": "SAINT ANDREWS",
+    "city": "CHARLESTON",
     "state": "SC"
   },
   "29418": {
-    "city": "CROSS COUNTY",
+    "city": "NORTH CHARLESTON",
     "state": "SC"
   },
   "29419": {
@@ -30632,15 +30632,15 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "SC"
   },
   "29420": {
-    "city": "CROSS COUNTY",
+    "city": "NORTH CHARLESTON",
     "state": "SC"
   },
   "29422": {
-    "city": "JAMES ISLAND",
+    "city": "CHARLESTON",
     "state": "SC"
   },
   "29423": {
-    "city": "CROSS COUNTY",
+    "city": "NORTH CHARLESTON",
     "state": "SC"
   },
   "29426": {
@@ -30812,7 +30812,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "SC"
   },
   "29485": {
-    "city": "OAKBROOK",
+    "city": "SUMMERVILLE",
     "state": "SC"
   },
   "29486": {
@@ -30844,11 +30844,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "SC"
   },
   "29503": {
-    "city": "FEDERAL FLORENCE",
+    "city": "FLORENCE",
     "state": "SC"
   },
   "29504": {
-    "city": "SOUTH FLORENCE",
+    "city": "FLORENCE",
     "state": "SC"
   },
   "29505": {
@@ -31004,7 +31004,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "SC"
   },
   "29572": {
-    "city": "LIVE OAK",
+    "city": "MYRTLE BEACH",
     "state": "SC"
   },
   "29574": {
@@ -31028,7 +31028,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "SC"
   },
   "29579": {
-    "city": "CAROLINA FOREST",
+    "city": "MYRTLE BEACH",
     "state": "SC"
   },
   "29580": {
@@ -31040,7 +31040,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "SC"
   },
   "29582": {
-    "city": "CPU CHERRY GROVE BEACH",
+    "city": "NORTH MYRTLE BEACH",
     "state": "SC"
   },
   "29583": {
@@ -31060,7 +31060,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "SC"
   },
   "29588": {
-    "city": "SOCASTEE",
+    "city": "MYRTLE BEACH",
     "state": "SC"
   },
   "29589": {
@@ -31088,7 +31088,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "SC"
   },
   "29596": {
-    "city": "CHERAW CARRIER ANNEX",
+    "city": "CHERAW",
     "state": "SC"
   },
   "29597": {
@@ -31096,51 +31096,51 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "SC"
   },
   "29598": {
-    "city": "COASTAL",
+    "city": "NORTH MYRTLE BEACH",
     "state": "SC"
   },
   "29601": {
-    "city": "GREENVILLE SC DOWNTOWN SDC",
+    "city": "GREENVILLE",
     "state": "SC"
   },
   "29602": {
-    "city": "GREENVILLE SC DOWNTOWN SDC",
+    "city": "GREENVILLE",
     "state": "SC"
   },
   "29603": {
-    "city": "GREENVILLE SC DOWNTOWN SDC",
+    "city": "GREENVILLE",
     "state": "SC"
   },
   "29604": {
-    "city": "STATION A",
+    "city": "GREENVILLE",
     "state": "SC"
   },
   "29605": {
-    "city": "GREENVILLE SC DOWNTOWN SDC",
+    "city": "GREENVILLE",
     "state": "SC"
   },
   "29606": {
-    "city": "PLEASANTBURG",
+    "city": "GREENVILLE",
     "state": "SC"
   },
   "29607": {
-    "city": "PLEASANTBURG",
+    "city": "GREENVILLE",
     "state": "SC"
   },
   "29608": {
-    "city": "PARK PLACE",
+    "city": "GREENVILLE",
     "state": "SC"
   },
   "29609": {
-    "city": "GREENVILLE SC DOWNTOWN SDC",
+    "city": "GREENVILLE",
     "state": "SC"
   },
   "29610": {
-    "city": "BEREA",
+    "city": "GREENVILLE",
     "state": "SC"
   },
   "29611": {
-    "city": "BEREA",
+    "city": "GREENVILLE",
     "state": "SC"
   },
   "29612": {
@@ -31148,15 +31148,15 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "SC"
   },
   "29615": {
-    "city": "KEITH D OGLESBY",
+    "city": "GREENVILLE",
     "state": "SC"
   },
   "29616": {
-    "city": "KEITH D OGLESBY",
+    "city": "GREENVILLE",
     "state": "SC"
   },
   "29617": {
-    "city": "BEREA",
+    "city": "GREENVILLE",
     "state": "SC"
   },
   "29620": {
@@ -31172,7 +31172,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "SC"
   },
   "29623": {
-    "city": "NORTH ANDERSON",
+    "city": "ANDERSON",
     "state": "SC"
   },
   "29624": {
@@ -31252,7 +31252,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "SC"
   },
   "29648": {
-    "city": "MAGNOLIA",
+    "city": "GREENWOOD",
     "state": "SC"
   },
   "29649": {
@@ -31340,7 +31340,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "SC"
   },
   "29673": {
-    "city": "CPU POWDERSVILLE",
+    "city": "PIEDMONT",
     "state": "SC"
   },
   "29675": {
@@ -31356,7 +31356,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "SC"
   },
   "29678": {
-    "city": "CPU THE BOOKSMITH",
+    "city": "SENECA",
     "state": "SC"
   },
   "29679": {
@@ -31364,7 +31364,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "SC"
   },
   "29680": {
-    "city": "FAIRVIEW",
+    "city": "SIMPSONVILLE",
     "state": "SC"
   },
   "29681": {
@@ -31516,7 +31516,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "SC"
   },
   "29732": {
-    "city": "CHERRY ROAD",
+    "city": "ROCK HILL",
     "state": "SC"
   },
   "29741": {
@@ -31548,11 +31548,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "SC"
   },
   "29803": {
-    "city": "SUMMERALL",
+    "city": "AIKEN",
     "state": "SC"
   },
   "29804": {
-    "city": "SUMMERALL",
+    "city": "AIKEN",
     "state": "SC"
   },
   "29805": {
@@ -31572,7 +31572,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "SC"
   },
   "29813": {
-    "city": "HILDA",
+    "city": "BARNWELL",
     "state": "SC"
   },
   "29816": {
@@ -31712,15 +31712,15 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "SC"
   },
   "29902": {
-    "city": "BURTON",
+    "city": "BEAUFORT",
     "state": "SC"
   },
   "29903": {
-    "city": "BURTON",
+    "city": "BEAUFORT",
     "state": "SC"
   },
   "29904": {
-    "city": "MARINE CORPS AIR STATION",
+    "city": "BEAUFORT",
     "state": "SC"
   },
   "29905": {
@@ -31728,7 +31728,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "SC"
   },
   "29906": {
-    "city": "BURTON",
+    "city": "BEAUFORT",
     "state": "SC"
   },
   "29907": {
@@ -31736,7 +31736,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "SC"
   },
   "29909": {
-    "city": "BLUFFTON CARRIER ANNEX",
+    "city": "OKATIE",
     "state": "SC"
   },
   "29910": {
@@ -31752,7 +31752,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "SC"
   },
   "29915": {
-    "city": "FAIRFIELD",
+    "city": "HILTON HEAD ISLAND",
     "state": "SC"
   },
   "29916": {
@@ -31784,11 +31784,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "SC"
   },
   "29925": {
-    "city": "FAIRFIELD",
+    "city": "HILTON HEAD ISLAND",
     "state": "SC"
   },
   "29926": {
-    "city": "FAIRFIELD",
+    "city": "HILTON HEAD ISLAND",
     "state": "SC"
   },
   "29927": {
@@ -31796,7 +31796,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "SC"
   },
   "29928": {
-    "city": "HARBOURTOWN",
+    "city": "HILTON HEAD ISLAND",
     "state": "SC"
   },
   "29929": {
@@ -31856,27 +31856,27 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "GA"
   },
   "30003": {
-    "city": "ROCKBRIDGE",
+    "city": "NORCROSS",
     "state": "GA"
   },
   "30004": {
-    "city": "ALPHARETTA CARRIER ANNEX",
+    "city": "ALPHARETTA",
     "state": "GA"
   },
   "30005": {
-    "city": "WEBB BRIDGE",
+    "city": "ALPHARETTA",
     "state": "GA"
   },
   "30006": {
-    "city": "WINDY HILL",
+    "city": "MARIETTA",
     "state": "GA"
   },
   "30007": {
-    "city": "EAST COBB",
+    "city": "MARIETTA",
     "state": "GA"
   },
   "30008": {
-    "city": "WESTSIDE CARRIER ANNEX",
+    "city": "MARIETTA",
     "state": "GA"
   },
   "30009": {
@@ -31892,7 +31892,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "GA"
   },
   "30012": {
-    "city": "OLDE TOWN",
+    "city": "CONYERS",
     "state": "GA"
   },
   "30013": {
@@ -31900,7 +31900,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "GA"
   },
   "30014": {
-    "city": "COVINGTON CARRIER ANNEX",
+    "city": "COVINGTON",
     "state": "GA"
   },
   "30015": {
@@ -31908,7 +31908,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "GA"
   },
   "30016": {
-    "city": "COVINGTON CARRIER ANNEX",
+    "city": "COVINGTON",
     "state": "GA"
   },
   "30017": {
@@ -31928,11 +31928,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "GA"
   },
   "30022": {
-    "city": "WEBB BRIDGE",
+    "city": "ALPHARETTA",
     "state": "GA"
   },
   "30023": {
-    "city": "WEBB BRIDGE",
+    "city": "ALPHARETTA",
     "state": "GA"
   },
   "30024": {
@@ -31940,7 +31940,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "GA"
   },
   "30025": {
-    "city": "COVINGTON CARRIER ANNEX",
+    "city": "COVINGTON",
     "state": "GA"
   },
   "30028": {
@@ -31948,7 +31948,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "GA"
   },
   "30029": {
-    "city": "NORTH METRO",
+    "city": "DULUTH",
     "state": "GA"
   },
   "30030": {
@@ -31968,19 +31968,19 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "GA"
   },
   "30034": {
-    "city": "WESLEY CHAPEL",
+    "city": "DECATUR",
     "state": "GA"
   },
   "30035": {
-    "city": "WESLEY CHAPEL",
+    "city": "DECATUR",
     "state": "GA"
   },
   "30036": {
-    "city": "WESLEY CHAPEL",
+    "city": "DECATUR",
     "state": "GA"
   },
   "30037": {
-    "city": "SOUTH DEKALB",
+    "city": "DECATUR",
     "state": "GA"
   },
   "30038": {
@@ -31988,7 +31988,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "GA"
   },
   "30039": {
-    "city": "CENTERVILLE BRANCH",
+    "city": "SNELLVILLE",
     "state": "GA"
   },
   "30040": {
@@ -31996,7 +31996,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "GA"
   },
   "30041": {
-    "city": "LANIER CARRIER ANNEX",
+    "city": "CUMMING",
     "state": "GA"
   },
   "30042": {
@@ -32004,7 +32004,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "GA"
   },
   "30043": {
-    "city": "LAWRENCEVILLE NORTH",
+    "city": "LAWRENCEVILLE",
     "state": "GA"
   },
   "30044": {
@@ -32012,11 +32012,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "GA"
   },
   "30045": {
-    "city": "LAWRENCEVILLE CARRIER ANNEX",
+    "city": "LAWRENCEVILLE",
     "state": "GA"
   },
   "30046": {
-    "city": "CROGAN STREET",
+    "city": "LAWRENCEVILLE",
     "state": "GA"
   },
   "30047": {
@@ -32028,7 +32028,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "GA"
   },
   "30049": {
-    "city": "LAWRENCEVILLE NORTH",
+    "city": "LAWRENCEVILLE",
     "state": "GA"
   },
   "30052": {
@@ -32036,15 +32036,15 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "GA"
   },
   "30054": {
-    "city": "COVINGTON CARRIER ANNEX",
+    "city": "COVINGTON",
     "state": "GA"
   },
   "30055": {
-    "city": "COVINGTON CARRIER ANNEX",
+    "city": "COVINGTON",
     "state": "GA"
   },
   "30056": {
-    "city": "COVINGTON CARRIER ANNEX",
+    "city": "COVINGTON",
     "state": "GA"
   },
   "30058": {
@@ -32060,27 +32060,27 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "GA"
   },
   "30062": {
-    "city": "CPU NORTHEAST",
+    "city": "MARIETTA",
     "state": "GA"
   },
   "30064": {
-    "city": "WESTSIDE CARRIER ANNEX",
+    "city": "MARIETTA",
     "state": "GA"
   },
   "30065": {
-    "city": "GRESHAM ROAD",
+    "city": "MARIETTA",
     "state": "GA"
   },
   "30066": {
-    "city": "SPRAYBERRY",
+    "city": "MARIETTA",
     "state": "GA"
   },
   "30067": {
-    "city": "MOUNT BETHEL",
+    "city": "MARIETTA",
     "state": "GA"
   },
   "30068": {
-    "city": "MOUNT BETHEL",
+    "city": "MARIETTA",
     "state": "GA"
   },
   "30070": {
@@ -32096,11 +32096,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "GA"
   },
   "30074": {
-    "city": "REDAN",
+    "city": "LITHONIA",
     "state": "GA"
   },
   "30075": {
-    "city": "CROSSTOWN CARRIER ANNEX",
+    "city": "ROSWELL",
     "state": "GA"
   },
   "30076": {
@@ -32108,11 +32108,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "GA"
   },
   "30077": {
-    "city": "ROSWELL POSTAL STORE",
+    "city": "ROSWELL",
     "state": "GA"
   },
   "30078": {
-    "city": "CENTERVILLE BRANCH",
+    "city": "SNELLVILLE",
     "state": "GA"
   },
   "30079": {
@@ -32124,7 +32124,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "GA"
   },
   "30081": {
-    "city": "CONCORD SQUARE",
+    "city": "SMYRNA",
     "state": "GA"
   },
   "30082": {
@@ -32132,7 +32132,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "GA"
   },
   "30083": {
-    "city": "MEMORIAL",
+    "city": "STONE MOUNTAIN",
     "state": "GA"
   },
   "30084": {
@@ -32148,7 +32148,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "GA"
   },
   "30087": {
-    "city": "MOUNTAIN PARK",
+    "city": "STONE MOUNTAIN",
     "state": "GA"
   },
   "30088": {
@@ -32172,7 +32172,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "GA"
   },
   "30095": {
-    "city": "GWINNETT MALL CORNERS",
+    "city": "DULUTH",
     "state": "GA"
   },
   "30096": {
@@ -32204,7 +32204,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "GA"
   },
   "30106": {
-    "city": "SOUTH ATLANTA GA S&DC",
+    "city": "ATLANTA",
     "state": "GA"
   },
   "30107": {
@@ -32292,7 +32292,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "GA"
   },
   "30133": {
-    "city": "CAMPBELLTON STREET",
+    "city": "DOUGLASVILLE",
     "state": "GA"
   },
   "30134": {
@@ -32356,7 +32356,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "GA"
   },
   "30152": {
-    "city": "ACWORTH GA S&DC",
+    "city": "ACWORTH",
     "state": "GA"
   },
   "30153": {
@@ -32376,7 +32376,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "GA"
   },
   "30160": {
-    "city": "BARRETT PARKWAY",
+    "city": "KENNESAW",
     "state": "GA"
   },
   "30161": {
@@ -32388,7 +32388,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "GA"
   },
   "30164": {
-    "city": "WEST ROME",
+    "city": "ROME",
     "state": "GA"
   },
   "30165": {
@@ -32468,7 +32468,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "GA"
   },
   "30189": {
-    "city": "TOWNE LAKE STATION",
+    "city": "WOODSTOCK",
     "state": "GA"
   },
   "30204": {
@@ -32496,7 +32496,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "GA"
   },
   "30215": {
-    "city": "FAYETTEVILLE CARRIER ANNEX",
+    "city": "FAYETTEVILLE",
     "state": "GA"
   },
   "30216": {
@@ -32560,7 +32560,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "GA"
   },
   "30240": {
-    "city": "CPU COPY CITY",
+    "city": "LAGRANGE",
     "state": "GA"
   },
   "30241": {
@@ -32616,7 +32616,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "GA"
   },
   "30264": {
-    "city": "GREENVILLE ST",
+    "city": "NEWNAN",
     "state": "GA"
   },
   "30265": {
@@ -32648,7 +32648,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "GA"
   },
   "30274": {
-    "city": "CHURCH STREET",
+    "city": "RIVERDALE",
     "state": "GA"
   },
   "30275": {
@@ -32680,7 +32680,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "GA"
   },
   "30287": {
-    "city": "PARK PLACE",
+    "city": "MORROW",
     "state": "GA"
   },
   "30288": {
@@ -32716,7 +32716,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "GA"
   },
   "30296": {
-    "city": "CHURCH STREET",
+    "city": "RIVERDALE",
     "state": "GA"
   },
   "30297": {
@@ -32728,159 +32728,159 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "GA"
   },
   "30301": {
-    "city": "MORRIS BROWN",
+    "city": "ATLANTA",
     "state": "GA"
   },
   "30302": {
-    "city": "CENTRAL CITY",
+    "city": "ATLANTA",
     "state": "GA"
   },
   "30303": {
-    "city": "ATLANTA GA SDC",
+    "city": "ATLANTA",
     "state": "GA"
   },
   "30305": {
-    "city": "SOUTH ATLANTA GA S&DC",
+    "city": "ATLANTA",
     "state": "GA"
   },
   "30306": {
-    "city": "RALPH MCGILL CARRIER",
+    "city": "ATLANTA",
     "state": "GA"
   },
   "30307": {
-    "city": "RALPH MCGILL CARRIER",
+    "city": "ATLANTA",
     "state": "GA"
   },
   "30308": {
-    "city": "CIVIC CENTER",
+    "city": "ATLANTA",
     "state": "GA"
   },
   "30309": {
-    "city": "MIDTOWN CARRIER ANNEX",
+    "city": "ATLANTA",
     "state": "GA"
   },
   "30310": {
-    "city": "WEST END",
+    "city": "ATLANTA",
     "state": "GA"
   },
   "30311": {
-    "city": "CASCADE HEIGHTS",
+    "city": "ATLANTA",
     "state": "GA"
   },
   "30312": {
-    "city": "ATLANTA GA SDC",
+    "city": "ATLANTA",
     "state": "GA"
   },
   "30313": {
-    "city": "SOUTH ATLANTA GA S&DC",
+    "city": "ATLANTA",
     "state": "GA"
   },
   "30314": {
-    "city": "MORRIS BROWN",
+    "city": "ATLANTA",
     "state": "GA"
   },
   "30315": {
-    "city": "ATLANTA GA SDC",
+    "city": "ATLANTA",
     "state": "GA"
   },
   "30316": {
-    "city": "ATLANTA GA SDC",
+    "city": "ATLANTA",
     "state": "GA"
   },
   "30317": {
-    "city": "ATLANTA GA SDC",
+    "city": "ATLANTA",
     "state": "GA"
   },
   "30318": {
-    "city": "SOUTH ATLANTA GA S&DC",
+    "city": "ATLANTA",
     "state": "GA"
   },
   "30319": {
-    "city": "NORTH ATLANTA GA S&DC",
+    "city": "BROOKHAVEN",
     "state": "GA"
   },
   "30320": {
-    "city": "HAPEVILLE",
+    "city": "ATLANTA",
     "state": "GA"
   },
   "30321": {
-    "city": "ATLANTA GA SDC",
+    "city": "ATLANTA",
     "state": "GA"
   },
   "30324": {
-    "city": "BROADVIEW",
+    "city": "ATLANTA",
     "state": "GA"
   },
   "30325": {
-    "city": "HOWELL MILL",
+    "city": "ATLANTA",
     "state": "GA"
   },
   "30326": {
-    "city": "SOUTH ATLANTA GA S&DC",
+    "city": "ATLANTA",
     "state": "GA"
   },
   "30327": {
-    "city": "SOUTH ATLANTA GA S&DC",
+    "city": "ATLANTA",
     "state": "GA"
   },
   "30328": {
-    "city": "NORTHRIDGE",
+    "city": "ATLANTA",
     "state": "GA"
   },
   "30329": {
-    "city": "NORTH ATLANTA GA S&DC",
+    "city": "BROOKHAVEN",
     "state": "GA"
   },
   "30331": {
-    "city": "SOUTH ATLANTA GA S&DC",
+    "city": "ATLANTA",
     "state": "GA"
   },
   "30333": {
-    "city": "DRUID HILLS",
+    "city": "ATLANTA",
     "state": "GA"
   },
   "30336": {
-    "city": "INDUSTRIAL",
+    "city": "ATLANTA",
     "state": "GA"
   },
   "30337": {
-    "city": "COLLEGE PARK",
+    "city": "ATLANTA",
     "state": "GA"
   },
   "30338": {
-    "city": "NORTH ATLANTA GA S&DC",
+    "city": "BROOKHAVEN",
     "state": "GA"
   },
   "30339": {
-    "city": "CUMBERLAND CARRIER FACILITY",
+    "city": "ATLANTA",
     "state": "GA"
   },
   "30340": {
-    "city": "DORAVILLE",
+    "city": "ATLANTA",
     "state": "GA"
   },
   "30341": {
-    "city": "DORAVILLE",
+    "city": "ATLANTA",
     "state": "GA"
   },
   "30342": {
-    "city": "GLENRIDGE",
+    "city": "ATLANTA",
     "state": "GA"
   },
   "30343": {
-    "city": "PEACHTREE CENTER",
+    "city": "ATLANTA",
     "state": "GA"
   },
   "30344": {
-    "city": "ATLANTA GA SDC",
+    "city": "ATLANTA",
     "state": "GA"
   },
   "30345": {
-    "city": "NORTH ATLANTA GA S&DC",
+    "city": "BROOKHAVEN",
     "state": "GA"
   },
   "30346": {
-    "city": "DUNWOODY",
+    "city": "ATLANTA",
     "state": "GA"
   },
   "30348": {
@@ -32888,11 +32888,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "GA"
   },
   "30349": {
-    "city": "OLD NATIONAL",
+    "city": "ATLANTA",
     "state": "GA"
   },
   "30350": {
-    "city": "NORTHRIDGE",
+    "city": "ATLANTA",
     "state": "GA"
   },
   "30353": {
@@ -32900,51 +32900,51 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "GA"
   },
   "30354": {
-    "city": "ATLANTA GA SDC",
+    "city": "ATLANTA",
     "state": "GA"
   },
   "30355": {
-    "city": "PHARR ROAD",
+    "city": "ATLANTA",
     "state": "GA"
   },
   "30356": {
-    "city": "DUNWOODY",
+    "city": "ATLANTA",
     "state": "GA"
   },
   "30357": {
-    "city": "MIDTOWN",
+    "city": "ATLANTA",
     "state": "GA"
   },
   "30358": {
-    "city": "SANDY SPRINGS",
+    "city": "ATLANTA",
     "state": "GA"
   },
   "30359": {
-    "city": "BRIARCLIFF",
+    "city": "ATLANTA",
     "state": "GA"
   },
   "30360": {
-    "city": "DORAVILLE",
+    "city": "ATLANTA",
     "state": "GA"
   },
   "30361": {
-    "city": "MIDTOWN CARRIER ANNEX",
+    "city": "ATLANTA",
     "state": "GA"
   },
   "30362": {
-    "city": "DORAVILLE",
+    "city": "ATLANTA",
     "state": "GA"
   },
   "30363": {
-    "city": "MIDTOWN CARRIER ANNEX",
+    "city": "ATLANTA",
     "state": "GA"
   },
   "30364": {
-    "city": "EAST POINT",
+    "city": "ATLANTA",
     "state": "GA"
   },
   "30366": {
-    "city": "CHAMBLEE",
+    "city": "ATLANTA",
     "state": "GA"
   },
   "30374": {
@@ -32952,7 +32952,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "GA"
   },
   "30377": {
-    "city": "MARTECH",
+    "city": "ATLANTA",
     "state": "GA"
   },
   "30401": {
@@ -32976,7 +32976,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "GA"
   },
   "30414": {
-    "city": "BELLVILLE DPOBU",
+    "city": "BELLVILLE",
     "state": "GA"
   },
   "30415": {
@@ -33140,7 +33140,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "GA"
   },
   "30501": {
-    "city": "GAINESVILLE CARRIER ANNEX",
+    "city": "GAINESVILLE",
     "state": "GA"
   },
   "30502": {
@@ -33152,15 +33152,15 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "GA"
   },
   "30504": {
-    "city": "GAINESVILLE CARRIER ANNEX",
+    "city": "GAINESVILLE",
     "state": "GA"
   },
   "30506": {
-    "city": "GAINESVILLE CARRIER ANNEX",
+    "city": "GAINESVILLE",
     "state": "GA"
   },
   "30507": {
-    "city": "GAINESVILLE CARRIER ANNEX",
+    "city": "GAINESVILLE",
     "state": "GA"
   },
   "30510": {
@@ -33196,11 +33196,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "GA"
   },
   "30518": {
-    "city": "BUFORD CARRIER ANNEX",
+    "city": "BUFORD",
     "state": "GA"
   },
   "30519": {
-    "city": "BUFORD CARRIER ANNEX",
+    "city": "BUFORD",
     "state": "GA"
   },
   "30520": {
@@ -33300,7 +33300,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "GA"
   },
   "30548": {
-    "city": "BRASELTON HOSCHTON CAX",
+    "city": "BRASELTON",
     "state": "GA"
   },
   "30549": {
@@ -33404,31 +33404,31 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "GA"
   },
   "30601": {
-    "city": "ATHENS GA S&DC",
+    "city": "ATHENS",
     "state": "GA"
   },
   "30603": {
-    "city": "DOWNTOWN",
+    "city": "ATHENS",
     "state": "GA"
   },
   "30604": {
-    "city": "PROMENADE",
+    "city": "ATHENS",
     "state": "GA"
   },
   "30605": {
-    "city": "ATHENS GA S&DC",
+    "city": "ATHENS",
     "state": "GA"
   },
   "30606": {
-    "city": "ATHENS GA S&DC",
+    "city": "ATHENS",
     "state": "GA"
   },
   "30607": {
-    "city": "ATHENS GA S&DC",
+    "city": "ATHENS",
     "state": "GA"
   },
   "30608": {
-    "city": "ATHENS GA S&DC",
+    "city": "ATHENS",
     "state": "GA"
   },
   "30619": {
@@ -33440,7 +33440,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "GA"
   },
   "30621": {
-    "city": "ATHENS GA S&DC",
+    "city": "ATHENS",
     "state": "GA"
   },
   "30622": {
@@ -33464,15 +33464,15 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "GA"
   },
   "30628": {
-    "city": "ATHENS GA S&DC",
+    "city": "ATHENS",
     "state": "GA"
   },
   "30629": {
-    "city": "ATHENS GA S&DC",
+    "city": "ATHENS",
     "state": "GA"
   },
   "30630": {
-    "city": "ATHENS GA S&DC",
+    "city": "ATHENS",
     "state": "GA"
   },
   "30631": {
@@ -33516,7 +33516,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "GA"
   },
   "30646": {
-    "city": "ATHENS GA S&DC",
+    "city": "ATHENS",
     "state": "GA"
   },
   "30647": {
@@ -33524,7 +33524,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "GA"
   },
   "30648": {
-    "city": "ATHENS GA S&DC",
+    "city": "ATHENS",
     "state": "GA"
   },
   "30650": {
@@ -33536,7 +33536,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "GA"
   },
   "30656": {
-    "city": "MONROE CAX",
+    "city": "MONROE",
     "state": "GA"
   },
   "30660": {
@@ -33564,7 +33564,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "GA"
   },
   "30667": {
-    "city": "ATHENS GA S&DC",
+    "city": "ATHENS",
     "state": "GA"
   },
   "30668": {
@@ -33584,7 +33584,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "GA"
   },
   "30677": {
-    "city": "ATHENS GA S&DC",
+    "city": "ATHENS",
     "state": "GA"
   },
   "30678": {
@@ -33596,7 +33596,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "GA"
   },
   "30683": {
-    "city": "ATHENS GA S&DC",
+    "city": "ATHENS",
     "state": "GA"
   },
   "30701": {
@@ -33628,7 +33628,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "GA"
   },
   "30719": {
-    "city": "EAST SIDE",
+    "city": "DALTON",
     "state": "GA"
   },
   "30720": {
@@ -33852,35 +33852,35 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "GA"
   },
   "30905": {
-    "city": "FOREST HILLS",
+    "city": "AUGUSTA",
     "state": "GA"
   },
   "30906": {
-    "city": "PEACH ORCHARD",
+    "city": "AUGUSTA",
     "state": "GA"
   },
   "30907": {
-    "city": "MARTINEZ",
+    "city": "AUGUSTA",
     "state": "GA"
   },
   "30909": {
-    "city": "CPU SURREY CENTER",
+    "city": "AUGUSTA",
     "state": "GA"
   },
   "30914": {
-    "city": "HILL STATION",
+    "city": "AUGUSTA",
     "state": "GA"
   },
   "30916": {
-    "city": "PEACH ORCHARD",
+    "city": "AUGUSTA",
     "state": "GA"
   },
   "30917": {
-    "city": "MARTINEZ",
+    "city": "AUGUSTA",
     "state": "GA"
   },
   "30919": {
-    "city": "FOREST HILLS",
+    "city": "AUGUSTA",
     "state": "GA"
   },
   "31001": {
@@ -33940,7 +33940,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "GA"
   },
   "31015": {
-    "city": "CORDELE CARRIER ANNEX",
+    "city": "CORDELE",
     "state": "GA"
   },
   "31016": {
@@ -33984,7 +33984,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "GA"
   },
   "31027": {
-    "city": "CPU EAST DUBLIN STATION",
+    "city": "EAST DUBLIN",
     "state": "GA"
   },
   "31028": {
@@ -34024,7 +34024,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "GA"
   },
   "31037": {
-    "city": "HELENA",
+    "city": "MC RAE HELENA",
     "state": "GA"
   },
   "31038": {
@@ -34036,7 +34036,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "GA"
   },
   "31040": {
-    "city": "COURT SQUARE",
+    "city": "DUBLIN",
     "state": "GA"
   },
   "31041": {
@@ -34084,7 +34084,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "GA"
   },
   "31055": {
-    "city": "MC RAE",
+    "city": "MC RAE HELENA",
     "state": "GA"
   },
   "31057": {
@@ -34100,11 +34100,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "GA"
   },
   "31060": {
-    "city": "MC RAE",
+    "city": "MC RAE HELENA",
     "state": "GA"
   },
   "31061": {
-    "city": "MILLEDGEVILLE CARRIER ANNEX",
+    "city": "MILLEDGEVILLE",
     "state": "GA"
   },
   "31063": {
@@ -34144,7 +34144,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "GA"
   },
   "31072": {
-    "city": "CORDELE CARRIER ANNEX",
+    "city": "CORDELE",
     "state": "GA"
   },
   "31075": {
@@ -34240,71 +34240,71 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "GA"
   },
   "31106": {
-    "city": "NORTH HIGHLAND",
+    "city": "ATLANTA",
     "state": "GA"
   },
   "31107": {
-    "city": "LITTLE FIVE POINTS",
+    "city": "ATLANTA",
     "state": "GA"
   },
   "31119": {
-    "city": "NORTH ATLANTA GA S&DC",
+    "city": "BROOKHAVEN",
     "state": "GA"
   },
   "31126": {
-    "city": "BUCKHEAD LOOP",
+    "city": "ATLANTA",
     "state": "GA"
   },
   "31131": {
-    "city": "BEN HILL",
+    "city": "ATLANTA",
     "state": "GA"
   },
   "31139": {
-    "city": "AKERS MILL",
+    "city": "ATLANTA",
     "state": "GA"
   },
   "31141": {
-    "city": "EMBRY HILLS",
+    "city": "ATLANTA",
     "state": "GA"
   },
   "31145": {
-    "city": "NORTHLAKE",
+    "city": "ATLANTA",
     "state": "GA"
   },
   "31146": {
-    "city": "PERIMETER CENTER",
+    "city": "ATLANTA",
     "state": "GA"
   },
   "31150": {
-    "city": "NORTHRIDGE",
+    "city": "ATLANTA",
     "state": "GA"
   },
   "31156": {
-    "city": "NORTH SPRINGS",
+    "city": "ATLANTA",
     "state": "GA"
   },
   "31201": {
-    "city": "MACON GA S&DC",
+    "city": "MACON",
     "state": "GA"
   },
   "31202": {
-    "city": "MULBERRY",
+    "city": "MACON",
     "state": "GA"
   },
   "31203": {
-    "city": "PIO NONO",
+    "city": "MACON",
     "state": "GA"
   },
   "31204": {
-    "city": "ZEBULON BRANCH",
+    "city": "MACON",
     "state": "GA"
   },
   "31205": {
-    "city": "MACON GA S&DC",
+    "city": "MACON",
     "state": "GA"
   },
   "31206": {
-    "city": "MACON GA S&DC",
+    "city": "MACON",
     "state": "GA"
   },
   "31208": {
@@ -34316,27 +34316,27 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "GA"
   },
   "31210": {
-    "city": "ZEBULON BRANCH",
+    "city": "MACON",
     "state": "GA"
   },
   "31211": {
-    "city": "MACON GA S&DC",
+    "city": "MACON",
     "state": "GA"
   },
   "31216": {
-    "city": "MACON GA S&DC",
+    "city": "MACON",
     "state": "GA"
   },
   "31217": {
-    "city": "MACON GA S&DC",
+    "city": "MACON",
     "state": "GA"
   },
   "31220": {
-    "city": "ZEBULON BRANCH",
+    "city": "MACON",
     "state": "GA"
   },
   "31221": {
-    "city": "ZEBULON BRANCH",
+    "city": "MACON",
     "state": "GA"
   },
   "31301": {
@@ -34452,23 +34452,23 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "GA"
   },
   "31403": {
-    "city": "BINGVILLE",
+    "city": "SAVANNAH",
     "state": "GA"
   },
   "31404": {
-    "city": "EASTSIDE",
+    "city": "SAVANNAH",
     "state": "GA"
   },
   "31405": {
-    "city": "BINGVILLE",
+    "city": "SAVANNAH",
     "state": "GA"
   },
   "31406": {
-    "city": "OGLETHORPE",
+    "city": "SAVANNAH",
     "state": "GA"
   },
   "31407": {
-    "city": "GARDEN CITY",
+    "city": "SAVANNAH",
     "state": "GA"
   },
   "31408": {
@@ -34476,23 +34476,23 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "GA"
   },
   "31409": {
-    "city": "HUNTER AAF",
+    "city": "SAVANNAH",
     "state": "GA"
   },
   "31410": {
-    "city": "EASTSIDE",
+    "city": "SAVANNAH",
     "state": "GA"
   },
   "31411": {
-    "city": "OGLETHORPE",
+    "city": "SAVANNAH",
     "state": "GA"
   },
   "31412": {
-    "city": "TELFAIR SQUARE",
+    "city": "SAVANNAH",
     "state": "GA"
   },
   "31414": {
-    "city": "EASTSIDE",
+    "city": "SAVANNAH",
     "state": "GA"
   },
   "31415": {
@@ -34500,19 +34500,19 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "GA"
   },
   "31416": {
-    "city": "OGLETHORPE",
+    "city": "SAVANNAH",
     "state": "GA"
   },
   "31418": {
-    "city": "GARDEN CITY",
+    "city": "SAVANNAH",
     "state": "GA"
   },
   "31419": {
-    "city": "SOUTHSIDE",
+    "city": "SAVANNAH",
     "state": "GA"
   },
   "31420": {
-    "city": "SOUTHSIDE",
+    "city": "SAVANNAH",
     "state": "GA"
   },
   "31501": {
@@ -34548,7 +34548,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "GA"
   },
   "31518": {
-    "city": "BLACKSHEAR CARRIER ANX",
+    "city": "BLACKSHEAR",
     "state": "GA"
   },
   "31519": {
@@ -34624,7 +34624,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "GA"
   },
   "31547": {
-    "city": "CPU KINGS BAY",
+    "city": "KINGS BAY",
     "state": "GA"
   },
   "31548": {
@@ -34636,7 +34636,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "GA"
   },
   "31550": {
-    "city": "VPO MANOR",
+    "city": "MANOR",
     "state": "GA"
   },
   "31551": {
@@ -34676,7 +34676,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "GA"
   },
   "31561": {
-    "city": "SEA ISLAND",
+    "city": "SAINT SIMONS ISLAND",
     "state": "GA"
   },
   "31562": {
@@ -34716,11 +34716,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "GA"
   },
   "31601": {
-    "city": "NORTHSIDE VALDOSTA",
+    "city": "VALDOSTA",
     "state": "GA"
   },
   "31602": {
-    "city": "NORTHSIDE VALDOSTA",
+    "city": "VALDOSTA",
     "state": "GA"
   },
   "31603": {
@@ -34728,15 +34728,15 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "GA"
   },
   "31604": {
-    "city": "NORTHSIDE VALDOSTA",
+    "city": "VALDOSTA",
     "state": "GA"
   },
   "31605": {
-    "city": "NORTHSIDE VALDOSTA",
+    "city": "VALDOSTA",
     "state": "GA"
   },
   "31606": {
-    "city": "NORTHSIDE VALDOSTA",
+    "city": "VALDOSTA",
     "state": "GA"
   },
   "31620": {
@@ -34844,11 +34844,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "GA"
   },
   "31702": {
-    "city": "FEDERAL",
+    "city": "ALBANY",
     "state": "GA"
   },
   "31703": {
-    "city": "MOCK ROAD",
+    "city": "ALBANY",
     "state": "GA"
   },
   "31705": {
@@ -34864,7 +34864,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "GA"
   },
   "31708": {
-    "city": "LAFAYETTE PLAZA",
+    "city": "ALBANY",
     "state": "GA"
   },
   "31709": {
@@ -34956,11 +34956,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "GA"
   },
   "31757": {
-    "city": "TALL TIMBERS VLG",
+    "city": "THOMASVILLE",
     "state": "GA"
   },
   "31758": {
-    "city": "TALL TIMBERS VLG",
+    "city": "THOMASVILLE",
     "state": "GA"
   },
   "31763": {
@@ -35104,11 +35104,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "GA"
   },
   "31807": {
-    "city": "COLUMBUS GA S&DC",
+    "city": "COLUMBUS",
     "state": "GA"
   },
   "31808": {
-    "city": "COLUMBUS GA S&DC",
+    "city": "COLUMBUS",
     "state": "GA"
   },
   "31810": {
@@ -35136,7 +35136,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "GA"
   },
   "31820": {
-    "city": "COLUMBUS GA S&DC",
+    "city": "COLUMBUS",
     "state": "GA"
   },
   "31821": {
@@ -35168,7 +35168,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "GA"
   },
   "31829": {
-    "city": "COLUMBUS GA S&DC",
+    "city": "COLUMBUS",
     "state": "GA"
   },
   "31830": {
@@ -35176,7 +35176,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "GA"
   },
   "31831": {
-    "city": "COLUMBUS GA S&DC",
+    "city": "COLUMBUS",
     "state": "GA"
   },
   "31832": {
@@ -35192,19 +35192,19 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "GA"
   },
   "31901": {
-    "city": "COLUMBUS GA S&DC",
+    "city": "COLUMBUS",
     "state": "GA"
   },
   "31902": {
-    "city": "DOWNTOWN COLUMBUS",
+    "city": "COLUMBUS",
     "state": "GA"
   },
   "31903": {
-    "city": "BAKER VILLAGE",
+    "city": "COLUMBUS",
     "state": "GA"
   },
   "31904": {
-    "city": "COLUMBUS GA S&DC",
+    "city": "COLUMBUS",
     "state": "GA"
   },
   "31905": {
@@ -35212,27 +35212,27 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "GA"
   },
   "31906": {
-    "city": "COLUMBUS GA S&DC",
+    "city": "COLUMBUS",
     "state": "GA"
   },
   "31907": {
-    "city": "COLUMBUS GA S&DC",
+    "city": "COLUMBUS",
     "state": "GA"
   },
   "31908": {
-    "city": "COLUMBUS GA S&DC",
+    "city": "COLUMBUS",
     "state": "GA"
   },
   "31909": {
-    "city": "COLUMBUS GA S&DC",
+    "city": "COLUMBUS",
     "state": "GA"
   },
   "31914": {
-    "city": "BEALLWOOD",
+    "city": "COLUMBUS",
     "state": "GA"
   },
   "31917": {
-    "city": "LINDSEY CREEK",
+    "city": "COLUMBUS",
     "state": "GA"
   },
   "31995": {
@@ -35240,7 +35240,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "GA"
   },
   "32003": {
-    "city": "RIDGEWOOD",
+    "city": "ORANGE PARK",
     "state": "FL"
   },
   "32004": {
@@ -35280,7 +35280,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "32030": {
-    "city": "RIDGEWOOD",
+    "city": "ORANGE PARK",
     "state": "FL"
   },
   "32033": {
@@ -35292,7 +35292,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "32035": {
-    "city": "DOWNTOWN FERNANDINA BEACH",
+    "city": "FERNANDINA BEACH",
     "state": "FL"
   },
   "32038": {
@@ -35372,11 +35372,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "32064": {
-    "city": "DOWLING PARK",
+    "city": "LIVE OAK",
     "state": "FL"
   },
   "32065": {
-    "city": "RIDGEWOOD",
+    "city": "ORANGE PARK",
     "state": "FL"
   },
   "32066": {
@@ -35404,7 +35404,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "32080": {
-    "city": "ANASTASIA ISLAND",
+    "city": "SAINT AUGUSTINE",
     "state": "FL"
   },
   "32081": {
@@ -35428,7 +35428,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "32086": {
-    "city": "CPU PONCE DE LEON MALL",
+    "city": "SAINT AUGUSTINE",
     "state": "FL"
   },
   "32087": {
@@ -35440,7 +35440,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "32092": {
-    "city": "WORLD GOLF VILLAGE ANNEX",
+    "city": "SAINT AUGUSTINE",
     "state": "FL"
   },
   "32094": {
@@ -35448,7 +35448,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "32095": {
-    "city": "WORLD GOLF VILLAGE ANNEX",
+    "city": "SAINT AUGUSTINE",
     "state": "FL"
   },
   "32096": {
@@ -35488,11 +35488,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "32115": {
-    "city": "DOWNTOWN DAYTONA BEACH",
+    "city": "DAYTONA BEACH",
     "state": "FL"
   },
   "32116": {
-    "city": "DAYTONA BEACH SHORES",
+    "city": "DAYTONA BEACH",
     "state": "FL"
   },
   "32117": {
@@ -35500,7 +35500,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "32118": {
-    "city": "DOWNTOWN DAYTONA BEACH",
+    "city": "DAYTONA BEACH",
     "state": "FL"
   },
   "32119": {
@@ -35516,11 +35516,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "32122": {
-    "city": "HOLLY HILL",
+    "city": "DAYTONA BEACH",
     "state": "FL"
   },
   "32123": {
-    "city": "ALLANDALE",
+    "city": "PORT ORANGE",
     "state": "FL"
   },
   "32124": {
@@ -35528,11 +35528,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "32125": {
-    "city": "HOLLY HILL",
+    "city": "DAYTONA BEACH",
     "state": "FL"
   },
   "32126": {
-    "city": "DOWNTOWN DAYTONA BEACH",
+    "city": "DAYTONA BEACH",
     "state": "FL"
   },
   "32127": {
@@ -35616,7 +35616,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "32157": {
-    "city": "LAKE COMO",
+    "city": "POMONA PARK",
     "state": "FL"
   },
   "32158": {
@@ -35652,7 +35652,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "32170": {
-    "city": "CPU CORONADO",
+    "city": "NEW SMYRNA BEACH",
     "state": "FL"
   },
   "32173": {
@@ -35664,11 +35664,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "32175": {
-    "city": "ORMOND BEACH BEACHSIDE",
+    "city": "ORMOND BEACH",
     "state": "FL"
   },
   "32176": {
-    "city": "ORMOND BEACH BEACHSIDE",
+    "city": "ORMOND BEACH",
     "state": "FL"
   },
   "32177": {
@@ -35728,83 +35728,83 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "32201": {
-    "city": "JACKSONVILLE MOWU",
+    "city": "JACKSONVILLE",
     "state": "FL"
   },
   "32202": {
-    "city": "GATEWAY CARRIER ANNEX",
+    "city": "JACKSONVILLE",
     "state": "FL"
   },
   "32203": {
-    "city": "JACKSONVILLE MOWU",
+    "city": "JACKSONVILLE",
     "state": "FL"
   },
   "32204": {
-    "city": "MURRAY HILL",
+    "city": "JACKSONVILLE",
     "state": "FL"
   },
   "32205": {
-    "city": "CPU HERSCHEL GATES CONTRACT",
+    "city": "JACKSONVILLE",
     "state": "FL"
   },
   "32206": {
-    "city": "GATEWAY CARRIER ANNEX",
+    "city": "JACKSONVILLE",
     "state": "FL"
   },
   "32207": {
-    "city": "SOUTH JACKSONVILLE",
+    "city": "JACKSONVILLE",
     "state": "FL"
   },
   "32208": {
-    "city": "LAKE FOREST",
+    "city": "JACKSONVILLE",
     "state": "FL"
   },
   "32209": {
-    "city": "CARVER",
+    "city": "JACKSONVILLE",
     "state": "FL"
   },
   "32210": {
-    "city": "LAKE SHORE",
+    "city": "JACKSONVILLE",
     "state": "FL"
   },
   "32211": {
-    "city": "ARLINGTON",
+    "city": "JACKSONVILLE",
     "state": "FL"
   },
   "32212": {
-    "city": "JACKSONVILLE NAS",
+    "city": "JACKSONVILLE",
     "state": "FL"
   },
   "32216": {
-    "city": "CPU SO UNIVERSITY HALLIDAY",
+    "city": "JACKSONVILLE",
     "state": "FL"
   },
   "32217": {
-    "city": "MANDARIN",
+    "city": "JACKSONVILLE",
     "state": "FL"
   },
   "32218": {
-    "city": "NORTH JACKSONVILLE",
+    "city": "JACKSONVILLE",
     "state": "FL"
   },
   "32219": {
-    "city": "LAKE FOREST",
+    "city": "JACKSONVILLE",
     "state": "FL"
   },
   "32220": {
-    "city": "MURRAY HILL",
+    "city": "JACKSONVILLE",
     "state": "FL"
   },
   "32221": {
-    "city": "MURRAY HILL",
+    "city": "JACKSONVILLE",
     "state": "FL"
   },
   "32222": {
-    "city": "WESTLAND",
+    "city": "JACKSONVILLE",
     "state": "FL"
   },
   "32223": {
-    "city": "MANDARIN",
+    "city": "JACKSONVILLE",
     "state": "FL"
   },
   "32224": {
@@ -35812,11 +35812,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "32225": {
-    "city": "MONUMENT",
+    "city": "JACKSONVILLE",
     "state": "FL"
   },
   "32226": {
-    "city": "NORTH JACKSONVILLE",
+    "city": "JACKSONVILLE",
     "state": "FL"
   },
   "32227": {
@@ -35824,19 +35824,19 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "32228": {
-    "city": "MAYPORT NAVAL STATION",
+    "city": "JACKSONVILLE",
     "state": "FL"
   },
   "32229": {
-    "city": "NORTH JACKSONVILLE",
+    "city": "JACKSONVILLE",
     "state": "FL"
   },
   "32231": {
-    "city": "JACKSONVILLE MOWU",
+    "city": "JACKSONVILLE",
     "state": "FL"
   },
   "32232": {
-    "city": "JACKSONVILLE MOWU",
+    "city": "JACKSONVILLE",
     "state": "FL"
   },
   "32233": {
@@ -35844,23 +35844,23 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "32234": {
-    "city": "BALDWIN",
+    "city": "JACKSONVILLE",
     "state": "FL"
   },
   "32235": {
-    "city": "MONUMENT",
+    "city": "JACKSONVILLE",
     "state": "FL"
   },
   "32236": {
-    "city": "MURRAY HILL",
+    "city": "JACKSONVILLE",
     "state": "FL"
   },
   "32238": {
-    "city": "LAKE SHORE",
+    "city": "JACKSONVILLE",
     "state": "FL"
   },
   "32239": {
-    "city": "ARLINGTON",
+    "city": "JACKSONVILLE",
     "state": "FL"
   },
   "32240": {
@@ -35868,55 +35868,55 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "32241": {
-    "city": "MANDARIN",
+    "city": "JACKSONVILLE",
     "state": "FL"
   },
   "32244": {
-    "city": "WESTLAND",
+    "city": "JACKSONVILLE",
     "state": "FL"
   },
   "32245": {
-    "city": "POTTSBURG",
+    "city": "JACKSONVILLE",
     "state": "FL"
   },
   "32246": {
-    "city": "POTTSBURG",
+    "city": "JACKSONVILLE",
     "state": "FL"
   },
   "32247": {
-    "city": "SOUTH JACKSONVILLE",
+    "city": "JACKSONVILLE",
     "state": "FL"
   },
   "32250": {
-    "city": "JACKSONVILLE BEACH ANNEX",
+    "city": "JACKSONVILLE BEACH",
     "state": "FL"
   },
   "32254": {
-    "city": "MURRAY HILL",
+    "city": "JACKSONVILLE",
     "state": "FL"
   },
   "32255": {
-    "city": "SOUTHPOINT",
+    "city": "JACKSONVILLE",
     "state": "FL"
   },
   "32256": {
-    "city": "BAYMEADOWS DDC",
+    "city": "JACKSONVILLE",
     "state": "FL"
   },
   "32257": {
-    "city": "MANDARIN",
+    "city": "JACKSONVILLE",
     "state": "FL"
   },
   "32258": {
-    "city": "BAYMEADOWS DDC",
+    "city": "JACKSONVILLE",
     "state": "FL"
   },
   "32259": {
-    "city": "BAYMEADOWS DDC",
+    "city": "JACKSONVILLE",
     "state": "FL"
   },
   "32260": {
-    "city": "NW SAINT JOHNS",
+    "city": "SAINT JOHNS",
     "state": "FL"
   },
   "32266": {
@@ -35924,39 +35924,39 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "32277": {
-    "city": "ARLINGTON",
+    "city": "JACKSONVILLE",
     "state": "FL"
   },
   "32301": {
-    "city": "LEON",
+    "city": "TALLAHASSEE",
     "state": "FL"
   },
   "32302": {
-    "city": "PARK AVENUE",
+    "city": "TALLAHASSEE",
     "state": "FL"
   },
   "32303": {
-    "city": "LAKE JACKSON",
+    "city": "TALLAHASSEE",
     "state": "FL"
   },
   "32304": {
-    "city": "WESTSIDE",
+    "city": "TALLAHASSEE",
     "state": "FL"
   },
   "32305": {
-    "city": "WESTSIDE",
+    "city": "TALLAHASSEE",
     "state": "FL"
   },
   "32308": {
-    "city": "CENTERVILLE",
+    "city": "TALLAHASSEE",
     "state": "FL"
   },
   "32309": {
-    "city": "CENTERVILLE",
+    "city": "TALLAHASSEE",
     "state": "FL"
   },
   "32310": {
-    "city": "WESTSIDE",
+    "city": "TALLAHASSEE",
     "state": "FL"
   },
   "32311": {
@@ -35964,7 +35964,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "32312": {
-    "city": "LAKE JACKSON",
+    "city": "TALLAHASSEE",
     "state": "FL"
   },
   "32314": {
@@ -35972,19 +35972,19 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "32315": {
-    "city": "LEON",
+    "city": "TALLAHASSEE",
     "state": "FL"
   },
   "32316": {
-    "city": "WESTSIDE",
+    "city": "TALLAHASSEE",
     "state": "FL"
   },
   "32317": {
-    "city": "CENTERVILLE",
+    "city": "TALLAHASSEE",
     "state": "FL"
   },
   "32318": {
-    "city": "LAKE JACKSON",
+    "city": "TALLAHASSEE",
     "state": "FL"
   },
   "32320": {
@@ -36000,7 +36000,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "32323": {
-    "city": "LANARK VILLAGE",
+    "city": "CARRABELLE",
     "state": "FL"
   },
   "32324": {
@@ -36108,7 +36108,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "32357": {
-    "city": "VPO SHADY GROVE",
+    "city": "GREENVILLE",
     "state": "FL"
   },
   "32358": {
@@ -36132,47 +36132,47 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "32401": {
-    "city": "PANAMA CITY FL S&DC",
+    "city": "PANAMA CITY",
     "state": "FL"
   },
   "32402": {
-    "city": "DOWNTOWN PANAMA CITY",
+    "city": "PANAMA CITY",
     "state": "FL"
   },
   "32403": {
-    "city": "PANAMA CITY FL S&DC",
+    "city": "PANAMA CITY",
     "state": "FL"
   },
   "32404": {
-    "city": "PANAMA CITY FL S&DC",
+    "city": "PANAMA CITY",
     "state": "FL"
   },
   "32405": {
-    "city": "PANAMA CITY FL S&DC",
+    "city": "PANAMA CITY",
     "state": "FL"
   },
   "32406": {
-    "city": "NORTH SIDE",
+    "city": "PANAMA CITY",
     "state": "FL"
   },
   "32407": {
-    "city": "CPU NAVAL COASTAL SYS LAB",
+    "city": "PANAMA CITY BEACH",
     "state": "FL"
   },
   "32408": {
-    "city": "PANAMA CITY FL S&DC",
+    "city": "PANAMA CITY",
     "state": "FL"
   },
   "32409": {
-    "city": "PANAMA CITY FL S&DC",
+    "city": "PANAMA CITY",
     "state": "FL"
   },
   "32411": {
-    "city": "CPU BAY POINT",
+    "city": "PANAMA CITY",
     "state": "FL"
   },
   "32412": {
-    "city": "PANAMA CITY FL S&DC",
+    "city": "PANAMA CITY",
     "state": "FL"
   },
   "32413": {
@@ -36300,7 +36300,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "32459": {
-    "city": "CPU SEASIDE",
+    "city": "SANTA ROSA BEACH",
     "state": "FL"
   },
   "32460": {
@@ -36328,67 +36328,67 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "32466": {
-    "city": "PANAMA CITY FL S&DC",
+    "city": "PANAMA CITY",
     "state": "FL"
   },
   "32501": {
-    "city": "EAST HILL",
+    "city": "PENSACOLA",
     "state": "FL"
   },
   "32502": {
-    "city": "EAST HILL",
+    "city": "PENSACOLA",
     "state": "FL"
   },
   "32503": {
-    "city": "EAST HILL",
+    "city": "PENSACOLA",
     "state": "FL"
   },
   "32504": {
-    "city": "NOBLES",
+    "city": "PENSACOLA",
     "state": "FL"
   },
   "32505": {
-    "city": "WARRINGTON",
+    "city": "PENSACOLA",
     "state": "FL"
   },
   "32506": {
-    "city": "MYRTLE GROVE",
+    "city": "PENSACOLA",
     "state": "FL"
   },
   "32507": {
-    "city": "WARRINGTON",
+    "city": "PENSACOLA",
     "state": "FL"
   },
   "32508": {
-    "city": "NAVAL AIR STATION",
+    "city": "PENSACOLA",
     "state": "FL"
   },
   "32513": {
-    "city": "EAST HILL",
+    "city": "PENSACOLA",
     "state": "FL"
   },
   "32514": {
-    "city": "NOBLES",
+    "city": "PENSACOLA",
     "state": "FL"
   },
   "32516": {
-    "city": "MYRTLE GROVE",
+    "city": "PENSACOLA",
     "state": "FL"
   },
   "32522": {
-    "city": "PENSACOLA GMF FOR MY PO",
+    "city": "PENSACOLA",
     "state": "FL"
   },
   "32523": {
-    "city": "PENSACOLA GMF FOR MY PO",
+    "city": "PENSACOLA",
     "state": "FL"
   },
   "32524": {
-    "city": "NOBLES",
+    "city": "PENSACOLA",
     "state": "FL"
   },
   "32526": {
-    "city": "CPU BELLVIEW",
+    "city": "PENSACOLA",
     "state": "FL"
   },
   "32530": {
@@ -36404,7 +36404,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "32534": {
-    "city": "NOBLES",
+    "city": "PENSACOLA",
     "state": "FL"
   },
   "32535": {
@@ -36496,7 +36496,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "32571": {
-    "city": "PACE CARRIER ANNEX NEW",
+    "city": "MILTON",
     "state": "FL"
   },
   "32572": {
@@ -36528,43 +36528,43 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "32591": {
-    "city": "EAST HILL",
+    "city": "PENSACOLA",
     "state": "FL"
   },
   "32601": {
-    "city": "GAINESVILLE FL S&DC",
+    "city": "GAINESVILLE",
     "state": "FL"
   },
   "32603": {
-    "city": "GAINESVILLE FL S&DC",
+    "city": "GAINESVILLE",
     "state": "FL"
   },
   "32604": {
-    "city": "MAIN STREET",
+    "city": "GAINESVILLE",
     "state": "FL"
   },
   "32605": {
-    "city": "GAINESVILLE FL S&DC",
+    "city": "GAINESVILLE",
     "state": "FL"
   },
   "32606": {
-    "city": "GAINESVILLE FL S&DC",
+    "city": "GAINESVILLE",
     "state": "FL"
   },
   "32607": {
-    "city": "GAINESVILLE FL S&DC",
+    "city": "GAINESVILLE",
     "state": "FL"
   },
   "32608": {
-    "city": "GAINESVILLE FL S&DC",
+    "city": "GAINESVILLE",
     "state": "FL"
   },
   "32609": {
-    "city": "GAINESVILLE FL S&DC",
+    "city": "GAINESVILLE",
     "state": "FL"
   },
   "32614": {
-    "city": "GAINESVILLE FL S&DC",
+    "city": "GAINESVILLE",
     "state": "FL"
   },
   "32615": {
@@ -36604,7 +36604,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "32627": {
-    "city": "MAIN STREET",
+    "city": "GAINESVILLE",
     "state": "FL"
   },
   "32628": {
@@ -36624,7 +36624,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "32635": {
-    "city": "NORTHWEST",
+    "city": "GAINESVILLE",
     "state": "FL"
   },
   "32639": {
@@ -36636,7 +36636,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "32641": {
-    "city": "GAINESVILLE FL S&DC",
+    "city": "GAINESVILLE",
     "state": "FL"
   },
   "32643": {
@@ -36652,7 +36652,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "32653": {
-    "city": "GAINESVILLE FL S&DC",
+    "city": "GAINESVILLE",
     "state": "FL"
   },
   "32654": {
@@ -36688,7 +36688,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "32667": {
-    "city": "GAINESVILLE FL S&DC",
+    "city": "GAINESVILLE",
     "state": "FL"
   },
   "32668": {
@@ -36696,7 +36696,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "32669": {
-    "city": "GAINESVILLE FL S&DC",
+    "city": "GAINESVILLE",
     "state": "FL"
   },
   "32680": {
@@ -36732,7 +36732,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "32697": {
-    "city": "WORTHINGTON SPRINGS",
+    "city": "LAKE BUTLER",
     "state": "FL"
   },
   "32701": {
@@ -36784,7 +36784,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "32715": {
-    "city": "PRAIRIE LAKE",
+    "city": "ALTAMONTE SPRINGS",
     "state": "FL"
   },
   "32716": {
@@ -36800,7 +36800,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "32720": {
-    "city": "DELAND CARRIER ANNEX",
+    "city": "DELAND",
     "state": "FL"
   },
   "32721": {
@@ -36808,7 +36808,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "32724": {
-    "city": "DELAND CARRIER ANNEX",
+    "city": "DELAND",
     "state": "FL"
   },
   "32725": {
@@ -36848,11 +36848,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "32738": {
-    "city": "DELTONA PINES",
+    "city": "DELTONA",
     "state": "FL"
   },
   "32739": {
-    "city": "DELTONA PINES",
+    "city": "DELTONA",
     "state": "FL"
   },
   "32744": {
@@ -36900,7 +36900,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "32762": {
-    "city": "OVIEDO STATION",
+    "city": "OVIEDO",
     "state": "FL"
   },
   "32763": {
@@ -36928,7 +36928,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "32771": {
-    "city": "SANFORD ANNEX",
+    "city": "SANFORD",
     "state": "FL"
   },
   "32772": {
@@ -36936,7 +36936,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "32773": {
-    "city": "SANFORD ANNEX",
+    "city": "SANFORD",
     "state": "FL"
   },
   "32774": {
@@ -36960,7 +36960,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "32779": {
-    "city": "WEKIVA SPRINGS",
+    "city": "LONGWOOD",
     "state": "FL"
   },
   "32780": {
@@ -36988,15 +36988,15 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "32791": {
-    "city": "WEKIVA SPRINGS",
+    "city": "LONGWOOD",
     "state": "FL"
   },
   "32792": {
-    "city": "ALOMA CARRIER ANNEX",
+    "city": "WINTER PARK",
     "state": "FL"
   },
   "32793": {
-    "city": "ALOMA",
+    "city": "WINTER PARK",
     "state": "FL"
   },
   "32794": {
@@ -37016,203 +37016,203 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "32801": {
-    "city": "GORE STREET CARRIER ANNEX",
+    "city": "ORLANDO",
     "state": "FL"
   },
   "32802": {
-    "city": "DOWNTOWN ORLANDO",
+    "city": "ORLANDO",
     "state": "FL"
   },
   "32803": {
-    "city": "MALL CARRIER ANNEX",
+    "city": "ORLANDO",
     "state": "FL"
   },
   "32804": {
-    "city": "COLLEGE PARK",
+    "city": "ORLANDO",
     "state": "FL"
   },
   "32805": {
-    "city": "GORE STREET CARRIER ANNEX",
+    "city": "ORLANDO",
     "state": "FL"
   },
   "32806": {
-    "city": "DIXIE VILLAGE",
+    "city": "ORLANDO",
     "state": "FL"
   },
   "32807": {
-    "city": "AZALEA PARK",
+    "city": "ORLANDO",
     "state": "FL"
   },
   "32808": {
-    "city": "HIAWASSEE",
+    "city": "ORLANDO",
     "state": "FL"
   },
   "32809": {
-    "city": "PINE CASTLE",
+    "city": "ORLANDO",
     "state": "FL"
   },
   "32810": {
-    "city": "LOCKHART",
+    "city": "ORLANDO",
     "state": "FL"
   },
   "32811": {
-    "city": "ORLO VISTA",
+    "city": "ORLANDO",
     "state": "FL"
   },
   "32812": {
-    "city": "LEE VISTA",
+    "city": "ORLANDO",
     "state": "FL"
   },
   "32814": {
-    "city": "HERNDON",
+    "city": "ORLANDO",
     "state": "FL"
   },
   "32815": {
-    "city": "ORLANDO MOWU",
+    "city": "ORLANDO",
     "state": "FL"
   },
   "32817": {
-    "city": "UNION PARK",
+    "city": "ORLANDO",
     "state": "FL"
   },
   "32818": {
-    "city": "HIAWASSEE",
+    "city": "ORLANDO",
     "state": "FL"
   },
   "32819": {
-    "city": "SAND LAKE",
+    "city": "ORLANDO",
     "state": "FL"
   },
   "32820": {
-    "city": "ALAFAYA CARRIER ANNEX",
+    "city": "ORLANDO",
     "state": "FL"
   },
   "32821": {
-    "city": "SAND LAKE",
+    "city": "ORLANDO",
     "state": "FL"
   },
   "32822": {
-    "city": "LEE VISTA",
+    "city": "ORLANDO",
     "state": "FL"
   },
   "32824": {
-    "city": "SOUTH CREEK",
+    "city": "ORLANDO",
     "state": "FL"
   },
   "32825": {
-    "city": "ALAFAYA CARRIER ANNEX",
+    "city": "ORLANDO",
     "state": "FL"
   },
   "32826": {
-    "city": "ALAFAYA CARRIER ANNEX",
+    "city": "ORLANDO",
     "state": "FL"
   },
   "32827": {
-    "city": "LEE VISTA",
+    "city": "ORLANDO",
     "state": "FL"
   },
   "32828": {
-    "city": "ALAFAYA CARRIER ANNEX",
+    "city": "ORLANDO",
     "state": "FL"
   },
   "32829": {
-    "city": "VENTURA",
+    "city": "ORLANDO",
     "state": "FL"
   },
   "32830": {
-    "city": "SAND LAKE",
+    "city": "ORLANDO",
     "state": "FL"
   },
   "32831": {
-    "city": "ALAFAYA CARRIER ANNEX",
+    "city": "ORLANDO",
     "state": "FL"
   },
   "32832": {
-    "city": "VENTURA",
+    "city": "ORLANDO",
     "state": "FL"
   },
   "32833": {
-    "city": "ALAFAYA CARRIER ANNEX",
+    "city": "ORLANDO",
     "state": "FL"
   },
   "32835": {
-    "city": "ORLO VISTA",
+    "city": "ORLANDO",
     "state": "FL"
   },
   "32836": {
-    "city": "SAND LAKE",
+    "city": "ORLANDO",
     "state": "FL"
   },
   "32837": {
-    "city": "SOUTH CREEK",
+    "city": "ORLANDO",
     "state": "FL"
   },
   "32839": {
-    "city": "PINE CASTLE",
+    "city": "ORLANDO",
     "state": "FL"
   },
   "32853": {
-    "city": "HERNDON",
+    "city": "ORLANDO",
     "state": "FL"
   },
   "32854": {
-    "city": "COLLEGE PARK",
+    "city": "ORLANDO",
     "state": "FL"
   },
   "32855": {
-    "city": "ORANGE BLOSSOM",
+    "city": "ORLANDO",
     "state": "FL"
   },
   "32856": {
-    "city": "DIXIE VILLAGE",
+    "city": "ORLANDO",
     "state": "FL"
   },
   "32857": {
-    "city": "AZALEA PARK",
+    "city": "ORLANDO",
     "state": "FL"
   },
   "32858": {
-    "city": "PINE HILLS",
+    "city": "ORLANDO",
     "state": "FL"
   },
   "32859": {
-    "city": "PINE CASTLE",
+    "city": "ORLANDO",
     "state": "FL"
   },
   "32860": {
-    "city": "LOCKHART",
+    "city": "ORLANDO",
     "state": "FL"
   },
   "32861": {
-    "city": "ORLO VISTA",
+    "city": "ORLANDO",
     "state": "FL"
   },
   "32862": {
-    "city": "ORLANDO MOWU",
+    "city": "ORLANDO",
     "state": "FL"
   },
   "32867": {
-    "city": "UNION PARK",
+    "city": "ORLANDO",
     "state": "FL"
   },
   "32868": {
-    "city": "HIAWASSEE",
+    "city": "ORLANDO",
     "state": "FL"
   },
   "32869": {
-    "city": "SAND LAKE",
+    "city": "ORLANDO",
     "state": "FL"
   },
   "32872": {
-    "city": "VENTURA",
+    "city": "ORLANDO",
     "state": "FL"
   },
   "32877": {
-    "city": "SOUTH CREEK",
+    "city": "ORLANDO",
     "state": "FL"
   },
   "32878": {
-    "city": "ALAFAYA",
+    "city": "ORLANDO",
     "state": "FL"
   },
   "32901": {
@@ -37224,11 +37224,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "32903": {
-    "city": "EAU GALLIE",
+    "city": "MELBOURNE",
     "state": "FL"
   },
   "32904": {
-    "city": "WEST MELBOURNE",
+    "city": "MELBOURNE",
     "state": "FL"
   },
   "32905": {
@@ -37240,27 +37240,27 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "32907": {
-    "city": "PALM BAY WEST",
+    "city": "PALM BAY",
     "state": "FL"
   },
   "32908": {
-    "city": "PALM BAY WEST",
+    "city": "PALM BAY",
     "state": "FL"
   },
   "32909": {
-    "city": "PALM BAY WEST",
+    "city": "PALM BAY",
     "state": "FL"
   },
   "32910": {
-    "city": "INTERCHANGE SQUARE",
+    "city": "PALM BAY",
     "state": "FL"
   },
   "32911": {
-    "city": "PALM BAY WEST",
+    "city": "PALM BAY",
     "state": "FL"
   },
   "32912": {
-    "city": "WEST MELBOURNE",
+    "city": "MELBOURNE",
     "state": "FL"
   },
   "32920": {
@@ -37276,11 +37276,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "32924": {
-    "city": "FIVE POINTS",
+    "city": "COCOA",
     "state": "FL"
   },
   "32925": {
-    "city": "PATRICK AFB",
+    "city": "PATRICK AIR FORCE BASE",
     "state": "FL"
   },
   "32926": {
@@ -37300,15 +37300,15 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "32934": {
-    "city": "APOLLO ANNEX",
+    "city": "MELBOURNE",
     "state": "FL"
   },
   "32935": {
-    "city": "APOLLO ANNEX",
+    "city": "MELBOURNE",
     "state": "FL"
   },
   "32936": {
-    "city": "EAU GALLIE",
+    "city": "MELBOURNE",
     "state": "FL"
   },
   "32937": {
@@ -37316,11 +37316,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "32940": {
-    "city": "SUNTREE",
+    "city": "MELBOURNE",
     "state": "FL"
   },
   "32941": {
-    "city": "SUNTREE",
+    "city": "MELBOURNE",
     "state": "FL"
   },
   "32948": {
@@ -37376,7 +37376,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "32961": {
-    "city": "VERO BEACH DOWNTOWN",
+    "city": "VERO BEACH",
     "state": "FL"
   },
   "32962": {
@@ -37388,7 +37388,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "32964": {
-    "city": "VERO BEACH FINANCE",
+    "city": "VERO BEACH",
     "state": "FL"
   },
   "32965": {
@@ -37396,19 +37396,19 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "32966": {
-    "city": "CITRUS RIDGE",
+    "city": "VERO BEACH",
     "state": "FL"
   },
   "32967": {
-    "city": "VERO BEACH DOWNTOWN",
+    "city": "VERO BEACH",
     "state": "FL"
   },
   "32968": {
-    "city": "CITRUS RIDGE",
+    "city": "VERO BEACH",
     "state": "FL"
   },
   "32969": {
-    "city": "CITRUS RIDGE",
+    "city": "VERO BEACH",
     "state": "FL"
   },
   "32970": {
@@ -37432,7 +37432,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "33002": {
-    "city": "PALM VILLAGE",
+    "city": "HIALEAH",
     "state": "FL"
   },
   "33004": {
@@ -37440,11 +37440,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "33008": {
-    "city": "GOLDEN ISLES",
+    "city": "HALLANDALE BEACH",
     "state": "FL"
   },
   "33009": {
-    "city": "HALLANDALE",
+    "city": "HALLANDALE BEACH",
     "state": "FL"
   },
   "33010": {
@@ -37456,31 +37456,31 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "33012": {
-    "city": "PROMENADE",
+    "city": "HIALEAH",
     "state": "FL"
   },
   "33013": {
-    "city": "BRIGHT",
+    "city": "HIALEAH",
     "state": "FL"
   },
   "33014": {
-    "city": "PALMETTO LAKES",
+    "city": "MIAMI LAKES",
     "state": "FL"
   },
   "33015": {
-    "city": "MIAMI GARDENS",
+    "city": "HIALEAH",
     "state": "FL"
   },
   "33016": {
-    "city": "EL MERCADO",
+    "city": "HIALEAH",
     "state": "FL"
   },
   "33017": {
-    "city": "MIAMI GARDENS",
+    "city": "HIALEAH",
     "state": "FL"
   },
   "33018": {
-    "city": "MIAMI GARDENS",
+    "city": "HIALEAH",
     "state": "FL"
   },
   "33019": {
@@ -37500,7 +37500,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "33023": {
-    "city": "WEST HOLLYWOOD HILLS",
+    "city": "HOLLYWOOD",
     "state": "FL"
   },
   "33024": {
@@ -37512,7 +37512,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "33026": {
-    "city": "FLAMINGO",
+    "city": "PEMBROKE PINES",
     "state": "FL"
   },
   "33027": {
@@ -37520,11 +37520,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "33028": {
-    "city": "FLAMINGO",
+    "city": "PEMBROKE PINES",
     "state": "FL"
   },
   "33029": {
-    "city": "CHAPEL LAKES",
+    "city": "PEMBROKE PINES",
     "state": "FL"
   },
   "33030": {
@@ -37532,11 +37532,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "33031": {
-    "city": "PRINCETON",
+    "city": "HOMESTEAD",
     "state": "FL"
   },
   "33032": {
-    "city": "PRINCETON",
+    "city": "HOMESTEAD",
     "state": "FL"
   },
   "33033": {
@@ -37544,11 +37544,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "33034": {
-    "city": "FLORIDA CITY",
+    "city": "HOMESTEAD",
     "state": "FL"
   },
   "33035": {
-    "city": "FLORIDA CITY",
+    "city": "HOMESTEAD",
     "state": "FL"
   },
   "33036": {
@@ -37576,7 +37576,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "33045": {
-    "city": "FLAGLER KEY WEST",
+    "city": "KEY WEST",
     "state": "FL"
   },
   "33050": {
@@ -37588,7 +37588,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "33052": {
-    "city": "MARATHON SHORES",
+    "city": "MARATHON",
     "state": "FL"
   },
   "33054": {
@@ -37596,35 +37596,35 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "33055": {
-    "city": "CAROL CITY",
+    "city": "MIAMI GARDENS",
     "state": "FL"
   },
   "33056": {
-    "city": "CAROL CITY",
+    "city": "MIAMI GARDENS",
     "state": "FL"
   },
   "33060": {
-    "city": "POMPANO BEACH FL S&DC",
+    "city": "POMPANO BEACH",
     "state": "FL"
   },
   "33061": {
-    "city": "TROPICAL REEF",
+    "city": "POMPANO BEACH",
     "state": "FL"
   },
   "33062": {
-    "city": "POMPANO BEACH FL S&DC",
+    "city": "POMPANO BEACH",
     "state": "FL"
   },
   "33063": {
-    "city": "POMPANO BEACH FL S&DC",
+    "city": "POMPANO BEACH",
     "state": "FL"
   },
   "33064": {
-    "city": "POMPANO BEACH FL S&DC",
+    "city": "POMPANO BEACH",
     "state": "FL"
   },
   "33065": {
-    "city": "POMPANO BEACH FL S&DC",
+    "city": "POMPANO BEACH",
     "state": "FL"
   },
   "33066": {
@@ -37632,15 +37632,15 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "33067": {
-    "city": "CORAL REEF",
+    "city": "CORAL SPRINGS",
     "state": "FL"
   },
   "33068": {
-    "city": "POMPANO BEACH FL S&DC",
+    "city": "POMPANO BEACH",
     "state": "FL"
   },
   "33069": {
-    "city": "POMPANO BEACH FL S&DC",
+    "city": "POMPANO BEACH",
     "state": "FL"
   },
   "33070": {
@@ -37648,11 +37648,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "33071": {
-    "city": "ATLANTIC",
+    "city": "CORAL SPRINGS",
     "state": "FL"
   },
   "33073": {
-    "city": "POMPANO BEACH FL S&DC",
+    "city": "POMPANO BEACH",
     "state": "FL"
   },
   "33074": {
@@ -37664,23 +37664,23 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "33076": {
-    "city": "ATLANTIC",
+    "city": "CORAL SPRINGS",
     "state": "FL"
   },
   "33077": {
-    "city": "ATLANTIC",
+    "city": "CORAL SPRINGS",
     "state": "FL"
   },
   "33081": {
-    "city": "HILLCREST",
+    "city": "HOLLYWOOD",
     "state": "FL"
   },
   "33082": {
-    "city": "WEST PINES",
+    "city": "PEMBROKE PINES",
     "state": "FL"
   },
   "33083": {
-    "city": "WEST HOLLYWOOD HILLS",
+    "city": "HOLLYWOOD",
     "state": "FL"
   },
   "33084": {
@@ -37692,7 +37692,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "33092": {
-    "city": "PRINCETON",
+    "city": "HOMESTEAD",
     "state": "FL"
   },
   "33093": {
@@ -37704,11 +37704,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "33101": {
-    "city": "FLAGLER MIAMI",
+    "city": "MIAMI",
     "state": "FL"
   },
   "33102": {
-    "city": "GENERAL MAIL FACILITY MIAMI",
+    "city": "MIAMI",
     "state": "FL"
   },
   "33109": {
@@ -37720,7 +37720,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "33116": {
-    "city": "SNAPPER CREEK",
+    "city": "MIAMI",
     "state": "FL"
   },
   "33119": {
@@ -37728,47 +37728,47 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "33122": {
-    "city": "WEST CARRIER ANNEX",
+    "city": "MIAMI",
     "state": "FL"
   },
   "33124": {
-    "city": "CPU UNIVERSITY OF MIAMI",
+    "city": "CORAL GABLES",
     "state": "FL"
   },
   "33125": {
-    "city": "JOSE MARTI",
+    "city": "MIAMI",
     "state": "FL"
   },
   "33126": {
-    "city": "BLUE LAGOON",
+    "city": "MIAMI",
     "state": "FL"
   },
   "33127": {
-    "city": "BUENA VISTA CARRIER ANNEX",
+    "city": "MIAMI",
     "state": "FL"
   },
   "33128": {
-    "city": "FLAGLER MIAMI",
+    "city": "MIAMI",
     "state": "FL"
   },
   "33129": {
-    "city": "FLAGLER MIAMI",
+    "city": "MIAMI",
     "state": "FL"
   },
   "33130": {
-    "city": "FLAGLER MIAMI",
+    "city": "MIAMI",
     "state": "FL"
   },
   "33131": {
-    "city": "FLAGLER MIAMI",
+    "city": "MIAMI",
     "state": "FL"
   },
   "33132": {
-    "city": "FLAGLER MIAMI",
+    "city": "MIAMI",
     "state": "FL"
   },
   "33133": {
-    "city": "COCONUT GROVE",
+    "city": "MIAMI",
     "state": "FL"
   },
   "33134": {
@@ -37776,19 +37776,19 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "33135": {
-    "city": "JOSE MARTI",
+    "city": "MIAMI",
     "state": "FL"
   },
   "33136": {
-    "city": "FLAGLER MIAMI",
+    "city": "MIAMI",
     "state": "FL"
   },
   "33137": {
-    "city": "BUENA VISTA",
+    "city": "MIAMI",
     "state": "FL"
   },
   "33138": {
-    "city": "LITTLE RIVER",
+    "city": "MIAMI",
     "state": "FL"
   },
   "33139": {
@@ -37796,15 +37796,15 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "33140": {
-    "city": "OCEAN VIEW",
+    "city": "MIAMI BEACH",
     "state": "FL"
   },
   "33141": {
-    "city": "NORMANDY",
+    "city": "MIAMI BEACH",
     "state": "FL"
   },
   "33142": {
-    "city": "ALLAPATTAH",
+    "city": "MIAMI",
     "state": "FL"
   },
   "33143": {
@@ -37812,19 +37812,19 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "33144": {
-    "city": "TAMIAMI",
+    "city": "MIAMI",
     "state": "FL"
   },
   "33145": {
-    "city": "JOSE MARTI",
+    "city": "MIAMI",
     "state": "FL"
   },
   "33146": {
-    "city": "HIBISCUS CARRIER ANNEX",
+    "city": "MIAMI",
     "state": "FL"
   },
   "33147": {
-    "city": "DR MARTIN LUTHER KING JR",
+    "city": "MIAMI",
     "state": "FL"
   },
   "33149": {
@@ -37832,35 +37832,35 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "33150": {
-    "city": "LITTLE RIVER",
+    "city": "MIAMI",
     "state": "FL"
   },
   "33152": {
-    "city": "GENERAL MAIL FACILITY MIAMI",
+    "city": "MIAMI",
     "state": "FL"
   },
   "33153": {
-    "city": "MIAMI SHORES",
+    "city": "MIAMI",
     "state": "FL"
   },
   "33154": {
-    "city": "NORMANDY",
+    "city": "MIAMI BEACH",
     "state": "FL"
   },
   "33155": {
-    "city": "LUDLAM",
+    "city": "MIAMI",
     "state": "FL"
   },
   "33156": {
-    "city": "KENDALL CARRIER ANNEX",
+    "city": "MIAMI",
     "state": "FL"
   },
   "33157": {
-    "city": "QUAIL HEIGHTS",
+    "city": "MIAMI",
     "state": "FL"
   },
   "33158": {
-    "city": "QUAIL HEIGHTS",
+    "city": "MIAMI",
     "state": "FL"
   },
   "33160": {
@@ -37876,71 +37876,71 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "33163": {
-    "city": "OJUS",
+    "city": "MIAMI",
     "state": "FL"
   },
   "33164": {
-    "city": "ULETA",
+    "city": "NORTH MIAMI BEACH",
     "state": "FL"
   },
   "33165": {
-    "city": "OLYMPIA HEIGHTS",
+    "city": "MIAMI",
     "state": "FL"
   },
   "33166": {
-    "city": "MILAM ANNEX",
+    "city": "MIAMI",
     "state": "FL"
   },
   "33167": {
-    "city": "GRATIGNY",
+    "city": "MIAMI",
     "state": "FL"
   },
   "33168": {
-    "city": "GRATIGNY",
+    "city": "MIAMI",
     "state": "FL"
   },
   "33169": {
-    "city": "NORLAND",
+    "city": "MIAMI",
     "state": "FL"
   },
   "33170": {
-    "city": "GOULDS",
+    "city": "MIAMI",
     "state": "FL"
   },
   "33172": {
-    "city": "AVENUE OF THE AMERICAS",
+    "city": "DORAL",
     "state": "FL"
   },
   "33173": {
-    "city": "SUNSET",
+    "city": "MIAMI",
     "state": "FL"
   },
   "33174": {
-    "city": "FATHER FELIX VARELA",
+    "city": "MIAMI",
     "state": "FL"
   },
   "33175": {
-    "city": "OLYMPIA HEIGHTS",
+    "city": "MIAMI",
     "state": "FL"
   },
   "33176": {
-    "city": "SNAPPER CREEK",
+    "city": "MIAMI",
     "state": "FL"
   },
   "33177": {
-    "city": "COUNTRY LAKES",
+    "city": "MIAMI",
     "state": "FL"
   },
   "33178": {
-    "city": "MILAM DAIRY",
+    "city": "MIAMI",
     "state": "FL"
   },
   "33179": {
-    "city": "NORLAND",
+    "city": "MIAMI",
     "state": "FL"
   },
   "33180": {
-    "city": "COUNTY LINE ANNEX",
+    "city": "HALLANDALE BEACH",
     "state": "FL"
   },
   "33181": {
@@ -37948,51 +37948,51 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "33182": {
-    "city": "FATHER FELIX VARELA",
+    "city": "MIAMI",
     "state": "FL"
   },
   "33183": {
-    "city": "SUNSET",
+    "city": "MIAMI",
     "state": "FL"
   },
   "33184": {
-    "city": "FATHER FELIX VARELA",
+    "city": "MIAMI",
     "state": "FL"
   },
   "33185": {
-    "city": "OLYMPIA HEIGHTS",
+    "city": "MIAMI",
     "state": "FL"
   },
   "33186": {
-    "city": "SNAPPER CREEK",
+    "city": "MIAMI",
     "state": "FL"
   },
   "33187": {
-    "city": "COUNTRY LAKES",
+    "city": "MIAMI",
     "state": "FL"
   },
   "33189": {
-    "city": "QUAIL HEIGHTS",
+    "city": "MIAMI",
     "state": "FL"
   },
   "33190": {
-    "city": "QUAIL HEIGHTS",
+    "city": "MIAMI",
     "state": "FL"
   },
   "33193": {
-    "city": "SUNSET",
+    "city": "MIAMI",
     "state": "FL"
   },
   "33194": {
-    "city": "FATHER FELIX VARELA",
+    "city": "MIAMI",
     "state": "FL"
   },
   "33196": {
-    "city": "COUNTRY LAKES",
+    "city": "MIAMI",
     "state": "FL"
   },
   "33197": {
-    "city": "QUAIL HEIGHTS",
+    "city": "MIAMI",
     "state": "FL"
   },
   "33222": {
@@ -38000,27 +38000,27 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "33231": {
-    "city": "BRICKELL",
+    "city": "MIAMI",
     "state": "FL"
   },
   "33233": {
-    "city": "COCONUT GROVE",
+    "city": "MIAMI",
     "state": "FL"
   },
   "33234": {
-    "city": "MIRACLE MILE POSTAL STORE",
+    "city": "CORAL GABLES",
     "state": "FL"
   },
   "33238": {
-    "city": "LITTLE RIVER",
+    "city": "MIAMI",
     "state": "FL"
   },
   "33239": {
-    "city": "CARL FISHER",
+    "city": "MIAMI BEACH",
     "state": "FL"
   },
   "33242": {
-    "city": "ALLAPATTAH",
+    "city": "MIAMI",
     "state": "FL"
   },
   "33243": {
@@ -38028,23 +38028,23 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "33245": {
-    "city": "SHENANDOAH",
+    "city": "MIAMI",
     "state": "FL"
   },
   "33247": {
-    "city": "DR MARTIN LUTHER KING JR",
+    "city": "MIAMI",
     "state": "FL"
   },
   "33255": {
-    "city": "LUDLAM",
+    "city": "MIAMI",
     "state": "FL"
   },
   "33256": {
-    "city": "KENDALL",
+    "city": "MIAMI",
     "state": "FL"
   },
   "33257": {
-    "city": "PERRINE",
+    "city": "MIAMI",
     "state": "FL"
   },
   "33261": {
@@ -38052,51 +38052,51 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "33265": {
-    "city": "OLYMPIA HEIGHTS",
+    "city": "MIAMI",
     "state": "FL"
   },
   "33266": {
-    "city": "MIAMI SPRINGS",
+    "city": "MIAMI",
     "state": "FL"
   },
   "33269": {
-    "city": "NORLAND",
+    "city": "MIAMI",
     "state": "FL"
   },
   "33280": {
-    "city": "AVENTURA",
+    "city": "MIAMI",
     "state": "FL"
   },
   "33283": {
-    "city": "SUNSET",
+    "city": "MIAMI",
     "state": "FL"
   },
   "33296": {
-    "city": "WEST DADE",
+    "city": "MIAMI",
     "state": "FL"
   },
   "33301": {
-    "city": "FORT LAUDERDALE FL S&DC",
+    "city": "OAKLAND PARK",
     "state": "FL"
   },
   "33302": {
-    "city": "ALRIDGE",
+    "city": "FORT LAUDERDALE",
     "state": "FL"
   },
   "33303": {
-    "city": "COLEE",
+    "city": "FORT LAUDERDALE",
     "state": "FL"
   },
   "33304": {
-    "city": "FORT LAUDERDALE FL S&DC",
+    "city": "OAKLAND PARK",
     "state": "FL"
   },
   "33305": {
-    "city": "FORT LAUDERDALE FL S&DC",
+    "city": "OAKLAND PARK",
     "state": "FL"
   },
   "33306": {
-    "city": "FORT LAUDERDALE FL S&DC",
+    "city": "OAKLAND PARK",
     "state": "FL"
   },
   "33307": {
@@ -38104,27 +38104,27 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "33308": {
-    "city": "FORT LAUDERDALE FL S&DC",
+    "city": "OAKLAND PARK",
     "state": "FL"
   },
   "33309": {
-    "city": "FORT LAUDERDALE FL S&DC",
+    "city": "OAKLAND PARK",
     "state": "FL"
   },
   "33310": {
-    "city": "FORT LAUDERDALE FL S&DC",
+    "city": "OAKLAND PARK",
     "state": "FL"
   },
   "33311": {
-    "city": "FORT LAUDERDALE FL S&DC",
+    "city": "OAKLAND PARK",
     "state": "FL"
   },
   "33312": {
-    "city": "FORT LAUDERDALE FL S&DC",
+    "city": "OAKLAND PARK",
     "state": "FL"
   },
   "33313": {
-    "city": "FORT LAUDERDALE FL S&DC",
+    "city": "OAKLAND PARK",
     "state": "FL"
   },
   "33314": {
@@ -38132,11 +38132,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "33315": {
-    "city": "FORT LAUDERDALE FL S&DC",
+    "city": "OAKLAND PARK",
     "state": "FL"
   },
   "33316": {
-    "city": "CAUSEWAY",
+    "city": "FORT LAUDERDALE",
     "state": "FL"
   },
   "33317": {
@@ -38148,7 +38148,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "33319": {
-    "city": "FORT LAUDERDALE FL S&DC",
+    "city": "OAKLAND PARK",
     "state": "FL"
   },
   "33320": {
@@ -38160,11 +38160,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "33322": {
-    "city": "SUNRISE",
+    "city": "FORT LAUDERDALE",
     "state": "FL"
   },
   "33323": {
-    "city": "SUNRISE",
+    "city": "FORT LAUDERDALE",
     "state": "FL"
   },
   "33324": {
@@ -38192,47 +38192,47 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "33330": {
-    "city": "EVERGLADES BR",
+    "city": "FORT LAUDERDALE",
     "state": "FL"
   },
   "33331": {
-    "city": "EVERGLADES BR",
+    "city": "FORT LAUDERDALE",
     "state": "FL"
   },
   "33332": {
-    "city": "EVERGLADES BR",
+    "city": "FORT LAUDERDALE",
     "state": "FL"
   },
   "33334": {
-    "city": "FORT LAUDERDALE FL S&DC",
+    "city": "OAKLAND PARK",
     "state": "FL"
   },
   "33335": {
-    "city": "SOUTHSIDE",
+    "city": "FORT LAUDERDALE",
     "state": "FL"
   },
   "33338": {
-    "city": "GATEWAY",
+    "city": "FORT LAUDERDALE",
     "state": "FL"
   },
   "33339": {
-    "city": "CORAL RIDGE",
+    "city": "FORT LAUDERDALE",
     "state": "FL"
   },
   "33340": {
-    "city": "FORT LAUDERDALE FL S&DC",
+    "city": "OAKLAND PARK",
     "state": "FL"
   },
   "33345": {
-    "city": "SUNRISE",
+    "city": "FORT LAUDERDALE",
     "state": "FL"
   },
   "33346": {
-    "city": "CAUSEWAY",
+    "city": "FORT LAUDERDALE",
     "state": "FL"
   },
   "33348": {
-    "city": "GALT OCEAN",
+    "city": "FORT LAUDERDALE",
     "state": "FL"
   },
   "33351": {
@@ -38240,11 +38240,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "33355": {
-    "city": "WESTSIDE",
+    "city": "DAVIE",
     "state": "FL"
   },
   "33359": {
-    "city": "SABAL PALM",
+    "city": "FORT LAUDERDALE",
     "state": "FL"
   },
   "33388": {
@@ -38252,19 +38252,19 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "33394": {
-    "city": "FORT LAUDERDALE FL S&DC",
+    "city": "OAKLAND PARK",
     "state": "FL"
   },
   "33401": {
-    "city": "CITY PLACE",
+    "city": "WEST PALM BEACH",
     "state": "FL"
   },
   "33402": {
-    "city": "DOWNTOWN WEST PALM BEACH",
+    "city": "WEST PALM BEACH",
     "state": "FL"
   },
   "33403": {
-    "city": "LAKE PARK",
+    "city": "WEST PALM BEACH",
     "state": "FL"
   },
   "33404": {
@@ -38272,15 +38272,15 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "33405": {
-    "city": "PALMS CENTRAL",
+    "city": "WEST PALM BEACH",
     "state": "FL"
   },
   "33406": {
-    "city": "PALMS CENTRAL",
+    "city": "WEST PALM BEACH",
     "state": "FL"
   },
   "33407": {
-    "city": "NORTHWOOD",
+    "city": "WEST PALM BEACH",
     "state": "FL"
   },
   "33408": {
@@ -38288,7 +38288,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "33409": {
-    "city": "HAVERHILL BR",
+    "city": "WEST PALM BEACH",
     "state": "FL"
   },
   "33410": {
@@ -38296,7 +38296,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "33411": {
-    "city": "PALMS WEST",
+    "city": "ROYAL PALM BEACH",
     "state": "FL"
   },
   "33412": {
@@ -38304,23 +38304,23 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "33413": {
-    "city": "PALMS CENTRAL",
+    "city": "WEST PALM BEACH",
     "state": "FL"
   },
   "33414": {
-    "city": "WELLINGTON CARRIER ANNEX",
+    "city": "WELLINGTON",
     "state": "FL"
   },
   "33415": {
-    "city": "PALMS CENTRAL",
+    "city": "WEST PALM BEACH",
     "state": "FL"
   },
   "33416": {
-    "city": "WEST PALM BCH WINDOW UNIT",
+    "city": "WEST PALM BEACH",
     "state": "FL"
   },
   "33417": {
-    "city": "HAVERHILL BR",
+    "city": "WEST PALM BEACH",
     "state": "FL"
   },
   "33418": {
@@ -38336,11 +38336,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "33421": {
-    "city": "PALMS WEST",
+    "city": "ROYAL PALM BEACH",
     "state": "FL"
   },
   "33422": {
-    "city": "HAVERHILL BR",
+    "city": "WEST PALM BEACH",
     "state": "FL"
   },
   "33424": {
@@ -38348,7 +38348,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "33425": {
-    "city": "DOWNTOWN BOYNTON BEACH",
+    "city": "BOYNTON BEACH",
     "state": "FL"
   },
   "33426": {
@@ -38356,15 +38356,15 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "33427": {
-    "city": "PALMETTO PARK",
+    "city": "BOCA RATON",
     "state": "FL"
   },
   "33428": {
-    "city": "WEST BOCA CARRIER ANNEX",
+    "city": "BOCA RATON",
     "state": "FL"
   },
   "33429": {
-    "city": "DOWNTOWN BOCA RATON",
+    "city": "BOCA RATON",
     "state": "FL"
   },
   "33430": {
@@ -38376,19 +38376,19 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "33432": {
-    "city": "DOWNTOWN BOCA RATON",
+    "city": "BOCA RATON",
     "state": "FL"
   },
   "33433": {
-    "city": "BOCA RIO BR",
+    "city": "BOCA RATON",
     "state": "FL"
   },
   "33434": {
-    "city": "BOCA RIO BR",
+    "city": "BOCA RATON",
     "state": "FL"
   },
   "33435": {
-    "city": "DOWNTOWN BOYNTON BEACH",
+    "city": "BOYNTON BEACH",
     "state": "FL"
   },
   "33436": {
@@ -38396,7 +38396,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "33437": {
-    "city": "JOG ROAD",
+    "city": "BOYNTON BEACH",
     "state": "FL"
   },
   "33438": {
@@ -38412,7 +38412,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "33442": {
-    "city": "DEERFIELD BEACH ANNEX",
+    "city": "DEERFIELD BEACH",
     "state": "FL"
   },
   "33443": {
@@ -38428,11 +38428,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "33446": {
-    "city": "WEST DELRAY BEACH",
+    "city": "DELRAY BEACH",
     "state": "FL"
   },
   "33448": {
-    "city": "WEST DELRAY BEACH",
+    "city": "DELRAY BEACH",
     "state": "FL"
   },
   "33449": {
@@ -38456,7 +38456,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "33460": {
-    "city": "LUCERNE AVENUE",
+    "city": "LAKE WORTH BEACH",
     "state": "FL"
   },
   "33461": {
@@ -38488,7 +38488,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "33469": {
-    "city": "TEQUESTA",
+    "city": "JUPITER",
     "state": "FL"
   },
   "33470": {
@@ -38500,15 +38500,15 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "33472": {
-    "city": "JOG ROAD",
+    "city": "BOYNTON BEACH",
     "state": "FL"
   },
   "33473": {
-    "city": "JOG ROAD",
+    "city": "BOYNTON BEACH",
     "state": "FL"
   },
   "33474": {
-    "city": "JOG ROAD",
+    "city": "BOYNTON BEACH",
     "state": "FL"
   },
   "33475": {
@@ -38520,7 +38520,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "33477": {
-    "city": "TEQUESTA",
+    "city": "JUPITER",
     "state": "FL"
   },
   "33478": {
@@ -38528,11 +38528,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "33480": {
-    "city": "PALM BCH CARRIER ANX",
+    "city": "WEST PALM BEACH",
     "state": "FL"
   },
   "33481": {
-    "city": "WOODLAND",
+    "city": "BOCA RATON",
     "state": "FL"
   },
   "33482": {
@@ -38540,15 +38540,15 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "33483": {
-    "city": "CPU PAK IT TIGHT",
+    "city": "DELRAY BEACH",
     "state": "FL"
   },
   "33484": {
-    "city": "WEST DELRAY BEACH",
+    "city": "DELRAY BEACH",
     "state": "FL"
   },
   "33486": {
-    "city": "PALMETTO PARK ANNEX",
+    "city": "BOCA RATON",
     "state": "FL"
   },
   "33487": {
@@ -38556,7 +38556,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "33488": {
-    "city": "BOCA RIO BR",
+    "city": "BOCA RATON",
     "state": "FL"
   },
   "33493": {
@@ -38568,11 +38568,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "33497": {
-    "city": "WEST BOCA POSTAL STORE",
+    "city": "BOCA RATON",
     "state": "FL"
   },
   "33498": {
-    "city": "WEST BOCA CARRIER ANNEX",
+    "city": "BOCA RATON",
     "state": "FL"
   },
   "33503": {
@@ -38580,7 +38580,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "33508": {
-    "city": "BLOOMINGDALE",
+    "city": "BRANDON",
     "state": "FL"
   },
   "33509": {
@@ -38728,7 +38728,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "33570": {
-    "city": "RUSKIN CARRIER ANNEX",
+    "city": "APOLLO BEACH",
     "state": "FL"
   },
   "33571": {
@@ -38736,7 +38736,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "33572": {
-    "city": "RUSKIN CARRIER ANNEX",
+    "city": "APOLLO BEACH",
     "state": "FL"
   },
   "33573": {
@@ -38812,67 +38812,67 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "33601": {
-    "city": "COMMERCE",
+    "city": "TAMPA",
     "state": "FL"
   },
   "33602": {
-    "city": "YBOR CITY",
+    "city": "TAMPA",
     "state": "FL"
   },
   "33603": {
-    "city": "SULPHUR SPRINGS",
+    "city": "TAMPA",
     "state": "FL"
   },
   "33604": {
-    "city": "SULPHUR SPRINGS",
+    "city": "TAMPA",
     "state": "FL"
   },
   "33605": {
-    "city": "YBOR CITY",
+    "city": "TAMPA",
     "state": "FL"
   },
   "33606": {
-    "city": "TAMPA CARRIER ANNEX",
+    "city": "TAMPA",
     "state": "FL"
   },
   "33607": {
-    "city": "TAMPA CARRIER ANNEX",
+    "city": "TAMPA",
     "state": "FL"
   },
   "33608": {
-    "city": "MACDILL AFB",
+    "city": "TAMPA",
     "state": "FL"
   },
   "33609": {
-    "city": "TAMPA CARRIER ANNEX",
+    "city": "TAMPA",
     "state": "FL"
   },
   "33610": {
-    "city": "PRODUCE",
+    "city": "TAMPA",
     "state": "FL"
   },
   "33611": {
-    "city": "INTERBAY",
+    "city": "TAMPA",
     "state": "FL"
   },
   "33612": {
-    "city": "FOREST HILLS",
+    "city": "TAMPA",
     "state": "FL"
   },
   "33613": {
-    "city": "FOREST HILLS",
+    "city": "TAMPA",
     "state": "FL"
   },
   "33614": {
-    "city": "HILLDALE",
+    "city": "TAMPA",
     "state": "FL"
   },
   "33615": {
-    "city": "TOWN N COUNTRY",
+    "city": "TAMPA",
     "state": "FL"
   },
   "33616": {
-    "city": "INTERBAY",
+    "city": "TAMPA",
     "state": "FL"
   },
   "33617": {
@@ -38880,15 +38880,15 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "33618": {
-    "city": "CARROLLWOOD",
+    "city": "TAMPA",
     "state": "FL"
   },
   "33619": {
-    "city": "PALM RIVER CARRIER ANNEX",
+    "city": "TAMPA",
     "state": "FL"
   },
   "33621": {
-    "city": "MACDILL AFB",
+    "city": "TAMPA",
     "state": "FL"
   },
   "33622": {
@@ -38900,19 +38900,19 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "33624": {
-    "city": "NORTHDALE CARRIER ANNEX",
+    "city": "TAMPA",
     "state": "FL"
   },
   "33625": {
-    "city": "EHRLICH",
+    "city": "TAMPA",
     "state": "FL"
   },
   "33626": {
-    "city": "NORTHDALE CARRIER ANNEX",
+    "city": "TAMPA",
     "state": "FL"
   },
   "33629": {
-    "city": "INTERBAY",
+    "city": "TAMPA",
     "state": "FL"
   },
   "33630": {
@@ -38924,11 +38924,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "33634": {
-    "city": "HILLDALE",
+    "city": "TAMPA",
     "state": "FL"
   },
   "33635": {
-    "city": "TOWN N COUNTRY",
+    "city": "TAMPA",
     "state": "FL"
   },
   "33637": {
@@ -38936,55 +38936,55 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "33646": {
-    "city": "NEW TAMPA",
+    "city": "TAMPA",
     "state": "FL"
   },
   "33647": {
-    "city": "NEW TAMPA",
+    "city": "TAMPA",
     "state": "FL"
   },
   "33672": {
-    "city": "COMMERCE",
+    "city": "TAMPA",
     "state": "FL"
   },
   "33673": {
-    "city": "SULPHUR SPRINGS",
+    "city": "TAMPA",
     "state": "FL"
   },
   "33674": {
-    "city": "SULPHUR SPRINGS",
+    "city": "TAMPA",
     "state": "FL"
   },
   "33675": {
-    "city": "YBOR CITY",
+    "city": "TAMPA",
     "state": "FL"
   },
   "33677": {
-    "city": "WEST TAMPA",
+    "city": "TAMPA",
     "state": "FL"
   },
   "33679": {
-    "city": "PENINSULA TAMPA",
+    "city": "TAMPA",
     "state": "FL"
   },
   "33680": {
-    "city": "PRODUCE",
+    "city": "TAMPA",
     "state": "FL"
   },
   "33681": {
-    "city": "INTERBAY",
+    "city": "TAMPA",
     "state": "FL"
   },
   "33682": {
-    "city": "FOREST HILLS",
+    "city": "TAMPA",
     "state": "FL"
   },
   "33684": {
-    "city": "HILLDALE",
+    "city": "TAMPA",
     "state": "FL"
   },
   "33685": {
-    "city": "TOWN N COUNTRY",
+    "city": "TAMPA",
     "state": "FL"
   },
   "33687": {
@@ -38992,43 +38992,43 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "33688": {
-    "city": "CARROLLWOOD",
+    "city": "TAMPA",
     "state": "FL"
   },
   "33689": {
-    "city": "FALKENBURG",
+    "city": "TAMPA",
     "state": "FL"
   },
   "33694": {
-    "city": "EHRLICH",
+    "city": "TAMPA",
     "state": "FL"
   },
   "33701": {
-    "city": "OPEN AIR",
+    "city": "SAINT PETERSBURG",
     "state": "FL"
   },
   "33702": {
-    "city": "NORTHSIDE",
+    "city": "SAINT PETERSBURG",
     "state": "FL"
   },
   "33703": {
-    "city": "GATEWAY MALL",
+    "city": "SAINT PETERSBURG",
     "state": "FL"
   },
   "33704": {
-    "city": "EUCLID",
+    "city": "SAINT PETERSBURG",
     "state": "FL"
   },
   "33705": {
-    "city": "MIDTOWN",
+    "city": "SAINT PETERSBURG",
     "state": "FL"
   },
   "33706": {
-    "city": "SAINT PETE BEACH",
+    "city": "ST PETE BEACH",
     "state": "FL"
   },
   "33707": {
-    "city": "GULFWINDS",
+    "city": "SAINT PETERSBURG",
     "state": "FL"
   },
   "33708": {
@@ -39036,71 +39036,71 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "33709": {
-    "city": "CROSSROADS",
+    "city": "SAINT PETERSBURG",
     "state": "FL"
   },
   "33710": {
-    "city": "CROSSROADS",
+    "city": "SAINT PETERSBURG",
     "state": "FL"
   },
   "33711": {
-    "city": "GULFWINDS",
+    "city": "SAINT PETERSBURG",
     "state": "FL"
   },
   "33712": {
-    "city": "MIDTOWN",
+    "city": "SAINT PETERSBURG",
     "state": "FL"
   },
   "33713": {
-    "city": "SAINT PETERSBURG FL S&DC",
+    "city": "SAINT PETERSBURG",
     "state": "FL"
   },
   "33714": {
-    "city": "SAINT PETERSBURG FL S&DC",
+    "city": "SAINT PETERSBURG",
     "state": "FL"
   },
   "33715": {
-    "city": "GULFWINDS",
+    "city": "SAINT PETERSBURG",
     "state": "FL"
   },
   "33716": {
-    "city": "NORTHSIDE",
+    "city": "SAINT PETERSBURG",
     "state": "FL"
   },
   "33731": {
-    "city": "OPEN AIR",
+    "city": "SAINT PETERSBURG",
     "state": "FL"
   },
   "33732": {
-    "city": "GATEWAY MALL",
+    "city": "SAINT PETERSBURG",
     "state": "FL"
   },
   "33733": {
-    "city": "SAINT PETERSBURG FL S&DC",
+    "city": "SAINT PETERSBURG",
     "state": "FL"
   },
   "33734": {
-    "city": "EUCLID",
+    "city": "SAINT PETERSBURG",
     "state": "FL"
   },
   "33736": {
-    "city": "SAINT PETE BEACH",
+    "city": "ST PETE BEACH",
     "state": "FL"
   },
   "33738": {
-    "city": "CROSSROADS",
+    "city": "SAINT PETERSBURG",
     "state": "FL"
   },
   "33741": {
-    "city": "SAINT PETE BEACH",
+    "city": "ST PETE BEACH",
     "state": "FL"
   },
   "33742": {
-    "city": "NORTHSIDE",
+    "city": "SAINT PETERSBURG",
     "state": "FL"
   },
   "33743": {
-    "city": "CROSSROADS",
+    "city": "SAINT PETERSBURG",
     "state": "FL"
   },
   "33744": {
@@ -39108,11 +39108,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "33747": {
-    "city": "GULFWINDS",
+    "city": "SAINT PETERSBURG",
     "state": "FL"
   },
   "33755": {
-    "city": "CLEVELAND STREET",
+    "city": "CLEARWATER",
     "state": "FL"
   },
   "33756": {
@@ -39120,7 +39120,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "33757": {
-    "city": "CLEVELAND STREET",
+    "city": "CLEARWATER",
     "state": "FL"
   },
   "33758": {
@@ -39132,35 +39132,35 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "33760": {
-    "city": "HIGH POINT",
+    "city": "CLEARWATER",
     "state": "FL"
   },
   "33761": {
-    "city": "SUNSET POINT",
+    "city": "CLEARWATER",
     "state": "FL"
   },
   "33762": {
-    "city": "HIGH POINT",
+    "city": "CLEARWATER",
     "state": "FL"
   },
   "33763": {
-    "city": "SUNSET POINT",
+    "city": "CLEARWATER",
     "state": "FL"
   },
   "33764": {
-    "city": "HIGH POINT",
+    "city": "CLEARWATER",
     "state": "FL"
   },
   "33765": {
-    "city": "SUNSET POINT",
+    "city": "CLEARWATER",
     "state": "FL"
   },
   "33766": {
-    "city": "COUNTRYSIDE",
+    "city": "CLEARWATER",
     "state": "FL"
   },
   "33767": {
-    "city": "CLEVELAND STREET",
+    "city": "CLEARWATER",
     "state": "FL"
   },
   "33770": {
@@ -39176,7 +39176,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "33773": {
-    "city": "CPU MISSION PLAZA",
+    "city": "LARGO",
     "state": "FL"
   },
   "33774": {
@@ -39216,7 +39216,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "33784": {
-    "city": "SAINT PETERSBURG FL S&DC",
+    "city": "SAINT PETERSBURG",
     "state": "FL"
   },
   "33785": {
@@ -39228,59 +39228,59 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "33801": {
-    "city": "DOWNTOWN LAKELAND",
+    "city": "LAKELAND",
     "state": "FL"
   },
   "33802": {
-    "city": "DOWNTOWN LAKELAND",
+    "city": "LAKELAND",
     "state": "FL"
   },
   "33803": {
-    "city": "DOWNTOWN LAKELAND",
+    "city": "LAKELAND",
     "state": "FL"
   },
   "33804": {
-    "city": "LAKELAND FL S&DC",
+    "city": "LAKELAND",
     "state": "FL"
   },
   "33805": {
-    "city": "LAKELAND FL S&DC",
+    "city": "LAKELAND",
     "state": "FL"
   },
   "33806": {
-    "city": "DIXIELAND",
+    "city": "LAKELAND",
     "state": "FL"
   },
   "33807": {
-    "city": "SOUTHSIDE POSTAL STORE",
+    "city": "LAKELAND",
     "state": "FL"
   },
   "33809": {
-    "city": "LAKELAND FL S&DC",
+    "city": "LAKELAND",
     "state": "FL"
   },
   "33810": {
-    "city": "LAKELAND FL S&DC",
+    "city": "LAKELAND",
     "state": "FL"
   },
   "33811": {
-    "city": "SOUTHSIDE POSTAL STORE",
+    "city": "LAKELAND",
     "state": "FL"
   },
   "33812": {
-    "city": "SOUTHSIDE POSTAL STORE",
+    "city": "LAKELAND",
     "state": "FL"
   },
   "33813": {
-    "city": "SOUTHSIDE POSTAL STORE",
+    "city": "LAKELAND",
     "state": "FL"
   },
   "33815": {
-    "city": "DOWNTOWN LAKELAND",
+    "city": "LAKELAND",
     "state": "FL"
   },
   "33820": {
-    "city": "ALTURAS",
+    "city": "BARTOW",
     "state": "FL"
   },
   "33823": {
@@ -39404,7 +39404,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "33859": {
-    "city": "1ST STREET CARRIER ANNEX",
+    "city": "LAKE WALES",
     "state": "FL"
   },
   "33860": {
@@ -39424,7 +39424,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "33867": {
-    "city": "1ST STREET CARRIER ANNEX",
+    "city": "LAKE WALES",
     "state": "FL"
   },
   "33868": {
@@ -39440,7 +39440,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "33872": {
-    "city": "LAKE JACKSON BRANCH",
+    "city": "SEBRING",
     "state": "FL"
   },
   "33873": {
@@ -39448,7 +39448,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "33875": {
-    "city": "LAKE JACKSON BRANCH",
+    "city": "SEBRING",
     "state": "FL"
   },
   "33876": {
@@ -39464,7 +39464,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "33881": {
-    "city": "FLORENCE VILLA",
+    "city": "WINTER HAVEN",
     "state": "FL"
   },
   "33882": {
@@ -39476,11 +39476,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "33884": {
-    "city": "FLORENCE VILLA",
+    "city": "WINTER HAVEN",
     "state": "FL"
   },
   "33885": {
-    "city": "FLORENCE VILLA",
+    "city": "WINTER HAVEN",
     "state": "FL"
   },
   "33890": {
@@ -39496,15 +39496,15 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "33898": {
-    "city": "1ST STREET CARRIER ANNEX",
+    "city": "LAKE WALES",
     "state": "FL"
   },
   "33901": {
-    "city": "FORT MYERS FL PAGE FIELD SDC",
+    "city": "FORT MYERS",
     "state": "FL"
   },
   "33902": {
-    "city": "DOWNTOWN FORT MYERS",
+    "city": "FORT MYERS",
     "state": "FL"
   },
   "33903": {
@@ -39512,51 +39512,51 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "33904": {
-    "city": "CAPE CORAL CENTRAL",
+    "city": "CAPE CORAL",
     "state": "FL"
   },
   "33905": {
-    "city": "TICE",
+    "city": "FORT MYERS",
     "state": "FL"
   },
   "33906": {
-    "city": "FORT MYERS FL PAGE FIELD SDC",
+    "city": "FORT MYERS",
     "state": "FL"
   },
   "33907": {
-    "city": "FORT MYERS FL PAGE FIELD SDC",
+    "city": "FORT MYERS",
     "state": "FL"
   },
   "33908": {
-    "city": "SIX MILE CYPRESS ANNEX",
+    "city": "FORT MYERS",
     "state": "FL"
   },
   "33909": {
-    "city": "CAPE CORAL CENTRAL",
+    "city": "CAPE CORAL",
     "state": "FL"
   },
   "33910": {
-    "city": "CAPE CORAL SOUTH",
+    "city": "CAPE CORAL",
     "state": "FL"
   },
   "33912": {
-    "city": "SIX MILE CYPRESS ANNEX",
+    "city": "FORT MYERS",
     "state": "FL"
   },
   "33913": {
-    "city": "FORT MYERS FL PAGE FIELD SDC",
+    "city": "FORT MYERS",
     "state": "FL"
   },
   "33914": {
-    "city": "CAPE CORAL CENTRAL",
+    "city": "CAPE CORAL",
     "state": "FL"
   },
   "33915": {
-    "city": "CAPE CORAL CENTRAL",
+    "city": "CAPE CORAL",
     "state": "FL"
   },
   "33916": {
-    "city": "FORT MYERS FL PAGE FIELD SDC",
+    "city": "FORT MYERS",
     "state": "FL"
   },
   "33917": {
@@ -39568,7 +39568,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "33919": {
-    "city": "CPU ATRIUM",
+    "city": "FORT MYERS",
     "state": "FL"
   },
   "33920": {
@@ -39588,7 +39588,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "33927": {
-    "city": "EL JOBEAN",
+    "city": "PORT CHARLOTTE",
     "state": "FL"
   },
   "33928": {
@@ -39604,7 +39604,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "33931": {
-    "city": "FORT MYERS FL PAGE FIELD SDC",
+    "city": "FORT MYERS",
     "state": "FL"
   },
   "33932": {
@@ -39620,7 +39620,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "33938": {
-    "city": "MURDOCK",
+    "city": "PORT CHARLOTTE",
     "state": "FL"
   },
   "33944": {
@@ -39640,7 +39640,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "33948": {
-    "city": "PORT CHARLOTTE ANNEX",
+    "city": "PORT CHARLOTTE",
     "state": "FL"
   },
   "33949": {
@@ -39656,15 +39656,15 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "33952": {
-    "city": "PORT CHARLOTTE ANNEX",
+    "city": "PORT CHARLOTTE",
     "state": "FL"
   },
   "33953": {
-    "city": "PORT CHARLOTTE ANNEX",
+    "city": "PORT CHARLOTTE",
     "state": "FL"
   },
   "33954": {
-    "city": "PORT CHARLOTTE ANNEX",
+    "city": "PORT CHARLOTTE",
     "state": "FL"
   },
   "33955": {
@@ -39684,11 +39684,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "33966": {
-    "city": "FORT MYERS FL PAGE FIELD SDC",
+    "city": "FORT MYERS",
     "state": "FL"
   },
   "33967": {
-    "city": "SIX MILE CYPRESS ANNEX",
+    "city": "FORT MYERS",
     "state": "FL"
   },
   "33970": {
@@ -39724,7 +39724,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "33981": {
-    "city": "PORT CHARLOTTE ANNEX",
+    "city": "PORT CHARLOTTE",
     "state": "FL"
   },
   "33982": {
@@ -39736,19 +39736,19 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "33990": {
-    "city": "CAPE CORAL CENTRAL",
+    "city": "CAPE CORAL",
     "state": "FL"
   },
   "33991": {
-    "city": "CAPE CORAL NORTH",
+    "city": "CAPE CORAL",
     "state": "FL"
   },
   "33993": {
-    "city": "CAPE CORAL NORTH",
+    "city": "CAPE CORAL",
     "state": "FL"
   },
   "33994": {
-    "city": "TICE",
+    "city": "FORT MYERS",
     "state": "FL"
   },
   "34101": {
@@ -39764,7 +39764,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "34104": {
-    "city": "EAST NAPLES CARRIER ANNEX",
+    "city": "NAPLES",
     "state": "FL"
   },
   "34105": {
@@ -39772,27 +39772,27 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "34106": {
-    "city": "DOWNTOWN NAPLES",
+    "city": "NAPLES",
     "state": "FL"
   },
   "34107": {
-    "city": "COCO RIVER",
+    "city": "NAPLES",
     "state": "FL"
   },
   "34108": {
-    "city": "COCO RIVER",
+    "city": "NAPLES",
     "state": "FL"
   },
   "34109": {
-    "city": "COCO RIVER",
+    "city": "NAPLES",
     "state": "FL"
   },
   "34110": {
-    "city": "COCO RIVER",
+    "city": "NAPLES",
     "state": "FL"
   },
   "34112": {
-    "city": "EAST NAPLES CARRIER ANNEX",
+    "city": "NAPLES",
     "state": "FL"
   },
   "34113": {
@@ -39804,23 +39804,23 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "34116": {
-    "city": "EAST NAPLES CARRIER ANNEX",
+    "city": "NAPLES",
     "state": "FL"
   },
   "34117": {
-    "city": "GOLDEN GATE CARRIER ANNEX",
+    "city": "NAPLES",
     "state": "FL"
   },
   "34119": {
-    "city": "GOLDEN GATE CARRIER ANNEX",
+    "city": "NAPLES",
     "state": "FL"
   },
   "34120": {
-    "city": "GOLDEN GATE CARRIER ANNEX",
+    "city": "NAPLES",
     "state": "FL"
   },
   "34133": {
-    "city": "BONITA BEACH ROAD",
+    "city": "BONITA SPRINGS",
     "state": "FL"
   },
   "34134": {
@@ -39872,23 +39872,23 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "34201": {
-    "city": "BRADEN RIVER",
+    "city": "BRADENTON",
     "state": "FL"
   },
   "34202": {
-    "city": "LAKEWOOD RANCH",
+    "city": "BRADENTON",
     "state": "FL"
   },
   "34203": {
-    "city": "BRADEN RIVER",
+    "city": "BRADENTON",
     "state": "FL"
   },
   "34204": {
-    "city": "BRADEN RIVER",
+    "city": "BRADENTON",
     "state": "FL"
   },
   "34205": {
-    "city": "BRADENTON CARRIER ANNEX",
+    "city": "BRADENTON",
     "state": "FL"
   },
   "34206": {
@@ -39896,27 +39896,27 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "34207": {
-    "city": "FIFTY SEVENTH AVENUE",
+    "city": "BRADENTON",
     "state": "FL"
   },
   "34208": {
-    "city": "BRADENTON CARRIER ANNEX",
+    "city": "BRADENTON",
     "state": "FL"
   },
   "34209": {
-    "city": "PALMA SOLA",
+    "city": "BRADENTON",
     "state": "FL"
   },
   "34210": {
-    "city": "FIFTY SEVENTH AVENUE",
+    "city": "BRADENTON",
     "state": "FL"
   },
   "34211": {
-    "city": "LAKEWOOD RANCH",
+    "city": "BRADENTON",
     "state": "FL"
   },
   "34212": {
-    "city": "LAKEWOOD RANCH",
+    "city": "BRADENTON",
     "state": "FL"
   },
   "34215": {
@@ -39928,7 +39928,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "34217": {
-    "city": "BRADENTON BEACH CARRIERS",
+    "city": "LONGBOAT KEY",
     "state": "FL"
   },
   "34218": {
@@ -39968,59 +39968,59 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "34230": {
-    "city": "SARASOTA FL S&DC",
+    "city": "SARASOTA",
     "state": "FL"
   },
   "34231": {
-    "city": "GULF GATE",
+    "city": "SARASOTA",
     "state": "FL"
   },
   "34232": {
-    "city": "GLENGARRY",
+    "city": "SARASOTA",
     "state": "FL"
   },
   "34233": {
-    "city": "GLENGARRY",
+    "city": "SARASOTA",
     "state": "FL"
   },
   "34234": {
-    "city": "SARASOTA FL S&DC",
+    "city": "SARASOTA",
     "state": "FL"
   },
   "34235": {
-    "city": "GLENGARRY",
+    "city": "SARASOTA",
     "state": "FL"
   },
   "34236": {
-    "city": "SARASOTA FL S&DC",
+    "city": "SARASOTA",
     "state": "FL"
   },
   "34237": {
-    "city": "SARASOTA FL S&DC",
+    "city": "SARASOTA",
     "state": "FL"
   },
   "34238": {
-    "city": "SARASOTA CARRIER ANNEX",
+    "city": "SARASOTA",
     "state": "FL"
   },
   "34239": {
-    "city": "SOUTHGATE",
+    "city": "SARASOTA",
     "state": "FL"
   },
   "34240": {
-    "city": "GLENGARRY",
+    "city": "SARASOTA",
     "state": "FL"
   },
   "34241": {
-    "city": "SARASOTA CARRIER ANNEX",
+    "city": "SARASOTA",
     "state": "FL"
   },
   "34242": {
-    "city": "GULF GATE",
+    "city": "SARASOTA",
     "state": "FL"
   },
   "34243": {
-    "city": "SARASOTA FL S&DC",
+    "city": "SARASOTA",
     "state": "FL"
   },
   "34250": {
@@ -40072,23 +40072,23 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "34276": {
-    "city": "GULF GATE",
+    "city": "SARASOTA",
     "state": "FL"
   },
   "34277": {
-    "city": "SOUTHGATE",
+    "city": "SARASOTA",
     "state": "FL"
   },
   "34280": {
-    "city": "PALMA SOLA",
+    "city": "BRADENTON",
     "state": "FL"
   },
   "34281": {
-    "city": "CPU COTTAGE TRAILER",
+    "city": "BRADENTON",
     "state": "FL"
   },
   "34282": {
-    "city": "FIFTY SEVENTH AVENUE",
+    "city": "BRADENTON",
     "state": "FL"
   },
   "34284": {
@@ -40116,7 +40116,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "34290": {
-    "city": "CITY CENTER",
+    "city": "NORTH PORT",
     "state": "FL"
   },
   "34291": {
@@ -40128,7 +40128,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "34293": {
-    "city": "VENICE CARRIER ANNEX",
+    "city": "VENICE",
     "state": "FL"
   },
   "34295": {
@@ -40172,7 +40172,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "34434": {
-    "city": "DUNNELLON CARRIERS",
+    "city": "LECANTO",
     "state": "FL"
   },
   "34436": {
@@ -40192,15 +40192,15 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "34446": {
-    "city": "HOMOSASSA SPRINGS",
+    "city": "HOMOSASSA",
     "state": "FL"
   },
   "34447": {
-    "city": "HOMOSASSA SPRINGS",
+    "city": "HOMOSASSA",
     "state": "FL"
   },
   "34448": {
-    "city": "HOMOSASSA SPRINGS",
+    "city": "HOMOSASSA",
     "state": "FL"
   },
   "34449": {
@@ -40248,15 +40248,15 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "34472": {
-    "city": "MARICAMP",
+    "city": "OCALA",
     "state": "FL"
   },
   "34473": {
-    "city": "PADDOCK",
+    "city": "OCALA",
     "state": "FL"
   },
   "34474": {
-    "city": "PADDOCK",
+    "city": "OCALA",
     "state": "FL"
   },
   "34475": {
@@ -40264,11 +40264,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "34476": {
-    "city": "PADDOCK",
+    "city": "OCALA",
     "state": "FL"
   },
   "34477": {
-    "city": "PADDOCK",
+    "city": "OCALA",
     "state": "FL"
   },
   "34478": {
@@ -40280,19 +40280,19 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "34480": {
-    "city": "MARICAMP",
+    "city": "OCALA",
     "state": "FL"
   },
   "34481": {
-    "city": "PADDOCK",
+    "city": "OCALA",
     "state": "FL"
   },
   "34482": {
-    "city": "PADDOCK",
+    "city": "OCALA",
     "state": "FL"
   },
   "34483": {
-    "city": "MARICAMP",
+    "city": "OCALA",
     "state": "FL"
   },
   "34484": {
@@ -40324,7 +40324,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "34601": {
-    "city": "DOWNTOWN BROOKSVILLE",
+    "city": "BROOKSVILLE",
     "state": "FL"
   },
   "34602": {
@@ -40336,11 +40336,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "34604": {
-    "city": "AVIATION",
+    "city": "BROOKSVILLE",
     "state": "FL"
   },
   "34605": {
-    "city": "DOWNTOWN BROOKSVILLE",
+    "city": "BROOKSVILLE",
     "state": "FL"
   },
   "34606": {
@@ -40356,15 +40356,15 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "34609": {
-    "city": "AVIATION",
+    "city": "BROOKSVILLE",
     "state": "FL"
   },
   "34610": {
-    "city": "AVIATION",
+    "city": "BROOKSVILLE",
     "state": "FL"
   },
   "34611": {
-    "city": "PLAZA",
+    "city": "SPRING HILL",
     "state": "FL"
   },
   "34613": {
@@ -40380,11 +40380,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "34637": {
-    "city": "LAND O LAKES CARRIER ANNEX",
+    "city": "LAND O LAKES",
     "state": "FL"
   },
   "34638": {
-    "city": "LAND O LAKES CARRIER ANNEX",
+    "city": "LAND O LAKES",
     "state": "FL"
   },
   "34639": {
@@ -40400,11 +40400,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "34654": {
-    "city": "TRINITY CARRIER ANNEX",
+    "city": "NEW PORT RICHEY",
     "state": "FL"
   },
   "34655": {
-    "city": "TRINITY CARRIER ANNEX",
+    "city": "NEW PORT RICHEY",
     "state": "FL"
   },
   "34656": {
@@ -40432,7 +40432,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "34673": {
-    "city": "EMBASSY CROSSING",
+    "city": "PORT RICHEY",
     "state": "FL"
   },
   "34674": {
@@ -40508,7 +40508,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "34711": {
-    "city": "CLERMONT CARRIER ANNEX",
+    "city": "CLERMONT",
     "state": "FL"
   },
   "34712": {
@@ -40516,15 +40516,15 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "34713": {
-    "city": "SOUTH CLERMONT",
+    "city": "CLERMONT",
     "state": "FL"
   },
   "34714": {
-    "city": "CLERMONT CARRIER ANNEX",
+    "city": "CLERMONT",
     "state": "FL"
   },
   "34715": {
-    "city": "CLERMONT CARRIER ANNEX",
+    "city": "CLERMONT",
     "state": "FL"
   },
   "34729": {
@@ -40556,11 +40556,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "34741": {
-    "city": "OAK STREET",
+    "city": "KISSIMMEE",
     "state": "FL"
   },
   "34742": {
-    "city": "OAK STREET",
+    "city": "KISSIMMEE",
     "state": "FL"
   },
   "34743": {
@@ -40576,11 +40576,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "34746": {
-    "city": "KISSIMMEE CARRIER ANNEX",
+    "city": "KISSIMMEE",
     "state": "FL"
   },
   "34747": {
-    "city": "CELEBRATION",
+    "city": "KISSIMMEE",
     "state": "FL"
   },
   "34748": {
@@ -40604,11 +40604,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "34758": {
-    "city": "KISSIMMEE CARRIER ANNEX",
+    "city": "KISSIMMEE",
     "state": "FL"
   },
   "34759": {
-    "city": "POINCIANA",
+    "city": "KISSIMMEE",
     "state": "FL"
   },
   "34760": {
@@ -40644,7 +40644,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "34777": {
-    "city": "DOWNTOWN WINTER GARDEN",
+    "city": "WINTER GARDEN",
     "state": "FL"
   },
   "34778": {
@@ -40668,7 +40668,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "34789": {
-    "city": "HAINES CREEK",
+    "city": "LEESBURG",
     "state": "FL"
   },
   "34797": {
@@ -40680,31 +40680,31 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "34946": {
-    "city": "ORANGE AVENUE",
+    "city": "FORT PIERCE",
     "state": "FL"
   },
   "34947": {
-    "city": "ORANGE AVENUE",
+    "city": "FORT PIERCE",
     "state": "FL"
   },
   "34948": {
-    "city": "ORANGE AVENUE",
+    "city": "FORT PIERCE",
     "state": "FL"
   },
   "34949": {
-    "city": "ORANGE AVENUE",
+    "city": "FORT PIERCE",
     "state": "FL"
   },
   "34950": {
-    "city": "ORANGE AVENUE",
+    "city": "FORT PIERCE",
     "state": "FL"
   },
   "34951": {
-    "city": "ORANGE AVENUE",
+    "city": "FORT PIERCE",
     "state": "FL"
   },
   "34952": {
-    "city": "PORT SAINT LUCIE MIDPORT",
+    "city": "PORT SAINT LUCIE",
     "state": "FL"
   },
   "34953": {
@@ -40712,7 +40712,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "34954": {
-    "city": "ORANGE AVENUE",
+    "city": "FORT PIERCE",
     "state": "FL"
   },
   "34956": {
@@ -40720,7 +40720,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "34957": {
-    "city": "HUTCHINSON BEACH",
+    "city": "JENSEN BEACH",
     "state": "FL"
   },
   "34958": {
@@ -40756,11 +40756,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "34984": {
-    "city": "PORT SAINT LUCIE MIDPORT",
+    "city": "PORT SAINT LUCIE",
     "state": "FL"
   },
   "34985": {
-    "city": "PORT SAINT LUCIE MIDPORT",
+    "city": "PORT SAINT LUCIE",
     "state": "FL"
   },
   "34986": {
@@ -40776,7 +40776,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "34990": {
-    "city": "PALM CITY ANNEX",
+    "city": "PALM CITY",
     "state": "FL"
   },
   "34991": {
@@ -40800,7 +40800,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FL"
   },
   "34997": {
-    "city": "STUART ANNEX",
+    "city": "STUART",
     "state": "FL"
   },
   "35004": {
@@ -40884,7 +40884,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "AL"
   },
   "35036": {
-    "city": "BROOKSIDE CPO",
+    "city": "BROOKSIDE",
     "state": "AL"
   },
   "35038": {
@@ -41256,31 +41256,31 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "AL"
   },
   "35203": {
-    "city": "DOWNTOWN ANNEX",
+    "city": "BIRMINGHAM",
     "state": "AL"
   },
   "35204": {
-    "city": "DOWNTOWN ANNEX",
+    "city": "BIRMINGHAM",
     "state": "AL"
   },
   "35205": {
-    "city": "DOWNTOWN ANNEX",
+    "city": "BIRMINGHAM",
     "state": "AL"
   },
   "35206": {
-    "city": "WOODLAWN",
+    "city": "BIRMINGHAM",
     "state": "AL"
   },
   "35207": {
-    "city": "NORTH BIRMINGHAM",
+    "city": "BIRMINGHAM",
     "state": "AL"
   },
   "35208": {
-    "city": "FAIRVIEW",
+    "city": "BIRMINGHAM",
     "state": "AL"
   },
   "35209": {
-    "city": "GREEN SPRINGS ANNEX",
+    "city": "BIRMINGHAM",
     "state": "AL"
   },
   "35210": {
@@ -41288,19 +41288,19 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "AL"
   },
   "35211": {
-    "city": "WEST END",
+    "city": "BIRMINGHAM",
     "state": "AL"
   },
   "35212": {
-    "city": "WOODLAWN",
+    "city": "BIRMINGHAM",
     "state": "AL"
   },
   "35213": {
-    "city": "CRESTLINE HEIGHTS",
+    "city": "BIRMINGHAM",
     "state": "AL"
   },
   "35214": {
-    "city": "FORESTDALE",
+    "city": "BIRMINGHAM",
     "state": "AL"
   },
   "35215": {
@@ -41308,19 +41308,19 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "AL"
   },
   "35216": {
-    "city": "GREEN SPRINGS ANNEX",
+    "city": "BIRMINGHAM",
     "state": "AL"
   },
   "35217": {
-    "city": "TARRANT",
+    "city": "BIRMINGHAM",
     "state": "AL"
   },
   "35218": {
-    "city": "ENSLEY",
+    "city": "BIRMINGHAM",
     "state": "AL"
   },
   "35219": {
-    "city": "GREEN SPRINGS",
+    "city": "HOMEWOOD",
     "state": "AL"
   },
   "35220": {
@@ -41328,19 +41328,19 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "AL"
   },
   "35221": {
-    "city": "MIDFIELD",
+    "city": "BIRMINGHAM",
     "state": "AL"
   },
   "35222": {
-    "city": "WOODLAWN",
+    "city": "BIRMINGHAM",
     "state": "AL"
   },
   "35223": {
-    "city": "CAHABA HEIGHTS",
+    "city": "VESTAVIA",
     "state": "AL"
   },
   "35224": {
-    "city": "ENSLEY",
+    "city": "BIRMINGHAM",
     "state": "AL"
   },
   "35226": {
@@ -41348,23 +41348,23 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "AL"
   },
   "35228": {
-    "city": "MIDFIELD",
+    "city": "BIRMINGHAM",
     "state": "AL"
   },
   "35231": {
-    "city": "FORESTDALE",
+    "city": "BIRMINGHAM",
     "state": "AL"
   },
   "35232": {
-    "city": "WOODLAWN",
+    "city": "BIRMINGHAM",
     "state": "AL"
   },
   "35233": {
-    "city": "DOWNTOWN ANNEX",
+    "city": "BIRMINGHAM",
     "state": "AL"
   },
   "35234": {
-    "city": "DOWNTOWN ANNEX",
+    "city": "BIRMINGHAM",
     "state": "AL"
   },
   "35235": {
@@ -41376,15 +41376,15 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "AL"
   },
   "35238": {
-    "city": "MEADOWBROOK",
+    "city": "BIRMINGHAM",
     "state": "AL"
   },
   "35242": {
-    "city": "MEADOWBROOK",
+    "city": "BIRMINGHAM",
     "state": "AL"
   },
   "35243": {
-    "city": "CAHABA HEIGHTS",
+    "city": "VESTAVIA",
     "state": "AL"
   },
   "35244": {
@@ -41392,15 +41392,15 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "AL"
   },
   "35253": {
-    "city": "MOUNTAIN BROOK",
+    "city": "BIRMINGHAM",
     "state": "AL"
   },
   "35255": {
-    "city": "SOUTH HIGHLAND",
+    "city": "BIRMINGHAM",
     "state": "AL"
   },
   "35259": {
-    "city": "HOMEWOOD",
+    "city": "BIRMINGHAM",
     "state": "AL"
   },
   "35260": {
@@ -41408,7 +41408,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "AL"
   },
   "35261": {
-    "city": "EAST LAKE ROEBUCK",
+    "city": "BIRMINGHAM",
     "state": "AL"
   },
   "35266": {
@@ -41432,11 +41432,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "AL"
   },
   "35404": {
-    "city": "SKYLAND",
+    "city": "TUSCALOOSA",
     "state": "AL"
   },
   "35405": {
-    "city": "SKYLAND",
+    "city": "TUSCALOOSA",
     "state": "AL"
   },
   "35406": {
@@ -41444,7 +41444,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "AL"
   },
   "35407": {
-    "city": "SKYLAND",
+    "city": "TUSCALOOSA",
     "state": "AL"
   },
   "35440": {
@@ -42068,47 +42068,47 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "AL"
   },
   "35801": {
-    "city": "CPU PROPST DRUGS 3",
+    "city": "HUNTSVILLE",
     "state": "AL"
   },
   "35802": {
-    "city": "HAYSLAND",
+    "city": "HUNTSVILLE",
     "state": "AL"
   },
   "35803": {
-    "city": "HAYSLAND",
+    "city": "HUNTSVILLE",
     "state": "AL"
   },
   "35804": {
-    "city": "DOWNTOWN HUNTSVILLE",
+    "city": "HUNTSVILLE",
     "state": "AL"
   },
   "35805": {
-    "city": "WEST",
+    "city": "HUNTSVILLE",
     "state": "AL"
   },
   "35806": {
-    "city": "WYNN DRIVE",
+    "city": "HUNTSVILLE",
     "state": "AL"
   },
   "35807": {
-    "city": "WEST",
+    "city": "HUNTSVILLE",
     "state": "AL"
   },
   "35808": {
-    "city": "REDSTONE ARSENAL",
+    "city": "HUNTSVILLE",
     "state": "AL"
   },
   "35810": {
-    "city": "MASTIN LAKE",
+    "city": "HUNTSVILLE",
     "state": "AL"
   },
   "35811": {
-    "city": "MASTIN LAKE",
+    "city": "HUNTSVILLE",
     "state": "AL"
   },
   "35812": {
-    "city": "REDSTONE ARSENAL",
+    "city": "HUNTSVILLE",
     "state": "AL"
   },
   "35813": {
@@ -42116,19 +42116,19 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "AL"
   },
   "35814": {
-    "city": "WYNN DRIVE",
+    "city": "HUNTSVILLE",
     "state": "AL"
   },
   "35815": {
-    "city": "HAYSLAND",
+    "city": "HUNTSVILLE",
     "state": "AL"
   },
   "35816": {
-    "city": "WYNN DRIVE",
+    "city": "HUNTSVILLE",
     "state": "AL"
   },
   "35824": {
-    "city": "WEST",
+    "city": "HUNTSVILLE",
     "state": "AL"
   },
   "35901": {
@@ -42140,15 +42140,15 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "AL"
   },
   "35903": {
-    "city": "EAST GADSDEN",
+    "city": "GADSDEN",
     "state": "AL"
   },
   "35904": {
-    "city": "ALABAMA CITY",
+    "city": "GADSDEN",
     "state": "AL"
   },
   "35905": {
-    "city": "EAST GADSDEN",
+    "city": "GADSDEN",
     "state": "AL"
   },
   "35906": {
@@ -42536,75 +42536,75 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "AL"
   },
   "36101": {
-    "city": "DOWNTOWN MONTGOMERY",
+    "city": "MONTGOMERY",
     "state": "AL"
   },
   "36102": {
-    "city": "DOWNTOWN MONTGOMERY",
+    "city": "MONTGOMERY",
     "state": "AL"
   },
   "36103": {
-    "city": "DOWNTOWN MONTGOMERY",
+    "city": "MONTGOMERY",
     "state": "AL"
   },
   "36104": {
-    "city": "DOWNTOWN MONTGOMERY",
+    "city": "MONTGOMERY",
     "state": "AL"
   },
   "36105": {
-    "city": "CLOVERLAND",
+    "city": "MONTGOMERY",
     "state": "AL"
   },
   "36106": {
-    "city": "CAROLYN",
+    "city": "MONTGOMERY",
     "state": "AL"
   },
   "36107": {
-    "city": "DOWNTOWN MONTGOMERY",
+    "city": "MONTGOMERY",
     "state": "AL"
   },
   "36108": {
-    "city": "WESTSIDE",
+    "city": "MONTGOMERY",
     "state": "AL"
   },
   "36109": {
-    "city": "EASTBROOK",
+    "city": "MONTGOMERY",
     "state": "AL"
   },
   "36110": {
-    "city": "DOWNTOWN MONTGOMERY",
+    "city": "MONTGOMERY",
     "state": "AL"
   },
   "36111": {
-    "city": "CLOVERLAND",
+    "city": "MONTGOMERY",
     "state": "AL"
   },
   "36113": {
-    "city": "WESTSIDE",
+    "city": "MONTGOMERY",
     "state": "AL"
   },
   "36115": {
-    "city": "LAGOON PARK",
+    "city": "MONTGOMERY",
     "state": "AL"
   },
   "36116": {
-    "city": "SOUTH",
+    "city": "MONTGOMERY",
     "state": "AL"
   },
   "36117": {
-    "city": "LAGOON PARK",
+    "city": "MONTGOMERY",
     "state": "AL"
   },
   "36120": {
-    "city": "SOUTH",
+    "city": "MONTGOMERY",
     "state": "AL"
   },
   "36121": {
-    "city": "LAGOON PARK",
+    "city": "MONTGOMERY",
     "state": "AL"
   },
   "36123": {
-    "city": "SHAKESPEARE",
+    "city": "MONTGOMERY",
     "state": "AL"
   },
   "36124": {
@@ -42612,7 +42612,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "AL"
   },
   "36125": {
-    "city": "CLOVERLAND",
+    "city": "MONTGOMERY",
     "state": "AL"
   },
   "36201": {
@@ -42628,7 +42628,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "AL"
   },
   "36204": {
-    "city": "BLUE MOUNTAIN",
+    "city": "ANNISTON",
     "state": "AL"
   },
   "36205": {
@@ -42708,7 +42708,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "AL"
   },
   "36268": {
-    "city": "MUNFORD CARRIERS",
+    "city": "OXFORD",
     "state": "AL"
   },
   "36269": {
@@ -42764,11 +42764,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "AL"
   },
   "36303": {
-    "city": "NORTHSIDE",
+    "city": "DOTHAN",
     "state": "AL"
   },
   "36304": {
-    "city": "NORTHSIDE",
+    "city": "DOTHAN",
     "state": "AL"
   },
   "36305": {
@@ -43312,71 +43312,71 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "AL"
   },
   "36602": {
-    "city": "MIDTOWN",
+    "city": "MOBILE",
     "state": "AL"
   },
   "36603": {
-    "city": "MIDTOWN",
+    "city": "MOBILE",
     "state": "AL"
   },
   "36604": {
-    "city": "MIDTOWN",
+    "city": "MOBILE",
     "state": "AL"
   },
   "36605": {
-    "city": "BAYSIDE",
+    "city": "MOBILE",
     "state": "AL"
   },
   "36606": {
-    "city": "LOOP",
+    "city": "MOBILE",
     "state": "AL"
   },
   "36607": {
-    "city": "MIDTOWN",
+    "city": "MOBILE",
     "state": "AL"
   },
   "36608": {
-    "city": "SPRING HILL",
+    "city": "MOBILE",
     "state": "AL"
   },
   "36609": {
-    "city": "COTTAGE HILL",
+    "city": "MOBILE",
     "state": "AL"
   },
   "36610": {
-    "city": "PRICHARD",
+    "city": "MOBILE",
     "state": "AL"
   },
   "36611": {
-    "city": "PRICHARD",
+    "city": "MOBILE",
     "state": "AL"
   },
   "36612": {
-    "city": "PRICHARD",
+    "city": "MOBILE",
     "state": "AL"
   },
   "36613": {
-    "city": "PRICHARD",
+    "city": "MOBILE",
     "state": "AL"
   },
   "36615": {
-    "city": "BAYSIDE",
+    "city": "MOBILE",
     "state": "AL"
   },
   "36616": {
-    "city": "BEL AIR",
+    "city": "MOBILE",
     "state": "AL"
   },
   "36617": {
-    "city": "PRICHARD",
+    "city": "MOBILE",
     "state": "AL"
   },
   "36618": {
-    "city": "TOWNE WEST",
+    "city": "MOBILE",
     "state": "AL"
   },
   "36619": {
-    "city": "TILLMANS CORNER",
+    "city": "MOBILE",
     "state": "AL"
   },
   "36633": {
@@ -43384,7 +43384,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "AL"
   },
   "36640": {
-    "city": "MIDTOWN",
+    "city": "MOBILE",
     "state": "AL"
   },
   "36652": {
@@ -43392,15 +43392,15 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "AL"
   },
   "36660": {
-    "city": "LOOP",
+    "city": "MOBILE",
     "state": "AL"
   },
   "36663": {
-    "city": "PRICHARD",
+    "city": "MOBILE",
     "state": "AL"
   },
   "36670": {
-    "city": "CRICHTON",
+    "city": "MOBILE",
     "state": "AL"
   },
   "36671": {
@@ -43408,23 +43408,23 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "AL"
   },
   "36685": {
-    "city": "PLAZA DE MALAGA",
+    "city": "MOBILE",
     "state": "AL"
   },
   "36689": {
-    "city": "SPRING HILL",
+    "city": "MOBILE",
     "state": "AL"
   },
   "36691": {
-    "city": "COTTAGE HILL",
+    "city": "MOBILE",
     "state": "AL"
   },
   "36693": {
-    "city": "COTTAGE HILL",
+    "city": "MOBILE",
     "state": "AL"
   },
   "36695": {
-    "city": "AIRPORT",
+    "city": "MOBILE",
     "state": "AL"
   },
   "36701": {
@@ -43696,7 +43696,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "AL"
   },
   "36870": {
-    "city": "PHENIX CITY ANNEX",
+    "city": "PHENIX CITY",
     "state": "AL"
   },
   "36871": {
@@ -43880,11 +43880,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "TN"
   },
   "37041": {
-    "city": "DOWNTOWN CLARKSVILLE",
+    "city": "CLARKSVILLE",
     "state": "TN"
   },
   "37042": {
-    "city": "RINGGOLD MILL",
+    "city": "CLARKSVILLE",
     "state": "TN"
   },
   "37043": {
@@ -44036,7 +44036,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "TN"
   },
   "37087": {
-    "city": "SOUTHSIDE ANNEX",
+    "city": "LEBANON",
     "state": "TN"
   },
   "37088": {
@@ -44100,7 +44100,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "TN"
   },
   "37127": {
-    "city": "CHURCH STREET STATION",
+    "city": "MURFREESBORO",
     "state": "TN"
   },
   "37128": {
@@ -44112,11 +44112,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "TN"
   },
   "37130": {
-    "city": "CHURCH STREET STATION",
+    "city": "MURFREESBORO",
     "state": "TN"
   },
   "37133": {
-    "city": "CHURCH STREET STATION",
+    "city": "MURFREESBORO",
     "state": "TN"
   },
   "37134": {
@@ -44272,115 +44272,115 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "TN"
   },
   "37191": {
-    "city": "RINGGOLD MILL",
+    "city": "CLARKSVILLE",
     "state": "TN"
   },
   "37201": {
-    "city": "BROADWAY RETAIL",
+    "city": "NASHVILLE",
     "state": "TN"
   },
   "37202": {
-    "city": "BROADWAY RETAIL",
+    "city": "NASHVILLE",
     "state": "TN"
   },
   "37203": {
-    "city": "CHURCH STREET",
+    "city": "NASHVILLE",
     "state": "TN"
   },
   "37204": {
-    "city": "MELROSE",
+    "city": "NASHVILLE",
     "state": "TN"
   },
   "37205": {
-    "city": "BELLE MEADE",
+    "city": "NASHVILLE",
     "state": "TN"
   },
   "37206": {
-    "city": "EAST NASHVILLE",
+    "city": "NASHVILLE",
     "state": "TN"
   },
   "37207": {
-    "city": "NORTHEAST",
+    "city": "NASHVILLE",
     "state": "TN"
   },
   "37208": {
-    "city": "METRO",
+    "city": "NASHVILLE",
     "state": "TN"
   },
   "37209": {
-    "city": "WEST",
+    "city": "NASHVILLE",
     "state": "TN"
   },
   "37210": {
-    "city": "SOUTH NASHVILLE",
+    "city": "NASHVILLE",
     "state": "TN"
   },
   "37211": {
-    "city": "WOODBINE",
+    "city": "NASHVILLE",
     "state": "TN"
   },
   "37212": {
-    "city": "ACKLEN",
+    "city": "NASHVILLE",
     "state": "TN"
   },
   "37213": {
-    "city": "EAST NASHVILLE",
+    "city": "NASHVILLE",
     "state": "TN"
   },
   "37214": {
-    "city": "DONELSON",
+    "city": "NASHVILLE",
     "state": "TN"
   },
   "37215": {
-    "city": "GREEN HILLS",
+    "city": "NASHVILLE",
     "state": "TN"
   },
   "37216": {
-    "city": "JERE BAXTER",
+    "city": "NASHVILLE",
     "state": "TN"
   },
   "37217": {
-    "city": "GLENVIEW",
+    "city": "NASHVILLE",
     "state": "TN"
   },
   "37218": {
-    "city": "METRO",
+    "city": "NASHVILLE",
     "state": "TN"
   },
   "37219": {
-    "city": "BROADWAY RETAIL",
+    "city": "NASHVILLE",
     "state": "TN"
   },
   "37220": {
-    "city": "MELROSE",
+    "city": "NASHVILLE",
     "state": "TN"
   },
   "37221": {
-    "city": "BELLEVUE",
+    "city": "NASHVILLE",
     "state": "TN"
   },
   "37222": {
-    "city": "WOODBINE",
+    "city": "NASHVILLE",
     "state": "TN"
   },
   "37224": {
-    "city": "SOUTH NASHVILLE",
+    "city": "NASHVILLE",
     "state": "TN"
   },
   "37228": {
-    "city": "METRO",
+    "city": "NASHVILLE",
     "state": "TN"
   },
   "37229": {
-    "city": "NASHVILLE MAIN OFFICE WINDOW",
+    "city": "NASHVILLE",
     "state": "TN"
   },
   "37230": {
-    "city": "NASHVILLE MAIN OFFICE WINDOW",
+    "city": "NASHVILLE",
     "state": "TN"
   },
   "37238": {
-    "city": "BROADWAY RETAIL",
+    "city": "NASHVILLE",
     "state": "TN"
   },
   "37301": {
@@ -44432,7 +44432,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "TN"
   },
   "37314": {
-    "city": "COKER CREEK",
+    "city": "TELLICO PLAINS",
     "state": "TN"
   },
   "37315": {
@@ -44616,7 +44616,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "TN"
   },
   "37364": {
-    "city": "DOWNTOWN CLEVELAND",
+    "city": "CLEVELAND",
     "state": "TN"
   },
   "37365": {
@@ -44720,95 +44720,95 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "TN"
   },
   "37401": {
-    "city": "DOWNTOWN CHATTANOOGA",
+    "city": "CHATTANOOGA",
     "state": "TN"
   },
   "37402": {
-    "city": "DOWNTOWN CHATTANOOGA",
+    "city": "CHATTANOOGA",
     "state": "TN"
   },
   "37403": {
-    "city": "DOWNTOWN CHATTANOOGA",
+    "city": "CHATTANOOGA",
     "state": "TN"
   },
   "37404": {
-    "city": "HIGHLAND PARK",
+    "city": "CHATTANOOGA",
     "state": "TN"
   },
   "37405": {
-    "city": "NORTH CHATTANOOGA",
+    "city": "CHATTANOOGA",
     "state": "TN"
   },
   "37406": {
-    "city": "EAST CHATTANOOGA",
+    "city": "CHATTANOOGA",
     "state": "TN"
   },
   "37407": {
-    "city": "SOUTH CHATTANOOGA",
+    "city": "CHATTANOOGA",
     "state": "TN"
   },
   "37408": {
-    "city": "DOWNTOWN CHATTANOOGA",
+    "city": "CHATTANOOGA",
     "state": "TN"
   },
   "37409": {
-    "city": "SOUTH CHATTANOOGA",
+    "city": "CHATTANOOGA",
     "state": "TN"
   },
   "37410": {
-    "city": "SOUTH CHATTANOOGA",
+    "city": "CHATTANOOGA",
     "state": "TN"
   },
   "37411": {
-    "city": "EASTGATE",
+    "city": "CHATTANOOGA",
     "state": "TN"
   },
   "37412": {
-    "city": "EAST RIDGE",
+    "city": "CHATTANOOGA",
     "state": "TN"
   },
   "37414": {
-    "city": "EASTGATE",
+    "city": "CHATTANOOGA",
     "state": "TN"
   },
   "37415": {
-    "city": "RED BANK",
+    "city": "CHATTANOOGA",
     "state": "TN"
   },
   "37416": {
-    "city": "MURRAY LAKE HILLS",
+    "city": "CHATTANOOGA",
     "state": "TN"
   },
   "37419": {
-    "city": "SOUTH CHATTANOOGA",
+    "city": "CHATTANOOGA",
     "state": "TN"
   },
   "37421": {
-    "city": "EASTGATE",
+    "city": "CHATTANOOGA",
     "state": "TN"
   },
   "37422": {
-    "city": "CHATT MAIN OFFICE WINDOW",
+    "city": "CHATTANOOGA",
     "state": "TN"
   },
   "37424": {
-    "city": "CHICKAMAUGA",
+    "city": "CHATTANOOGA",
     "state": "TN"
   },
   "37450": {
-    "city": "DOWNTOWN CHATTANOOGA",
+    "city": "CHATTANOOGA",
     "state": "TN"
   },
   "37601": {
-    "city": "JOHNSON CITY TN SDC",
+    "city": "JOHNSON CITY",
     "state": "TN"
   },
   "37602": {
-    "city": "CARROLL REECE",
+    "city": "JOHNSON CITY",
     "state": "TN"
   },
   "37604": {
-    "city": "JOHNSON CITY TN SDC",
+    "city": "JOHNSON CITY",
     "state": "TN"
   },
   "37605": {
@@ -44816,7 +44816,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "TN"
   },
   "37615": {
-    "city": "GRAY",
+    "city": "JOHNSON CITY",
     "state": "TN"
   },
   "37616": {
@@ -44840,7 +44840,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "VA"
   },
   "37625": {
-    "city": "VOLUNTEER",
+    "city": "BRISTOL",
     "state": "TN"
   },
   "37640": {
@@ -44892,11 +44892,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "TN"
   },
   "37662": {
-    "city": "DOWNTOWN KINGSPORT",
+    "city": "KINGSPORT",
     "state": "TN"
   },
   "37663": {
-    "city": "COLONIAL HEIGHTS",
+    "city": "KINGSPORT",
     "state": "TN"
   },
   "37664": {
@@ -44904,7 +44904,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "TN"
   },
   "37665": {
-    "city": "DOWNTOWN KINGSPORT",
+    "city": "KINGSPORT",
     "state": "TN"
   },
   "37680": {
@@ -45140,7 +45140,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "TN"
   },
   "37772": {
-    "city": "LENOIR CITY CARRIER ANNEX",
+    "city": "LENOIR CITY",
     "state": "TN"
   },
   "37773": {
@@ -45208,7 +45208,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "TN"
   },
   "37816": {
-    "city": "HENRY STREET",
+    "city": "MORRISTOWN",
     "state": "TN"
   },
   "37818": {
@@ -45256,7 +45256,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "TN"
   },
   "37831": {
-    "city": "JACKSON SQUARE",
+    "city": "OAK RIDGE",
     "state": "TN"
   },
   "37840": {
@@ -45424,111 +45424,111 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "TN"
   },
   "37901": {
-    "city": "DOWNTOWN KNOXVILLE",
+    "city": "KNOXVILLE",
     "state": "TN"
   },
   "37902": {
-    "city": "DOWNTOWN KNOXVILLE",
+    "city": "KNOXVILLE",
     "state": "TN"
   },
   "37909": {
-    "city": "NORTHWEST ANNEX",
+    "city": "KNOXVILLE",
     "state": "TN"
   },
   "37912": {
-    "city": "NORTHWEST ANNEX",
+    "city": "KNOXVILLE",
     "state": "TN"
   },
   "37914": {
-    "city": "BURLINGTON",
+    "city": "KNOXVILLE",
     "state": "TN"
   },
   "37915": {
-    "city": "DOWNTOWN KNOXVILLE",
+    "city": "KNOXVILLE",
     "state": "TN"
   },
   "37916": {
-    "city": "DOWNTOWN KNOXVILLE",
+    "city": "KNOXVILLE",
     "state": "TN"
   },
   "37917": {
-    "city": "NORTH KNOXVILLE",
+    "city": "KNOXVILLE",
     "state": "TN"
   },
   "37918": {
-    "city": "FOUNTAIN CITY",
+    "city": "KNOXVILLE",
     "state": "TN"
   },
   "37919": {
-    "city": "WEST KNOXVILLE",
+    "city": "KNOXVILLE",
     "state": "TN"
   },
   "37920": {
-    "city": "SOUTH KNOXVILLE",
+    "city": "KNOXVILLE",
     "state": "TN"
   },
   "37921": {
-    "city": "CPU KARNS",
+    "city": "KNOXVILLE",
     "state": "TN"
   },
   "37922": {
-    "city": "CONCORD",
+    "city": "KNOXVILLE",
     "state": "TN"
   },
   "37923": {
-    "city": "CEDAR BLUFF",
+    "city": "KNOXVILLE",
     "state": "TN"
   },
   "37924": {
-    "city": "BURLINGTON",
+    "city": "KNOXVILLE",
     "state": "TN"
   },
   "37927": {
-    "city": "NORTH KNOXVILLE",
+    "city": "KNOXVILLE",
     "state": "TN"
   },
   "37928": {
-    "city": "FOUNTAIN CITY",
+    "city": "KNOXVILLE",
     "state": "TN"
   },
   "37929": {
-    "city": "DOWNTOWN KNOXVILLE",
+    "city": "KNOXVILLE",
     "state": "TN"
   },
   "37930": {
-    "city": "CEDAR BLUFF",
+    "city": "KNOXVILLE",
     "state": "TN"
   },
   "37931": {
-    "city": "CEDAR BLUFF",
+    "city": "KNOXVILLE",
     "state": "TN"
   },
   "37932": {
-    "city": "CEDAR BLUFF",
+    "city": "KNOXVILLE",
     "state": "TN"
   },
   "37933": {
-    "city": "FARRAGUT",
+    "city": "KNOXVILLE",
     "state": "TN"
   },
   "37934": {
-    "city": "CONCORD",
+    "city": "KNOXVILLE",
     "state": "TN"
   },
   "37938": {
-    "city": "HALLS STATION",
+    "city": "KNOXVILLE",
     "state": "TN"
   },
   "37939": {
-    "city": "WEST KNOXVILLE",
+    "city": "KNOXVILLE",
     "state": "TN"
   },
   "37940": {
-    "city": "SOUTH KNOXVILLE",
+    "city": "KNOXVILLE",
     "state": "TN"
   },
   "37950": {
-    "city": "KNOXVILLE MAIN OFFICE WINDOW",
+    "city": "KNOXVILLE",
     "state": "TN"
   },
   "38001": {
@@ -45684,7 +45684,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "TN"
   },
   "38054": {
-    "city": "NAVAL AIR STATION MEMPHIS",
+    "city": "MILLINGTON",
     "state": "TN"
   },
   "38057": {
@@ -45768,123 +45768,123 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "TN"
   },
   "38103": {
-    "city": "DESOTO",
+    "city": "MEMPHIS",
     "state": "TN"
   },
   "38104": {
-    "city": "CROSSTOWN",
+    "city": "MEMPHIS",
     "state": "TN"
   },
   "38105": {
-    "city": "CROSSTOWN",
+    "city": "MEMPHIS",
     "state": "TN"
   },
   "38106": {
-    "city": "DESOTO",
+    "city": "MEMPHIS",
     "state": "TN"
   },
   "38107": {
-    "city": "NORTH MEMPHIS",
+    "city": "MEMPHIS",
     "state": "TN"
   },
   "38108": {
-    "city": "HOLLYWOOD",
+    "city": "MEMPHIS",
     "state": "TN"
   },
   "38109": {
-    "city": "MALLORY",
+    "city": "MEMPHIS",
     "state": "TN"
   },
   "38111": {
-    "city": "EAST MEMPHIS",
+    "city": "MEMPHIS",
     "state": "TN"
   },
   "38112": {
-    "city": "HOLLYWOOD",
+    "city": "MEMPHIS",
     "state": "TN"
   },
   "38113": {
-    "city": "RIVERSIDE",
+    "city": "MEMPHIS",
     "state": "TN"
   },
   "38114": {
-    "city": "EAST/LAMAR CARRIER ANNEX",
+    "city": "MEMPHIS",
     "state": "TN"
   },
   "38115": {
-    "city": "HICKORY HILL",
+    "city": "MEMPHIS",
     "state": "TN"
   },
   "38116": {
-    "city": "WHITEHAVEN",
+    "city": "MEMPHIS",
     "state": "TN"
   },
   "38117": {
-    "city": "MENDENHALL",
+    "city": "MEMPHIS",
     "state": "TN"
   },
   "38118": {
-    "city": "HOLIDAY CITY",
+    "city": "MEMPHIS",
     "state": "TN"
   },
   "38119": {
-    "city": "WHITE",
+    "city": "MEMPHIS",
     "state": "TN"
   },
   "38120": {
-    "city": "WHITE",
+    "city": "MEMPHIS",
     "state": "TN"
   },
   "38122": {
-    "city": "HIGHLAND HEIGHTS",
+    "city": "MEMPHIS",
     "state": "TN"
   },
   "38124": {
-    "city": "COLONIAL",
+    "city": "MEMPHIS",
     "state": "TN"
   },
   "38125": {
-    "city": "HACKS CROSS",
+    "city": "MEMPHIS",
     "state": "TN"
   },
   "38126": {
-    "city": "DESOTO",
+    "city": "MEMPHIS",
     "state": "TN"
   },
   "38127": {
-    "city": "FRAYSER",
+    "city": "MEMPHIS",
     "state": "TN"
   },
   "38128": {
-    "city": "RALEIGH",
+    "city": "MEMPHIS",
     "state": "TN"
   },
   "38130": {
-    "city": "HOLIDAY CITY",
+    "city": "MEMPHIS",
     "state": "TN"
   },
   "38131": {
-    "city": "WHITEHAVEN",
+    "city": "MEMPHIS",
     "state": "TN"
   },
   "38132": {
-    "city": "WHITEHAVEN",
+    "city": "MEMPHIS",
     "state": "TN"
   },
   "38133": {
-    "city": "BARTLETT",
+    "city": "MEMPHIS",
     "state": "TN"
   },
   "38134": {
-    "city": "BARTLETT",
+    "city": "MEMPHIS",
     "state": "TN"
   },
   "38135": {
-    "city": "BARTLETT",
+    "city": "MEMPHIS",
     "state": "TN"
   },
   "38137": {
-    "city": "MENDENHALL",
+    "city": "MEMPHIS",
     "state": "TN"
   },
   "38138": {
@@ -45896,43 +45896,43 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "TN"
   },
   "38141": {
-    "city": "HICKORY HILL",
+    "city": "MEMPHIS",
     "state": "TN"
   },
   "38157": {
-    "city": "MENDENHALL",
+    "city": "MEMPHIS",
     "state": "TN"
   },
   "38167": {
-    "city": "FRAYSER",
+    "city": "MEMPHIS",
     "state": "TN"
   },
   "38168": {
-    "city": "RALEIGH",
+    "city": "MEMPHIS",
     "state": "TN"
   },
   "38173": {
-    "city": "PEABODY PLACE",
+    "city": "MEMPHIS",
     "state": "TN"
   },
   "38174": {
-    "city": "CROSSTOWN",
+    "city": "MEMPHIS",
     "state": "TN"
   },
   "38175": {
-    "city": "HICKORY HILL",
+    "city": "MEMPHIS",
     "state": "TN"
   },
   "38177": {
-    "city": "MENDENHALL",
+    "city": "MEMPHIS",
     "state": "TN"
   },
   "38181": {
-    "city": "HOLIDAY CITY",
+    "city": "MEMPHIS",
     "state": "TN"
   },
   "38182": {
-    "city": "HOLLYWOOD",
+    "city": "MEMPHIS",
     "state": "TN"
   },
   "38183": {
@@ -45940,19 +45940,19 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "TN"
   },
   "38184": {
-    "city": "BARTLETT",
+    "city": "MEMPHIS",
     "state": "TN"
   },
   "38186": {
-    "city": "WHITEHAVEN",
+    "city": "MEMPHIS",
     "state": "TN"
   },
   "38187": {
-    "city": "WHITE",
+    "city": "MEMPHIS",
     "state": "TN"
   },
   "38190": {
-    "city": "MALLORY",
+    "city": "MEMPHIS",
     "state": "TN"
   },
   "38201": {
@@ -46036,7 +46036,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "TN"
   },
   "38253": {
-    "city": "RIVES CARRIERS",
+    "city": "UNION CITY",
     "state": "TN"
   },
   "38255": {
@@ -46084,15 +46084,15 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "TN"
   },
   "38303": {
-    "city": "TOM MURRAY",
+    "city": "JACKSON",
     "state": "TN"
   },
   "38305": {
-    "city": "NORTH JACKSON",
+    "city": "JACKSON",
     "state": "TN"
   },
   "38308": {
-    "city": "NORTH JACKSON",
+    "city": "JACKSON",
     "state": "TN"
   },
   "38310": {
@@ -46108,7 +46108,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "TN"
   },
   "38314": {
-    "city": "BEMIS",
+    "city": "JACKSON",
     "state": "TN"
   },
   "38315": {
@@ -46500,7 +46500,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "TN"
   },
   "38503": {
-    "city": "BROAD ST STA",
+    "city": "COOKEVILLE",
     "state": "TN"
   },
   "38504": {
@@ -46508,7 +46508,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "TN"
   },
   "38506": {
-    "city": "ALGOOD",
+    "city": "COOKEVILLE",
     "state": "TN"
   },
   "38541": {
@@ -46576,7 +46576,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "TN"
   },
   "38558": {
-    "city": "CPU FAIRFIELD GLADE",
+    "city": "CROSSVILLE",
     "state": "TN"
   },
   "38559": {
@@ -46768,7 +46768,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MS"
   },
   "38634": {
-    "city": "IDA B WELLS",
+    "city": "HOLLY SPRINGS",
     "state": "MS"
   },
   "38635": {
@@ -46816,7 +46816,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MS"
   },
   "38649": {
-    "city": "MOUNT PLEASANT",
+    "city": "HOLLY SPRINGS",
     "state": "MS"
   },
   "38650": {
@@ -46848,7 +46848,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MS"
   },
   "38661": {
-    "city": "IDA B WELLS",
+    "city": "HOLLY SPRINGS",
     "state": "MS"
   },
   "38663": {
@@ -46912,7 +46912,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MS"
   },
   "38701": {
-    "city": "CROSSROADS",
+    "city": "GREENVILLE",
     "state": "MS"
   },
   "38702": {
@@ -46920,11 +46920,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MS"
   },
   "38703": {
-    "city": "CROSSROADS",
+    "city": "GREENVILLE",
     "state": "MS"
   },
   "38704": {
-    "city": "CROSSROADS",
+    "city": "GREENVILLE",
     "state": "MS"
   },
   "38720": {
@@ -46956,7 +46956,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MS"
   },
   "38731": {
-    "city": "CHATHAM DPOBU",
+    "city": "CHATHAM",
     "state": "MS"
   },
   "38732": {
@@ -47036,7 +47036,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MS"
   },
   "38765": {
-    "city": "PANTHER BURN DPOBU",
+    "city": "PANTHER BURN",
     "state": "MS"
   },
   "38767": {
@@ -47084,7 +47084,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MS"
   },
   "38782": {
-    "city": "WINTERVILLE DPOBU",
+    "city": "WINTERVILLE",
     "state": "MS"
   },
   "38801": {
@@ -47092,7 +47092,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MS"
   },
   "38802": {
-    "city": "DOWNTOWN TUPELO",
+    "city": "TUPELO",
     "state": "MS"
   },
   "38803": {
@@ -47292,7 +47292,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MS"
   },
   "38914": {
-    "city": "BIG CREEK DPOBU",
+    "city": "BIG CREEK",
     "state": "MS"
   },
   "38915": {
@@ -47344,7 +47344,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MS"
   },
   "38930": {
-    "city": "LEFLORE",
+    "city": "GREENWOOD",
     "state": "MS"
   },
   "38935": {
@@ -47468,7 +47468,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MS"
   },
   "39047": {
-    "city": "RESERVOIR",
+    "city": "BRANDON",
     "state": "MS"
   },
   "39051": {
@@ -47496,7 +47496,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MS"
   },
   "39061": {
-    "city": "DELTA CITY DPOBU",
+    "city": "DELTA CITY",
     "state": "MS"
   },
   "39062": {
@@ -47620,7 +47620,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MS"
   },
   "39115": {
-    "city": "MIDNIGHT DPOBU",
+    "city": "MIDNIGHT",
     "state": "MS"
   },
   "39116": {
@@ -47644,7 +47644,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MS"
   },
   "39122": {
-    "city": "TRACETOWN",
+    "city": "NATCHEZ",
     "state": "MS"
   },
   "39130": {
@@ -47724,7 +47724,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MS"
   },
   "39163": {
-    "city": "CPU SHARON",
+    "city": "SHARON",
     "state": "MS"
   },
   "39165": {
@@ -47752,11 +47752,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MS"
   },
   "39171": {
-    "city": "THOMASTOWN DPOBU",
+    "city": "THOMASTOWN",
     "state": "MS"
   },
   "39173": {
-    "city": "TINSLEY DPOBU",
+    "city": "TINSLEY",
     "state": "MS"
   },
   "39174": {
@@ -47820,19 +47820,19 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MS"
   },
   "39201": {
-    "city": "NORTH JACKSON",
+    "city": "JACKSON",
     "state": "MS"
   },
   "39202": {
-    "city": "LEFLEUR",
+    "city": "JACKSON",
     "state": "MS"
   },
   "39203": {
-    "city": "WESTLAND",
+    "city": "JACKSON",
     "state": "MS"
   },
   "39204": {
-    "city": "SOUTHWEST",
+    "city": "JACKSON",
     "state": "MS"
   },
   "39205": {
@@ -47840,7 +47840,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MS"
   },
   "39206": {
-    "city": "NORTH JACKSON",
+    "city": "JACKSON",
     "state": "MS"
   },
   "39207": {
@@ -47852,19 +47852,19 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MS"
   },
   "39209": {
-    "city": "WESTLAND",
+    "city": "JACKSON",
     "state": "MS"
   },
   "39211": {
-    "city": "LEFLEUR",
+    "city": "JACKSON",
     "state": "MS"
   },
   "39212": {
-    "city": "CANDLESTICK PARK",
+    "city": "JACKSON",
     "state": "MS"
   },
   "39213": {
-    "city": "DELTA STATION",
+    "city": "JACKSON",
     "state": "MS"
   },
   "39215": {
@@ -47872,7 +47872,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MS"
   },
   "39216": {
-    "city": "NORTH JACKSON",
+    "city": "JACKSON",
     "state": "MS"
   },
   "39218": {
@@ -47888,11 +47888,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MS"
   },
   "39236": {
-    "city": "LEFLEUR",
+    "city": "JACKSON",
     "state": "MS"
   },
   "39269": {
-    "city": "CPU A H MCCOY FEDERAL BLDG",
+    "city": "JACKSON",
     "state": "MS"
   },
   "39272": {
@@ -47900,19 +47900,19 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MS"
   },
   "39282": {
-    "city": "CANDLESTICK PARK",
+    "city": "JACKSON",
     "state": "MS"
   },
   "39283": {
-    "city": "DELTA STATION",
+    "city": "JACKSON",
     "state": "MS"
   },
   "39284": {
-    "city": "SOUTHWEST",
+    "city": "JACKSON",
     "state": "MS"
   },
   "39286": {
-    "city": "NORTH JACKSON",
+    "city": "JACKSON",
     "state": "MS"
   },
   "39288": {
@@ -47920,11 +47920,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MS"
   },
   "39289": {
-    "city": "WESTLAND",
+    "city": "JACKSON",
     "state": "MS"
   },
   "39296": {
-    "city": "FONDREN",
+    "city": "JACKSON",
     "state": "MS"
   },
   "39298": {
@@ -47940,19 +47940,19 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MS"
   },
   "39303": {
-    "city": "NORTH MERIDIAN",
+    "city": "MERIDIAN",
     "state": "MS"
   },
   "39304": {
-    "city": "WEST MERIDIAN",
+    "city": "MERIDIAN",
     "state": "MS"
   },
   "39305": {
-    "city": "NORTH MERIDIAN",
+    "city": "MERIDIAN",
     "state": "MS"
   },
   "39307": {
-    "city": "NORTH MERIDIAN",
+    "city": "MERIDIAN",
     "state": "MS"
   },
   "39320": {
@@ -48040,7 +48040,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MS"
   },
   "39350": {
-    "city": "CPU CHOCTAW",
+    "city": "CHOCTAW",
     "state": "MS"
   },
   "39352": {
@@ -48100,19 +48100,19 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MS"
   },
   "39401": {
-    "city": "HATTIESBURG MS S&DC",
+    "city": "HATTIESBURG",
     "state": "MS"
   },
   "39402": {
-    "city": "HATTIESBURG MS S&DC",
+    "city": "HATTIESBURG",
     "state": "MS"
   },
   "39403": {
-    "city": "DOWNTOWN HATTIESBURG",
+    "city": "HATTIESBURG",
     "state": "MS"
   },
   "39404": {
-    "city": "HATTIESBURG MS S&DC",
+    "city": "HATTIESBURG",
     "state": "MS"
   },
   "39421": {
@@ -48168,7 +48168,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MS"
   },
   "39442": {
-    "city": "CHOCTAW",
+    "city": "LAUREL",
     "state": "MS"
   },
   "39443": {
@@ -48200,7 +48200,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MS"
   },
   "39460": {
-    "city": "MOSS DPOBU",
+    "city": "LAUREL",
     "state": "MS"
   },
   "39461": {
@@ -48272,11 +48272,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MS"
   },
   "39501": {
-    "city": "EAST STATION",
+    "city": "GULFPORT",
     "state": "MS"
   },
   "39502": {
-    "city": "DOWNTOWN GULFPORT",
+    "city": "GULFPORT",
     "state": "MS"
   },
   "39503": {
@@ -48288,11 +48288,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MS"
   },
   "39506": {
-    "city": "EAST STATION",
+    "city": "GULFPORT",
     "state": "MS"
   },
   "39507": {
-    "city": "EAST STATION",
+    "city": "GULFPORT",
     "state": "MS"
   },
   "39520": {
@@ -48312,11 +48312,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MS"
   },
   "39531": {
-    "city": "WEST BILOXI",
+    "city": "BILOXI",
     "state": "MS"
   },
   "39532": {
-    "city": "NORTH BAY DIBERVILLE",
+    "city": "DIBERVILLE",
     "state": "MS"
   },
   "39533": {
@@ -48324,15 +48324,15 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MS"
   },
   "39534": {
-    "city": "KEESLER A F B",
+    "city": "BILOXI",
     "state": "MS"
   },
   "39535": {
-    "city": "WEST BILOXI",
+    "city": "BILOXI",
     "state": "MS"
   },
   "39540": {
-    "city": "NORTH BAY DIBERVILLE",
+    "city": "DIBERVILLE",
     "state": "MS"
   },
   "39552": {
@@ -48424,7 +48424,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MS"
   },
   "39601": {
-    "city": "WEST BROOKHAVEN",
+    "city": "BROOKHAVEN",
     "state": "MS"
   },
   "39602": {
@@ -48432,7 +48432,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MS"
   },
   "39603": {
-    "city": "WEST BROOKHAVEN",
+    "city": "BROOKHAVEN",
     "state": "MS"
   },
   "39629": {
@@ -48548,11 +48548,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MS"
   },
   "39703": {
-    "city": "DOWNTOWN COLUMBUS",
+    "city": "COLUMBUS",
     "state": "MS"
   },
   "39704": {
-    "city": "FAIRLANE",
+    "city": "COLUMBUS",
     "state": "MS"
   },
   "39705": {
@@ -48620,7 +48620,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MS"
   },
   "39753": {
-    "city": "MAYHEW DPOBU",
+    "city": "MAYHEW",
     "state": "MS"
   },
   "39755": {
@@ -49044,7 +49044,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "KY"
   },
   "40119": {
-    "city": "FALLS OF ROUGH CARRIERS",
+    "city": "MC DANIELS",
     "state": "KY"
   },
   "40121": {
@@ -49140,107 +49140,107 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "KY"
   },
   "40201": {
-    "city": "DOWNTOWN LOUISVILLE",
+    "city": "LOUISVILLE",
     "state": "KY"
   },
   "40202": {
-    "city": "DOWNTOWN LOUISVILLE",
+    "city": "LOUISVILLE",
     "state": "KY"
   },
   "40203": {
-    "city": "DOWNTOWN LOUISVILLE",
+    "city": "LOUISVILLE",
     "state": "KY"
   },
   "40204": {
-    "city": "BAXTER",
+    "city": "LOUISVILLE",
     "state": "KY"
   },
   "40205": {
-    "city": "ANNSHIRE ANNEX",
+    "city": "LOUISVILLE",
     "state": "KY"
   },
   "40206": {
-    "city": "SAINT MATTHEWS",
+    "city": "LOUISVILLE",
     "state": "KY"
   },
   "40207": {
-    "city": "SAINT MATTHEWS",
+    "city": "LOUISVILLE",
     "state": "KY"
   },
   "40208": {
-    "city": "DOWNTOWN LOUISVILLE",
+    "city": "LOUISVILLE",
     "state": "KY"
   },
   "40209": {
-    "city": "IROQUOIS",
+    "city": "LOUISVILLE",
     "state": "KY"
   },
   "40210": {
-    "city": "DOWNTOWN LOUISVILLE",
+    "city": "LOUISVILLE",
     "state": "KY"
   },
   "40211": {
-    "city": "DR MARTIN LUTHER KING JR",
+    "city": "LOUISVILLE",
     "state": "KY"
   },
   "40212": {
-    "city": "DR MARTIN LUTHER KING JR",
+    "city": "LOUISVILLE",
     "state": "KY"
   },
   "40213": {
-    "city": "ANNSHIRE ANNEX",
+    "city": "LOUISVILLE",
     "state": "KY"
   },
   "40214": {
-    "city": "IROQUOIS",
+    "city": "LOUISVILLE",
     "state": "KY"
   },
   "40215": {
-    "city": "IROQUOIS",
+    "city": "LOUISVILLE",
     "state": "KY"
   },
   "40216": {
-    "city": "SHIVELY",
+    "city": "LOUISVILLE",
     "state": "KY"
   },
   "40217": {
-    "city": "SHELBY",
+    "city": "LOUISVILLE",
     "state": "KY"
   },
   "40218": {
-    "city": "ANNSHIRE ANNEX",
+    "city": "LOUISVILLE",
     "state": "KY"
   },
   "40219": {
-    "city": "OKOLONA",
+    "city": "LOUISVILLE",
     "state": "KY"
   },
   "40220": {
-    "city": "HIKES POINT",
+    "city": "LOUISVILLE",
     "state": "KY"
   },
   "40221": {
-    "city": "AIR MAIL FACILITY",
+    "city": "LOUISVILLE",
     "state": "KY"
   },
   "40222": {
-    "city": "LYNDON",
+    "city": "LOUISVILLE",
     "state": "KY"
   },
   "40223": {
-    "city": "ANCHORAGE",
+    "city": "LOUISVILLE",
     "state": "KY"
   },
   "40224": {
-    "city": "HIKES POINT",
+    "city": "LOUISVILLE",
     "state": "KY"
   },
   "40228": {
-    "city": "FERN CREEK CARRIER ANNEX NEW",
+    "city": "LOUISVILLE",
     "state": "KY"
   },
   "40229": {
-    "city": "OKOLONA",
+    "city": "LOUISVILLE",
     "state": "KY"
   },
   "40231": {
@@ -49256,71 +49256,71 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "KY"
   },
   "40241": {
-    "city": "LYNDON",
+    "city": "LOUISVILLE",
     "state": "KY"
   },
   "40242": {
-    "city": "LYNDON",
+    "city": "LOUISVILLE",
     "state": "KY"
   },
   "40243": {
-    "city": "MIDDLETOWN",
+    "city": "LOUISVILLE",
     "state": "KY"
   },
   "40245": {
-    "city": "MIDDLETOWN",
+    "city": "LOUISVILLE",
     "state": "KY"
   },
   "40250": {
-    "city": "HIKES POINT",
+    "city": "LOUISVILLE",
     "state": "KY"
   },
   "40251": {
-    "city": "DR MARTIN LUTHER KING JR",
+    "city": "LOUISVILLE",
     "state": "KY"
   },
   "40252": {
-    "city": "LYNDON",
+    "city": "LOUISVILLE",
     "state": "KY"
   },
   "40253": {
-    "city": "MIDDLETOWN",
+    "city": "LOUISVILLE",
     "state": "KY"
   },
   "40255": {
-    "city": "CHEROKEE",
+    "city": "LOUISVILLE",
     "state": "KY"
   },
   "40256": {
-    "city": "SHIVELY",
+    "city": "LOUISVILLE",
     "state": "KY"
   },
   "40257": {
-    "city": "SAINT MATTHEWS",
+    "city": "LOUISVILLE",
     "state": "KY"
   },
   "40258": {
-    "city": "PLEASURE RIDGE PARK",
+    "city": "LOUISVILLE",
     "state": "KY"
   },
   "40259": {
-    "city": "OKOLONA",
+    "city": "LOUISVILLE",
     "state": "KY"
   },
   "40268": {
-    "city": "PLEASURE RIDGE PARK",
+    "city": "LOUISVILLE",
     "state": "KY"
   },
   "40269": {
-    "city": "JEFFERSONTOWN",
+    "city": "LOUISVILLE",
     "state": "KY"
   },
   "40270": {
-    "city": "4TH STREET",
+    "city": "LOUISVILLE",
     "state": "KY"
   },
   "40272": {
-    "city": "PLEASURE RIDGE PARK",
+    "city": "LOUISVILLE",
     "state": "KY"
   },
   "40285": {
@@ -49332,7 +49332,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "KY"
   },
   "40291": {
-    "city": "FERN CREEK",
+    "city": "LOUISVILLE",
     "state": "KY"
   },
   "40293": {
@@ -49348,7 +49348,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "KY"
   },
   "40299": {
-    "city": "JEFFERSONTOWN",
+    "city": "LOUISVILLE",
     "state": "KY"
   },
   "40310": {
@@ -49628,7 +49628,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "KY"
   },
   "40475": {
-    "city": "RICHMOND CARRIER ANNEX",
+    "city": "RICHMOND",
     "state": "KY"
   },
   "40476": {
@@ -49656,39 +49656,39 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "KY"
   },
   "40502": {
-    "city": "BLUEGRASS",
+    "city": "LEXINGTON",
     "state": "KY"
   },
   "40503": {
-    "city": "BEAUMONT",
+    "city": "LEXINGTON",
     "state": "KY"
   },
   "40504": {
-    "city": "GARDENSIDE",
+    "city": "LEXINGTON",
     "state": "KY"
   },
   "40505": {
-    "city": "LIBERTY ROAD",
+    "city": "LEXINGTON",
     "state": "KY"
   },
   "40507": {
-    "city": "BRENTWOOD CARRIER ANNEX",
+    "city": "LEXINGTON",
     "state": "KY"
   },
   "40508": {
-    "city": "BRENTWOOD CARRIER ANNEX",
+    "city": "LEXINGTON",
     "state": "KY"
   },
   "40509": {
-    "city": "LIBERTY ROAD",
+    "city": "LEXINGTON",
     "state": "KY"
   },
   "40510": {
-    "city": "GARDENSIDE",
+    "city": "LEXINGTON",
     "state": "KY"
   },
   "40511": {
-    "city": "BRENTWOOD CARRIER ANNEX",
+    "city": "LEXINGTON",
     "state": "KY"
   },
   "40512": {
@@ -49696,47 +49696,47 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "KY"
   },
   "40513": {
-    "city": "BEAUMONT",
+    "city": "LEXINGTON",
     "state": "KY"
   },
   "40514": {
-    "city": "BEAUMONT",
+    "city": "LEXINGTON",
     "state": "KY"
   },
   "40515": {
-    "city": "BLUEGRASS",
+    "city": "LEXINGTON",
     "state": "KY"
   },
   "40516": {
-    "city": "LIBERTY ROAD",
+    "city": "LEXINGTON",
     "state": "KY"
   },
   "40517": {
-    "city": "BLUEGRASS",
+    "city": "LEXINGTON",
     "state": "KY"
   },
   "40522": {
-    "city": "HENRY CLAY",
+    "city": "LEXINGTON",
     "state": "KY"
   },
   "40523": {
-    "city": "BLUEGRASS",
+    "city": "LEXINGTON",
     "state": "KY"
   },
   "40524": {
-    "city": "BLUEGRASS",
+    "city": "LEXINGTON",
     "state": "KY"
   },
   "40533": {
-    "city": "GARDENSIDE",
+    "city": "LEXINGTON",
     "state": "KY"
   },
   "40544": {
-    "city": "GARDENSIDE",
+    "city": "LEXINGTON",
     "state": "KY"
   },
   "40555": {
-    "city": "LIBERTY ROAD",
+    "city": "LEXINGTON",
     "state": "KY"
   },
   "40574": {
@@ -49780,11 +49780,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "KY"
   },
   "40588": {
-    "city": "POST RIDER",
+    "city": "LEXINGTON",
     "state": "KY"
   },
   "40591": {
-    "city": "BEAUMONT",
+    "city": "LEXINGTON",
     "state": "KY"
   },
   "40601": {
@@ -49796,7 +49796,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "KY"
   },
   "40604": {
-    "city": "WESTSIDE",
+    "city": "FRANKFORT",
     "state": "KY"
   },
   "40701": {
@@ -49828,23 +49828,23 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "KY"
   },
   "40741": {
-    "city": "LONDON KY SDC",
+    "city": "LONDON",
     "state": "KY"
   },
   "40742": {
-    "city": "LONDON KY SDC",
+    "city": "LONDON",
     "state": "KY"
   },
   "40743": {
-    "city": "LONDON KY SDC",
+    "city": "LONDON",
     "state": "KY"
   },
   "40744": {
-    "city": "LONDON KY SDC",
+    "city": "LONDON",
     "state": "KY"
   },
   "40745": {
-    "city": "LONDON KY SDC",
+    "city": "LONDON",
     "state": "KY"
   },
   "40755": {
@@ -50168,7 +50168,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "KY"
   },
   "41017": {
-    "city": "DIXIE",
+    "city": "LAKESIDE PARK",
     "state": "KY"
   },
   "41018": {
@@ -50288,15 +50288,15 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "KY"
   },
   "41076": {
-    "city": "COLD SPRGS HIGHLAND HTS",
+    "city": "HIGHLAND HEIGHTS",
     "state": "KY"
   },
   "41080": {
-    "city": "HEBRON CARRIER ANNEX",
+    "city": "HEBRON",
     "state": "KY"
   },
   "41081": {
-    "city": "VPO PLUMMERS LANDING",
+    "city": "PLUMMERS LANDING",
     "state": "KY"
   },
   "41083": {
@@ -50364,7 +50364,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "KY"
   },
   "41128": {
-    "city": "CARTER NPU",
+    "city": "OLIVE HILL",
     "state": "KY"
   },
   "41129": {
@@ -50404,7 +50404,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "KY"
   },
   "41149": {
-    "city": "ISONVILLE DPOBU",
+    "city": "ISONVILLE",
     "state": "KY"
   },
   "41159": {
@@ -50696,11 +50696,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "KY"
   },
   "41502": {
-    "city": "MAIN STREET",
+    "city": "PIKEVILLE",
     "state": "KY"
   },
   "41503": {
-    "city": "FOOD CITY DPOBU",
+    "city": "SOUTH WILLIAMSON",
     "state": "KY"
   },
   "41512": {
@@ -50992,7 +50992,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "KY"
   },
   "41702": {
-    "city": "DOWNTOWN HAZARD",
+    "city": "HAZARD",
     "state": "KY"
   },
   "41712": {
@@ -51260,7 +51260,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "KY"
   },
   "42002": {
-    "city": "AVONDALE",
+    "city": "PADUCAH",
     "state": "KY"
   },
   "42003": {
@@ -51460,19 +51460,19 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "KY"
   },
   "42101": {
-    "city": "BOWLING GREEN KY SDC",
+    "city": "BOWLING GREEN",
     "state": "KY"
   },
   "42102": {
-    "city": "BOWLING GREEN FIN STA",
+    "city": "BOWLING GREEN",
     "state": "KY"
   },
   "42103": {
-    "city": "BOWLING GREEN KY SDC",
+    "city": "BOWLING GREEN",
     "state": "KY"
   },
   "42104": {
-    "city": "BOWLING GREEN KY SDC",
+    "city": "BOWLING GREEN",
     "state": "KY"
   },
   "42120": {
@@ -51520,7 +51520,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "KY"
   },
   "42142": {
-    "city": "POSTAL STORE",
+    "city": "GLASGOW",
     "state": "KY"
   },
   "42152": {
@@ -51544,7 +51544,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "KY"
   },
   "42159": {
-    "city": "BOWLING GREEN KY SDC",
+    "city": "BOWLING GREEN",
     "state": "KY"
   },
   "42160": {
@@ -51572,7 +51572,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "KY"
   },
   "42171": {
-    "city": "BOWLING GREEN KY SDC",
+    "city": "BOWLING GREEN",
     "state": "KY"
   },
   "42201": {
@@ -51692,11 +51692,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "KY"
   },
   "42274": {
-    "city": "BOWLING GREEN KY SDC",
+    "city": "BOWLING GREEN",
     "state": "KY"
   },
   "42275": {
-    "city": "VPO ROUNDHILL",
+    "city": "ROUNDHILL",
     "state": "KY"
   },
   "42276": {
@@ -51720,19 +51720,19 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "KY"
   },
   "42301": {
-    "city": "OWENSBORO KY S&DC",
+    "city": "OWENSBORO",
     "state": "KY"
   },
   "42302": {
-    "city": "POSTAL STORE",
+    "city": "OWENSBORO",
     "state": "KY"
   },
   "42303": {
-    "city": "OWENSBORO KY S&DC",
+    "city": "OWENSBORO",
     "state": "KY"
   },
   "42304": {
-    "city": "OWENSBORO KY S&DC",
+    "city": "OWENSBORO",
     "state": "KY"
   },
   "42320": {
@@ -51784,7 +51784,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "KY"
   },
   "42334": {
-    "city": "OWENSBORO KY S&DC",
+    "city": "OWENSBORO",
     "state": "KY"
   },
   "42337": {
@@ -51840,7 +51840,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "KY"
   },
   "42356": {
-    "city": "OWENSBORO KY S&DC",
+    "city": "OWENSBORO",
     "state": "KY"
   },
   "42366": {
@@ -52056,7 +52056,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "KY"
   },
   "42564": {
-    "city": "WEST SOMERSET",
+    "city": "SOMERSET",
     "state": "KY"
   },
   "42566": {
@@ -52396,7 +52396,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "OH"
   },
   "43047": {
-    "city": "MINGO DPOBU",
+    "city": "MINGO",
     "state": "OH"
   },
   "43048": {
@@ -52508,11 +52508,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "OH"
   },
   "43085": {
-    "city": "WEST WORTHINGTON",
+    "city": "COLUMBUS",
     "state": "OH"
   },
   "43086": {
-    "city": "STATE STREET",
+    "city": "WESTERVILLE",
     "state": "OH"
   },
   "43101": {
@@ -52572,7 +52572,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "OH"
   },
   "43119": {
-    "city": "COLUMBUS OH WESTLAND SDC",
+    "city": "COLUMBUS",
     "state": "OH"
   },
   "43123": {
@@ -52700,135 +52700,135 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "OH"
   },
   "43201": {
-    "city": "EAST CITY ANNEX",
+    "city": "COLUMBUS",
     "state": "OH"
   },
   "43202": {
-    "city": "BEECHWOLD",
+    "city": "COLUMBUS",
     "state": "OH"
   },
   "43203": {
-    "city": "EAST CITY ANNEX",
+    "city": "COLUMBUS",
     "state": "OH"
   },
   "43204": {
-    "city": "COLUMBUS OH WESTLAND SDC",
+    "city": "COLUMBUS",
     "state": "OH"
   },
   "43205": {
-    "city": "EAST CITY ANNEX",
+    "city": "COLUMBUS",
     "state": "OH"
   },
   "43206": {
-    "city": "GERMAN VILLAGE NEW",
+    "city": "COLUMBUS",
     "state": "OH"
   },
   "43207": {
-    "city": "KROGER DPOBU",
+    "city": "COLUMBUS",
     "state": "OH"
   },
   "43209": {
-    "city": "BEXLEY",
+    "city": "COLUMBUS",
     "state": "OH"
   },
   "43210": {
-    "city": "EAST CITY ANNEX",
+    "city": "COLUMBUS",
     "state": "OH"
   },
   "43211": {
-    "city": "LINDEN FINANCE",
+    "city": "COLUMBUS",
     "state": "OH"
   },
   "43212": {
-    "city": "TRI VILLAGE FINANCE",
+    "city": "COLUMBUS",
     "state": "OH"
   },
   "43213": {
-    "city": "WHITEHALL",
+    "city": "COLUMBUS",
     "state": "OH"
   },
   "43214": {
-    "city": "BEECHWOLD",
+    "city": "COLUMBUS",
     "state": "OH"
   },
   "43215": {
-    "city": "CHRISTOPHER COLUMBUS",
+    "city": "COLUMBUS",
     "state": "OH"
   },
   "43216": {
-    "city": "WEST CITY",
+    "city": "COLUMBUS",
     "state": "OH"
   },
   "43217": {
-    "city": "GERMAN VILLAGE NEW",
+    "city": "COLUMBUS",
     "state": "OH"
   },
   "43218": {
-    "city": "CITYGATE CALLER UNIT",
+    "city": "COLUMBUS",
     "state": "OH"
   },
   "43219": {
-    "city": "OAKLAND PARK OH S&DC",
+    "city": "COLUMBUS",
     "state": "OH"
   },
   "43220": {
-    "city": "NORTHWEST",
+    "city": "COLUMBUS",
     "state": "OH"
   },
   "43221": {
-    "city": "NORTHWEST FINANCE UNIT",
+    "city": "COLUMBUS",
     "state": "OH"
   },
   "43222": {
-    "city": "WEST CITY",
+    "city": "COLUMBUS",
     "state": "OH"
   },
   "43223": {
-    "city": "CENTRAL POINT FINANCE UNIT",
+    "city": "COLUMBUS",
     "state": "OH"
   },
   "43224": {
-    "city": "OAKLAND PARK OH S&DC",
+    "city": "COLUMBUS",
     "state": "OH"
   },
   "43226": {
-    "city": "NORTHLAND RETAIL STORE",
+    "city": "COLUMBUS",
     "state": "OH"
   },
   "43227": {
-    "city": "LIVINGSTON",
+    "city": "COLUMBUS",
     "state": "OH"
   },
   "43228": {
-    "city": "COLUMBUS OH WESTLAND SDC",
+    "city": "COLUMBUS",
     "state": "OH"
   },
   "43229": {
-    "city": "NORTHLAND",
+    "city": "COLUMBUS",
     "state": "OH"
   },
   "43230": {
-    "city": "GAHANNA",
+    "city": "COLUMBUS",
     "state": "OH"
   },
   "43231": {
-    "city": "OAKLAND PARK OH S&DC",
+    "city": "COLUMBUS",
     "state": "OH"
   },
   "43232": {
-    "city": "EASTLAND",
+    "city": "COLUMBUS",
     "state": "OH"
   },
   "43234": {
-    "city": "WEST WORTHINGTON",
+    "city": "COLUMBUS",
     "state": "OH"
   },
   "43235": {
-    "city": "WEST WORTHINGTON",
+    "city": "COLUMBUS",
     "state": "OH"
   },
   "43236": {
-    "city": "CITYGATE RETAIL",
+    "city": "COLUMBUS",
     "state": "OH"
   },
   "43240": {
@@ -52836,7 +52836,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "OH"
   },
   "43301": {
-    "city": "CPU COLLECTABLES MARION",
+    "city": "MARION",
     "state": "OH"
   },
   "43302": {
@@ -52972,7 +52972,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "OH"
   },
   "43349": {
-    "city": "VPO SHAUCK",
+    "city": "SHAUCK",
     "state": "OH"
   },
   "43350": {
@@ -53124,7 +53124,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "OH"
   },
   "43452": {
-    "city": "CPU BASSETTS IGA",
+    "city": "PORT CLINTON",
     "state": "OH"
   },
   "43456": {
@@ -53140,7 +53140,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "OH"
   },
   "43460": {
-    "city": "CENTRAL",
+    "city": "TOLEDO",
     "state": "OH"
   },
   "43462": {
@@ -53224,7 +53224,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "OH"
   },
   "43519": {
-    "city": "STRYKER",
+    "city": "EVANSPORT",
     "state": "OH"
   },
   "43520": {
@@ -53356,7 +53356,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "OH"
   },
   "43557": {
-    "city": "STRYKER",
+    "city": "EVANSPORT",
     "state": "OH"
   },
   "43558": {
@@ -53392,55 +53392,55 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "OH"
   },
   "43603": {
-    "city": "CENTRAL",
+    "city": "TOLEDO",
     "state": "OH"
   },
   "43604": {
-    "city": "CENTRAL",
+    "city": "TOLEDO",
     "state": "OH"
   },
   "43605": {
-    "city": "STATION A",
+    "city": "TOLEDO",
     "state": "OH"
   },
   "43606": {
-    "city": "KENWOOD",
+    "city": "TOLEDO",
     "state": "OH"
   },
   "43607": {
-    "city": "MIDTOWN",
+    "city": "TOLEDO",
     "state": "OH"
   },
   "43608": {
-    "city": "MANHATTAN",
+    "city": "TOLEDO",
     "state": "OH"
   },
   "43609": {
-    "city": "SOUTH TOLEDO",
+    "city": "TOLEDO",
     "state": "OH"
   },
   "43610": {
-    "city": "OLD WEST END",
+    "city": "TOLEDO",
     "state": "OH"
   },
   "43611": {
-    "city": "POINT PLACE STATION",
+    "city": "TOLEDO",
     "state": "OH"
   },
   "43612": {
-    "city": "WEST TOLEDO",
+    "city": "TOLEDO",
     "state": "OH"
   },
   "43613": {
-    "city": "WERNERT",
+    "city": "TOLEDO",
     "state": "OH"
   },
   "43614": {
-    "city": "SOUTH TOLEDO",
+    "city": "TOLEDO",
     "state": "OH"
   },
   "43615": {
-    "city": "REYNOLDS CORNERS",
+    "city": "TOLEDO",
     "state": "OH"
   },
   "43616": {
@@ -53448,7 +53448,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "OH"
   },
   "43617": {
-    "city": "REYNOLDS CORNERS",
+    "city": "TOLEDO",
     "state": "OH"
   },
   "43619": {
@@ -53460,11 +53460,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "OH"
   },
   "43623": {
-    "city": "FRANKLIN PARK",
+    "city": "TOLEDO",
     "state": "OH"
   },
   "43635": {
-    "city": "REYNOLDS CORNERS",
+    "city": "TOLEDO",
     "state": "OH"
   },
   "43697": {
@@ -53480,7 +53480,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "OH"
   },
   "43702": {
-    "city": "ZANE STREET",
+    "city": "ZANESVILLE",
     "state": "OH"
   },
   "43711": {
@@ -53592,7 +53592,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "OH"
   },
   "43752": {
-    "city": "LAINGS DPOBU",
+    "city": "WOODSFIELD",
     "state": "OH"
   },
   "43754": {
@@ -53836,7 +53836,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "OH"
   },
   "43920": {
-    "city": "CALCUTTA",
+    "city": "EAST LIVERPOOL",
     "state": "OH"
   },
   "43925": {
@@ -54140,19 +54140,19 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "OH"
   },
   "44053": {
-    "city": "LORAIN COLORADO AVE",
+    "city": "LORAIN",
     "state": "OH"
   },
   "44054": {
-    "city": "LORAIN COLORADO AVE",
+    "city": "LORAIN",
     "state": "OH"
   },
   "44055": {
-    "city": "LORAIN COLORADO AVE",
+    "city": "LORAIN",
     "state": "OH"
   },
   "44056": {
-    "city": "NORTHFIELD",
+    "city": "MACEDONIA",
     "state": "OH"
   },
   "44057": {
@@ -54180,7 +54180,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "OH"
   },
   "44067": {
-    "city": "NORTHFIELD",
+    "city": "MACEDONIA",
     "state": "OH"
   },
   "44068": {
@@ -54276,27 +54276,27 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "OH"
   },
   "44101": {
-    "city": "CARRIER SECTIONS",
+    "city": "CLEVELAND",
     "state": "OH"
   },
   "44102": {
-    "city": "A STATION CLEVELAND",
+    "city": "CLEVELAND",
     "state": "OH"
   },
   "44103": {
-    "city": "B STATION CLEVELAND",
+    "city": "CLEVELAND",
     "state": "OH"
   },
   "44104": {
-    "city": "B STATION CLEVELAND",
+    "city": "CLEVELAND",
     "state": "OH"
   },
   "44105": {
-    "city": "NEWBURG",
+    "city": "CLEVELAND",
     "state": "OH"
   },
   "44106": {
-    "city": "B STATION CLEVELAND",
+    "city": "CLEVELAND",
     "state": "OH"
   },
   "44107": {
@@ -54304,19 +54304,19 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "OH"
   },
   "44108": {
-    "city": "GLENVILLE BRATENAHL",
+    "city": "CLEVELAND",
     "state": "OH"
   },
   "44109": {
-    "city": "PEARLBROOK",
+    "city": "CLEVELAND",
     "state": "OH"
   },
   "44110": {
-    "city": "COLLINWOOD",
+    "city": "CLEVELAND",
     "state": "OH"
   },
   "44111": {
-    "city": "WEST PARK",
+    "city": "CLEVELAND",
     "state": "OH"
   },
   "44112": {
@@ -54324,15 +54324,15 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "OH"
   },
   "44113": {
-    "city": "CARRIER SECTIONS",
+    "city": "CLEVELAND",
     "state": "OH"
   },
   "44114": {
-    "city": "CARRIER SECTIONS",
+    "city": "CLEVELAND",
     "state": "OH"
   },
   "44115": {
-    "city": "CARRIER SECTIONS",
+    "city": "CLEVELAND",
     "state": "OH"
   },
   "44116": {
@@ -54348,15 +54348,15 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "OH"
   },
   "44119": {
-    "city": "BEACHLAND",
+    "city": "CLEVELAND",
     "state": "OH"
   },
   "44120": {
-    "city": "SHAKER FINANCE",
+    "city": "CLEVELAND",
     "state": "OH"
   },
   "44121": {
-    "city": "SOUTH EUCLID",
+    "city": "CLEVELAND",
     "state": "OH"
   },
   "44122": {
@@ -54364,35 +54364,35 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "OH"
   },
   "44123": {
-    "city": "NOBLE",
+    "city": "EUCLID",
     "state": "OH"
   },
   "44124": {
-    "city": "LYNDHURST MAYFIELD",
+    "city": "CLEVELAND",
     "state": "OH"
   },
   "44125": {
-    "city": "GARFIELD HEIGHTS",
+    "city": "CLEVELAND",
     "state": "OH"
   },
   "44126": {
-    "city": "FAIRVIEW PARK",
+    "city": "CLEVELAND",
     "state": "OH"
   },
   "44127": {
-    "city": "NEWBURG",
+    "city": "CLEVELAND",
     "state": "OH"
   },
   "44128": {
-    "city": "CRANWOOD",
+    "city": "CLEVELAND",
     "state": "OH"
   },
   "44129": {
-    "city": "PARMA",
+    "city": "CLEVELAND",
     "state": "OH"
   },
   "44130": {
-    "city": "MIDPARK",
+    "city": "CLEVELAND",
     "state": "OH"
   },
   "44131": {
@@ -54400,7 +54400,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "OH"
   },
   "44132": {
-    "city": "NOBLE",
+    "city": "EUCLID",
     "state": "OH"
   },
   "44133": {
@@ -54408,11 +54408,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "OH"
   },
   "44134": {
-    "city": "BRIGGS",
+    "city": "CLEVELAND",
     "state": "OH"
   },
   "44135": {
-    "city": "PURITAS PARK",
+    "city": "CLEVELAND",
     "state": "OH"
   },
   "44136": {
@@ -54436,19 +54436,19 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "OH"
   },
   "44141": {
-    "city": "BRECKSVILLE DPOBU",
+    "city": "BRECKSVILLE",
     "state": "OH"
   },
   "44142": {
-    "city": "MIDPARK",
+    "city": "CLEVELAND",
     "state": "OH"
   },
   "44143": {
-    "city": "RICHMOND HEIGHTS",
+    "city": "CLEVELAND",
     "state": "OH"
   },
   "44144": {
-    "city": "BROOKLYN",
+    "city": "CLEVELAND",
     "state": "OH"
   },
   "44145": {
@@ -54468,11 +54468,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "OH"
   },
   "44181": {
-    "city": "AMC FINANCE UNIT",
+    "city": "CLEVELAND",
     "state": "OH"
   },
   "44199": {
-    "city": "ERIEVIEW",
+    "city": "CLEVELAND",
     "state": "OH"
   },
   "44201": {
@@ -54516,7 +54516,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "OH"
   },
   "44221": {
-    "city": "STATE ROAD",
+    "city": "CUYAHOGA FALLS",
     "state": "OH"
   },
   "44222": {
@@ -54524,7 +54524,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "OH"
   },
   "44223": {
-    "city": "STATE ROAD",
+    "city": "CUYAHOGA FALLS",
     "state": "OH"
   },
   "44224": {
@@ -54588,7 +54588,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "OH"
   },
   "44256": {
-    "city": "MEDINA CARRIER ANNEX",
+    "city": "MEDINA",
     "state": "OH"
   },
   "44258": {
@@ -54672,31 +54672,31 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "OH"
   },
   "44301": {
-    "city": "FIRESTONE PARK",
+    "city": "AKRON",
     "state": "OH"
   },
   "44302": {
-    "city": "FIVE POINTS",
+    "city": "AKRON",
     "state": "OH"
   },
   "44303": {
-    "city": "FIVE POINTS",
+    "city": "AKRON",
     "state": "OH"
   },
   "44304": {
-    "city": "FIVE POINTS",
+    "city": "AKRON",
     "state": "OH"
   },
   "44305": {
-    "city": "SOUTH ARLINGTON",
+    "city": "AKRON",
     "state": "OH"
   },
   "44306": {
-    "city": "SOUTH ARLINGTON",
+    "city": "AKRON",
     "state": "OH"
   },
   "44307": {
-    "city": "FIVE POINTS",
+    "city": "AKRON",
     "state": "OH"
   },
   "44308": {
@@ -54708,15 +54708,15 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "OH"
   },
   "44310": {
-    "city": "NORTH HILL",
+    "city": "AKRON",
     "state": "OH"
   },
   "44311": {
-    "city": "FIVE POINTS",
+    "city": "AKRON",
     "state": "OH"
   },
   "44312": {
-    "city": "ELLET",
+    "city": "AKRON",
     "state": "OH"
   },
   "44313": {
@@ -54724,15 +54724,15 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "OH"
   },
   "44314": {
-    "city": "KENMORE",
+    "city": "AKRON",
     "state": "OH"
   },
   "44319": {
-    "city": "FIRESTONE PARK",
+    "city": "AKRON",
     "state": "OH"
   },
   "44320": {
-    "city": "FIVE POINTS",
+    "city": "AKRON",
     "state": "OH"
   },
   "44321": {
@@ -54956,11 +54956,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "OH"
   },
   "44484": {
-    "city": "CPU HOWLAND TOWNSHIP",
+    "city": "WARREN",
     "state": "OH"
   },
   "44485": {
-    "city": "WARREN SOUTH",
+    "city": "WARREN",
     "state": "OH"
   },
   "44490": {
@@ -54988,7 +54988,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "OH"
   },
   "44504": {
-    "city": "NORTH SIDE",
+    "city": "YOUNGSTOWN",
     "state": "OH"
   },
   "44505": {
@@ -55004,7 +55004,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "OH"
   },
   "44509": {
-    "city": "WEST SIDE",
+    "city": "YOUNGSTOWN",
     "state": "OH"
   },
   "44510": {
@@ -55012,23 +55012,23 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "OH"
   },
   "44511": {
-    "city": "CORNERSBURG",
+    "city": "YOUNGSTOWN",
     "state": "OH"
   },
   "44512": {
-    "city": "BOARDMAN",
+    "city": "YOUNGSTOWN",
     "state": "OH"
   },
   "44513": {
-    "city": "BOARDMAN",
+    "city": "YOUNGSTOWN",
     "state": "OH"
   },
   "44514": {
-    "city": "POLAND",
+    "city": "YOUNGSTOWN",
     "state": "OH"
   },
   "44515": {
-    "city": "AUSTINTOWN",
+    "city": "YOUNGSTOWN",
     "state": "OH"
   },
   "44601": {
@@ -55232,7 +55232,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "OH"
   },
   "44663": {
-    "city": "MONROE MALL DPOBU",
+    "city": "NEW PHILADELPHIA",
     "state": "OH"
   },
   "44665": {
@@ -55320,7 +55320,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "OH"
   },
   "44693": {
-    "city": "DEERSVILLE NPU",
+    "city": "DEERSVILLE",
     "state": "OH"
   },
   "44695": {
@@ -55336,63 +55336,63 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "OH"
   },
   "44701": {
-    "city": "NEW MARKET",
+    "city": "CANTON",
     "state": "OH"
   },
   "44702": {
-    "city": "NEW MARKET",
+    "city": "CANTON",
     "state": "OH"
   },
   "44703": {
-    "city": "NEW MARKET",
+    "city": "CANTON",
     "state": "OH"
   },
   "44704": {
-    "city": "NEW MARKET",
+    "city": "CANTON",
     "state": "OH"
   },
   "44705": {
-    "city": "CANTON OH S&DC",
+    "city": "CANTON",
     "state": "OH"
   },
   "44706": {
-    "city": "NEW MARKET",
+    "city": "CANTON",
     "state": "OH"
   },
   "44707": {
-    "city": "NEW MARKET",
+    "city": "CANTON",
     "state": "OH"
   },
   "44708": {
-    "city": "COUNTRY FAIR",
+    "city": "CANTON",
     "state": "OH"
   },
   "44709": {
-    "city": "CANTON OH S&DC",
+    "city": "CANTON",
     "state": "OH"
   },
   "44710": {
-    "city": "NEW MARKET",
+    "city": "CANTON",
     "state": "OH"
   },
   "44711": {
-    "city": "CANTON OH S&DC",
+    "city": "CANTON",
     "state": "OH"
   },
   "44714": {
-    "city": "CANTON OH S&DC",
+    "city": "CANTON",
     "state": "OH"
   },
   "44718": {
-    "city": "JACKSON BELDEN",
+    "city": "CANTON",
     "state": "OH"
   },
   "44720": {
-    "city": "CANTON OH S&DC",
+    "city": "CANTON",
     "state": "OH"
   },
   "44721": {
-    "city": "CANTON OH S&DC",
+    "city": "CANTON",
     "state": "OH"
   },
   "44730": {
@@ -55400,7 +55400,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "OH"
   },
   "44735": {
-    "city": "JACKSON BELDEN",
+    "city": "CANTON",
     "state": "OH"
   },
   "44802": {
@@ -55688,7 +55688,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "OH"
   },
   "45005": {
-    "city": "CARLISLE",
+    "city": "FRANKLIN",
     "state": "OH"
   },
   "45011": {
@@ -56016,215 +56016,215 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "OH"
   },
   "45201": {
-    "city": "MID CITY CINCINNATI",
+    "city": "CINCINNATI",
     "state": "OH"
   },
   "45202": {
-    "city": "MID CITY CINCINNATI",
+    "city": "CINCINNATI",
     "state": "OH"
   },
   "45203": {
-    "city": "MID CITY CINCINNATI",
+    "city": "CINCINNATI",
     "state": "OH"
   },
   "45204": {
-    "city": "MID CITY CINCINNATI",
+    "city": "CINCINNATI",
     "state": "OH"
   },
   "45205": {
-    "city": "MID CITY CINCINNATI",
+    "city": "CINCINNATI",
     "state": "OH"
   },
   "45206": {
-    "city": "NORWOOD",
+    "city": "CINCINNATI",
     "state": "OH"
   },
   "45207": {
-    "city": "NORWOOD",
+    "city": "CINCINNATI",
     "state": "OH"
   },
   "45208": {
-    "city": "HYDE PARK",
+    "city": "CINCINNATI",
     "state": "OH"
   },
   "45209": {
-    "city": "MURRAY",
+    "city": "CINCINNATI",
     "state": "OH"
   },
   "45211": {
-    "city": "WESTWOOD",
+    "city": "CINCINNATI",
     "state": "OH"
   },
   "45212": {
-    "city": "NORWOOD",
+    "city": "CINCINNATI",
     "state": "OH"
   },
   "45213": {
-    "city": "TAFT",
+    "city": "CINCINNATI",
     "state": "OH"
   },
   "45214": {
-    "city": "MID CITY CINCINNATI",
+    "city": "CINCINNATI",
     "state": "OH"
   },
   "45215": {
-    "city": "LOCKLAND",
+    "city": "CINCINNATI",
     "state": "OH"
   },
   "45216": {
-    "city": "SAINT BERNARD",
+    "city": "CINCINNATI",
     "state": "OH"
   },
   "45217": {
-    "city": "SAINT BERNARD",
+    "city": "CINCINNATI",
     "state": "OH"
   },
   "45218": {
-    "city": "PARKDALE",
+    "city": "CINCINNATI",
     "state": "OH"
   },
   "45219": {
-    "city": "CORRYVILLE",
+    "city": "CINCINNATI",
     "state": "OH"
   },
   "45220": {
-    "city": "BURNET WOODS",
+    "city": "CINCINNATI",
     "state": "OH"
   },
   "45222": {
-    "city": "ROSELAWN",
+    "city": "CINCINNATI",
     "state": "OH"
   },
   "45223": {
-    "city": "CORRYVILLE",
+    "city": "CINCINNATI",
     "state": "OH"
   },
   "45224": {
-    "city": "COLLEGE HL",
+    "city": "CINCINNATI",
     "state": "OH"
   },
   "45225": {
-    "city": "CORRYVILLE",
+    "city": "CINCINNATI",
     "state": "OH"
   },
   "45226": {
-    "city": "MURRAY",
+    "city": "CINCINNATI",
     "state": "OH"
   },
   "45227": {
-    "city": "MURRAY",
+    "city": "CINCINNATI",
     "state": "OH"
   },
   "45229": {
-    "city": "SAINT BERNARD",
+    "city": "CINCINNATI",
     "state": "OH"
   },
   "45230": {
-    "city": "MOUNT WASHINGTON",
+    "city": "CINCINNATI",
     "state": "OH"
   },
   "45231": {
-    "city": "MOUNT HEALTHY",
+    "city": "CINCINNATI",
     "state": "OH"
   },
   "45232": {
-    "city": "SAINT BERNARD",
+    "city": "CINCINNATI",
     "state": "OH"
   },
   "45233": {
-    "city": "SAYLER PARK",
+    "city": "CINCINNATI",
     "state": "OH"
   },
   "45236": {
-    "city": "TAFT",
+    "city": "CINCINNATI",
     "state": "OH"
   },
   "45237": {
-    "city": "NORWOOD",
+    "city": "CINCINNATI",
     "state": "OH"
   },
   "45238": {
-    "city": "CPU MCCABE DO IT CTR",
+    "city": "CINCINNATI",
     "state": "OH"
   },
   "45239": {
-    "city": "GROESBECK",
+    "city": "CINCINNATI",
     "state": "OH"
   },
   "45240": {
-    "city": "PARKDALE",
+    "city": "CINCINNATI",
     "state": "OH"
   },
   "45241": {
-    "city": "SHARONVILLE",
+    "city": "CINCINNATI",
     "state": "OH"
   },
   "45242": {
-    "city": "SYCAMORE",
+    "city": "CINCINNATI",
     "state": "OH"
   },
   "45243": {
-    "city": "MADEIRA",
+    "city": "CINCINNATI",
     "state": "OH"
   },
   "45244": {
-    "city": "ANDERSON",
+    "city": "CINCINNATI",
     "state": "OH"
   },
   "45245": {
-    "city": "ANDERSON",
+    "city": "CINCINNATI",
     "state": "OH"
   },
   "45246": {
-    "city": "PARKDALE",
+    "city": "CINCINNATI",
     "state": "OH"
   },
   "45247": {
-    "city": "GROESBECK",
+    "city": "CINCINNATI",
     "state": "OH"
   },
   "45248": {
-    "city": "DAYS MIAMI HEIGHTS PHARMACY",
+    "city": "CINCINNATI",
     "state": "OH"
   },
   "45249": {
-    "city": "SYMMES",
+    "city": "CINCINNATI",
     "state": "OH"
   },
   "45250": {
-    "city": "MAIN OFFICE CINCINNATI",
+    "city": "CINCINNATI",
     "state": "OH"
   },
   "45251": {
-    "city": "GROESBECK",
+    "city": "CINCINNATI",
     "state": "OH"
   },
   "45252": {
-    "city": "GROESBECK",
+    "city": "CINCINNATI",
     "state": "OH"
   },
   "45253": {
-    "city": "GROESBECK",
+    "city": "CINCINNATI",
     "state": "OH"
   },
   "45254": {
-    "city": "ANDERSON",
+    "city": "CINCINNATI",
     "state": "OH"
   },
   "45255": {
-    "city": "ANDERSON",
+    "city": "CINCINNATI",
     "state": "OH"
   },
   "45258": {
-    "city": "DONALD L MARRS",
+    "city": "CINCINNATI",
     "state": "OH"
   },
   "45262": {
-    "city": "SHARONVILLE",
+    "city": "CINCINNATI",
     "state": "OH"
   },
   "45275": {
-    "city": "CINCINNATI AIRPORT RETAIL",
+    "city": "HEBRON",
     "state": "KY"
   },
   "45280": {
@@ -56544,139 +56544,139 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "IN"
   },
   "45401": {
-    "city": "MAIN OFFICE DAYTON",
+    "city": "DAYTON",
     "state": "OH"
   },
   "45402": {
-    "city": "DAYTON VIEW",
+    "city": "DAYTON",
     "state": "OH"
   },
   "45403": {
-    "city": "NORTH DAYTON",
+    "city": "DAYTON",
     "state": "OH"
   },
   "45404": {
-    "city": "NORTH DAYTON",
+    "city": "DAYTON",
     "state": "OH"
   },
   "45405": {
-    "city": "DAYTON VIEW",
+    "city": "DAYTON",
     "state": "OH"
   },
   "45406": {
-    "city": "DAYTON VIEW",
+    "city": "DAYTON",
     "state": "OH"
   },
   "45409": {
-    "city": "WRIGHT BROTHERS",
+    "city": "OAKWOOD",
     "state": "OH"
   },
   "45410": {
-    "city": "BEAVERCREEK",
+    "city": "DAYTON",
     "state": "OH"
   },
   "45413": {
-    "city": "NORTHRIDGE",
+    "city": "DAYTON",
     "state": "OH"
   },
   "45414": {
-    "city": "NORTHRIDGE",
+    "city": "DAYTON",
     "state": "OH"
   },
   "45415": {
-    "city": "NORTHRIDGE",
+    "city": "DAYTON",
     "state": "OH"
   },
   "45416": {
-    "city": "TROTWOOD",
+    "city": "DAYTON",
     "state": "OH"
   },
   "45417": {
-    "city": "PAUL LAURENCE DUNBAR",
+    "city": "DAYTON",
     "state": "OH"
   },
   "45419": {
-    "city": "WRIGHT BROTHERS",
+    "city": "OAKWOOD",
     "state": "OH"
   },
   "45420": {
-    "city": "DABEL",
+    "city": "DAYTON",
     "state": "OH"
   },
   "45423": {
-    "city": "DAYTON VIEW",
+    "city": "DAYTON",
     "state": "OH"
   },
   "45424": {
-    "city": "HUBER HEIGHTS",
+    "city": "DAYTON",
     "state": "OH"
   },
   "45426": {
-    "city": "TROTWOOD",
+    "city": "DAYTON",
     "state": "OH"
   },
   "45428": {
-    "city": "PAUL LAURENCE DUNBAR",
+    "city": "DAYTON",
     "state": "OH"
   },
   "45429": {
-    "city": "KETTERING",
+    "city": "DAYTON",
     "state": "OH"
   },
   "45430": {
-    "city": "BEAVERCREEK",
+    "city": "DAYTON",
     "state": "OH"
   },
   "45431": {
-    "city": "BEAVERCREEK",
+    "city": "DAYTON",
     "state": "OH"
   },
   "45432": {
-    "city": "BEAVERCREEK",
+    "city": "DAYTON",
     "state": "OH"
   },
   "45433": {
-    "city": "AMC DAYTON",
+    "city": "DAYTON",
     "state": "OH"
   },
   "45434": {
-    "city": "BEAVERCREEK",
+    "city": "DAYTON",
     "state": "OH"
   },
   "45437": {
-    "city": "AIRWAY RD",
+    "city": "DAYTON",
     "state": "OH"
   },
   "45439": {
-    "city": "WEST CARROLLTON",
+    "city": "DAYTON",
     "state": "OH"
   },
   "45440": {
-    "city": "WASHINGTON TWP OH S&DC",
+    "city": "DAYTON",
     "state": "OH"
   },
   "45441": {
-    "city": "WASHINGTON TWP OH S&DC",
+    "city": "DAYTON",
     "state": "OH"
   },
   "45449": {
-    "city": "WEST CARROLLTON",
+    "city": "DAYTON",
     "state": "OH"
   },
   "45458": {
-    "city": "WASHINGTON TWP OH S&DC",
+    "city": "DAYTON",
     "state": "OH"
   },
   "45459": {
-    "city": "WASHINGTON TWP OH S&DC",
+    "city": "DAYTON",
     "state": "OH"
   },
   "45475": {
-    "city": "WASHINGTON TWP OH S&DC",
+    "city": "DAYTON",
     "state": "OH"
   },
   "45490": {
-    "city": "NORTHRIDGE",
+    "city": "DAYTON",
     "state": "OH"
   },
   "45501": {
@@ -56752,7 +56752,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "OH"
   },
   "45624": {
-    "city": "CYNTHIANA DPOBU",
+    "city": "BAINBRIDGE",
     "state": "OH"
   },
   "45628": {
@@ -57216,7 +57216,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "OH"
   },
   "45816": {
-    "city": "BENTON RIDGE NPU",
+    "city": "BENTON RIDGE",
     "state": "OH"
   },
   "45817": {
@@ -57276,7 +57276,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "OH"
   },
   "45837": {
-    "city": "DUPONT NPU",
+    "city": "DUPONT",
     "state": "OH"
   },
   "45839": {
@@ -57328,7 +57328,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "OH"
   },
   "45854": {
-    "city": "LAFAYETTE DPOBU",
+    "city": "LAFAYETTE",
     "state": "OH"
   },
   "45855": {
@@ -57656,7 +57656,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "IN"
   },
   "46068": {
-    "city": "KOKOMO IN S&DC",
+    "city": "KOKOMO",
     "state": "IN"
   },
   "46069": {
@@ -57684,7 +57684,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "IN"
   },
   "46076": {
-    "city": "KOKOMO IN S&DC",
+    "city": "KOKOMO",
     "state": "IN"
   },
   "46077": {
@@ -57944,23 +57944,23 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "IN"
   },
   "46201": {
-    "city": "LINWOOD",
+    "city": "INDIANAPOLIS",
     "state": "IN"
   },
   "46202": {
-    "city": "CIRCLE CITY",
+    "city": "INDIANAPOLIS",
     "state": "IN"
   },
   "46203": {
-    "city": "GARFIELD",
+    "city": "INDIANAPOLIS",
     "state": "IN"
   },
   "46204": {
-    "city": "CIRCLE CITY",
+    "city": "INDIANAPOLIS",
     "state": "IN"
   },
   "46205": {
-    "city": "BACON",
+    "city": "INDIANAPOLIS",
     "state": "IN"
   },
   "46206": {
@@ -57972,159 +57972,159 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "IN"
   },
   "46208": {
-    "city": "MAPLETON",
+    "city": "INDIANAPOLIS",
     "state": "IN"
   },
   "46214": {
-    "city": "EAGLE CREEK",
+    "city": "INDIANAPOLIS",
     "state": "IN"
   },
   "46216": {
-    "city": "OAKLANDON",
+    "city": "INDIANAPOLIS",
     "state": "IN"
   },
   "46217": {
-    "city": "SOUTHPORT",
+    "city": "INDIANAPOLIS",
     "state": "IN"
   },
   "46218": {
-    "city": "BRIGHTWOOD",
+    "city": "INDIANAPOLIS",
     "state": "IN"
   },
   "46219": {
-    "city": "EASTGATE",
+    "city": "INDIANAPOLIS",
     "state": "IN"
   },
   "46220": {
-    "city": "BACON",
+    "city": "INDIANAPOLIS",
     "state": "IN"
   },
   "46221": {
-    "city": "PARK FLETCHER",
+    "city": "INDIANAPOLIS",
     "state": "IN"
   },
   "46222": {
-    "city": "RAINBOW",
+    "city": "INDIANAPOLIS",
     "state": "IN"
   },
   "46224": {
-    "city": "SPEEDWAY",
+    "city": "INDIANAPOLIS",
     "state": "IN"
   },
   "46225": {
-    "city": "CIRCLE CITY",
+    "city": "INDIANAPOLIS",
     "state": "IN"
   },
   "46226": {
-    "city": "LAWRENCE",
+    "city": "INDIANAPOLIS",
     "state": "IN"
   },
   "46227": {
-    "city": "SOUTHPORT",
+    "city": "INDIANAPOLIS",
     "state": "IN"
   },
   "46228": {
-    "city": "MAPLETON",
+    "city": "INDIANAPOLIS",
     "state": "IN"
   },
   "46229": {
-    "city": "CUMBERLAND",
+    "city": "INDIANAPOLIS",
     "state": "IN"
   },
   "46230": {
-    "city": "BROAD RIPPLE",
+    "city": "INDIANAPOLIS",
     "state": "IN"
   },
   "46231": {
-    "city": "PARK FLETCHER",
+    "city": "INDIANAPOLIS",
     "state": "IN"
   },
   "46234": {
-    "city": "CLERMONT",
+    "city": "INDIANAPOLIS",
     "state": "IN"
   },
   "46235": {
-    "city": "OAKLANDON",
+    "city": "INDIANAPOLIS",
     "state": "IN"
   },
   "46236": {
-    "city": "OAKLANDON",
+    "city": "INDIANAPOLIS",
     "state": "IN"
   },
   "46237": {
-    "city": "WANAMAKER",
+    "city": "INDIANAPOLIS",
     "state": "IN"
   },
   "46239": {
-    "city": "WANAMAKER",
+    "city": "INDIANAPOLIS",
     "state": "IN"
   },
   "46240": {
-    "city": "NORA",
+    "city": "INDIANAPOLIS",
     "state": "IN"
   },
   "46241": {
-    "city": "PARK FLETCHER",
+    "city": "INDIANAPOLIS",
     "state": "IN"
   },
   "46242": {
-    "city": "PARK FLETCHER",
+    "city": "INDIANAPOLIS",
     "state": "IN"
   },
   "46244": {
-    "city": "CIRCLE CITY",
+    "city": "INDIANAPOLIS",
     "state": "IN"
   },
   "46247": {
-    "city": "SOUTHPORT",
+    "city": "INDIANAPOLIS",
     "state": "IN"
   },
   "46250": {
-    "city": "CASTLETON",
+    "city": "INDIANAPOLIS",
     "state": "IN"
   },
   "46251": {
-    "city": "PARK FLETCHER",
+    "city": "INDIANAPOLIS",
     "state": "IN"
   },
   "46253": {
-    "city": "EAGLE CREEK",
+    "city": "INDIANAPOLIS",
     "state": "IN"
   },
   "46254": {
-    "city": "EAGLE CREEK",
+    "city": "INDIANAPOLIS",
     "state": "IN"
   },
   "46256": {
-    "city": "CASTLETON",
+    "city": "INDIANAPOLIS",
     "state": "IN"
   },
   "46259": {
-    "city": "WANAMAKER",
+    "city": "INDIANAPOLIS",
     "state": "IN"
   },
   "46260": {
-    "city": "NORA",
+    "city": "INDIANAPOLIS",
     "state": "IN"
   },
   "46268": {
-    "city": "NEW AUGUSTA",
+    "city": "INDIANAPOLIS",
     "state": "IN"
   },
   "46278": {
-    "city": "NEW AUGUSTA",
+    "city": "INDIANAPOLIS",
     "state": "IN"
   },
   "46280": {
-    "city": "NORA",
+    "city": "INDIANAPOLIS",
     "state": "IN"
   },
   "46282": {
-    "city": "CIRCLE CITY",
+    "city": "INDIANAPOLIS",
     "state": "IN"
   },
   "46290": {
-    "city": "NORA",
+    "city": "INDIANAPOLIS",
     "state": "IN"
   },
   "46301": {
@@ -58144,7 +58144,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "IN"
   },
   "46307": {
-    "city": "CROWN POINT ANNEX",
+    "city": "CROWN POINT",
     "state": "IN"
   },
   "46308": {
@@ -58168,7 +58168,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "IN"
   },
   "46320": {
-    "city": "HAMMOND IN SDC",
+    "city": "HAMMOND",
     "state": "IN"
   },
   "46321": {
@@ -58180,19 +58180,19 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "IN"
   },
   "46323": {
-    "city": "HESSVILLE",
+    "city": "HAMMOND",
     "state": "IN"
   },
   "46324": {
-    "city": "HAMMOND IN SDC",
+    "city": "HAMMOND",
     "state": "IN"
   },
   "46325": {
-    "city": "HAMMOND IN SDC",
+    "city": "HAMMOND",
     "state": "IN"
   },
   "46327": {
-    "city": "HAMMOND IN SDC",
+    "city": "HAMMOND",
     "state": "IN"
   },
   "46340": {
@@ -58244,7 +58244,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "IN"
   },
   "46361": {
-    "city": "MARQUETTE MALL",
+    "city": "MICHIGAN CITY",
     "state": "IN"
   },
   "46365": {
@@ -58304,7 +58304,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "IN"
   },
   "46384": {
-    "city": "DOWNTOWN VALPARAISO",
+    "city": "VALPARAISO",
     "state": "IN"
   },
   "46385": {
@@ -58356,7 +58356,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "IN"
   },
   "46407": {
-    "city": "15TH AVENUE",
+    "city": "GARY",
     "state": "IN"
   },
   "46408": {
@@ -58460,7 +58460,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "IN"
   },
   "46536": {
-    "city": "CHIPPEWA",
+    "city": "SOUTH BEND",
     "state": "IN"
   },
   "46537": {
@@ -58588,19 +58588,19 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "IN"
   },
   "46613": {
-    "city": "CHIPPEWA",
+    "city": "SOUTH BEND",
     "state": "IN"
   },
   "46614": {
-    "city": "CHIPPEWA",
+    "city": "SOUTH BEND",
     "state": "IN"
   },
   "46615": {
-    "city": "EDISON PARK",
+    "city": "SOUTH BEND",
     "state": "IN"
   },
   "46616": {
-    "city": "OLIVE STREET",
+    "city": "SOUTH BEND",
     "state": "IN"
   },
   "46617": {
@@ -58608,7 +58608,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "IN"
   },
   "46619": {
-    "city": "OLIVE STREET",
+    "city": "SOUTH BEND",
     "state": "IN"
   },
   "46624": {
@@ -58616,7 +58616,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "IN"
   },
   "46628": {
-    "city": "OLIVE STREET",
+    "city": "SOUTH BEND",
     "state": "IN"
   },
   "46634": {
@@ -58624,19 +58624,19 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "IN"
   },
   "46635": {
-    "city": "EDISON PARK",
+    "city": "SOUTH BEND",
     "state": "IN"
   },
   "46637": {
-    "city": "EDISON PARK",
+    "city": "SOUTH BEND",
     "state": "IN"
   },
   "46660": {
-    "city": "EDISON PARK",
+    "city": "SOUTH BEND",
     "state": "IN"
   },
   "46680": {
-    "city": "CHIPPEWA",
+    "city": "SOUTH BEND",
     "state": "IN"
   },
   "46701": {
@@ -58780,7 +58780,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "IN"
   },
   "46766": {
-    "city": "LIBERTY CENTER DPOBU",
+    "city": "LIBERTY CENTER",
     "state": "IN"
   },
   "46767": {
@@ -58908,67 +58908,67 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "IN"
   },
   "46802": {
-    "city": "GABRIEL CARRIER ANNEX",
+    "city": "FORT WAYNE",
     "state": "IN"
   },
   "46803": {
-    "city": "GABRIEL CARRIER ANNEX",
+    "city": "FORT WAYNE",
     "state": "IN"
   },
   "46804": {
-    "city": "GABRIEL CARRIER ANNEX",
+    "city": "FORT WAYNE",
     "state": "IN"
   },
   "46805": {
-    "city": "HAZELWOOD",
+    "city": "FORT WAYNE",
     "state": "IN"
   },
   "46806": {
-    "city": "DIPLOMAT PLAZA",
+    "city": "FORT WAYNE",
     "state": "IN"
   },
   "46807": {
-    "city": "GABRIEL CARRIER ANNEX",
+    "city": "FORT WAYNE",
     "state": "IN"
   },
   "46808": {
-    "city": "SAINT MARYS STATION",
+    "city": "FORT WAYNE",
     "state": "IN"
   },
   "46809": {
-    "city": "WAYNEDALE",
+    "city": "FORT WAYNE",
     "state": "IN"
   },
   "46814": {
-    "city": "GABRIEL CARRIER ANNEX",
+    "city": "FORT WAYNE",
     "state": "IN"
   },
   "46815": {
-    "city": "NORTHWOOD",
+    "city": "FORT WAYNE",
     "state": "IN"
   },
   "46816": {
-    "city": "DIPLOMAT PLAZA",
+    "city": "FORT WAYNE",
     "state": "IN"
   },
   "46818": {
-    "city": "CENTENNIAL",
+    "city": "FORT WAYNE",
     "state": "IN"
   },
   "46819": {
-    "city": "WAYNEDALE",
+    "city": "FORT WAYNE",
     "state": "IN"
   },
   "46825": {
-    "city": "CENTENNIAL",
+    "city": "FORT WAYNE",
     "state": "IN"
   },
   "46835": {
-    "city": "NORTHWOOD",
+    "city": "FORT WAYNE",
     "state": "IN"
   },
   "46845": {
-    "city": "CENTENNIAL",
+    "city": "FORT WAYNE",
     "state": "IN"
   },
   "46850": {
@@ -59052,39 +59052,39 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "IN"
   },
   "46885": {
-    "city": "NORTHWOOD",
+    "city": "FORT WAYNE",
     "state": "IN"
   },
   "46895": {
-    "city": "HAZELWOOD",
+    "city": "FORT WAYNE",
     "state": "IN"
   },
   "46896": {
-    "city": "DIPLOMAT PLAZA",
+    "city": "FORT WAYNE",
     "state": "IN"
   },
   "46898": {
-    "city": "CENTENNIAL",
+    "city": "FORT WAYNE",
     "state": "IN"
   },
   "46899": {
-    "city": "WAYNEDALE",
+    "city": "FORT WAYNE",
     "state": "IN"
   },
   "46901": {
-    "city": "KOKOMO IN S&DC",
+    "city": "KOKOMO",
     "state": "IN"
   },
   "46902": {
-    "city": "KOKOMO IN S&DC",
+    "city": "KOKOMO",
     "state": "IN"
   },
   "46903": {
-    "city": "UPTOWN",
+    "city": "KOKOMO",
     "state": "IN"
   },
   "46904": {
-    "city": "KOKOMO IN S&DC",
+    "city": "KOKOMO",
     "state": "IN"
   },
   "46910": {
@@ -59280,7 +59280,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "IN"
   },
   "46979": {
-    "city": "KOKOMO IN S&DC",
+    "city": "KOKOMO",
     "state": "IN"
   },
   "46980": {
@@ -59336,7 +59336,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "IN"
   },
   "46998": {
-    "city": "KOKOMO IN S&DC",
+    "city": "KOKOMO",
     "state": "IN"
   },
   "47001": {
@@ -59600,7 +59600,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "IN"
   },
   "47151": {
-    "city": "FRAME IT FAST NPU",
+    "city": "NEW ALBANY",
     "state": "IN"
   },
   "47161": {
@@ -59816,7 +59816,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "IN"
   },
   "47308": {
-    "city": "DOWNTOWN MUNCIE",
+    "city": "MUNCIE",
     "state": "IN"
   },
   "47320": {
@@ -59996,7 +59996,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "IN"
   },
   "47382": {
-    "city": "VPO SARATOGA",
+    "city": "SARATOGA",
     "state": "IN"
   },
   "47383": {
@@ -60044,7 +60044,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "IN"
   },
   "47401": {
-    "city": "WOODBRIDGE",
+    "city": "BLOOMINGTON",
     "state": "IN"
   },
   "47402": {
@@ -60052,27 +60052,27 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "IN"
   },
   "47403": {
-    "city": "BLOOMINGTON IN SDC",
+    "city": "BLOOMINGTON",
     "state": "IN"
   },
   "47404": {
-    "city": "BLOOMINGTON IN SDC",
+    "city": "BLOOMINGTON",
     "state": "IN"
   },
   "47405": {
-    "city": "BLOOMINGTON IN SDC",
+    "city": "BLOOMINGTON",
     "state": "IN"
   },
   "47406": {
-    "city": "BLOOMINGTON IN SDC",
+    "city": "BLOOMINGTON",
     "state": "IN"
   },
   "47407": {
-    "city": "WOODBRIDGE",
+    "city": "BLOOMINGTON",
     "state": "IN"
   },
   "47408": {
-    "city": "WOODBRIDGE",
+    "city": "BLOOMINGTON",
     "state": "IN"
   },
   "47420": {
@@ -60096,7 +60096,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "IN"
   },
   "47429": {
-    "city": "BLOOMINGTON IN SDC",
+    "city": "BLOOMINGTON",
     "state": "IN"
   },
   "47431": {
@@ -60216,7 +60216,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "IN"
   },
   "47468": {
-    "city": "BLOOMINGTON IN SDC",
+    "city": "BLOOMINGTON",
     "state": "IN"
   },
   "47469": {
@@ -60592,55 +60592,55 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "IN"
   },
   "47708": {
-    "city": "WEST WABASH",
+    "city": "EVANSVILLE",
     "state": "IN"
   },
   "47710": {
-    "city": "DIAMOND VALLEY",
+    "city": "EVANSVILLE",
     "state": "IN"
   },
   "47711": {
-    "city": "DIAMOND VALLEY",
+    "city": "EVANSVILLE",
     "state": "IN"
   },
   "47712": {
-    "city": "WEST WABASH",
+    "city": "EVANSVILLE",
     "state": "IN"
   },
   "47713": {
-    "city": "WEST WABASH",
+    "city": "EVANSVILLE",
     "state": "IN"
   },
   "47714": {
-    "city": "RIVER CITY",
+    "city": "EVANSVILLE",
     "state": "IN"
   },
   "47715": {
-    "city": "LAWNDALE",
+    "city": "EVANSVILLE",
     "state": "IN"
   },
   "47716": {
-    "city": "LAWNDALE",
+    "city": "EVANSVILLE",
     "state": "IN"
   },
   "47719": {
-    "city": "WEST WABASH",
+    "city": "EVANSVILLE",
     "state": "IN"
   },
   "47720": {
-    "city": "WEST WABASH",
+    "city": "EVANSVILLE",
     "state": "IN"
   },
   "47724": {
-    "city": "DIAMOND VALLEY",
+    "city": "EVANSVILLE",
     "state": "IN"
   },
   "47725": {
-    "city": "DIAMOND VALLEY",
+    "city": "EVANSVILLE",
     "state": "IN"
   },
   "47728": {
-    "city": "RIVER CITY",
+    "city": "EVANSVILLE",
     "state": "IN"
   },
   "47730": {
@@ -60676,31 +60676,31 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "IN"
   },
   "47801": {
-    "city": "TERRE HAUTE IN S&DC",
+    "city": "TERRE HAUTE",
     "state": "IN"
   },
   "47802": {
-    "city": "TERRE HAUTE IN S&DC",
+    "city": "TERRE HAUTE",
     "state": "IN"
   },
   "47803": {
-    "city": "ROSE",
+    "city": "TERRE HAUTE",
     "state": "IN"
   },
   "47804": {
-    "city": "TERRE HAUTE IN S&DC",
+    "city": "TERRE HAUTE",
     "state": "IN"
   },
   "47805": {
-    "city": "NORTH TERRE HAUTE",
+    "city": "TERRE HAUTE",
     "state": "IN"
   },
   "47807": {
-    "city": "TERRE HAUTE IN S&DC",
+    "city": "TERRE HAUTE",
     "state": "IN"
   },
   "47808": {
-    "city": "INDIANA STATE UNIV DPOBU",
+    "city": "TERRE HAUTE",
     "state": "IN"
   },
   "47831": {
@@ -60876,35 +60876,35 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "IN"
   },
   "47885": {
-    "city": "TERRE HAUTE IN S&DC",
+    "city": "TERRE HAUTE",
     "state": "IN"
   },
   "47901": {
-    "city": "LAFAYETTE IN S&DC",
+    "city": "LAFAYETTE",
     "state": "IN"
   },
   "47902": {
-    "city": "DOWNTOWN LAFAYETTE",
+    "city": "LAFAYETTE",
     "state": "IN"
   },
   "47903": {
-    "city": "LAFAYETTE IN S&DC",
+    "city": "LAFAYETTE",
     "state": "IN"
   },
   "47904": {
-    "city": "LAFAYETTE IN S&DC",
+    "city": "LAFAYETTE",
     "state": "IN"
   },
   "47905": {
-    "city": "LAFAYETTE IN S&DC",
+    "city": "LAFAYETTE",
     "state": "IN"
   },
   "47906": {
-    "city": "LAFAYETTE IN S&DC",
+    "city": "LAFAYETTE",
     "state": "IN"
   },
   "47909": {
-    "city": "LAFAYETTE IN S&DC",
+    "city": "LAFAYETTE",
     "state": "IN"
   },
   "47916": {
@@ -61016,7 +61016,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "IN"
   },
   "47955": {
-    "city": "LAFAYETTE IN S&DC",
+    "city": "LAFAYETTE",
     "state": "IN"
   },
   "47957": {
@@ -61064,7 +61064,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "IN"
   },
   "47970": {
-    "city": "LAFAYETTE IN S&DC",
+    "city": "LAFAYETTE",
     "state": "IN"
   },
   "47971": {
@@ -61092,7 +61092,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "IN"
   },
   "47981": {
-    "city": "LAFAYETTE IN S&DC",
+    "city": "LAFAYETTE",
     "state": "IN"
   },
   "47982": {
@@ -61124,7 +61124,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "IN"
   },
   "47992": {
-    "city": "LAFAYETTE IN S&DC",
+    "city": "LAFAYETTE",
     "state": "IN"
   },
   "47993": {
@@ -61196,7 +61196,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MI"
   },
   "48021": {
-    "city": "EAST DETROIT",
+    "city": "EASTPOINTE",
     "state": "MI"
   },
   "48022": {
@@ -61216,7 +61216,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MI"
   },
   "48027": {
-    "city": "CHINA TWP CARRIER ANNEX",
+    "city": "CHINA",
     "state": "MI"
   },
   "48028": {
@@ -61232,11 +61232,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MI"
   },
   "48033": {
-    "city": "SOUTHFIELD MI SDC",
+    "city": "SOUTHFIELD",
     "state": "MI"
   },
   "48034": {
-    "city": "SOUTHFIELD MI SDC",
+    "city": "SOUTHFIELD",
     "state": "MI"
   },
   "48035": {
@@ -61248,11 +61248,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MI"
   },
   "48037": {
-    "city": "SOUTHFIELD MI SDC",
+    "city": "SOUTHFIELD",
     "state": "MI"
   },
   "48038": {
-    "city": "CLINTON MACOMB ANNEX",
+    "city": "MACOMB",
     "state": "MI"
   },
   "48039": {
@@ -61268,7 +61268,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MI"
   },
   "48042": {
-    "city": "CLINTON MACOMB ANNEX",
+    "city": "MACOMB",
     "state": "MI"
   },
   "48043": {
@@ -61276,7 +61276,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MI"
   },
   "48044": {
-    "city": "CLINTON MACOMB ANNEX",
+    "city": "MACOMB",
     "state": "MI"
   },
   "48045": {
@@ -61308,11 +61308,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MI"
   },
   "48054": {
-    "city": "CHINA TWP CARRIER ANNEX",
+    "city": "CHINA",
     "state": "MI"
   },
   "48059": {
-    "city": "BIRCHWOOD MALL",
+    "city": "FORT GRATIOT",
     "state": "MI"
   },
   "48060": {
@@ -61368,7 +61368,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MI"
   },
   "48073": {
-    "city": "MADISON HTS CARRIER ANNEX",
+    "city": "TROY",
     "state": "MI"
   },
   "48074": {
@@ -61376,7 +61376,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MI"
   },
   "48075": {
-    "city": "SOUTHFIELD MI SDC",
+    "city": "SOUTHFIELD",
     "state": "MI"
   },
   "48076": {
@@ -61384,7 +61384,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MI"
   },
   "48079": {
-    "city": "CHINA TWP CARRIER ANNEX",
+    "city": "CHINA",
     "state": "MI"
   },
   "48080": {
@@ -61412,7 +61412,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MI"
   },
   "48086": {
-    "city": "SOUTHFIELD MI SDC",
+    "city": "SOUTHFIELD",
     "state": "MI"
   },
   "48088": {
@@ -61476,7 +61476,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MI"
   },
   "48105": {
-    "city": "GREEN ROAD",
+    "city": "ANN ARBOR",
     "state": "MI"
   },
   "48106": {
@@ -61484,11 +61484,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MI"
   },
   "48107": {
-    "city": "LIBERTY",
+    "city": "ANN ARBOR",
     "state": "MI"
   },
   "48108": {
-    "city": "LIBERTY",
+    "city": "ANN ARBOR",
     "state": "MI"
   },
   "48109": {
@@ -61504,7 +61504,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MI"
   },
   "48113": {
-    "city": "GREEN ROAD",
+    "city": "ANN ARBOR",
     "state": "MI"
   },
   "48114": {
@@ -61536,15 +61536,15 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MI"
   },
   "48123": {
-    "city": "FORT DEARBORN",
+    "city": "DEARBORN",
     "state": "MI"
   },
   "48124": {
-    "city": "FT DEARBORN ANNEX",
+    "city": "DEARBORN",
     "state": "MI"
   },
   "48125": {
-    "city": "FT DEARBORN ANNEX",
+    "city": "DEARBORN",
     "state": "MI"
   },
   "48126": {
@@ -61628,11 +61628,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MI"
   },
   "48152": {
-    "city": "GREENMEAD",
+    "city": "LIVONIA",
     "state": "MI"
   },
   "48153": {
-    "city": "GREENMEAD",
+    "city": "LIVONIA",
     "state": "MI"
   },
   "48154": {
@@ -61680,7 +61680,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MI"
   },
   "48168": {
-    "city": "NORTHVILLE CARRIER ANNEX",
+    "city": "FARMINGTON HILLS",
     "state": "MI"
   },
   "48169": {
@@ -61700,7 +61700,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MI"
   },
   "48175": {
-    "city": "SALEM",
+    "city": "NORTHVILLE",
     "state": "MI"
   },
   "48176": {
@@ -61784,47 +61784,47 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MI"
   },
   "48201": {
-    "city": "NORTH END",
+    "city": "DETROIT",
     "state": "MI"
   },
   "48202": {
-    "city": "NORTH END",
+    "city": "DETROIT",
     "state": "MI"
   },
   "48203": {
-    "city": "HAMTRAMCK ANNEX",
+    "city": "DETROIT",
     "state": "MI"
   },
   "48204": {
-    "city": "NORTHWESTERN",
+    "city": "DETROIT",
     "state": "MI"
   },
   "48205": {
-    "city": "PARK GROVE",
+    "city": "DETROIT",
     "state": "MI"
   },
   "48206": {
-    "city": "NORTH END",
+    "city": "DETROIT",
     "state": "MI"
   },
   "48207": {
-    "city": "GRATIOT",
+    "city": "DETROIT",
     "state": "MI"
   },
   "48208": {
-    "city": "GRAND RIVER",
+    "city": "DETROIT",
     "state": "MI"
   },
   "48209": {
-    "city": "SPRINGWELLS",
+    "city": "DETROIT",
     "state": "MI"
   },
   "48210": {
-    "city": "LIVERNOIS",
+    "city": "DETROIT",
     "state": "MI"
   },
   "48211": {
-    "city": "NORTH END",
+    "city": "DETROIT",
     "state": "MI"
   },
   "48212": {
@@ -61832,19 +61832,19 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MI"
   },
   "48213": {
-    "city": "JEFFERSON",
+    "city": "DETROIT",
     "state": "MI"
   },
   "48214": {
-    "city": "JEFFERSON",
+    "city": "DETROIT",
     "state": "MI"
   },
   "48215": {
-    "city": "FOX CREEK",
+    "city": "DETROIT",
     "state": "MI"
   },
   "48216": {
-    "city": "GRAND SHELBY CARR ANX",
+    "city": "DETROIT",
     "state": "MI"
   },
   "48217": {
@@ -61856,39 +61856,39 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MI"
   },
   "48219": {
-    "city": "BRIGHTMOOR",
+    "city": "DETROIT",
     "state": "MI"
   },
   "48220": {
-    "city": "COLLEGE PARK",
+    "city": "DETROIT",
     "state": "MI"
   },
   "48221": {
-    "city": "COLLEGE PARK",
+    "city": "DETROIT",
     "state": "MI"
   },
   "48223": {
-    "city": "BRIGHTMOOR",
+    "city": "DETROIT",
     "state": "MI"
   },
   "48224": {
-    "city": "KENSINGTON",
+    "city": "DETROIT",
     "state": "MI"
   },
   "48225": {
-    "city": "PARK GROVE",
+    "city": "DETROIT",
     "state": "MI"
   },
   "48226": {
-    "city": "GRAND SHELBY CARR ANX",
+    "city": "DETROIT",
     "state": "MI"
   },
   "48227": {
-    "city": "STRATHMOOR",
+    "city": "DETROIT",
     "state": "MI"
   },
   "48228": {
-    "city": "JOYFIELD",
+    "city": "DETROIT",
     "state": "MI"
   },
   "48229": {
@@ -61896,7 +61896,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MI"
   },
   "48230": {
-    "city": "FOX CREEK",
+    "city": "DETROIT",
     "state": "MI"
   },
   "48231": {
@@ -61908,15 +61908,15 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MI"
   },
   "48234": {
-    "city": "MOUNT ELLIOTT",
+    "city": "DETROIT",
     "state": "MI"
   },
   "48235": {
-    "city": "SEVEN OAKS STA",
+    "city": "DETROIT",
     "state": "MI"
   },
   "48236": {
-    "city": "GROSSE POINTE",
+    "city": "GROSSE POINTE FARMS",
     "state": "MI"
   },
   "48237": {
@@ -61924,7 +61924,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MI"
   },
   "48238": {
-    "city": "FENKELL",
+    "city": "DETROIT",
     "state": "MI"
   },
   "48239": {
@@ -61940,7 +61940,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MI"
   },
   "48243": {
-    "city": "RENAISSANCE CENTER",
+    "city": "DETROIT",
     "state": "MI"
   },
   "48244": {
@@ -61976,27 +61976,27 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MI"
   },
   "48309": {
-    "city": "ROCHESTER HLS CARRIER ANNEX",
+    "city": "ROCHESTER HILLS",
     "state": "MI"
   },
   "48310": {
-    "city": "STERLING HEIGHTS MI SDC",
+    "city": "STERLING HEIGHTS",
     "state": "MI"
   },
   "48311": {
-    "city": "STERLING HEIGHTS MI SDC",
+    "city": "STERLING HEIGHTS",
     "state": "MI"
   },
   "48312": {
-    "city": "STERLING HEIGHTS MI SDC",
+    "city": "STERLING HEIGHTS",
     "state": "MI"
   },
   "48313": {
-    "city": "STERLING HEIGHTS MI SDC",
+    "city": "STERLING HEIGHTS",
     "state": "MI"
   },
   "48314": {
-    "city": "STERLING HEIGHTS MI SDC",
+    "city": "STERLING HEIGHTS",
     "state": "MI"
   },
   "48315": {
@@ -62044,15 +62044,15 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MI"
   },
   "48327": {
-    "city": "WATERFORD CARRIER ANNEX",
+    "city": "WATERFORD",
     "state": "MI"
   },
   "48328": {
-    "city": "WATERFORD CARRIER ANNEX",
+    "city": "WATERFORD",
     "state": "MI"
   },
   "48329": {
-    "city": "WATERFORD CARRIER ANNEX",
+    "city": "WATERFORD",
     "state": "MI"
   },
   "48330": {
@@ -62060,7 +62060,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MI"
   },
   "48331": {
-    "city": "FARMINGTON HILLS",
+    "city": "FARMINGTON",
     "state": "MI"
   },
   "48332": {
@@ -62068,19 +62068,19 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MI"
   },
   "48333": {
-    "city": "FARMINGTON HILLS",
+    "city": "FARMINGTON",
     "state": "MI"
   },
   "48334": {
-    "city": "FARMINGTON HILLS",
+    "city": "FARMINGTON",
     "state": "MI"
   },
   "48335": {
-    "city": "FARMINGTON HILLS",
+    "city": "FARMINGTON",
     "state": "MI"
   },
   "48336": {
-    "city": "FARMINGTON HILLS",
+    "city": "FARMINGTON",
     "state": "MI"
   },
   "48340": {
@@ -62100,7 +62100,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MI"
   },
   "48346": {
-    "city": "CLARKSTON CARRIER ANNEX",
+    "city": "CLARKSTON",
     "state": "MI"
   },
   "48347": {
@@ -62108,7 +62108,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MI"
   },
   "48348": {
-    "city": "CLARKSTON CARRIER ANNEX",
+    "city": "CLARKSTON",
     "state": "MI"
   },
   "48350": {
@@ -62144,7 +62144,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MI"
   },
   "48363": {
-    "city": "ROCHESTER HLS CARRIER ANNEX",
+    "city": "ROCHESTER HILLS",
     "state": "MI"
   },
   "48366": {
@@ -62192,11 +62192,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MI"
   },
   "48383": {
-    "city": "WATERFORD CARRIER ANNEX",
+    "city": "WATERFORD",
     "state": "MI"
   },
   "48386": {
-    "city": "WATERFORD CARRIER ANNEX",
+    "city": "WATERFORD",
     "state": "MI"
   },
   "48387": {
@@ -62216,7 +62216,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MI"
   },
   "48410": {
-    "city": "VPO ARGYLE",
+    "city": "ARGYLE",
     "state": "MI"
   },
   "48411": {
@@ -62320,7 +62320,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MI"
   },
   "48439": {
-    "city": "SOUTHEAST",
+    "city": "BURTON",
     "state": "MI"
   },
   "48440": {
@@ -62452,87 +62452,87 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MI"
   },
   "48501": {
-    "city": "FLINT MI S&DC",
+    "city": "FLINT",
     "state": "MI"
   },
   "48502": {
-    "city": "DOWNTOWN FLINT",
+    "city": "FLINT",
     "state": "MI"
   },
   "48503": {
-    "city": "FLINT MI S&DC",
+    "city": "FLINT",
     "state": "MI"
   },
   "48504": {
-    "city": "MOTT PARK",
+    "city": "FLINT",
     "state": "MI"
   },
   "48505": {
-    "city": "FLINT MI S&DC",
+    "city": "FLINT",
     "state": "MI"
   },
   "48506": {
-    "city": "FLINT MI S&DC",
+    "city": "FLINT",
     "state": "MI"
   },
   "48507": {
-    "city": "CODY",
+    "city": "FLINT",
     "state": "MI"
   },
   "48509": {
-    "city": "FLINT MI S&DC",
+    "city": "FLINT",
     "state": "MI"
   },
   "48519": {
-    "city": "FLINT MI S&DC",
+    "city": "FLINT",
     "state": "MI"
   },
   "48529": {
-    "city": "FLINT MI S&DC",
+    "city": "FLINT",
     "state": "MI"
   },
   "48531": {
-    "city": "NORTHWEST",
+    "city": "FLINT",
     "state": "MI"
   },
   "48532": {
-    "city": "SOUTHWEST",
+    "city": "FLINT",
     "state": "MI"
   },
   "48601": {
-    "city": "CUMBERLAND",
+    "city": "SAGINAW",
     "state": "MI"
   },
   "48602": {
-    "city": "SAGINAW MI SDC",
+    "city": "SAGINAW",
     "state": "MI"
   },
   "48603": {
-    "city": "BOARDWALK",
+    "city": "SAGINAW",
     "state": "MI"
   },
   "48604": {
-    "city": "SAGINAW MI SDC",
+    "city": "SAGINAW",
     "state": "MI"
   },
   "48605": {
-    "city": "SAGINAW MI SDC",
+    "city": "SAGINAW",
     "state": "MI"
   },
   "48606": {
-    "city": "SAGINAW MI SDC",
+    "city": "SAGINAW",
     "state": "MI"
   },
   "48607": {
-    "city": "SAGINAW MI SDC",
+    "city": "SAGINAW",
     "state": "MI"
   },
   "48608": {
-    "city": "TOWNSHIP BRANCH",
+    "city": "SAGINAW",
     "state": "MI"
   },
   "48609": {
-    "city": "SAGINAW MI SDC",
+    "city": "SAGINAW",
     "state": "MI"
   },
   "48610": {
@@ -62648,7 +62648,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MI"
   },
   "48638": {
-    "city": "SAGINAW MI SDC",
+    "city": "SAGINAW",
     "state": "MI"
   },
   "48640": {
@@ -63272,7 +63272,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MI"
   },
   "48901": {
-    "city": "DOWNTOWN LANSING",
+    "city": "LANSING",
     "state": "MI"
   },
   "48906": {
@@ -63280,7 +63280,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MI"
   },
   "48908": {
-    "city": "DELTA BRANCH",
+    "city": "LANSING",
     "state": "MI"
   },
   "48909": {
@@ -63288,11 +63288,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MI"
   },
   "48910": {
-    "city": "SOUTHWEST CARRIER ANNEX",
+    "city": "LANSING",
     "state": "MI"
   },
   "48911": {
-    "city": "SOUTHWEST CARRIER ANNEX",
+    "city": "LANSING",
     "state": "MI"
   },
   "48912": {
@@ -63304,7 +63304,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MI"
   },
   "48917": {
-    "city": "DELTA CARRIER ANNEX",
+    "city": "LANSING",
     "state": "MI"
   },
   "48933": {
@@ -63316,7 +63316,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MI"
   },
   "49002": {
-    "city": "KALAMAZOO MI S&DC",
+    "city": "KALAMAZOO",
     "state": "MI"
   },
   "49003": {
@@ -63324,19 +63324,19 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MI"
   },
   "49004": {
-    "city": "PARCHMENT",
+    "city": "KALAMAZOO",
     "state": "MI"
   },
   "49005": {
-    "city": "ARCADIA CREEK",
+    "city": "KALAMAZOO",
     "state": "MI"
   },
   "49006": {
-    "city": "KALAMAZOO MI S&DC",
+    "city": "KALAMAZOO",
     "state": "MI"
   },
   "49007": {
-    "city": "KALAMAZOO MI S&DC",
+    "city": "KALAMAZOO",
     "state": "MI"
   },
   "49008": {
@@ -63344,7 +63344,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MI"
   },
   "49009": {
-    "city": "KALAMAZOO MI S&DC",
+    "city": "KALAMAZOO",
     "state": "MI"
   },
   "49010": {
@@ -63384,7 +63384,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MI"
   },
   "49019": {
-    "city": "WESTWOOD",
+    "city": "KALAMAZOO",
     "state": "MI"
   },
   "49020": {
@@ -63404,7 +63404,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MI"
   },
   "49024": {
-    "city": "KALAMAZOO MI S&DC",
+    "city": "KALAMAZOO",
     "state": "MI"
   },
   "49026": {
@@ -63576,7 +63576,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MI"
   },
   "49074": {
-    "city": "NAZARETH",
+    "city": "KALAMAZOO",
     "state": "MI"
   },
   "49075": {
@@ -63588,7 +63588,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MI"
   },
   "49077": {
-    "city": "OSHTEMO",
+    "city": "KALAMAZOO",
     "state": "MI"
   },
   "49078": {
@@ -63624,7 +63624,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MI"
   },
   "49087": {
-    "city": "KALAMAZOO MI S&DC",
+    "city": "KALAMAZOO",
     "state": "MI"
   },
   "49088": {
@@ -63752,15 +63752,15 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MI"
   },
   "49201": {
-    "city": "JACKSON MI S&DC",
+    "city": "JACKSON",
     "state": "MI"
   },
   "49202": {
-    "city": "JACKSON MI S&DC",
+    "city": "JACKSON",
     "state": "MI"
   },
   "49203": {
-    "city": "JACKSON MI S&DC",
+    "city": "JACKSON",
     "state": "MI"
   },
   "49204": {
@@ -63876,7 +63876,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MI"
   },
   "49254": {
-    "city": "JACKSON MI S&DC",
+    "city": "JACKSON",
     "state": "MI"
   },
   "49255": {
@@ -63892,7 +63892,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MI"
   },
   "49259": {
-    "city": "JACKSON MI S&DC",
+    "city": "JACKSON",
     "state": "MI"
   },
   "49261": {
@@ -63928,7 +63928,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MI"
   },
   "49269": {
-    "city": "JACKSON MI S&DC",
+    "city": "JACKSON",
     "state": "MI"
   },
   "49270": {
@@ -63940,7 +63940,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MI"
   },
   "49272": {
-    "city": "JACKSON MI S&DC",
+    "city": "JACKSON",
     "state": "MI"
   },
   "49274": {
@@ -63964,7 +63964,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MI"
   },
   "49283": {
-    "city": "JACKSON MI S&DC",
+    "city": "JACKSON",
     "state": "MI"
   },
   "49284": {
@@ -64124,7 +64124,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MI"
   },
   "49338": {
-    "city": "DIVISION STREET STATION",
+    "city": "BIG RAPIDS",
     "state": "MI"
   },
   "49339": {
@@ -64140,7 +64140,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MI"
   },
   "49342": {
-    "city": "DIVISION STREET STATION",
+    "city": "BIG RAPIDS",
     "state": "MI"
   },
   "49343": {
@@ -64220,7 +64220,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MI"
   },
   "49416": {
-    "city": "GLENN DPOBU",
+    "city": "SOUTH HAVEN",
     "state": "MI"
   },
   "49417": {
@@ -64316,7 +64316,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MI"
   },
   "49444": {
-    "city": "MUSKEGON HEIGHTS",
+    "city": "MUSKEGON",
     "state": "MI"
   },
   "49445": {
@@ -64384,7 +64384,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MI"
   },
   "49463": {
-    "city": "SYLVAN BEACH",
+    "city": "WHITEHALL",
     "state": "MI"
   },
   "49464": {
@@ -64400,55 +64400,55 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MI"
   },
   "49503": {
-    "city": "GRAND RIVER CARRIER ANNEX",
+    "city": "GRAND RAPIDS",
     "state": "MI"
   },
   "49504": {
-    "city": "NORTHWEST",
+    "city": "GRAND RAPIDS",
     "state": "MI"
   },
   "49505": {
-    "city": "NORTHEAST",
+    "city": "GRAND RAPIDS",
     "state": "MI"
   },
   "49506": {
-    "city": "EASTOWN",
+    "city": "GRAND RAPIDS",
     "state": "MI"
   },
   "49507": {
-    "city": "GRAND RIVER CARRIER ANNEX",
+    "city": "GRAND RAPIDS",
     "state": "MI"
   },
   "49508": {
-    "city": "EAST PARIS",
+    "city": "GRAND RAPIDS",
     "state": "MI"
   },
   "49509": {
-    "city": "ROGERS PLAZA",
+    "city": "WYOMING",
     "state": "MI"
   },
   "49510": {
-    "city": "SEYMOUR SQUARE",
+    "city": "GRAND RAPIDS",
     "state": "MI"
   },
   "49512": {
-    "city": "EAST PARIS",
+    "city": "GRAND RAPIDS",
     "state": "MI"
   },
   "49514": {
-    "city": "NORTHWEST",
+    "city": "GRAND RAPIDS",
     "state": "MI"
   },
   "49515": {
-    "city": "NORTHEAST",
+    "city": "GRAND RAPIDS",
     "state": "MI"
   },
   "49516": {
-    "city": "EASTOWN",
+    "city": "GRAND RAPIDS",
     "state": "MI"
   },
   "49518": {
-    "city": "KENTWOOD",
+    "city": "GRAND RAPIDS",
     "state": "MI"
   },
   "49519": {
@@ -64456,35 +64456,35 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MI"
   },
   "49523": {
-    "city": "LEDYARD",
+    "city": "GRAND RAPIDS",
     "state": "MI"
   },
   "49525": {
-    "city": "NORTHEAST",
+    "city": "GRAND RAPIDS",
     "state": "MI"
   },
   "49528": {
-    "city": "CENTERPOINTE POSTAL STORE",
+    "city": "GRAND RAPIDS",
     "state": "MI"
   },
   "49534": {
-    "city": "NORTHWEST",
+    "city": "GRAND RAPIDS",
     "state": "MI"
   },
   "49544": {
-    "city": "NORTHWEST",
+    "city": "GRAND RAPIDS",
     "state": "MI"
   },
   "49546": {
-    "city": "EAST PARIS",
+    "city": "GRAND RAPIDS",
     "state": "MI"
   },
   "49548": {
-    "city": "KENTWOOD",
+    "city": "GRAND RAPIDS",
     "state": "MI"
   },
   "49588": {
-    "city": "EAST PARIS",
+    "city": "GRAND RAPIDS",
     "state": "MI"
   },
   "49601": {
@@ -64748,7 +64748,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MI"
   },
   "49686": {
-    "city": "BARLOW",
+    "city": "TRAVERSE CITY",
     "state": "MI"
   },
   "49688": {
@@ -64764,7 +64764,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MI"
   },
   "49696": {
-    "city": "BARLOW",
+    "city": "TRAVERSE CITY",
     "state": "MI"
   },
   "49701": {
@@ -64880,7 +64880,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MI"
   },
   "49737": {
-    "city": "GOOD HART",
+    "city": "HARBOR SPRINGS",
     "state": "MI"
   },
   "49738": {
@@ -64888,7 +64888,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MI"
   },
   "49740": {
-    "city": "CPU HARBOR POINT ASSOCIATION",
+    "city": "HARBOR SPRINGS",
     "state": "MI"
   },
   "49743": {
@@ -64980,7 +64980,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MI"
   },
   "49770": {
-    "city": "CPU BAY VIEW",
+    "city": "PETOSKEY",
     "state": "MI"
   },
   "49774": {
@@ -65252,7 +65252,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MI"
   },
   "49877": {
-    "city": "RALPH DPOBU",
+    "city": "RALPH",
     "state": "MI"
   },
   "49878": {
@@ -65688,7 +65688,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "IA"
   },
   "50062": {
-    "city": "MELCHER",
+    "city": "MELCHER DALLAS",
     "state": "IA"
   },
   "50063": {
@@ -65988,7 +65988,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "IA"
   },
   "50163": {
-    "city": "MELCHER",
+    "city": "MELCHER DALLAS",
     "state": "IA"
   },
   "50164": {
@@ -66248,7 +66248,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "IA"
   },
   "50266": {
-    "city": "WEST SUBURBAN",
+    "city": "CLIVE",
     "state": "IA"
   },
   "50268": {
@@ -66316,47 +66316,47 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "IA"
   },
   "50309": {
-    "city": "SOUTH DES MOINES",
+    "city": "DES MOINES",
     "state": "IA"
   },
   "50310": {
-    "city": "BEAVERDALE",
+    "city": "DES MOINES",
     "state": "IA"
   },
   "50311": {
-    "city": "UNIVERSITY STATION",
+    "city": "DES MOINES",
     "state": "IA"
   },
   "50312": {
-    "city": "PRICE CHOPPER ING  7 DPOBU",
+    "city": "DES MOINES",
     "state": "IA"
   },
   "50313": {
-    "city": "EAST SIDE",
+    "city": "DES MOINES",
     "state": "IA"
   },
   "50314": {
-    "city": "UNIVERSITY STATION",
+    "city": "DES MOINES",
     "state": "IA"
   },
   "50315": {
-    "city": "SOUTH DES MOINES",
+    "city": "DES MOINES",
     "state": "IA"
   },
   "50316": {
-    "city": "CASH SAVER 33 EUCLID DPOBU",
+    "city": "DES MOINES",
     "state": "IA"
   },
   "50317": {
-    "city": "PLEASANT HILL",
+    "city": "DES MOINES",
     "state": "IA"
   },
   "50320": {
-    "city": "SOUTH DES MOINES",
+    "city": "DES MOINES",
     "state": "IA"
   },
   "50321": {
-    "city": "CASH SAVER 34 FLEUR DPOBU",
+    "city": "DES MOINES",
     "state": "IA"
   },
   "50322": {
@@ -66364,19 +66364,19 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "IA"
   },
   "50323": {
-    "city": "ASH CREEK",
+    "city": "URBANDALE",
     "state": "IA"
   },
   "50324": {
-    "city": "UNIVERSITY STATION",
+    "city": "DES MOINES",
     "state": "IA"
   },
   "50325": {
-    "city": "WEST SUBURBAN",
+    "city": "CLIVE",
     "state": "IA"
   },
   "50327": {
-    "city": "PLEASANT HILL",
+    "city": "DES MOINES",
     "state": "IA"
   },
   "50336": {
@@ -66392,7 +66392,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "IA"
   },
   "50393": {
-    "city": "CAPITAL SQUARE",
+    "city": "DES MOINES",
     "state": "IA"
   },
   "50401": {
@@ -67184,11 +67184,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "IA"
   },
   "50701": {
-    "city": "WATERLOO ANNEX",
+    "city": "WATERLOO",
     "state": "IA"
   },
   "50702": {
-    "city": "WATERLOO ANNEX",
+    "city": "WATERLOO",
     "state": "IA"
   },
   "50703": {
@@ -67340,7 +67340,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "IA"
   },
   "51006": {
-    "city": "BATTLE CREEK CARRIERS",
+    "city": "DANBURY",
     "state": "IA"
   },
   "51007": {
@@ -67840,7 +67840,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "IA"
   },
   "51459": {
-    "city": "SCRANTON CARRIERS",
+    "city": "JEFFERSON",
     "state": "IA"
   },
   "51460": {
@@ -67884,7 +67884,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "IA"
   },
   "51510": {
-    "city": "AMES AVENUE",
+    "city": "OMAHA",
     "state": "NE"
   },
   "51520": {
@@ -68172,15 +68172,15 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "IA"
   },
   "52001": {
-    "city": "WEST SIDE ANNEX",
+    "city": "DUBUQUE",
     "state": "IA"
   },
   "52002": {
-    "city": "WEST SIDE ANNEX",
+    "city": "DUBUQUE",
     "state": "IA"
   },
   "52003": {
-    "city": "WEST SIDE ANNEX",
+    "city": "DUBUQUE",
     "state": "IA"
   },
   "52004": {
@@ -68220,7 +68220,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "IA"
   },
   "52039": {
-    "city": "WEST SIDE ANNEX",
+    "city": "DUBUQUE",
     "state": "IA"
   },
   "52040": {
@@ -68764,7 +68764,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "IA"
   },
   "52328": {
-    "city": "NORTHEAST STATION",
+    "city": "CEDAR RAPIDS",
     "state": "IA"
   },
   "52329": {
@@ -68884,23 +68884,23 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "IA"
   },
   "52401": {
-    "city": "WEST STATION",
+    "city": "CEDAR RAPIDS",
     "state": "IA"
   },
   "52402": {
-    "city": "NORTHEAST STATION",
+    "city": "CEDAR RAPIDS",
     "state": "IA"
   },
   "52403": {
-    "city": "NORTHEAST STATION",
+    "city": "CEDAR RAPIDS",
     "state": "IA"
   },
   "52404": {
-    "city": "WEST STATION",
+    "city": "CEDAR RAPIDS",
     "state": "IA"
   },
   "52405": {
-    "city": "WEST STATION",
+    "city": "CEDAR RAPIDS",
     "state": "IA"
   },
   "52406": {
@@ -68912,19 +68912,19 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "IA"
   },
   "52408": {
-    "city": "WEST STATION",
+    "city": "CEDAR RAPIDS",
     "state": "IA"
   },
   "52409": {
-    "city": "WEST STATION",
+    "city": "CEDAR RAPIDS",
     "state": "IA"
   },
   "52410": {
-    "city": "NORTHEAST STATION",
+    "city": "CEDAR RAPIDS",
     "state": "IA"
   },
   "52411": {
-    "city": "NORTHEAST STATION",
+    "city": "CEDAR RAPIDS",
     "state": "IA"
   },
   "52501": {
@@ -69464,11 +69464,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "IA"
   },
   "52806": {
-    "city": "NORTHWEST",
+    "city": "DAVENPORT",
     "state": "IA"
   },
   "52807": {
-    "city": "NORTHWEST",
+    "city": "DAVENPORT",
     "state": "IA"
   },
   "52808": {
@@ -69476,7 +69476,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "IA"
   },
   "52809": {
-    "city": "NORTHWEST",
+    "city": "DAVENPORT",
     "state": "IA"
   },
   "53001": {
@@ -69768,7 +69768,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "WI"
   },
   "53089": {
-    "city": "PEWAUKEE CARRIER ANNEX",
+    "city": "PEWAUKEE",
     "state": "WI"
   },
   "53090": {
@@ -69868,7 +69868,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "WI"
   },
   "53126": {
-    "city": "FRANKSVILLE",
+    "city": "CALEDONIA",
     "state": "WI"
   },
   "53127": {
@@ -69912,11 +69912,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "WI"
   },
   "53142": {
-    "city": "KENOSHA CARRIER ANNEX",
+    "city": "PLEASANT PRAIRIE",
     "state": "WI"
   },
   "53143": {
-    "city": "KENOSHA CARRIER ANNEX",
+    "city": "PLEASANT PRAIRIE",
     "state": "WI"
   },
   "53144": {
@@ -69968,7 +69968,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "WI"
   },
   "53158": {
-    "city": "KENOSHA CARRIER ANNEX",
+    "city": "PLEASANT PRAIRIE",
     "state": "WI"
   },
   "53159": {
@@ -69984,7 +69984,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "WI"
   },
   "53170": {
-    "city": "SALEM ANNEX",
+    "city": "SALEM",
     "state": "WI"
   },
   "53171": {
@@ -70072,127 +70072,127 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "WI"
   },
   "53202": {
-    "city": "JUNEAU",
+    "city": "MILWAUKEE",
     "state": "WI"
   },
   "53203": {
-    "city": "JUNEAU",
+    "city": "MILWAUKEE",
     "state": "WI"
   },
   "53204": {
-    "city": "HARBOR",
+    "city": "MILWAUKEE",
     "state": "WI"
   },
   "53205": {
-    "city": "HILLTOP",
+    "city": "MILWAUKEE",
     "state": "WI"
   },
   "53206": {
-    "city": "TEUTONIA",
+    "city": "MILWAUKEE",
     "state": "WI"
   },
   "53207": {
-    "city": "BAY VIEW SAINT FRANCIS",
+    "city": "MILWAUKEE",
     "state": "WI"
   },
   "53208": {
-    "city": "MID CITY",
+    "city": "MILWAUKEE",
     "state": "WI"
   },
   "53209": {
-    "city": "NORTH MILWAUKEE",
+    "city": "MILWAUKEE",
     "state": "WI"
   },
   "53210": {
-    "city": "WESTERN",
+    "city": "MILWAUKEE",
     "state": "WI"
   },
   "53211": {
-    "city": "SHOREWOOD",
+    "city": "MILWAUKEE",
     "state": "WI"
   },
   "53212": {
-    "city": "DR MARTIN LUTHER KING JR",
+    "city": "MILWAUKEE",
     "state": "WI"
   },
   "53213": {
-    "city": "WAUWATOSA",
+    "city": "MILWAUKEE",
     "state": "WI"
   },
   "53214": {
-    "city": "WEST ALLIS",
+    "city": "MILWAUKEE",
     "state": "WI"
   },
   "53215": {
-    "city": "WEST MILWAUKEE",
+    "city": "MILWAUKEE",
     "state": "WI"
   },
   "53216": {
-    "city": "MARCUS DBU",
+    "city": "MILWAUKEE",
     "state": "WI"
   },
   "53217": {
-    "city": "NORTH SHORE",
+    "city": "MILWAUKEE",
     "state": "WI"
   },
   "53218": {
-    "city": "HAMPTON",
+    "city": "MILWAUKEE",
     "state": "WI"
   },
   "53219": {
-    "city": "WEST MILWAUKEE",
+    "city": "MILWAUKEE",
     "state": "WI"
   },
   "53220": {
-    "city": "GREENFIELD",
+    "city": "MILWAUKEE",
     "state": "WI"
   },
   "53221": {
-    "city": "TUCKAWAY",
+    "city": "MILWAUKEE",
     "state": "WI"
   },
   "53222": {
-    "city": "FRED JOHN",
+    "city": "MILWAUKEE",
     "state": "WI"
   },
   "53223": {
-    "city": "BRADLEY CARRIER ANNEX",
+    "city": "MILWAUKEE",
     "state": "WI"
   },
   "53224": {
-    "city": "BRADLEY CARRIER ANNEX",
+    "city": "MILWAUKEE",
     "state": "WI"
   },
   "53225": {
-    "city": "FRED JOHN",
+    "city": "MILWAUKEE",
     "state": "WI"
   },
   "53226": {
-    "city": "WAUWATOSA",
+    "city": "MILWAUKEE",
     "state": "WI"
   },
   "53227": {
-    "city": "ROOT RIVER",
+    "city": "MILWAUKEE",
     "state": "WI"
   },
   "53228": {
-    "city": "GREENFIELD",
+    "city": "MILWAUKEE",
     "state": "WI"
   },
   "53233": {
-    "city": "HILLTOP",
+    "city": "MILWAUKEE",
     "state": "WI"
   },
   "53234": {
-    "city": "WEST MILWAUKEE",
+    "city": "MILWAUKEE",
     "state": "WI"
   },
   "53235": {
-    "city": "BAY VIEW SAINT FRANCIS",
+    "city": "MILWAUKEE",
     "state": "WI"
   },
   "53237": {
-    "city": "AMC RETAIL CENTER",
+    "city": "MILWAUKEE",
     "state": "WI"
   },
   "53401": {
@@ -70200,27 +70200,27 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "WI"
   },
   "53402": {
-    "city": "FOUR MILE STATION",
+    "city": "RACINE",
     "state": "WI"
   },
   "53403": {
-    "city": "FOUR MILE STATION",
+    "city": "RACINE",
     "state": "WI"
   },
   "53404": {
-    "city": "FOUR MILE STATION",
+    "city": "RACINE",
     "state": "WI"
   },
   "53405": {
-    "city": "WEST RACINE",
+    "city": "RACINE",
     "state": "WI"
   },
   "53406": {
-    "city": "WEST RACINE",
+    "city": "RACINE",
     "state": "WI"
   },
   "53408": {
-    "city": "WEST RACINE",
+    "city": "RACINE",
     "state": "WI"
   },
   "53501": {
@@ -70380,7 +70380,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "WI"
   },
   "53547": {
-    "city": "DOWNTOWN JANESVILLE",
+    "city": "JANESVILLE",
     "state": "WI"
   },
   "53548": {
@@ -70560,23 +70560,23 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "WI"
   },
   "53701": {
-    "city": "CAPITOL STATION RETAIL",
+    "city": "MADISON",
     "state": "WI"
   },
   "53703": {
-    "city": "CAP ANNEX",
+    "city": "MADISON",
     "state": "WI"
   },
   "53704": {
-    "city": "MADISON CARRIER ANNEX",
+    "city": "MADISON",
     "state": "WI"
   },
   "53705": {
-    "city": "HILLDALE",
+    "city": "MADISON",
     "state": "WI"
   },
   "53706": {
-    "city": "MADISON CARRIER ANNEX",
+    "city": "MADISON",
     "state": "WI"
   },
   "53707": {
@@ -70588,47 +70588,47 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "WI"
   },
   "53711": {
-    "city": "WESTSIDE",
+    "city": "MADISON",
     "state": "WI"
   },
   "53713": {
-    "city": "SOUTH SIDE",
+    "city": "MADISON",
     "state": "WI"
   },
   "53714": {
-    "city": "MADISON CARRIER ANNEX",
+    "city": "MADISON",
     "state": "WI"
   },
   "53715": {
-    "city": "SOUTH SIDE",
+    "city": "MADISON",
     "state": "WI"
   },
   "53716": {
-    "city": "MADISON CARRIER ANNEX",
+    "city": "MADISON",
     "state": "WI"
   },
   "53717": {
-    "city": "WESTSIDE",
+    "city": "MADISON",
     "state": "WI"
   },
   "53718": {
-    "city": "MADISON CARRIER ANNEX",
+    "city": "MADISON",
     "state": "WI"
   },
   "53719": {
-    "city": "WESTSIDE",
+    "city": "MADISON",
     "state": "WI"
   },
   "53725": {
-    "city": "SOUTH SIDE",
+    "city": "MADISON",
     "state": "WI"
   },
   "53726": {
-    "city": "CAP ANNEX",
+    "city": "MADISON",
     "state": "WI"
   },
   "53744": {
-    "city": "WESTSIDE",
+    "city": "MADISON",
     "state": "WI"
   },
   "53801": {
@@ -70916,7 +70916,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "WI"
   },
   "54002": {
-    "city": "1ST BANK BALDWIN DBU",
+    "city": "BALDWIN",
     "state": "WI"
   },
   "54003": {
@@ -71100,7 +71100,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "WI"
   },
   "54131": {
-    "city": "FREEDOM DBU",
+    "city": "FREEDOM",
     "state": "WI"
   },
   "54135": {
@@ -71344,11 +71344,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "WI"
   },
   "54301": {
-    "city": "JOHN P COFRIN",
+    "city": "GREEN BAY",
     "state": "WI"
   },
   "54302": {
-    "city": "JOHN P COFRIN",
+    "city": "GREEN BAY",
     "state": "WI"
   },
   "54303": {
@@ -71360,11 +71360,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "WI"
   },
   "54305": {
-    "city": "DOWNTOWN GREEN BAY",
+    "city": "GREEN BAY",
     "state": "WI"
   },
   "54306": {
-    "city": "DOWNTOWN GREEN BAY",
+    "city": "GREEN BAY",
     "state": "WI"
   },
   "54307": {
@@ -71372,11 +71372,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "WI"
   },
   "54308": {
-    "city": "JOHN P COFRIN",
+    "city": "GREEN BAY",
     "state": "WI"
   },
   "54311": {
-    "city": "JOHN P COFRIN",
+    "city": "GREEN BAY",
     "state": "WI"
   },
   "54313": {
@@ -71384,11 +71384,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "WI"
   },
   "54324": {
-    "city": "HANSEN ROAD",
+    "city": "GREEN BAY",
     "state": "WI"
   },
   "54401": {
-    "city": "ROTHSCHILD WI SDC",
+    "city": "ROTHSCHILD",
     "state": "WI"
   },
   "54402": {
@@ -71396,7 +71396,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "WI"
   },
   "54403": {
-    "city": "ROTHSCHILD WI SDC",
+    "city": "ROTHSCHILD",
     "state": "WI"
   },
   "54405": {
@@ -71752,7 +71752,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "WI"
   },
   "54525": {
-    "city": "GILE DPOBU",
+    "city": "GILE",
     "state": "WI"
   },
   "54526": {
@@ -71896,15 +71896,15 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "WI"
   },
   "54601": {
-    "city": "LA CROSSE WI S&DC",
+    "city": "LA CROSSE",
     "state": "WI"
   },
   "54602": {
-    "city": "LA CROSSE WI S&DC",
+    "city": "LA CROSSE",
     "state": "WI"
   },
   "54603": {
-    "city": "LA CROSSE WI S&DC",
+    "city": "LA CROSSE",
     "state": "WI"
   },
   "54610": {
@@ -72052,7 +72052,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "WI"
   },
   "54650": {
-    "city": "LA CROSSE WI S&DC",
+    "city": "LA CROSSE",
     "state": "WI"
   },
   "54651": {
@@ -72128,7 +72128,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "WI"
   },
   "54701": {
-    "city": "EAU CLAIRE CARRIER ANNEX",
+    "city": "EAU CLAIRE",
     "state": "WI"
   },
   "54702": {
@@ -72136,7 +72136,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "WI"
   },
   "54703": {
-    "city": "EAU CLAIRE CARRIER ANNEX",
+    "city": "EAU CLAIRE",
     "state": "WI"
   },
   "54720": {
@@ -72448,7 +72448,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "WI"
   },
   "54843": {
-    "city": "CPU LCO COMMERCIAL CENTER",
+    "city": "HAYWARD",
     "state": "WI"
   },
   "54844": {
@@ -72512,7 +72512,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "WI"
   },
   "54862": {
-    "city": "OJIBWA DBU",
+    "city": "WINTER",
     "state": "WI"
   },
   "54864": {
@@ -72592,19 +72592,19 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "WI"
   },
   "54901": {
-    "city": "OSHKOSH CARRIER ANNEX",
+    "city": "OSHKOSH",
     "state": "WI"
   },
   "54902": {
-    "city": "OSHKOSH CARRIER ANNEX",
+    "city": "OSHKOSH",
     "state": "WI"
   },
   "54903": {
-    "city": "DOWNTOWN OSHKOSH",
+    "city": "OSHKOSH",
     "state": "WI"
   },
   "54904": {
-    "city": "OSHKOSH CARRIER ANNEX",
+    "city": "OSHKOSH",
     "state": "WI"
   },
   "54909": {
@@ -73040,7 +73040,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MN"
   },
   "55067": {
-    "city": "ROCK CREEK",
+    "city": "RUSH CITY",
     "state": "MN"
   },
   "55068": {
@@ -73092,7 +73092,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MN"
   },
   "55082": {
-    "city": "OAK PARK HTS CARRIER ANNEX",
+    "city": "STILLWATER",
     "state": "MN"
   },
   "55083": {
@@ -73128,71 +73128,71 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MN"
   },
   "55101": {
-    "city": "DAYTONS BLUFF",
+    "city": "SAINT PAUL",
     "state": "MN"
   },
   "55102": {
-    "city": "RIVERVIEW",
+    "city": "SAINT PAUL",
     "state": "MN"
   },
   "55103": {
-    "city": "RICE STREET",
+    "city": "SAINT PAUL",
     "state": "MN"
   },
   "55104": {
-    "city": "INDUSTRIAL",
+    "city": "SAINT PAUL",
     "state": "MN"
   },
   "55105": {
-    "city": "ELWAY",
+    "city": "SAINT PAUL",
     "state": "MN"
   },
   "55106": {
-    "city": "DAYTONS BLUFF",
+    "city": "SAINT PAUL",
     "state": "MN"
   },
   "55107": {
-    "city": "RIVERVIEW",
+    "city": "SAINT PAUL",
     "state": "MN"
   },
   "55108": {
-    "city": "COMO",
+    "city": "SAINT PAUL",
     "state": "MN"
   },
   "55109": {
-    "city": "NORTH SAINT PAUL",
+    "city": "SAINT PAUL",
     "state": "MN"
   },
   "55110": {
-    "city": "WHITE BEAR LAKE",
+    "city": "SAINT PAUL",
     "state": "MN"
   },
   "55111": {
-    "city": "ELWAY",
+    "city": "SAINT PAUL",
     "state": "MN"
   },
   "55112": {
-    "city": "NEW BRIGHTON",
+    "city": "SAINT PAUL",
     "state": "MN"
   },
   "55113": {
-    "city": "ROSEVILLE",
+    "city": "SAINT PAUL",
     "state": "MN"
   },
   "55114": {
-    "city": "INDUSTRIAL",
+    "city": "SAINT PAUL",
     "state": "MN"
   },
   "55115": {
-    "city": "WHITE BEAR LAKE",
+    "city": "SAINT PAUL",
     "state": "MN"
   },
   "55116": {
-    "city": "ELWAY",
+    "city": "SAINT PAUL",
     "state": "MN"
   },
   "55117": {
-    "city": "RICE STREET",
+    "city": "SAINT PAUL",
     "state": "MN"
   },
   "55118": {
@@ -73200,7 +73200,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MN"
   },
   "55119": {
-    "city": "EASTERN HEIGHTS",
+    "city": "SAINT PAUL",
     "state": "MN"
   },
   "55120": {
@@ -73212,7 +73212,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MN"
   },
   "55122": {
-    "city": "CLIFF LAKE",
+    "city": "SAINT PAUL",
     "state": "MN"
   },
   "55123": {
@@ -73220,31 +73220,31 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MN"
   },
   "55124": {
-    "city": "APPLE VALLEY",
+    "city": "SAINT PAUL",
     "state": "MN"
   },
   "55125": {
-    "city": "WOODBURY",
+    "city": "SAINT PAUL",
     "state": "MN"
   },
   "55126": {
-    "city": "VADNAIS HGTS CARRIER ANNEX",
+    "city": "SAINT PAUL",
     "state": "MN"
   },
   "55127": {
-    "city": "VADNAIS HEIGHTS",
+    "city": "SAINT PAUL",
     "state": "MN"
   },
   "55128": {
-    "city": "EASTERN HEIGHTS",
+    "city": "SAINT PAUL",
     "state": "MN"
   },
   "55129": {
-    "city": "WOODBURY",
+    "city": "SAINT PAUL",
     "state": "MN"
   },
   "55130": {
-    "city": "RICE STREET",
+    "city": "SAINT PAUL",
     "state": "MN"
   },
   "55150": {
@@ -73264,11 +73264,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MN"
   },
   "55303": {
-    "city": "ANDOVER CARRIER ANNEX",
+    "city": "ANDOVER",
     "state": "MN"
   },
   "55304": {
-    "city": "ANDOVER CARRIER ANNEX",
+    "city": "ANDOVER",
     "state": "MN"
   },
   "55305": {
@@ -73324,7 +73324,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MN"
   },
   "55318": {
-    "city": "CHANHASSEN CARRIER ANNEX",
+    "city": "CHANHASSEN",
     "state": "MN"
   },
   "55319": {
@@ -73372,7 +73372,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MN"
   },
   "55331": {
-    "city": "CHANHASSEN CARRIER ANNEX",
+    "city": "CHANHASSEN",
     "state": "MN"
   },
   "55332": {
@@ -73544,7 +73544,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MN"
   },
   "55377": {
-    "city": "SANTIAGO DBU",
+    "city": "PRINCETON",
     "state": "MN"
   },
   "55378": {
@@ -73572,7 +73572,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MN"
   },
   "55386": {
-    "city": "CHANHASSEN CARRIER ANNEX",
+    "city": "CHANHASSEN",
     "state": "MN"
   },
   "55387": {
@@ -73616,11 +73616,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MN"
   },
   "55402": {
-    "city": "LOOP",
+    "city": "MINNEAPOLIS",
     "state": "MN"
   },
   "55403": {
-    "city": "BUTLER QUARTER",
+    "city": "MINNEAPOLIS",
     "state": "MN"
   },
   "55404": {
@@ -73628,143 +73628,143 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MN"
   },
   "55405": {
-    "city": "LORING",
+    "city": "MINNEAPOLIS",
     "state": "MN"
   },
   "55406": {
-    "city": "MINNEHAHA",
+    "city": "MINNEAPOLIS",
     "state": "MN"
   },
   "55407": {
-    "city": "POWDERHORN",
+    "city": "MINNEAPOLIS",
     "state": "MN"
   },
   "55408": {
-    "city": "LAKE STREET",
+    "city": "MINNEAPOLIS",
     "state": "MN"
   },
   "55409": {
-    "city": "LAKE STREET",
+    "city": "MINNEAPOLIS",
     "state": "MN"
   },
   "55410": {
-    "city": "EDINA",
+    "city": "MINNEAPOLIS",
     "state": "MN"
   },
   "55411": {
-    "city": "LOWRY AVENUE",
+    "city": "MINNEAPOLIS",
     "state": "MN"
   },
   "55412": {
-    "city": "LOWRY AVENUE",
+    "city": "MINNEAPOLIS",
     "state": "MN"
   },
   "55413": {
-    "city": "EASTSIDE",
+    "city": "MINNEAPOLIS",
     "state": "MN"
   },
   "55414": {
-    "city": "DINKYTOWN",
+    "city": "MINNEAPOLIS",
     "state": "MN"
   },
   "55415": {
-    "city": "COMMERCE",
+    "city": "MINNEAPOLIS",
     "state": "MN"
   },
   "55416": {
-    "city": "ELMWOOD",
+    "city": "MINNEAPOLIS",
     "state": "MN"
   },
   "55417": {
-    "city": "NOKOMIS",
+    "city": "MINNEAPOLIS",
     "state": "MN"
   },
   "55418": {
-    "city": "EASTSIDE",
+    "city": "MINNEAPOLIS",
     "state": "MN"
   },
   "55419": {
-    "city": "DIAMOND LAKE",
+    "city": "MINNEAPOLIS",
     "state": "MN"
   },
   "55420": {
-    "city": "BLOOMINGTON",
+    "city": "MINNEAPOLIS",
     "state": "MN"
   },
   "55421": {
-    "city": "COLUMBIA HEIGHTS",
+    "city": "MINNEAPOLIS",
     "state": "MN"
   },
   "55422": {
-    "city": "ROBBINSDALE",
+    "city": "MINNEAPOLIS",
     "state": "MN"
   },
   "55423": {
-    "city": "RICHFIELD",
+    "city": "MINNEAPOLIS",
     "state": "MN"
   },
   "55424": {
-    "city": "EDINA",
+    "city": "MINNEAPOLIS",
     "state": "MN"
   },
   "55425": {
-    "city": "BLOOMINGTON",
+    "city": "MINNEAPOLIS",
     "state": "MN"
   },
   "55426": {
-    "city": "SAINT LOUIS PARK",
+    "city": "MINNEAPOLIS",
     "state": "MN"
   },
   "55427": {
-    "city": "GOLDEN VALLEY",
+    "city": "MINNEAPOLIS",
     "state": "MN"
   },
   "55428": {
-    "city": "BROOKLYN CENTER",
+    "city": "MINNEAPOLIS",
     "state": "MN"
   },
   "55429": {
-    "city": "BROOKLYN CENTER",
+    "city": "MINNEAPOLIS",
     "state": "MN"
   },
   "55430": {
-    "city": "BROOKLYN CENTER",
+    "city": "MINNEAPOLIS",
     "state": "MN"
   },
   "55431": {
-    "city": "BURNETT",
+    "city": "MINNEAPOLIS",
     "state": "MN"
   },
   "55432": {
-    "city": "FRIDLEY",
+    "city": "MINNEAPOLIS",
     "state": "MN"
   },
   "55433": {
-    "city": "COON RAPIDS",
+    "city": "MINNEAPOLIS",
     "state": "MN"
   },
   "55434": {
-    "city": "BLAINE CARRIER ANNEX",
+    "city": "MINNEAPOLIS",
     "state": "MN"
   },
   "55435": {
-    "city": "NORMANDALE",
+    "city": "MINNEAPOLIS",
     "state": "MN"
   },
   "55436": {
-    "city": "WEST EDINA CARRIER ANNEX",
+    "city": "MINNEAPOLIS",
     "state": "MN"
   },
   "55437": {
-    "city": "BURNETT",
+    "city": "MINNEAPOLIS",
     "state": "MN"
   },
   "55438": {
-    "city": "BURNETT",
+    "city": "MINNEAPOLIS",
     "state": "MN"
   },
   "55439": {
-    "city": "NORMANDALE",
+    "city": "MINNEAPOLIS",
     "state": "MN"
   },
   "55440": {
@@ -73772,43 +73772,43 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MN"
   },
   "55441": {
-    "city": "LOST LAKE",
+    "city": "MINNEAPOLIS",
     "state": "MN"
   },
   "55442": {
-    "city": "LOST LAKE",
+    "city": "MINNEAPOLIS",
     "state": "MN"
   },
   "55443": {
-    "city": "BROOKLYN PARK",
+    "city": "MINNEAPOLIS",
     "state": "MN"
   },
   "55444": {
-    "city": "BROOKLYN PARK",
+    "city": "MINNEAPOLIS",
     "state": "MN"
   },
   "55445": {
-    "city": "BROOKLYN PARK",
+    "city": "MINNEAPOLIS",
     "state": "MN"
   },
   "55446": {
-    "city": "LOST LAKE",
+    "city": "MINNEAPOLIS",
     "state": "MN"
   },
   "55447": {
-    "city": "GOLDEN VALLEY",
+    "city": "MINNEAPOLIS",
     "state": "MN"
   },
   "55448": {
-    "city": "COON RAPIDS",
+    "city": "MINNEAPOLIS",
     "state": "MN"
   },
   "55449": {
-    "city": "BLAINE",
+    "city": "MINNEAPOLIS",
     "state": "MN"
   },
   "55450": {
-    "city": "NOKOMIS",
+    "city": "MINNEAPOLIS",
     "state": "MN"
   },
   "55454": {
@@ -73816,7 +73816,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MN"
   },
   "55455": {
-    "city": "UNIVERSITY",
+    "city": "MINNEAPOLIS",
     "state": "MN"
   },
   "55458": {
@@ -74032,7 +74032,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MN"
   },
   "55744": {
-    "city": "CPU SUPER ONE FOODS GRD RPDS",
+    "city": "GRAND RAPIDS",
     "state": "MN"
   },
   "55746": {
@@ -74112,7 +74112,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MN"
   },
   "55772": {
-    "city": "NETT LAKE",
+    "city": "ORR",
     "state": "MN"
   },
   "55775": {
@@ -74120,7 +74120,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MN"
   },
   "55777": {
-    "city": "THUNDERBIRD MALL DPOBU",
+    "city": "VIRGINIA",
     "state": "MN"
   },
   "55779": {
@@ -74192,7 +74192,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MN"
   },
   "55801": {
-    "city": "CIVIC CENTER",
+    "city": "DULUTH",
     "state": "MN"
   },
   "55802": {
@@ -74200,11 +74200,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MN"
   },
   "55803": {
-    "city": "MOUNT ROYAL",
+    "city": "DULUTH",
     "state": "MN"
   },
   "55804": {
-    "city": "MOUNT ROYAL",
+    "city": "DULUTH",
     "state": "MN"
   },
   "55805": {
@@ -74240,23 +74240,23 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MN"
   },
   "55901": {
-    "city": "ROCHESTER MN SDC",
+    "city": "ROCHESTER",
     "state": "MN"
   },
   "55902": {
-    "city": "ROCHESTER MN SDC",
+    "city": "ROCHESTER",
     "state": "MN"
   },
   "55903": {
-    "city": "BEAR CREEK",
+    "city": "ROCHESTER",
     "state": "MN"
   },
   "55904": {
-    "city": "BEAR CREEK",
+    "city": "ROCHESTER",
     "state": "MN"
   },
   "55906": {
-    "city": "BEAR CREEK",
+    "city": "ROCHESTER",
     "state": "MN"
   },
   "55909": {
@@ -74524,7 +74524,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MN"
   },
   "56002": {
-    "city": "MADISON EAST",
+    "city": "MANKATO",
     "state": "MN"
   },
   "56003": {
@@ -75368,7 +75368,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MN"
   },
   "56302": {
-    "city": "CENTER PLACE",
+    "city": "SAINT CLOUD",
     "state": "MN"
   },
   "56303": {
@@ -75420,7 +75420,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MN"
   },
   "56317": {
-    "city": "VPO BUCKMAN",
+    "city": "PIERZ",
     "state": "MN"
   },
   "56318": {
@@ -75520,7 +75520,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MN"
   },
   "56344": {
-    "city": "LASTRUP",
+    "city": "PIERZ",
     "state": "MN"
   },
   "56345": {
@@ -75664,11 +75664,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MN"
   },
   "56401": {
-    "city": "BAXTER CARRIER ANNEX",
+    "city": "BAXTER",
     "state": "MN"
   },
   "56425": {
-    "city": "BAXTER CARRIER ANNEX",
+    "city": "BAXTER",
     "state": "MN"
   },
   "56431": {
@@ -75728,7 +75728,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MN"
   },
   "56449": {
-    "city": "BAXTER CARRIER ANNEX",
+    "city": "BAXTER",
     "state": "MN"
   },
   "56450": {
@@ -76760,43 +76760,43 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "SD"
   },
   "57101": {
-    "city": "SIOUX FALLS SD S 2ND SDC",
+    "city": "SIOUX FALLS",
     "state": "SD"
   },
   "57103": {
-    "city": "SIOUX FALLS SD S 2ND SDC",
+    "city": "SIOUX FALLS",
     "state": "SD"
   },
   "57104": {
-    "city": "SIOUX FALLS SD S 2ND SDC",
+    "city": "SIOUX FALLS",
     "state": "SD"
   },
   "57105": {
-    "city": "SOUTHWEST CARRIER ANNEX",
+    "city": "SIOUX FALLS",
     "state": "SD"
   },
   "57106": {
-    "city": "SOUTHWEST CARRIER ANNEX",
+    "city": "SIOUX FALLS",
     "state": "SD"
   },
   "57107": {
-    "city": "SIOUX FALLS SD S 2ND SDC",
+    "city": "SIOUX FALLS",
     "state": "SD"
   },
   "57108": {
-    "city": "SOUTHWEST CARRIER ANNEX",
+    "city": "SIOUX FALLS",
     "state": "SD"
   },
   "57109": {
-    "city": "MEADOWS POSTAL STORE",
+    "city": "SIOUX FALLS",
     "state": "SD"
   },
   "57110": {
-    "city": "SIOUX FALLS SD S 2ND SDC",
+    "city": "SIOUX FALLS",
     "state": "SD"
   },
   "57117": {
-    "city": "SIOUX FALLS SD S 2ND SDC",
+    "city": "SIOUX FALLS",
     "state": "SD"
   },
   "57118": {
@@ -77276,7 +77276,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "SD"
   },
   "57420": {
-    "city": "AKASKA NPU",
+    "city": "AKASKA",
     "state": "SD"
   },
   "57421": {
@@ -77784,7 +77784,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "SD"
   },
   "57709": {
-    "city": "CPU BOYD DRUG  WEST",
+    "city": "RAPID CITY",
     "state": "SD"
   },
   "57714": {
@@ -77864,7 +77864,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "SD"
   },
   "57750": {
-    "city": "INTERIOR NEW",
+    "city": "INTERIOR",
     "state": "SD"
   },
   "57751": {
@@ -78232,15 +78232,15 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "ND"
   },
   "58102": {
-    "city": "TROLLWOOD",
+    "city": "FARGO",
     "state": "ND"
   },
   "58103": {
-    "city": "PRAIRIEWOOD",
+    "city": "FARGO",
     "state": "ND"
   },
   "58104": {
-    "city": "PRAIRIEWOOD",
+    "city": "FARGO",
     "state": "ND"
   },
   "58105": {
@@ -78248,7 +78248,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "ND"
   },
   "58106": {
-    "city": "PRAIRIEWOOD",
+    "city": "FARGO",
     "state": "ND"
   },
   "58107": {
@@ -78260,7 +78260,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "ND"
   },
   "58109": {
-    "city": "PRAIRIEWOOD",
+    "city": "FARGO",
     "state": "ND"
   },
   "58201": {
@@ -78944,7 +78944,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "ND"
   },
   "58502": {
-    "city": "BISMARCK DOWNTOWN",
+    "city": "BISMARCK",
     "state": "ND"
   },
   "58503": {
@@ -78960,7 +78960,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "ND"
   },
   "58507": {
-    "city": "BISMARCK DOWNTOWN",
+    "city": "BISMARCK",
     "state": "ND"
   },
   "58520": {
@@ -79512,7 +79512,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "ND"
   },
   "58803": {
-    "city": "BADLANDS POSTAL STORE",
+    "city": "WILLISTON",
     "state": "ND"
   },
   "58830": {
@@ -79684,7 +79684,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MT"
   },
   "59035": {
-    "city": "CPU YELLOWTAIL",
+    "city": "FORT SMITH",
     "state": "MT"
   },
   "59036": {
@@ -79868,19 +79868,19 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MT"
   },
   "59102": {
-    "city": "CENTENNIAL",
+    "city": "BILLINGS",
     "state": "MT"
   },
   "59103": {
-    "city": "BILLINGS DPOBU",
+    "city": "BILLINGS",
     "state": "MT"
   },
   "59104": {
-    "city": "PIONEER",
+    "city": "BILLINGS",
     "state": "MT"
   },
   "59105": {
-    "city": "RONALD REAGAN",
+    "city": "BILLINGS",
     "state": "MT"
   },
   "59106": {
@@ -79892,7 +79892,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MT"
   },
   "59108": {
-    "city": "CENTENNIAL",
+    "city": "BILLINGS",
     "state": "MT"
   },
   "59201": {
@@ -80196,11 +80196,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MT"
   },
   "59405": {
-    "city": "CHARLES M RUSSELL",
+    "city": "GREAT FALLS",
     "state": "MT"
   },
   "59406": {
-    "city": "CHARLES M RUSSELL",
+    "city": "GREAT FALLS",
     "state": "MT"
   },
   "59410": {
@@ -80536,11 +80536,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MT"
   },
   "59604": {
-    "city": "CPU BOBS VALLEY",
+    "city": "HELENA",
     "state": "MT"
   },
   "59624": {
-    "city": "LAST CHANCE",
+    "city": "HELENA",
     "state": "MT"
   },
   "59631": {
@@ -80616,7 +80616,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MT"
   },
   "59703": {
-    "city": "COPPER HILL",
+    "city": "BUTTE",
     "state": "MT"
   },
   "59710": {
@@ -80644,7 +80644,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MT"
   },
   "59717": {
-    "city": "CPU MONTANA STATE UNIV",
+    "city": "BOZEMAN",
     "state": "MT"
   },
   "59718": {
@@ -80792,7 +80792,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MT"
   },
   "59771": {
-    "city": "BABCOCK",
+    "city": "BOZEMAN",
     "state": "MT"
   },
   "59772": {
@@ -80820,7 +80820,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MT"
   },
   "59807": {
-    "city": "HELLGATE",
+    "city": "MISSOULA",
     "state": "MT"
   },
   "59808": {
@@ -81008,7 +81008,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MT"
   },
   "59903": {
-    "city": "CPU EVERGREEN",
+    "city": "KALISPELL",
     "state": "MT"
   },
   "59904": {
@@ -81300,7 +81300,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "IL"
   },
   "60065": {
-    "city": "DOWNTOWN NORTHBROOK",
+    "city": "NORTHBROOK",
     "state": "IL"
   },
   "60067": {
@@ -81352,7 +81352,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "IL"
   },
   "60079": {
-    "city": "EDISON SQUARE",
+    "city": "WAUKEGAN",
     "state": "IL"
   },
   "60081": {
@@ -81372,11 +81372,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "IL"
   },
   "60085": {
-    "city": "EDISON SQUARE",
+    "city": "WAUKEGAN",
     "state": "IL"
   },
   "60087": {
-    "city": "EDISON SQUARE",
+    "city": "WAUKEGAN",
     "state": "IL"
   },
   "60088": {
@@ -81392,7 +81392,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "IL"
   },
   "60091": {
-    "city": "WILMETTE CARRIERS",
+    "city": "WINNETKA",
     "state": "IL"
   },
   "60093": {
@@ -81400,11 +81400,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "IL"
   },
   "60094": {
-    "city": "PALATINE FIN  STA",
+    "city": "PALATINE",
     "state": "IL"
   },
   "60095": {
-    "city": "PALATINE FIN  STA",
+    "city": "PALATINE",
     "state": "IL"
   },
   "60096": {
@@ -81444,7 +81444,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "IL"
   },
   "60107": {
-    "city": "HANOVER PARK IL S&DC",
+    "city": "HANOVER PARK",
     "state": "IL"
   },
   "60108": {
@@ -81476,7 +81476,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "IL"
   },
   "60118": {
-    "city": "DUNDEE",
+    "city": "WEST DUNDEE",
     "state": "IL"
   },
   "60119": {
@@ -81484,7 +81484,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "IL"
   },
   "60120": {
-    "city": "HANOVER PARK IL S&DC",
+    "city": "HANOVER PARK",
     "state": "IL"
   },
   "60121": {
@@ -81492,11 +81492,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "IL"
   },
   "60123": {
-    "city": "ELGIN WEST SIDE ANNEX",
+    "city": "ELGIN",
     "state": "IL"
   },
   "60124": {
-    "city": "ELGIN WEST SIDE ANNEX",
+    "city": "ELGIN",
     "state": "IL"
   },
   "60126": {
@@ -81516,7 +81516,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "IL"
   },
   "60133": {
-    "city": "HANOVER PARK IL S&DC",
+    "city": "HANOVER PARK",
     "state": "IL"
   },
   "60134": {
@@ -81536,7 +81536,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "IL"
   },
   "60138": {
-    "city": "DOWNTOWN GLEN ELLYN",
+    "city": "GLEN ELLYN",
     "state": "IL"
   },
   "60139": {
@@ -81612,7 +81612,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "IL"
   },
   "60159": {
-    "city": "WOODFIELD FIN STATION",
+    "city": "SCHAUMBURG",
     "state": "IL"
   },
   "60160": {
@@ -81672,7 +81672,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "IL"
   },
   "60177": {
-    "city": "ELGIN WEST SIDE ANNEX",
+    "city": "ELGIN",
     "state": "IL"
   },
   "60178": {
@@ -81692,7 +81692,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "IL"
   },
   "60184": {
-    "city": "HANOVER PARK IL S&DC",
+    "city": "HANOVER PARK",
     "state": "IL"
   },
   "60185": {
@@ -81712,7 +81712,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "IL"
   },
   "60189": {
-    "city": "WHEATON SOUTH",
+    "city": "WHEATON",
     "state": "IL"
   },
   "60190": {
@@ -81772,7 +81772,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "IL"
   },
   "60304": {
-    "city": "OAK PARK SOUTH",
+    "city": "OAK PARK",
     "state": "IL"
   },
   "60305": {
@@ -81896,7 +81896,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "IL"
   },
   "60434": {
-    "city": "DOWNTOWN JOLIET",
+    "city": "JOLIET",
     "state": "IL"
   },
   "60435": {
@@ -82104,7 +82104,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "IL"
   },
   "60491": {
-    "city": "LOCKPORT CARRIER ANNEX",
+    "city": "LOCKPORT",
     "state": "IL"
   },
   "60499": {
@@ -82116,27 +82116,27 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "IL"
   },
   "60502": {
-    "city": "AURORA IL SDC",
+    "city": "AURORA",
     "state": "IL"
   },
   "60503": {
-    "city": "AURORA EAST",
+    "city": "AURORA",
     "state": "IL"
   },
   "60504": {
-    "city": "AURORA IL SDC",
+    "city": "AURORA",
     "state": "IL"
   },
   "60505": {
-    "city": "AURORA IL SDC",
+    "city": "AURORA",
     "state": "IL"
   },
   "60506": {
-    "city": "AURORA IL SDC",
+    "city": "AURORA",
     "state": "IL"
   },
   "60507": {
-    "city": "AURORA IL SDC",
+    "city": "AURORA",
     "state": "IL"
   },
   "60510": {
@@ -82204,7 +82204,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "IL"
   },
   "60527": {
-    "city": "WBD CARRIER ANNEX",
+    "city": "WILLOWBROOK",
     "state": "IL"
   },
   "60530": {
@@ -82320,7 +82320,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "IL"
   },
   "60561": {
-    "city": "WBD CARRIER ANNEX",
+    "city": "WILLOWBROOK",
     "state": "IL"
   },
   "60563": {
@@ -82328,7 +82328,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "IL"
   },
   "60564": {
-    "city": "NAPER WEST",
+    "city": "FOX VALLEY",
     "state": "IL"
   },
   "60565": {
@@ -82352,211 +82352,211 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "IL"
   },
   "60598": {
-    "city": "AURORA EAST",
+    "city": "AURORA",
     "state": "IL"
   },
   "60601": {
-    "city": "LOOP CARRIER ANNEX",
+    "city": "CHICAGO",
     "state": "IL"
   },
   "60602": {
-    "city": "LOOP CARRIER ANNEX",
+    "city": "CHICAGO",
     "state": "IL"
   },
   "60603": {
-    "city": "LOOP CARRIER ANNEX",
+    "city": "CHICAGO",
     "state": "IL"
   },
   "60604": {
-    "city": "LOOP CARRIER ANNEX",
+    "city": "CHICAGO",
     "state": "IL"
   },
   "60605": {
-    "city": "LOOP CARRIER ANNEX",
+    "city": "CHICAGO",
     "state": "IL"
   },
   "60606": {
-    "city": "CHICAGO CENT CARRIER ANNEX",
+    "city": "CHICAGO",
     "state": "IL"
   },
   "60607": {
-    "city": "CHICAGO CENT CARRIER ANNEX",
+    "city": "CHICAGO",
     "state": "IL"
   },
   "60608": {
-    "city": "PILSEN",
+    "city": "CHICAGO",
     "state": "IL"
   },
   "60609": {
-    "city": "FINANCE STATION L",
+    "city": "CHICAGO",
     "state": "IL"
   },
   "60610": {
-    "city": "FORT DEARBORN",
+    "city": "CHICAGO",
     "state": "IL"
   },
   "60611": {
-    "city": "FORT DEARBORN",
+    "city": "CHICAGO",
     "state": "IL"
   },
   "60612": {
-    "city": "NANCY B JEFFERSON",
+    "city": "CHICAGO",
     "state": "IL"
   },
   "60613": {
-    "city": "LAKEVIEW",
+    "city": "CHICAGO",
     "state": "IL"
   },
   "60614": {
-    "city": "LINCOLN PARK CARRIER ANNEX",
+    "city": "CHICAGO",
     "state": "IL"
   },
   "60615": {
-    "city": "HENRY W MCGEE",
+    "city": "CHICAGO",
     "state": "IL"
   },
   "60616": {
-    "city": "CHINATOWN",
+    "city": "CHICAGO",
     "state": "IL"
   },
   "60617": {
-    "city": "FINANCE STATION W",
+    "city": "CHICAGO",
     "state": "IL"
   },
   "60618": {
-    "city": "DANIEL J DOFFYN",
+    "city": "CHICAGO",
     "state": "IL"
   },
   "60619": {
-    "city": "GRAND CROSSING",
+    "city": "CHICAGO",
     "state": "IL"
   },
   "60620": {
-    "city": "AUBURN PARK",
+    "city": "CHICAGO",
     "state": "IL"
   },
   "60621": {
-    "city": "ENGLEWOOD",
+    "city": "CHICAGO",
     "state": "IL"
   },
   "60622": {
-    "city": "DETACHED PO BOX 60622",
+    "city": "CHICAGO",
     "state": "IL"
   },
   "60623": {
-    "city": "OTIS GRANT COLLINS",
+    "city": "CHICAGO",
     "state": "IL"
   },
   "60624": {
-    "city": "MARY ALICE HENRY",
+    "city": "CHICAGO",
     "state": "IL"
   },
   "60625": {
-    "city": "FINANCE STATION Q",
+    "city": "CHICAGO",
     "state": "IL"
   },
   "60626": {
-    "city": "ROGERS PARK",
+    "city": "CHICAGO",
     "state": "IL"
   },
   "60628": {
-    "city": "ROSELAND",
+    "city": "CHICAGO",
     "state": "IL"
   },
   "60629": {
-    "city": "CHICAGO LAWN",
+    "city": "CHICAGO",
     "state": "IL"
   },
   "60630": {
-    "city": "JEFFERSON PARK",
+    "city": "CHICAGO",
     "state": "IL"
   },
   "60631": {
-    "city": "NORWOOD PARK",
+    "city": "CHICAGO",
     "state": "IL"
   },
   "60632": {
-    "city": "ELSDON",
+    "city": "CHICAGO",
     "state": "IL"
   },
   "60633": {
-    "city": "HEGEWISCH",
+    "city": "CHICAGO",
     "state": "IL"
   },
   "60634": {
-    "city": "ROGER P MC AULIFFE",
+    "city": "CHICAGO",
     "state": "IL"
   },
   "60636": {
-    "city": "OGDEN PARK",
+    "city": "CHICAGO",
     "state": "IL"
   },
   "60637": {
-    "city": "JACKSON PARK",
+    "city": "CHICAGO",
     "state": "IL"
   },
   "60638": {
-    "city": "CLEARING",
+    "city": "CHICAGO",
     "state": "IL"
   },
   "60639": {
-    "city": "CRAGIN",
+    "city": "CHICAGO",
     "state": "IL"
   },
   "60640": {
-    "city": "UPTOWN",
+    "city": "CHICAGO",
     "state": "IL"
   },
   "60641": {
-    "city": "IRVING PARK",
+    "city": "CHICAGO",
     "state": "IL"
   },
   "60642": {
-    "city": "WICKER PARK CARRIER ANNEX",
+    "city": "CHICAGO",
     "state": "IL"
   },
   "60643": {
-    "city": "FINANCE STATION H",
+    "city": "CHICAGO",
     "state": "IL"
   },
   "60644": {
-    "city": "REV MILTON R BRUNSON",
+    "city": "CHICAGO",
     "state": "IL"
   },
   "60645": {
-    "city": "NORTHTOWN",
+    "city": "CHICAGO",
     "state": "IL"
   },
   "60646": {
-    "city": "EDGEBK/LINCOLNWOOD ANNEX",
+    "city": "LINCOLNWOOD",
     "state": "IL"
   },
   "60647": {
-    "city": "DETACHED PO BOX 60647-2",
+    "city": "CHICAGO",
     "state": "IL"
   },
   "60649": {
-    "city": "CHARLES A HAYES",
+    "city": "CHICAGO",
     "state": "IL"
   },
   "60651": {
-    "city": "ROBERT LEFLORE JR",
+    "city": "CHICAGO",
     "state": "IL"
   },
   "60652": {
-    "city": "ASHBURN",
+    "city": "CHICAGO",
     "state": "IL"
   },
   "60653": {
-    "city": "HENRY W MCGEE",
+    "city": "CHICAGO",
     "state": "IL"
   },
   "60654": {
-    "city": "FORT DEARBORN",
+    "city": "CHICAGO",
     "state": "IL"
   },
   "60655": {
-    "city": "DETACHED PO BOX 60655",
+    "city": "CHICAGO",
     "state": "IL"
   },
   "60656": {
@@ -82564,43 +82564,43 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "IL"
   },
   "60657": {
-    "city": "GRACELAND",
+    "city": "CHICAGO",
     "state": "IL"
   },
   "60659": {
-    "city": "NORTHTOWN",
+    "city": "CHICAGO",
     "state": "IL"
   },
   "60660": {
-    "city": "FINANCE STATION M",
+    "city": "CHICAGO",
     "state": "IL"
   },
   "60661": {
-    "city": "CHICAGO CENT CARRIER ANNEX",
+    "city": "CHICAGO",
     "state": "IL"
   },
   "60664": {
-    "city": "LOOP CLARK STREET",
+    "city": "CHICAGO",
     "state": "IL"
   },
   "60666": {
-    "city": "AMC OHARE",
+    "city": "CHICAGO",
     "state": "IL"
   },
   "60680": {
-    "city": "CARDISS COLLINS",
+    "city": "CHICAGO",
     "state": "IL"
   },
   "60690": {
-    "city": "LOOP CLARK STREET",
+    "city": "CHICAGO",
     "state": "IL"
   },
   "60691": {
-    "city": "CARDISS COLLINS",
+    "city": "CHICAGO",
     "state": "IL"
   },
   "60706": {
-    "city": "HARWOOD HEIGHTS CARRIER ANX",
+    "city": "NORRIDGE",
     "state": "IL"
   },
   "60707": {
@@ -82608,7 +82608,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "IL"
   },
   "60712": {
-    "city": "EDGEBK/LINCOLNWOOD ANNEX",
+    "city": "LINCOLNWOOD",
     "state": "IL"
   },
   "60714": {
@@ -82616,7 +82616,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "IL"
   },
   "60803": {
-    "city": "MOUNT GREENWOOD",
+    "city": "CHICAGO",
     "state": "IL"
   },
   "60804": {
@@ -83112,7 +83112,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "IL"
   },
   "61088": {
-    "city": "KILBURN ROCKFORD",
+    "city": "ROCKFORD",
     "state": "IL"
   },
   "61089": {
@@ -83124,43 +83124,43 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "IL"
   },
   "61101": {
-    "city": "KILBURN ROCKFORD",
+    "city": "ROCKFORD",
     "state": "IL"
   },
   "61102": {
-    "city": "KILBURN ROCKFORD",
+    "city": "ROCKFORD",
     "state": "IL"
   },
   "61103": {
-    "city": "KILBURN ROCKFORD",
+    "city": "ROCKFORD",
     "state": "IL"
   },
   "61104": {
-    "city": "ROCKFORD IL S&DC",
+    "city": "ROCKFORD",
     "state": "IL"
   },
   "61105": {
-    "city": "DOWNTOWN ROCKFORD",
+    "city": "ROCKFORD",
     "state": "IL"
   },
   "61106": {
-    "city": "BROADWAY",
+    "city": "ROCKFORD",
     "state": "IL"
   },
   "61107": {
-    "city": "ROCKFORD IL S&DC",
+    "city": "ROCKFORD",
     "state": "IL"
   },
   "61108": {
-    "city": "ROCKFORD IL S&DC",
+    "city": "ROCKFORD",
     "state": "IL"
   },
   "61109": {
-    "city": "ROCKFORD IL S&DC",
+    "city": "ROCKFORD",
     "state": "IL"
   },
   "61110": {
-    "city": "EAST ROCKFORD",
+    "city": "ROCKFORD",
     "state": "IL"
   },
   "61111": {
@@ -83168,11 +83168,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "IL"
   },
   "61112": {
-    "city": "ROCKFORD IL S&DC",
+    "city": "ROCKFORD",
     "state": "IL"
   },
   "61114": {
-    "city": "ROCKFORD IL S&DC",
+    "city": "ROCKFORD",
     "state": "IL"
   },
   "61115": {
@@ -83180,11 +83180,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "IL"
   },
   "61125": {
-    "city": "ROCKFORD IL S&DC",
+    "city": "ROCKFORD",
     "state": "IL"
   },
   "61126": {
-    "city": "ROCKFORD IL S&DC",
+    "city": "ROCKFORD",
     "state": "IL"
   },
   "61130": {
@@ -83204,7 +83204,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "IL"
   },
   "61204": {
-    "city": "DOWNTOWN ROCK ISLAND",
+    "city": "ROCK ISLAND",
     "state": "IL"
   },
   "61230": {
@@ -83384,7 +83384,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "IA"
   },
   "61301": {
-    "city": "DOWNTOWN LA SALLE",
+    "city": "LA SALLE",
     "state": "IL"
   },
   "61310": {
@@ -83536,7 +83536,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "IL"
   },
   "61350": {
-    "city": "DOWNTOWN OTTAWA",
+    "city": "OTTAWA",
     "state": "IL"
   },
   "61353": {
@@ -84116,23 +84116,23 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "IL"
   },
   "61602": {
-    "city": "PERSIMMON ANNEX",
+    "city": "PEORIA",
     "state": "IL"
   },
   "61603": {
-    "city": "PERSIMMON ANNEX",
+    "city": "PEORIA",
     "state": "IL"
   },
   "61604": {
-    "city": "WEST GLEN STATION",
+    "city": "PEORIA",
     "state": "IL"
   },
   "61605": {
-    "city": "PERSIMMON ANNEX",
+    "city": "PEORIA",
     "state": "IL"
   },
   "61606": {
-    "city": "WEST GLEN STATION",
+    "city": "PEORIA",
     "state": "IL"
   },
   "61607": {
@@ -84148,19 +84148,19 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "IL"
   },
   "61612": {
-    "city": "NORTH UNIVERSITY",
+    "city": "PEORIA",
     "state": "IL"
   },
   "61614": {
-    "city": "NORTH UNIVERSITY",
+    "city": "PEORIA",
     "state": "IL"
   },
   "61615": {
-    "city": "NORTH UNIVERSITY",
+    "city": "PEORIA",
     "state": "IL"
   },
   "61616": {
-    "city": "NORTH UNIVERSITY",
+    "city": "PEORIA",
     "state": "IL"
   },
   "61650": {
@@ -84192,19 +84192,19 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "IL"
   },
   "61701": {
-    "city": "BLOOMINGTON IL SDC",
+    "city": "BLOOMINGTON",
     "state": "IL"
   },
   "61702": {
-    "city": "BLOOMINGTON IL SDC",
+    "city": "BLOOMINGTON",
     "state": "IL"
   },
   "61704": {
-    "city": "BLOOMINGTON IL SDC",
+    "city": "BLOOMINGTON",
     "state": "IL"
   },
   "61705": {
-    "city": "BLOOMINGTON IL SDC",
+    "city": "BLOOMINGTON",
     "state": "IL"
   },
   "61720": {
@@ -84360,7 +84360,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "IL"
   },
   "61761": {
-    "city": "BLOOMINGTON IL SDC",
+    "city": "BLOOMINGTON",
     "state": "IL"
   },
   "61764": {
@@ -84416,7 +84416,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "IL"
   },
   "61803": {
-    "city": "DOWNTOWN URBANA",
+    "city": "URBANA",
     "state": "IL"
   },
   "61810": {
@@ -84440,7 +84440,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "IL"
   },
   "61815": {
-    "city": "NEIL STREET",
+    "city": "CHAMPAIGN",
     "state": "IL"
   },
   "61816": {
@@ -84456,23 +84456,23 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "IL"
   },
   "61820": {
-    "city": "NEIL STREET",
+    "city": "CHAMPAIGN",
     "state": "IL"
   },
   "61821": {
-    "city": "NEIL STREET",
+    "city": "CHAMPAIGN",
     "state": "IL"
   },
   "61822": {
-    "city": "NEIL STREET",
+    "city": "CHAMPAIGN",
     "state": "IL"
   },
   "61824": {
-    "city": "NEIL STREET",
+    "city": "CHAMPAIGN",
     "state": "IL"
   },
   "61825": {
-    "city": "STATION A",
+    "city": "CHAMPAIGN",
     "state": "IL"
   },
   "61826": {
@@ -84984,7 +84984,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "IL"
   },
   "62071": {
-    "city": "NATIONAL STOCK YARDS",
+    "city": "EAST SAINT LOUIS",
     "state": "IL"
   },
   "62074": {
@@ -85104,11 +85104,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "IL"
   },
   "62207": {
-    "city": "ALORTON",
+    "city": "EAST SAINT LOUIS",
     "state": "IL"
   },
   "62208": {
-    "city": "DUTCH HOLLOW",
+    "city": "BELLEVILLE",
     "state": "IL"
   },
   "62214": {
@@ -85148,7 +85148,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "IL"
   },
   "62223": {
-    "city": "DUTCH HOLLOW",
+    "city": "BELLEVILLE",
     "state": "IL"
   },
   "62225": {
@@ -85156,7 +85156,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "IL"
   },
   "62226": {
-    "city": "DUTCH HOLLOW",
+    "city": "BELLEVILLE",
     "state": "IL"
   },
   "62230": {
@@ -85396,7 +85396,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "IL"
   },
   "62306": {
-    "city": "ORVILLE H BROWNING",
+    "city": "QUINCY",
     "state": "IL"
   },
   "62311": {
@@ -85892,7 +85892,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "IL"
   },
   "62524": {
-    "city": "MEMORIAL",
+    "city": "DECATUR",
     "state": "IL"
   },
   "62525": {
@@ -85900,7 +85900,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "IL"
   },
   "62526": {
-    "city": "MEMORIAL",
+    "city": "DECATUR",
     "state": "IL"
   },
   "62530": {
@@ -86284,27 +86284,27 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "IL"
   },
   "62701": {
-    "city": "DOWNTOWN SPRINGFIELD",
+    "city": "SPRINGFIELD",
     "state": "IL"
   },
   "62702": {
-    "city": "NORTHEAST ANNEX",
+    "city": "SPRINGFIELD",
     "state": "IL"
   },
   "62703": {
-    "city": "NORTHEAST ANNEX",
+    "city": "SPRINGFIELD",
     "state": "IL"
   },
   "62704": {
-    "city": "SOUTHWEST",
+    "city": "SPRINGFIELD",
     "state": "IL"
   },
   "62705": {
-    "city": "DOWNTOWN SPRINGFIELD",
+    "city": "SPRINGFIELD",
     "state": "IL"
   },
   "62707": {
-    "city": "NORTHEAST ANNEX",
+    "city": "SPRINGFIELD",
     "state": "IL"
   },
   "62708": {
@@ -86312,19 +86312,19 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "IL"
   },
   "62711": {
-    "city": "SOUTHWEST",
+    "city": "SPRINGFIELD",
     "state": "IL"
   },
   "62712": {
-    "city": "SOUTHWEST",
+    "city": "SPRINGFIELD",
     "state": "IL"
   },
   "62791": {
-    "city": "CAPITOL",
+    "city": "SPRINGFIELD",
     "state": "IL"
   },
   "62794": {
-    "city": "DOWNTOWN SPRINGFIELD",
+    "city": "SPRINGFIELD",
     "state": "IL"
   },
   "62801": {
@@ -86668,15 +86668,15 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "IL"
   },
   "62901": {
-    "city": "CARBONDALE IL S&DC",
+    "city": "CARBONDALE",
     "state": "IL"
   },
   "62902": {
-    "city": "CARBONDALE IL S&DC",
+    "city": "CARBONDALE",
     "state": "IL"
   },
   "62903": {
-    "city": "CARBONDALE IL S&DC",
+    "city": "CARBONDALE",
     "state": "IL"
   },
   "62905": {
@@ -86724,7 +86724,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "IL"
   },
   "62918": {
-    "city": "CARBONDALE IL S&DC",
+    "city": "CARBONDALE",
     "state": "IL"
   },
   "62919": {
@@ -86748,7 +86748,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "IL"
   },
   "62924": {
-    "city": "CARBONDALE IL S&DC",
+    "city": "CARBONDALE",
     "state": "IL"
   },
   "62926": {
@@ -86888,7 +86888,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "IL"
   },
   "62966": {
-    "city": "CARBONDALE IL S&DC",
+    "city": "CARBONDALE",
     "state": "IL"
   },
   "62967": {
@@ -87020,7 +87020,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MO"
   },
   "63017": {
-    "city": "TOWN AND COUNTRY",
+    "city": "CHESTERFIELD",
     "state": "MO"
   },
   "63019": {
@@ -87064,7 +87064,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MO"
   },
   "63031": {
-    "city": "CARR",
+    "city": "FLORISSANT",
     "state": "MO"
   },
   "63032": {
@@ -87088,7 +87088,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MO"
   },
   "63038": {
-    "city": "GLENCOE",
+    "city": "WILDWOOD",
     "state": "MO"
   },
   "63039": {
@@ -87096,7 +87096,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MO"
   },
   "63040": {
-    "city": "GROVER",
+    "city": "WILDWOOD",
     "state": "MO"
   },
   "63041": {
@@ -87136,7 +87136,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MO"
   },
   "63052": {
-    "city": "CPU OTTO",
+    "city": "IMPERIAL",
     "state": "MO"
   },
   "63053": {
@@ -87188,7 +87188,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MO"
   },
   "63074": {
-    "city": "HAZELWOOD BRIDGETON CA",
+    "city": "HAZELWOOD",
     "state": "MO"
   },
   "63077": {
@@ -87220,7 +87220,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MO"
   },
   "63090": {
-    "city": "CPU DOWNTOWN WASHINGTON",
+    "city": "WASHINGTON",
     "state": "MO"
   },
   "63091": {
@@ -87228,227 +87228,227 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MO"
   },
   "63101": {
-    "city": "CARRIER SQUARE",
+    "city": "SAINT LOUIS",
     "state": "MO"
   },
   "63102": {
-    "city": "CARRIER SQUARE",
+    "city": "SAINT LOUIS",
     "state": "MO"
   },
   "63103": {
-    "city": "CARRIER SQUARE",
+    "city": "SAINT LOUIS",
     "state": "MO"
   },
   "63104": {
-    "city": "MARYVILLE GARDENS",
+    "city": "SAINT LOUIS",
     "state": "MO"
   },
   "63105": {
-    "city": "CLAYTON",
+    "city": "SAINT LOUIS",
     "state": "MO"
   },
   "63106": {
-    "city": "JORDAN W CHAMBERS",
+    "city": "SAINT LOUIS",
     "state": "MO"
   },
   "63107": {
-    "city": "FREDERICK N WEATHERS",
+    "city": "SAINT LOUIS",
     "state": "MO"
   },
   "63108": {
-    "city": "MARIAN OLDHAM",
+    "city": "SAINT LOUIS",
     "state": "MO"
   },
   "63109": {
-    "city": "SOUTHWEST",
+    "city": "SAINT LOUIS",
     "state": "MO"
   },
   "63110": {
-    "city": "CHOUTEAU",
+    "city": "SAINT LOUIS",
     "state": "MO"
   },
   "63111": {
-    "city": "MARYVILLE GARDENS",
+    "city": "SAINT LOUIS",
     "state": "MO"
   },
   "63112": {
-    "city": "FREDERICK N WEATHERS",
+    "city": "SAINT LOUIS",
     "state": "MO"
   },
   "63113": {
-    "city": "FREDERICK N WEATHERS",
+    "city": "SAINT LOUIS",
     "state": "MO"
   },
   "63114": {
-    "city": "TIMOTHY M GAFFNEY",
+    "city": "SAINT LOUIS",
     "state": "MO"
   },
   "63115": {
-    "city": "FREDERICK N WEATHERS",
+    "city": "SAINT LOUIS",
     "state": "MO"
   },
   "63116": {
-    "city": "GRAVOIS",
+    "city": "SAINT LOUIS",
     "state": "MO"
   },
   "63117": {
-    "city": "CLAYTON",
+    "city": "SAINT LOUIS",
     "state": "MO"
   },
   "63118": {
-    "city": "MARYVILLE GARDENS",
+    "city": "SAINT LOUIS",
     "state": "MO"
   },
   "63119": {
-    "city": "MACKENZIE POINTE",
+    "city": "SAINT LOUIS",
     "state": "MO"
   },
   "63120": {
-    "city": "FREDERICK N WEATHERS",
+    "city": "SAINT LOUIS",
     "state": "MO"
   },
   "63121": {
-    "city": "NORMANDY",
+    "city": "SAINT LOUIS",
     "state": "MO"
   },
   "63122": {
-    "city": "KIRKWOOD",
+    "city": "SAINT LOUIS",
     "state": "MO"
   },
   "63123": {
-    "city": "AFFTON",
+    "city": "SAINT LOUIS",
     "state": "MO"
   },
   "63124": {
-    "city": "CREVE COEUR",
+    "city": "SAINT LOUIS",
     "state": "MO"
   },
   "63125": {
-    "city": "CHARLES J COYLE",
+    "city": "SAINT LOUIS",
     "state": "MO"
   },
   "63126": {
-    "city": "SAPPINGTON",
+    "city": "SAINT LOUIS",
     "state": "MO"
   },
   "63127": {
-    "city": "SAPPINGTON",
+    "city": "SAINT LOUIS",
     "state": "MO"
   },
   "63128": {
-    "city": "SAPPINGTON",
+    "city": "SAINT LOUIS",
     "state": "MO"
   },
   "63129": {
-    "city": "SOUTH COUNTY",
+    "city": "SAINT LOUIS",
     "state": "MO"
   },
   "63130": {
-    "city": "UNIVERSITY CITY",
+    "city": "SAINT LOUIS",
     "state": "MO"
   },
   "63131": {
-    "city": "DES PERES",
+    "city": "SAINT LOUIS",
     "state": "MO"
   },
   "63132": {
-    "city": "OLIVETTE",
+    "city": "SAINT LOUIS",
     "state": "MO"
   },
   "63133": {
-    "city": "NORMANDY",
+    "city": "SAINT LOUIS",
     "state": "MO"
   },
   "63134": {
-    "city": "BERKELEY",
+    "city": "SAINT LOUIS",
     "state": "MO"
   },
   "63135": {
-    "city": "FERGUSON",
+    "city": "SAINT LOUIS",
     "state": "MO"
   },
   "63136": {
-    "city": "JENNINGS",
+    "city": "SAINT LOUIS",
     "state": "MO"
   },
   "63137": {
-    "city": "NORTH COUNTY",
+    "city": "SAINT LOUIS",
     "state": "MO"
   },
   "63138": {
-    "city": "NORTH COUNTY",
+    "city": "SAINT LOUIS",
     "state": "MO"
   },
   "63139": {
-    "city": "SOUTHWEST",
+    "city": "SAINT LOUIS",
     "state": "MO"
   },
   "63141": {
-    "city": "CREVE COEUR",
+    "city": "SAINT LOUIS",
     "state": "MO"
   },
   "63143": {
-    "city": "MAPLEWOOD",
+    "city": "SAINT LOUIS",
     "state": "MO"
   },
   "63144": {
-    "city": "BRENTWOOD",
+    "city": "SAINT LOUIS",
     "state": "MO"
   },
   "63145": {
-    "city": "LAMBERT AIRPORT DPOBU",
+    "city": "SAINT LOUIS",
     "state": "MO"
   },
   "63146": {
-    "city": "WEST COUNTY",
+    "city": "SAINT LOUIS",
     "state": "MO"
   },
   "63147": {
-    "city": "BADEN",
+    "city": "SAINT LOUIS",
     "state": "MO"
   },
   "63151": {
-    "city": "SOUTH COUNTY",
+    "city": "SAINT LOUIS",
     "state": "MO"
   },
   "63156": {
-    "city": "MARIAN OLDHAM",
+    "city": "SAINT LOUIS",
     "state": "MO"
   },
   "63157": {
-    "city": "BENTON PARK",
+    "city": "SAINT LOUIS",
     "state": "MO"
   },
   "63158": {
-    "city": "BENTON PARK",
+    "city": "SAINT LOUIS",
     "state": "MO"
   },
   "63163": {
-    "city": "TOWER GROVE",
+    "city": "SAINT LOUIS",
     "state": "MO"
   },
   "63166": {
-    "city": "MAIN OFFICE FIN POSTAL STORE",
+    "city": "SAINT LOUIS",
     "state": "MO"
   },
   "63169": {
-    "city": "HENRY W WHEELER",
+    "city": "SAINT LOUIS",
     "state": "MO"
   },
   "63177": {
-    "city": "MAIN OFFICE FIN POSTAL STORE",
+    "city": "SAINT LOUIS",
     "state": "MO"
   },
   "63178": {
-    "city": "MAIN OFFICE FIN POSTAL STORE",
+    "city": "SAINT LOUIS",
     "state": "MO"
   },
   "63179": {
-    "city": "MAIN OFFICE FIN POSTAL STORE",
+    "city": "SAINT LOUIS",
     "state": "MO"
   },
   "63188": {
-    "city": "HENRY W WHEELER",
+    "city": "SAINT LOUIS",
     "state": "MO"
   },
   "63301": {
@@ -87460,11 +87460,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MO"
   },
   "63303": {
-    "city": "SAINT CHARLES SOUTH",
+    "city": "SAINT CHARLES",
     "state": "MO"
   },
   "63304": {
-    "city": "SAINT CHARLES SOUTH",
+    "city": "SAINT CHARLES",
     "state": "MO"
   },
   "63330": {
@@ -87548,7 +87548,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MO"
   },
   "63357": {
-    "city": "CPU LAKE SHERWOOD",
+    "city": "MARTHASVILLE",
     "state": "MO"
   },
   "63359": {
@@ -87660,7 +87660,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MO"
   },
   "63433": {
-    "city": "NEW LONDON CARRIERS",
+    "city": "FRANKFORD",
     "state": "MO"
   },
   "63434": {
@@ -87780,7 +87780,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MO"
   },
   "63467": {
-    "city": "NEW LONDON CARRIERS",
+    "city": "FRANKFORD",
     "state": "MO"
   },
   "63468": {
@@ -88080,7 +88080,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MO"
   },
   "63701": {
-    "city": "CAPE CARRIER ANNEX",
+    "city": "CAPE GIRARDEAU",
     "state": "MO"
   },
   "63702": {
@@ -88088,7 +88088,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MO"
   },
   "63703": {
-    "city": "CAPE CARRIER ANNEX",
+    "city": "CAPE GIRARDEAU",
     "state": "MO"
   },
   "63730": {
@@ -88208,7 +88208,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MO"
   },
   "63780": {
-    "city": "CAPE CARRIER ANNEX",
+    "city": "CAPE GIRARDEAU",
     "state": "MO"
   },
   "63781": {
@@ -88628,7 +88628,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MO"
   },
   "64050": {
-    "city": "INDEP MAIN OFF",
+    "city": "INDEPENDENCE",
     "state": "MO"
   },
   "64051": {
@@ -88636,31 +88636,31 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MO"
   },
   "64052": {
-    "city": "ENGLEWOOD",
+    "city": "INDEPENDENCE",
     "state": "MO"
   },
   "64053": {
-    "city": "INDEP MAIN OFF",
+    "city": "INDEPENDENCE",
     "state": "MO"
   },
   "64054": {
-    "city": "ENGLEWOOD",
+    "city": "INDEPENDENCE",
     "state": "MO"
   },
   "64055": {
-    "city": "HARRY S TRUMAN",
+    "city": "INDEPENDENCE",
     "state": "MO"
   },
   "64056": {
-    "city": "INDEP MAIN OFF",
+    "city": "INDEPENDENCE",
     "state": "MO"
   },
   "64057": {
-    "city": "HARRY S TRUMAN",
+    "city": "INDEPENDENCE",
     "state": "MO"
   },
   "64058": {
-    "city": "INDEP MAIN OFF",
+    "city": "INDEPENDENCE",
     "state": "MO"
   },
   "64060": {
@@ -88680,7 +88680,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MO"
   },
   "64064": {
-    "city": "R B RICE",
+    "city": "LEES SUMMIT",
     "state": "MO"
   },
   "64066": {
@@ -88760,7 +88760,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MO"
   },
   "64086": {
-    "city": "R B RICE",
+    "city": "LEES SUMMIT",
     "state": "MO"
   },
   "64088": {
@@ -88796,63 +88796,63 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MO"
   },
   "64102": {
-    "city": "KANSAS CITY MAIN OFFICE",
+    "city": "KANSAS CITY",
     "state": "MO"
   },
   "64105": {
-    "city": "KANSAS CITY MAIN OFFICE",
+    "city": "KANSAS CITY",
     "state": "MO"
   },
   "64106": {
-    "city": "CIVIC CENTER",
+    "city": "KANSAS CITY",
     "state": "MO"
   },
   "64108": {
-    "city": "KANSAS CITY MAIN OFFICE",
+    "city": "KANSAS CITY",
     "state": "MO"
   },
   "64109": {
-    "city": "WESTPORT",
+    "city": "KANSAS CITY",
     "state": "MO"
   },
   "64110": {
-    "city": "SOUTH TROOST",
+    "city": "KANSAS CITY",
     "state": "MO"
   },
   "64111": {
-    "city": "WESTPORT",
+    "city": "KANSAS CITY",
     "state": "MO"
   },
   "64112": {
-    "city": "SOUTH TROOST",
+    "city": "KANSAS CITY",
     "state": "MO"
   },
   "64113": {
-    "city": "COUNTRY CLUB",
+    "city": "KANSAS CITY",
     "state": "MO"
   },
   "64114": {
-    "city": "MARTIN CITY",
+    "city": "KANSAS CITY",
     "state": "MO"
   },
   "64116": {
-    "city": "NORTH KANSAS CITY",
+    "city": "KANSAS CITY",
     "state": "MO"
   },
   "64117": {
-    "city": "NORTH KANSAS CITY",
+    "city": "KANSAS CITY",
     "state": "MO"
   },
   "64118": {
-    "city": "GLADSTONE",
+    "city": "KANSAS CITY",
     "state": "MO"
   },
   "64119": {
-    "city": "ANTIOCH",
+    "city": "KANSAS CITY",
     "state": "MO"
   },
   "64120": {
-    "city": "EXECUTIVE PARK",
+    "city": "KANSAS CITY",
     "state": "MO"
   },
   "64121": {
@@ -88860,43 +88860,43 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MO"
   },
   "64123": {
-    "city": "JAMES CREWS",
+    "city": "KANSAS CITY",
     "state": "MO"
   },
   "64124": {
-    "city": "JAMES CREWS",
+    "city": "KANSAS CITY",
     "state": "MO"
   },
   "64125": {
-    "city": "JAMES CREWS",
+    "city": "KANSAS CITY",
     "state": "MO"
   },
   "64126": {
-    "city": "CENTROPOLIS",
+    "city": "KANSAS CITY",
     "state": "MO"
   },
   "64127": {
-    "city": "JAMES CREWS",
+    "city": "KANSAS CITY",
     "state": "MO"
   },
   "64128": {
-    "city": "JAMES CREWS",
+    "city": "KANSAS CITY",
     "state": "MO"
   },
   "64129": {
-    "city": "PARKWAY",
+    "city": "KANSAS CITY",
     "state": "MO"
   },
   "64130": {
-    "city": "PARKWAY",
+    "city": "KANSAS CITY",
     "state": "MO"
   },
   "64131": {
-    "city": "SOUTH TROOST",
+    "city": "KANSAS CITY",
     "state": "MO"
   },
   "64132": {
-    "city": "SOUTH TROOST",
+    "city": "KANSAS CITY",
     "state": "MO"
   },
   "64133": {
@@ -88904,7 +88904,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MO"
   },
   "64134": {
-    "city": "HICKMAN MILLS",
+    "city": "KANSAS CITY",
     "state": "MO"
   },
   "64136": {
@@ -88912,15 +88912,15 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MO"
   },
   "64137": {
-    "city": "HICKMAN MILLS",
+    "city": "KANSAS CITY",
     "state": "MO"
   },
   "64138": {
-    "city": "LONGVIEW",
+    "city": "KANSAS CITY",
     "state": "MO"
   },
   "64139": {
-    "city": "LONGVIEW",
+    "city": "KANSAS CITY",
     "state": "MO"
   },
   "64141": {
@@ -88928,31 +88928,31 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MO"
   },
   "64145": {
-    "city": "MARTIN CITY",
+    "city": "KANSAS CITY",
     "state": "MO"
   },
   "64146": {
-    "city": "MARTIN CITY",
+    "city": "KANSAS CITY",
     "state": "MO"
   },
   "64147": {
-    "city": "MARTIN CITY",
+    "city": "KANSAS CITY",
     "state": "MO"
   },
   "64148": {
-    "city": "MARTIN CITY",
+    "city": "KANSAS CITY",
     "state": "MO"
   },
   "64149": {
-    "city": "MARTIN CITY",
+    "city": "KANSAS CITY",
     "state": "MO"
   },
   "64150": {
-    "city": "BARRY WOODS ANNEX",
+    "city": "KANSAS CITY",
     "state": "MO"
   },
   "64151": {
-    "city": "BARRY WOODS ANNEX",
+    "city": "KANSAS CITY",
     "state": "MO"
   },
   "64152": {
@@ -88960,51 +88960,51 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MO"
   },
   "64153": {
-    "city": "BARRY WOODS ANNEX",
+    "city": "KANSAS CITY",
     "state": "MO"
   },
   "64154": {
-    "city": "BARRY WOODS ANNEX",
+    "city": "KANSAS CITY",
     "state": "MO"
   },
   "64155": {
-    "city": "BARRY WOODS ANNEX",
+    "city": "KANSAS CITY",
     "state": "MO"
   },
   "64156": {
-    "city": "HODGE PARK CARRIER ANNEX",
+    "city": "KANSAS CITY",
     "state": "MO"
   },
   "64157": {
-    "city": "HODGE PARK CARRIER ANNEX",
+    "city": "KANSAS CITY",
     "state": "MO"
   },
   "64158": {
-    "city": "HODGE PARK CARRIER ANNEX",
+    "city": "KANSAS CITY",
     "state": "MO"
   },
   "64161": {
-    "city": "NORTH KANSAS CITY",
+    "city": "KANSAS CITY",
     "state": "MO"
   },
   "64163": {
-    "city": "BARRY WOODS ANNEX",
+    "city": "KANSAS CITY",
     "state": "MO"
   },
   "64164": {
-    "city": "BARRY WOODS ANNEX",
+    "city": "KANSAS CITY",
     "state": "MO"
   },
   "64165": {
-    "city": "BARRY WOODS ANNEX",
+    "city": "KANSAS CITY",
     "state": "MO"
   },
   "64166": {
-    "city": "HODGE PARK CARRIER ANNEX",
+    "city": "KANSAS CITY",
     "state": "MO"
   },
   "64167": {
-    "city": "HODGE PARK CARRIER ANNEX",
+    "city": "KANSAS CITY",
     "state": "MO"
   },
   "64168": {
@@ -89012,23 +89012,23 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MO"
   },
   "64171": {
-    "city": "WESTPORT",
+    "city": "KANSAS CITY",
     "state": "MO"
   },
   "64188": {
-    "city": "GLADSTONE",
+    "city": "KANSAS CITY",
     "state": "MO"
   },
   "64190": {
-    "city": "BOARDWALK SQUARE STATION",
+    "city": "KANSAS CITY",
     "state": "MO"
   },
   "64195": {
-    "city": "JESSE M DONALDSON",
+    "city": "KANSAS CITY",
     "state": "MO"
   },
   "64196": {
-    "city": "KANSAS CITY MAIN OFFICE",
+    "city": "KANSAS CITY",
     "state": "MO"
   },
   "64401": {
@@ -89316,11 +89316,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MO"
   },
   "64502": {
-    "city": "EASTSIDE",
+    "city": "SAINT JOSEPH",
     "state": "MO"
   },
   "64503": {
-    "city": "EASTSIDE",
+    "city": "SAINT JOSEPH",
     "state": "MO"
   },
   "64504": {
@@ -89332,15 +89332,15 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MO"
   },
   "64506": {
-    "city": "EASTSIDE",
+    "city": "SAINT JOSEPH",
     "state": "MO"
   },
   "64507": {
-    "city": "EASTSIDE",
+    "city": "SAINT JOSEPH",
     "state": "MO"
   },
   "64508": {
-    "city": "EASTSIDE",
+    "city": "SAINT JOSEPH",
     "state": "MO"
   },
   "64601": {
@@ -89748,11 +89748,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MO"
   },
   "64803": {
-    "city": "JOPLIN STA A",
+    "city": "JOPLIN",
     "state": "MO"
   },
   "64804": {
-    "city": "JOPLIN STA A",
+    "city": "JOPLIN",
     "state": "MO"
   },
   "64830": {
@@ -90032,7 +90032,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MO"
   },
   "65062": {
-    "city": "MOUNT STERLING",
+    "city": "BLAND",
     "state": "MO"
   },
   "65063": {
@@ -90116,7 +90116,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MO"
   },
   "65101": {
-    "city": "CAPITOL VIEW",
+    "city": "JEFFERSON CITY",
     "state": "MO"
   },
   "65102": {
@@ -90124,19 +90124,19 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MO"
   },
   "65109": {
-    "city": "CAPITOL VIEW",
+    "city": "JEFFERSON CITY",
     "state": "MO"
   },
   "65110": {
-    "city": "CAPITOL VIEW",
+    "city": "JEFFERSON CITY",
     "state": "MO"
   },
   "65201": {
-    "city": "TIGER",
+    "city": "COLUMBIA",
     "state": "MO"
   },
   "65202": {
-    "city": "TIGER",
+    "city": "COLUMBIA",
     "state": "MO"
   },
   "65203": {
@@ -90632,7 +90632,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MO"
   },
   "65567": {
-    "city": "LEBANON CARRIER ANNEX",
+    "city": "LEBANON",
     "state": "MO"
   },
   "65570": {
@@ -90672,11 +90672,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MO"
   },
   "65590": {
-    "city": "LEBANON CARRIER ANNEX",
+    "city": "LEBANON",
     "state": "MO"
   },
   "65591": {
-    "city": "LEBANON CARRIER ANNEX",
+    "city": "LEBANON",
     "state": "MO"
   },
   "65601": {
@@ -90732,7 +90732,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MO"
   },
   "65616": {
-    "city": "BRANSON  CARRIER ANNEX",
+    "city": "HOLLISTER",
     "state": "MO"
   },
   "65617": {
@@ -90908,7 +90908,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MO"
   },
   "65672": {
-    "city": "BRANSON  CARRIER ANNEX",
+    "city": "HOLLISTER",
     "state": "MO"
   },
   "65673": {
@@ -90928,7 +90928,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MO"
   },
   "65679": {
-    "city": "BRANSON  CARRIER ANNEX",
+    "city": "HOLLISTER",
     "state": "MO"
   },
   "65680": {
@@ -91064,7 +91064,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MO"
   },
   "65731": {
-    "city": "BRANSON  CARRIER ANNEX",
+    "city": "HOLLISTER",
     "state": "MO"
   },
   "65732": {
@@ -91084,7 +91084,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MO"
   },
   "65737": {
-    "city": "BRANSON WEST",
+    "city": "REEDS SPRING",
     "state": "MO"
   },
   "65738": {
@@ -91092,7 +91092,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MO"
   },
   "65739": {
-    "city": "BRANSON  CARRIER ANNEX",
+    "city": "HOLLISTER",
     "state": "MO"
   },
   "65740": {
@@ -91272,15 +91272,15 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MO"
   },
   "65802": {
-    "city": "SPFD GRIESEMER ANNEX",
+    "city": "SPRINGFIELD",
     "state": "MO"
   },
   "65803": {
-    "city": "SPFD GRIESEMER ANNEX",
+    "city": "SPRINGFIELD",
     "state": "MO"
   },
   "65804": {
-    "city": "GLENSTONE",
+    "city": "SPRINGFIELD",
     "state": "MO"
   },
   "65805": {
@@ -91288,27 +91288,27 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MO"
   },
   "65806": {
-    "city": "SPFD GRIESEMER ANNEX",
+    "city": "SPRINGFIELD",
     "state": "MO"
   },
   "65807": {
-    "city": "SPRINGFIELD MO CAMPBELL SDC",
+    "city": "SPRINGFIELD",
     "state": "MO"
   },
   "65808": {
-    "city": "GLENSTONE",
+    "city": "SPRINGFIELD",
     "state": "MO"
   },
   "65809": {
-    "city": "GLENSTONE",
+    "city": "SPRINGFIELD",
     "state": "MO"
   },
   "65810": {
-    "city": "SPRINGFIELD MO CAMPBELL SDC",
+    "city": "SPRINGFIELD",
     "state": "MO"
   },
   "65814": {
-    "city": "SPFD JAMES RIVER POSTAL STOR",
+    "city": "SPRINGFIELD",
     "state": "MO"
   },
   "66002": {
@@ -91408,7 +91408,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "KS"
   },
   "66036": {
-    "city": "PAOLA CARRIER ANNEX",
+    "city": "PAOLA",
     "state": "KS"
   },
   "66039": {
@@ -91436,11 +91436,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "KS"
   },
   "66046": {
-    "city": "JAYHAWK",
+    "city": "LAWRENCE",
     "state": "KS"
   },
   "66047": {
-    "city": "JAYHAWK",
+    "city": "LAWRENCE",
     "state": "KS"
   },
   "66048": {
@@ -91488,11 +91488,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "KS"
   },
   "66062": {
-    "city": "OLATHE EAST",
+    "city": "OLATHE",
     "state": "KS"
   },
   "66063": {
-    "city": "OLATHE EAST",
+    "city": "OLATHE",
     "state": "KS"
   },
   "66064": {
@@ -91548,7 +91548,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "KS"
   },
   "66085": {
-    "city": "OXFORD CARRIER ANNEX",
+    "city": "OVERLAND PARK",
     "state": "KS"
   },
   "66086": {
@@ -91592,43 +91592,43 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "KS"
   },
   "66101": {
-    "city": "CIVIC CENTER",
+    "city": "KANSAS CITY",
     "state": "KS"
   },
   "66102": {
-    "city": "ROBERT L ROBERTS",
+    "city": "KANSAS CITY",
     "state": "KS"
   },
   "66103": {
-    "city": "ROSEDALE",
+    "city": "KANSAS CITY",
     "state": "KS"
   },
   "66104": {
-    "city": "ROBERT L ROBERTS",
+    "city": "KANSAS CITY",
     "state": "KS"
   },
   "66105": {
-    "city": "SHAWNEE MISSION KS S&DC",
+    "city": "MISSION",
     "state": "KS"
   },
   "66106": {
-    "city": "ARGENTINE",
+    "city": "KANSAS CITY",
     "state": "KS"
   },
   "66109": {
-    "city": "WYANDOTTE WEST",
+    "city": "KANSAS CITY",
     "state": "KS"
   },
   "66110": {
-    "city": "ROBERT L ROBERTS",
+    "city": "KANSAS CITY",
     "state": "KS"
   },
   "66111": {
-    "city": "MUNCIE",
+    "city": "KANSAS CITY",
     "state": "KS"
   },
   "66112": {
-    "city": "WYANDOTTE WEST",
+    "city": "KANSAS CITY",
     "state": "KS"
   },
   "66113": {
@@ -91636,27 +91636,27 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "KS"
   },
   "66115": {
-    "city": "CIVIC CENTER",
+    "city": "KANSAS CITY",
     "state": "KS"
   },
   "66117": {
-    "city": "CIVIC CENTER",
+    "city": "KANSAS CITY",
     "state": "KS"
   },
   "66118": {
-    "city": "CIVIC CENTER",
+    "city": "KANSAS CITY",
     "state": "KS"
   },
   "66119": {
-    "city": "ROSEDALE",
+    "city": "KANSAS CITY",
     "state": "KS"
   },
   "66201": {
-    "city": "SHAWNEE MISSION KS S&DC",
+    "city": "MISSION",
     "state": "KS"
   },
   "66202": {
-    "city": "SHAWNEE MISSION KS S&DC",
+    "city": "MISSION",
     "state": "KS"
   },
   "66203": {
@@ -91668,15 +91668,15 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "KS"
   },
   "66205": {
-    "city": "SHAWNEE MISSION KS S&DC",
+    "city": "MISSION",
     "state": "KS"
   },
   "66206": {
-    "city": "INDIAN CREEK",
+    "city": "OVERLAND PARK",
     "state": "KS"
   },
   "66207": {
-    "city": "INDIAN CREEK",
+    "city": "OVERLAND PARK",
     "state": "KS"
   },
   "66208": {
@@ -91684,23 +91684,23 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "KS"
   },
   "66209": {
-    "city": "BLUE VALLEY",
+    "city": "OVERLAND PARK",
     "state": "KS"
   },
   "66210": {
-    "city": "BLUE VALLEY",
+    "city": "OVERLAND PARK",
     "state": "KS"
   },
   "66211": {
-    "city": "INDIAN CREEK",
+    "city": "OVERLAND PARK",
     "state": "KS"
   },
   "66212": {
-    "city": "BROOKRIDGE",
+    "city": "OVERLAND PARK",
     "state": "KS"
   },
   "66213": {
-    "city": "BLUE VALLEY",
+    "city": "OVERLAND PARK",
     "state": "KS"
   },
   "66214": {
@@ -91716,11 +91716,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "KS"
   },
   "66217": {
-    "city": "MONTICELLO",
+    "city": "SHAWNEE",
     "state": "KS"
   },
   "66218": {
-    "city": "MONTICELLO",
+    "city": "SHAWNEE",
     "state": "KS"
   },
   "66219": {
@@ -91728,43 +91728,43 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "KS"
   },
   "66220": {
-    "city": "MONTICELLO",
+    "city": "SHAWNEE",
     "state": "KS"
   },
   "66221": {
-    "city": "OXFORD CARRIER ANNEX",
+    "city": "OVERLAND PARK",
     "state": "KS"
   },
   "66222": {
-    "city": "SHAWNEE MISSION KS S&DC",
+    "city": "MISSION",
     "state": "KS"
   },
   "66223": {
-    "city": "OXFORD CARRIER ANNEX",
+    "city": "OVERLAND PARK",
     "state": "KS"
   },
   "66224": {
-    "city": "OXFORD CARRIER ANNEX",
+    "city": "OVERLAND PARK",
     "state": "KS"
   },
   "66225": {
-    "city": "BLUE VALLEY",
+    "city": "OVERLAND PARK",
     "state": "KS"
   },
   "66226": {
-    "city": "MONTICELLO",
+    "city": "SHAWNEE",
     "state": "KS"
   },
   "66227": {
-    "city": "MONTICELLO",
+    "city": "SHAWNEE",
     "state": "KS"
   },
   "66282": {
-    "city": "BROOKRIDGE",
+    "city": "OVERLAND PARK",
     "state": "KS"
   },
   "66283": {
-    "city": "STANLEY",
+    "city": "OVERLAND PARK",
     "state": "KS"
   },
   "66285": {
@@ -91772,7 +91772,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "KS"
   },
   "66286": {
-    "city": "MONTICELLO",
+    "city": "SHAWNEE",
     "state": "KS"
   },
   "66401": {
@@ -92096,83 +92096,83 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "KS"
   },
   "66603": {
-    "city": "TOPEKA KS S&DC",
+    "city": "TOPEKA",
     "state": "KS"
   },
   "66604": {
-    "city": "GAGE CENTER",
+    "city": "TOPEKA",
     "state": "KS"
   },
   "66605": {
-    "city": "HICREST",
+    "city": "TOPEKA",
     "state": "KS"
   },
   "66606": {
-    "city": "TOPEKA KS S&DC",
+    "city": "TOPEKA",
     "state": "KS"
   },
   "66607": {
-    "city": "TOPEKA KS S&DC",
+    "city": "TOPEKA",
     "state": "KS"
   },
   "66608": {
-    "city": "NORTH TOPEKA",
+    "city": "TOPEKA",
     "state": "KS"
   },
   "66609": {
-    "city": "HICREST",
+    "city": "TOPEKA",
     "state": "KS"
   },
   "66610": {
-    "city": "TOPEKA KS S&DC",
+    "city": "TOPEKA",
     "state": "KS"
   },
   "66611": {
-    "city": "HICREST",
+    "city": "TOPEKA",
     "state": "KS"
   },
   "66612": {
-    "city": "TOPEKA KS S&DC",
+    "city": "TOPEKA",
     "state": "KS"
   },
   "66614": {
-    "city": "TOPEKA KS S&DC",
+    "city": "TOPEKA",
     "state": "KS"
   },
   "66615": {
-    "city": "TOPEKA KS S&DC",
+    "city": "TOPEKA",
     "state": "KS"
   },
   "66616": {
-    "city": "TOPEKA KS S&DC",
+    "city": "TOPEKA",
     "state": "KS"
   },
   "66617": {
-    "city": "TOPEKA KS S&DC",
+    "city": "TOPEKA",
     "state": "KS"
   },
   "66618": {
-    "city": "TOPEKA KS S&DC",
+    "city": "TOPEKA",
     "state": "KS"
   },
   "66619": {
-    "city": "HICREST",
+    "city": "TOPEKA",
     "state": "KS"
   },
   "66647": {
-    "city": "FAIRLAWN PLAZA DPOBU",
+    "city": "TOPEKA",
     "state": "KS"
   },
   "66667": {
-    "city": "FAIRLAWN PLAZA DPOBU",
+    "city": "TOPEKA",
     "state": "KS"
   },
   "66675": {
-    "city": "TOPEKA KS S&DC",
+    "city": "TOPEKA",
     "state": "KS"
   },
   "66683": {
-    "city": "TOPEKA KS S&DC",
+    "city": "TOPEKA",
     "state": "KS"
   },
   "66701": {
@@ -92820,7 +92820,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "KS"
   },
   "67055": {
-    "city": "CORPORATE HILLS",
+    "city": "WICHITA",
     "state": "KS"
   },
   "67056": {
@@ -92944,7 +92944,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "KS"
   },
   "67118": {
-    "city": "CPU NORWICH",
+    "city": "NORWICH",
     "state": "KS"
   },
   "67119": {
@@ -93056,123 +93056,123 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "KS"
   },
   "67201": {
-    "city": "DOWNTOWN",
+    "city": "WICHITA",
     "state": "KS"
   },
   "67202": {
-    "city": "DOWNTOWN",
+    "city": "WICHITA",
     "state": "KS"
   },
   "67203": {
-    "city": "DOWNTOWN",
+    "city": "WICHITA",
     "state": "KS"
   },
   "67204": {
-    "city": "NORTH WICHITA",
+    "city": "WICHITA",
     "state": "KS"
   },
   "67205": {
-    "city": "DELANO",
+    "city": "WICHITA",
     "state": "KS"
   },
   "67206": {
-    "city": "CORPORATE HILLS",
+    "city": "WICHITA",
     "state": "KS"
   },
   "67207": {
-    "city": "CORPORATE HILLS",
+    "city": "WICHITA",
     "state": "KS"
   },
   "67208": {
-    "city": "MUNGER",
+    "city": "WICHITA",
     "state": "KS"
   },
   "67209": {
-    "city": "DELANO",
+    "city": "WICHITA",
     "state": "KS"
   },
   "67210": {
-    "city": "RIVER CITY",
+    "city": "WICHITA",
     "state": "KS"
   },
   "67211": {
-    "city": "RIVER CITY",
+    "city": "WICHITA",
     "state": "KS"
   },
   "67212": {
-    "city": "DELANO",
+    "city": "WICHITA",
     "state": "KS"
   },
   "67213": {
-    "city": "CHISHOLM",
+    "city": "WICHITA",
     "state": "KS"
   },
   "67214": {
-    "city": "DOWNTOWN",
+    "city": "WICHITA",
     "state": "KS"
   },
   "67215": {
-    "city": "DELANO",
+    "city": "WICHITA",
     "state": "KS"
   },
   "67216": {
-    "city": "RIVER CITY",
+    "city": "WICHITA",
     "state": "KS"
   },
   "67217": {
-    "city": "CHISHOLM",
+    "city": "WICHITA",
     "state": "KS"
   },
   "67218": {
-    "city": "MUNGER",
+    "city": "WICHITA",
     "state": "KS"
   },
   "67219": {
-    "city": "NORTH WICHITA",
+    "city": "WICHITA",
     "state": "KS"
   },
   "67220": {
-    "city": "MUNGER",
+    "city": "WICHITA",
     "state": "KS"
   },
   "67223": {
-    "city": "DELANO",
+    "city": "WICHITA",
     "state": "KS"
   },
   "67226": {
-    "city": "CORPORATE HILLS",
+    "city": "WICHITA",
     "state": "KS"
   },
   "67227": {
-    "city": "DELANO",
+    "city": "WICHITA",
     "state": "KS"
   },
   "67228": {
-    "city": "CORPORATE HILLS",
+    "city": "WICHITA",
     "state": "KS"
   },
   "67230": {
-    "city": "CORPORATE HILLS",
+    "city": "WICHITA",
     "state": "KS"
   },
   "67232": {
-    "city": "CORPORATE HILLS",
+    "city": "WICHITA",
     "state": "KS"
   },
   "67235": {
-    "city": "DELANO",
+    "city": "WICHITA",
     "state": "KS"
   },
   "67275": {
-    "city": "DELANO",
+    "city": "WICHITA",
     "state": "KS"
   },
   "67277": {
-    "city": "GMF RETAIL WINDOW",
+    "city": "WICHITA",
     "state": "KS"
   },
   "67278": {
-    "city": "CORPORATE HILLS",
+    "city": "WICHITA",
     "state": "KS"
   },
   "67301": {
@@ -94236,7 +94236,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NE"
   },
   "68010": {
-    "city": "BOYS TOWN",
+    "city": "OMAHA",
     "state": "NE"
   },
   "68014": {
@@ -94404,7 +94404,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NE"
   },
   "68068": {
-    "city": "NORTHWEST",
+    "city": "OMAHA",
     "state": "NE"
   },
   "68069": {
@@ -94428,51 +94428,51 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NE"
   },
   "68101": {
-    "city": "POSTAL EMPORIUM",
+    "city": "OMAHA",
     "state": "NE"
   },
   "68102": {
-    "city": "LEAVENWORTH",
+    "city": "OMAHA",
     "state": "NE"
   },
   "68103": {
-    "city": "MAIN OFFICE RETAIL",
+    "city": "OMAHA",
     "state": "NE"
   },
   "68104": {
-    "city": "BENSON",
+    "city": "OMAHA",
     "state": "NE"
   },
   "68105": {
-    "city": "ELMWOOD PARK",
+    "city": "OMAHA",
     "state": "NE"
   },
   "68106": {
-    "city": "ELMWOOD PARK",
+    "city": "OMAHA",
     "state": "NE"
   },
   "68107": {
-    "city": "SOUTH OMAHA",
+    "city": "OMAHA",
     "state": "NE"
   },
   "68108": {
-    "city": "LEAVENWORTH",
+    "city": "OMAHA",
     "state": "NE"
   },
   "68109": {
-    "city": "MAIN OFFICE RETAIL",
+    "city": "OMAHA",
     "state": "NE"
   },
   "68110": {
-    "city": "AMES AVENUE",
+    "city": "OMAHA",
     "state": "NE"
   },
   "68111": {
-    "city": "AMES AVENUE",
+    "city": "OMAHA",
     "state": "NE"
   },
   "68112": {
-    "city": "AMES AVENUE",
+    "city": "OMAHA",
     "state": "NE"
   },
   "68113": {
@@ -94480,23 +94480,23 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NE"
   },
   "68114": {
-    "city": "WEST OMAHA",
+    "city": "OMAHA",
     "state": "NE"
   },
   "68116": {
-    "city": "BOYSTOWN",
+    "city": "OMAHA",
     "state": "NE"
   },
   "68117": {
-    "city": "RALSTON",
+    "city": "OMAHA",
     "state": "NE"
   },
   "68118": {
-    "city": "BOYSTOWN",
+    "city": "OMAHA",
     "state": "NE"
   },
   "68122": {
-    "city": "NORTHWEST",
+    "city": "OMAHA",
     "state": "NE"
   },
   "68123": {
@@ -94504,11 +94504,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NE"
   },
   "68124": {
-    "city": "WEST OMAHA",
+    "city": "OMAHA",
     "state": "NE"
   },
   "68127": {
-    "city": "RALSTON",
+    "city": "OMAHA",
     "state": "NE"
   },
   "68128": {
@@ -94516,15 +94516,15 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NE"
   },
   "68130": {
-    "city": "BOYSTOWN",
+    "city": "OMAHA",
     "state": "NE"
   },
   "68131": {
-    "city": "SADDLE CREEK",
+    "city": "OMAHA",
     "state": "NE"
   },
   "68132": {
-    "city": "SADDLE CREEK",
+    "city": "OMAHA",
     "state": "NE"
   },
   "68133": {
@@ -94532,39 +94532,39 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NE"
   },
   "68134": {
-    "city": "NORTHWEST",
+    "city": "OMAHA",
     "state": "NE"
   },
   "68135": {
-    "city": "STONEYRIDGE",
+    "city": "OMAHA",
     "state": "NE"
   },
   "68136": {
-    "city": "STONEYRIDGE",
+    "city": "OMAHA",
     "state": "NE"
   },
   "68137": {
-    "city": "STONEYRIDGE",
+    "city": "OMAHA",
     "state": "NE"
   },
   "68138": {
-    "city": "STONEYRIDGE",
+    "city": "OMAHA",
     "state": "NE"
   },
   "68139": {
-    "city": "POSTAL IMPRESSIONS RETAIL",
+    "city": "OMAHA",
     "state": "NE"
   },
   "68142": {
-    "city": "NORTHWEST",
+    "city": "OMAHA",
     "state": "NE"
   },
   "68144": {
-    "city": "MILLARD HIGHLANDS",
+    "city": "OMAHA",
     "state": "NE"
   },
   "68145": {
-    "city": "MILLARD HIGHLANDS",
+    "city": "OMAHA",
     "state": "NE"
   },
   "68147": {
@@ -94572,19 +94572,19 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NE"
   },
   "68152": {
-    "city": "AMES AVENUE",
+    "city": "OMAHA",
     "state": "NE"
   },
   "68154": {
-    "city": "BOYS TOWN",
+    "city": "OMAHA",
     "state": "NE"
   },
   "68157": {
-    "city": "RALSTON",
+    "city": "OMAHA",
     "state": "NE"
   },
   "68164": {
-    "city": "NORTHWEST",
+    "city": "OMAHA",
     "state": "NE"
   },
   "68301": {
@@ -95064,7 +95064,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NE"
   },
   "68461": {
-    "city": "COLLEGE VIEW",
+    "city": "LINCOLN",
     "state": "NE"
   },
   "68462": {
@@ -95096,27 +95096,27 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NE"
   },
   "68502": {
-    "city": "INDIAN VILLAGE",
+    "city": "LINCOLN",
     "state": "NE"
   },
   "68503": {
-    "city": "GATEWAY",
+    "city": "LINCOLN",
     "state": "NE"
   },
   "68504": {
-    "city": "NORTHVIEW ANNEX",
+    "city": "LINCOLN",
     "state": "NE"
   },
   "68505": {
-    "city": "GATEWAY",
+    "city": "LINCOLN",
     "state": "NE"
   },
   "68506": {
-    "city": "COLLEGE VIEW",
+    "city": "LINCOLN",
     "state": "NE"
   },
   "68507": {
-    "city": "NORTHVIEW ANNEX",
+    "city": "LINCOLN",
     "state": "NE"
   },
   "68508": {
@@ -95124,7 +95124,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NE"
   },
   "68509": {
-    "city": "STATE HOUSE",
+    "city": "LINCOLN",
     "state": "NE"
   },
   "68510": {
@@ -95132,35 +95132,35 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NE"
   },
   "68512": {
-    "city": "INDIAN VILLAGE",
+    "city": "LINCOLN",
     "state": "NE"
   },
   "68514": {
-    "city": "NORTHVIEW ANNEX",
+    "city": "LINCOLN",
     "state": "NE"
   },
   "68516": {
-    "city": "CHENEY RIDGE ANNEX",
+    "city": "LINCOLN",
     "state": "NE"
   },
   "68517": {
-    "city": "NORTHVIEW ANNEX",
+    "city": "LINCOLN",
     "state": "NE"
   },
   "68520": {
-    "city": "COLLEGE VIEW",
+    "city": "LINCOLN",
     "state": "NE"
   },
   "68521": {
-    "city": "NORTHVIEW ANNEX",
+    "city": "LINCOLN",
     "state": "NE"
   },
   "68522": {
-    "city": "INDIAN VILLAGE",
+    "city": "LINCOLN",
     "state": "NE"
   },
   "68523": {
-    "city": "INDIAN VILLAGE",
+    "city": "LINCOLN",
     "state": "NE"
   },
   "68524": {
@@ -95168,11 +95168,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NE"
   },
   "68526": {
-    "city": "CHENEY RIDGE ANNEX",
+    "city": "LINCOLN",
     "state": "NE"
   },
   "68527": {
-    "city": "NORTHVIEW ANNEX",
+    "city": "LINCOLN",
     "state": "NE"
   },
   "68528": {
@@ -95180,11 +95180,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NE"
   },
   "68529": {
-    "city": "HAVELOCK",
+    "city": "LINCOLN",
     "state": "NE"
   },
   "68531": {
-    "city": "NORTHVIEW ANNEX",
+    "city": "LINCOLN",
     "state": "NE"
   },
   "68532": {
@@ -95192,7 +95192,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NE"
   },
   "68542": {
-    "city": "INDIAN VILLAGE",
+    "city": "LINCOLN",
     "state": "NE"
   },
   "68583": {
@@ -96612,7 +96612,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NE"
   },
   "70001": {
-    "city": "JOHNSON STREET",
+    "city": "METAIRIE",
     "state": "LA"
   },
   "70002": {
@@ -96620,11 +96620,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "LA"
   },
   "70003": {
-    "city": "PARK MANOR",
+    "city": "METAIRIE",
     "state": "LA"
   },
   "70004": {
-    "city": "JOHNSON STREET",
+    "city": "METAIRIE",
     "state": "LA"
   },
   "70005": {
@@ -96660,7 +96660,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "LA"
   },
   "70033": {
-    "city": "PARK MANOR FINANCE",
+    "city": "METAIRIE",
     "state": "LA"
   },
   "70036": {
@@ -96724,7 +96724,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "LA"
   },
   "70055": {
-    "city": "STATION A METAIRIE",
+    "city": "METAIRIE",
     "state": "LA"
   },
   "70056": {
@@ -96752,11 +96752,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "LA"
   },
   "70064": {
-    "city": "NORTH KENNER",
+    "city": "KENNER",
     "state": "LA"
   },
   "70065": {
-    "city": "NORTH KENNER",
+    "city": "KENNER",
     "state": "LA"
   },
   "70067": {
@@ -96848,187 +96848,187 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "LA"
   },
   "70096": {
-    "city": "BRIDGE CITY",
+    "city": "WESTWEGO",
     "state": "LA"
   },
   "70112": {
-    "city": "N O MAIN OFC WINDOW SVE",
+    "city": "NEW ORLEANS",
     "state": "LA"
   },
   "70113": {
-    "city": "N O MAIN OFC WINDOW SVE",
+    "city": "NEW ORLEANS",
     "state": "LA"
   },
   "70114": {
-    "city": "STATION A ALGIERS",
+    "city": "NEW ORLEANS",
     "state": "LA"
   },
   "70115": {
-    "city": "UPTOWN STATION",
+    "city": "NEW ORLEANS",
     "state": "LA"
   },
   "70116": {
-    "city": "BYWATER",
+    "city": "NEW ORLEANS",
     "state": "LA"
   },
   "70117": {
-    "city": "BYWATER",
+    "city": "NEW ORLEANS",
     "state": "LA"
   },
   "70118": {
-    "city": "CARROLLTON",
+    "city": "NEW ORLEANS",
     "state": "LA"
   },
   "70119": {
-    "city": "CENTRAL CARRIER STATION",
+    "city": "NEW ORLEANS",
     "state": "LA"
   },
   "70121": {
-    "city": "ELMWOOD",
+    "city": "NEW ORLEANS",
     "state": "LA"
   },
   "70122": {
-    "city": "CENTRAL CARRIER STATION",
+    "city": "NEW ORLEANS",
     "state": "LA"
   },
   "70123": {
-    "city": "ELMWOOD",
+    "city": "NEW ORLEANS",
     "state": "LA"
   },
   "70124": {
-    "city": "CENTRAL CARRIER STATION",
+    "city": "NEW ORLEANS",
     "state": "LA"
   },
   "70125": {
-    "city": "CARROLLTON",
+    "city": "NEW ORLEANS",
     "state": "LA"
   },
   "70126": {
-    "city": "LAKE FOREST STATION",
+    "city": "NEW ORLEANS",
     "state": "LA"
   },
   "70127": {
-    "city": "LAKE FOREST STATION",
+    "city": "NEW ORLEANS",
     "state": "LA"
   },
   "70128": {
-    "city": "LAKE FOREST STATION",
+    "city": "NEW ORLEANS",
     "state": "LA"
   },
   "70129": {
-    "city": "LAKE FOREST STATION",
+    "city": "NEW ORLEANS",
     "state": "LA"
   },
   "70130": {
-    "city": "N O MAIN OFC WINDOW SVE",
+    "city": "NEW ORLEANS",
     "state": "LA"
   },
   "70131": {
-    "city": "STATION A ALGIERS",
+    "city": "NEW ORLEANS",
     "state": "LA"
   },
   "70141": {
-    "city": "ELMWOOD",
+    "city": "NEW ORLEANS",
     "state": "LA"
   },
   "70150": {
-    "city": "N O MAIN OFC WINDOW SVE",
+    "city": "NEW ORLEANS",
     "state": "LA"
   },
   "70151": {
-    "city": "N O MAIN OFC WINDOW SVE",
+    "city": "NEW ORLEANS",
     "state": "LA"
   },
   "70152": {
-    "city": "N O MAIN OFC WINDOW SVE",
+    "city": "NEW ORLEANS",
     "state": "LA"
   },
   "70153": {
-    "city": "N O MAIN OFC WINDOW SVE",
+    "city": "NEW ORLEANS",
     "state": "LA"
   },
   "70156": {
-    "city": "N O MAIN OFC WINDOW SVE",
+    "city": "NEW ORLEANS",
     "state": "LA"
   },
   "70157": {
-    "city": "N O MAIN OFC WINDOW SVE",
+    "city": "NEW ORLEANS",
     "state": "LA"
   },
   "70158": {
-    "city": "N O MAIN OFC WINDOW SVE",
+    "city": "NEW ORLEANS",
     "state": "LA"
   },
   "70160": {
-    "city": "N O MAIN OFC WINDOW SVE",
+    "city": "NEW ORLEANS",
     "state": "LA"
   },
   "70161": {
-    "city": "N O MAIN OFC WINDOW SVE",
+    "city": "NEW ORLEANS",
     "state": "LA"
   },
   "70172": {
-    "city": "N O MAIN OFC WINDOW SVE",
+    "city": "NEW ORLEANS",
     "state": "LA"
   },
   "70174": {
-    "city": "STATION A ALGIERS",
+    "city": "NEW ORLEANS",
     "state": "LA"
   },
   "70175": {
-    "city": "UPTOWN STATION",
+    "city": "NEW ORLEANS",
     "state": "LA"
   },
   "70176": {
-    "city": "N O MAIN OFC WINDOW SVE",
+    "city": "NEW ORLEANS",
     "state": "LA"
   },
   "70177": {
-    "city": "BYWATER",
+    "city": "NEW ORLEANS",
     "state": "LA"
   },
   "70178": {
-    "city": "CARROLLTON",
+    "city": "NEW ORLEANS",
     "state": "LA"
   },
   "70179": {
-    "city": "MID CITY FINANCE",
+    "city": "NEW ORLEANS",
     "state": "LA"
   },
   "70181": {
-    "city": "ELMWOOD",
+    "city": "NEW ORLEANS",
     "state": "LA"
   },
   "70182": {
-    "city": "GENTILLY FINANCE",
+    "city": "NEW ORLEANS",
     "state": "LA"
   },
   "70183": {
-    "city": "ELMWOOD",
+    "city": "NEW ORLEANS",
     "state": "LA"
   },
   "70184": {
-    "city": "LAKEVIEW",
+    "city": "NEW ORLEANS",
     "state": "LA"
   },
   "70185": {
-    "city": "CARROLLTON",
+    "city": "NEW ORLEANS",
     "state": "LA"
   },
   "70186": {
-    "city": "CHEF MENTEUR",
+    "city": "NEW ORLEANS",
     "state": "LA"
   },
   "70187": {
-    "city": "LAKE FOREST STATION",
+    "city": "NEW ORLEANS",
     "state": "LA"
   },
   "70189": {
-    "city": "LAKE FOREST STATION",
+    "city": "NEW ORLEANS",
     "state": "LA"
   },
   "70190": {
-    "city": "N O MAIN OFC WINDOW SVE",
+    "city": "NEW ORLEANS",
     "state": "LA"
   },
   "70301": {
@@ -97136,7 +97136,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "LA"
   },
   "70381": {
-    "city": "DOWNTOWN MORGAN CITY",
+    "city": "MORGAN CITY",
     "state": "LA"
   },
   "70390": {
@@ -97304,7 +97304,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "LA"
   },
   "70460": {
-    "city": "WEST SLIDELL",
+    "city": "SLIDELL",
     "state": "LA"
   },
   "70461": {
@@ -97336,7 +97336,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "LA"
   },
   "70469": {
-    "city": "WEST SLIDELL",
+    "city": "SLIDELL",
     "state": "LA"
   },
   "70470": {
@@ -97352,19 +97352,19 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "LA"
   },
   "70502": {
-    "city": "JEFFERSON",
+    "city": "LAFAYETTE",
     "state": "LA"
   },
   "70503": {
-    "city": "BERTRAND",
+    "city": "LAFAYETTE",
     "state": "LA"
   },
   "70505": {
-    "city": "OIL CENTER",
+    "city": "LAFAYETTE",
     "state": "LA"
   },
   "70506": {
-    "city": "BERTRAND",
+    "city": "LAFAYETTE",
     "state": "LA"
   },
   "70507": {
@@ -97372,7 +97372,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "LA"
   },
   "70508": {
-    "city": "ENERGY CENTER",
+    "city": "LAFAYETTE",
     "state": "LA"
   },
   "70509": {
@@ -97632,51 +97632,51 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "LA"
   },
   "70596": {
-    "city": "BERTRAND",
+    "city": "LAFAYETTE",
     "state": "LA"
   },
   "70598": {
-    "city": "ENERGY CENTER",
+    "city": "LAFAYETTE",
     "state": "LA"
   },
   "70601": {
-    "city": "LAKE CHARLES LA S&DC",
+    "city": "LAKE CHARLES",
     "state": "LA"
   },
   "70602": {
-    "city": "LAKE CHARLES LA S&DC",
+    "city": "LAKE CHARLES",
     "state": "LA"
   },
   "70605": {
-    "city": "DREW",
+    "city": "LAKE CHARLES",
     "state": "LA"
   },
   "70606": {
-    "city": "DREW",
+    "city": "LAKE CHARLES",
     "state": "LA"
   },
   "70607": {
-    "city": "DREW",
+    "city": "LAKE CHARLES",
     "state": "LA"
   },
   "70611": {
-    "city": "MOSS BLUFF",
+    "city": "LAKE CHARLES",
     "state": "LA"
   },
   "70612": {
-    "city": "MOSS BLUFF",
+    "city": "LAKE CHARLES",
     "state": "LA"
   },
   "70615": {
-    "city": "LAKE CHARLES LA S&DC",
+    "city": "LAKE CHARLES",
     "state": "LA"
   },
   "70616": {
-    "city": "EASTSIDE",
+    "city": "LAKE CHARLES",
     "state": "LA"
   },
   "70629": {
-    "city": "LAKE CHARLES LA S&DC",
+    "city": "LAKE CHARLES",
     "state": "LA"
   },
   "70630": {
@@ -97808,7 +97808,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "LA"
   },
   "70669": {
-    "city": "LAKE CHARLES LA S&DC",
+    "city": "LAKE CHARLES",
     "state": "LA"
   },
   "70704": {
@@ -98072,131 +98072,131 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "LA"
   },
   "70801": {
-    "city": "BATON ROUGE CARRIER SECTION",
+    "city": "BATON ROUGE",
     "state": "LA"
   },
   "70802": {
-    "city": "BATON ROUGE CARRIER SECTION",
+    "city": "BATON ROUGE",
     "state": "LA"
   },
   "70804": {
-    "city": "CAPITOL",
+    "city": "BATON ROUGE",
     "state": "LA"
   },
   "70805": {
-    "city": "ISTROUMA",
+    "city": "BATON ROUGE",
     "state": "LA"
   },
   "70806": {
-    "city": "AUDUBON",
+    "city": "BATON ROUGE",
     "state": "LA"
   },
   "70807": {
-    "city": "SCOTLANDVILLE",
+    "city": "BATON ROUGE",
     "state": "LA"
   },
   "70808": {
-    "city": "SOUTHEAST",
+    "city": "BATON ROUGE",
     "state": "LA"
   },
   "70809": {
-    "city": "COMMERCE PARK ANNEX",
+    "city": "BATON ROUGE",
     "state": "LA"
   },
   "70810": {
-    "city": "COMMERCE PARK",
+    "city": "BATON ROUGE",
     "state": "LA"
   },
   "70811": {
-    "city": "SCOTLANDVILLE",
+    "city": "BATON ROUGE",
     "state": "LA"
   },
   "70812": {
-    "city": "ISTROUMA",
+    "city": "BATON ROUGE",
     "state": "LA"
   },
   "70814": {
-    "city": "OLD HAMMOND",
+    "city": "BATON ROUGE",
     "state": "LA"
   },
   "70815": {
-    "city": "OLD HAMMOND",
+    "city": "BATON ROUGE",
     "state": "LA"
   },
   "70816": {
-    "city": "WOODLAWN",
+    "city": "BATON ROUGE",
     "state": "LA"
   },
   "70817": {
-    "city": "WOODLAWN",
+    "city": "BATON ROUGE",
     "state": "LA"
   },
   "70818": {
-    "city": "SCOTLANDVILLE",
+    "city": "BATON ROUGE",
     "state": "LA"
   },
   "70819": {
-    "city": "OLD HAMMOND",
+    "city": "BATON ROUGE",
     "state": "LA"
   },
   "70820": {
-    "city": "SOUTHEAST",
+    "city": "BATON ROUGE",
     "state": "LA"
   },
   "70821": {
-    "city": "MAIN OFFICE DOWNTOWN UNIT",
+    "city": "BATON ROUGE",
     "state": "LA"
   },
   "70826": {
-    "city": "GMF PASSPORT OFFICE",
+    "city": "BATON ROUGE",
     "state": "LA"
   },
   "70827": {
-    "city": "WOODLAWN",
+    "city": "BATON ROUGE",
     "state": "LA"
   },
   "70831": {
-    "city": "BROADVIEW",
+    "city": "BATON ROUGE",
     "state": "LA"
   },
   "70835": {
-    "city": "OLD HAMMOND",
+    "city": "BATON ROUGE",
     "state": "LA"
   },
   "70836": {
-    "city": "COMMERCE PARK",
+    "city": "BATON ROUGE",
     "state": "LA"
   },
   "70837": {
-    "city": "CENTRAL",
+    "city": "BATON ROUGE",
     "state": "LA"
   },
   "70874": {
-    "city": "SCOTLANDVILLE",
+    "city": "BATON ROUGE",
     "state": "LA"
   },
   "70879": {
-    "city": "WOODLAWN",
+    "city": "BATON ROUGE",
     "state": "LA"
   },
   "70884": {
-    "city": "COMMERCE PARK",
+    "city": "BATON ROUGE",
     "state": "LA"
   },
   "70892": {
-    "city": "ISTROUMA",
+    "city": "BATON ROUGE",
     "state": "LA"
   },
   "70895": {
-    "city": "BROADVIEW",
+    "city": "BATON ROUGE",
     "state": "LA"
   },
   "70896": {
-    "city": "AUDUBON",
+    "city": "BATON ROUGE",
     "state": "LA"
   },
   "70898": {
-    "city": "SOUTHEAST",
+    "city": "BATON ROUGE",
     "state": "LA"
   },
   "71001": {
@@ -98424,39 +98424,39 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "LA"
   },
   "71101": {
-    "city": "HUNTINGTON STATION",
+    "city": "SHREVEPORT",
     "state": "LA"
   },
   "71103": {
-    "city": "HUNTINGTON STATION",
+    "city": "SHREVEPORT",
     "state": "LA"
   },
   "71104": {
-    "city": "SOUTHFIELD",
+    "city": "SHREVEPORT",
     "state": "LA"
   },
   "71105": {
-    "city": "SOUTHFIELD",
+    "city": "SHREVEPORT",
     "state": "LA"
   },
   "71106": {
-    "city": "LYNBROOK",
+    "city": "SHREVEPORT",
     "state": "LA"
   },
   "71107": {
-    "city": "INDUSTRIAL",
+    "city": "SHREVEPORT",
     "state": "LA"
   },
   "71108": {
-    "city": "MERIWETHER",
+    "city": "SHREVEPORT",
     "state": "LA"
   },
   "71109": {
-    "city": "HUNTINGTON STATION",
+    "city": "SHREVEPORT",
     "state": "LA"
   },
   "71110": {
-    "city": "PLANTATION STATION",
+    "city": "BOSSIER CITY",
     "state": "LA"
   },
   "71111": {
@@ -98464,91 +98464,91 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "LA"
   },
   "71112": {
-    "city": "PLANTATION STATION",
+    "city": "BOSSIER CITY",
     "state": "LA"
   },
   "71113": {
-    "city": "PLANTATION STATION",
+    "city": "BOSSIER CITY",
     "state": "LA"
   },
   "71115": {
-    "city": "SOUTHFIELD",
+    "city": "SHREVEPORT",
     "state": "LA"
   },
   "71118": {
-    "city": "MERIWETHER",
+    "city": "SHREVEPORT",
     "state": "LA"
   },
   "71119": {
-    "city": "HUNTINGTON STATION",
+    "city": "SHREVEPORT",
     "state": "LA"
   },
   "71120": {
-    "city": "DOWNTOWN SHREVEPORT",
+    "city": "SHREVEPORT",
     "state": "LA"
   },
   "71129": {
-    "city": "HUNTINGTON STATION",
+    "city": "SHREVEPORT",
     "state": "LA"
   },
   "71130": {
-    "city": "SHREVEPORT MAIN OFFICE",
+    "city": "SHREVEPORT",
     "state": "LA"
   },
   "71133": {
-    "city": "SHREVEPORT MAIN OFFICE",
+    "city": "SHREVEPORT",
     "state": "LA"
   },
   "71134": {
-    "city": "CENTENARY",
+    "city": "SHREVEPORT",
     "state": "LA"
   },
   "71135": {
-    "city": "SOUTHFIELD",
+    "city": "SHREVEPORT",
     "state": "LA"
   },
   "71136": {
-    "city": "LYNBROOK",
+    "city": "SHREVEPORT",
     "state": "LA"
   },
   "71137": {
-    "city": "INDUSTRIAL",
+    "city": "SHREVEPORT",
     "state": "LA"
   },
   "71138": {
-    "city": "MERIWETHER",
+    "city": "SHREVEPORT",
     "state": "LA"
   },
   "71148": {
-    "city": "MERIWETHER",
+    "city": "SHREVEPORT",
     "state": "LA"
   },
   "71149": {
-    "city": "HUNTINGTON STATION",
+    "city": "SHREVEPORT",
     "state": "LA"
   },
   "71161": {
-    "city": "DOWNTOWN SHREVEPORT",
+    "city": "SHREVEPORT",
     "state": "LA"
   },
   "71162": {
-    "city": "DOWNTOWN SHREVEPORT",
+    "city": "SHREVEPORT",
     "state": "LA"
   },
   "71163": {
-    "city": "DOWNTOWN SHREVEPORT",
+    "city": "SHREVEPORT",
     "state": "LA"
   },
   "71164": {
-    "city": "DOWNTOWN SHREVEPORT",
+    "city": "SHREVEPORT",
     "state": "LA"
   },
   "71165": {
-    "city": "DOWNTOWN SHREVEPORT",
+    "city": "SHREVEPORT",
     "state": "LA"
   },
   "71166": {
-    "city": "DOWNTOWN SHREVEPORT",
+    "city": "SHREVEPORT",
     "state": "LA"
   },
   "71171": {
@@ -98560,7 +98560,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "LA"
   },
   "71201": {
-    "city": "NORTHSIDE STATION",
+    "city": "MONROE",
     "state": "LA"
   },
   "71202": {
@@ -98572,11 +98572,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "LA"
   },
   "71207": {
-    "city": "NORTHSIDE STATION",
+    "city": "MONROE",
     "state": "LA"
   },
   "71210": {
-    "city": "DOWNTOWN MONROE",
+    "city": "MONROE",
     "state": "LA"
   },
   "71211": {
@@ -98812,7 +98812,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "LA"
   },
   "71307": {
-    "city": "SOUTH PARK STATION",
+    "city": "ALEXANDRIA",
     "state": "LA"
   },
   "71309": {
@@ -98820,7 +98820,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "LA"
   },
   "71315": {
-    "city": "WESTSIDE STATION",
+    "city": "ALEXANDRIA",
     "state": "LA"
   },
   "71316": {
@@ -99164,7 +99164,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "LA"
   },
   "71457": {
-    "city": "EAST NATCHITOCHES",
+    "city": "NATCHITOCHES",
     "state": "LA"
   },
   "71458": {
@@ -99280,7 +99280,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "AR"
   },
   "71613": {
-    "city": "OAK PARK",
+    "city": "PINE BLUFF",
     "state": "AR"
   },
   "71630": {
@@ -99348,7 +99348,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "AR"
   },
   "71656": {
-    "city": "UNIV OF ARK AT MONTICELLO",
+    "city": "MONTICELLO",
     "state": "AR"
   },
   "71657": {
@@ -99384,7 +99384,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "AR"
   },
   "71666": {
-    "city": "ROHWER",
+    "city": "TILLAR",
     "state": "AR"
   },
   "71667": {
@@ -99460,7 +99460,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "AR"
   },
   "71731": {
-    "city": "DOWNTOWN EL DORADO",
+    "city": "EL DORADO",
     "state": "AR"
   },
   "71740": {
@@ -99660,7 +99660,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "AR"
   },
   "71854": {
-    "city": "TEXARKANA TX SDC",
+    "city": "TEXARKANA",
     "state": "TX"
   },
   "71855": {
@@ -99708,7 +99708,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "AR"
   },
   "71902": {
-    "city": "HOT SPRINGS PARK",
+    "city": "HOT SPRINGS NATIONAL PARK",
     "state": "AR"
   },
   "71903": {
@@ -99724,11 +99724,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "AR"
   },
   "71913": {
-    "city": "HOT SPRINGS ALBERT PIKE STA",
+    "city": "HOT SPRINGS NATIONAL PARK",
     "state": "AR"
   },
   "71914": {
-    "city": "HOT SPRINGS ALBERT PIKE STA",
+    "city": "HOT SPRINGS NATIONAL PARK",
     "state": "AR"
   },
   "71921": {
@@ -99984,7 +99984,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "AR"
   },
   "72033": {
-    "city": "DOWNTOWN CONWAY",
+    "city": "CONWAY",
     "state": "AR"
   },
   "72034": {
@@ -100132,7 +100132,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "AR"
   },
   "72078": {
-    "city": "GRAVEL RIDGE",
+    "city": "JACKSONVILLE",
     "state": "AR"
   },
   "72079": {
@@ -100172,7 +100172,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "AR"
   },
   "72088": {
-    "city": "CPU FAIRFIELD BAY",
+    "city": "FAIRFIELD BAY",
     "state": "AR"
   },
   "72089": {
@@ -100232,11 +100232,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "AR"
   },
   "72116": {
-    "city": "PARKHILL",
+    "city": "NORTH LITTLE ROCK",
     "state": "AR"
   },
   "72117": {
-    "city": "ROSE CITY",
+    "city": "NORTH LITTLE ROCK",
     "state": "AR"
   },
   "72118": {
@@ -100336,7 +100336,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "AR"
   },
   "72143": {
-    "city": "SEARCY CARRIER ANNEX",
+    "city": "SEARCY",
     "state": "AR"
   },
   "72145": {
@@ -100432,7 +100432,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "AR"
   },
   "72190": {
-    "city": "PARKHILL",
+    "city": "NORTH LITTLE ROCK",
     "state": "AR"
   },
   "72201": {
@@ -100448,83 +100448,83 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "AR"
   },
   "72204": {
-    "city": "ASHER",
+    "city": "LITTLE ROCK",
     "state": "AR"
   },
   "72205": {
-    "city": "BRADY ANNEX",
+    "city": "LITTLE ROCK",
     "state": "AR"
   },
   "72206": {
-    "city": "SOUTHSIDE",
+    "city": "LITTLE ROCK",
     "state": "AR"
   },
   "72207": {
-    "city": "FOREST PARK",
+    "city": "LITTLE ROCK",
     "state": "AR"
   },
   "72209": {
-    "city": "INDUSTRIAL",
+    "city": "LITTLE ROCK",
     "state": "AR"
   },
   "72210": {
-    "city": "ASHER",
+    "city": "LITTLE ROCK",
     "state": "AR"
   },
   "72211": {
-    "city": "WESTSIDE",
+    "city": "LITTLE ROCK",
     "state": "AR"
   },
   "72212": {
-    "city": "WESTSIDE",
+    "city": "LITTLE ROCK",
     "state": "AR"
   },
   "72214": {
-    "city": "ASHER",
+    "city": "LITTLE ROCK",
     "state": "AR"
   },
   "72215": {
-    "city": "BRADY",
+    "city": "LITTLE ROCK",
     "state": "AR"
   },
   "72216": {
-    "city": "SOUTHSIDE",
+    "city": "LITTLE ROCK",
     "state": "AR"
   },
   "72217": {
-    "city": "FOREST PARK",
+    "city": "LITTLE ROCK",
     "state": "AR"
   },
   "72219": {
-    "city": "INDUSTRIAL",
+    "city": "LITTLE ROCK",
     "state": "AR"
   },
   "72221": {
-    "city": "WESTSIDE",
+    "city": "LITTLE ROCK",
     "state": "AR"
   },
   "72222": {
-    "city": "WESTSIDE",
+    "city": "LITTLE ROCK",
     "state": "AR"
   },
   "72223": {
-    "city": "CHENAL",
+    "city": "LITTLE ROCK",
     "state": "AR"
   },
   "72225": {
-    "city": "HILLCREST",
+    "city": "LITTLE ROCK",
     "state": "AR"
   },
   "72227": {
-    "city": "WESTSIDE",
+    "city": "LITTLE ROCK",
     "state": "AR"
   },
   "72231": {
-    "city": "GMF BOX SECTION",
+    "city": "LITTLE ROCK",
     "state": "AR"
   },
   "72260": {
-    "city": "OTTER CREEK",
+    "city": "LITTLE ROCK",
     "state": "AR"
   },
   "72301": {
@@ -100560,7 +100560,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "AR"
   },
   "72319": {
-    "city": "CPU GOSNELL",
+    "city": "BLYTHEVILLE",
     "state": "AR"
   },
   "72320": {
@@ -100784,23 +100784,23 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "AR"
   },
   "72401": {
-    "city": "DOWNTOWN JONESBORO",
+    "city": "JONESBORO",
     "state": "AR"
   },
   "72402": {
-    "city": "NETTLETON",
+    "city": "JONESBORO",
     "state": "AR"
   },
   "72403": {
-    "city": "CARAWAY JONESBORO",
+    "city": "JONESBORO",
     "state": "AR"
   },
   "72404": {
-    "city": "JONESBORO AR SDC",
+    "city": "JONESBORO",
     "state": "AR"
   },
   "72405": {
-    "city": "JONESBORO AR SDC",
+    "city": "JONESBORO",
     "state": "AR"
   },
   "72410": {
@@ -100900,7 +100900,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "AR"
   },
   "72437": {
-    "city": "JONESBORO AR SDC",
+    "city": "JONESBORO",
     "state": "AR"
   },
   "72438": {
@@ -101076,7 +101076,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "AR"
   },
   "72520": {
-    "city": "CAMP DPOBU",
+    "city": "CAMP",
     "state": "AR"
   },
   "72521": {
@@ -101096,7 +101096,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "AR"
   },
   "72525": {
-    "city": "CPU CHEROKEE VILLAGE",
+    "city": "CHEROKEE VILLAGE",
     "state": "AR"
   },
   "72526": {
@@ -101332,7 +101332,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "AR"
   },
   "72630": {
-    "city": "DIAMOND CITY DETACHED BOX",
+    "city": "LEAD HILL",
     "state": "AR"
   },
   "72631": {
@@ -101500,7 +101500,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "AR"
   },
   "72703": {
-    "city": "CB CRAFT",
+    "city": "FAYETTEVILLE",
     "state": "AR"
   },
   "72704": {
@@ -101524,7 +101524,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "AR"
   },
   "72715": {
-    "city": "THE HIGHLANDS",
+    "city": "BELLA VISTA",
     "state": "AR"
   },
   "72717": {
@@ -101600,7 +101600,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "AR"
   },
   "72741": {
-    "city": "CB CRAFT",
+    "city": "FAYETTEVILLE",
     "state": "AR"
   },
   "72742": {
@@ -101664,7 +101664,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "AR"
   },
   "72765": {
-    "city": "SPRINGDALE STATION",
+    "city": "SPRINGDALE",
     "state": "AR"
   },
   "72766": {
@@ -101700,7 +101700,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "AR"
   },
   "72802": {
-    "city": "NORTH RUSSELLVILLE",
+    "city": "RUSSELLVILLE",
     "state": "AR"
   },
   "72811": {
@@ -101708,7 +101708,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "AR"
   },
   "72812": {
-    "city": "NORTH RUSSELLVILLE",
+    "city": "RUSSELLVILLE",
     "state": "AR"
   },
   "72820": {
@@ -101848,47 +101848,47 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "AR"
   },
   "72901": {
-    "city": "DOWNTOWN FORT SMITH",
+    "city": "FORT SMITH",
     "state": "AR"
   },
   "72902": {
-    "city": "DOWNTOWN FORT SMITH",
+    "city": "FORT SMITH",
     "state": "AR"
   },
   "72903": {
-    "city": "GMF FORT SMITH",
+    "city": "FORT SMITH",
     "state": "AR"
   },
   "72904": {
-    "city": "MIDLAND FORT SMITH",
+    "city": "FORT SMITH",
     "state": "AR"
   },
   "72906": {
-    "city": "FIANNA HILLS",
+    "city": "FORT SMITH",
     "state": "AR"
   },
   "72908": {
-    "city": "FIANNA HILLS",
+    "city": "FORT SMITH",
     "state": "AR"
   },
   "72913": {
-    "city": "GMF FORT SMITH",
+    "city": "FORT SMITH",
     "state": "AR"
   },
   "72914": {
-    "city": "MIDLAND FORT SMITH",
+    "city": "FORT SMITH",
     "state": "AR"
   },
   "72916": {
-    "city": "DOWNTOWN FORT SMITH",
+    "city": "FORT SMITH",
     "state": "AR"
   },
   "72917": {
-    "city": "GMF FORT SMITH",
+    "city": "FORT SMITH",
     "state": "AR"
   },
   "72918": {
-    "city": "FIANNA HILLS",
+    "city": "FORT SMITH",
     "state": "AR"
   },
   "72921": {
@@ -102000,7 +102000,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "AR"
   },
   "72957": {
-    "city": "DOWNTOWN VAN BUREN",
+    "city": "VAN BUREN",
     "state": "AR"
   },
   "72958": {
@@ -102020,7 +102020,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "OK"
   },
   "73003": {
-    "city": "COFFEE CREEK",
+    "city": "EDMOND",
     "state": "OK"
   },
   "73004": {
@@ -102056,11 +102056,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "OK"
   },
   "73012": {
-    "city": "COFFEE CREEK",
+    "city": "EDMOND",
     "state": "OK"
   },
   "73013": {
-    "city": "CENTENNIAL STATION",
+    "city": "EDMOND",
     "state": "OK"
   },
   "73014": {
@@ -102104,7 +102104,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "OK"
   },
   "73025": {
-    "city": "COFFEE CREEK",
+    "city": "EDMOND",
     "state": "OK"
   },
   "73026": {
@@ -102264,7 +102264,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "OK"
   },
   "73070": {
-    "city": "CPU OU UNION  #485",
+    "city": "NORMAN",
     "state": "OK"
   },
   "73071": {
@@ -102272,7 +102272,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "OK"
   },
   "73072": {
-    "city": "SOONER",
+    "city": "NORMAN",
     "state": "OK"
   },
   "73073": {
@@ -102308,7 +102308,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "OK"
   },
   "73083": {
-    "city": "CENTENNIAL STATION",
+    "city": "EDMOND",
     "state": "OK"
   },
   "73084": {
@@ -102360,95 +102360,95 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "OK"
   },
   "73101": {
-    "city": "CENTER CITY",
+    "city": "OKLAHOMA CITY",
     "state": "OK"
   },
   "73102": {
-    "city": "CENTER CITY",
+    "city": "OKLAHOMA CITY",
     "state": "OK"
   },
   "73103": {
-    "city": "CENTER CITY",
+    "city": "OKLAHOMA CITY",
     "state": "OK"
   },
   "73104": {
-    "city": "MARTIN LUTHER KING JR",
+    "city": "OKLAHOMA CITY",
     "state": "OK"
   },
   "73105": {
-    "city": "MARTIN LUTHER KING JR",
+    "city": "OKLAHOMA CITY",
     "state": "OK"
   },
   "73106": {
-    "city": "CENTER CITY",
+    "city": "OKLAHOMA CITY",
     "state": "OK"
   },
   "73107": {
-    "city": "WESTSIDE",
+    "city": "OKLAHOMA CITY",
     "state": "OK"
   },
   "73108": {
-    "city": "WESTSIDE",
+    "city": "OKLAHOMA CITY",
     "state": "OK"
   },
   "73109": {
-    "city": "SOUTHEAST OKLAHOMA CITY",
+    "city": "OKLAHOMA CITY",
     "state": "OK"
   },
   "73110": {
-    "city": "MIDWEST CITY",
+    "city": "OKLAHOMA CITY",
     "state": "OK"
   },
   "73111": {
-    "city": "MARTIN LUTHER KING JR",
+    "city": "OKLAHOMA CITY",
     "state": "OK"
   },
   "73112": {
-    "city": "THIRTY NINTH STREET",
+    "city": "OKLAHOMA CITY",
     "state": "OK"
   },
   "73113": {
-    "city": "BRITTON",
+    "city": "OKLAHOMA CITY",
     "state": "OK"
   },
   "73114": {
-    "city": "BRITTON",
+    "city": "OKLAHOMA CITY",
     "state": "OK"
   },
   "73115": {
-    "city": "SOUTHEAST OKLAHOMA CITY",
+    "city": "OKLAHOMA CITY",
     "state": "OK"
   },
   "73116": {
-    "city": "BRITTON",
+    "city": "OKLAHOMA CITY",
     "state": "OK"
   },
   "73117": {
-    "city": "MARTIN LUTHER KING JR",
+    "city": "OKLAHOMA CITY",
     "state": "OK"
   },
   "73118": {
-    "city": "SHARTEL",
+    "city": "OKLAHOMA CITY",
     "state": "OK"
   },
   "73119": {
-    "city": "OKC AMF RETAIL",
+    "city": "OKLAHOMA CITY",
     "state": "OK"
   },
   "73120": {
-    "city": "VILLAGE",
+    "city": "OKLAHOMA CITY",
     "state": "OK"
   },
   "73121": {
-    "city": "MARTIN LUTHER KING JR",
+    "city": "OKLAHOMA CITY",
     "state": "OK"
   },
   "73122": {
-    "city": "WARR ACRES",
+    "city": "OKLAHOMA CITY",
     "state": "OK"
   },
   "73123": {
-    "city": "WARR ACRES",
+    "city": "OKLAHOMA CITY",
     "state": "OK"
   },
   "73124": {
@@ -102464,99 +102464,99 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "OK"
   },
   "73127": {
-    "city": "WESTSIDE",
+    "city": "OKLAHOMA CITY",
     "state": "OK"
   },
   "73128": {
-    "city": "WESTSIDE",
+    "city": "OKLAHOMA CITY",
     "state": "OK"
   },
   "73129": {
-    "city": "SOUTHEAST OKLAHOMA CITY",
+    "city": "OKLAHOMA CITY",
     "state": "OK"
   },
   "73130": {
-    "city": "MIDWEST CITY",
+    "city": "OKLAHOMA CITY",
     "state": "OK"
   },
   "73131": {
-    "city": "BRITTON",
+    "city": "OKLAHOMA CITY",
     "state": "OK"
   },
   "73132": {
-    "city": "WARR ACRES",
+    "city": "OKLAHOMA CITY",
     "state": "OK"
   },
   "73134": {
-    "city": "VILLAGE",
+    "city": "OKLAHOMA CITY",
     "state": "OK"
   },
   "73135": {
-    "city": "SOUTHEAST OKLAHOMA CITY",
+    "city": "OKLAHOMA CITY",
     "state": "OK"
   },
   "73136": {
-    "city": "MARTIN LUTHER KING JR",
+    "city": "OKLAHOMA CITY",
     "state": "OK"
   },
   "73137": {
-    "city": "RENO MERIDIAN",
+    "city": "OKLAHOMA CITY",
     "state": "OK"
   },
   "73139": {
-    "city": "PENN 89",
+    "city": "OKLAHOMA CITY",
     "state": "OK"
   },
   "73140": {
-    "city": "MIDWEST CITY",
+    "city": "OKLAHOMA CITY",
     "state": "OK"
   },
   "73141": {
-    "city": "MARTIN LUTHER KING JR",
+    "city": "OKLAHOMA CITY",
     "state": "OK"
   },
   "73142": {
-    "city": "HEFNER",
+    "city": "OKLAHOMA CITY",
     "state": "OK"
   },
   "73143": {
-    "city": "SOUTHEAST OKLAHOMA CITY",
+    "city": "OKLAHOMA CITY",
     "state": "OK"
   },
   "73144": {
-    "city": "PENN 89",
+    "city": "OKLAHOMA CITY",
     "state": "OK"
   },
   "73145": {
-    "city": "MIDWEST CITY",
+    "city": "OKLAHOMA CITY",
     "state": "OK"
   },
   "73146": {
-    "city": "CENTER CITY",
+    "city": "OKLAHOMA CITY",
     "state": "OK"
   },
   "73147": {
-    "city": "FARLEY RETAIL UNIT",
+    "city": "OKLAHOMA CITY",
     "state": "OK"
   },
   "73148": {
-    "city": "STOCKYARDS",
+    "city": "OKLAHOMA CITY",
     "state": "OK"
   },
   "73149": {
-    "city": "SOUTHEAST OKLAHOMA CITY",
+    "city": "OKLAHOMA CITY",
     "state": "OK"
   },
   "73150": {
-    "city": "MIDWEST CITY",
+    "city": "OKLAHOMA CITY",
     "state": "OK"
   },
   "73151": {
-    "city": "BRITTON",
+    "city": "OKLAHOMA CITY",
     "state": "OK"
   },
   "73152": {
-    "city": "MARTIN LUTHER KING JR",
+    "city": "OKLAHOMA CITY",
     "state": "OK"
   },
   "73153": {
@@ -102564,23 +102564,23 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "OK"
   },
   "73154": {
-    "city": "SHARTEL",
+    "city": "OKLAHOMA CITY",
     "state": "OK"
   },
   "73155": {
-    "city": "DEL CITY FINANCE",
+    "city": "DEL CITY",
     "state": "OK"
   },
   "73156": {
-    "city": "VILLAGE",
+    "city": "OKLAHOMA CITY",
     "state": "OK"
   },
   "73157": {
-    "city": "THIRTY NINTH STREET",
+    "city": "OKLAHOMA CITY",
     "state": "OK"
   },
   "73159": {
-    "city": "PENN 89",
+    "city": "OKLAHOMA CITY",
     "state": "OK"
   },
   "73160": {
@@ -102588,39 +102588,39 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "OK"
   },
   "73162": {
-    "city": "HEFNER",
+    "city": "OKLAHOMA CITY",
     "state": "OK"
   },
   "73165": {
-    "city": "SOUTHEAST OKLAHOMA CITY",
+    "city": "OKLAHOMA CITY",
     "state": "OK"
   },
   "73169": {
-    "city": "PENN 89",
+    "city": "OKLAHOMA CITY",
     "state": "OK"
   },
   "73170": {
-    "city": "SANTA FE CARRIER UNIT",
+    "city": "OKLAHOMA CITY",
     "state": "OK"
   },
   "73172": {
-    "city": "HEFNER",
+    "city": "OKLAHOMA CITY",
     "state": "OK"
   },
   "73173": {
-    "city": "PENN 89",
+    "city": "OKLAHOMA CITY",
     "state": "OK"
   },
   "73179": {
-    "city": "OKC AMF RETAIL",
+    "city": "OKLAHOMA CITY",
     "state": "OK"
   },
   "73189": {
-    "city": "PENN 89",
+    "city": "OKLAHOMA CITY",
     "state": "OK"
   },
   "73195": {
-    "city": "OKC AMF RETAIL",
+    "city": "OKLAHOMA CITY",
     "state": "OK"
   },
   "73401": {
@@ -102776,11 +102776,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "OK"
   },
   "73505": {
-    "city": "SHERIDAN LAWTON",
+    "city": "LAWTON",
     "state": "OK"
   },
   "73506": {
-    "city": "SHERIDAN LAWTON",
+    "city": "LAWTON",
     "state": "OK"
   },
   "73507": {
@@ -102848,7 +102848,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "OK"
   },
   "73540": {
-    "city": "SHERIDAN LAWTON",
+    "city": "LAWTON",
     "state": "OK"
   },
   "73541": {
@@ -102912,7 +102912,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "OK"
   },
   "73557": {
-    "city": "MEDICINE PARK",
+    "city": "LAWTON",
     "state": "OK"
   },
   "73559": {
@@ -103488,7 +103488,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "OK"
   },
   "74014": {
-    "city": "EAST ARROW",
+    "city": "BROKEN ARROW",
     "state": "OK"
   },
   "74015": {
@@ -103736,183 +103736,183 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "OK"
   },
   "74101": {
-    "city": "TULSA DOWNTOWN OK S&DC",
+    "city": "TULSA",
     "state": "OK"
   },
   "74102": {
-    "city": "TULSA DOWNTOWN OK S&DC",
+    "city": "TULSA",
     "state": "OK"
   },
   "74103": {
-    "city": "TULSA DOWNTOWN OK S&DC",
+    "city": "TULSA",
     "state": "OK"
   },
   "74104": {
-    "city": "DONALDSON",
+    "city": "TULSA",
     "state": "OK"
   },
   "74105": {
-    "city": "ROBERT W JENKINS",
+    "city": "TULSA",
     "state": "OK"
   },
   "74106": {
-    "city": "NORTHSIDE",
+    "city": "TULSA",
     "state": "OK"
   },
   "74107": {
-    "city": "WEST TULSA",
+    "city": "TULSA",
     "state": "OK"
   },
   "74108": {
-    "city": "EASTSIDE TULSA",
+    "city": "TULSA",
     "state": "OK"
   },
   "74110": {
-    "city": "NORTHSIDE",
+    "city": "TULSA",
     "state": "OK"
   },
   "74112": {
-    "city": "NORTHEAST",
+    "city": "TULSA",
     "state": "OK"
   },
   "74114": {
-    "city": "DONALDSON",
+    "city": "TULSA",
     "state": "OK"
   },
   "74115": {
-    "city": "NORTHEAST",
+    "city": "TULSA",
     "state": "OK"
   },
   "74116": {
-    "city": "NORTHEAST",
+    "city": "TULSA",
     "state": "OK"
   },
   "74117": {
-    "city": "NORTHEAST",
+    "city": "TULSA",
     "state": "OK"
   },
   "74119": {
-    "city": "TULSA DOWNTOWN OK S&DC",
+    "city": "TULSA",
     "state": "OK"
   },
   "74120": {
-    "city": "TULSA DOWNTOWN OK S&DC",
+    "city": "TULSA",
     "state": "OK"
   },
   "74121": {
-    "city": "TULSA DOWNTOWN OK S&DC",
+    "city": "TULSA",
     "state": "OK"
   },
   "74126": {
-    "city": "NORTHSIDE",
+    "city": "TULSA",
     "state": "OK"
   },
   "74127": {
-    "city": "TULSA DOWNTOWN OK S&DC",
+    "city": "TULSA",
     "state": "OK"
   },
   "74128": {
-    "city": "EASTSIDE TULSA",
+    "city": "TULSA",
     "state": "OK"
   },
   "74129": {
-    "city": "EASTSIDE TULSA",
+    "city": "TULSA",
     "state": "OK"
   },
   "74130": {
-    "city": "NORTHSIDE",
+    "city": "TULSA",
     "state": "OK"
   },
   "74131": {
-    "city": "WEST TULSA",
+    "city": "TULSA",
     "state": "OK"
   },
   "74132": {
-    "city": "WEST TULSA",
+    "city": "TULSA",
     "state": "OK"
   },
   "74133": {
-    "city": "CHIMNEY HILLS",
+    "city": "TULSA",
     "state": "OK"
   },
   "74134": {
-    "city": "EASTSIDE TULSA",
+    "city": "TULSA",
     "state": "OK"
   },
   "74135": {
-    "city": "SHERIDAN TULSA",
+    "city": "TULSA",
     "state": "OK"
   },
   "74136": {
-    "city": "ROBERT W JENKINS",
+    "city": "TULSA",
     "state": "OK"
   },
   "74137": {
-    "city": "CHIMNEY HILLS",
+    "city": "TULSA",
     "state": "OK"
   },
   "74145": {
-    "city": "SOUTHEAST TULSA",
+    "city": "TULSA",
     "state": "OK"
   },
   "74146": {
-    "city": "SOUTHEAST TULSA",
+    "city": "TULSA",
     "state": "OK"
   },
   "74147": {
-    "city": "SOUTHEAST TULSA",
+    "city": "TULSA",
     "state": "OK"
   },
   "74148": {
-    "city": "NORTHSIDE",
+    "city": "TULSA",
     "state": "OK"
   },
   "74149": {
-    "city": "NORTHSIDE",
+    "city": "TULSA",
     "state": "OK"
   },
   "74150": {
-    "city": "TULSA DOWNTOWN OK S&DC",
+    "city": "TULSA",
     "state": "OK"
   },
   "74152": {
-    "city": "UTICA SQUARE",
+    "city": "TULSA",
     "state": "OK"
   },
   "74153": {
-    "city": "SHERIDAN TULSA",
+    "city": "TULSA",
     "state": "OK"
   },
   "74155": {
-    "city": "SOUTHEAST TULSA",
+    "city": "TULSA",
     "state": "OK"
   },
   "74156": {
-    "city": "NORTHSIDE",
+    "city": "TULSA",
     "state": "OK"
   },
   "74157": {
-    "city": "WEST TULSA",
+    "city": "TULSA",
     "state": "OK"
   },
   "74158": {
-    "city": "NORTHEAST",
+    "city": "TULSA",
     "state": "OK"
   },
   "74159": {
-    "city": "DONALDSON",
+    "city": "TULSA",
     "state": "OK"
   },
   "74169": {
-    "city": "EASTSIDE TULSA",
+    "city": "TULSA",
     "state": "OK"
   },
   "74170": {
-    "city": "ROBERT W JENKINS",
+    "city": "TULSA",
     "state": "OK"
   },
   "74172": {
-    "city": "TULSA DOWNTOWN OK S&DC",
+    "city": "TULSA",
     "state": "OK"
   },
   "74301": {
@@ -104180,7 +104180,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "OK"
   },
   "74459": {
-    "city": "RENTIESVILLE DPOBU",
+    "city": "RENTIESVILLE",
     "state": "OK"
   },
   "74460": {
@@ -104572,7 +104572,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "OK"
   },
   "74747": {
-    "city": "KEMP DPOBU",
+    "city": "HENDRIX",
     "state": "OK"
   },
   "74748": {
@@ -104596,7 +104596,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "OK"
   },
   "74755": {
-    "city": "RUFE DPOBU",
+    "city": "RUFE",
     "state": "OK"
   },
   "74756": {
@@ -104964,7 +104964,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "TX"
   },
   "75007": {
-    "city": "ROSEMEADE",
+    "city": "CARROLLTON",
     "state": "TX"
   },
   "75009": {
@@ -104972,7 +104972,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "TX"
   },
   "75010": {
-    "city": "ROSEMEADE",
+    "city": "CARROLLTON",
     "state": "TX"
   },
   "75011": {
@@ -104984,7 +104984,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "TX"
   },
   "75014": {
-    "city": "LAS COLINAS",
+    "city": "IRVING",
     "state": "TX"
   },
   "75015": {
@@ -104992,7 +104992,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "TX"
   },
   "75016": {
-    "city": "CENTRAL IRVING",
+    "city": "IRVING",
     "state": "TX"
   },
   "75017": {
@@ -105016,19 +105016,19 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "TX"
   },
   "75023": {
-    "city": "WILDCAT",
+    "city": "PLANO",
     "state": "TX"
   },
   "75024": {
-    "city": "NORTHWEST PLANO",
+    "city": "PLANO",
     "state": "TX"
   },
   "75025": {
-    "city": "NORTHWEST PLANO",
+    "city": "PLANO",
     "state": "TX"
   },
   "75026": {
-    "city": "COIT",
+    "city": "PLANO",
     "state": "TX"
   },
   "75027": {
@@ -105060,7 +105060,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "TX"
   },
   "75035": {
-    "city": "EAST FRISCO CARRIER ANNEX",
+    "city": "FRISCO",
     "state": "TX"
   },
   "75036": {
@@ -105068,11 +105068,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "TX"
   },
   "75038": {
-    "city": "CENTRAL IRVING",
+    "city": "IRVING",
     "state": "TX"
   },
   "75039": {
-    "city": "VALLEY RANCH",
+    "city": "IRVING",
     "state": "TX"
   },
   "75040": {
@@ -105080,7 +105080,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "TX"
   },
   "75041": {
-    "city": "KINGSLEY",
+    "city": "GARLAND",
     "state": "TX"
   },
   "75042": {
@@ -105088,15 +105088,15 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "TX"
   },
   "75043": {
-    "city": "SOUTH GARLAND",
+    "city": "GARLAND",
     "state": "TX"
   },
   "75044": {
-    "city": "NORTH GARLAND",
+    "city": "GARLAND",
     "state": "TX"
   },
   "75045": {
-    "city": "NORTH GARLAND",
+    "city": "GARLAND",
     "state": "TX"
   },
   "75046": {
@@ -105104,15 +105104,15 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "TX"
   },
   "75047": {
-    "city": "KINGSLEY",
+    "city": "GARLAND",
     "state": "TX"
   },
   "75048": {
-    "city": "NORTH GARLAND",
+    "city": "GARLAND",
     "state": "TX"
   },
   "75049": {
-    "city": "SOUTH GARLAND",
+    "city": "GARLAND",
     "state": "TX"
   },
   "75050": {
@@ -105124,15 +105124,15 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "TX"
   },
   "75052": {
-    "city": "WESTCHESTER",
+    "city": "GRAND PRAIRIE",
     "state": "TX"
   },
   "75053": {
-    "city": "FOUNTAIN",
+    "city": "GRAND PRAIRIE",
     "state": "TX"
   },
   "75054": {
-    "city": "WESTCHESTER",
+    "city": "GRAND PRAIRIE",
     "state": "TX"
   },
   "75056": {
@@ -105156,11 +105156,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "TX"
   },
   "75062": {
-    "city": "CENTRAL IRVING",
+    "city": "IRVING",
     "state": "TX"
   },
   "75063": {
-    "city": "VALLEY RANCH",
+    "city": "IRVING",
     "state": "TX"
   },
   "75065": {
@@ -105184,7 +105184,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "TX"
   },
   "75071": {
-    "city": "LINKSIDE PARK",
+    "city": "MCKINNEY",
     "state": "TX"
   },
   "75072": {
@@ -105196,7 +105196,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "TX"
   },
   "75075": {
-    "city": "COIT",
+    "city": "PLANO",
     "state": "TX"
   },
   "75076": {
@@ -105216,23 +105216,23 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "TX"
   },
   "75081": {
-    "city": "HUFFHINES PARK",
+    "city": "RICHARDSON",
     "state": "TX"
   },
   "75082": {
-    "city": "HUFFHINES PARK",
+    "city": "RICHARDSON",
     "state": "TX"
   },
   "75083": {
-    "city": "PROMENADE",
+    "city": "RICHARDSON",
     "state": "TX"
   },
   "75085": {
-    "city": "HUFFHINES PARK",
+    "city": "RICHARDSON",
     "state": "TX"
   },
   "75086": {
-    "city": "DOWNTOWN PLANO",
+    "city": "PLANO",
     "state": "TX"
   },
   "75087": {
@@ -105260,7 +105260,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "TX"
   },
   "75093": {
-    "city": "COIT",
+    "city": "PLANO",
     "state": "TX"
   },
   "75094": {
@@ -105416,7 +105416,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "TX"
   },
   "75150": {
-    "city": "MESQUITE CARRIER SECTION",
+    "city": "GARLAND",
     "state": "TX"
   },
   "75151": {
@@ -105452,7 +105452,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "TX"
   },
   "75159": {
-    "city": "SEAGOVILLE",
+    "city": "DALLAS",
     "state": "TX"
   },
   "75160": {
@@ -105516,7 +105516,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "TX"
   },
   "75187": {
-    "city": "NORTH MESQUITE",
+    "city": "MESQUITE",
     "state": "TX"
   },
   "75189": {
@@ -105524,83 +105524,83 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "TX"
   },
   "75201": {
-    "city": "DOWNTOWN DALLAS",
+    "city": "DALLAS",
     "state": "TX"
   },
   "75202": {
-    "city": "DOWNTOWN DALLAS",
+    "city": "DALLAS",
     "state": "TX"
   },
   "75203": {
-    "city": "DR CAESAR A W CLARK SR",
+    "city": "DALLAS",
     "state": "TX"
   },
   "75204": {
-    "city": "JUANITA CRAFT",
+    "city": "DALLAS",
     "state": "TX"
   },
   "75205": {
-    "city": "UNIVERSITY DALLAS",
+    "city": "DALLAS",
     "state": "TX"
   },
   "75206": {
-    "city": "UNIVERSITY DALLAS",
+    "city": "DALLAS",
     "state": "TX"
   },
   "75207": {
-    "city": "BROOKHOLLOW",
+    "city": "DALLAS",
     "state": "TX"
   },
   "75208": {
-    "city": "STATION A DALLAS",
+    "city": "DALLAS",
     "state": "TX"
   },
   "75209": {
-    "city": "NORTHWEST DALLAS",
+    "city": "DALLAS",
     "state": "TX"
   },
   "75210": {
-    "city": "JUANITA CRAFT",
+    "city": "DALLAS",
     "state": "TX"
   },
   "75211": {
-    "city": "BEVERLY HILLS",
+    "city": "DALLAS",
     "state": "TX"
   },
   "75212": {
-    "city": "BROOKHOLLOW",
+    "city": "DALLAS",
     "state": "TX"
   },
   "75214": {
-    "city": "LAKEWOOD",
+    "city": "DALLAS",
     "state": "TX"
   },
   "75215": {
-    "city": "JUANITA CRAFT",
+    "city": "DALLAS",
     "state": "TX"
   },
   "75216": {
-    "city": "DR CAESAR A W CLARK SR",
+    "city": "DALLAS",
     "state": "TX"
   },
   "75217": {
-    "city": "PLEASANT GROVE",
+    "city": "DALLAS",
     "state": "TX"
   },
   "75218": {
-    "city": "WHITE ROCK",
+    "city": "DALLAS",
     "state": "TX"
   },
   "75219": {
-    "city": "MOCKINGBIRD FINANCE",
+    "city": "DALLAS",
     "state": "TX"
   },
   "75220": {
-    "city": "NORTHWEST DALLAS",
+    "city": "DALLAS",
     "state": "TX"
   },
   "75221": {
-    "city": "DOWNTOWN DALLAS",
+    "city": "DALLAS",
     "state": "TX"
   },
   "75222": {
@@ -105608,127 +105608,127 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "TX"
   },
   "75223": {
-    "city": "JUANITA CRAFT",
+    "city": "DALLAS",
     "state": "TX"
   },
   "75224": {
-    "city": "JOE POOL",
+    "city": "DALLAS",
     "state": "TX"
   },
   "75225": {
-    "city": "PRESTON",
+    "city": "DALLAS",
     "state": "TX"
   },
   "75226": {
-    "city": "JUANITA CRAFT",
+    "city": "DALLAS",
     "state": "TX"
   },
   "75227": {
-    "city": "PARKDALE",
+    "city": "DALLAS",
     "state": "TX"
   },
   "75228": {
-    "city": "MEDRANO",
+    "city": "DALLAS",
     "state": "TX"
   },
   "75229": {
-    "city": "NORTHAVEN",
+    "city": "DALLAS",
     "state": "TX"
   },
   "75230": {
-    "city": "ROBERT E PRICE",
+    "city": "DALLAS",
     "state": "TX"
   },
   "75231": {
-    "city": "VICKERY",
+    "city": "DALLAS",
     "state": "TX"
   },
   "75232": {
-    "city": "JOE POOL",
+    "city": "DALLAS",
     "state": "TX"
   },
   "75233": {
-    "city": "BEVERLY HILLS",
+    "city": "DALLAS",
     "state": "TX"
   },
   "75234": {
-    "city": "FARMERS BRANCH",
+    "city": "DALLAS",
     "state": "TX"
   },
   "75235": {
-    "city": "BROOKHOLLOW",
+    "city": "DALLAS",
     "state": "TX"
   },
   "75236": {
-    "city": "BEVERLY HILLS",
+    "city": "DALLAS",
     "state": "TX"
   },
   "75237": {
-    "city": "JOE POOL",
+    "city": "DALLAS",
     "state": "TX"
   },
   "75238": {
-    "city": "LAKE HIGHLANDS",
+    "city": "DALLAS",
     "state": "TX"
   },
   "75240": {
-    "city": "SPRING VALLEY",
+    "city": "DALLAS",
     "state": "TX"
   },
   "75241": {
-    "city": "HIGHLAND HILLS DALLAS",
+    "city": "DALLAS",
     "state": "TX"
   },
   "75242": {
-    "city": "DOWNTOWN DALLAS",
+    "city": "DALLAS",
     "state": "TX"
   },
   "75243": {
-    "city": "RICHLAND",
+    "city": "DALLAS",
     "state": "TX"
   },
   "75244": {
-    "city": "FARMERS BRANCH",
+    "city": "DALLAS",
     "state": "TX"
   },
   "75246": {
-    "city": "JUANITA CRAFT",
+    "city": "DALLAS",
     "state": "TX"
   },
   "75247": {
-    "city": "BROOKHOLLOW",
+    "city": "DALLAS",
     "state": "TX"
   },
   "75248": {
-    "city": "PRESTONWOOD",
+    "city": "DALLAS",
     "state": "TX"
   },
   "75249": {
-    "city": "BEVERLY HILLS",
+    "city": "DALLAS",
     "state": "TX"
   },
   "75250": {
-    "city": "DOWNTOWN DALLAS",
+    "city": "DALLAS",
     "state": "TX"
   },
   "75251": {
-    "city": "ROBERT E PRICE",
+    "city": "DALLAS",
     "state": "TX"
   },
   "75252": {
-    "city": "PRESTONWOOD",
+    "city": "DALLAS",
     "state": "TX"
   },
   "75253": {
-    "city": "SEAGOVILLE",
+    "city": "DALLAS",
     "state": "TX"
   },
   "75254": {
-    "city": "SPRING VALLEY",
+    "city": "DALLAS",
     "state": "TX"
   },
   "75261": {
-    "city": "DFW DALLAS",
+    "city": "DFW AIRPORT",
     "state": "TX"
   },
   "75262": {
@@ -105756,95 +105756,95 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "TX"
   },
   "75270": {
-    "city": "DOWNTOWN DALLAS",
+    "city": "DALLAS",
     "state": "TX"
   },
   "75287": {
-    "city": "BENT TREE",
+    "city": "DALLAS",
     "state": "TX"
   },
   "75313": {
-    "city": "DOWNTOWN DALLAS",
+    "city": "DALLAS",
     "state": "TX"
   },
   "75315": {
-    "city": "JUANITA CRAFT",
+    "city": "DALLAS",
     "state": "TX"
   },
   "75336": {
-    "city": "SEAGOVILLE",
+    "city": "DALLAS",
     "state": "TX"
   },
   "75339": {
-    "city": "DR CAESAR A W CLARK SR",
+    "city": "DALLAS",
     "state": "TX"
   },
   "75342": {
-    "city": "BROOKHOLLOW",
+    "city": "DALLAS",
     "state": "TX"
   },
   "75354": {
-    "city": "NORTHWEST DALLAS",
+    "city": "DALLAS",
     "state": "TX"
   },
   "75355": {
-    "city": "LAKE HIGHLANDS",
+    "city": "DALLAS",
     "state": "TX"
   },
   "75356": {
-    "city": "BROOKHOLLOW",
+    "city": "DALLAS",
     "state": "TX"
   },
   "75357": {
-    "city": "MEDRANO",
+    "city": "DALLAS",
     "state": "TX"
   },
   "75360": {
-    "city": "UNIVERSITY DALLAS",
+    "city": "DALLAS",
     "state": "TX"
   },
   "75367": {
-    "city": "PRESTON ROYAL",
+    "city": "DALLAS",
     "state": "TX"
   },
   "75370": {
-    "city": "BENT TREE",
+    "city": "DALLAS",
     "state": "TX"
   },
   "75371": {
-    "city": "JUANITA CRAFT",
+    "city": "DALLAS",
     "state": "TX"
   },
   "75372": {
-    "city": "UNIVERSITY DALLAS",
+    "city": "DALLAS",
     "state": "TX"
   },
   "75374": {
-    "city": "RICHLAND",
+    "city": "DALLAS",
     "state": "TX"
   },
   "75376": {
-    "city": "JOE POOL",
+    "city": "DALLAS",
     "state": "TX"
   },
   "75378": {
-    "city": "NORTHWEST DALLAS",
+    "city": "DALLAS",
     "state": "TX"
   },
   "75379": {
-    "city": "PRESTONWOOD",
+    "city": "DALLAS",
     "state": "TX"
   },
   "75380": {
-    "city": "SPRING VALLEY",
+    "city": "DALLAS",
     "state": "TX"
   },
   "75381": {
-    "city": "FARMERS BRANCH",
+    "city": "DALLAS",
     "state": "TX"
   },
   "75382": {
-    "city": "VICKERY",
+    "city": "DALLAS",
     "state": "TX"
   },
   "75401": {
@@ -105860,7 +105860,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "TX"
   },
   "75404": {
-    "city": "ROLLING HILLS",
+    "city": "GREENVILLE",
     "state": "TX"
   },
   "75407": {
@@ -106184,19 +106184,19 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "TX"
   },
   "75501": {
-    "city": "TEXARKANA TX SDC",
+    "city": "TEXARKANA",
     "state": "TX"
   },
   "75503": {
-    "city": "TEXARKANA TX SDC",
+    "city": "TEXARKANA",
     "state": "TX"
   },
   "75504": {
-    "city": "DOWNTOWN TEXARKANA",
+    "city": "TEXARKANA",
     "state": "AR"
   },
   "75505": {
-    "city": "TEXARKANA TX SDC",
+    "city": "TEXARKANA",
     "state": "TX"
   },
   "75550": {
@@ -106300,15 +106300,15 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "TX"
   },
   "75604": {
-    "city": "NORTHWEST LONGVIEW",
+    "city": "LONGVIEW",
     "state": "TX"
   },
   "75605": {
-    "city": "NORTHWEST LONGVIEW",
+    "city": "LONGVIEW",
     "state": "TX"
   },
   "75606": {
-    "city": "DOWNTOWN LONGVIEW",
+    "city": "LONGVIEW",
     "state": "TX"
   },
   "75607": {
@@ -106316,11 +106316,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "TX"
   },
   "75608": {
-    "city": "NORTHWEST LONGVIEW",
+    "city": "LONGVIEW",
     "state": "TX"
   },
   "75615": {
-    "city": "NORTHWEST LONGVIEW",
+    "city": "LONGVIEW",
     "state": "TX"
   },
   "75630": {
@@ -106512,7 +106512,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "TX"
   },
   "75701": {
-    "city": "AZALEA",
+    "city": "TYLER",
     "state": "TX"
   },
   "75702": {
@@ -106520,7 +106520,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "TX"
   },
   "75703": {
-    "city": "SOUTH TYLER ANNEX",
+    "city": "TYLER",
     "state": "TX"
   },
   "75704": {
@@ -106536,7 +106536,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "TX"
   },
   "75707": {
-    "city": "AZALEA",
+    "city": "TYLER",
     "state": "TX"
   },
   "75708": {
@@ -106552,7 +106552,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "TX"
   },
   "75711": {
-    "city": "AZALEA",
+    "city": "TYLER",
     "state": "TX"
   },
   "75712": {
@@ -106560,7 +106560,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "TX"
   },
   "75713": {
-    "city": "SOUTHEAST CROSSING",
+    "city": "TYLER",
     "state": "TX"
   },
   "75750": {
@@ -106808,7 +106808,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "TX"
   },
   "75903": {
-    "city": "KELTYS",
+    "city": "LUFKIN",
     "state": "TX"
   },
   "75904": {
@@ -106904,7 +106904,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "TX"
   },
   "75951": {
-    "city": "CPU SAM RAYBURN",
+    "city": "BROOKELAND",
     "state": "TX"
   },
   "75954": {
@@ -106992,31 +106992,31 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "TX"
   },
   "76001": {
-    "city": "BARDIN ROAD",
+    "city": "ARLINGTON",
     "state": "TX"
   },
   "76002": {
-    "city": "BARDIN ROAD",
+    "city": "ARLINGTON",
     "state": "TX"
   },
   "76003": {
-    "city": "TATE SPRINGS",
+    "city": "ARLINGTON",
     "state": "TX"
   },
   "76004": {
-    "city": "MAIN OFFICE ARLINGTON",
+    "city": "ARLINGTON",
     "state": "TX"
   },
   "76005": {
-    "city": "WATSON COMMUNITY",
+    "city": "ARLINGTON",
     "state": "TX"
   },
   "76006": {
-    "city": "WATSON COMMUNITY",
+    "city": "ARLINGTON",
     "state": "TX"
   },
   "76007": {
-    "city": "EAST ARLINGTON",
+    "city": "ARLINGTON",
     "state": "TX"
   },
   "76008": {
@@ -107028,39 +107028,39 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "TX"
   },
   "76010": {
-    "city": "MAIN OFFICE ARLINGTON",
+    "city": "ARLINGTON",
     "state": "TX"
   },
   "76011": {
-    "city": "WATSON COMMUNITY",
+    "city": "ARLINGTON",
     "state": "TX"
   },
   "76012": {
-    "city": "OAKWOOD",
+    "city": "ARLINGTON",
     "state": "TX"
   },
   "76013": {
-    "city": "OAKWOOD",
+    "city": "ARLINGTON",
     "state": "TX"
   },
   "76014": {
-    "city": "BARDIN ROAD",
+    "city": "ARLINGTON",
     "state": "TX"
   },
   "76015": {
-    "city": "MELEAR",
+    "city": "ARLINGTON",
     "state": "TX"
   },
   "76016": {
-    "city": "MELEAR",
+    "city": "ARLINGTON",
     "state": "TX"
   },
   "76017": {
-    "city": "MELEAR",
+    "city": "ARLINGTON",
     "state": "TX"
   },
   "76018": {
-    "city": "BARDIN ROAD",
+    "city": "ARLINGTON",
     "state": "TX"
   },
   "76020": {
@@ -107128,7 +107128,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "TX"
   },
   "76049": {
-    "city": "ACTON",
+    "city": "GRANBURY",
     "state": "TX"
   },
   "76050": {
@@ -107148,7 +107148,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "TX"
   },
   "76054": {
-    "city": "NORTH HURST",
+    "city": "HURST",
     "state": "TX"
   },
   "76055": {
@@ -107248,7 +107248,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "TX"
   },
   "76094": {
-    "city": "PANTEGO",
+    "city": "ARLINGTON",
     "state": "TX"
   },
   "76095": {
@@ -107256,7 +107256,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "TX"
   },
   "76096": {
-    "city": "BARDIN ROAD",
+    "city": "ARLINGTON",
     "state": "TX"
   },
   "76097": {
@@ -107272,67 +107272,67 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "TX"
   },
   "76101": {
-    "city": "DOWNTOWN FORT WORTH",
+    "city": "FORT WORTH",
     "state": "TX"
   },
   "76102": {
-    "city": "CENTRAL FORT WORTH",
+    "city": "FORT WORTH",
     "state": "TX"
   },
   "76103": {
-    "city": "POLYTECHNIC",
+    "city": "FORT WORTH",
     "state": "TX"
   },
   "76104": {
-    "city": "DOWNTOWN FORT WORTH",
+    "city": "FORT WORTH",
     "state": "TX"
   },
   "76105": {
-    "city": "POLYTECHNIC",
+    "city": "FORT WORTH",
     "state": "TX"
   },
   "76106": {
-    "city": "FORT WORTH NORTH CARRIER ANX",
+    "city": "FORT WORTH",
     "state": "TX"
   },
   "76107": {
-    "city": "TRINITY RIVER",
+    "city": "FORT WORTH",
     "state": "TX"
   },
   "76108": {
-    "city": "WHITE SETTLEMENT",
+    "city": "FORT WORTH",
     "state": "TX"
   },
   "76109": {
-    "city": "TRINITY RIVER",
+    "city": "FORT WORTH",
     "state": "TX"
   },
   "76110": {
-    "city": "EIGHTH AVENUE",
+    "city": "FORT WORTH",
     "state": "TX"
   },
   "76111": {
-    "city": "RIVERSIDE",
+    "city": "FORT WORTH",
     "state": "TX"
   },
   "76112": {
-    "city": "POLYTECHNIC",
+    "city": "FORT WORTH",
     "state": "TX"
   },
   "76113": {
-    "city": "DOWNTOWN FORT WORTH",
+    "city": "FORT WORTH",
     "state": "TX"
   },
   "76114": {
-    "city": "OAKS",
+    "city": "RIVER OAKS",
     "state": "TX"
   },
   "76115": {
-    "city": "SEMINARY HILL",
+    "city": "FORT WORTH",
     "state": "TX"
   },
   "76116": {
-    "city": "RIDGLEA",
+    "city": "FORT WORTH",
     "state": "TX"
   },
   "76117": {
@@ -107344,23 +107344,23 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "TX"
   },
   "76119": {
-    "city": "GLENCREST",
+    "city": "FORT WORTH",
     "state": "TX"
   },
   "76120": {
-    "city": "POLYTECHNIC",
+    "city": "FORT WORTH",
     "state": "TX"
   },
   "76121": {
-    "city": "RIDGLEA",
+    "city": "FORT WORTH",
     "state": "TX"
   },
   "76123": {
-    "city": "CITYVIEW",
+    "city": "FORT WORTH",
     "state": "TX"
   },
   "76124": {
-    "city": "HANDLEY",
+    "city": "FORT WORTH",
     "state": "TX"
   },
   "76126": {
@@ -107372,39 +107372,39 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "TX"
   },
   "76131": {
-    "city": "FORT WORTH NORTH CARRIER ANX",
+    "city": "FORT WORTH",
     "state": "TX"
   },
   "76132": {
-    "city": "CITYVIEW",
+    "city": "FORT WORTH",
     "state": "TX"
   },
   "76133": {
-    "city": "WEDGWOOD",
+    "city": "FORT WORTH",
     "state": "TX"
   },
   "76134": {
-    "city": "SEMINARY HILL",
+    "city": "FORT WORTH",
     "state": "TX"
   },
   "76135": {
-    "city": "LAKE WORTH",
+    "city": "FORT WORTH",
     "state": "TX"
   },
   "76136": {
-    "city": "LAKE WORTH",
+    "city": "FORT WORTH",
     "state": "TX"
   },
   "76137": {
-    "city": "FORT WORTH NORTH CARRIER ANX",
+    "city": "FORT WORTH",
     "state": "TX"
   },
   "76140": {
-    "city": "SOUTHEAST",
+    "city": "FORT WORTH",
     "state": "TX"
   },
   "76147": {
-    "city": "ARLINGTON HEIGHTS",
+    "city": "FORT WORTH",
     "state": "TX"
   },
   "76148": {
@@ -107412,31 +107412,31 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "TX"
   },
   "76155": {
-    "city": "AMON CARTER",
+    "city": "FORT WORTH",
     "state": "TX"
   },
   "76161": {
-    "city": "JACK D WATSON WINDOW UNIT",
+    "city": "FORT WORTH",
     "state": "TX"
   },
   "76162": {
-    "city": "CITYVIEW",
+    "city": "FORT WORTH",
     "state": "TX"
   },
   "76163": {
-    "city": "WEDGWOOD",
+    "city": "FORT WORTH",
     "state": "TX"
   },
   "76164": {
-    "city": "STOCKYARDS",
+    "city": "FORT WORTH",
     "state": "TX"
   },
   "76177": {
-    "city": "ALLIANCE AIRPORT",
+    "city": "FORT WORTH",
     "state": "TX"
   },
   "76179": {
-    "city": "FORT WORTH NORTH CARRIER ANX",
+    "city": "FORT WORTH",
     "state": "TX"
   },
   "76180": {
@@ -107444,7 +107444,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "TX"
   },
   "76181": {
-    "city": "RIVERBEND",
+    "city": "FORT WORTH",
     "state": "TX"
   },
   "76182": {
@@ -107452,39 +107452,39 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "TX"
   },
   "76185": {
-    "city": "TRINITY RIVER",
+    "city": "FORT WORTH",
     "state": "TX"
   },
   "76201": {
-    "city": "DENTON TX SDC",
+    "city": "DENTON",
     "state": "TX"
   },
   "76202": {
-    "city": "DENTON TX SDC",
+    "city": "DENTON",
     "state": "TX"
   },
   "76205": {
-    "city": "DENTON TX SDC",
+    "city": "DENTON",
     "state": "TX"
   },
   "76206": {
-    "city": "GOLDEN TRIANGLE",
+    "city": "DENTON",
     "state": "TX"
   },
   "76207": {
-    "city": "DENTON TX SDC",
+    "city": "DENTON",
     "state": "TX"
   },
   "76208": {
-    "city": "DENTON TX SDC",
+    "city": "DENTON",
     "state": "TX"
   },
   "76209": {
-    "city": "DENTON TX SDC",
+    "city": "DENTON",
     "state": "TX"
   },
   "76210": {
-    "city": "DENTON TX SDC",
+    "city": "DENTON",
     "state": "TX"
   },
   "76225": {
@@ -107540,7 +107540,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "TX"
   },
   "76246": {
-    "city": "GREENWOOD DPOBU",
+    "city": "DECATUR",
     "state": "TX"
   },
   "76247": {
@@ -107632,35 +107632,35 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "TX"
   },
   "76301": {
-    "city": "MORNINGSIDE",
+    "city": "WICHITA FALLS",
     "state": "TX"
   },
   "76302": {
-    "city": "BRIDGE CREEK",
+    "city": "WICHITA FALLS",
     "state": "TX"
   },
   "76305": {
-    "city": "MORNINGSIDE",
+    "city": "WICHITA FALLS",
     "state": "TX"
   },
   "76306": {
-    "city": "MORNINGSIDE",
+    "city": "WICHITA FALLS",
     "state": "TX"
   },
   "76307": {
-    "city": "MAIN OFFICE WICHITA FALLS",
+    "city": "WICHITA FALLS",
     "state": "TX"
   },
   "76308": {
-    "city": "BRIDGE CREEK",
+    "city": "WICHITA FALLS",
     "state": "TX"
   },
   "76309": {
-    "city": "MORNINGSIDE",
+    "city": "WICHITA FALLS",
     "state": "TX"
   },
   "76310": {
-    "city": "BRIDGE CREEK",
+    "city": "WICHITA FALLS",
     "state": "TX"
   },
   "76311": {
@@ -108068,7 +108068,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "TX"
   },
   "76542": {
-    "city": "COPPER MOUNTAIN",
+    "city": "KILLEEN",
     "state": "TX"
   },
   "76543": {
@@ -108080,7 +108080,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "TX"
   },
   "76547": {
-    "city": "COPPER MOUNTAIN",
+    "city": "KILLEEN",
     "state": "TX"
   },
   "76548": {
@@ -108088,7 +108088,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "TX"
   },
   "76549": {
-    "city": "COPPER MOUNTAIN",
+    "city": "KILLEEN",
     "state": "TX"
   },
   "76550": {
@@ -108396,59 +108396,59 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "TX"
   },
   "76701": {
-    "city": "WACO TX S&DC",
+    "city": "WACO",
     "state": "TX"
   },
   "76702": {
-    "city": "WACO TX S&DC",
+    "city": "WACO",
     "state": "TX"
   },
   "76703": {
-    "city": "DOWNTOWN WACO",
+    "city": "WACO",
     "state": "TX"
   },
   "76704": {
-    "city": "BELLMEAD",
+    "city": "WACO",
     "state": "TX"
   },
   "76705": {
-    "city": "BELLMEAD",
+    "city": "WACO",
     "state": "TX"
   },
   "76706": {
-    "city": "DOWNTOWN WACO",
+    "city": "WACO",
     "state": "TX"
   },
   "76707": {
-    "city": "HIGHLANDER",
+    "city": "WACO",
     "state": "TX"
   },
   "76708": {
-    "city": "HIGHLANDER",
+    "city": "WACO",
     "state": "TX"
   },
   "76710": {
-    "city": "WACO TX S&DC",
+    "city": "WACO",
     "state": "TX"
   },
   "76711": {
-    "city": "WACO TX S&DC",
+    "city": "WACO",
     "state": "TX"
   },
   "76712": {
-    "city": "WACO TX S&DC",
+    "city": "WACO",
     "state": "TX"
   },
   "76714": {
-    "city": "WESTVIEW",
+    "city": "WACO",
     "state": "TX"
   },
   "76715": {
-    "city": "BELLMEAD",
+    "city": "WACO",
     "state": "TX"
   },
   "76716": {
-    "city": "DOWNTOWN WACO",
+    "city": "WACO",
     "state": "TX"
   },
   "76801": {
@@ -108676,7 +108676,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "TX"
   },
   "76904": {
-    "city": "SOUTHWEST",
+    "city": "SAN ANGELO",
     "state": "TX"
   },
   "76905": {
@@ -108684,7 +108684,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "TX"
   },
   "76906": {
-    "city": "SOUTHWEST",
+    "city": "SAN ANGELO",
     "state": "TX"
   },
   "76908": {
@@ -108768,391 +108768,391 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "TX"
   },
   "77002": {
-    "city": "SAM HOUSTON",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77003": {
-    "city": "EASTWOOD",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77004": {
-    "city": "SOUTHMORE",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77005": {
-    "city": "WILLIAM RICE",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77006": {
-    "city": "UNIVERSITY",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77007": {
-    "city": "T W HOUSE",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77008": {
-    "city": "T W HOUSE",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77009": {
-    "city": "ANSON JONES",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77010": {
-    "city": "SAM HOUSTON",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77011": {
-    "city": "EASTWOOD",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77012": {
-    "city": "EASTWOOD",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77013": {
-    "city": "GRANVILLE W ELDER",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77014": {
-    "city": "CORNERSTONE",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77015": {
-    "city": "GRANVILLE W ELDER",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77016": {
-    "city": "ROY ROYALL",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77017": {
-    "city": "PARK PLACE",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77018": {
-    "city": "OAK FOREST",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77019": {
-    "city": "RIVER OAKS",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77020": {
-    "city": "DENVER HARBOR",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77021": {
-    "city": "FOSTER PLACE",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77022": {
-    "city": "OAK FOREST",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77023": {
-    "city": "EASTWOOD",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77024": {
-    "city": "MEMORIAL PARK",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77025": {
-    "city": "ASTRODOME",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77026": {
-    "city": "JENSEN DRIVE",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77027": {
-    "city": "JULIUS MELCHER",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77028": {
-    "city": "ROY ROYALL",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77029": {
-    "city": "GRANVILLE W ELDER",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77030": {
-    "city": "MEDICAL CENTER",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77031": {
-    "city": "WESTBRAE",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77032": {
-    "city": "GREENS NORTH",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77033": {
-    "city": "MARTIN LUTHER KING",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77034": {
-    "city": "WINDMILL",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77035": {
-    "city": "WESTBURY",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77036": {
-    "city": "DE MOSS",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77037": {
-    "city": "NORTH SHEPHERD",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77038": {
-    "city": "GREENS NORTH",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77039": {
-    "city": "NORTH SHEPHERD",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77040": {
-    "city": "FAIRBANKS",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77041": {
-    "city": "JAMES GRIFFITH",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77042": {
-    "city": "DEBORA SUE SCHATZ",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77043": {
-    "city": "JAMES GRIFFITH",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77044": {
-    "city": "ROY ROYALL",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77045": {
-    "city": "ALMEDA",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77046": {
-    "city": "JULIUS MELCHER",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77047": {
-    "city": "ALMEDA",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77048": {
-    "city": "MARTIN LUTHER KING",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77049": {
-    "city": "GRANVILLE W ELDER",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77050": {
-    "city": "ROY ROYALL",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77051": {
-    "city": "MARTIN LUTHER KING",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77052": {
-    "city": "SAM HOUSTON",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77053": {
-    "city": "ALMEDA",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77054": {
-    "city": "MEDICAL CENTER",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77055": {
-    "city": "LONG POINT",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77056": {
-    "city": "GALLERIA",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77057": {
-    "city": "RICH HILL",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77058": {
-    "city": "ALBERT THOMAS",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77059": {
-    "city": "ALBERT THOMAS",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77060": {
-    "city": "GREENS NORTH",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77061": {
-    "city": "PARK PLACE",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77062": {
-    "city": "ALBERT THOMAS",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77063": {
-    "city": "JOHN DUNLOP",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77064": {
-    "city": "WILLOW PLACE",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77065": {
-    "city": "FAIRBANKS",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77066": {
-    "city": "CORNERSTONE",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77067": {
-    "city": "GREENS NORTH",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77068": {
-    "city": "CORNERSTONE",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77069": {
-    "city": "WILLOW PLACE",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77070": {
-    "city": "WILLOW PLACE",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77071": {
-    "city": "WESTBRAE",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77072": {
-    "city": "BEECHNUT",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77073": {
-    "city": "WESTFIELD",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77074": {
-    "city": "DE MOSS",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77075": {
-    "city": "WINDMILL",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77076": {
-    "city": "NORTH SHEPHERD",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77077": {
-    "city": "ASHFORD WEST",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77078": {
-    "city": "ROY ROYALL",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77079": {
-    "city": "FLEETWOOD",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77080": {
-    "city": "JAMES GRIFFITH",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77081": {
-    "city": "DE MOSS",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77082": {
-    "city": "ASHFORD WEST",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77083": {
-    "city": "BEECHNUT",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77084": {
-    "city": "BEAR CREEK",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77085": {
-    "city": "ALMEDA",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77086": {
-    "city": "GREENS NORTH",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77087": {
-    "city": "PARK PLACE",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77088": {
-    "city": "NORTH SHEPHERD",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77089": {
-    "city": "WINDMILL",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77090": {
-    "city": "WESTFIELD",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77091": {
-    "city": "NORTH SHEPHERD",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77092": {
-    "city": "OAK FOREST",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77093": {
-    "city": "NORTH SHEPHERD",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77094": {
-    "city": "FLEETWOOD",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77095": {
-    "city": "COPPERFIELD ANNEX",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77096": {
-    "city": "WESTBURY",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77098": {
-    "city": "GREENBRIAR",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77099": {
-    "city": "BEECHNUT",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77202": {
@@ -109164,19 +109164,19 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "TX"
   },
   "77205": {
-    "city": "FOXBROOK",
+    "city": "HUMBLE",
     "state": "TX"
   },
   "77206": {
-    "city": "GARDEN OAKS",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77207": {
-    "city": "BROADWAY",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77208": {
-    "city": "CIVIC CENTER",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77210": {
@@ -109184,127 +109184,127 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "TX"
   },
   "77213": {
-    "city": "GRANVILLE W ELDER",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77215": {
-    "city": "WESTCHASE",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77217": {
-    "city": "PARK PLACE",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77218": {
-    "city": "FLEETWOOD",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77219": {
-    "city": "RIVER OAKS",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77220": {
-    "city": "DENVER HARBOR",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77221": {
-    "city": "FOSTER PLACE",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77222": {
-    "city": "NORTH SHEPHERD",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77223": {
-    "city": "EASTWOOD",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77224": {
-    "city": "MEMORIAL PARK",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77225": {
-    "city": "ASTRODOME",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77226": {
-    "city": "JENSEN DRIVE",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77227": {
-    "city": "JULIUS MELCHER",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77228": {
-    "city": "ROY ROYALL",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77229": {
-    "city": "GRANVILLE W ELDER",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77230": {
-    "city": "MEDICAL CENTER",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77231": {
-    "city": "WESTBURY",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77233": {
-    "city": "MARTIN LUTHER KING",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77234": {
-    "city": "GENOA",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77235": {
-    "city": "WESTBURY",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77236": {
-    "city": "DE MOSS",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77237": {
-    "city": "RICH HILL",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77238": {
-    "city": "NORTH SHEPHERD",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77240": {
-    "city": "FAIRBANKS",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77241": {
-    "city": "FAIRBANKS",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77242": {
-    "city": "DEBORA SUE SCHATZ",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77243": {
-    "city": "JAMES GRIFFITH",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77244": {
-    "city": "ASHFORD WEST",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77245": {
-    "city": "ALMEDA",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77248": {
-    "city": "T W HOUSE",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77249": {
-    "city": "ANSON JONES",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77251": {
@@ -109320,131 +109320,131 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "TX"
   },
   "77254": {
-    "city": "GREENBRIAR",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77255": {
-    "city": "LONG POINT",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77256": {
-    "city": "JULIUS MELCHER",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77257": {
-    "city": "RICH HILL",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77258": {
-    "city": "NASSAU BAY",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77259": {
-    "city": "ALBERT THOMAS",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77261": {
-    "city": "EASTWOOD",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77262": {
-    "city": "HARRISBURG",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77263": {
-    "city": "JOHN DUNLOP",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77265": {
-    "city": "WESLAYAN",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77266": {
-    "city": "UNIVERSITY",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77267": {
-    "city": "GREENS NORTH",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77268": {
-    "city": "CORNERSTONE",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77269": {
-    "city": "WILLOW PLACE",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77270": {
-    "city": "T W HOUSE",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77271": {
-    "city": "WESTBRAE",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77272": {
-    "city": "BEECHNUT",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77273": {
-    "city": "WESTFIELD",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77274": {
-    "city": "DE MOSS",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77275": {
-    "city": "WINDMILL",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77277": {
-    "city": "WESLAYAN",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77279": {
-    "city": "MEMORIAL PARK",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77280": {
-    "city": "JAMES GRIFFITH",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77282": {
-    "city": "ASHFORD WEST",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77284": {
-    "city": "BEAR CREEK",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77287": {
-    "city": "PARK PLACE",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77288": {
-    "city": "SOUTHMORE",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77289": {
-    "city": "ALBERT THOMAS",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77290": {
-    "city": "WESTFIELD",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77291": {
-    "city": "NORTH SHEPHERD",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77292": {
-    "city": "OAK FOREST",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77293": {
-    "city": "ROY ROYALL",
+    "city": "HOUSTON",
     "state": "TX"
   },
   "77301": {
@@ -109472,7 +109472,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "TX"
   },
   "77316": {
-    "city": "MONTGOMERY ANNEX",
+    "city": "MONTGOMERY",
     "state": "TX"
   },
   "77318": {
@@ -109536,7 +109536,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "TX"
   },
   "77342": {
-    "city": "DOWNTOWN HUNTSVILLE",
+    "city": "HUNTSVILLE",
     "state": "TX"
   },
   "77345": {
@@ -109652,19 +109652,19 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "TX"
   },
   "77379": {
-    "city": "KLEIN",
+    "city": "SPRING",
     "state": "TX"
   },
   "77380": {
-    "city": "THE WOODLANDS",
+    "city": "SPRING",
     "state": "TX"
   },
   "77381": {
-    "city": "SPRING PANTHER CREEK TX SDC",
+    "city": "SPRING",
     "state": "TX"
   },
   "77382": {
-    "city": "SPRING PANTHER CREEK TX SDC",
+    "city": "SPRING",
     "state": "TX"
   },
   "77383": {
@@ -109680,11 +109680,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "TX"
   },
   "77386": {
-    "city": "THE WOODLANDS",
+    "city": "SPRING",
     "state": "TX"
   },
   "77387": {
-    "city": "THE WOODLANDS",
+    "city": "SPRING",
     "state": "TX"
   },
   "77388": {
@@ -109692,15 +109692,15 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "TX"
   },
   "77389": {
-    "city": "KLEIN",
+    "city": "SPRING",
     "state": "TX"
   },
   "77391": {
-    "city": "KLEIN",
+    "city": "SPRING",
     "state": "TX"
   },
   "77393": {
-    "city": "SPRING PANTHER CREEK TX SDC",
+    "city": "SPRING",
     "state": "TX"
   },
   "77396": {
@@ -109968,7 +109968,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "TX"
   },
   "77479": {
-    "city": "FIRST COLONY",
+    "city": "SUGAR LAND",
     "state": "TX"
   },
   "77480": {
@@ -110016,19 +110016,19 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "TX"
   },
   "77492": {
-    "city": "KATY FINANCE",
+    "city": "KATY",
     "state": "TX"
   },
   "77493": {
-    "city": "KATY ANNEX",
+    "city": "KATY",
     "state": "TX"
   },
   "77494": {
-    "city": "KATY ANNEX",
+    "city": "KATY",
     "state": "TX"
   },
   "77496": {
-    "city": "FIRST COLONY",
+    "city": "SUGAR LAND",
     "state": "TX"
   },
   "77497": {
@@ -110044,7 +110044,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "TX"
   },
   "77502": {
-    "city": "JOHN FOSTER",
+    "city": "PASADENA",
     "state": "TX"
   },
   "77503": {
@@ -110184,15 +110184,15 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "TX"
   },
   "77550": {
-    "city": "BOB LYONS",
+    "city": "GALVESTON",
     "state": "TX"
   },
   "77551": {
-    "city": "BOB LYONS",
+    "city": "GALVESTON",
     "state": "TX"
   },
   "77552": {
-    "city": "BOB LYONS",
+    "city": "GALVESTON",
     "state": "TX"
   },
   "77553": {
@@ -110200,7 +110200,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "TX"
   },
   "77554": {
-    "city": "BOB LYONS",
+    "city": "GALVESTON",
     "state": "TX"
   },
   "77560": {
@@ -110280,7 +110280,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "TX"
   },
   "77584": {
-    "city": "SILVER LAKE",
+    "city": "PEARLAND",
     "state": "TX"
   },
   "77585": {
@@ -110344,7 +110344,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "TX"
   },
   "77617": {
-    "city": "CRYSTAL BEACH",
+    "city": "PORT BOLIVAR",
     "state": "TX"
   },
   "77619": {
@@ -110412,7 +110412,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "TX"
   },
   "77650": {
-    "city": "CRYSTAL BEACH",
+    "city": "PORT BOLIVAR",
     "state": "TX"
   },
   "77651": {
@@ -110464,27 +110464,27 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "TX"
   },
   "77701": {
-    "city": "SOUTH END",
+    "city": "BEAUMONT",
     "state": "TX"
   },
   "77702": {
-    "city": "SOUTH END",
+    "city": "BEAUMONT",
     "state": "TX"
   },
   "77703": {
-    "city": "TOBE HAHN",
+    "city": "BEAUMONT",
     "state": "TX"
   },
   "77704": {
-    "city": "DOWNTOWN BEAUMONT",
+    "city": "BEAUMONT",
     "state": "TX"
   },
   "77705": {
-    "city": "SOUTH END",
+    "city": "BEAUMONT",
     "state": "TX"
   },
   "77706": {
-    "city": "TOBE HAHN",
+    "city": "BEAUMONT",
     "state": "TX"
   },
   "77707": {
@@ -110492,11 +110492,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "TX"
   },
   "77708": {
-    "city": "TOBE HAHN",
+    "city": "BEAUMONT",
     "state": "TX"
   },
   "77713": {
-    "city": "TOBE HAHN",
+    "city": "BEAUMONT",
     "state": "TX"
   },
   "77720": {
@@ -110504,39 +110504,39 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "TX"
   },
   "77725": {
-    "city": "SOUTH END",
+    "city": "BEAUMONT",
     "state": "TX"
   },
   "77726": {
-    "city": "TOBE HAHN",
+    "city": "BEAUMONT",
     "state": "TX"
   },
   "77801": {
-    "city": "BRYAN TX S&DC",
+    "city": "BRYAN",
     "state": "TX"
   },
   "77802": {
-    "city": "BRYAN TX S&DC",
+    "city": "BRYAN",
     "state": "TX"
   },
   "77803": {
-    "city": "BRYAN TX S&DC",
+    "city": "BRYAN",
     "state": "TX"
   },
   "77805": {
-    "city": "BRYAN TX S&DC",
+    "city": "BRYAN",
     "state": "TX"
   },
   "77806": {
-    "city": "BRYAN TX S&DC",
+    "city": "BRYAN",
     "state": "TX"
   },
   "77807": {
-    "city": "BRYAN TX S&DC",
+    "city": "BRYAN",
     "state": "TX"
   },
   "77808": {
-    "city": "BRYAN TX S&DC",
+    "city": "BRYAN",
     "state": "TX"
   },
   "77830": {
@@ -110572,11 +110572,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "TX"
   },
   "77840": {
-    "city": "BRYAN TX S&DC",
+    "city": "BRYAN",
     "state": "TX"
   },
   "77841": {
-    "city": "NORTHGATE COLLEGE STATION",
+    "city": "COLLEGE STATION",
     "state": "TX"
   },
   "77842": {
@@ -110584,7 +110584,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "TX"
   },
   "77845": {
-    "city": "BRYAN TX S&DC",
+    "city": "BRYAN",
     "state": "TX"
   },
   "77852": {
@@ -110688,7 +110688,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "TX"
   },
   "77901": {
-    "city": "JAMES MOODY",
+    "city": "VICTORIA",
     "state": "TX"
   },
   "77902": {
@@ -110696,15 +110696,15 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "TX"
   },
   "77903": {
-    "city": "JAMES MOODY",
+    "city": "VICTORIA",
     "state": "TX"
   },
   "77904": {
-    "city": "JAMES MOODY",
+    "city": "VICTORIA",
     "state": "TX"
   },
   "77905": {
-    "city": "JAMES MOODY",
+    "city": "VICTORIA",
     "state": "TX"
   },
   "77950": {
@@ -110892,7 +110892,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "TX"
   },
   "78015": {
-    "city": "BOERNE CARRIER ANNEX",
+    "city": "BOERNE",
     "state": "TX"
   },
   "78016": {
@@ -110952,11 +110952,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "TX"
   },
   "78041": {
-    "city": "DEL MAR",
+    "city": "LAREDO",
     "state": "TX"
   },
   "78042": {
-    "city": "EL CENTRO",
+    "city": "LAREDO",
     "state": "TX"
   },
   "78043": {
@@ -110968,7 +110968,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "TX"
   },
   "78045": {
-    "city": "DEL MAR",
+    "city": "LAREDO",
     "state": "TX"
   },
   "78046": {
@@ -111148,7 +111148,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "TX"
   },
   "78130": {
-    "city": "NEW BRAUNFELS ANNEX",
+    "city": "NEW BRAUNFELS",
     "state": "TX"
   },
   "78131": {
@@ -111156,7 +111156,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "TX"
   },
   "78132": {
-    "city": "NEW BRAUNFELS ANNEX",
+    "city": "NEW BRAUNFELS",
     "state": "TX"
   },
   "78133": {
@@ -111200,7 +111200,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "TX"
   },
   "78148": {
-    "city": "RANDOLPH AFB",
+    "city": "JBSA RANDOLPH",
     "state": "TX"
   },
   "78151": {
@@ -111248,315 +111248,315 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "TX"
   },
   "78201": {
-    "city": "BEACON HILL",
+    "city": "SAN ANTONIO",
     "state": "TX"
   },
   "78202": {
-    "city": "ARSENAL",
+    "city": "SAN ANTONIO",
     "state": "TX"
   },
   "78203": {
-    "city": "HACKBERRY",
+    "city": "SAN ANTONIO",
     "state": "TX"
   },
   "78204": {
-    "city": "ARSENAL",
+    "city": "SAN ANTONIO",
     "state": "TX"
   },
   "78205": {
-    "city": "ARSENAL",
+    "city": "SAN ANTONIO",
     "state": "TX"
   },
   "78207": {
-    "city": "ARSENAL",
+    "city": "SAN ANTONIO",
     "state": "TX"
   },
   "78208": {
-    "city": "SERNA",
+    "city": "SAN ANTONIO",
     "state": "TX"
   },
   "78209": {
-    "city": "ALAMO HEIGHTS FINANCE UNIT",
+    "city": "SAN ANTONIO",
     "state": "TX"
   },
   "78210": {
-    "city": "HACKBERRY",
+    "city": "SAN ANTONIO",
     "state": "TX"
   },
   "78211": {
-    "city": "TEJEDA",
+    "city": "SAN ANTONIO",
     "state": "TX"
   },
   "78212": {
-    "city": "LAUREL HEIGHTS",
+    "city": "SAN ANTONIO",
     "state": "TX"
   },
   "78213": {
-    "city": "BEACON HILL",
+    "city": "SAN ANTONIO",
     "state": "TX"
   },
   "78214": {
-    "city": "HARLANDALE",
+    "city": "SAN ANTONIO",
     "state": "TX"
   },
   "78215": {
-    "city": "LAUREL HEIGHTS",
+    "city": "SAN ANTONIO",
     "state": "TX"
   },
   "78216": {
-    "city": "AIRPORT STATION  SAT",
+    "city": "SAN ANTONIO",
     "state": "TX"
   },
   "78217": {
-    "city": "NORTH BROADWAY",
+    "city": "SAN ANTONIO",
     "state": "TX"
   },
   "78218": {
-    "city": "SERNA",
+    "city": "SAN ANTONIO",
     "state": "TX"
   },
   "78219": {
-    "city": "J FRANK DOBIE",
+    "city": "SAN ANTONIO",
     "state": "TX"
   },
   "78220": {
-    "city": "J FRANK DOBIE",
+    "city": "SAN ANTONIO",
     "state": "TX"
   },
   "78221": {
-    "city": "TEJEDA",
+    "city": "SAN ANTONIO",
     "state": "TX"
   },
   "78222": {
-    "city": "J FRANK DOBIE",
+    "city": "SAN ANTONIO",
     "state": "TX"
   },
   "78223": {
-    "city": "HIGHLAND HILLS SAN ANTONIO",
+    "city": "SAN ANTONIO",
     "state": "TX"
   },
   "78224": {
-    "city": "TEJEDA",
+    "city": "SAN ANTONIO",
     "state": "TX"
   },
   "78225": {
-    "city": "TEJEDA",
+    "city": "SAN ANTONIO",
     "state": "TX"
   },
   "78226": {
-    "city": "TEJEDA",
+    "city": "SAN ANTONIO",
     "state": "TX"
   },
   "78227": {
-    "city": "VALLEY HI",
+    "city": "SAN ANTONIO",
     "state": "TX"
   },
   "78228": {
-    "city": "BEACON HILL",
+    "city": "SAN ANTONIO",
     "state": "TX"
   },
   "78229": {
-    "city": "SOUTH TEXAS MEDICAL CNTR",
+    "city": "SAN ANTONIO",
     "state": "TX"
   },
   "78230": {
-    "city": "LOCKHILL",
+    "city": "SAN ANTONIO",
     "state": "TX"
   },
   "78231": {
-    "city": "LOCKHILL",
+    "city": "SAN ANTONIO",
     "state": "TX"
   },
   "78232": {
-    "city": "THOUSAND OAKS",
+    "city": "SAN ANTONIO",
     "state": "TX"
   },
   "78233": {
-    "city": "NORTHEAST CARR ANNEX",
+    "city": "SAN ANTONIO",
     "state": "TX"
   },
   "78234": {
-    "city": "FORT SAM HOUSTON",
+    "city": "JBSA FT SAM HOUSTON",
     "state": "TX"
   },
   "78235": {
-    "city": "HIGHLAND HILLS SAN ANTONIO",
+    "city": "SAN ANTONIO",
     "state": "TX"
   },
   "78236": {
-    "city": "LACKLAND AFB",
+    "city": "JBSA LACKLAND",
     "state": "TX"
   },
   "78237": {
-    "city": "LOS JARDINES",
+    "city": "SAN ANTONIO",
     "state": "TX"
   },
   "78238": {
-    "city": "LEON VALLEY",
+    "city": "SAN ANTONIO",
     "state": "TX"
   },
   "78239": {
-    "city": "NORTHEAST CARR ANNEX",
+    "city": "SAN ANTONIO",
     "state": "TX"
   },
   "78240": {
-    "city": "CEDAR ELM",
+    "city": "SAN ANTONIO",
     "state": "TX"
   },
   "78242": {
-    "city": "VALLEY HI",
+    "city": "SAN ANTONIO",
     "state": "TX"
   },
   "78244": {
-    "city": "J FRANK DOBIE",
+    "city": "SAN ANTONIO",
     "state": "TX"
   },
   "78245": {
-    "city": "HERITAGE",
+    "city": "SAN ANTONIO",
     "state": "TX"
   },
   "78246": {
-    "city": "AIRPORT STATION  SAT",
+    "city": "SAN ANTONIO",
     "state": "TX"
   },
   "78247": {
-    "city": "THOUSAND OAKS",
+    "city": "SAN ANTONIO",
     "state": "TX"
   },
   "78248": {
-    "city": "LOCKHILL",
+    "city": "SAN ANTONIO",
     "state": "TX"
   },
   "78249": {
-    "city": "CEDAR ELM",
+    "city": "SAN ANTONIO",
     "state": "TX"
   },
   "78250": {
-    "city": "HERITAGE",
+    "city": "SAN ANTONIO",
     "state": "TX"
   },
   "78251": {
-    "city": "HERITAGE",
+    "city": "SAN ANTONIO",
     "state": "TX"
   },
   "78252": {
-    "city": "TEJEDA",
+    "city": "SAN ANTONIO",
     "state": "TX"
   },
   "78253": {
-    "city": "HERITAGE",
+    "city": "SAN ANTONIO",
     "state": "TX"
   },
   "78254": {
-    "city": "LEON VALLEY",
+    "city": "SAN ANTONIO",
     "state": "TX"
   },
   "78255": {
-    "city": "CEDAR ELM",
+    "city": "SAN ANTONIO",
     "state": "TX"
   },
   "78256": {
-    "city": "LOCKHILL",
+    "city": "SAN ANTONIO",
     "state": "TX"
   },
   "78257": {
-    "city": "LOCKHILL",
+    "city": "SAN ANTONIO",
     "state": "TX"
   },
   "78258": {
-    "city": "ENCINO PARK",
+    "city": "SAN ANTONIO",
     "state": "TX"
   },
   "78259": {
-    "city": "ENCINO PARK",
+    "city": "SAN ANTONIO",
     "state": "TX"
   },
   "78260": {
-    "city": "ENCINO PARK",
+    "city": "SAN ANTONIO",
     "state": "TX"
   },
   "78261": {
-    "city": "ENCINO PARK",
+    "city": "SAN ANTONIO",
     "state": "TX"
   },
   "78263": {
-    "city": "J FRANK DOBIE",
+    "city": "SAN ANTONIO",
     "state": "TX"
   },
   "78264": {
-    "city": "TEJEDA",
+    "city": "SAN ANTONIO",
     "state": "TX"
   },
   "78265": {
-    "city": "GMF SAN ANTONIO",
+    "city": "SAN ANTONIO",
     "state": "TX"
   },
   "78266": {
-    "city": "NORTHEAST CARR ANNEX",
+    "city": "SAN ANTONIO",
     "state": "TX"
   },
   "78268": {
-    "city": "LEON VALLEY",
+    "city": "SAN ANTONIO",
     "state": "TX"
   },
   "78269": {
-    "city": "CEDAR ELM",
+    "city": "SAN ANTONIO",
     "state": "TX"
   },
   "78270": {
-    "city": "THOUSAND OAKS",
+    "city": "SAN ANTONIO",
     "state": "TX"
   },
   "78278": {
-    "city": "LOCKHILL",
+    "city": "SAN ANTONIO",
     "state": "TX"
   },
   "78279": {
-    "city": "AIRPORT STATION  SAT",
+    "city": "SAN ANTONIO",
     "state": "TX"
   },
   "78280": {
-    "city": "CPU COUNTRYSIDE PLAZA",
+    "city": "SAN ANTONIO",
     "state": "TX"
   },
   "78283": {
-    "city": "ARSENAL",
+    "city": "SAN ANTONIO",
     "state": "TX"
   },
   "78291": {
-    "city": "DOWNTOWN SAN ANTONIO",
+    "city": "SAN ANTONIO",
     "state": "TX"
   },
   "78292": {
-    "city": "DOWNTOWN SAN ANTONIO",
+    "city": "SAN ANTONIO",
     "state": "TX"
   },
   "78293": {
-    "city": "DOWNTOWN SAN ANTONIO",
+    "city": "SAN ANTONIO",
     "state": "TX"
   },
   "78294": {
-    "city": "DOWNTOWN SAN ANTONIO",
+    "city": "SAN ANTONIO",
     "state": "TX"
   },
   "78295": {
-    "city": "DOWNTOWN SAN ANTONIO",
+    "city": "SAN ANTONIO",
     "state": "TX"
   },
   "78296": {
-    "city": "DOWNTOWN SAN ANTONIO",
+    "city": "SAN ANTONIO",
     "state": "TX"
   },
   "78297": {
-    "city": "DOWNTOWN SAN ANTONIO",
+    "city": "SAN ANTONIO",
     "state": "TX"
   },
   "78298": {
-    "city": "DOWNTOWN SAN ANTONIO",
+    "city": "SAN ANTONIO",
     "state": "TX"
   },
   "78299": {
-    "city": "DOWNTOWN SAN ANTONIO",
+    "city": "SAN ANTONIO",
     "state": "TX"
   },
   "78330": {
@@ -111752,115 +111752,115 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "TX"
   },
   "78401": {
-    "city": "DOWNTOWN CORPUS CHRISTI",
+    "city": "CORPUS CHRISTI",
     "state": "TX"
   },
   "78402": {
-    "city": "DOWNTOWN CORPUS CHRISTI",
+    "city": "CORPUS CHRISTI",
     "state": "TX"
   },
   "78403": {
-    "city": "DOWNTOWN CORPUS CHRISTI",
+    "city": "CORPUS CHRISTI",
     "state": "TX"
   },
   "78404": {
-    "city": "SIX POINTS",
+    "city": "CORPUS CHRISTI",
     "state": "TX"
   },
   "78405": {
-    "city": "PORTAIRS",
+    "city": "CORPUS CHRISTI",
     "state": "TX"
   },
   "78406": {
-    "city": "STONEWALL STA  CC",
+    "city": "CORPUS CHRISTI",
     "state": "TX"
   },
   "78407": {
-    "city": "DOWNTOWN CORPUS CHRISTI",
+    "city": "CORPUS CHRISTI",
     "state": "TX"
   },
   "78408": {
-    "city": "DOWNTOWN CORPUS CHRISTI",
+    "city": "CORPUS CHRISTI",
     "state": "TX"
   },
   "78409": {
-    "city": "STONEWALL STA  CC",
+    "city": "CORPUS CHRISTI",
     "state": "TX"
   },
   "78410": {
-    "city": "STONEWALL STA  CC",
+    "city": "CORPUS CHRISTI",
     "state": "TX"
   },
   "78411": {
-    "city": "LAMAR PARK",
+    "city": "CORPUS CHRISTI",
     "state": "TX"
   },
   "78412": {
-    "city": "LAMAR PARK",
+    "city": "CORPUS CHRISTI",
     "state": "TX"
   },
   "78413": {
-    "city": "SOUTHSIDE",
+    "city": "CORPUS CHRISTI",
     "state": "TX"
   },
   "78414": {
-    "city": "GULFWAY",
+    "city": "CORPUS CHRISTI",
     "state": "TX"
   },
   "78415": {
-    "city": "PORTAIRS",
+    "city": "CORPUS CHRISTI",
     "state": "TX"
   },
   "78416": {
-    "city": "PORTAIRS",
+    "city": "CORPUS CHRISTI",
     "state": "TX"
   },
   "78417": {
-    "city": "PORTAIRS",
+    "city": "CORPUS CHRISTI",
     "state": "TX"
   },
   "78418": {
-    "city": "FLOUR BLUFF",
+    "city": "CORPUS CHRISTI",
     "state": "TX"
   },
   "78426": {
-    "city": "FIVE POINTS DPOBU",
+    "city": "CORPUS CHRISTI",
     "state": "TX"
   },
   "78427": {
-    "city": "SOUTHSIDE",
+    "city": "CORPUS CHRISTI",
     "state": "TX"
   },
   "78460": {
-    "city": "STONEWALL STA  CC",
+    "city": "CORPUS CHRISTI",
     "state": "TX"
   },
   "78463": {
-    "city": "SIX POINTS",
+    "city": "CORPUS CHRISTI",
     "state": "TX"
   },
   "78465": {
-    "city": "ROY MILLER",
+    "city": "CORPUS CHRISTI",
     "state": "TX"
   },
   "78466": {
-    "city": "LAMAR PARK",
+    "city": "CORPUS CHRISTI",
     "state": "TX"
   },
   "78467": {
-    "city": "PORTAIRS",
+    "city": "CORPUS CHRISTI",
     "state": "TX"
   },
   "78468": {
-    "city": "GULFWAY",
+    "city": "CORPUS CHRISTI",
     "state": "TX"
   },
   "78469": {
-    "city": "DR H P GARCIA",
+    "city": "CORPUS CHRISTI",
     "state": "TX"
   },
   "78480": {
-    "city": "FLOUR BLUFF",
+    "city": "CORPUS CHRISTI",
     "state": "TX"
   },
   "78501": {
@@ -111876,11 +111876,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "TX"
   },
   "78504": {
-    "city": "CPU QUIPS AND QUOTES",
+    "city": "MCALLEN",
     "state": "TX"
   },
   "78505": {
-    "city": "DOWNTOWN MCALLEN",
+    "city": "MCALLEN",
     "state": "TX"
   },
   "78516": {
@@ -111896,7 +111896,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "TX"
   },
   "78522": {
-    "city": "DOWNTOWN BROWNSVILLE",
+    "city": "BROWNSVILLE",
     "state": "TX"
   },
   "78523": {
@@ -111964,7 +111964,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "TX"
   },
   "78551": {
-    "city": "DOWNTOWN HARLINGEN",
+    "city": "HARLINGEN",
     "state": "TX"
   },
   "78552": {
@@ -112292,7 +112292,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "TX"
   },
   "78645": {
-    "city": "JONESTOWN DPOBU",
+    "city": "JONESTOWN",
     "state": "TX"
   },
   "78646": {
@@ -112368,7 +112368,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "TX"
   },
   "78666": {
-    "city": "SAN MARCOS ANNEX",
+    "city": "SAN MARCOS",
     "state": "TX"
   },
   "78667": {
@@ -112412,11 +112412,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "TX"
   },
   "78680": {
-    "city": "ROUND ROCK WEST",
+    "city": "ROUND ROCK",
     "state": "TX"
   },
   "78681": {
-    "city": "ROUND ROCK WEST",
+    "city": "ROUND ROCK",
     "state": "TX"
   },
   "78683": {
@@ -112428,247 +112428,247 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "TX"
   },
   "78701": {
-    "city": "SOUTHEAST AUSTIN",
+    "city": "AUSTIN",
     "state": "TX"
   },
   "78702": {
-    "city": "SOUTHEAST AUSTIN",
+    "city": "AUSTIN",
     "state": "TX"
   },
   "78703": {
-    "city": "CENTRAL PARK",
+    "city": "AUSTIN",
     "state": "TX"
   },
   "78704": {
-    "city": "SOUTH CONGRESS",
+    "city": "AUSTIN",
     "state": "TX"
   },
   "78705": {
-    "city": "NORTHCROSS",
+    "city": "AUSTIN",
     "state": "TX"
   },
   "78708": {
-    "city": "BLUEBONNET",
+    "city": "AUSTIN",
     "state": "TX"
   },
   "78709": {
-    "city": "OAK HILL",
+    "city": "AUSTIN",
     "state": "TX"
   },
   "78711": {
-    "city": "CAPITOL",
+    "city": "AUSTIN",
     "state": "TX"
   },
   "78714": {
-    "city": "GMF AUSTIN",
+    "city": "AUSTIN",
     "state": "TX"
   },
   "78715": {
-    "city": "MOCKINGBIRD",
+    "city": "AUSTIN",
     "state": "TX"
   },
   "78716": {
-    "city": "WESTLAKE",
+    "city": "AUSTIN",
     "state": "TX"
   },
   "78717": {
-    "city": "MCNEIL",
+    "city": "AUSTIN",
     "state": "TX"
   },
   "78718": {
-    "city": "TOWN NORTH",
+    "city": "AUSTIN",
     "state": "TX"
   },
   "78719": {
-    "city": "SOUTHEAST AUSTIN",
+    "city": "AUSTIN",
     "state": "TX"
   },
   "78720": {
-    "city": "BALCONES",
+    "city": "AUSTIN",
     "state": "TX"
   },
   "78721": {
-    "city": "NORTHEAST AUSTIN",
+    "city": "AUSTIN",
     "state": "TX"
   },
   "78722": {
-    "city": "NORTHEAST AUSTIN",
+    "city": "AUSTIN",
     "state": "TX"
   },
   "78723": {
-    "city": "NORTHEAST AUSTIN",
+    "city": "AUSTIN",
     "state": "TX"
   },
   "78724": {
-    "city": "NORTHEAST AUSTIN",
+    "city": "AUSTIN",
     "state": "TX"
   },
   "78725": {
-    "city": "NORTHEAST AUSTIN",
+    "city": "AUSTIN",
     "state": "TX"
   },
   "78726": {
-    "city": "BALCONES",
+    "city": "AUSTIN",
     "state": "TX"
   },
   "78727": {
-    "city": "BLUEBONNET",
+    "city": "AUSTIN",
     "state": "TX"
   },
   "78728": {
-    "city": "BLUEBONNET",
+    "city": "AUSTIN",
     "state": "TX"
   },
   "78729": {
-    "city": "MCNEIL",
+    "city": "AUSTIN",
     "state": "TX"
   },
   "78730": {
-    "city": "CHIMNEY CORNERS",
+    "city": "AUSTIN",
     "state": "TX"
   },
   "78731": {
-    "city": "CHIMNEY CORNERS",
+    "city": "AUSTIN",
     "state": "TX"
   },
   "78732": {
-    "city": "LAKE TRAVIS",
+    "city": "LAKEWAY",
     "state": "TX"
   },
   "78733": {
-    "city": "LAKE TRAVIS",
+    "city": "LAKEWAY",
     "state": "TX"
   },
   "78734": {
-    "city": "LAKE TRAVIS",
+    "city": "LAKEWAY",
     "state": "TX"
   },
   "78735": {
-    "city": "OAK HILL",
+    "city": "AUSTIN",
     "state": "TX"
   },
   "78736": {
-    "city": "OAK HILL",
+    "city": "AUSTIN",
     "state": "TX"
   },
   "78737": {
-    "city": "OAK HILL",
+    "city": "AUSTIN",
     "state": "TX"
   },
   "78738": {
-    "city": "LAKE TRAVIS",
+    "city": "LAKEWAY",
     "state": "TX"
   },
   "78739": {
-    "city": "OAK HILL",
+    "city": "AUSTIN",
     "state": "TX"
   },
   "78741": {
-    "city": "SOUTHEAST AUSTIN",
+    "city": "AUSTIN",
     "state": "TX"
   },
   "78742": {
-    "city": "SOUTHEAST AUSTIN",
+    "city": "AUSTIN",
     "state": "TX"
   },
   "78744": {
-    "city": "SOUTHEAST AUSTIN",
+    "city": "AUSTIN",
     "state": "TX"
   },
   "78745": {
-    "city": "MOCKINGBIRD",
+    "city": "AUSTIN",
     "state": "TX"
   },
   "78746": {
-    "city": "SOUTH CONGRESS",
+    "city": "AUSTIN",
     "state": "TX"
   },
   "78747": {
-    "city": "MOCKINGBIRD",
+    "city": "AUSTIN",
     "state": "TX"
   },
   "78748": {
-    "city": "MOCKINGBIRD",
+    "city": "AUSTIN",
     "state": "TX"
   },
   "78749": {
-    "city": "OAK HILL",
+    "city": "AUSTIN",
     "state": "TX"
   },
   "78750": {
-    "city": "BALCONES",
+    "city": "AUSTIN",
     "state": "TX"
   },
   "78751": {
-    "city": "CENTRAL PARK",
+    "city": "AUSTIN",
     "state": "TX"
   },
   "78752": {
-    "city": "NORTHEAST AUSTIN",
+    "city": "AUSTIN",
     "state": "TX"
   },
   "78753": {
-    "city": "BLUEBONNET",
+    "city": "AUSTIN",
     "state": "TX"
   },
   "78754": {
-    "city": "NORTHEAST AUSTIN",
+    "city": "AUSTIN",
     "state": "TX"
   },
   "78755": {
-    "city": "CHIMNEY CORNERS",
+    "city": "AUSTIN",
     "state": "TX"
   },
   "78756": {
-    "city": "NORTHCROSS",
+    "city": "AUSTIN",
     "state": "TX"
   },
   "78757": {
-    "city": "NORTHCROSS",
+    "city": "AUSTIN",
     "state": "TX"
   },
   "78758": {
-    "city": "BLUEBONNET",
+    "city": "AUSTIN",
     "state": "TX"
   },
   "78759": {
-    "city": "BALCONES",
+    "city": "AUSTIN",
     "state": "TX"
   },
   "78760": {
-    "city": "SOUTHEAST AUSTIN",
+    "city": "AUSTIN",
     "state": "TX"
   },
   "78761": {
-    "city": "NORTHEAST AUSTIN",
+    "city": "AUSTIN",
     "state": "TX"
   },
   "78762": {
-    "city": "SOUTHEAST AUSTIN",
+    "city": "AUSTIN",
     "state": "TX"
   },
   "78763": {
-    "city": "WEST AUSTIN",
+    "city": "AUSTIN",
     "state": "TX"
   },
   "78764": {
-    "city": "SOUTH CONGRESS",
+    "city": "AUSTIN",
     "state": "TX"
   },
   "78765": {
-    "city": "NORTHCROSS",
+    "city": "AUSTIN",
     "state": "TX"
   },
   "78766": {
-    "city": "NORTHCROSS",
+    "city": "AUSTIN",
     "state": "TX"
   },
   "78767": {
-    "city": "DOWNTOWN AUSTIN",
+    "city": "AUSTIN",
     "state": "TX"
   },
   "78768": {
-    "city": "DOWNTOWN AUSTIN",
+    "city": "AUSTIN",
     "state": "TX"
   },
   "78801": {
@@ -112724,7 +112724,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "TX"
   },
   "78841": {
-    "city": "PECAN",
+    "city": "DEL RIO",
     "state": "TX"
   },
   "78842": {
@@ -113216,11 +113216,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "TX"
   },
   "79105": {
-    "city": "DOWNTOWN AMARILLO",
+    "city": "AMARILLO",
     "state": "TX"
   },
   "79106": {
-    "city": "JORDAN",
+    "city": "AMARILLO",
     "state": "TX"
   },
   "79107": {
@@ -113232,11 +113232,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "TX"
   },
   "79109": {
-    "city": "LONE STAR",
+    "city": "AMARILLO",
     "state": "TX"
   },
   "79110": {
-    "city": "LONE STAR",
+    "city": "AMARILLO",
     "state": "TX"
   },
   "79111": {
@@ -113244,23 +113244,23 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "TX"
   },
   "79114": {
-    "city": "LONE STAR",
+    "city": "AMARILLO",
     "state": "TX"
   },
   "79116": {
-    "city": "SAN JACINTO",
+    "city": "AMARILLO",
     "state": "TX"
   },
   "79117": {
-    "city": "NORTH AMARILLO",
+    "city": "AMARILLO",
     "state": "TX"
   },
   "79118": {
-    "city": "LONE STAR",
+    "city": "AMARILLO",
     "state": "TX"
   },
   "79119": {
-    "city": "JORDAN",
+    "city": "AMARILLO",
     "state": "TX"
   },
   "79120": {
@@ -113268,19 +113268,19 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "TX"
   },
   "79121": {
-    "city": "JORDAN",
+    "city": "AMARILLO",
     "state": "TX"
   },
   "79124": {
-    "city": "JORDAN",
+    "city": "AMARILLO",
     "state": "TX"
   },
   "79159": {
-    "city": "JORDAN",
+    "city": "AMARILLO",
     "state": "TX"
   },
   "79189": {
-    "city": "DOWNTOWN AMARILLO",
+    "city": "AMARILLO",
     "state": "TX"
   },
   "79201": {
@@ -113596,23 +113596,23 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "TX"
   },
   "79401": {
-    "city": "DOWNTOWN LUBBOCK",
+    "city": "LUBBOCK",
     "state": "TX"
   },
   "79403": {
-    "city": "DOWNTOWN LUBBOCK",
+    "city": "LUBBOCK",
     "state": "TX"
   },
   "79404": {
-    "city": "DOWNTOWN LUBBOCK",
+    "city": "LUBBOCK",
     "state": "TX"
   },
   "79407": {
-    "city": "LOUISVILLE CARRIER ANX",
+    "city": "LUBBOCK",
     "state": "TX"
   },
   "79408": {
-    "city": "DOWNTOWN LUBBOCK",
+    "city": "LUBBOCK",
     "state": "TX"
   },
   "79409": {
@@ -113620,63 +113620,63 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "TX"
   },
   "79410": {
-    "city": "MONTEREY",
+    "city": "LUBBOCK",
     "state": "TX"
   },
   "79411": {
-    "city": "DOWNTOWN LUBBOCK",
+    "city": "LUBBOCK",
     "state": "TX"
   },
   "79412": {
-    "city": "MONTEREY",
+    "city": "LUBBOCK",
     "state": "TX"
   },
   "79413": {
-    "city": "MONTEREY",
+    "city": "LUBBOCK",
     "state": "TX"
   },
   "79414": {
-    "city": "LOUISVILLE CARRIER ANX",
+    "city": "LUBBOCK",
     "state": "TX"
   },
   "79415": {
-    "city": "DOWNTOWN LUBBOCK",
+    "city": "LUBBOCK",
     "state": "TX"
   },
   "79416": {
-    "city": "SUNSET",
+    "city": "LUBBOCK",
     "state": "TX"
   },
   "79423": {
-    "city": "FREEDOM",
+    "city": "LUBBOCK",
     "state": "TX"
   },
   "79424": {
-    "city": "SINGER",
+    "city": "LUBBOCK",
     "state": "TX"
   },
   "79452": {
-    "city": "FREEDOM",
+    "city": "LUBBOCK",
     "state": "TX"
   },
   "79453": {
-    "city": "CPU MEGARON",
+    "city": "LUBBOCK",
     "state": "TX"
   },
   "79464": {
-    "city": "SINGER",
+    "city": "LUBBOCK",
     "state": "TX"
   },
   "79490": {
-    "city": "SUNSET",
+    "city": "LUBBOCK",
     "state": "TX"
   },
   "79493": {
-    "city": "MONTEREY",
+    "city": "LUBBOCK",
     "state": "TX"
   },
   "79499": {
-    "city": "CPU WHISPERWOOD MAIL SERVICE",
+    "city": "LUBBOCK",
     "state": "TX"
   },
   "79501": {
@@ -113868,27 +113868,27 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "TX"
   },
   "79601": {
-    "city": "MAIN OFFICE ABILENE",
+    "city": "ABILENE",
     "state": "TX"
   },
   "79602": {
-    "city": "MAIN OFFICE ABILENE",
+    "city": "ABILENE",
     "state": "TX"
   },
   "79603": {
-    "city": "MAIN OFFICE ABILENE",
+    "city": "ABILENE",
     "state": "TX"
   },
   "79604": {
-    "city": "MAIN OFFICE ABILENE",
+    "city": "ABILENE",
     "state": "TX"
   },
   "79605": {
-    "city": "SOUTHERN HILLS",
+    "city": "ABILENE",
     "state": "TX"
   },
   "79606": {
-    "city": "SOUTHERN HILLS",
+    "city": "ABILENE",
     "state": "TX"
   },
   "79607": {
@@ -113896,43 +113896,43 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "TX"
   },
   "79608": {
-    "city": "SOUTHERN HILLS",
+    "city": "ABILENE",
     "state": "TX"
   },
   "79701": {
-    "city": "DOWNTOWN MIDLAND",
+    "city": "MIDLAND",
     "state": "TX"
   },
   "79702": {
-    "city": "DOWNTOWN MIDLAND",
+    "city": "MIDLAND",
     "state": "TX"
   },
   "79703": {
-    "city": "CLAYDESTA",
+    "city": "MIDLAND",
     "state": "TX"
   },
   "79704": {
-    "city": "VILLAGE",
+    "city": "MIDLAND",
     "state": "TX"
   },
   "79705": {
-    "city": "CLAYDESTA",
+    "city": "MIDLAND",
     "state": "TX"
   },
   "79706": {
-    "city": "DOWNTOWN MIDLAND",
+    "city": "MIDLAND",
     "state": "TX"
   },
   "79707": {
-    "city": "CLAYDESTA",
+    "city": "MIDLAND",
     "state": "TX"
   },
   "79708": {
-    "city": "GRAVES",
+    "city": "MIDLAND",
     "state": "TX"
   },
   "79710": {
-    "city": "CLAYDESTA",
+    "city": "MIDLAND",
     "state": "TX"
   },
   "79711": {
@@ -113940,7 +113940,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "TX"
   },
   "79712": {
-    "city": "AIRLINE DPOBU",
+    "city": "MIDLAND",
     "state": "TX"
   },
   "79713": {
@@ -114060,7 +114060,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "TX"
   },
   "79762": {
-    "city": "NORTHEAST ODESSA",
+    "city": "ODESSA",
     "state": "TX"
   },
   "79763": {
@@ -114068,11 +114068,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "TX"
   },
   "79764": {
-    "city": "NORTHEAST ODESSA",
+    "city": "ODESSA",
     "state": "TX"
   },
   "79765": {
-    "city": "NORTHEAST ODESSA",
+    "city": "ODESSA",
     "state": "TX"
   },
   "79766": {
@@ -114080,11 +114080,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "TX"
   },
   "79768": {
-    "city": "NORTHEAST ODESSA",
+    "city": "ODESSA",
     "state": "TX"
   },
   "79769": {
-    "city": "WEST ODESSA",
+    "city": "ODESSA",
     "state": "TX"
   },
   "79770": {
@@ -114224,79 +114224,79 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "TX"
   },
   "79901": {
-    "city": "WASHINGTON PARK",
+    "city": "EL PASO",
     "state": "TX"
   },
   "79902": {
-    "city": "MESA HILLS",
+    "city": "EL PASO",
     "state": "TX"
   },
   "79903": {
-    "city": "WASHINGTON PARK",
+    "city": "EL PASO",
     "state": "TX"
   },
   "79904": {
-    "city": "SUNRISE",
+    "city": "EL PASO",
     "state": "TX"
   },
   "79905": {
-    "city": "WASHINGTON PARK",
+    "city": "EL PASO",
     "state": "TX"
   },
   "79906": {
-    "city": "FORT BLISS",
+    "city": "EL PASO",
     "state": "TX"
   },
   "79907": {
-    "city": "YSLETA",
+    "city": "EL PASO",
     "state": "TX"
   },
   "79908": {
-    "city": "FORT BLISS",
+    "city": "EL PASO",
     "state": "TX"
   },
   "79911": {
-    "city": "CORONADO",
+    "city": "EL PASO",
     "state": "TX"
   },
   "79912": {
-    "city": "CORONADO",
+    "city": "EL PASO",
     "state": "TX"
   },
   "79913": {
-    "city": "CORONADO",
+    "city": "EL PASO",
     "state": "TX"
   },
   "79914": {
-    "city": "NORTHGATE EL PASO",
+    "city": "EL PASO",
     "state": "TX"
   },
   "79915": {
-    "city": "RANCHLAND",
+    "city": "EL PASO",
     "state": "TX"
   },
   "79917": {
-    "city": "YSLETA",
+    "city": "EL PASO",
     "state": "TX"
   },
   "79922": {
-    "city": "CORONADO",
+    "city": "EL PASO",
     "state": "TX"
   },
   "79923": {
-    "city": "FIVE POINTS",
+    "city": "EL PASO",
     "state": "TX"
   },
   "79924": {
-    "city": "NORTHGATE EL PASO",
+    "city": "EL PASO",
     "state": "TX"
   },
   "79925": {
-    "city": "AIRPORT MAIN OFC EL PASO",
+    "city": "EL PASO",
     "state": "TX"
   },
   "79926": {
-    "city": "RANCHLAND",
+    "city": "EL PASO",
     "state": "TX"
   },
   "79927": {
@@ -114304,7 +114304,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "TX"
   },
   "79928": {
-    "city": "SANDY CREEK",
+    "city": "EL PASO",
     "state": "TX"
   },
   "79929": {
@@ -114312,119 +114312,119 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "TX"
   },
   "79930": {
-    "city": "SUMMIT HEIGHTS",
+    "city": "EL PASO",
     "state": "TX"
   },
   "79931": {
-    "city": "SUMMIT HEIGHTS",
+    "city": "EL PASO",
     "state": "TX"
   },
   "79932": {
-    "city": "CORONADO",
+    "city": "EL PASO",
     "state": "TX"
   },
   "79934": {
-    "city": "SUNRISE",
+    "city": "EL PASO",
     "state": "TX"
   },
   "79935": {
-    "city": "PEBBLE HILLS",
+    "city": "EL PASO",
     "state": "TX"
   },
   "79936": {
-    "city": "PEBBLE HILLS",
+    "city": "EL PASO",
     "state": "TX"
   },
   "79937": {
-    "city": "PEBBLE HILLS",
+    "city": "EL PASO",
     "state": "TX"
   },
   "79938": {
-    "city": "SANDY CREEK",
+    "city": "EL PASO",
     "state": "TX"
   },
   "79940": {
-    "city": "DOWNTOWN EL PASO",
+    "city": "EL PASO",
     "state": "TX"
   },
   "79941": {
-    "city": "DOWNTOWN EL PASO",
+    "city": "EL PASO",
     "state": "TX"
   },
   "79942": {
-    "city": "DOWNTOWN EL PASO",
+    "city": "EL PASO",
     "state": "TX"
   },
   "79943": {
-    "city": "DOWNTOWN EL PASO",
+    "city": "EL PASO",
     "state": "TX"
   },
   "79944": {
-    "city": "DOWNTOWN EL PASO",
+    "city": "EL PASO",
     "state": "TX"
   },
   "79945": {
-    "city": "DOWNTOWN EL PASO",
+    "city": "EL PASO",
     "state": "TX"
   },
   "79946": {
-    "city": "DOWNTOWN EL PASO",
+    "city": "EL PASO",
     "state": "TX"
   },
   "79947": {
-    "city": "DOWNTOWN EL PASO",
+    "city": "EL PASO",
     "state": "TX"
   },
   "79948": {
-    "city": "DOWNTOWN EL PASO",
+    "city": "EL PASO",
     "state": "TX"
   },
   "79949": {
-    "city": "DOWNTOWN EL PASO",
+    "city": "EL PASO",
     "state": "TX"
   },
   "79950": {
-    "city": "DOWNTOWN EL PASO",
+    "city": "EL PASO",
     "state": "TX"
   },
   "79951": {
-    "city": "DOWNTOWN EL PASO",
+    "city": "EL PASO",
     "state": "TX"
   },
   "79952": {
-    "city": "DOWNTOWN EL PASO",
+    "city": "EL PASO",
     "state": "TX"
   },
   "79953": {
-    "city": "DOWNTOWN EL PASO",
+    "city": "EL PASO",
     "state": "TX"
   },
   "79954": {
-    "city": "DOWNTOWN EL PASO",
+    "city": "EL PASO",
     "state": "TX"
   },
   "79955": {
-    "city": "DOWNTOWN EL PASO",
+    "city": "EL PASO",
     "state": "TX"
   },
   "79995": {
-    "city": "WASHINGTON PARK",
+    "city": "EL PASO",
     "state": "TX"
   },
   "79996": {
-    "city": "SANDY CREEK",
+    "city": "EL PASO",
     "state": "TX"
   },
   "79997": {
-    "city": "AIRPORT MAIN OFC EL PASO",
+    "city": "EL PASO",
     "state": "TX"
   },
   "79998": {
-    "city": "AIRPORT MAIN OFC EL PASO",
+    "city": "EL PASO",
     "state": "TX"
   },
   "79999": {
-    "city": "DOWNTOWN EL PASO",
+    "city": "EL PASO",
     "state": "TX"
   },
   "80001": {
@@ -114436,7 +114436,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CO"
   },
   "80003": {
-    "city": "INDIAN TREE",
+    "city": "ARVADA",
     "state": "CO"
   },
   "80004": {
@@ -114444,27 +114444,27 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CO"
   },
   "80005": {
-    "city": "INDIAN TREE",
+    "city": "ARVADA",
     "state": "CO"
   },
   "80006": {
-    "city": "INDIAN TREE",
+    "city": "ARVADA",
     "state": "CO"
   },
   "80007": {
-    "city": "INDIAN TREE",
+    "city": "ARVADA",
     "state": "CO"
   },
   "80010": {
-    "city": "HOFFMAN HEIGHTS",
+    "city": "AURORA",
     "state": "CO"
   },
   "80011": {
-    "city": "HOFFMAN HEIGHTS",
+    "city": "AURORA",
     "state": "CO"
   },
   "80012": {
-    "city": "GATEWAY",
+    "city": "AURORA",
     "state": "CO"
   },
   "80013": {
@@ -114472,15 +114472,15 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CO"
   },
   "80014": {
-    "city": "GATEWAY",
+    "city": "AURORA",
     "state": "CO"
   },
   "80015": {
-    "city": "TOWER",
+    "city": "CENTENNIAL",
     "state": "CO"
   },
   "80016": {
-    "city": "TOWER",
+    "city": "CENTENNIAL",
     "state": "CO"
   },
   "80017": {
@@ -114500,11 +114500,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CO"
   },
   "80021": {
-    "city": "BROOMFIELD EAGLE VIEW",
+    "city": "BROOMFIELD",
     "state": "CO"
   },
   "80022": {
-    "city": "ADAMS CITY",
+    "city": "COMMERCE CITY",
     "state": "CO"
   },
   "80023": {
@@ -114512,7 +114512,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CO"
   },
   "80024": {
-    "city": "DUPONT",
+    "city": "COMMERCE CITY",
     "state": "CO"
   },
   "80025": {
@@ -114524,7 +114524,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CO"
   },
   "80027": {
-    "city": "LOUISVILLE",
+    "city": "SUPERIOR",
     "state": "CO"
   },
   "80030": {
@@ -114548,7 +114548,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CO"
   },
   "80036": {
-    "city": "HARRIS PARK",
+    "city": "WESTMINSTER",
     "state": "CO"
   },
   "80037": {
@@ -114560,27 +114560,27 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CO"
   },
   "80040": {
-    "city": "FLETCHER",
+    "city": "AURORA",
     "state": "CO"
   },
   "80041": {
-    "city": "HOFFMAN HEIGHTS",
+    "city": "AURORA",
     "state": "CO"
   },
   "80042": {
-    "city": "ALTURA",
+    "city": "AURORA",
     "state": "CO"
   },
   "80044": {
-    "city": "GATEWAY",
+    "city": "AURORA",
     "state": "CO"
   },
   "80045": {
-    "city": "FLETCHER",
+    "city": "AURORA",
     "state": "CO"
   },
   "80046": {
-    "city": "TOWER",
+    "city": "CENTENNIAL",
     "state": "CO"
   },
   "80047": {
@@ -114616,11 +114616,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CO"
   },
   "80108": {
-    "city": "CASTLE ROCK ANNEX",
+    "city": "CASTLE ROCK",
     "state": "CO"
   },
   "80109": {
-    "city": "CASTLE ROCK ANNEX",
+    "city": "CASTLE ROCK",
     "state": "CO"
   },
   "80110": {
@@ -114664,7 +114664,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CO"
   },
   "80123": {
-    "city": "COLUMBINE HILLS",
+    "city": "LITTLETON",
     "state": "CO"
   },
   "80124": {
@@ -114672,7 +114672,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CO"
   },
   "80125": {
-    "city": "KEN CARYL RANCH",
+    "city": "LITTLETON",
     "state": "CO"
   },
   "80126": {
@@ -114680,11 +114680,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CO"
   },
   "80127": {
-    "city": "KEN CARYL RANCH",
+    "city": "LITTLETON",
     "state": "CO"
   },
   "80128": {
-    "city": "KEN CARYL RANCH",
+    "city": "LITTLETON",
     "state": "CO"
   },
   "80129": {
@@ -114732,7 +114732,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CO"
   },
   "80151": {
-    "city": "DOWNTOWN ENGLEWOOD",
+    "city": "ENGLEWOOD",
     "state": "CO"
   },
   "80155": {
@@ -114748,7 +114748,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CO"
   },
   "80162": {
-    "city": "COLUMBINE HILLS",
+    "city": "LITTLETON",
     "state": "CO"
   },
   "80163": {
@@ -114764,43 +114764,43 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CO"
   },
   "80203": {
-    "city": "CAPITOL HILL",
+    "city": "DENVER",
     "state": "CO"
   },
   "80204": {
-    "city": "MILE HIGH",
+    "city": "DENVER",
     "state": "CO"
   },
   "80205": {
-    "city": "CAPITOL HILL ANNEX",
+    "city": "DENVER",
     "state": "CO"
   },
   "80206": {
-    "city": "CHERRY CREEK",
+    "city": "DENVER",
     "state": "CO"
   },
   "80207": {
-    "city": "PARK HILL",
+    "city": "DENVER",
     "state": "CO"
   },
   "80209": {
-    "city": "SOUTH DENVER",
+    "city": "DENVER",
     "state": "CO"
   },
   "80210": {
-    "city": "UNIVERSITY PARK",
+    "city": "DENVER",
     "state": "CO"
   },
   "80211": {
-    "city": "SUNNYSIDE",
+    "city": "DENVER",
     "state": "CO"
   },
   "80212": {
-    "city": "ALCOTT",
+    "city": "DENVER",
     "state": "CO"
   },
   "80214": {
-    "city": "EDGEWATER",
+    "city": "LAKEWOOD",
     "state": "CO"
   },
   "80215": {
@@ -114808,39 +114808,39 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CO"
   },
   "80216": {
-    "city": "STOCKYARDS",
+    "city": "DENVER",
     "state": "CO"
   },
   "80217": {
-    "city": "GMF FINANCE",
+    "city": "DENVER",
     "state": "CO"
   },
   "80218": {
-    "city": "CAPITOL HILL",
+    "city": "DENVER",
     "state": "CO"
   },
   "80219": {
-    "city": "WESTWOOD",
+    "city": "DENVER",
     "state": "CO"
   },
   "80220": {
-    "city": "MONTCLAIR",
+    "city": "DENVER",
     "state": "CO"
   },
   "80221": {
-    "city": "NORTH PECOS",
+    "city": "DENVER",
     "state": "CO"
   },
   "80222": {
-    "city": "WELLSHIRE",
+    "city": "DENVER",
     "state": "CO"
   },
   "80223": {
-    "city": "SOUTH DENVER",
+    "city": "DENVER",
     "state": "CO"
   },
   "80224": {
-    "city": "WELLSHIRE",
+    "city": "DENVER",
     "state": "CO"
   },
   "80226": {
@@ -114848,7 +114848,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CO"
   },
   "80227": {
-    "city": "BEAR VALLEY",
+    "city": "DENVER",
     "state": "CO"
   },
   "80228": {
@@ -114856,19 +114856,19 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CO"
   },
   "80229": {
-    "city": "NORTH PECOS",
+    "city": "DENVER",
     "state": "CO"
   },
   "80230": {
-    "city": "MONTCLAIR",
+    "city": "DENVER",
     "state": "CO"
   },
   "80231": {
-    "city": "SULLIVAN",
+    "city": "DENVER",
     "state": "CO"
   },
   "80232": {
-    "city": "BEAR VALLEY",
+    "city": "DENVER",
     "state": "CO"
   },
   "80233": {
@@ -114876,27 +114876,27 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CO"
   },
   "80234": {
-    "city": "NORTHVIEW",
+    "city": "NORTHGLENN",
     "state": "CO"
   },
   "80235": {
-    "city": "BEAR VALLEY",
+    "city": "DENVER",
     "state": "CO"
   },
   "80236": {
-    "city": "BEAR VALLEY",
+    "city": "DENVER",
     "state": "CO"
   },
   "80237": {
-    "city": "SULLIVAN",
+    "city": "DENVER",
     "state": "CO"
   },
   "80238": {
-    "city": "MONTBELLO",
+    "city": "DENVER",
     "state": "CO"
   },
   "80239": {
-    "city": "MONTBELLO",
+    "city": "DENVER",
     "state": "CO"
   },
   "80241": {
@@ -114904,11 +114904,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CO"
   },
   "80246": {
-    "city": "GLENDALE",
+    "city": "DENVER",
     "state": "CO"
   },
   "80247": {
-    "city": "SULLIVAN",
+    "city": "DENVER",
     "state": "CO"
   },
   "80248": {
@@ -114916,19 +114916,19 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CO"
   },
   "80249": {
-    "city": "MONTBELLO",
+    "city": "DENVER",
     "state": "CO"
   },
   "80250": {
-    "city": "UNIVERSITY PARK",
+    "city": "DENVER",
     "state": "CO"
   },
   "80260": {
-    "city": "NORTH PECOS",
+    "city": "DENVER",
     "state": "CO"
   },
   "80264": {
-    "city": "CAPITOL HILL ANNEX",
+    "city": "DENVER",
     "state": "CO"
   },
   "80265": {
@@ -114952,7 +114952,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CO"
   },
   "80301": {
-    "city": "VALMONT",
+    "city": "BOULDER",
     "state": "CO"
   },
   "80302": {
@@ -114960,15 +114960,15 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CO"
   },
   "80303": {
-    "city": "VALMONT",
+    "city": "BOULDER",
     "state": "CO"
   },
   "80304": {
-    "city": "VALMONT",
+    "city": "BOULDER",
     "state": "CO"
   },
   "80305": {
-    "city": "HIGH MAR",
+    "city": "BOULDER",
     "state": "CO"
   },
   "80306": {
@@ -114976,23 +114976,23 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CO"
   },
   "80307": {
-    "city": "HIGH MAR",
+    "city": "BOULDER",
     "state": "CO"
   },
   "80308": {
-    "city": "VALMONT",
+    "city": "BOULDER",
     "state": "CO"
   },
   "80401": {
-    "city": "GOLDEN CO S&DC",
+    "city": "GOLDEN",
     "state": "CO"
   },
   "80402": {
-    "city": "DOWNTOWN GOLDEN",
+    "city": "GOLDEN",
     "state": "CO"
   },
   "80403": {
-    "city": "CPU CRESCENT",
+    "city": "GOLDEN",
     "state": "CO"
   },
   "80420": {
@@ -115064,7 +115064,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CO"
   },
   "80439": {
-    "city": "GOLDEN CO S&DC",
+    "city": "GOLDEN",
     "state": "CO"
   },
   "80440": {
@@ -115084,7 +115084,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CO"
   },
   "80446": {
-    "city": "CPU SILVER CREEK 1",
+    "city": "GRANBY",
     "state": "CO"
   },
   "80447": {
@@ -115140,7 +115140,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CO"
   },
   "80465": {
-    "city": "GOLDEN CO S&DC",
+    "city": "GOLDEN",
     "state": "CO"
   },
   "80466": {
@@ -115228,7 +115228,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CO"
   },
   "80501": {
-    "city": "CPU MAIN STREET MARKETPLACE",
+    "city": "LONGMONT",
     "state": "CO"
   },
   "80502": {
@@ -115248,7 +115248,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CO"
   },
   "80511": {
-    "city": "CPU YMCA CAMP OF THE ROCKIES",
+    "city": "ESTES PARK",
     "state": "CO"
   },
   "80512": {
@@ -115280,31 +115280,31 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CO"
   },
   "80521": {
-    "city": "OLD TOWN",
+    "city": "FORT COLLINS",
     "state": "CO"
   },
   "80522": {
-    "city": "OLD TOWN",
+    "city": "FORT COLLINS",
     "state": "CO"
   },
   "80524": {
-    "city": "OLD TOWN",
+    "city": "FORT COLLINS",
     "state": "CO"
   },
   "80525": {
-    "city": "FORT COLLINS CO SDC",
+    "city": "FORT COLLINS",
     "state": "CO"
   },
   "80526": {
-    "city": "FORT COLLINS CO SDC",
+    "city": "FORT COLLINS",
     "state": "CO"
   },
   "80527": {
-    "city": "FORT COLLINS CO SDC",
+    "city": "FORT COLLINS",
     "state": "CO"
   },
   "80528": {
-    "city": "FORT COLLINS CO SDC",
+    "city": "FORT COLLINS",
     "state": "CO"
   },
   "80530": {
@@ -115372,7 +115372,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CO"
   },
   "80547": {
-    "city": "FORT COLLINS CO SDC",
+    "city": "FORT COLLINS",
     "state": "CO"
   },
   "80549": {
@@ -115380,7 +115380,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CO"
   },
   "80550": {
-    "city": "WIN CARRIER ANNEX",
+    "city": "WINDSOR",
     "state": "CO"
   },
   "80601": {
@@ -115388,7 +115388,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CO"
   },
   "80602": {
-    "city": "BRIGHTON CARRIER ANNEX",
+    "city": "BRIGHTON",
     "state": "CO"
   },
   "80603": {
@@ -115436,11 +115436,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CO"
   },
   "80631": {
-    "city": "DOWNTOWN GREELEY",
+    "city": "GREELEY",
     "state": "CO"
   },
   "80632": {
-    "city": "DOWNTOWN GREELEY",
+    "city": "GREELEY",
     "state": "CO"
   },
   "80633": {
@@ -115768,7 +115768,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CO"
   },
   "80841": {
-    "city": "CADET",
+    "city": "USAF ACADEMY",
     "state": "CO"
   },
   "80860": {
@@ -115784,7 +115784,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CO"
   },
   "80863": {
-    "city": "TAMARAC",
+    "city": "WOODLAND PARK",
     "state": "CO"
   },
   "80864": {
@@ -115800,7 +115800,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CO"
   },
   "80902": {
-    "city": "FORT CARSON",
+    "city": "COLORADO SPRINGS",
     "state": "CO"
   },
   "80903": {
@@ -115808,167 +115808,167 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CO"
   },
   "80904": {
-    "city": "WEST END CARRIER ANNEX",
+    "city": "COLORADO SPRINGS",
     "state": "CO"
   },
   "80905": {
-    "city": "CHEYENNE MOUNTAIN",
+    "city": "COLORADO SPRINGS",
     "state": "CO"
   },
   "80906": {
-    "city": "CHEYENNE MOUNTAIN",
+    "city": "COLORADO SPRINGS",
     "state": "CO"
   },
   "80907": {
-    "city": "NORTH END CO SPGS",
+    "city": "COLORADO SPRINGS",
     "state": "CO"
   },
   "80908": {
-    "city": "BRIARGATE",
+    "city": "COLORADO SPRINGS",
     "state": "CO"
   },
   "80909": {
-    "city": "ANTARES",
+    "city": "COLORADO SPRINGS",
     "state": "CO"
   },
   "80910": {
-    "city": "GENERAL MAIL FACILITY",
+    "city": "COLORADO SPRINGS",
     "state": "CO"
   },
   "80911": {
-    "city": "SECURITY",
+    "city": "COLORADO SPRINGS",
     "state": "CO"
   },
   "80914": {
-    "city": "CPU PETERSON AFB",
+    "city": "COLORADO SPRINGS",
     "state": "CO"
   },
   "80915": {
-    "city": "CIMARRON HILLS",
+    "city": "COLORADO SPRINGS",
     "state": "CO"
   },
   "80916": {
-    "city": "GENERAL MAIL FACILITY",
+    "city": "COLORADO SPRINGS",
     "state": "CO"
   },
   "80917": {
-    "city": "TEMPLETON",
+    "city": "COLORADO SPRINGS",
     "state": "CO"
   },
   "80918": {
-    "city": "TEMPLETON",
+    "city": "COLORADO SPRINGS",
     "state": "CO"
   },
   "80919": {
-    "city": "ROCKRIMMON",
+    "city": "COLORADO SPRINGS",
     "state": "CO"
   },
   "80920": {
-    "city": "BRIARGATE",
+    "city": "COLORADO SPRINGS",
     "state": "CO"
   },
   "80921": {
-    "city": "BRIARGATE",
+    "city": "COLORADO SPRINGS",
     "state": "CO"
   },
   "80922": {
-    "city": "CIMARRON HILLS",
+    "city": "COLORADO SPRINGS",
     "state": "CO"
   },
   "80923": {
-    "city": "CIMARRON HILLS",
+    "city": "COLORADO SPRINGS",
     "state": "CO"
   },
   "80924": {
-    "city": "BRIARGATE",
+    "city": "COLORADO SPRINGS",
     "state": "CO"
   },
   "80925": {
-    "city": "SECURITY",
+    "city": "COLORADO SPRINGS",
     "state": "CO"
   },
   "80926": {
-    "city": "CHEYENNE MOUNTAIN",
+    "city": "COLORADO SPRINGS",
     "state": "CO"
   },
   "80927": {
-    "city": "CIMARRON HILLS",
+    "city": "COLORADO SPRINGS",
     "state": "CO"
   },
   "80928": {
-    "city": "SECURITY",
+    "city": "COLORADO SPRINGS",
     "state": "CO"
   },
   "80929": {
-    "city": "SECURITY",
+    "city": "COLORADO SPRINGS",
     "state": "CO"
   },
   "80930": {
-    "city": "SECURITY",
+    "city": "COLORADO SPRINGS",
     "state": "CO"
   },
   "80931": {
-    "city": "SECURITY",
+    "city": "COLORADO SPRINGS",
     "state": "CO"
   },
   "80932": {
-    "city": "ANTARES",
+    "city": "COLORADO SPRINGS",
     "state": "CO"
   },
   "80933": {
-    "city": "NORTH END CO SPGS",
+    "city": "COLORADO SPRINGS",
     "state": "CO"
   },
   "80934": {
-    "city": "WEST END",
+    "city": "COLORADO SPRINGS",
     "state": "CO"
   },
   "80935": {
-    "city": "GENERAL MAIL FACILITY",
+    "city": "COLORADO SPRINGS",
     "state": "CO"
   },
   "80936": {
-    "city": "TEMPLETON",
+    "city": "COLORADO SPRINGS",
     "state": "CO"
   },
   "80937": {
-    "city": "CHEYENNE MOUNTAIN",
+    "city": "COLORADO SPRINGS",
     "state": "CO"
   },
   "80938": {
-    "city": "CIMARRON HILLS",
+    "city": "COLORADO SPRINGS",
     "state": "CO"
   },
   "80939": {
-    "city": "CIMARRON HILLS",
+    "city": "COLORADO SPRINGS",
     "state": "CO"
   },
   "80949": {
-    "city": "ROCKRIMMON",
+    "city": "COLORADO SPRINGS",
     "state": "CO"
   },
   "80951": {
-    "city": "CIMARRON HILLS",
+    "city": "COLORADO SPRINGS",
     "state": "CO"
   },
   "80960": {
-    "city": "CHEYENNE MOUNTAIN",
+    "city": "COLORADO SPRINGS",
     "state": "CO"
   },
   "80962": {
-    "city": "BRIARGATE",
+    "city": "COLORADO SPRINGS",
     "state": "CO"
   },
   "80970": {
-    "city": "CIMARRON HILLS",
+    "city": "COLORADO SPRINGS",
     "state": "CO"
   },
   "81001": {
-    "city": "BELMONT",
+    "city": "PUEBLO",
     "state": "CO"
   },
   "81002": {
-    "city": "MIDTOWN",
+    "city": "PUEBLO",
     "state": "CO"
   },
   "81003": {
@@ -115976,19 +115976,19 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CO"
   },
   "81004": {
-    "city": "SUNSET",
+    "city": "PUEBLO",
     "state": "CO"
   },
   "81005": {
-    "city": "SUNSET",
+    "city": "PUEBLO",
     "state": "CO"
   },
   "81006": {
-    "city": "SUNSET",
+    "city": "PUEBLO",
     "state": "CO"
   },
   "81007": {
-    "city": "CPU PUEBLO WEST",
+    "city": "PUEBLO",
     "state": "CO"
   },
   "81008": {
@@ -115996,7 +115996,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CO"
   },
   "81019": {
-    "city": "CPU COLORADO CITY",
+    "city": "COLORADO CITY",
     "state": "CO"
   },
   "81020": {
@@ -116336,7 +116336,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CO"
   },
   "81225": {
-    "city": "CRESTED BUTTE DPOBU",
+    "city": "CRESTED BUTTE",
     "state": "CO"
   },
   "81226": {
@@ -116476,7 +116476,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CO"
   },
   "81401": {
-    "city": "MONTROSE ANNEX",
+    "city": "MONTROSE",
     "state": "CO"
   },
   "81402": {
@@ -116484,7 +116484,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CO"
   },
   "81403": {
-    "city": "MONTROSE ANNEX",
+    "city": "MONTROSE",
     "state": "CO"
   },
   "81410": {
@@ -116532,7 +116532,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CO"
   },
   "81425": {
-    "city": "MONTROSE ANNEX",
+    "city": "MONTROSE",
     "state": "CO"
   },
   "81426": {
@@ -116588,19 +116588,19 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CO"
   },
   "81504": {
-    "city": "FRUITVALE",
+    "city": "GRAND JUNCTION",
     "state": "CO"
   },
   "81505": {
-    "city": "GRAND JUNCTION CARRIER ANNEX",
+    "city": "GRAND JUNCTION",
     "state": "CO"
   },
   "81506": {
-    "city": "GRAND JUNCTION CARRIER ANNEX",
+    "city": "GRAND JUNCTION",
     "state": "CO"
   },
   "81507": {
-    "city": "GRAND JUNCTION CARRIER ANNEX",
+    "city": "GRAND JUNCTION",
     "state": "CO"
   },
   "81520": {
@@ -116756,7 +116756,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CO"
   },
   "81652": {
-    "city": "RIFLE ANNEX",
+    "city": "RIFLE",
     "state": "CO"
   },
   "81653": {
@@ -116788,7 +116788,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "WY"
   },
   "82003": {
-    "city": "AIRPORT",
+    "city": "CHEYENNE",
     "state": "WY"
   },
   "82007": {
@@ -116804,7 +116804,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "WY"
   },
   "82051": {
-    "city": "LARAMIE ANNEX",
+    "city": "LARAMIE",
     "state": "WY"
   },
   "82052": {
@@ -116836,15 +116836,15 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "WY"
   },
   "82063": {
-    "city": "LARAMIE ANNEX",
+    "city": "LARAMIE",
     "state": "WY"
   },
   "82070": {
-    "city": "LARAMIE ANNEX",
+    "city": "LARAMIE",
     "state": "WY"
   },
   "82072": {
-    "city": "LARAMIE ANNEX",
+    "city": "LARAMIE",
     "state": "WY"
   },
   "82073": {
@@ -116864,11 +116864,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "WY"
   },
   "82084": {
-    "city": "LARAMIE ANNEX",
+    "city": "LARAMIE",
     "state": "WY"
   },
   "82190": {
-    "city": "CPU CANYON VILLAGE",
+    "city": "YELLOWSTONE NATIONAL PARK",
     "state": "WY"
   },
   "82201": {
@@ -117100,7 +117100,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "WY"
   },
   "82510": {
-    "city": "RIVERTON ANNEX",
+    "city": "RIVERTON",
     "state": "WY"
   },
   "82512": {
@@ -117140,7 +117140,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "WY"
   },
   "82602": {
-    "city": "DOWNTOWN CASPER",
+    "city": "CASPER",
     "state": "WY"
   },
   "82604": {
@@ -117416,7 +117416,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "WY"
   },
   "83001": {
-    "city": "DOWNTOWN JACKSON",
+    "city": "JACKSON",
     "state": "WY"
   },
   "83002": {
@@ -117516,15 +117516,15 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "ID"
   },
   "83202": {
-    "city": "GATEWAY STATION",
+    "city": "POCATELLO",
     "state": "ID"
   },
   "83203": {
-    "city": "CPU FORT HALL",
+    "city": "FORT HALL",
     "state": "ID"
   },
   "83204": {
-    "city": "BANNOCK",
+    "city": "POCATELLO",
     "state": "ID"
   },
   "83205": {
@@ -117532,7 +117532,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "ID"
   },
   "83206": {
-    "city": "GATEWAY STATION",
+    "city": "POCATELLO",
     "state": "ID"
   },
   "83210": {
@@ -117732,15 +117732,15 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "ID"
   },
   "83301": {
-    "city": "PIONEER STATION",
+    "city": "TWIN FALLS",
     "state": "ID"
   },
   "83302": {
-    "city": "PIONEER STATION",
+    "city": "TWIN FALLS",
     "state": "ID"
   },
   "83303": {
-    "city": "PIONEER STATION",
+    "city": "TWIN FALLS",
     "state": "ID"
   },
   "83311": {
@@ -117880,7 +117880,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "ID"
   },
   "83354": {
-    "city": "ELK HORN VILLAGE DPOBU",
+    "city": "SUN VALLEY",
     "state": "ID"
   },
   "83355": {
@@ -117892,7 +117892,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "ID"
   },
   "83402": {
-    "city": "EAGLE ROCK",
+    "city": "IDAHO FALLS",
     "state": "ID"
   },
   "83403": {
@@ -117904,7 +117904,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "ID"
   },
   "83405": {
-    "city": "EAGLE ROCK",
+    "city": "IDAHO FALLS",
     "state": "ID"
   },
   "83406": {
@@ -118316,7 +118316,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "ID"
   },
   "83651": {
-    "city": "NAMPA CARRIER ANNEX",
+    "city": "NAMPA",
     "state": "ID"
   },
   "83653": {
@@ -118380,15 +118380,15 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "ID"
   },
   "83686": {
-    "city": "NAMPA CARRIER ANNEX",
+    "city": "NAMPA",
     "state": "ID"
   },
   "83687": {
-    "city": "NAMPA CARRIER ANNEX",
+    "city": "NAMPA",
     "state": "ID"
   },
   "83701": {
-    "city": "BORAH",
+    "city": "BOISE",
     "state": "ID"
   },
   "83702": {
@@ -118400,11 +118400,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "ID"
   },
   "83704": {
-    "city": "COLE VILLAGE",
+    "city": "BOISE",
     "state": "ID"
   },
   "83705": {
-    "city": "OVERLAND",
+    "city": "BOISE",
     "state": "ID"
   },
   "83706": {
@@ -118416,11 +118416,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "ID"
   },
   "83709": {
-    "city": "FIVE MILE",
+    "city": "BOISE",
     "state": "ID"
   },
   "83711": {
-    "city": "COLE VILLAGE",
+    "city": "BOISE",
     "state": "ID"
   },
   "83712": {
@@ -118428,7 +118428,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "ID"
   },
   "83713": {
-    "city": "COLE VILLAGE",
+    "city": "BOISE",
     "state": "ID"
   },
   "83714": {
@@ -118436,19 +118436,19 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "ID"
   },
   "83715": {
-    "city": "BOISE AIRPORT STATION",
+    "city": "BOISE",
     "state": "ID"
   },
   "83716": {
-    "city": "OVERLAND",
+    "city": "BOISE",
     "state": "ID"
   },
   "83717": {
-    "city": "OREGON TRAIL",
+    "city": "BOISE",
     "state": "ID"
   },
   "83719": {
-    "city": "FIVE MILE",
+    "city": "BOISE",
     "state": "ID"
   },
   "83799": {
@@ -118508,7 +118508,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "ID"
   },
   "83815": {
-    "city": "COEUR D ALENE CARRIER ANNEX",
+    "city": "COEUR D ALENE",
     "state": "ID"
   },
   "83816": {
@@ -118760,7 +118760,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "UT"
   },
   "84016": {
-    "city": "FREEPORT CENTER",
+    "city": "CLEARFIELD",
     "state": "UT"
   },
   "84017": {
@@ -118920,7 +118920,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "UT"
   },
   "84058": {
-    "city": "MOUNTAIN SHADOWS",
+    "city": "OREM",
     "state": "UT"
   },
   "84059": {
@@ -118928,7 +118928,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "UT"
   },
   "84060": {
-    "city": "OLD TOWN",
+    "city": "PARK CITY",
     "state": "UT"
   },
   "84061": {
@@ -118988,7 +118988,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "UT"
   },
   "84075": {
-    "city": "FREEPORT CENTER",
+    "city": "CLEARFIELD",
     "state": "UT"
   },
   "84076": {
@@ -119044,7 +119044,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "UT"
   },
   "84090": {
-    "city": "ALTA CANYON",
+    "city": "SANDY",
     "state": "UT"
   },
   "84091": {
@@ -119056,7 +119056,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "UT"
   },
   "84093": {
-    "city": "ALTA CANYON",
+    "city": "SANDY",
     "state": "UT"
   },
   "84094": {
@@ -119072,7 +119072,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "UT"
   },
   "84097": {
-    "city": "MOUNTAIN SHADOWS",
+    "city": "OREM",
     "state": "UT"
   },
   "84098": {
@@ -119080,55 +119080,55 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "UT"
   },
   "84101": {
-    "city": "SALT LAKE DOWNTOWN ANNEX",
+    "city": "SALT LAKE CITY",
     "state": "UT"
   },
   "84102": {
-    "city": "FOOTHILL",
+    "city": "SALT LAKE CITY",
     "state": "UT"
   },
   "84103": {
-    "city": "SALT LAKE DOWNTOWN ANNEX",
+    "city": "SALT LAKE CITY",
     "state": "UT"
   },
   "84104": {
-    "city": "AIRPORT CARRIERS",
+    "city": "SALT LAKE CITY",
     "state": "UT"
   },
   "84105": {
-    "city": "SUGARHOUSE",
+    "city": "SALT LAKE CITY",
     "state": "UT"
   },
   "84106": {
-    "city": "SUGARHOUSE",
+    "city": "SALT LAKE CITY",
     "state": "UT"
   },
   "84107": {
-    "city": "MURRAY",
+    "city": "SALT LAKE CITY",
     "state": "UT"
   },
   "84108": {
-    "city": "FOOTHILL",
+    "city": "SALT LAKE CITY",
     "state": "UT"
   },
   "84109": {
-    "city": "MILLCREEK",
+    "city": "SALT LAKE CITY",
     "state": "UT"
   },
   "84110": {
-    "city": "DOWNTOWN SLC RETAIL EAQ",
+    "city": "SALT LAKE CITY",
     "state": "UT"
   },
   "84111": {
-    "city": "SALT LAKE DOWNTOWN ANNEX",
+    "city": "SALT LAKE CITY",
     "state": "UT"
   },
   "84112": {
-    "city": "FOOTHILL",
+    "city": "SALT LAKE CITY",
     "state": "UT"
   },
   "84113": {
-    "city": "FOOTHILL",
+    "city": "SALT LAKE CITY",
     "state": "UT"
   },
   "84114": {
@@ -119140,27 +119140,27 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "UT"
   },
   "84116": {
-    "city": "NORTHWEST",
+    "city": "SALT LAKE CITY",
     "state": "UT"
   },
   "84117": {
-    "city": "HOLLADAY",
+    "city": "SALT LAKE CITY",
     "state": "UT"
   },
   "84118": {
-    "city": "KEARNS",
+    "city": "TAYLORSVILLE",
     "state": "UT"
   },
   "84119": {
-    "city": "WEST VALLEY",
+    "city": "WEST VALLEY CITY",
     "state": "UT"
   },
   "84120": {
-    "city": "WEST VALLEY",
+    "city": "WEST VALLEY CITY",
     "state": "UT"
   },
   "84121": {
-    "city": "COTTONWOOD",
+    "city": "SALT LAKE CITY",
     "state": "UT"
   },
   "84122": {
@@ -119168,11 +119168,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "UT"
   },
   "84123": {
-    "city": "MURRAY",
+    "city": "SALT LAKE CITY",
     "state": "UT"
   },
   "84124": {
-    "city": "HOLLADAY",
+    "city": "SALT LAKE CITY",
     "state": "UT"
   },
   "84125": {
@@ -119188,11 +119188,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "UT"
   },
   "84128": {
-    "city": "WEST VALLEY",
+    "city": "WEST VALLEY CITY",
     "state": "UT"
   },
   "84129": {
-    "city": "KEARNS",
+    "city": "TAYLORSVILLE",
     "state": "UT"
   },
   "84130": {
@@ -119204,35 +119204,35 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "UT"
   },
   "84133": {
-    "city": "SALT LAKE DOWNTOWN ANNEX",
+    "city": "SALT LAKE CITY",
     "state": "UT"
   },
   "84138": {
-    "city": "SALT LAKE DOWNTOWN ANNEX",
+    "city": "SALT LAKE CITY",
     "state": "UT"
   },
   "84145": {
-    "city": "DOWNTOWN SLC RETAIL EAQ",
+    "city": "SALT LAKE CITY",
     "state": "UT"
   },
   "84147": {
-    "city": "DOWNTOWN SLC RETAIL EAQ",
+    "city": "SALT LAKE CITY",
     "state": "UT"
   },
   "84151": {
-    "city": "DOWNTOWN SLC RETAIL EAQ",
+    "city": "SALT LAKE CITY",
     "state": "UT"
   },
   "84152": {
-    "city": "SUGARHOUSE",
+    "city": "SALT LAKE CITY",
     "state": "UT"
   },
   "84157": {
-    "city": "MURRAY",
+    "city": "SALT LAKE CITY",
     "state": "UT"
   },
   "84158": {
-    "city": "FOOTHILL",
+    "city": "SALT LAKE CITY",
     "state": "UT"
   },
   "84165": {
@@ -119240,15 +119240,15 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "UT"
   },
   "84170": {
-    "city": "WEST VALLEY",
+    "city": "WEST VALLEY CITY",
     "state": "UT"
   },
   "84171": {
-    "city": "COTTONWOOD",
+    "city": "SALT LAKE CITY",
     "state": "UT"
   },
   "84180": {
-    "city": "SALT LAKE DOWNTOWN ANNEX",
+    "city": "SALT LAKE CITY",
     "state": "UT"
   },
   "84301": {
@@ -119404,7 +119404,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "UT"
   },
   "84341": {
-    "city": "NORTH LOGAN",
+    "city": "LOGAN",
     "state": "UT"
   },
   "84401": {
@@ -119412,15 +119412,15 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "UT"
   },
   "84402": {
-    "city": "TOWN",
+    "city": "OGDEN",
     "state": "UT"
   },
   "84403": {
-    "city": "MOUNT OGDEN",
+    "city": "OGDEN",
     "state": "UT"
   },
   "84404": {
-    "city": "BEN LOMOND",
+    "city": "OGDEN",
     "state": "UT"
   },
   "84405": {
@@ -119432,15 +119432,15 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "UT"
   },
   "84412": {
-    "city": "BEN LOMOND",
+    "city": "OGDEN",
     "state": "UT"
   },
   "84414": {
-    "city": "BEN LOMOND",
+    "city": "OGDEN",
     "state": "UT"
   },
   "84415": {
-    "city": "MOUNT OGDEN",
+    "city": "OGDEN",
     "state": "UT"
   },
   "84501": {
@@ -119564,11 +119564,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "UT"
   },
   "84605": {
-    "city": "PROVO PO",
+    "city": "PROVO",
     "state": "UT"
   },
   "84606": {
-    "city": "PROVO PO",
+    "city": "PROVO",
     "state": "UT"
   },
   "84620": {
@@ -119944,7 +119944,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "UT"
   },
   "84764": {
-    "city": "CPU RUBYS INN",
+    "city": "BRYCE CANYON CITY",
     "state": "UT"
   },
   "84765": {
@@ -119960,11 +119960,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "UT"
   },
   "84770": {
-    "city": "DOWNTOWN SAINT GEORGE",
+    "city": "SAINT GEORGE",
     "state": "UT"
   },
   "84771": {
-    "city": "DOWNTOWN SAINT GEORGE",
+    "city": "SAINT GEORGE",
     "state": "UT"
   },
   "84772": {
@@ -120020,143 +120020,143 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "UT"
   },
   "85001": {
-    "city": "DOWNTOWN PHOENIX",
+    "city": "PHOENIX",
     "state": "AZ"
   },
   "85002": {
-    "city": "DOWNTOWN PHOENIX",
+    "city": "PHOENIX",
     "state": "AZ"
   },
   "85003": {
-    "city": "PHOENIX RIO SALADO AZ S&DC",
+    "city": "PHOENIX",
     "state": "AZ"
   },
   "85004": {
-    "city": "PHOENIX RIO SALADO AZ S&DC",
+    "city": "PHOENIX",
     "state": "AZ"
   },
   "85005": {
-    "city": "CAPITOL",
+    "city": "PHOENIX",
     "state": "AZ"
   },
   "85006": {
-    "city": "PHOENIX RIO SALADO AZ S&DC",
+    "city": "PHOENIX",
     "state": "AZ"
   },
   "85007": {
-    "city": "CAPITOL",
+    "city": "PHOENIX",
     "state": "AZ"
   },
   "85008": {
-    "city": "PHOENIX RIO SALADO AZ S&DC",
+    "city": "PHOENIX",
     "state": "AZ"
   },
   "85009": {
-    "city": "CAPITOL",
+    "city": "PHOENIX",
     "state": "AZ"
   },
   "85010": {
-    "city": "ARCADIA",
+    "city": "PHOENIX",
     "state": "AZ"
   },
   "85011": {
-    "city": "OSBORN",
+    "city": "PHOENIX",
     "state": "AZ"
   },
   "85012": {
-    "city": "OSBORN",
+    "city": "PHOENIX",
     "state": "AZ"
   },
   "85013": {
-    "city": "OSBORN",
+    "city": "PHOENIX",
     "state": "AZ"
   },
   "85014": {
-    "city": "OSBORN",
+    "city": "PHOENIX",
     "state": "AZ"
   },
   "85015": {
-    "city": "NORTHWEST ANNEX",
+    "city": "PHOENIX",
     "state": "AZ"
   },
   "85016": {
-    "city": "PHOENIX RIO SALADO AZ S&DC",
+    "city": "PHOENIX",
     "state": "AZ"
   },
   "85017": {
-    "city": "NORTHWEST ANNEX",
+    "city": "PHOENIX",
     "state": "AZ"
   },
   "85018": {
-    "city": "PHOENIX RIO SALADO AZ S&DC",
+    "city": "PHOENIX",
     "state": "AZ"
   },
   "85019": {
-    "city": "MARYVALE",
+    "city": "PHOENIX",
     "state": "AZ"
   },
   "85020": {
-    "city": "SUNNYSLOPE",
+    "city": "PHOENIX",
     "state": "AZ"
   },
   "85021": {
-    "city": "WASHINGTON",
+    "city": "PHOENIX",
     "state": "AZ"
   },
   "85022": {
-    "city": "SUNNYSLOPE ANNEX",
+    "city": "PHOENIX",
     "state": "AZ"
   },
   "85023": {
-    "city": "SIERRA ADOBE",
+    "city": "PHOENIX",
     "state": "AZ"
   },
   "85024": {
-    "city": "BOULDER HILLS",
+    "city": "PHOENIX",
     "state": "AZ"
   },
   "85027": {
-    "city": "SIERRA ADOBE",
+    "city": "PHOENIX",
     "state": "AZ"
   },
   "85028": {
-    "city": "CACTUS",
+    "city": "PHOENIX",
     "state": "AZ"
   },
   "85029": {
-    "city": "SHAW BUTTE",
+    "city": "PHOENIX",
     "state": "AZ"
   },
   "85030": {
-    "city": "DOWNTOWN PHOENIX",
+    "city": "PHOENIX",
     "state": "AZ"
   },
   "85031": {
-    "city": "MARYVALE",
+    "city": "PHOENIX",
     "state": "AZ"
   },
   "85032": {
-    "city": "CACTUS",
+    "city": "PHOENIX",
     "state": "AZ"
   },
   "85033": {
-    "city": "MARYVALE",
+    "city": "PHOENIX",
     "state": "AZ"
   },
   "85034": {
-    "city": "PHOENIX RIO SALADO AZ S&DC",
+    "city": "PHOENIX",
     "state": "AZ"
   },
   "85035": {
-    "city": "MARYVALE",
+    "city": "PHOENIX",
     "state": "AZ"
   },
   "85036": {
-    "city": "PHOENIX RIO SALADO AZ S&DC",
+    "city": "PHOENIX",
     "state": "AZ"
   },
   "85037": {
-    "city": "MARYVALE",
+    "city": "PHOENIX",
     "state": "AZ"
   },
   "85038": {
@@ -120164,59 +120164,59 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "AZ"
   },
   "85040": {
-    "city": "PHOENIX RIO SALADO AZ S&DC",
+    "city": "PHOENIX",
     "state": "AZ"
   },
   "85041": {
-    "city": "PHOENIX RIO SALADO AZ S&DC",
+    "city": "PHOENIX",
     "state": "AZ"
   },
   "85042": {
-    "city": "PHOENIX RIO SALADO AZ S&DC",
+    "city": "PHOENIX",
     "state": "AZ"
   },
   "85043": {
-    "city": "MARYVALE",
+    "city": "PHOENIX",
     "state": "AZ"
   },
   "85044": {
-    "city": "PHOENIX RIO SALADO AZ S&DC",
+    "city": "PHOENIX",
     "state": "AZ"
   },
   "85045": {
-    "city": "PECOS",
+    "city": "PHOENIX",
     "state": "AZ"
   },
   "85046": {
-    "city": "CACTUS",
+    "city": "PHOENIX",
     "state": "AZ"
   },
   "85048": {
-    "city": "PECOS",
+    "city": "PHOENIX",
     "state": "AZ"
   },
   "85050": {
-    "city": "BOULDER HILLS",
+    "city": "PHOENIX",
     "state": "AZ"
   },
   "85051": {
-    "city": "WASHINGTON",
+    "city": "PHOENIX",
     "state": "AZ"
   },
   "85053": {
-    "city": "SHAW BUTTE",
+    "city": "PHOENIX",
     "state": "AZ"
   },
   "85054": {
-    "city": "BOULDER HILLS",
+    "city": "PHOENIX",
     "state": "AZ"
   },
   "85060": {
-    "city": "ARCADIA",
+    "city": "PHOENIX",
     "state": "AZ"
   },
   "85061": {
-    "city": "NORTHWEST",
+    "city": "PHOENIX",
     "state": "AZ"
   },
   "85062": {
@@ -120224,35 +120224,35 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "AZ"
   },
   "85063": {
-    "city": "MARYVALE",
+    "city": "PHOENIX",
     "state": "AZ"
   },
   "85064": {
-    "city": "NORTHEAST",
+    "city": "PHOENIX",
     "state": "AZ"
   },
   "85066": {
-    "city": "SOUTH MOUNTAIN",
+    "city": "PHOENIX",
     "state": "AZ"
   },
   "85067": {
-    "city": "OSBORN",
+    "city": "PHOENIX",
     "state": "AZ"
   },
   "85068": {
-    "city": "SUNNYSLOPE",
+    "city": "PHOENIX",
     "state": "AZ"
   },
   "85069": {
-    "city": "WASHINGTON",
+    "city": "PHOENIX",
     "state": "AZ"
   },
   "85070": {
-    "city": "PECOS",
+    "city": "PHOENIX",
     "state": "AZ"
   },
   "85071": {
-    "city": "SHAW BUTTE",
+    "city": "PHOENIX",
     "state": "AZ"
   },
   "85072": {
@@ -120260,23 +120260,23 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "AZ"
   },
   "85074": {
-    "city": "PHOENIX RIO SALADO AZ S&DC",
+    "city": "PHOENIX",
     "state": "AZ"
   },
   "85076": {
-    "city": "AHWATUKEE",
+    "city": "PHOENIX",
     "state": "AZ"
   },
   "85078": {
-    "city": "CACTUS",
+    "city": "PHOENIX",
     "state": "AZ"
   },
   "85079": {
-    "city": "NORTHWEST",
+    "city": "PHOENIX",
     "state": "AZ"
   },
   "85080": {
-    "city": "SIERRA ADOBE",
+    "city": "PHOENIX",
     "state": "AZ"
   },
   "85082": {
@@ -120284,19 +120284,19 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "AZ"
   },
   "85083": {
-    "city": "DAISY MOUNTAIN",
+    "city": "PHOENIX",
     "state": "AZ"
   },
   "85085": {
-    "city": "DAISY MOUNTAIN",
+    "city": "PHOENIX",
     "state": "AZ"
   },
   "85086": {
-    "city": "DAISY MOUNTAIN",
+    "city": "PHOENIX",
     "state": "AZ"
   },
   "85087": {
-    "city": "DAISY MOUNTAIN",
+    "city": "PHOENIX",
     "state": "AZ"
   },
   "85117": {
@@ -120316,7 +120316,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "AZ"
   },
   "85121": {
-    "city": "CPU BAPCHULE",
+    "city": "BAPCHULE",
     "state": "AZ"
   },
   "85122": {
@@ -120324,11 +120324,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "AZ"
   },
   "85123": {
-    "city": "CPU ARIZONA CITY",
+    "city": "CASA GRANDE",
     "state": "AZ"
   },
   "85127": {
-    "city": "CHANDLER HEIGHTS",
+    "city": "QUEEN CREEK",
     "state": "AZ"
   },
   "85128": {
@@ -120356,7 +120356,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "AZ"
   },
   "85138": {
-    "city": "MARICOPA CARRIER ANNEX",
+    "city": "MARICOPA",
     "state": "AZ"
   },
   "85139": {
@@ -120424,39 +120424,39 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "AZ"
   },
   "85202": {
-    "city": "MESA DOBSON",
+    "city": "MESA",
     "state": "AZ"
   },
   "85203": {
-    "city": "MESA MOUNTAIN VIEW",
+    "city": "MESA",
     "state": "AZ"
   },
   "85204": {
-    "city": "MESA MOUNTAIN VIEW",
+    "city": "MESA",
     "state": "AZ"
   },
   "85205": {
-    "city": "MESA FALCON FIELD",
+    "city": "MESA",
     "state": "AZ"
   },
   "85206": {
-    "city": "MESA DESERT",
+    "city": "MESA",
     "state": "AZ"
   },
   "85207": {
-    "city": "MESA DESERT",
+    "city": "MESA",
     "state": "AZ"
   },
   "85208": {
-    "city": "MESA FOUR PEAKS",
+    "city": "MESA",
     "state": "AZ"
   },
   "85209": {
-    "city": "MESA FOUR PEAKS",
+    "city": "MESA",
     "state": "AZ"
   },
   "85210": {
-    "city": "MESA DOBSON",
+    "city": "MESA",
     "state": "AZ"
   },
   "85211": {
@@ -120464,27 +120464,27 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "AZ"
   },
   "85212": {
-    "city": "MESA FOUR PEAKS",
+    "city": "MESA",
     "state": "AZ"
   },
   "85213": {
-    "city": "MESA MOUNTAIN VIEW",
+    "city": "MESA",
     "state": "AZ"
   },
   "85214": {
-    "city": "MESA MOUNTAIN VIEW",
+    "city": "MESA",
     "state": "AZ"
   },
   "85215": {
-    "city": "MESA FALCON FIELD",
+    "city": "MESA",
     "state": "AZ"
   },
   "85216": {
-    "city": "MESA SUPERSTITION SPRINGS",
+    "city": "MESA",
     "state": "AZ"
   },
   "85224": {
-    "city": "ANDERSEN SPRINGS",
+    "city": "CHANDLER",
     "state": "AZ"
   },
   "85225": {
@@ -120492,15 +120492,15 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "AZ"
   },
   "85226": {
-    "city": "ANDERSEN SPRINGS",
+    "city": "CHANDLER",
     "state": "AZ"
   },
   "85233": {
-    "city": "FIESTA ANNEX",
+    "city": "GILBERT",
     "state": "AZ"
   },
   "85234": {
-    "city": "FIESTA ANNEX",
+    "city": "GILBERT",
     "state": "AZ"
   },
   "85236": {
@@ -120512,19 +120512,19 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "AZ"
   },
   "85246": {
-    "city": "ANDERSEN SPRINGS",
+    "city": "CHANDLER",
     "state": "AZ"
   },
   "85248": {
-    "city": "OCOTILLO",
+    "city": "CHANDLER",
     "state": "AZ"
   },
   "85249": {
-    "city": "OCOTILLO",
+    "city": "CHANDLER",
     "state": "AZ"
   },
   "85250": {
-    "city": "SCOTTSDALE HOPI",
+    "city": "SCOTTSDALE",
     "state": "AZ"
   },
   "85251": {
@@ -120536,15 +120536,15 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "AZ"
   },
   "85253": {
-    "city": "SCOTTSDALE HOPI",
+    "city": "SCOTTSDALE",
     "state": "AZ"
   },
   "85254": {
-    "city": "SCOTTSDALE AIRPARK",
+    "city": "SCOTTSDALE",
     "state": "AZ"
   },
   "85255": {
-    "city": "SCOTTSDALE KACHINA",
+    "city": "SCOTTSDALE",
     "state": "AZ"
   },
   "85256": {
@@ -120556,47 +120556,47 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "AZ"
   },
   "85258": {
-    "city": "SCOTTSDALE HOPI",
+    "city": "SCOTTSDALE",
     "state": "AZ"
   },
   "85259": {
-    "city": "SCOTTSDALE FOUNTAIN HILLS",
+    "city": "FOUNTAIN HILLS",
     "state": "AZ"
   },
   "85260": {
-    "city": "SCOTTSDALE AIRPARK",
+    "city": "SCOTTSDALE",
     "state": "AZ"
   },
   "85261": {
-    "city": "SCOTTSDALE HOPI",
+    "city": "SCOTTSDALE",
     "state": "AZ"
   },
   "85262": {
-    "city": "SCOTTSDALE KACHINA",
+    "city": "SCOTTSDALE",
     "state": "AZ"
   },
   "85263": {
-    "city": "SCOTTSDALE KACHINA",
+    "city": "SCOTTSDALE",
     "state": "AZ"
   },
   "85264": {
-    "city": "SCOTTSDALE FOUNTAIN HILLS",
+    "city": "FOUNTAIN HILLS",
     "state": "AZ"
   },
   "85266": {
-    "city": "SCOTTSDALE KACHINA",
+    "city": "SCOTTSDALE",
     "state": "AZ"
   },
   "85267": {
-    "city": "SCOTTSDALE AIRPARK",
+    "city": "SCOTTSDALE",
     "state": "AZ"
   },
   "85268": {
-    "city": "SCOTTSDALE FOUNTAIN HILLS",
+    "city": "FOUNTAIN HILLS",
     "state": "AZ"
   },
   "85269": {
-    "city": "SCOTTSDALE FOUNTAIN HILLS",
+    "city": "FOUNTAIN HILLS",
     "state": "AZ"
   },
   "85271": {
@@ -120604,23 +120604,23 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "AZ"
   },
   "85274": {
-    "city": "MESA DOBSON",
+    "city": "MESA",
     "state": "AZ"
   },
   "85275": {
-    "city": "MESA MOUNTAIN VIEW",
+    "city": "MESA",
     "state": "AZ"
   },
   "85277": {
-    "city": "MESA FALCON FIELD",
+    "city": "MESA",
     "state": "AZ"
   },
   "85280": {
-    "city": "TEMPE RETAIL STORE",
+    "city": "TEMPE",
     "state": "AZ"
   },
   "85281": {
-    "city": "TEMPE APACHE",
+    "city": "TEMPE",
     "state": "AZ"
   },
   "85282": {
@@ -120628,11 +120628,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "AZ"
   },
   "85283": {
-    "city": "TEMPE SOUTH",
+    "city": "TEMPE",
     "state": "AZ"
   },
   "85284": {
-    "city": "TEMPE SOUTH",
+    "city": "TEMPE",
     "state": "AZ"
   },
   "85285": {
@@ -120640,27 +120640,27 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "AZ"
   },
   "85286": {
-    "city": "OCOTILLO",
+    "city": "CHANDLER",
     "state": "AZ"
   },
   "85288": {
-    "city": "TEMPE APACHE",
+    "city": "TEMPE",
     "state": "AZ"
   },
   "85295": {
-    "city": "VAL VISTA",
+    "city": "GILBERT",
     "state": "AZ"
   },
   "85296": {
-    "city": "VAL VISTA",
+    "city": "GILBERT",
     "state": "AZ"
   },
   "85297": {
-    "city": "VAL VISTA",
+    "city": "GILBERT",
     "state": "AZ"
   },
   "85298": {
-    "city": "VAL VISTA",
+    "city": "GILBERT",
     "state": "AZ"
   },
   "85299": {
@@ -120668,7 +120668,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "AZ"
   },
   "85301": {
-    "city": "DOWNTOWN GLENDALE",
+    "city": "GLENDALE",
     "state": "AZ"
   },
   "85302": {
@@ -120676,7 +120676,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "AZ"
   },
   "85303": {
-    "city": "DOWNTOWN GLENDALE",
+    "city": "GLENDALE",
     "state": "AZ"
   },
   "85304": {
@@ -120684,7 +120684,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "AZ"
   },
   "85305": {
-    "city": "DOWNTOWN GLENDALE",
+    "city": "GLENDALE",
     "state": "AZ"
   },
   "85306": {
@@ -120692,19 +120692,19 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "AZ"
   },
   "85307": {
-    "city": "DOWNTOWN GLENDALE",
+    "city": "GLENDALE",
     "state": "AZ"
   },
   "85308": {
-    "city": "ARROWHEAD",
+    "city": "GLENDALE",
     "state": "AZ"
   },
   "85310": {
-    "city": "ARROWHEAD",
+    "city": "GLENDALE",
     "state": "AZ"
   },
   "85311": {
-    "city": "DOWNTOWN GLENDALE",
+    "city": "GLENDALE",
     "state": "AZ"
   },
   "85312": {
@@ -120712,7 +120712,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "AZ"
   },
   "85318": {
-    "city": "ARROWHEAD",
+    "city": "GLENDALE",
     "state": "AZ"
   },
   "85320": {
@@ -120756,7 +120756,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "AZ"
   },
   "85331": {
-    "city": "CAVE CREEK CARRIER ANNEX",
+    "city": "CAVE CREEK",
     "state": "AZ"
   },
   "85332": {
@@ -120784,7 +120784,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "AZ"
   },
   "85338": {
-    "city": "AVONDALE GOODYEAR",
+    "city": "GOODYEAR",
     "state": "AZ"
   },
   "85339": {
@@ -120804,7 +120804,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "AZ"
   },
   "85343": {
-    "city": "CPU PALO VERDE",
+    "city": "PALO VERDE",
     "state": "AZ"
   },
   "85344": {
@@ -120812,7 +120812,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "AZ"
   },
   "85345": {
-    "city": "PEORIA DOWNTOWN",
+    "city": "PEORIA",
     "state": "AZ"
   },
   "85346": {
@@ -120868,7 +120868,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "AZ"
   },
   "85359": {
-    "city": "QUARTZSITE DPOB",
+    "city": "QUARTZSITE",
     "state": "AZ"
   },
   "85360": {
@@ -120892,7 +120892,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "AZ"
   },
   "85365": {
-    "city": "CPU MARTINEZ LAKE",
+    "city": "YUMA",
     "state": "AZ"
   },
   "85366": {
@@ -120900,7 +120900,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "AZ"
   },
   "85367": {
-    "city": "YUMA FOOTHILLS",
+    "city": "YUMA",
     "state": "AZ"
   },
   "85371": {
@@ -120916,7 +120916,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "AZ"
   },
   "85374": {
-    "city": "SURPRISE AZ SDC",
+    "city": "SURPRISE",
     "state": "AZ"
   },
   "85375": {
@@ -120936,11 +120936,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "AZ"
   },
   "85379": {
-    "city": "SURPRISE AZ SDC",
+    "city": "SURPRISE",
     "state": "AZ"
   },
   "85380": {
-    "city": "PEORIA DOWNTOWN",
+    "city": "PEORIA",
     "state": "AZ"
   },
   "85381": {
@@ -120960,11 +120960,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "AZ"
   },
   "85387": {
-    "city": "SURPRISE AZ SDC",
+    "city": "SURPRISE",
     "state": "AZ"
   },
   "85388": {
-    "city": "SURPRISE AZ SDC",
+    "city": "SURPRISE",
     "state": "AZ"
   },
   "85390": {
@@ -120972,11 +120972,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "AZ"
   },
   "85392": {
-    "city": "AVONDALE GOODYEAR",
+    "city": "GOODYEAR",
     "state": "AZ"
   },
   "85395": {
-    "city": "AVONDALE GOODYEAR",
+    "city": "GOODYEAR",
     "state": "AZ"
   },
   "85396": {
@@ -121192,7 +121192,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "AZ"
   },
   "85632": {
-    "city": "PORTAL",
+    "city": "SAN SIMON",
     "state": "AZ"
   },
   "85633": {
@@ -121284,39 +121284,39 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "AZ"
   },
   "85702": {
-    "city": "DOWNTOWN TUCSON",
+    "city": "TUCSON",
     "state": "AZ"
   },
   "85703": {
-    "city": "KINO RETAIL UNIT",
+    "city": "TUCSON",
     "state": "AZ"
   },
   "85704": {
-    "city": "CASAS ADOBES",
+    "city": "TUCSON",
     "state": "AZ"
   },
   "85705": {
-    "city": "SILVERBELL",
+    "city": "TUCSON",
     "state": "AZ"
   },
   "85706": {
-    "city": "MISSION",
+    "city": "TUCSON",
     "state": "AZ"
   },
   "85708": {
-    "city": "CORONADO",
+    "city": "TUCSON",
     "state": "AZ"
   },
   "85710": {
-    "city": "RINCON",
+    "city": "TUCSON",
     "state": "AZ"
   },
   "85711": {
-    "city": "CORONADO",
+    "city": "TUCSON",
     "state": "AZ"
   },
   "85712": {
-    "city": "CORONADO",
+    "city": "TUCSON",
     "state": "AZ"
   },
   "85713": {
@@ -121324,31 +121324,31 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "AZ"
   },
   "85714": {
-    "city": "MISSION",
+    "city": "TUCSON",
     "state": "AZ"
   },
   "85715": {
-    "city": "FORT LOWELL",
+    "city": "TUCSON",
     "state": "AZ"
   },
   "85716": {
-    "city": "SUN",
+    "city": "TUCSON",
     "state": "AZ"
   },
   "85717": {
-    "city": "SUN",
+    "city": "TUCSON",
     "state": "AZ"
   },
   "85718": {
-    "city": "DESERT FOOTHILLS",
+    "city": "TUCSON",
     "state": "AZ"
   },
   "85719": {
-    "city": "SUN",
+    "city": "TUCSON",
     "state": "AZ"
   },
   "85725": {
-    "city": "SOUTH TUCSON",
+    "city": "TUCSON",
     "state": "AZ"
   },
   "85726": {
@@ -121356,39 +121356,39 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "AZ"
   },
   "85728": {
-    "city": "DESERT FOOTHILLS",
+    "city": "TUCSON",
     "state": "AZ"
   },
   "85730": {
-    "city": "RINCON",
+    "city": "TUCSON",
     "state": "AZ"
   },
   "85731": {
-    "city": "RINCON",
+    "city": "TUCSON",
     "state": "AZ"
   },
   "85732": {
-    "city": "CORONADO",
+    "city": "TUCSON",
     "state": "AZ"
   },
   "85733": {
-    "city": "SUN",
+    "city": "TUCSON",
     "state": "AZ"
   },
   "85734": {
-    "city": "MISSION",
+    "city": "TUCSON",
     "state": "AZ"
   },
   "85735": {
-    "city": "SAN XAVIER",
+    "city": "TUCSON",
     "state": "AZ"
   },
   "85736": {
-    "city": "SAN XAVIER",
+    "city": "TUCSON",
     "state": "AZ"
   },
   "85737": {
-    "city": "ORO VALLEY",
+    "city": "TUCSON",
     "state": "AZ"
   },
   "85738": {
@@ -121396,71 +121396,71 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "AZ"
   },
   "85739": {
-    "city": "ORO VALLEY",
+    "city": "TUCSON",
     "state": "AZ"
   },
   "85740": {
-    "city": "CASAS ADOBES",
+    "city": "TUCSON",
     "state": "AZ"
   },
   "85741": {
-    "city": "MOUNTAIN VIEW",
+    "city": "TUCSON",
     "state": "AZ"
   },
   "85742": {
-    "city": "MOUNTAIN VIEW",
+    "city": "TUCSON",
     "state": "AZ"
   },
   "85743": {
-    "city": "MOUNTAIN VIEW",
+    "city": "TUCSON",
     "state": "AZ"
   },
   "85745": {
-    "city": "SILVERBELL",
+    "city": "TUCSON",
     "state": "AZ"
   },
   "85746": {
-    "city": "SAN XAVIER",
+    "city": "TUCSON",
     "state": "AZ"
   },
   "85747": {
-    "city": "RINCON",
+    "city": "TUCSON",
     "state": "AZ"
   },
   "85748": {
-    "city": "RINCON",
+    "city": "TUCSON",
     "state": "AZ"
   },
   "85749": {
-    "city": "FORT LOWELL",
+    "city": "TUCSON",
     "state": "AZ"
   },
   "85750": {
-    "city": "FORT LOWELL",
+    "city": "TUCSON",
     "state": "AZ"
   },
   "85751": {
-    "city": "FORT LOWELL",
+    "city": "TUCSON",
     "state": "AZ"
   },
   "85752": {
-    "city": "MOUNTAIN VIEW",
+    "city": "TUCSON",
     "state": "AZ"
   },
   "85754": {
-    "city": "SILVERBELL",
+    "city": "TUCSON",
     "state": "AZ"
   },
   "85755": {
-    "city": "ORO VALLEY",
+    "city": "TUCSON",
     "state": "AZ"
   },
   "85756": {
-    "city": "MISSION",
+    "city": "TUCSON",
     "state": "AZ"
   },
   "85757": {
-    "city": "SAN XAVIER",
+    "city": "TUCSON",
     "state": "AZ"
   },
   "85901": {
@@ -121476,7 +121476,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "AZ"
   },
   "85912": {
-    "city": "CPU WHITE MOUNTAIN LAKE",
+    "city": "SHOW LOW",
     "state": "AZ"
   },
   "85920": {
@@ -121572,7 +121572,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "AZ"
   },
   "86002": {
-    "city": "DOWNTOWN FLAGSTAFF",
+    "city": "FLAGSTAFF",
     "state": "AZ"
   },
   "86003": {
@@ -121596,11 +121596,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "AZ"
   },
   "86017": {
-    "city": "CPU MUNDS PARK",
+    "city": "MUNDS PARK",
     "state": "AZ"
   },
   "86018": {
-    "city": "CPU PARKS",
+    "city": "PARKS",
     "state": "AZ"
   },
   "86020": {
@@ -121616,7 +121616,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "AZ"
   },
   "86023": {
-    "city": "CPU TUSAYAN GENERAL STORE",
+    "city": "GRAND CANYON",
     "state": "AZ"
   },
   "86024": {
@@ -121628,7 +121628,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "AZ"
   },
   "86028": {
-    "city": "CPU PETRIFIED FOREST NATL PK",
+    "city": "PETRIFIED FOREST NATL PK",
     "state": "AZ"
   },
   "86029": {
@@ -121684,7 +121684,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "AZ"
   },
   "86044": {
-    "city": "CPU NAVAJO MTN CHAPTER HOUSE",
+    "city": "NAVAJO MOUNTAIN",
     "state": "UT"
   },
   "86045": {
@@ -121696,15 +121696,15 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "AZ"
   },
   "86047": {
-    "city": "CPU TEESTO CHAPTER HOUSE",
+    "city": "WINSLOW",
     "state": "AZ"
   },
   "86053": {
-    "city": "CPU KAIBETO",
+    "city": "KAIBETO",
     "state": "AZ"
   },
   "86054": {
-    "city": "CPU SHONTO",
+    "city": "SHONTO",
     "state": "AZ"
   },
   "86301": {
@@ -121712,7 +121712,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "AZ"
   },
   "86302": {
-    "city": "PRESCOTT GOODWIN",
+    "city": "PRESCOTT",
     "state": "AZ"
   },
   "86303": {
@@ -121732,11 +121732,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "AZ"
   },
   "86314": {
-    "city": "PRESCOTT VALLEY ANNEX",
+    "city": "PRESCOTT VALLEY",
     "state": "AZ"
   },
   "86315": {
-    "city": "PRESCOTT VALLEY ANNEX",
+    "city": "PRESCOTT VALLEY",
     "state": "AZ"
   },
   "86320": {
@@ -121812,19 +121812,19 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "AZ"
   },
   "86340": {
-    "city": "WEST SEDONA",
+    "city": "SEDONA",
     "state": "AZ"
   },
   "86341": {
-    "city": "SEDONA VILLAGE OF OAK CREEK",
+    "city": "SEDONA",
     "state": "AZ"
   },
   "86343": {
-    "city": "CPU CROWN KING",
+    "city": "CROWN KING",
     "state": "AZ"
   },
   "86351": {
-    "city": "SEDONA VILLAGE OF OAK CREEK",
+    "city": "SEDONA",
     "state": "AZ"
   },
   "86401": {
@@ -121832,7 +121832,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "AZ"
   },
   "86402": {
-    "city": "CPU KINGMAN DOWNTOWN",
+    "city": "KINGMAN",
     "state": "AZ"
   },
   "86403": {
@@ -121860,7 +121860,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "AZ"
   },
   "86412": {
-    "city": "CPU HUALAPAI",
+    "city": "HUALAPAI",
     "state": "AZ"
   },
   "86413": {
@@ -121868,7 +121868,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "AZ"
   },
   "86426": {
-    "city": "BULLHEAD CITY ANNEX",
+    "city": "BULLHEAD CITY",
     "state": "AZ"
   },
   "86427": {
@@ -121876,11 +121876,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "AZ"
   },
   "86429": {
-    "city": "BULLHEAD CITY ANNEX",
+    "city": "BULLHEAD CITY",
     "state": "AZ"
   },
   "86430": {
-    "city": "THE HIGHWAY STATION",
+    "city": "BULLHEAD CITY",
     "state": "AZ"
   },
   "86431": {
@@ -121920,19 +121920,19 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "AZ"
   },
   "86440": {
-    "city": "BULLHEAD CITY ANNEX",
+    "city": "BULLHEAD CITY",
     "state": "AZ"
   },
   "86441": {
-    "city": "CPU DOLAN SPRINGS",
+    "city": "DOLAN SPRINGS",
     "state": "AZ"
   },
   "86442": {
-    "city": "BULLHEAD CITY ANNEX",
+    "city": "BULLHEAD CITY",
     "state": "AZ"
   },
   "86444": {
-    "city": "CPU MEADVIEW",
+    "city": "MEADVIEW",
     "state": "AZ"
   },
   "86445": {
@@ -121992,11 +121992,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "AZ"
   },
   "86520": {
-    "city": "CPU BLUE GAP",
+    "city": "BLUE GAP",
     "state": "AZ"
   },
   "86535": {
-    "city": "CPU DENNEHOTSO",
+    "city": "DENNEHOTSO",
     "state": "AZ"
   },
   "86538": {
@@ -122008,11 +122008,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "AZ"
   },
   "86544": {
-    "city": "CPU RED VALLEY",
+    "city": "RED VALLEY",
     "state": "AZ"
   },
   "86545": {
-    "city": "CPU SPEEDWAY ROCK POINT",
+    "city": "ROCK POINT",
     "state": "AZ"
   },
   "86547": {
@@ -122020,7 +122020,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "AZ"
   },
   "86556": {
-    "city": "CPU TSAILE",
+    "city": "TSAILE",
     "state": "AZ"
   },
   "87001": {
@@ -122136,7 +122136,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NM"
   },
   "87034": {
-    "city": "CPU PUEBLO OF ACOMA",
+    "city": "PUEBLO OF ACOMA",
     "state": "NM"
   },
   "87035": {
@@ -122240,7 +122240,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NM"
   },
   "87072": {
-    "city": "CPU COCHITI PUEBLO",
+    "city": "COCHITI PUEBLO",
     "state": "NM"
   },
   "87083": {
@@ -122248,79 +122248,79 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NM"
   },
   "87102": {
-    "city": "MAIN OFFICE ALBUQUERQUE",
+    "city": "ALBUQUERQUE",
     "state": "NM"
   },
   "87103": {
-    "city": "DOWNTOWN ALBUQUERQUE",
+    "city": "ALBUQUERQUE",
     "state": "NM"
   },
   "87104": {
-    "city": "MAIN OFFICE ALBUQUERQUE",
+    "city": "ALBUQUERQUE",
     "state": "NM"
   },
   "87105": {
-    "city": "FIVE POINTS",
+    "city": "ALBUQUERQUE",
     "state": "NM"
   },
   "87106": {
-    "city": "AIRPORT MAIL FACILITY",
+    "city": "ALBUQUERQUE",
     "state": "NM"
   },
   "87107": {
-    "city": "NORTH VALLEY",
+    "city": "ALBUQUERQUE",
     "state": "NM"
   },
   "87108": {
-    "city": "HIGHLAND",
+    "city": "ALBUQUERQUE",
     "state": "NM"
   },
   "87109": {
-    "city": "ACADEMY",
+    "city": "ALBUQUERQUE",
     "state": "NM"
   },
   "87110": {
-    "city": "UPTOWN",
+    "city": "ALBUQUERQUE",
     "state": "NM"
   },
   "87111": {
-    "city": "STEVE SCHIFF",
+    "city": "ALBUQUERQUE",
     "state": "NM"
   },
   "87112": {
-    "city": "MANZANO",
+    "city": "ALBUQUERQUE",
     "state": "NM"
   },
   "87113": {
-    "city": "NORTH VALLEY",
+    "city": "ALBUQUERQUE",
     "state": "NM"
   },
   "87114": {
-    "city": "RICHARD J PINO",
+    "city": "ALBUQUERQUE",
     "state": "NM"
   },
   "87116": {
-    "city": "HIGHLAND",
+    "city": "ALBUQUERQUE",
     "state": "NM"
   },
   "87119": {
-    "city": "AIRPORT MAIL FACILITY",
+    "city": "ALBUQUERQUE",
     "state": "NM"
   },
   "87120": {
-    "city": "RICHARD J PINO",
+    "city": "ALBUQUERQUE",
     "state": "NM"
   },
   "87121": {
-    "city": "FIVE POINTS",
+    "city": "ALBUQUERQUE",
     "state": "NM"
   },
   "87122": {
-    "city": "ACADEMY",
+    "city": "ALBUQUERQUE",
     "state": "NM"
   },
   "87123": {
-    "city": "FOOTHILLS",
+    "city": "ALBUQUERQUE",
     "state": "NM"
   },
   "87124": {
@@ -122336,11 +122336,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NM"
   },
   "87153": {
-    "city": "MANZANO",
+    "city": "ALBUQUERQUE",
     "state": "NM"
   },
   "87154": {
-    "city": "STEVE SCHIFF",
+    "city": "ALBUQUERQUE",
     "state": "NM"
   },
   "87174": {
@@ -122348,63 +122348,63 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NM"
   },
   "87176": {
-    "city": "UPTOWN",
+    "city": "ALBUQUERQUE",
     "state": "NM"
   },
   "87181": {
-    "city": "FOOTHILLS",
+    "city": "ALBUQUERQUE",
     "state": "NM"
   },
   "87184": {
-    "city": "ALAMEDA",
+    "city": "ALBUQUERQUE",
     "state": "NM"
   },
   "87185": {
-    "city": "KIRTLAND AFB",
+    "city": "ALBUQUERQUE",
     "state": "NM"
   },
   "87187": {
-    "city": "COTTONWOOD",
+    "city": "ALBUQUERQUE",
     "state": "NM"
   },
   "87190": {
-    "city": "UPTOWN",
+    "city": "ALBUQUERQUE",
     "state": "NM"
   },
   "87191": {
-    "city": "STEVE SCHIFF",
+    "city": "ALBUQUERQUE",
     "state": "NM"
   },
   "87192": {
-    "city": "MANZANO",
+    "city": "ALBUQUERQUE",
     "state": "NM"
   },
   "87193": {
-    "city": "RICHARD J PINO",
+    "city": "ALBUQUERQUE",
     "state": "NM"
   },
   "87194": {
-    "city": "OLD ALBUQUERQUE",
+    "city": "ALBUQUERQUE",
     "state": "NM"
   },
   "87195": {
-    "city": "FIVE POINTS",
+    "city": "ALBUQUERQUE",
     "state": "NM"
   },
   "87196": {
-    "city": "UNIVERSITY",
+    "city": "ALBUQUERQUE",
     "state": "NM"
   },
   "87197": {
-    "city": "NORTH VALLEY",
+    "city": "ALBUQUERQUE",
     "state": "NM"
   },
   "87198": {
-    "city": "HIGHLAND",
+    "city": "ALBUQUERQUE",
     "state": "NM"
   },
   "87199": {
-    "city": "ACADEMY",
+    "city": "ALBUQUERQUE",
     "state": "NM"
   },
   "87301": {
@@ -122464,7 +122464,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NM"
   },
   "87328": {
-    "city": "CPU NAVAJO",
+    "city": "NAVAJO",
     "state": "NM"
   },
   "87347": {
@@ -122472,7 +122472,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NM"
   },
   "87357": {
-    "city": "CPU PINEHILL",
+    "city": "PINEHILL",
     "state": "NM"
   },
   "87364": {
@@ -122480,11 +122480,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NM"
   },
   "87365": {
-    "city": "CPU SMITH LAKE",
+    "city": "SMITH LAKE",
     "state": "NM"
   },
   "87375": {
-    "city": "CPU T AND R MARKET",
+    "city": "GALLUP",
     "state": "NM"
   },
   "87401": {
@@ -122552,7 +122552,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NM"
   },
   "87502": {
-    "city": "CORONADO",
+    "city": "SANTA FE",
     "state": "NM"
   },
   "87504": {
@@ -122560,7 +122560,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NM"
   },
   "87505": {
-    "city": "CORONADO",
+    "city": "SANTA FE",
     "state": "NM"
   },
   "87506": {
@@ -122568,11 +122568,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NM"
   },
   "87507": {
-    "city": "CORONADO",
+    "city": "SANTA FE",
     "state": "NM"
   },
   "87508": {
-    "city": "CORONADO",
+    "city": "SANTA FE",
     "state": "NM"
   },
   "87510": {
@@ -122660,7 +122660,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NM"
   },
   "87533": {
-    "city": "FAIRVIEW",
+    "city": "ESPANOLA",
     "state": "NM"
   },
   "87535": {
@@ -122676,7 +122676,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NM"
   },
   "87540": {
-    "city": "CORONADO",
+    "city": "SANTA FE",
     "state": "NM"
   },
   "87544": {
@@ -122780,7 +122780,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NM"
   },
   "87580": {
-    "city": "TAOS ENCHANTMENT",
+    "city": "TAOS",
     "state": "NM"
   },
   "87581": {
@@ -122796,11 +122796,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NM"
   },
   "87592": {
-    "city": "SANTA FE PLACE",
+    "city": "SANTA FE",
     "state": "NM"
   },
   "87594": {
-    "city": "DE VARGAS",
+    "city": "SANTA FE",
     "state": "NM"
   },
   "87701": {
@@ -122936,7 +122936,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NM"
   },
   "87825": {
-    "city": "ALAMO NPU",
+    "city": "MAGDALENA",
     "state": "NM"
   },
   "87827": {
@@ -122964,7 +122964,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NM"
   },
   "87901": {
-    "city": "GERONIMO SPRINGS",
+    "city": "TRUTH OR CONSEQUENCES",
     "state": "NM"
   },
   "87930": {
@@ -123016,11 +123016,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NM"
   },
   "88002": {
-    "city": "COMMERCE",
+    "city": "LAS CRUCES",
     "state": "NM"
   },
   "88003": {
-    "city": "UNIVERSITY PARK",
+    "city": "LAS CRUCES",
     "state": "NM"
   },
   "88004": {
@@ -123032,7 +123032,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NM"
   },
   "88007": {
-    "city": "COMMERCE",
+    "city": "LAS CRUCES",
     "state": "NM"
   },
   "88008": {
@@ -123040,15 +123040,15 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NM"
   },
   "88011": {
-    "city": "COMMERCE",
+    "city": "LAS CRUCES",
     "state": "NM"
   },
   "88012": {
-    "city": "COMMERCE",
+    "city": "LAS CRUCES",
     "state": "NM"
   },
   "88013": {
-    "city": "COMMERCE",
+    "city": "LAS CRUCES",
     "state": "NM"
   },
   "88020": {
@@ -123192,7 +123192,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NM"
   },
   "88101": {
-    "city": "NORTHWEST STATION",
+    "city": "CLOVIS",
     "state": "NM"
   },
   "88102": {
@@ -123268,7 +123268,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NM"
   },
   "88201": {
-    "city": "ROSWELL ANX",
+    "city": "ROSWELL",
     "state": "NM"
   },
   "88202": {
@@ -123276,7 +123276,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NM"
   },
   "88203": {
-    "city": "ROSWELL ANX",
+    "city": "ROSWELL",
     "state": "NM"
   },
   "88210": {
@@ -123488,7 +123488,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NM"
   },
   "88355": {
-    "city": "HOLLYWOOD",
+    "city": "RUIDOSO",
     "state": "NM"
   },
   "88401": {
@@ -123648,7 +123648,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NV"
   },
   "89012": {
-    "city": "HENDERSON NV VALLE VERDE SDC",
+    "city": "HENDERSON",
     "state": "NV"
   },
   "89013": {
@@ -123656,7 +123656,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NV"
   },
   "89014": {
-    "city": "HENDERSON NV VALLE VERDE SDC",
+    "city": "HENDERSON",
     "state": "NV"
   },
   "89015": {
@@ -123664,7 +123664,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NV"
   },
   "89016": {
-    "city": "GREEN VALLEY",
+    "city": "HENDERSON",
     "state": "NV"
   },
   "89017": {
@@ -123720,15 +123720,15 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NV"
   },
   "89031": {
-    "city": "MEADOW MESA",
+    "city": "NORTH LAS VEGAS",
     "state": "NV"
   },
   "89032": {
-    "city": "MEADOW MESA",
+    "city": "NORTH LAS VEGAS",
     "state": "NV"
   },
   "89033": {
-    "city": "MEADOW MESA",
+    "city": "NORTH LAS VEGAS",
     "state": "NV"
   },
   "89034": {
@@ -123752,7 +123752,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NV"
   },
   "89041": {
-    "city": "HOMESTEAD",
+    "city": "PAHRUMP",
     "state": "NV"
   },
   "89042": {
@@ -123764,7 +123764,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NV"
   },
   "89044": {
-    "city": "SEVEN HILLS",
+    "city": "HENDERSON",
     "state": "NV"
   },
   "89045": {
@@ -123788,11 +123788,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NV"
   },
   "89052": {
-    "city": "SEVEN HILLS",
+    "city": "HENDERSON",
     "state": "NV"
   },
   "89053": {
-    "city": "HENDERSON NV VALLE VERDE SDC",
+    "city": "HENDERSON",
     "state": "NV"
   },
   "89054": {
@@ -123808,279 +123808,279 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NV"
   },
   "89074": {
-    "city": "HENDERSON NV VALLE VERDE SDC",
+    "city": "HENDERSON",
     "state": "NV"
   },
   "89077": {
-    "city": "SEVEN HILLS",
+    "city": "HENDERSON",
     "state": "NV"
   },
   "89081": {
-    "city": "MEADOW MESA",
+    "city": "NORTH LAS VEGAS",
     "state": "NV"
   },
   "89084": {
-    "city": "MEADOW MESA",
+    "city": "NORTH LAS VEGAS",
     "state": "NV"
   },
   "89085": {
-    "city": "MEADOW MESA",
+    "city": "NORTH LAS VEGAS",
     "state": "NV"
   },
   "89086": {
-    "city": "MEADOW MESA",
+    "city": "NORTH LAS VEGAS",
     "state": "NV"
   },
   "89101": {
-    "city": "KING",
+    "city": "LAS VEGAS",
     "state": "NV"
   },
   "89102": {
-    "city": "GARSIDE",
+    "city": "LAS VEGAS",
     "state": "NV"
   },
   "89103": {
-    "city": "EMERALD",
+    "city": "LAS VEGAS",
     "state": "NV"
   },
   "89104": {
-    "city": "HUNTRIDGE",
+    "city": "LAS VEGAS",
     "state": "NV"
   },
   "89105": {
-    "city": "SILVERADO",
+    "city": "LAS VEGAS",
     "state": "NV"
   },
   "89106": {
-    "city": "KING",
+    "city": "LAS VEGAS",
     "state": "NV"
   },
   "89107": {
-    "city": "GARSIDE",
+    "city": "LAS VEGAS",
     "state": "NV"
   },
   "89108": {
-    "city": "TOPAZ",
+    "city": "LAS VEGAS",
     "state": "NV"
   },
   "89109": {
-    "city": "PARADISE VALLEY",
+    "city": "LAS VEGAS",
     "state": "NV"
   },
   "89110": {
-    "city": "SUNRISE",
+    "city": "LAS VEGAS",
     "state": "NV"
   },
   "89111": {
-    "city": "AIRPORT",
+    "city": "LAS VEGAS",
     "state": "NV"
   },
   "89112": {
-    "city": "EAST LAS VEGAS",
+    "city": "LAS VEGAS",
     "state": "NV"
   },
   "89113": {
-    "city": "WESTRIDGE",
+    "city": "LAS VEGAS",
     "state": "NV"
   },
   "89114": {
-    "city": "GARSIDE",
+    "city": "LAS VEGAS",
     "state": "NV"
   },
   "89115": {
-    "city": "SUNRISE",
+    "city": "LAS VEGAS",
     "state": "NV"
   },
   "89116": {
-    "city": "HUNTRIDGE",
+    "city": "LAS VEGAS",
     "state": "NV"
   },
   "89117": {
-    "city": "SPRING VALLEY",
+    "city": "LAS VEGAS",
     "state": "NV"
   },
   "89118": {
-    "city": "EMERALD",
+    "city": "LAS VEGAS",
     "state": "NV"
   },
   "89119": {
-    "city": "PARADISE VALLEY",
+    "city": "LAS VEGAS",
     "state": "NV"
   },
   "89120": {
-    "city": "EAST LAS VEGAS",
+    "city": "LAS VEGAS",
     "state": "NV"
   },
   "89121": {
-    "city": "EAST LAS VEGAS",
+    "city": "LAS VEGAS",
     "state": "NV"
   },
   "89122": {
-    "city": "WINTERWOOD",
+    "city": "LAS VEGAS",
     "state": "NV"
   },
   "89123": {
-    "city": "SILVERADO",
+    "city": "LAS VEGAS",
     "state": "NV"
   },
   "89124": {
-    "city": "CROSSROADS",
+    "city": "LAS VEGAS",
     "state": "NV"
   },
   "89125": {
-    "city": "DOWNTOWN LAS VEGAS",
+    "city": "LAS VEGAS",
     "state": "NV"
   },
   "89126": {
-    "city": "GARSIDE",
+    "city": "LAS VEGAS",
     "state": "NV"
   },
   "89127": {
-    "city": "KING",
+    "city": "LAS VEGAS",
     "state": "NV"
   },
   "89128": {
-    "city": "RED ROCK VISTA",
+    "city": "LAS VEGAS",
     "state": "NV"
   },
   "89129": {
-    "city": "RED ROCK VISTA",
+    "city": "LAS VEGAS",
     "state": "NV"
   },
   "89130": {
-    "city": "CROSSROADS",
+    "city": "LAS VEGAS",
     "state": "NV"
   },
   "89131": {
-    "city": "CROSSROADS",
+    "city": "LAS VEGAS",
     "state": "NV"
   },
   "89132": {
-    "city": "PARADISE VALLEY",
+    "city": "LAS VEGAS",
     "state": "NV"
   },
   "89133": {
-    "city": "RED ROCK VISTA",
+    "city": "LAS VEGAS",
     "state": "NV"
   },
   "89134": {
-    "city": "SUMMERLIN",
+    "city": "LAS VEGAS",
     "state": "NV"
   },
   "89135": {
-    "city": "SUMMERLIN",
+    "city": "LAS VEGAS",
     "state": "NV"
   },
   "89136": {
-    "city": "CROSSROADS",
+    "city": "LAS VEGAS",
     "state": "NV"
   },
   "89137": {
-    "city": "SUMMERLIN",
+    "city": "LAS VEGAS",
     "state": "NV"
   },
   "89138": {
-    "city": "SUMMERLIN",
+    "city": "LAS VEGAS",
     "state": "NV"
   },
   "89139": {
-    "city": "WESTRIDGE",
+    "city": "LAS VEGAS",
     "state": "NV"
   },
   "89140": {
-    "city": "WESTRIDGE",
+    "city": "LAS VEGAS",
     "state": "NV"
   },
   "89141": {
-    "city": "SILVERADO",
+    "city": "LAS VEGAS",
     "state": "NV"
   },
   "89142": {
-    "city": "WINTERWOOD",
+    "city": "LAS VEGAS",
     "state": "NV"
   },
   "89143": {
-    "city": "CROSSROADS",
+    "city": "LAS VEGAS",
     "state": "NV"
   },
   "89144": {
-    "city": "SUMMERLIN",
+    "city": "LAS VEGAS",
     "state": "NV"
   },
   "89145": {
-    "city": "RED ROCK VISTA",
+    "city": "LAS VEGAS",
     "state": "NV"
   },
   "89146": {
-    "city": "GARSIDE",
+    "city": "LAS VEGAS",
     "state": "NV"
   },
   "89147": {
-    "city": "SPRING VALLEY",
+    "city": "LAS VEGAS",
     "state": "NV"
   },
   "89148": {
-    "city": "WESTRIDGE",
+    "city": "LAS VEGAS",
     "state": "NV"
   },
   "89149": {
-    "city": "CROSSROADS",
+    "city": "LAS VEGAS",
     "state": "NV"
   },
   "89156": {
-    "city": "SUNRISE",
+    "city": "LAS VEGAS",
     "state": "NV"
   },
   "89157": {
-    "city": "TOPAZ",
+    "city": "LAS VEGAS",
     "state": "NV"
   },
   "89160": {
-    "city": "DESERT INN",
+    "city": "LAS VEGAS",
     "state": "NV"
   },
   "89161": {
-    "city": "JAMES C BROWN JR",
+    "city": "LAS VEGAS",
     "state": "NV"
   },
   "89162": {
-    "city": "WINTERWOOD",
+    "city": "LAS VEGAS",
     "state": "NV"
   },
   "89165": {
-    "city": "JAMES C BROWN JR",
+    "city": "LAS VEGAS",
     "state": "NV"
   },
   "89166": {
-    "city": "CROSSROADS",
+    "city": "LAS VEGAS",
     "state": "NV"
   },
   "89169": {
-    "city": "PARADISE VALLEY",
+    "city": "LAS VEGAS",
     "state": "NV"
   },
   "89170": {
-    "city": "PARADISE VALLEY",
+    "city": "LAS VEGAS",
     "state": "NV"
   },
   "89173": {
-    "city": "EMERALD",
+    "city": "LAS VEGAS",
     "state": "NV"
   },
   "89178": {
-    "city": "WESTRIDGE",
+    "city": "LAS VEGAS",
     "state": "NV"
   },
   "89179": {
-    "city": "WESTRIDGE",
+    "city": "LAS VEGAS",
     "state": "NV"
   },
   "89180": {
-    "city": "SPRING VALLEY",
+    "city": "LAS VEGAS",
     "state": "NV"
   },
   "89183": {
-    "city": "SILVERADO",
+    "city": "LAS VEGAS",
     "state": "NV"
   },
   "89191": {
@@ -124088,7 +124088,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NV"
   },
   "89193": {
-    "city": "JAMES C BROWN JR",
+    "city": "LAS VEGAS",
     "state": "NV"
   },
   "89301": {
@@ -124244,15 +124244,15 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NV"
   },
   "89434": {
-    "city": "VISTA",
+    "city": "SPARKS",
     "state": "NV"
   },
   "89435": {
-    "city": "VISTA",
+    "city": "SPARKS",
     "state": "NV"
   },
   "89436": {
-    "city": "VISTA",
+    "city": "SPARKS",
     "state": "NV"
   },
   "89438": {
@@ -124268,7 +124268,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NV"
   },
   "89441": {
-    "city": "VISTA",
+    "city": "SPARKS",
     "state": "NV"
   },
   "89442": {
@@ -124288,7 +124288,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NV"
   },
   "89447": {
-    "city": "SOUTH VALLEY",
+    "city": "YERINGTON",
     "state": "NV"
   },
   "89448": {
@@ -124308,11 +124308,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NV"
   },
   "89460": {
-    "city": "RANCHOS",
+    "city": "GARDNERVILLE",
     "state": "NV"
   },
   "89501": {
-    "city": "WASHINGTON",
+    "city": "RENO",
     "state": "NV"
   },
   "89502": {
@@ -124320,27 +124320,27 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NV"
   },
   "89503": {
-    "city": "WASHINGTON",
+    "city": "RENO",
     "state": "NV"
   },
   "89504": {
-    "city": "DOWNTOWN RENO",
+    "city": "RENO",
     "state": "NV"
   },
   "89505": {
-    "city": "DOWNTOWN RENO",
+    "city": "RENO",
     "state": "NV"
   },
   "89506": {
-    "city": "SIERRA",
+    "city": "RENO",
     "state": "NV"
   },
   "89507": {
-    "city": "UNIVERSITY RENO",
+    "city": "RENO",
     "state": "NV"
   },
   "89508": {
-    "city": "SIERRA",
+    "city": "RENO",
     "state": "NV"
   },
   "89509": {
@@ -124352,15 +124352,15 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NV"
   },
   "89511": {
-    "city": "STEAMBOAT",
+    "city": "RENO",
     "state": "NV"
   },
   "89512": {
-    "city": "SIERRA",
+    "city": "RENO",
     "state": "NV"
   },
   "89513": {
-    "city": "WASHINGTON",
+    "city": "RENO",
     "state": "NV"
   },
   "89515": {
@@ -124376,15 +124376,15 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NV"
   },
   "89521": {
-    "city": "STEAMBOAT",
+    "city": "RENO",
     "state": "NV"
   },
   "89523": {
-    "city": "PEAVINE",
+    "city": "RENO",
     "state": "NV"
   },
   "89533": {
-    "city": "PEAVINE",
+    "city": "RENO",
     "state": "NV"
   },
   "89570": {
@@ -124416,11 +124416,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NV"
   },
   "89721": {
-    "city": "ORMSBY",
+    "city": "CARSON CITY",
     "state": "NV"
   },
   "89801": {
-    "city": "ASPEN",
+    "city": "ELKO",
     "state": "NV"
   },
   "89803": {
@@ -124488,155 +124488,155 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NV"
   },
   "90001": {
-    "city": "MAIN OFFICE LOS ANGELES",
+    "city": "LOS ANGELES",
     "state": "CA"
   },
   "90002": {
-    "city": "AUGUSTUS F HAWKINS",
+    "city": "LOS ANGELES",
     "state": "CA"
   },
   "90003": {
-    "city": "MAIN OFFICE LOS ANGELES",
+    "city": "LOS ANGELES",
     "state": "CA"
   },
   "90004": {
-    "city": "OAKWOOD",
+    "city": "LOS ANGELES",
     "state": "CA"
   },
   "90005": {
-    "city": "PICO HEIGHTS",
+    "city": "LOS ANGELES",
     "state": "CA"
   },
   "90006": {
-    "city": "DOCKWEILER",
+    "city": "LOS ANGELES",
     "state": "CA"
   },
   "90007": {
-    "city": "DOCKWEILER",
+    "city": "LOS ANGELES",
     "state": "CA"
   },
   "90008": {
-    "city": "CRENSHAW",
+    "city": "LOS ANGELES",
     "state": "CA"
   },
   "90009": {
-    "city": "AIRPORT LOS ANGELES",
+    "city": "LOS ANGELES",
     "state": "CA"
   },
   "90011": {
-    "city": "GREENMEAD ANNEX",
+    "city": "LOS ANGELES",
     "state": "CA"
   },
   "90012": {
-    "city": "ALAMEDA CARRIER ANNEX",
+    "city": "LOS ANGELES",
     "state": "CA"
   },
   "90013": {
-    "city": "ALAMEDA CARRIER ANNEX",
+    "city": "LOS ANGELES",
     "state": "CA"
   },
   "90014": {
-    "city": "ALAMEDA CARRIER ANNEX",
+    "city": "LOS ANGELES",
     "state": "CA"
   },
   "90015": {
-    "city": "DEL VALLE",
+    "city": "LOS ANGELES",
     "state": "CA"
   },
   "90016": {
-    "city": "WEST ADAMS",
+    "city": "LOS ANGELES",
     "state": "CA"
   },
   "90017": {
-    "city": "FOY",
+    "city": "LOS ANGELES",
     "state": "CA"
   },
   "90018": {
-    "city": "DOCKWEILER",
+    "city": "LOS ANGELES",
     "state": "CA"
   },
   "90019": {
-    "city": "RIMPAU",
+    "city": "LOS ANGELES",
     "state": "CA"
   },
   "90020": {
-    "city": "OAKWOOD",
+    "city": "LOS ANGELES",
     "state": "CA"
   },
   "90021": {
-    "city": "ALAMEDA CARRIER ANNEX",
+    "city": "LOS ANGELES",
     "state": "CA"
   },
   "90022": {
-    "city": "EAST LOS ANGELES",
+    "city": "LOS ANGELES",
     "state": "CA"
   },
   "90023": {
-    "city": "LUGO",
+    "city": "LOS ANGELES",
     "state": "CA"
   },
   "90024": {
-    "city": "BARRINGTON",
+    "city": "LOS ANGELES",
     "state": "CA"
   },
   "90025": {
-    "city": "WEST LOS ANGELES",
+    "city": "LOS ANGELES",
     "state": "CA"
   },
   "90026": {
-    "city": "EDENDALE",
+    "city": "LOS ANGELES",
     "state": "CA"
   },
   "90027": {
-    "city": "LOS FELIZ",
+    "city": "LOS ANGELES",
     "state": "CA"
   },
   "90028": {
-    "city": "HOLLYWOOD",
+    "city": "LOS ANGELES",
     "state": "CA"
   },
   "90029": {
-    "city": "LOS FELIZ",
+    "city": "LOS ANGELES",
     "state": "CA"
   },
   "90030": {
-    "city": "MAIN OFFICE LOS ANGELES",
+    "city": "LOS ANGELES",
     "state": "CA"
   },
   "90031": {
-    "city": "LINCOLN",
+    "city": "LOS ANGELES",
     "state": "CA"
   },
   "90032": {
-    "city": "EL SERENO",
+    "city": "LOS ANGELES",
     "state": "CA"
   },
   "90033": {
-    "city": "BOYLE HEIGHTS",
+    "city": "LOS ANGELES",
     "state": "CA"
   },
   "90034": {
-    "city": "PALMS",
+    "city": "LOS ANGELES",
     "state": "CA"
   },
   "90035": {
-    "city": "PREUSS",
+    "city": "LOS ANGELES",
     "state": "CA"
   },
   "90036": {
-    "city": "BICENTENNIAL",
+    "city": "LOS ANGELES",
     "state": "CA"
   },
   "90037": {
-    "city": "DOCKWEILER",
+    "city": "LOS ANGELES",
     "state": "CA"
   },
   "90038": {
-    "city": "HOLLYWOOD",
+    "city": "LOS ANGELES",
     "state": "CA"
   },
   "90039": {
-    "city": "GRIFFITH",
+    "city": "LOS ANGELES",
     "state": "CA"
   },
   "90040": {
@@ -124644,67 +124644,67 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "90041": {
-    "city": "EAGLE ROCK",
+    "city": "LOS ANGELES",
     "state": "CA"
   },
   "90042": {
-    "city": "EAGLE ROCK",
+    "city": "LOS ANGELES",
     "state": "CA"
   },
   "90043": {
-    "city": "LA TIJERA",
+    "city": "LOS ANGELES",
     "state": "CA"
   },
   "90044": {
-    "city": "HANCOCK",
+    "city": "LOS ANGELES",
     "state": "CA"
   },
   "90045": {
-    "city": "WESTCHESTER",
+    "city": "LOS ANGELES",
     "state": "CA"
   },
   "90046": {
-    "city": "COLE BRANCH",
+    "city": "WEST HOLLYWOOD",
     "state": "CA"
   },
   "90047": {
-    "city": "WAGNER BRANCH",
+    "city": "LOS ANGELES",
     "state": "CA"
   },
   "90048": {
-    "city": "BICENTENNIAL",
+    "city": "LOS ANGELES",
     "state": "CA"
   },
   "90049": {
-    "city": "BARRINGTON",
+    "city": "LOS ANGELES",
     "state": "CA"
   },
   "90050": {
-    "city": "YORK",
+    "city": "LOS ANGELES",
     "state": "CA"
   },
   "90051": {
-    "city": "MAIN OFFICE LOS ANGELES",
+    "city": "LOS ANGELES",
     "state": "CA"
   },
   "90053": {
-    "city": "FEDERAL LOS ANGELES",
+    "city": "LOS ANGELES",
     "state": "CA"
   },
   "90054": {
-    "city": "MAIN OFFICE LOS ANGELES",
+    "city": "LOS ANGELES",
     "state": "CA"
   },
   "90055": {
-    "city": "DEL VALLE",
+    "city": "LOS ANGELES",
     "state": "CA"
   },
   "90056": {
-    "city": "CRENSHAW",
+    "city": "LOS ANGELES",
     "state": "CA"
   },
   "90057": {
-    "city": "FOY",
+    "city": "LOS ANGELES",
     "state": "CA"
   },
   "90058": {
@@ -124712,107 +124712,107 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "90059": {
-    "city": "GREENMEAD ANNEX",
+    "city": "LOS ANGELES",
     "state": "CA"
   },
   "90060": {
-    "city": "MAIN OFFICE LOS ANGELES",
+    "city": "LOS ANGELES",
     "state": "CA"
   },
   "90061": {
-    "city": "GREENMEAD ANNEX",
+    "city": "LOS ANGELES",
     "state": "CA"
   },
   "90062": {
-    "city": "LA TIJERA",
+    "city": "LOS ANGELES",
     "state": "CA"
   },
   "90063": {
-    "city": "HAZARD",
+    "city": "LOS ANGELES",
     "state": "CA"
   },
   "90064": {
-    "city": "RANCHO PARK",
+    "city": "LOS ANGELES",
     "state": "CA"
   },
   "90065": {
-    "city": "GLASSELL",
+    "city": "LOS ANGELES",
     "state": "CA"
   },
   "90066": {
-    "city": "MAR VISTA",
+    "city": "LOS ANGELES",
     "state": "CA"
   },
   "90067": {
-    "city": "CENTURY CITY MALL",
+    "city": "LOS ANGELES",
     "state": "CA"
   },
   "90068": {
-    "city": "HOLLYWOOD",
+    "city": "LOS ANGELES",
     "state": "CA"
   },
   "90069": {
-    "city": "BICENTENNIAL",
+    "city": "LOS ANGELES",
     "state": "CA"
   },
   "90070": {
-    "city": "PICO HEIGHTS",
+    "city": "LOS ANGELES",
     "state": "CA"
   },
   "90071": {
-    "city": "ARCO",
+    "city": "LOS ANGELES",
     "state": "CA"
   },
   "90072": {
-    "city": "LOS FELIZ",
+    "city": "LOS ANGELES",
     "state": "CA"
   },
   "90073": {
-    "city": "WEST LOS ANGELES FINANCE",
+    "city": "LOS ANGELES",
     "state": "CA"
   },
   "90075": {
-    "city": "PICO HEIGHTS",
+    "city": "LOS ANGELES",
     "state": "CA"
   },
   "90076": {
-    "city": "PICO HEIGHTS",
+    "city": "LOS ANGELES",
     "state": "CA"
   },
   "90077": {
-    "city": "BARRINGTON",
+    "city": "LOS ANGELES",
     "state": "CA"
   },
   "90078": {
-    "city": "HOLLYWOOD",
+    "city": "LOS ANGELES",
     "state": "CA"
   },
   "90079": {
-    "city": "DEL VALLE",
+    "city": "LOS ANGELES",
     "state": "CA"
   },
   "90080": {
-    "city": "AIRPORT LOS ANGELES",
+    "city": "LOS ANGELES",
     "state": "CA"
   },
   "90081": {
-    "city": "MACYS RETAIL STORE",
+    "city": "LOS ANGELES",
     "state": "CA"
   },
   "90082": {
-    "city": "RAMIREZ",
+    "city": "LOS ANGELES",
     "state": "CA"
   },
   "90083": {
-    "city": "WESTCHESTER",
+    "city": "LOS ANGELES",
     "state": "CA"
   },
   "90086": {
-    "city": "TERMINAL ANNEX FINANCE",
+    "city": "LOS ANGELES",
     "state": "CA"
   },
   "90087": {
-    "city": "MAIN OFFICE LOS ANGELES",
+    "city": "LOS ANGELES",
     "state": "CA"
   },
   "90091": {
@@ -124820,11 +124820,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "90093": {
-    "city": "SUNSET",
+    "city": "LOS ANGELES",
     "state": "CA"
   },
   "90094": {
-    "city": "WESTCHESTER",
+    "city": "LOS ANGELES",
     "state": "CA"
   },
   "90201": {
@@ -124840,15 +124840,15 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "90210": {
-    "city": "BEVERLY HILLS CARRIER ANNEX",
+    "city": "BEVERLY HILLS",
     "state": "CA"
   },
   "90211": {
-    "city": "BEVERLY HILLS CARRIER ANNEX",
+    "city": "BEVERLY HILLS",
     "state": "CA"
   },
   "90212": {
-    "city": "BEVERLY",
+    "city": "BEVERLY HILLS",
     "state": "CA"
   },
   "90213": {
@@ -124868,7 +124868,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "90223": {
-    "city": "HUB CITY",
+    "city": "COMPTON",
     "state": "CA"
   },
   "90224": {
@@ -124888,7 +124888,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "90239": {
-    "city": "NORTH DOWNEY",
+    "city": "DOWNEY",
     "state": "CA"
   },
   "90240": {
@@ -124900,7 +124900,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "90242": {
-    "city": "SOUTH DOWNEY",
+    "city": "DOWNEY",
     "state": "CA"
   },
   "90245": {
@@ -124916,7 +124916,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "90249": {
-    "city": "ALONDRA",
+    "city": "GARDENA",
     "state": "CA"
   },
   "90250": {
@@ -124940,19 +124940,19 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "90262": {
-    "city": "EAST LYNWOOD",
+    "city": "LYNWOOD",
     "state": "CA"
   },
   "90264": {
-    "city": "POINT DUME",
+    "city": "MALIBU",
     "state": "CA"
   },
   "90265": {
-    "city": "LA COSTA MALIBU",
+    "city": "MALIBU",
     "state": "CA"
   },
   "90266": {
-    "city": "DOWNTOWN MANHATTAN BEACH",
+    "city": "MANHATTAN BEACH",
     "state": "CA"
   },
   "90267": {
@@ -124976,15 +124976,15 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "90277": {
-    "city": "REDONDO BEACH CA SDC",
+    "city": "REDONDO BEACH",
     "state": "CA"
   },
   "90278": {
-    "city": "NORTH REDONDO BEACH",
+    "city": "REDONDO BEACH",
     "state": "CA"
   },
   "90280": {
-    "city": "FIRESTONE",
+    "city": "SOUTH GATE",
     "state": "CA"
   },
   "90290": {
@@ -125000,7 +125000,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "90293": {
-    "city": "PLAYA DEL REY CARRIERS",
+    "city": "LOS ANGELES",
     "state": "CA"
   },
   "90294": {
@@ -125016,47 +125016,47 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "90301": {
-    "city": "INGLEWOOD CA SDC",
+    "city": "INGLEWOOD",
     "state": "CA"
   },
   "90302": {
-    "city": "INGLEWOOD CA SDC",
+    "city": "INGLEWOOD",
     "state": "CA"
   },
   "90303": {
-    "city": "INGLEWOOD CA SDC",
+    "city": "INGLEWOOD",
     "state": "CA"
   },
   "90304": {
-    "city": "CRENSHAW IMPERIAL",
+    "city": "INGLEWOOD",
     "state": "CA"
   },
   "90305": {
-    "city": "INGLEWOOD CA SDC",
+    "city": "INGLEWOOD",
     "state": "CA"
   },
   "90306": {
-    "city": "HILLCREST INGLEWOOD",
+    "city": "INGLEWOOD",
     "state": "CA"
   },
   "90307": {
-    "city": "HILLCREST INGLEWOOD",
+    "city": "INGLEWOOD",
     "state": "CA"
   },
   "90308": {
-    "city": "HILLCREST INGLEWOOD",
+    "city": "INGLEWOOD",
     "state": "CA"
   },
   "90309": {
-    "city": "HILLCREST INGLEWOOD",
+    "city": "INGLEWOOD",
     "state": "CA"
   },
   "90310": {
-    "city": "CRENSHAW IMPERIAL",
+    "city": "INGLEWOOD",
     "state": "CA"
   },
   "90312": {
-    "city": "HILLCREST INGLEWOOD",
+    "city": "INGLEWOOD",
     "state": "CA"
   },
   "90401": {
@@ -125064,7 +125064,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "90402": {
-    "city": "WILL ROGERS",
+    "city": "SANTA MONICA",
     "state": "CA"
   },
   "90403": {
@@ -125088,11 +125088,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "90408": {
-    "city": "WILL ROGERS",
+    "city": "SANTA MONICA",
     "state": "CA"
   },
   "90409": {
-    "city": "OCEAN PARK",
+    "city": "SANTA MONICA",
     "state": "CA"
   },
   "90411": {
@@ -125100,79 +125100,79 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "90501": {
-    "city": "TORRANCE CA SDC",
+    "city": "TORRANCE",
     "state": "CA"
   },
   "90502": {
-    "city": "TORRANCE CA SDC",
+    "city": "TORRANCE",
     "state": "CA"
   },
   "90503": {
-    "city": "DEL AMO",
+    "city": "TORRANCE",
     "state": "CA"
   },
   "90504": {
-    "city": "NORTH TORRANCE",
+    "city": "TORRANCE",
     "state": "CA"
   },
   "90505": {
-    "city": "TORRANCE CA SDC",
+    "city": "TORRANCE",
     "state": "CA"
   },
   "90507": {
-    "city": "MARCELINA",
+    "city": "TORRANCE",
     "state": "CA"
   },
   "90508": {
-    "city": "MARCELINA",
+    "city": "TORRANCE",
     "state": "CA"
   },
   "90509": {
-    "city": "TORRANCE CA SDC",
+    "city": "TORRANCE",
     "state": "CA"
   },
   "90510": {
-    "city": "TORRANCE CA SDC",
+    "city": "TORRANCE",
     "state": "CA"
   },
   "90601": {
-    "city": "BAILEY",
+    "city": "WHITTIER",
     "state": "CA"
   },
   "90602": {
-    "city": "WHITTIER CA SDC",
+    "city": "WHITTIER",
     "state": "CA"
   },
   "90603": {
-    "city": "WHITTIER CA SDC",
+    "city": "WHITTIER",
     "state": "CA"
   },
   "90604": {
-    "city": "WHITTIER CA SDC",
+    "city": "WHITTIER",
     "state": "CA"
   },
   "90605": {
-    "city": "SANTA FE PLAZA",
+    "city": "WHITTIER",
     "state": "CA"
   },
   "90606": {
-    "city": "WHITTIER CA SDC",
+    "city": "WHITTIER",
     "state": "CA"
   },
   "90607": {
-    "city": "WHITTIER CA SDC",
+    "city": "WHITTIER",
     "state": "CA"
   },
   "90608": {
-    "city": "BAILEY",
+    "city": "WHITTIER",
     "state": "CA"
   },
   "90609": {
-    "city": "WHITTWOOD",
+    "city": "WHITTIER",
     "state": "CA"
   },
   "90610": {
-    "city": "LOS NIETOS",
+    "city": "WHITTIER",
     "state": "CA"
   },
   "90620": {
@@ -125180,7 +125180,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "90621": {
-    "city": "A STATION BUENA PARK",
+    "city": "BUENA PARK",
     "state": "CA"
   },
   "90622": {
@@ -125204,7 +125204,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "90633": {
-    "city": "CIVIC CENTER LA HABRA",
+    "city": "LA HABRA",
     "state": "CA"
   },
   "90637": {
@@ -125228,19 +125228,19 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "90652": {
-    "city": "PADDISON SQUARE",
+    "city": "NORWALK",
     "state": "CA"
   },
   "90660": {
-    "city": "EL MONTE CA SDC",
+    "city": "EL MONTE",
     "state": "CA"
   },
   "90661": {
-    "city": "CROSSROADS PLAZA",
+    "city": "PICO RIVERA",
     "state": "CA"
   },
   "90662": {
-    "city": "SLAUSON",
+    "city": "PICO RIVERA",
     "state": "CA"
   },
   "90670": {
@@ -125320,7 +125320,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "90731": {
-    "city": "FORT MAC ARTHUR",
+    "city": "SAN PEDRO",
     "state": "CA"
   },
   "90732": {
@@ -125332,11 +125332,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "90734": {
-    "city": "EASTVIEW",
+    "city": "SAN PEDRO",
     "state": "CA"
   },
   "90740": {
-    "city": "MARINER",
+    "city": "SEAL BEACH",
     "state": "CA"
   },
   "90742": {
@@ -125368,79 +125368,79 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "90755": {
-    "city": "SIGNAL HILL",
+    "city": "LONG BEACH",
     "state": "CA"
   },
   "90801": {
-    "city": "DOWNTOWN LONG BEACH",
+    "city": "LONG BEACH",
     "state": "CA"
   },
   "90802": {
-    "city": "DOWNTOWN LONG BEACH",
+    "city": "LONG BEACH",
     "state": "CA"
   },
   "90803": {
-    "city": "BELMONT SHORE POSTAL STORE",
+    "city": "LONG BEACH",
     "state": "CA"
   },
   "90804": {
-    "city": "EAST LONG BEACH",
+    "city": "LONG BEACH",
     "state": "CA"
   },
   "90805": {
-    "city": "NORTH CARRIER ANNEX",
+    "city": "LONG BEACH",
     "state": "CA"
   },
   "90806": {
-    "city": "PACIFIC",
+    "city": "LONG BEACH",
     "state": "CA"
   },
   "90807": {
-    "city": "BIXBY",
+    "city": "LONG BEACH",
     "state": "CA"
   },
   "90808": {
-    "city": "SPRING CARRIER ANNEX",
+    "city": "LONG BEACH",
     "state": "CA"
   },
   "90809": {
-    "city": "SIGNAL HILL",
+    "city": "LONG BEACH",
     "state": "CA"
   },
   "90810": {
-    "city": "CABRILLO",
+    "city": "LONG BEACH",
     "state": "CA"
   },
   "90813": {
-    "city": "DOWNTOWN LONG BEACH",
+    "city": "LONG BEACH",
     "state": "CA"
   },
   "90814": {
-    "city": "EAST LONG BEACH",
+    "city": "LONG BEACH",
     "state": "CA"
   },
   "90815": {
-    "city": "BRYANT",
+    "city": "LONG BEACH",
     "state": "CA"
   },
   "90831": {
-    "city": "DOWNTOWN LONG BEACH",
+    "city": "LONG BEACH",
     "state": "CA"
   },
   "90832": {
-    "city": "TRADE CENTER",
+    "city": "LONG BEACH",
     "state": "CA"
   },
   "90853": {
-    "city": "BELMONT SHORE POSTAL STORE",
+    "city": "LONG BEACH",
     "state": "CA"
   },
   "91001": {
-    "city": "ALTADENA CARRIERS",
+    "city": "PASADENA",
     "state": "CA"
   },
   "91003": {
-    "city": "ALTADENA CARRIERS",
+    "city": "PASADENA",
     "state": "CA"
   },
   "91006": {
@@ -125528,7 +125528,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "91077": {
-    "city": "WEST ARCADIA",
+    "city": "ARCADIA",
     "state": "CA"
   },
   "91101": {
@@ -125536,7 +125536,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "91102": {
-    "city": "PLAZA PASADENA",
+    "city": "PASADENA",
     "state": "CA"
   },
   "91103": {
@@ -125564,23 +125564,23 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "91109": {
-    "city": "PASADENA WINDOW UNIT",
+    "city": "PASADENA",
     "state": "CA"
   },
   "91114": {
-    "city": "JACKIE ROBINSON",
+    "city": "PASADENA",
     "state": "CA"
   },
   "91115": {
-    "city": "ORANGEWOOD",
+    "city": "PASADENA",
     "state": "CA"
   },
   "91116": {
-    "city": "CATALINA",
+    "city": "PASADENA",
     "state": "CA"
   },
   "91117": {
-    "city": "EAST PASADENA",
+    "city": "PASADENA",
     "state": "CA"
   },
   "91118": {
@@ -125588,11 +125588,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "91201": {
-    "city": "GRAND CENTRAL",
+    "city": "GLENDALE",
     "state": "CA"
   },
   "91202": {
-    "city": "GRAND CENTRAL",
+    "city": "GLENDALE",
     "state": "CA"
   },
   "91203": {
@@ -125604,11 +125604,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "91205": {
-    "city": "VERDUGO VIEJO",
+    "city": "GLENDALE",
     "state": "CA"
   },
   "91206": {
-    "city": "VERDUGO VIEJO",
+    "city": "GLENDALE",
     "state": "CA"
   },
   "91207": {
@@ -125616,7 +125616,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "91208": {
-    "city": "VERDUGO VIEJO",
+    "city": "GLENDALE",
     "state": "CA"
   },
   "91209": {
@@ -125632,11 +125632,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "91221": {
-    "city": "GRAND CENTRAL",
+    "city": "GLENDALE",
     "state": "CA"
   },
   "91222": {
-    "city": "NORTH GLENDALE",
+    "city": "GLENDALE",
     "state": "CA"
   },
   "91224": {
@@ -125644,11 +125644,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "91225": {
-    "city": "TROPICO",
+    "city": "GLENDALE",
     "state": "CA"
   },
   "91226": {
-    "city": "VERDUGO VIEJO",
+    "city": "GLENDALE",
     "state": "CA"
   },
   "91301": {
@@ -125668,7 +125668,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "91305": {
-    "city": "CHALLENGER",
+    "city": "CANOGA PARK",
     "state": "CA"
   },
   "91306": {
@@ -125688,7 +125688,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "91310": {
-    "city": "CASTAIC",
+    "city": "SANTA CLARITA",
     "state": "CA"
   },
   "91311": {
@@ -125716,23 +125716,23 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "91322": {
-    "city": "LYONS",
+    "city": "NEWHALL",
     "state": "CA"
   },
   "91324": {
-    "city": "NORTHRIDGE CARRIERS 24",
+    "city": "TARZANA",
     "state": "CA"
   },
   "91325": {
-    "city": "NORTHRIDGE CARRIERS 25",
+    "city": "RESEDA",
     "state": "CA"
   },
   "91326": {
-    "city": "NORTHRIDGE CARRIERS 26",
+    "city": "CANOGA PARK",
     "state": "CA"
   },
   "91327": {
-    "city": "RANCH",
+    "city": "PORTER RANCH",
     "state": "CA"
   },
   "91328": {
@@ -125796,7 +125796,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "91352": {
-    "city": "BURBANK CA SDC",
+    "city": "BURBANK",
     "state": "CA"
   },
   "91353": {
@@ -125820,7 +125820,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "91358": {
-    "city": "CONEJO VALLEY",
+    "city": "THOUSAND OAKS",
     "state": "CA"
   },
   "91359": {
@@ -125872,7 +125872,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "91384": {
-    "city": "CASTAIC",
+    "city": "SANTA CLARITA",
     "state": "CA"
   },
   "91385": {
@@ -125912,7 +125912,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "91401": {
-    "city": "VAN NUYS CA SDC",
+    "city": "VAN NUYS",
     "state": "CA"
   },
   "91402": {
@@ -125924,35 +125924,35 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "91404": {
-    "city": "CIVIC CENTER VAN NUYS",
+    "city": "VAN NUYS",
     "state": "CA"
   },
   "91405": {
-    "city": "VAN NUYS CA SDC",
+    "city": "VAN NUYS",
     "state": "CA"
   },
   "91406": {
-    "city": "VAN NUYS CA SDC",
+    "city": "VAN NUYS",
     "state": "CA"
   },
   "91407": {
-    "city": "CIVIC CENTER VAN NUYS",
+    "city": "VAN NUYS",
     "state": "CA"
   },
   "91408": {
-    "city": "CIVIC CENTER VAN NUYS",
+    "city": "VAN NUYS",
     "state": "CA"
   },
   "91409": {
-    "city": "VAN NUYS CA SDC",
+    "city": "VAN NUYS",
     "state": "CA"
   },
   "91410": {
-    "city": "VAN NUYS CA SDC",
+    "city": "VAN NUYS",
     "state": "CA"
   },
   "91411": {
-    "city": "VAN NUYS CA SDC",
+    "city": "VAN NUYS",
     "state": "CA"
   },
   "91412": {
@@ -125972,7 +125972,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "91426": {
-    "city": "BALBOA VAN NUYS",
+    "city": "ENCINO",
     "state": "CA"
   },
   "91436": {
@@ -125980,51 +125980,51 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "91501": {
-    "city": "BURBANK CA SDC",
+    "city": "BURBANK",
     "state": "CA"
   },
   "91502": {
-    "city": "BURBANK CA SDC",
+    "city": "BURBANK",
     "state": "CA"
   },
   "91503": {
-    "city": "DOWNTOWN BURBANK",
+    "city": "BURBANK",
     "state": "CA"
   },
   "91504": {
-    "city": "BURBANK CA SDC",
+    "city": "BURBANK",
     "state": "CA"
   },
   "91505": {
-    "city": "BURBANK CA SDC",
+    "city": "BURBANK",
     "state": "CA"
   },
   "91506": {
-    "city": "BURBANK CA SDC",
+    "city": "BURBANK",
     "state": "CA"
   },
   "91507": {
-    "city": "BURBANK CA SDC",
+    "city": "BURBANK",
     "state": "CA"
   },
   "91508": {
-    "city": "DOWNTOWN BURBANK",
+    "city": "BURBANK",
     "state": "CA"
   },
   "91510": {
-    "city": "BURBANK CA SDC",
+    "city": "BURBANK",
     "state": "CA"
   },
   "91601": {
-    "city": "CHANDLER",
+    "city": "NORTH HOLLYWOOD",
     "state": "CA"
   },
   "91602": {
-    "city": "CHANDLER",
+    "city": "NORTH HOLLYWOOD",
     "state": "CA"
   },
   "91603": {
-    "city": "CHANDLER",
+    "city": "NORTH HOLLYWOOD",
     "state": "CA"
   },
   "91604": {
@@ -126048,11 +126048,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "91609": {
-    "city": "VICTORY CENTER",
+    "city": "NORTH HOLLYWOOD",
     "state": "CA"
   },
   "91610": {
-    "city": "CHANDLER",
+    "city": "NORTH HOLLYWOOD",
     "state": "CA"
   },
   "91614": {
@@ -126064,7 +126064,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "91616": {
-    "city": "VALLEY PLAZA",
+    "city": "NORTH HOLLYWOOD",
     "state": "CA"
   },
   "91617": {
@@ -126072,7 +126072,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "91701": {
-    "city": "ALTA LOMA",
+    "city": "RANCHO CUCAMONGA",
     "state": "CA"
   },
   "91702": {
@@ -126128,19 +126128,19 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "91731": {
-    "city": "EL MONTE CA SDC",
+    "city": "EL MONTE",
     "state": "CA"
   },
   "91732": {
-    "city": "EL MONTE CA SDC",
+    "city": "EL MONTE",
     "state": "CA"
   },
   "91733": {
-    "city": "EL MONTE CA SDC",
+    "city": "EL MONTE",
     "state": "CA"
   },
   "91734": {
-    "city": "EL MONTE CA SDC",
+    "city": "EL MONTE",
     "state": "CA"
   },
   "91737": {
@@ -126164,7 +126164,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "91744": {
-    "city": "INDUSTRY",
+    "city": "LA PUENTE",
     "state": "CA"
   },
   "91745": {
@@ -126172,11 +126172,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "91746": {
-    "city": "BASSETT",
+    "city": "LA PUENTE",
     "state": "CA"
   },
   "91747": {
-    "city": "LA PUENTE CA SDC",
+    "city": "LA PUENTE",
     "state": "CA"
   },
   "91748": {
@@ -126188,7 +126188,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "91752": {
-    "city": "MIRA LOMA",
+    "city": "JURUPA VALLEY",
     "state": "CA"
   },
   "91754": {
@@ -126208,7 +126208,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "91762": {
-    "city": "DOWNTOWN ONTARIO",
+    "city": "ONTARIO",
     "state": "CA"
   },
   "91763": {
@@ -126288,7 +126288,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "91791": {
-    "city": "SOUTH HILL",
+    "city": "WEST COVINA",
     "state": "CA"
   },
   "91792": {
@@ -126296,7 +126296,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "91793": {
-    "city": "SOUTH HILL",
+    "city": "WEST COVINA",
     "state": "CA"
   },
   "91801": {
@@ -126336,31 +126336,31 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "91909": {
-    "city": "RANCHO DEL REY",
+    "city": "CHULA VISTA",
     "state": "CA"
   },
   "91910": {
-    "city": "CHULA VISTA CA S&DC",
+    "city": "CHULA VISTA",
     "state": "CA"
   },
   "91911": {
-    "city": "CHULA VISTA CA S&DC",
+    "city": "CHULA VISTA",
     "state": "CA"
   },
   "91912": {
-    "city": "CHULA VISTA CA S&DC",
+    "city": "CHULA VISTA",
     "state": "CA"
   },
   "91913": {
-    "city": "EASTLAKE",
+    "city": "CHULA VISTA",
     "state": "CA"
   },
   "91914": {
-    "city": "EASTLAKE",
+    "city": "CHULA VISTA",
     "state": "CA"
   },
   "91915": {
-    "city": "EASTLAKE",
+    "city": "CHULA VISTA",
     "state": "CA"
   },
   "91916": {
@@ -126372,15 +126372,15 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "91921": {
-    "city": "EASTLAKE",
+    "city": "CHULA VISTA",
     "state": "CA"
   },
   "91931": {
-    "city": "GUATAY DPOBU",
+    "city": "GUATAY",
     "state": "CA"
   },
   "91932": {
-    "city": "CHULA VISTA CA S&DC",
+    "city": "CHULA VISTA",
     "state": "CA"
   },
   "91933": {
@@ -126396,19 +126396,19 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "91941": {
-    "city": "LA MESA",
+    "city": "SPRING VALLEY",
     "state": "CA"
   },
   "91942": {
-    "city": "LA MESA ANNEX",
+    "city": "LA MESA",
     "state": "CA"
   },
   "91943": {
-    "city": "GROSSMONT",
+    "city": "LA MESA",
     "state": "CA"
   },
   "91944": {
-    "city": "LA MESA FINANCE",
+    "city": "LA MESA",
     "state": "CA"
   },
   "91945": {
@@ -126440,19 +126440,19 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "91976": {
-    "city": "SPRING VALLEY CASA DE ORO",
+    "city": "SPRING VALLEY",
     "state": "CA"
   },
   "91977": {
-    "city": "LA MESA",
+    "city": "SPRING VALLEY",
     "state": "CA"
   },
   "91978": {
-    "city": "LA MESA",
+    "city": "SPRING VALLEY",
     "state": "CA"
   },
   "91979": {
-    "city": "LA MESA",
+    "city": "SPRING VALLEY",
     "state": "CA"
   },
   "91980": {
@@ -126476,7 +126476,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "92009": {
-    "city": "LA COSTA CARLSBAD",
+    "city": "CARLSBAD",
     "state": "CA"
   },
   "92010": {
@@ -126484,11 +126484,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "92011": {
-    "city": "LA COSTA CARLSBAD",
+    "city": "CARLSBAD",
     "state": "CA"
   },
   "92013": {
-    "city": "LA COSTA CARLSBAD",
+    "city": "CARLSBAD",
     "state": "CA"
   },
   "92014": {
@@ -126508,7 +126508,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "92021": {
-    "city": "BOSTONIA",
+    "city": "EL CAJON",
     "state": "CA"
   },
   "92022": {
@@ -126532,7 +126532,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "92027": {
-    "city": "ORANGE GLEN",
+    "city": "ESCONDIDO",
     "state": "CA"
   },
   "92028": {
@@ -126544,11 +126544,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "92030": {
-    "city": "ORANGE GLEN",
+    "city": "ESCONDIDO",
     "state": "CA"
   },
   "92033": {
-    "city": "ESCONDIDO POSTAL STORE",
+    "city": "ESCONDIDO",
     "state": "CA"
   },
   "92036": {
@@ -126556,7 +126556,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "92037": {
-    "city": "LA JOLLA ANNEX UC",
+    "city": "SAN DIEGO",
     "state": "CA"
   },
   "92038": {
@@ -126564,7 +126564,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "92039": {
-    "city": "LA JOLLA VILLAGE",
+    "city": "LA JOLLA",
     "state": "CA"
   },
   "92040": {
@@ -126576,11 +126576,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "92049": {
-    "city": "FIRST STREET",
+    "city": "OCEANSIDE",
     "state": "CA"
   },
   "92051": {
-    "city": "BROOKS STREET",
+    "city": "OCEANSIDE",
     "state": "CA"
   },
   "92052": {
@@ -126588,7 +126588,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "92054": {
-    "city": "BROOKS STREET",
+    "city": "OCEANSIDE",
     "state": "CA"
   },
   "92056": {
@@ -126600,7 +126600,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "92058": {
-    "city": "BROOKS STREET",
+    "city": "OCEANSIDE",
     "state": "CA"
   },
   "92059": {
@@ -126628,11 +126628,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "92067": {
-    "city": "DEL RAYO PLAZA",
+    "city": "RANCHO SANTA FE",
     "state": "CA"
   },
   "92068": {
-    "city": "SAN LUIS REY",
+    "city": "OCEANSIDE",
     "state": "CA"
   },
   "92069": {
@@ -126676,11 +126676,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "92083": {
-    "city": "PALA VISTA ANNEX",
+    "city": "VISTA",
     "state": "CA"
   },
   "92084": {
-    "city": "PALA VISTA ANNEX",
+    "city": "VISTA",
     "state": "CA"
   },
   "92085": {
@@ -126700,71 +126700,71 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "92101": {
-    "city": "DOWNTOWN SAN DIEGO",
+    "city": "SAN DIEGO",
     "state": "CA"
   },
   "92102": {
-    "city": "ENCANTO",
+    "city": "SAN DIEGO",
     "state": "CA"
   },
   "92103": {
-    "city": "HILLCREST SAN DIEGO",
+    "city": "SAN DIEGO",
     "state": "CA"
   },
   "92104": {
-    "city": "RIVERFRONT CARRIER ANNEX",
+    "city": "SAN DIEGO",
     "state": "CA"
   },
   "92105": {
-    "city": "CITY HEIGHTS",
+    "city": "SAN DIEGO",
     "state": "CA"
   },
   "92106": {
-    "city": "MIDWAY",
+    "city": "SAN DIEGO",
     "state": "CA"
   },
   "92107": {
-    "city": "OCEAN BEACH",
+    "city": "SAN DIEGO",
     "state": "CA"
   },
   "92108": {
-    "city": "LINDA VISTA",
+    "city": "SAN DIEGO",
     "state": "CA"
   },
   "92109": {
-    "city": "PACIFIC BEACH",
+    "city": "SAN DIEGO",
     "state": "CA"
   },
   "92110": {
-    "city": "MIDWAY",
+    "city": "SAN DIEGO",
     "state": "CA"
   },
   "92111": {
-    "city": "LINDA VISTA",
+    "city": "SAN DIEGO",
     "state": "CA"
   },
   "92112": {
-    "city": "DOWNTOWN SAN DIEGO",
+    "city": "SAN DIEGO",
     "state": "CA"
   },
   "92113": {
-    "city": "SOUTHEASTERN",
+    "city": "SAN DIEGO",
     "state": "CA"
   },
   "92114": {
-    "city": "ENCANTO",
+    "city": "SAN DIEGO",
     "state": "CA"
   },
   "92115": {
-    "city": "ANDREW JACKSON",
+    "city": "SAN DIEGO",
     "state": "CA"
   },
   "92116": {
-    "city": "RIVERFRONT CARRIER ANNEX",
+    "city": "SAN DIEGO",
     "state": "CA"
   },
   "92117": {
-    "city": "WILLIAM TAFT",
+    "city": "SAN DIEGO",
     "state": "CA"
   },
   "92118": {
@@ -126772,67 +126772,67 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "92119": {
-    "city": "NAVAJO",
+    "city": "SAN DIEGO",
     "state": "CA"
   },
   "92120": {
-    "city": "GRANTVILLE",
+    "city": "SAN DIEGO",
     "state": "CA"
   },
   "92121": {
-    "city": "CARMEL VALLEY 21 CARRIERS",
+    "city": "SAN DIEGO",
     "state": "CA"
   },
   "92122": {
-    "city": "UNIVERSITY CITY ANNEX",
+    "city": "SAN DIEGO",
     "state": "CA"
   },
   "92123": {
-    "city": "SERRA MESA",
+    "city": "SAN DIEGO",
     "state": "CA"
   },
   "92124": {
-    "city": "GRANTVILLE",
+    "city": "SAN DIEGO",
     "state": "CA"
   },
   "92126": {
-    "city": "MIRA MESA",
+    "city": "SAN DIEGO",
     "state": "CA"
   },
   "92127": {
-    "city": "RANCHO BERNARDO ANNEX",
+    "city": "SAN DIEGO",
     "state": "CA"
   },
   "92128": {
-    "city": "RANCHO BERNARDO ANNEX",
+    "city": "SAN DIEGO",
     "state": "CA"
   },
   "92129": {
-    "city": "RANCHO PENASQUITOS",
+    "city": "SAN DIEGO",
     "state": "CA"
   },
   "92130": {
-    "city": "CARMEL VALLEY 30 CARRIERS",
+    "city": "SAN DIEGO",
     "state": "CA"
   },
   "92131": {
-    "city": "SCRIPPS RANCH ANNEX",
+    "city": "SAN DIEGO",
     "state": "CA"
   },
   "92137": {
-    "city": "MIDWAY",
+    "city": "SAN DIEGO",
     "state": "CA"
   },
   "92138": {
-    "city": "MIDWAY",
+    "city": "SAN DIEGO",
     "state": "CA"
   },
   "92139": {
-    "city": "PARADISE HILLS",
+    "city": "SAN DIEGO",
     "state": "CA"
   },
   "92142": {
-    "city": "TIERRASANTA",
+    "city": "SAN DIEGO",
     "state": "CA"
   },
   "92143": {
@@ -126840,63 +126840,63 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "92149": {
-    "city": "PARADISE HILLS",
+    "city": "SAN DIEGO",
     "state": "CA"
   },
   "92150": {
-    "city": "CARMEL MOUNTAIN POSTAL STORE",
+    "city": "SAN DIEGO",
     "state": "CA"
   },
   "92153": {
-    "city": "OTAY MESA",
+    "city": "SAN DIEGO",
     "state": "CA"
   },
   "92154": {
-    "city": "OTAY MESA ANNEX",
+    "city": "SAN DIEGO",
     "state": "CA"
   },
   "92159": {
-    "city": "NAVAJO",
+    "city": "SAN DIEGO",
     "state": "CA"
   },
   "92160": {
-    "city": "GRANTVILLE",
+    "city": "SAN DIEGO",
     "state": "CA"
   },
   "92163": {
-    "city": "HILLCREST SAN DIEGO",
+    "city": "SAN DIEGO",
     "state": "CA"
   },
   "92165": {
-    "city": "CITY HEIGHTS",
+    "city": "SAN DIEGO",
     "state": "CA"
   },
   "92166": {
-    "city": "POINT LOMA",
+    "city": "SAN DIEGO",
     "state": "CA"
   },
   "92167": {
-    "city": "OCEAN BEACH",
+    "city": "SAN DIEGO",
     "state": "CA"
   },
   "92168": {
-    "city": "MISSION VALLEY",
+    "city": "SAN DIEGO",
     "state": "CA"
   },
   "92169": {
-    "city": "PACIFIC BEACH",
+    "city": "SAN DIEGO",
     "state": "CA"
   },
   "92170": {
-    "city": "SOUTHEASTERN",
+    "city": "SAN DIEGO",
     "state": "CA"
   },
   "92171": {
-    "city": "LINDA VISTA",
+    "city": "SAN DIEGO",
     "state": "CA"
   },
   "92172": {
-    "city": "RANCHO PENASQUITOS",
+    "city": "SAN DIEGO",
     "state": "CA"
   },
   "92173": {
@@ -126904,19 +126904,19 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "92174": {
-    "city": "ENCANTO",
+    "city": "SAN DIEGO",
     "state": "CA"
   },
   "92175": {
-    "city": "ANDREW JACKSON",
+    "city": "SAN DIEGO",
     "state": "CA"
   },
   "92176": {
-    "city": "JOHN ADAMS",
+    "city": "SAN DIEGO",
     "state": "CA"
   },
   "92177": {
-    "city": "WILLIAM TAFT",
+    "city": "SAN DIEGO",
     "state": "CA"
   },
   "92178": {
@@ -126924,31 +126924,31 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "92186": {
-    "city": "MIDWAY",
+    "city": "SAN DIEGO",
     "state": "CA"
   },
   "92191": {
-    "city": "MIRA MESA",
+    "city": "SAN DIEGO",
     "state": "CA"
   },
   "92192": {
-    "city": "UNIVERSITY CITY",
+    "city": "SAN DIEGO",
     "state": "CA"
   },
   "92193": {
-    "city": "SERRA MESA",
+    "city": "SAN DIEGO",
     "state": "CA"
   },
   "92195": {
-    "city": "COLLEGE GROVE CENTER",
+    "city": "SAN DIEGO",
     "state": "CA"
   },
   "92196": {
-    "city": "MIRA MESA",
+    "city": "SAN DIEGO",
     "state": "CA"
   },
   "92198": {
-    "city": "RANCHO BERNARDO",
+    "city": "SAN DIEGO",
     "state": "CA"
   },
   "92201": {
@@ -127036,7 +127036,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "92242": {
-    "city": "BIG RIVER",
+    "city": "EARP",
     "state": "CA"
   },
   "92243": {
@@ -127048,7 +127048,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "92247": {
-    "city": "COVE",
+    "city": "LA QUINTA",
     "state": "CA"
   },
   "92248": {
@@ -127104,7 +127104,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "92261": {
-    "city": "PORTOLA",
+    "city": "PALM DESERT",
     "state": "CA"
   },
   "92262": {
@@ -127144,7 +127144,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "92275": {
-    "city": "SALTON CITY",
+    "city": "THERMAL",
     "state": "CA"
   },
   "92276": {
@@ -127156,7 +127156,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "92278": {
-    "city": "TWENTYNINE PALMS MCB",
+    "city": "TWENTYNINE PALMS",
     "state": "CA"
   },
   "92280": {
@@ -127192,7 +127192,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "92304": {
-    "city": "CADIZ DPOBU",
+    "city": "AMBOY",
     "state": "CA"
   },
   "92305": {
@@ -127284,7 +127284,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "92331": {
-    "city": "SOUTHSIDE",
+    "city": "FONTANA",
     "state": "CA"
   },
   "92332": {
@@ -127308,7 +127308,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "92337": {
-    "city": "SOUTHSIDE",
+    "city": "FONTANA",
     "state": "CA"
   },
   "92338": {
@@ -127368,7 +127368,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "92363": {
-    "city": "HAVASU LAKE",
+    "city": "NEEDLES",
     "state": "CA"
   },
   "92364": {
@@ -127400,19 +127400,19 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "92373": {
-    "city": "LUGONIA",
+    "city": "REDLANDS",
     "state": "CA"
   },
   "92374": {
-    "city": "LUGONIA",
+    "city": "REDLANDS",
     "state": "CA"
   },
   "92375": {
-    "city": "LUGONIA",
+    "city": "REDLANDS",
     "state": "CA"
   },
   "92376": {
-    "city": "RIALTO ANNEX",
+    "city": "RIALTO",
     "state": "CA"
   },
   "92377": {
@@ -127460,7 +127460,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "92395": {
-    "city": "SPRING VALLEY LAKE",
+    "city": "VICTORVILLE",
     "state": "CA"
   },
   "92397": {
@@ -127484,19 +127484,19 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "92404": {
-    "city": "DEL ROSA",
+    "city": "SAN BERNARDINO",
     "state": "CA"
   },
   "92405": {
-    "city": "UPTOWN",
+    "city": "SAN BERNARDINO",
     "state": "CA"
   },
   "92406": {
-    "city": "UPTOWN",
+    "city": "SAN BERNARDINO",
     "state": "CA"
   },
   "92407": {
-    "city": "NORTHPARK SAN BERNARDINO",
+    "city": "SAN BERNARDINO",
     "state": "CA"
   },
   "92408": {
@@ -127508,31 +127508,31 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "92411": {
-    "city": "WESTSIDE",
+    "city": "SAN BERNARDINO",
     "state": "CA"
   },
   "92413": {
-    "city": "DEL ROSA",
+    "city": "SAN BERNARDINO",
     "state": "CA"
   },
   "92423": {
-    "city": "SAN BERNARDINO MO WINDOWS",
+    "city": "SAN BERNARDINO",
     "state": "CA"
   },
   "92427": {
-    "city": "NORTHPARK SAN BERNARDINO",
+    "city": "SAN BERNARDINO",
     "state": "CA"
   },
   "92501": {
-    "city": "DOWNTOWN RIVERSIDE",
+    "city": "RIVERSIDE",
     "state": "CA"
   },
   "92502": {
-    "city": "DOWNTOWN RIVERSIDE",
+    "city": "RIVERSIDE",
     "state": "CA"
   },
   "92503": {
-    "city": "ARLINGTON",
+    "city": "RIVERSIDE",
     "state": "CA"
   },
   "92504": {
@@ -127540,7 +127540,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "92505": {
-    "city": "ARLINGTON",
+    "city": "RIVERSIDE",
     "state": "CA"
   },
   "92506": {
@@ -127556,19 +127556,19 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "92509": {
-    "city": "RUBIDOUX",
+    "city": "JURUPA VALLEY",
     "state": "CA"
   },
   "92513": {
-    "city": "ARLINGTON",
+    "city": "RIVERSIDE",
     "state": "CA"
   },
   "92514": {
-    "city": "HARDMAN",
+    "city": "RIVERSIDE",
     "state": "CA"
   },
   "92516": {
-    "city": "MAGNOLIA CENTER",
+    "city": "RIVERSIDE",
     "state": "CA"
   },
   "92517": {
@@ -127580,7 +127580,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "92519": {
-    "city": "RUBIDOUX",
+    "city": "JURUPA VALLEY",
     "state": "CA"
   },
   "92530": {
@@ -127588,7 +127588,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "92531": {
-    "city": "LAKE ELSINORE FINANCE",
+    "city": "LAKE ELSINORE",
     "state": "CA"
   },
   "92532": {
@@ -127640,7 +127640,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "92554": {
-    "city": "MORENO",
+    "city": "MORENO VALLEY",
     "state": "CA"
   },
   "92555": {
@@ -127648,7 +127648,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "92556": {
-    "city": "POSTAL AVE",
+    "city": "MORENO VALLEY",
     "state": "CA"
   },
   "92557": {
@@ -127660,11 +127660,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "92562": {
-    "city": "MURRIETA CA SDC",
+    "city": "MURRIETA",
     "state": "CA"
   },
   "92563": {
-    "city": "MURRIETA CA SDC",
+    "city": "MURRIETA",
     "state": "CA"
   },
   "92564": {
@@ -127700,19 +127700,19 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "92584": {
-    "city": "SUN CITY",
+    "city": "MENIFEE",
     "state": "CA"
   },
   "92585": {
-    "city": "ROMOLAND",
+    "city": "MENIFEE",
     "state": "CA"
   },
   "92586": {
-    "city": "SUN CITY",
+    "city": "MENIFEE",
     "state": "CA"
   },
   "92587": {
-    "city": "QUAIL VALLEY DPOBU",
+    "city": "MENIFEE",
     "state": "CA"
   },
   "92589": {
@@ -127732,7 +127732,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "92593": {
-    "city": "OLD TOWN",
+    "city": "TEMECULA",
     "state": "CA"
   },
   "92595": {
@@ -127740,19 +127740,19 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "92596": {
-    "city": "MURRIETA CA SDC",
+    "city": "MURRIETA",
     "state": "CA"
   },
   "92602": {
-    "city": "NORTHWOOD",
+    "city": "IRVINE",
     "state": "CA"
   },
   "92603": {
-    "city": "IRVINE CA S&DC",
+    "city": "IRVINE",
     "state": "CA"
   },
   "92604": {
-    "city": "HARVEST",
+    "city": "IRVINE",
     "state": "CA"
   },
   "92605": {
@@ -127760,15 +127760,15 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "92606": {
-    "city": "HARVEST",
+    "city": "IRVINE",
     "state": "CA"
   },
   "92607": {
-    "city": "LAGUNA BEACH",
+    "city": "LAGUNA NIGUEL",
     "state": "CA"
   },
   "92609": {
-    "city": "EL TORO",
+    "city": "LAKE FOREST",
     "state": "CA"
   },
   "92610": {
@@ -127776,39 +127776,39 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "92612": {
-    "city": "IRVINE CA S&DC",
+    "city": "IRVINE",
     "state": "CA"
   },
   "92614": {
-    "city": "HARVEST",
+    "city": "IRVINE",
     "state": "CA"
   },
   "92615": {
-    "city": "IDA JEAN HAXTON",
+    "city": "HUNTINGTON BEACH",
     "state": "CA"
   },
   "92616": {
-    "city": "UNIVERSITY",
+    "city": "IRVINE",
     "state": "CA"
   },
   "92617": {
-    "city": "IRVINE CA S&DC",
+    "city": "IRVINE",
     "state": "CA"
   },
   "92618": {
-    "city": "IRVINE CA S&DC",
+    "city": "IRVINE",
     "state": "CA"
   },
   "92619": {
-    "city": "IRVINE CA S&DC",
+    "city": "IRVINE",
     "state": "CA"
   },
   "92620": {
-    "city": "NORTHWOOD",
+    "city": "IRVINE",
     "state": "CA"
   },
   "92623": {
-    "city": "HARVEST",
+    "city": "IRVINE",
     "state": "CA"
   },
   "92624": {
@@ -127824,7 +127824,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "92627": {
-    "city": "MESA CENTER",
+    "city": "COSTA MESA",
     "state": "CA"
   },
   "92628": {
@@ -127836,7 +127836,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "92630": {
-    "city": "EL TORO",
+    "city": "LAKE FOREST",
     "state": "CA"
   },
   "92637": {
@@ -127844,7 +127844,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "92646": {
-    "city": "IDA JEAN HAXTON",
+    "city": "HUNTINGTON BEACH",
     "state": "CA"
   },
   "92647": {
@@ -127852,7 +127852,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "92648": {
-    "city": "BEACH CENTER",
+    "city": "HUNTINGTON BEACH",
     "state": "CA"
   },
   "92649": {
@@ -127860,15 +127860,15 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "92650": {
-    "city": "IRVINE CA S&DC",
+    "city": "IRVINE",
     "state": "CA"
   },
   "92651": {
-    "city": "LAGUNA BEACH",
+    "city": "LAGUNA NIGUEL",
     "state": "CA"
   },
   "92652": {
-    "city": "PLAYA",
+    "city": "LAGUNA BEACH",
     "state": "CA"
   },
   "92653": {
@@ -127888,31 +127888,31 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "92657": {
-    "city": "NEWPORT BEACH CA SDC",
+    "city": "NEWPORT BEACH",
     "state": "CA"
   },
   "92658": {
-    "city": "NEWPORT BEACH CA SDC",
+    "city": "NEWPORT BEACH",
     "state": "CA"
   },
   "92659": {
-    "city": "BAY STATION STAMP STORE",
+    "city": "NEWPORT BEACH",
     "state": "CA"
   },
   "92660": {
-    "city": "NEWPORT BEACH CA SDC",
+    "city": "NEWPORT BEACH",
     "state": "CA"
   },
   "92661": {
-    "city": "BALBOA NEWPORT BEACH",
+    "city": "NEWPORT BEACH",
     "state": "CA"
   },
   "92662": {
-    "city": "BALBOA ISLAND",
+    "city": "NEWPORT BEACH",
     "state": "CA"
   },
   "92663": {
-    "city": "NEWPORT BEACH CA SDC",
+    "city": "NEWPORT BEACH",
     "state": "CA"
   },
   "92672": {
@@ -127920,7 +127920,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "92673": {
-    "city": "RANCHO SAN CLEMENTE",
+    "city": "SAN CLEMENTE",
     "state": "CA"
   },
   "92674": {
@@ -127928,15 +127928,15 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "92675": {
-    "city": "SAN JUAN CAPISTRANO",
+    "city": "MISSION VIEJO",
     "state": "CA"
   },
   "92676": {
-    "city": "IRVINE CA S&DC",
+    "city": "IRVINE",
     "state": "CA"
   },
   "92677": {
-    "city": "LAGUNA BEACH",
+    "city": "LAGUNA NIGUEL",
     "state": "CA"
   },
   "92678": {
@@ -127952,7 +127952,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "92684": {
-    "city": "BOLSA",
+    "city": "WESTMINSTER",
     "state": "CA"
   },
   "92685": {
@@ -127960,55 +127960,55 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "92688": {
-    "city": "RANCHO",
+    "city": "RANCHO SANTA MARGARITA",
     "state": "CA"
   },
   "92690": {
-    "city": "SAN JUAN CAPISTRANO",
+    "city": "MISSION VIEJO",
     "state": "CA"
   },
   "92691": {
-    "city": "SAN JUAN CAPISTRANO",
+    "city": "MISSION VIEJO",
     "state": "CA"
   },
   "92692": {
-    "city": "SAN JUAN CAPISTRANO",
+    "city": "MISSION VIEJO",
     "state": "CA"
   },
   "92693": {
-    "city": "SAN JUAN PLAZA",
-    "state": "CA"
-  },
-  "92694": {
     "city": "SAN JUAN CAPISTRANO",
     "state": "CA"
   },
+  "92694": {
+    "city": "MISSION VIEJO",
+    "state": "CA"
+  },
   "92701": {
-    "city": "SANTA ANA CA NORTH GRAND SDC",
+    "city": "SANTA ANA",
     "state": "CA"
   },
   "92702": {
-    "city": "SANTA ANA CA NORTH GRAND SDC",
+    "city": "SANTA ANA",
     "state": "CA"
   },
   "92703": {
-    "city": "BRISTOL",
+    "city": "SANTA ANA",
     "state": "CA"
   },
   "92704": {
-    "city": "DIAMOND",
+    "city": "SANTA ANA",
     "state": "CA"
   },
   "92705": {
-    "city": "SANTA ANA CA NORTH GRAND SDC",
+    "city": "SANTA ANA",
     "state": "CA"
   },
   "92706": {
-    "city": "KING",
+    "city": "SANTA ANA",
     "state": "CA"
   },
   "92707": {
-    "city": "BRISTOL",
+    "city": "SANTA ANA",
     "state": "CA"
   },
   "92708": {
@@ -128016,7 +128016,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "92711": {
-    "city": "SANTA ANA CA NORTH GRAND SDC",
+    "city": "SANTA ANA",
     "state": "CA"
   },
   "92728": {
@@ -128024,7 +128024,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "92735": {
-    "city": "INDUSTRIAL SANTA ANA",
+    "city": "SANTA ANA",
     "state": "CA"
   },
   "92780": {
@@ -128040,7 +128040,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "92799": {
-    "city": "SANTA ANA WINDOW SVCS",
+    "city": "SANTA ANA",
     "state": "CA"
   },
   "92801": {
@@ -128048,7 +128048,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "92802": {
-    "city": "HOLIDAY",
+    "city": "ANAHEIM",
     "state": "CA"
   },
   "92803": {
@@ -128056,7 +128056,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "92804": {
-    "city": "BROOKHURST CENTER",
+    "city": "ANAHEIM",
     "state": "CA"
   },
   "92805": {
@@ -128064,19 +128064,19 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "92806": {
-    "city": "SUNKIST",
+    "city": "ANAHEIM",
     "state": "CA"
   },
   "92807": {
-    "city": "ANAHEIM HILLS",
+    "city": "ANAHEIM",
     "state": "CA"
   },
   "92808": {
-    "city": "ANAHEIM HILLS",
+    "city": "ANAHEIM",
     "state": "CA"
   },
   "92809": {
-    "city": "ANAHEIM HILLS",
+    "city": "ANAHEIM",
     "state": "CA"
   },
   "92811": {
@@ -128084,23 +128084,23 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "92812": {
-    "city": "HOLIDAY",
+    "city": "ANAHEIM",
     "state": "CA"
   },
   "92814": {
-    "city": "BROOKHURST CENTER",
+    "city": "ANAHEIM",
     "state": "CA"
   },
   "92815": {
-    "city": "FEDERAL ANAHEIM",
+    "city": "ANAHEIM",
     "state": "CA"
   },
   "92816": {
-    "city": "SUNKIST",
+    "city": "ANAHEIM",
     "state": "CA"
   },
   "92817": {
-    "city": "ANAHEIM HILLS",
+    "city": "ANAHEIM",
     "state": "CA"
   },
   "92821": {
@@ -128124,7 +128124,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "92833": {
-    "city": "ORANGEHURST",
+    "city": "FULLERTON",
     "state": "CA"
   },
   "92834": {
@@ -128132,19 +128132,19 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "92835": {
-    "city": "SUNNY HILLS",
+    "city": "FULLERTON",
     "state": "CA"
   },
   "92836": {
-    "city": "COMMONWEALTH",
+    "city": "FULLERTON",
     "state": "CA"
   },
   "92837": {
-    "city": "ORANGEHURST",
+    "city": "FULLERTON",
     "state": "CA"
   },
   "92838": {
-    "city": "SUNNY HILLS",
+    "city": "FULLERTON",
     "state": "CA"
   },
   "92840": {
@@ -128172,19 +128172,19 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "92846": {
-    "city": "WEST GARDEN GROVE",
+    "city": "GARDEN GROVE",
     "state": "CA"
   },
   "92856": {
-    "city": "PLAZA ORANGE",
+    "city": "ORANGE",
     "state": "CA"
   },
   "92857": {
-    "city": "ORANGE CA S&DC",
+    "city": "ORANGE",
     "state": "CA"
   },
   "92859": {
-    "city": "EL MODENA",
+    "city": "ORANGE",
     "state": "CA"
   },
   "92860": {
@@ -128192,31 +128192,31 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "92861": {
-    "city": "ORANGE CA S&DC",
+    "city": "ORANGE",
     "state": "CA"
   },
   "92863": {
-    "city": "ORANGE CA S&DC",
+    "city": "ORANGE",
     "state": "CA"
   },
   "92865": {
-    "city": "ORANGE CA S&DC",
+    "city": "ORANGE",
     "state": "CA"
   },
   "92866": {
-    "city": "ORANGE CA S&DC",
+    "city": "ORANGE",
     "state": "CA"
   },
   "92867": {
-    "city": "ORANGE CA S&DC",
+    "city": "ORANGE",
     "state": "CA"
   },
   "92868": {
-    "city": "ORANGE CA S&DC",
+    "city": "ORANGE",
     "state": "CA"
   },
   "92869": {
-    "city": "ORANGE CA S&DC",
+    "city": "ORANGE",
     "state": "CA"
   },
   "92870": {
@@ -128228,7 +128228,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "92877": {
-    "city": "CITRUS",
+    "city": "CORONA",
     "state": "CA"
   },
   "92878": {
@@ -128236,7 +128236,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "92879": {
-    "city": "CITRUS",
+    "city": "CORONA",
     "state": "CA"
   },
   "92880": {
@@ -128244,7 +128244,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "92881": {
-    "city": "CITRUS",
+    "city": "CORONA",
     "state": "CA"
   },
   "92882": {
@@ -128252,7 +128252,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "92883": {
-    "city": "CITRUS",
+    "city": "CORONA",
     "state": "CA"
   },
   "92885": {
@@ -128268,7 +128268,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "93001": {
-    "city": "OXNARD CA S&DC",
+    "city": "OXNARD",
     "state": "CA"
   },
   "93002": {
@@ -128276,23 +128276,23 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "93003": {
-    "city": "EAST VENTURA",
+    "city": "VENTURA",
     "state": "CA"
   },
   "93004": {
-    "city": "EAST VENTURA",
+    "city": "VENTURA",
     "state": "CA"
   },
   "93005": {
-    "city": "MONTALVO",
+    "city": "VENTURA",
     "state": "CA"
   },
   "93006": {
-    "city": "EAST VENTURA",
+    "city": "VENTURA",
     "state": "CA"
   },
   "93007": {
-    "city": "SATICOY",
+    "city": "VENTURA",
     "state": "CA"
   },
   "93010": {
@@ -128344,31 +128344,31 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "93030": {
-    "city": "OXNARD CA S&DC",
+    "city": "OXNARD",
     "state": "CA"
   },
   "93031": {
-    "city": "OXNARD CA S&DC",
+    "city": "OXNARD",
     "state": "CA"
   },
   "93032": {
-    "city": "FEDERAL BUILDING OXNARD",
+    "city": "OXNARD",
     "state": "CA"
   },
   "93033": {
-    "city": "OXNARD CA S&DC",
+    "city": "OXNARD",
     "state": "CA"
   },
   "93034": {
-    "city": "SAVIERS",
+    "city": "OXNARD",
     "state": "CA"
   },
   "93035": {
-    "city": "OXNARD CA S&DC",
+    "city": "OXNARD",
     "state": "CA"
   },
   "93036": {
-    "city": "OXNARD CA S&DC",
+    "city": "OXNARD",
     "state": "CA"
   },
   "93040": {
@@ -128376,7 +128376,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "93041": {
-    "city": "OXNARD CA S&DC",
+    "city": "OXNARD",
     "state": "CA"
   },
   "93044": {
@@ -128384,7 +128384,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "93060": {
-    "city": "SANTA PAULA ANNEX",
+    "city": "SANTA PAULA",
     "state": "CA"
   },
   "93061": {
@@ -128400,7 +128400,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "93065": {
-    "city": "MOUNT MCCOY",
+    "city": "SIMI VALLEY",
     "state": "CA"
   },
   "93066": {
@@ -128412,7 +128412,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "93094": {
-    "city": "MOUNT MCCOY",
+    "city": "SIMI VALLEY",
     "state": "CA"
   },
   "93101": {
@@ -128424,39 +128424,39 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "93103": {
-    "city": "MILPAS",
+    "city": "SANTA BARBARA",
     "state": "CA"
   },
   "93105": {
-    "city": "SAN ROQUE",
+    "city": "SANTA BARBARA",
     "state": "CA"
   },
   "93108": {
-    "city": "MILPAS",
+    "city": "SANTA BARBARA",
     "state": "CA"
   },
   "93109": {
-    "city": "MILPAS",
+    "city": "SANTA BARBARA",
     "state": "CA"
   },
   "93110": {
-    "city": "GOLETA",
+    "city": "SANTA BARBARA",
     "state": "CA"
   },
   "93111": {
-    "city": "GOLETA",
+    "city": "SANTA BARBARA",
     "state": "CA"
   },
   "93116": {
-    "city": "GOLETA",
+    "city": "SANTA BARBARA",
     "state": "CA"
   },
   "93117": {
-    "city": "GOLETA",
+    "city": "SANTA BARBARA",
     "state": "CA"
   },
   "93118": {
-    "city": "ELLWOOD",
+    "city": "GOLETA",
     "state": "CA"
   },
   "93120": {
@@ -128468,23 +128468,23 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "93130": {
-    "city": "SAN ROQUE",
+    "city": "SANTA BARBARA",
     "state": "CA"
   },
   "93140": {
-    "city": "MILPAS",
+    "city": "SANTA BARBARA",
     "state": "CA"
   },
   "93150": {
-    "city": "MONTECITO",
+    "city": "SANTA BARBARA",
     "state": "CA"
   },
   "93160": {
-    "city": "GOLETA",
+    "city": "SANTA BARBARA",
     "state": "CA"
   },
   "93190": {
-    "city": "VICTORIA COURT",
+    "city": "SANTA BARBARA",
     "state": "CA"
   },
   "93201": {
@@ -128548,7 +128548,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "93222": {
-    "city": "CPU PINE MOUNTAIN CLUB",
+    "city": "PINE MOUNTAIN CLUB",
     "state": "CA"
   },
   "93223": {
@@ -128600,7 +128600,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "93240": {
-    "city": "LAKE ISABELLA",
+    "city": "MOUNTAIN MESA",
     "state": "CA"
   },
   "93241": {
@@ -128612,7 +128612,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "93243": {
-    "city": "GORMAN",
+    "city": "LEBEC",
     "state": "CA"
   },
   "93244": {
@@ -128660,7 +128660,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "93258": {
-    "city": "POPLAR",
+    "city": "PORTERVILLE",
     "state": "CA"
   },
   "93260": {
@@ -128708,7 +128708,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "93274": {
-    "city": "TULARE CARRIER ANNEX",
+    "city": "TULARE",
     "state": "CA"
   },
   "93275": {
@@ -128728,7 +128728,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "93279": {
-    "city": "TOWN CENTER",
+    "city": "VISALIA",
     "state": "CA"
   },
   "93280": {
@@ -128752,67 +128752,67 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "93290": {
-    "city": "MILLENNIUM",
+    "city": "VISALIA",
     "state": "CA"
   },
   "93291": {
-    "city": "LOVERS LANE",
+    "city": "VISALIA",
     "state": "CA"
   },
   "93292": {
-    "city": "TOWN CENTER",
+    "city": "VISALIA",
     "state": "CA"
   },
   "93301": {
-    "city": "DOWNTOWN BAKERSFIELD",
+    "city": "BAKERSFIELD",
     "state": "CA"
   },
   "93302": {
-    "city": "DOWNTOWN BAKERSFIELD",
+    "city": "BAKERSFIELD",
     "state": "CA"
   },
   "93303": {
-    "city": "DOWNTOWN BAKERSFIELD",
+    "city": "BAKERSFIELD",
     "state": "CA"
   },
   "93304": {
-    "city": "SOUTH BAKERSFIELD",
+    "city": "BAKERSFIELD",
     "state": "CA"
   },
   "93305": {
-    "city": "BRUNDAGE",
+    "city": "BAKERSFIELD",
     "state": "CA"
   },
   "93306": {
-    "city": "HILLCREST",
+    "city": "BAKERSFIELD",
     "state": "CA"
   },
   "93307": {
-    "city": "BRUNDAGE",
+    "city": "BAKERSFIELD",
     "state": "CA"
   },
   "93308": {
-    "city": "OILDALE",
+    "city": "BAKERSFIELD",
     "state": "CA"
   },
   "93309": {
-    "city": "STOCKDALE ANNEX",
+    "city": "BAKERSFIELD",
     "state": "CA"
   },
   "93311": {
-    "city": "CAMINO MEDIA",
+    "city": "BAKERSFIELD",
     "state": "CA"
   },
   "93312": {
-    "city": "OILDALE",
+    "city": "BAKERSFIELD",
     "state": "CA"
   },
   "93313": {
-    "city": "SOUTH BAKERSFIELD",
+    "city": "BAKERSFIELD",
     "state": "CA"
   },
   "93314": {
-    "city": "OILDALE",
+    "city": "BAKERSFIELD",
     "state": "CA"
   },
   "93380": {
@@ -128820,35 +128820,35 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "93383": {
-    "city": "SOUTH BAKERSFIELD",
+    "city": "BAKERSFIELD",
     "state": "CA"
   },
   "93384": {
-    "city": "SOUTH BAKERSFIELD",
+    "city": "BAKERSFIELD",
     "state": "CA"
   },
   "93385": {
-    "city": "EAST BAKERSFIELD",
+    "city": "BAKERSFIELD",
     "state": "CA"
   },
   "93386": {
-    "city": "CRESTMONT",
+    "city": "BAKERSFIELD",
     "state": "CA"
   },
   "93387": {
-    "city": "BRUNDAGE",
+    "city": "BAKERSFIELD",
     "state": "CA"
   },
   "93388": {
-    "city": "MINNER",
+    "city": "BAKERSFIELD",
     "state": "CA"
   },
   "93389": {
-    "city": "STOCKDALE",
+    "city": "BAKERSFIELD",
     "state": "CA"
   },
   "93390": {
-    "city": "CAMINO MEDIA",
+    "city": "BAKERSFIELD",
     "state": "CA"
   },
   "93401": {
@@ -128868,7 +128868,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "93406": {
-    "city": "MISSION SAN LUIS OBISPO",
+    "city": "SAN LUIS OBISPO",
     "state": "CA"
   },
   "93412": {
@@ -128932,7 +128932,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "93437": {
-    "city": "CPU VANDENBERG AFB",
+    "city": "LOMPOC",
     "state": "CA"
   },
   "93438": {
@@ -129008,7 +129008,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "93457": {
-    "city": "ORCUTT",
+    "city": "SANTA MARIA",
     "state": "CA"
   },
   "93458": {
@@ -129064,7 +129064,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "93512": {
-    "city": "CPU BENTON",
+    "city": "BENTON",
     "state": "CA"
   },
   "93513": {
@@ -129092,7 +129092,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "93519": {
-    "city": "CANTIL",
+    "city": "MOJAVE",
     "state": "CA"
   },
   "93522": {
@@ -129132,15 +129132,15 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "93534": {
-    "city": "LANCASTER CARRIER ANNEX",
+    "city": "LANCASTER",
     "state": "CA"
   },
   "93535": {
-    "city": "LANCASTER CARRIER ANNEX",
+    "city": "LANCASTER",
     "state": "CA"
   },
   "93536": {
-    "city": "LANCASTER CARRIER ANNEX",
+    "city": "LANCASTER",
     "state": "CA"
   },
   "93539": {
@@ -129176,15 +129176,15 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "93550": {
-    "city": "CPU C AND A LUXOR",
+    "city": "PALMDALE",
     "state": "CA"
   },
   "93551": {
-    "city": "CPU RANCHERS MARKET",
+    "city": "LEONA VALLEY",
     "state": "CA"
   },
   "93552": {
-    "city": "PALMDALE CARRIER ANNEX",
+    "city": "PALMDALE",
     "state": "CA"
   },
   "93553": {
@@ -129224,19 +129224,19 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "93584": {
-    "city": "CEDAR",
+    "city": "LANCASTER",
     "state": "CA"
   },
   "93586": {
-    "city": "LANCASTER CARRIER ANNEX",
+    "city": "LANCASTER",
     "state": "CA"
   },
   "93590": {
-    "city": "TOWN SQUARE",
+    "city": "PALMDALE",
     "state": "CA"
   },
   "93591": {
-    "city": "PALMDALE CARRIER ANNEX",
+    "city": "PALMDALE",
     "state": "CA"
   },
   "93592": {
@@ -129272,7 +129272,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "93607": {
-    "city": "BURREL",
+    "city": "RIVERDALE",
     "state": "CA"
   },
   "93608": {
@@ -129376,15 +129376,15 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "93636": {
-    "city": "MADERA CARRIER ANNEX",
+    "city": "MADERA",
     "state": "CA"
   },
   "93637": {
-    "city": "MADERA CARRIER ANNEX",
+    "city": "MADERA",
     "state": "CA"
   },
   "93638": {
-    "city": "MADERA CARRIER ANNEX",
+    "city": "MADERA",
     "state": "CA"
   },
   "93639": {
@@ -129428,7 +129428,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "93650": {
-    "city": "PINEDALE",
+    "city": "FRESNO",
     "state": "CA"
   },
   "93651": {
@@ -129500,131 +129500,131 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "93701": {
-    "city": "CLINTER",
+    "city": "FRESNO",
     "state": "CA"
   },
   "93702": {
-    "city": "BARTON",
+    "city": "FRESNO",
     "state": "CA"
   },
   "93703": {
-    "city": "CLINTER",
+    "city": "FRESNO",
     "state": "CA"
   },
   "93704": {
-    "city": "CARDWELL",
+    "city": "FRESNO",
     "state": "CA"
   },
   "93705": {
-    "city": "HUGHES",
+    "city": "FRESNO",
     "state": "CA"
   },
   "93706": {
-    "city": "CEDAR ANNEX",
+    "city": "FRESNO",
     "state": "CA"
   },
   "93707": {
-    "city": "CIVIC CENTER FRESNO",
+    "city": "FRESNO",
     "state": "CA"
   },
   "93708": {
-    "city": "CIVIC CENTER FRESNO",
+    "city": "FRESNO",
     "state": "CA"
   },
   "93709": {
-    "city": "CIVIC CENTER FRESNO",
+    "city": "FRESNO",
     "state": "CA"
   },
   "93710": {
-    "city": "WOODWARD PARK",
+    "city": "FRESNO",
     "state": "CA"
   },
   "93711": {
-    "city": "CARDWELL",
+    "city": "FRESNO",
     "state": "CA"
   },
   "93712": {
-    "city": "CIVIC CENTER FRESNO",
+    "city": "FRESNO",
     "state": "CA"
   },
   "93714": {
-    "city": "CIVIC CENTER FRESNO",
+    "city": "FRESNO",
     "state": "CA"
   },
   "93715": {
-    "city": "CIVIC CENTER FRESNO",
+    "city": "FRESNO",
     "state": "CA"
   },
   "93716": {
-    "city": "CIVIC CENTER FRESNO",
+    "city": "FRESNO",
     "state": "CA"
   },
   "93717": {
-    "city": "CIVIC CENTER FRESNO",
+    "city": "FRESNO",
     "state": "CA"
   },
   "93718": {
-    "city": "CIVIC CENTER FRESNO",
+    "city": "FRESNO",
     "state": "CA"
   },
   "93720": {
-    "city": "WOODWARD PARK",
+    "city": "FRESNO",
     "state": "CA"
   },
   "93721": {
-    "city": "CEDAR ANNEX",
+    "city": "FRESNO",
     "state": "CA"
   },
   "93722": {
-    "city": "HUGHES",
+    "city": "FRESNO",
     "state": "CA"
   },
   "93723": {
-    "city": "HUGHES",
+    "city": "FRESNO",
     "state": "CA"
   },
   "93725": {
-    "city": "CEDAR ANNEX",
+    "city": "FRESNO",
     "state": "CA"
   },
   "93726": {
-    "city": "CLINTER",
+    "city": "FRESNO",
     "state": "CA"
   },
   "93727": {
-    "city": "CEDAR ANNEX",
+    "city": "FRESNO",
     "state": "CA"
   },
   "93728": {
-    "city": "CLINTER",
+    "city": "FRESNO",
     "state": "CA"
   },
   "93729": {
-    "city": "WOODWARD PARK",
+    "city": "FRESNO",
     "state": "CA"
   },
   "93730": {
-    "city": "WOODWARD PARK",
+    "city": "FRESNO",
     "state": "CA"
   },
   "93737": {
-    "city": "CEDAR ANNEX",
+    "city": "FRESNO",
     "state": "CA"
   },
   "93744": {
-    "city": "TOWER",
+    "city": "FRESNO",
     "state": "CA"
   },
   "93745": {
-    "city": "CALWA",
+    "city": "FRESNO",
     "state": "CA"
   },
   "93747": {
-    "city": "EAST FRESNO",
+    "city": "FRESNO",
     "state": "CA"
   },
   "93755": {
-    "city": "CARDWELL",
+    "city": "FRESNO",
     "state": "CA"
   },
   "93771": {
@@ -129664,31 +129664,31 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "93790": {
-    "city": "HUGHES",
+    "city": "FRESNO",
     "state": "CA"
   },
   "93791": {
-    "city": "HUGHES",
+    "city": "FRESNO",
     "state": "CA"
   },
   "93792": {
-    "city": "HUGHES",
+    "city": "FRESNO",
     "state": "CA"
   },
   "93793": {
-    "city": "HUGHES",
+    "city": "FRESNO",
     "state": "CA"
   },
   "93794": {
-    "city": "HUGHES",
+    "city": "FRESNO",
     "state": "CA"
   },
   "93901": {
-    "city": "JOHN STEINBECK",
+    "city": "SALINAS",
     "state": "CA"
   },
   "93902": {
-    "city": "JOHN STEINBECK",
+    "city": "SALINAS",
     "state": "CA"
   },
   "93905": {
@@ -129704,7 +129704,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "93908": {
-    "city": "JOHN STEINBECK",
+    "city": "SALINAS",
     "state": "CA"
   },
   "93912": {
@@ -129712,7 +129712,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "93915": {
-    "city": "ALISAL",
+    "city": "SALINAS",
     "state": "CA"
   },
   "93920": {
@@ -129772,7 +129772,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "93944": {
-    "city": "PRESIDIO OF MONTEREY",
+    "city": "MONTEREY",
     "state": "CA"
   },
   "93950": {
@@ -129796,7 +129796,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "93962": {
-    "city": "SPRECKELS",
+    "city": "SALINAS",
     "state": "CA"
   },
   "94002": {
@@ -129808,7 +129808,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "94010": {
-    "city": "BURLINGAME CARRIER ANNEX",
+    "city": "BURLINGAME",
     "state": "CA"
   },
   "94011": {
@@ -129816,7 +129816,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "94014": {
-    "city": "COLMA",
+    "city": "DALY CITY",
     "state": "CA"
   },
   "94015": {
@@ -129824,7 +129824,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "94016": {
-    "city": "VISTA GRANDE",
+    "city": "DALY CITY",
     "state": "CA"
   },
   "94017": {
@@ -129848,7 +129848,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "94022": {
-    "city": "LOYOLA CORNERS",
+    "city": "LOS ALTOS",
     "state": "CA"
   },
   "94023": {
@@ -129856,7 +129856,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "94024": {
-    "city": "LOYOLA CORNERS",
+    "city": "LOS ALTOS",
     "state": "CA"
   },
   "94025": {
@@ -129880,7 +129880,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "94035": {
-    "city": "MOFFETT FIELD",
+    "city": "MOUNTAIN VIEW",
     "state": "CA"
   },
   "94037": {
@@ -129900,7 +129900,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "94041": {
-    "city": "MOUNTAIN VIEW CARRIERS ANNEX",
+    "city": "MOUNTAIN VIEW",
     "state": "CA"
   },
   "94042": {
@@ -129908,11 +129908,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "94043": {
-    "city": "MOUNTAIN VIEW CARRIERS ANNEX",
+    "city": "MOUNTAIN VIEW",
     "state": "CA"
   },
   "94044": {
-    "city": "LINDA MAR",
+    "city": "PACIFICA",
     "state": "CA"
   },
   "94060": {
@@ -129932,7 +129932,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "94064": {
-    "city": "DOWNTOWN REDWOOD CITY",
+    "city": "REDWOOD CITY",
     "state": "CA"
   },
   "94065": {
@@ -129956,215 +129956,215 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "94083": {
-    "city": "CHESTNUT",
+    "city": "SOUTH SAN FRANCISCO",
     "state": "CA"
   },
   "94085": {
-    "city": "PALO ALTO CA S&DC",
+    "city": "EAST PALO ALTO",
     "state": "CA"
   },
   "94086": {
-    "city": "PLAZA SUNNYVALE",
+    "city": "SUNNYVALE",
     "state": "CA"
   },
   "94087": {
-    "city": "ENCINAL",
+    "city": "SUNNYVALE",
     "state": "CA"
   },
   "94088": {
-    "city": "SUNNYVALE CA SDC",
+    "city": "SUNNYVALE",
     "state": "CA"
   },
   "94089": {
-    "city": "SUNNYVALE CA SDC",
+    "city": "SUNNYVALE",
     "state": "CA"
   },
   "94102": {
-    "city": "MENDELL CARRIER ANNEX",
+    "city": "SAN FRANCISCO",
     "state": "CA"
   },
   "94103": {
-    "city": "TOWNSEND CARRIER ANNEX",
+    "city": "SAN FRANCISCO",
     "state": "CA"
   },
   "94104": {
-    "city": "SUTTER STREET",
+    "city": "SAN FRANCISCO",
     "state": "CA"
   },
   "94105": {
-    "city": "TOWNSEND CARRIER ANNEX",
+    "city": "SAN FRANCISCO",
     "state": "CA"
   },
   "94107": {
-    "city": "BRANNAN STREET",
+    "city": "SAN FRANCISCO",
     "state": "CA"
   },
   "94108": {
-    "city": "PINE STREET",
+    "city": "SAN FRANCISCO",
     "state": "CA"
   },
   "94109": {
-    "city": "PINE STREET",
+    "city": "SAN FRANCISCO",
     "state": "CA"
   },
   "94110": {
-    "city": "BRYANT STREET",
+    "city": "SAN FRANCISCO",
     "state": "CA"
   },
   "94111": {
-    "city": "RINCON FINANCE CENTER",
+    "city": "SAN FRANCISCO",
     "state": "CA"
   },
   "94112": {
-    "city": "EXCELSIOR",
+    "city": "SAN FRANCISCO",
     "state": "CA"
   },
   "94114": {
-    "city": "18TH STREET",
+    "city": "SAN FRANCISCO",
     "state": "CA"
   },
   "94115": {
-    "city": "STEINER STREET",
+    "city": "SAN FRANCISCO",
     "state": "CA"
   },
   "94116": {
-    "city": "PARKSIDE",
+    "city": "SAN FRANCISCO",
     "state": "CA"
   },
   "94117": {
-    "city": "CLAYTON STREET",
+    "city": "SAN FRANCISCO",
     "state": "CA"
   },
   "94118": {
-    "city": "GOLDEN GATE",
+    "city": "SAN FRANCISCO",
     "state": "CA"
   },
   "94119": {
-    "city": "RINCON FINANCE CENTER",
+    "city": "SAN FRANCISCO",
     "state": "CA"
   },
   "94120": {
-    "city": "SAN FRANCISCO P&DC FINANCE",
+    "city": "SAN FRANCISCO",
     "state": "CA"
   },
   "94121": {
-    "city": "GEARY",
+    "city": "SAN FRANCISCO",
     "state": "CA"
   },
   "94122": {
-    "city": "IRVING STREET",
+    "city": "SAN FRANCISCO",
     "state": "CA"
   },
   "94123": {
-    "city": "MARINA",
+    "city": "SAN FRANCISCO",
     "state": "CA"
   },
   "94124": {
-    "city": "BAYVIEW",
+    "city": "SAN FRANCISCO",
     "state": "CA"
   },
   "94125": {
-    "city": "STANTON",
+    "city": "BURLINGAME",
     "state": "CA"
   },
   "94126": {
-    "city": "GATEWAY SAN FRANCISCO",
+    "city": "SAN FRANCISCO",
     "state": "CA"
   },
   "94127": {
-    "city": "NAPOLEON STREET CARRIER CPLX",
+    "city": "SAN FRANCISCO",
     "state": "CA"
   },
   "94128": {
-    "city": "BAYVIEW",
+    "city": "SAN FRANCISCO",
     "state": "CA"
   },
   "94129": {
-    "city": "MARINA",
+    "city": "SAN FRANCISCO",
     "state": "CA"
   },
   "94130": {
-    "city": "TOWNSEND CARRIER ANNEX",
+    "city": "SAN FRANCISCO",
     "state": "CA"
   },
   "94131": {
-    "city": "DIAMOND HEIGHTS",
+    "city": "SAN FRANCISCO",
     "state": "CA"
   },
   "94132": {
-    "city": "LAKESHORE PLAZA",
+    "city": "SAN FRANCISCO",
     "state": "CA"
   },
   "94133": {
-    "city": "NORTH BEACH ANNEX",
+    "city": "SAN FRANCISCO",
     "state": "CA"
   },
   "94134": {
-    "city": "MCLAREN",
+    "city": "SAN FRANCISCO",
     "state": "CA"
   },
   "94140": {
-    "city": "MISSION SAN FRANCISCO",
+    "city": "SAN FRANCISCO",
     "state": "CA"
   },
   "94141": {
-    "city": "BRYANT STREET",
+    "city": "SAN FRANCISCO",
     "state": "CA"
   },
   "94142": {
-    "city": "FOX PLAZA",
+    "city": "SAN FRANCISCO",
     "state": "CA"
   },
   "94146": {
-    "city": "NOE VALLEY",
+    "city": "SAN FRANCISCO",
     "state": "CA"
   },
   "94147": {
-    "city": "MARINA",
+    "city": "SAN FRANCISCO",
     "state": "CA"
   },
   "94158": {
-    "city": "TOWNSEND CARRIER ANNEX",
+    "city": "SAN FRANCISCO",
     "state": "CA"
   },
   "94159": {
-    "city": "GOLDEN GATE",
+    "city": "SAN FRANCISCO",
     "state": "CA"
   },
   "94164": {
-    "city": "PINE STREET",
+    "city": "SAN FRANCISCO",
     "state": "CA"
   },
   "94172": {
-    "city": "BERNAL HEIGHTS",
+    "city": "SAN FRANCISCO",
     "state": "CA"
   },
   "94188": {
-    "city": "SAN FRANCISCO P&DC FINANCE",
+    "city": "SAN FRANCISCO",
     "state": "CA"
   },
   "94301": {
-    "city": "PALO ALTO CA S&DC",
+    "city": "EAST PALO ALTO",
     "state": "CA"
   },
   "94302": {
-    "city": "HAMILTON",
+    "city": "PALO ALTO",
     "state": "CA"
   },
   "94303": {
-    "city": "PALO ALTO CA S&DC",
+    "city": "EAST PALO ALTO",
     "state": "CA"
   },
   "94304": {
-    "city": "PALO ALTO CA S&DC",
+    "city": "EAST PALO ALTO",
     "state": "CA"
   },
   "94305": {
-    "city": "PALO ALTO CA S&DC",
+    "city": "EAST PALO ALTO",
     "state": "CA"
   },
   "94306": {
-    "city": "CAMBRIDGE",
+    "city": "PALO ALTO",
     "state": "CA"
   },
   "94309": {
@@ -130172,15 +130172,15 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "94401": {
-    "city": "SAINT MATTHEW",
+    "city": "SAN MATEO",
     "state": "CA"
   },
   "94402": {
-    "city": "SAN MATEO CA SDC",
+    "city": "SAN MATEO",
     "state": "CA"
   },
   "94403": {
-    "city": "25TH AVENUE",
+    "city": "SAN MATEO",
     "state": "CA"
   },
   "94404": {
@@ -130200,7 +130200,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "94505": {
-    "city": "BYRON CA DISCOVERY BAY",
+    "city": "DISCOVERY BAY",
     "state": "CA"
   },
   "94506": {
@@ -130264,11 +130264,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "94521": {
-    "city": "CASA CORREO",
+    "city": "CONCORD",
     "state": "CA"
   },
   "94522": {
-    "city": "TODOS SANTOS",
+    "city": "CONCORD",
     "state": "CA"
   },
   "94523": {
@@ -130320,35 +130320,35 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "94538": {
-    "city": "IRVINGTON",
+    "city": "FREMONT",
     "state": "CA"
   },
   "94539": {
-    "city": "FREMONT DETACHED DEL UNIT",
+    "city": "FREMONT",
     "state": "CA"
   },
   "94540": {
-    "city": "HAYWARD CA SDC",
+    "city": "HAYWARD",
     "state": "CA"
   },
   "94541": {
-    "city": "HAYWARD CA SDC",
+    "city": "HAYWARD",
     "state": "CA"
   },
   "94542": {
-    "city": "HAYWARD CA SDC",
+    "city": "HAYWARD",
     "state": "CA"
   },
   "94543": {
-    "city": "BRADFORD",
+    "city": "HAYWARD",
     "state": "CA"
   },
   "94544": {
-    "city": "HAYWARD CA SDC",
+    "city": "HAYWARD",
     "state": "CA"
   },
   "94545": {
-    "city": "HAYWARD CA SDC",
+    "city": "HAYWARD",
     "state": "CA"
   },
   "94546": {
@@ -130368,7 +130368,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "94550": {
-    "city": "LIVERMORE CA SDC",
+    "city": "LIVERMORE",
     "state": "CA"
   },
   "94551": {
@@ -130380,7 +130380,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "94553": {
-    "city": "COURT",
+    "city": "MARTINEZ",
     "state": "CA"
   },
   "94555": {
@@ -130392,7 +130392,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "94557": {
-    "city": "MOUNT EDEN",
+    "city": "HAYWARD",
     "state": "CA"
   },
   "94558": {
@@ -130400,7 +130400,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "94559": {
-    "city": "FRANKLIN",
+    "city": "NAPA",
     "state": "CA"
   },
   "94560": {
@@ -130424,7 +130424,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "94565": {
-    "city": "ATLANTIC PLAZA",
+    "city": "PITTSBURG",
     "state": "CA"
   },
   "94566": {
@@ -130468,11 +130468,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "94577": {
-    "city": "ESTUDILLO",
+    "city": "SAN LEANDRO",
     "state": "CA"
   },
   "94578": {
-    "city": "SOUTH SAN LEANDRO",
+    "city": "SAN LEANDRO",
     "state": "CA"
   },
   "94579": {
@@ -130484,7 +130484,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "94581": {
-    "city": "WINE VALLEY DPOBU",
+    "city": "NAPA",
     "state": "CA"
   },
   "94582": {
@@ -130504,11 +130504,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "94587": {
-    "city": "ALVARADO",
+    "city": "UNION CITY",
     "state": "CA"
   },
   "94588": {
-    "city": "HACIENDA",
+    "city": "PLEASANTON",
     "state": "CA"
   },
   "94589": {
@@ -130516,11 +130516,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "94590": {
-    "city": "A STATION VALLEJO",
+    "city": "VALLEJO",
     "state": "CA"
   },
   "94591": {
-    "city": "SPRINGSTOWNE",
+    "city": "VALLEJO",
     "state": "CA"
   },
   "94592": {
@@ -130528,51 +130528,51 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "94595": {
-    "city": "ROSSMOOR",
+    "city": "WALNUT CREEK",
     "state": "CA"
   },
   "94596": {
-    "city": "WALNUT CREEK CA SDC",
+    "city": "WALNUT CREEK",
     "state": "CA"
   },
   "94597": {
-    "city": "WALNUT CREEK CA SDC",
+    "city": "WALNUT CREEK",
     "state": "CA"
   },
   "94598": {
-    "city": "WALNUT CREEK CA SDC",
+    "city": "WALNUT CREEK",
     "state": "CA"
   },
   "94599": {
-    "city": "VETERANS HOME",
+    "city": "YOUNTVILLE",
     "state": "CA"
   },
   "94601": {
-    "city": "AIRPORT OAKLAND",
+    "city": "OAKLAND",
     "state": "CA"
   },
   "94602": {
-    "city": "DIMOND",
+    "city": "OAKLAND",
     "state": "CA"
   },
   "94603": {
-    "city": "AIRPORT OAKLAND",
+    "city": "OAKLAND",
     "state": "CA"
   },
   "94604": {
-    "city": "CIVIC CENTER OAKLAND",
+    "city": "OAKLAND",
     "state": "CA"
   },
   "94605": {
-    "city": "EASTMONT",
+    "city": "OAKLAND",
     "state": "CA"
   },
   "94606": {
-    "city": "CIVIC CENTER OAKLAND",
+    "city": "OAKLAND",
     "state": "CA"
   },
   "94607": {
-    "city": "CIVIC CENTER OAKLAND",
+    "city": "OAKLAND",
     "state": "CA"
   },
   "94608": {
@@ -130580,39 +130580,39 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "94609": {
-    "city": "NORTH OAKLAND",
+    "city": "OAKLAND",
     "state": "CA"
   },
   "94610": {
-    "city": "GRAND LAKE",
+    "city": "OAKLAND",
     "state": "CA"
   },
   "94611": {
-    "city": "PIEDMONT",
+    "city": "OAKLAND",
     "state": "CA"
   },
   "94612": {
-    "city": "BYRON RUMFORD",
+    "city": "OAKLAND",
     "state": "CA"
   },
   "94614": {
-    "city": "AIRPORT OAKLAND",
+    "city": "OAKLAND",
     "state": "CA"
   },
   "94618": {
-    "city": "WEST GRAND CARRIER ANNEX",
+    "city": "OAKLAND",
     "state": "CA"
   },
   "94619": {
-    "city": "LAUREL",
+    "city": "OAKLAND",
     "state": "CA"
   },
   "94620": {
-    "city": "CRESTMONT DPOBU",
+    "city": "OAKLAND",
     "state": "CA"
   },
   "94621": {
-    "city": "AIRPORT OAKLAND",
+    "city": "OAKLAND",
     "state": "CA"
   },
   "94623": {
@@ -130620,11 +130620,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "94624": {
-    "city": "MARCUS FOSTER",
+    "city": "OAKLAND",
     "state": "CA"
   },
   "94661": {
-    "city": "STATION E",
+    "city": "OAKLAND",
     "state": "CA"
   },
   "94662": {
@@ -130636,19 +130636,19 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "94702": {
-    "city": "A STATION BERKELEY",
+    "city": "BERKELEY",
     "state": "CA"
   },
   "94703": {
-    "city": "A STATION BERKELEY",
+    "city": "BERKELEY",
     "state": "CA"
   },
   "94704": {
-    "city": "BERKELEY CA SDC",
+    "city": "BERKELEY",
     "state": "CA"
   },
   "94705": {
-    "city": "ELMWOOD",
+    "city": "BERKELEY",
     "state": "CA"
   },
   "94706": {
@@ -130656,19 +130656,19 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "94707": {
-    "city": "BERKELEY CA SDC",
+    "city": "BERKELEY",
     "state": "CA"
   },
   "94708": {
-    "city": "BERKELEY CA SDC",
+    "city": "BERKELEY",
     "state": "CA"
   },
   "94709": {
-    "city": "BERKELEY CA SDC",
+    "city": "BERKELEY",
     "state": "CA"
   },
   "94710": {
-    "city": "BERKELEY CA SDC",
+    "city": "BERKELEY",
     "state": "CA"
   },
   "94712": {
@@ -130676,7 +130676,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "94801": {
-    "city": "MC VITTIE ANNEX",
+    "city": "RICHMOND",
     "state": "CA"
   },
   "94802": {
@@ -130688,19 +130688,19 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "94804": {
-    "city": "MC VITTIE ANNEX",
+    "city": "RICHMOND",
     "state": "CA"
   },
   "94805": {
-    "city": "HILLTOP CARRIER ANNEX",
+    "city": "SAN PABLO",
     "state": "CA"
   },
   "94806": {
-    "city": "HILLTOP CARRIER ANNEX",
+    "city": "SAN PABLO",
     "state": "CA"
   },
   "94807": {
-    "city": "POINT RICHMOND",
+    "city": "RICHMOND",
     "state": "CA"
   },
   "94808": {
@@ -130728,7 +130728,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "94913": {
-    "city": "CIVIC CENTER SAN RAFAEL",
+    "city": "SAN RAFAEL",
     "state": "CA"
   },
   "94914": {
@@ -130736,7 +130736,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "94915": {
-    "city": "MISSION RAFAEL",
+    "city": "SAN RAFAEL",
     "state": "CA"
   },
   "94920": {
@@ -130820,7 +130820,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "94948": {
-    "city": "BEL MARIN KEYS DBU",
+    "city": "NOVATO",
     "state": "CA"
   },
   "94949": {
@@ -130836,7 +130836,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "94952": {
-    "city": "CASA GRANDE ANNEX",
+    "city": "PETALUMA",
     "state": "CA"
   },
   "94953": {
@@ -130844,11 +130844,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "94954": {
-    "city": "CASA GRANDE ANNEX",
+    "city": "PETALUMA",
     "state": "CA"
   },
   "94955": {
-    "city": "CASA GRANDE ANNEX",
+    "city": "PETALUMA",
     "state": "CA"
   },
   "94956": {
@@ -130896,7 +130896,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "94975": {
-    "city": "NORTH BAY P&DC FINANCE",
+    "city": "PETALUMA",
     "state": "CA"
   },
   "94976": {
@@ -130948,7 +130948,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "95009": {
-    "city": "HERITAGE VILLAGE",
+    "city": "CAMPBELL",
     "state": "CA"
   },
   "95010": {
@@ -131016,7 +131016,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "95032": {
-    "city": "DELL",
+    "city": "CAMPBELL",
     "state": "CA"
   },
   "95033": {
@@ -131048,7 +131048,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "95042": {
-    "city": "NEW ALMADEN",
+    "city": "SAN JOSE",
     "state": "CA"
   },
   "95043": {
@@ -131068,11 +131068,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "95050": {
-    "city": "JOHN SANCHEZ ANNEX",
+    "city": "SANTA CLARA",
     "state": "CA"
   },
   "95051": {
-    "city": "MISSION SANTA CLARA",
+    "city": "SANTA CLARA",
     "state": "CA"
   },
   "95052": {
@@ -131080,15 +131080,15 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "95054": {
-    "city": "JOHN SANCHEZ ANNEX",
+    "city": "SANTA CLARA",
     "state": "CA"
   },
   "95055": {
-    "city": "MISSION SANTA CLARA",
+    "city": "SANTA CLARA",
     "state": "CA"
   },
   "95056": {
-    "city": "AGNEW",
+    "city": "SANTA CLARA",
     "state": "CA"
   },
   "95060": {
@@ -131104,7 +131104,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "95063": {
-    "city": "EAST SANTA CRUZ",
+    "city": "SANTA CRUZ",
     "state": "CA"
   },
   "95064": {
@@ -131148,255 +131148,255 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "95103": {
-    "city": "SAINT JAMES PARK",
+    "city": "SAN JOSE",
     "state": "CA"
   },
   "95106": {
-    "city": "SAINT JAMES PARK",
+    "city": "SAN JOSE",
     "state": "CA"
   },
   "95108": {
-    "city": "SAINT JAMES PARK",
+    "city": "SAN JOSE",
     "state": "CA"
   },
   "95109": {
-    "city": "SAINT JAMES PARK",
+    "city": "SAN JOSE",
     "state": "CA"
   },
   "95110": {
-    "city": "SAINT JAMES PARK",
+    "city": "SAN JOSE",
     "state": "CA"
   },
   "95111": {
-    "city": "SEVEN TREES ANNEX",
+    "city": "SAN JOSE",
     "state": "CA"
   },
   "95112": {
-    "city": "SAINT JAMES PARK",
+    "city": "SAN JOSE",
     "state": "CA"
   },
   "95113": {
-    "city": "SAINT JAMES PARK",
+    "city": "SAN JOSE",
     "state": "CA"
   },
   "95116": {
-    "city": "FOOTHILL",
+    "city": "SAN JOSE",
     "state": "CA"
   },
   "95117": {
-    "city": "WESTGATE",
+    "city": "SAN JOSE",
     "state": "CA"
   },
   "95118": {
-    "city": "ROBERTSVILLE",
+    "city": "SAN JOSE",
     "state": "CA"
   },
   "95119": {
-    "city": "BLOSSOM HILL",
+    "city": "SAN JOSE",
     "state": "CA"
   },
   "95120": {
-    "city": "ALMADEN VALLEY CARRIERS",
+    "city": "SAN JOSE",
     "state": "CA"
   },
   "95121": {
-    "city": "SEVEN TREES ANNEX",
+    "city": "SAN JOSE",
     "state": "CA"
   },
   "95122": {
-    "city": "HILLVIEW",
+    "city": "SAN JOSE",
     "state": "CA"
   },
   "95123": {
-    "city": "BLOSSOM HILL",
+    "city": "SAN JOSE",
     "state": "CA"
   },
   "95124": {
-    "city": "CAMBRIAN PARK",
+    "city": "SAN JOSE",
     "state": "CA"
   },
   "95125": {
-    "city": "WILLOW GLEN",
+    "city": "SAN JOSE",
     "state": "CA"
   },
   "95126": {
-    "city": "WILLOW GLEN",
+    "city": "SAN JOSE",
     "state": "CA"
   },
   "95127": {
-    "city": "FOOTHILL",
+    "city": "SAN JOSE",
     "state": "CA"
   },
   "95128": {
-    "city": "WILLOW GLEN",
+    "city": "SAN JOSE",
     "state": "CA"
   },
   "95129": {
-    "city": "WESTGATE",
+    "city": "SAN JOSE",
     "state": "CA"
   },
   "95130": {
-    "city": "WESTGATE",
+    "city": "SAN JOSE",
     "state": "CA"
   },
   "95131": {
-    "city": "BAYSIDE",
+    "city": "SAN JOSE",
     "state": "CA"
   },
   "95132": {
-    "city": "BERRYESSA",
+    "city": "SAN JOSE",
     "state": "CA"
   },
   "95133": {
-    "city": "BERRYESSA",
+    "city": "SAN JOSE",
     "state": "CA"
   },
   "95134": {
-    "city": "BAYSIDE",
+    "city": "SAN JOSE",
     "state": "CA"
   },
   "95135": {
-    "city": "HILLVIEW",
+    "city": "SAN JOSE",
     "state": "CA"
   },
   "95136": {
-    "city": "ROBERTSVILLE",
+    "city": "SAN JOSE",
     "state": "CA"
   },
   "95138": {
-    "city": "SEVEN TREES ANNEX",
+    "city": "SAN JOSE",
     "state": "CA"
   },
   "95139": {
-    "city": "BLOSSOM HILL",
+    "city": "SAN JOSE",
     "state": "CA"
   },
   "95140": {
-    "city": "BERRYESSA",
+    "city": "SAN JOSE",
     "state": "CA"
   },
   "95148": {
-    "city": "HILLVIEW",
+    "city": "SAN JOSE",
     "state": "CA"
   },
   "95150": {
-    "city": "WILLOW GLEN",
+    "city": "SAN JOSE",
     "state": "CA"
   },
   "95151": {
-    "city": "HILLVIEW",
+    "city": "SAN JOSE",
     "state": "CA"
   },
   "95152": {
-    "city": "BERRYESSA",
+    "city": "SAN JOSE",
     "state": "CA"
   },
   "95153": {
-    "city": "BLOSSOM HILL",
+    "city": "SAN JOSE",
     "state": "CA"
   },
   "95154": {
-    "city": "CAMBRIAN PARK",
+    "city": "SAN JOSE",
     "state": "CA"
   },
   "95155": {
-    "city": "GARDEN",
+    "city": "SAN JOSE",
     "state": "CA"
   },
   "95156": {
-    "city": "FOOTHILL",
+    "city": "SAN JOSE",
     "state": "CA"
   },
   "95157": {
-    "city": "WESTGATE",
+    "city": "SAN JOSE",
     "state": "CA"
   },
   "95158": {
-    "city": "ROBERTSVILLE",
+    "city": "SAN JOSE",
     "state": "CA"
   },
   "95159": {
-    "city": "PARKMOOR",
+    "city": "SAN JOSE",
     "state": "CA"
   },
   "95160": {
-    "city": "WILLOW GLEN",
+    "city": "SAN JOSE",
     "state": "CA"
   },
   "95161": {
-    "city": "SAN JOSE MO FINANCE",
+    "city": "SAN JOSE",
     "state": "CA"
   },
   "95164": {
-    "city": "BAYSIDE",
+    "city": "SAN JOSE",
     "state": "CA"
   },
   "95170": {
-    "city": "ORCHARD FARMS DPOBU",
+    "city": "SAN JOSE",
     "state": "CA"
   },
   "95172": {
-    "city": "COLONNADE",
+    "city": "SAN JOSE",
     "state": "CA"
   },
   "95173": {
-    "city": "EASTRIDGE",
+    "city": "SAN JOSE",
     "state": "CA"
   },
   "95201": {
-    "city": "DELTA",
+    "city": "STOCKTON",
     "state": "CA"
   },
   "95202": {
-    "city": "STOCKTON WEST LANE CA S&DC",
+    "city": "STOCKTON",
     "state": "CA"
   },
   "95203": {
-    "city": "STOCKTON WEST LANE CA S&DC",
+    "city": "STOCKTON",
     "state": "CA"
   },
   "95204": {
-    "city": "STOCKTON WEST LANE CA S&DC",
+    "city": "STOCKTON",
     "state": "CA"
   },
   "95205": {
-    "city": "EAST STOCKTON",
+    "city": "STOCKTON",
     "state": "CA"
   },
   "95206": {
-    "city": "STOCKTON AIRPORT CA S&DC",
+    "city": "STOCKTON",
     "state": "CA"
   },
   "95207": {
-    "city": "STOCKTON WEST LANE CA S&DC",
+    "city": "STOCKTON",
     "state": "CA"
   },
   "95208": {
-    "city": "STOCKTON WEST LANE CA S&DC",
+    "city": "STOCKTON",
     "state": "CA"
   },
   "95209": {
-    "city": "HAMMER RANCH",
+    "city": "STOCKTON",
     "state": "CA"
   },
   "95210": {
-    "city": "HAMMER RANCH",
+    "city": "STOCKTON",
     "state": "CA"
   },
   "95212": {
-    "city": "STOCKTON WEST LANE CA S&DC",
+    "city": "STOCKTON",
     "state": "CA"
   },
   "95213": {
-    "city": "STOCKTON AIRPORT CA S&DC",
+    "city": "STOCKTON",
     "state": "CA"
   },
   "95215": {
-    "city": "STOCKTON AIRPORT CA S&DC",
+    "city": "STOCKTON",
     "state": "CA"
   },
   "95219": {
-    "city": "CALAVERAS",
+    "city": "STOCKTON",
     "state": "CA"
   },
   "95220": {
@@ -131528,11 +131528,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "95267": {
-    "city": "CALAVERAS",
+    "city": "STOCKTON",
     "state": "CA"
   },
   "95269": {
-    "city": "HAMMER RANCH",
+    "city": "STOCKTON",
     "state": "CA"
   },
   "95301": {
@@ -131544,7 +131544,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "95304": {
-    "city": "TRACY CARRIER ANNEX",
+    "city": "TRACY",
     "state": "CA"
   },
   "95305": {
@@ -131660,11 +131660,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "95337": {
-    "city": "INDUSTRIAL PARK",
+    "city": "MANTECA",
     "state": "CA"
   },
   "95338": {
-    "city": "CPU TRIANGLE MARKET",
+    "city": "MARIPOSA",
     "state": "CA"
   },
   "95340": {
@@ -131672,7 +131672,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "95341": {
-    "city": "BELL",
+    "city": "MERCED",
     "state": "CA"
   },
   "95344": {
@@ -131700,7 +131700,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "95351": {
-    "city": "PARADISE",
+    "city": "MODESTO",
     "state": "CA"
   },
   "95352": {
@@ -131716,19 +131716,19 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "95355": {
-    "city": "HUDSON",
+    "city": "MODESTO",
     "state": "CA"
   },
   "95356": {
-    "city": "HUDSON",
+    "city": "MODESTO",
     "state": "CA"
   },
   "95357": {
-    "city": "HUDSON",
+    "city": "MODESTO",
     "state": "CA"
   },
   "95358": {
-    "city": "PARADISE",
+    "city": "MODESTO",
     "state": "CA"
   },
   "95360": {
@@ -131736,7 +131736,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "95361": {
-    "city": "KNIGHTS FERRY",
+    "city": "OAKDALE",
     "state": "CA"
   },
   "95363": {
@@ -131788,7 +131788,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "95377": {
-    "city": "TRACY CARRIER ANNEX",
+    "city": "TRACY",
     "state": "CA"
   },
   "95378": {
@@ -131832,15 +131832,15 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "95389": {
-    "city": "CPU BIG TREE",
+    "city": "YOSEMITE NATIONAL PARK",
     "state": "CA"
   },
   "95391": {
-    "city": "TRACY CARRIER ANNEX",
+    "city": "TRACY",
     "state": "CA"
   },
   "95401": {
-    "city": "SANTA ROSA CARRIER ANNEX",
+    "city": "SANTA ROSA",
     "state": "CA"
   },
   "95402": {
@@ -131848,7 +131848,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "95403": {
-    "city": "SANTA ROSA CARRIER ANNEX",
+    "city": "SANTA ROSA",
     "state": "CA"
   },
   "95404": {
@@ -131856,15 +131856,15 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "95405": {
-    "city": "MONTGOMERY VILLAGE",
+    "city": "SANTA ROSA",
     "state": "CA"
   },
   "95406": {
-    "city": "CODDINGTOWN",
+    "city": "SANTA ROSA",
     "state": "CA"
   },
   "95407": {
-    "city": "ROSELAND",
+    "city": "SANTA ROSA",
     "state": "CA"
   },
   "95409": {
@@ -132088,7 +132088,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "95472": {
-    "city": "SEBASTOPOL CARRIER ANNEX",
+    "city": "SEBASTOPOL",
     "state": "CA"
   },
   "95473": {
@@ -132152,7 +132152,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "95502": {
-    "city": "DOWNTOWN EUREKA",
+    "city": "EUREKA",
     "state": "CA"
   },
   "95503": {
@@ -132204,7 +132204,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "95534": {
-    "city": "CUTTEN",
+    "city": "EUREKA",
     "state": "CA"
   },
   "95536": {
@@ -132360,7 +132360,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "95605": {
-    "city": "BRODERICK",
+    "city": "WEST SACRAMENTO",
     "state": "CA"
   },
   "95606": {
@@ -132420,7 +132420,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "95621": {
-    "city": "ANTELOPE",
+    "city": "CITRUS HEIGHTS",
     "state": "CA"
   },
   "95623": {
@@ -132508,7 +132508,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "95646": {
-    "city": "VPO KIRKWOOD",
+    "city": "KIRKWOOD",
     "state": "CA"
   },
   "95648": {
@@ -132656,7 +132656,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "95688": {
-    "city": "CERNON",
+    "city": "VACAVILLE",
     "state": "CA"
   },
   "95689": {
@@ -132684,11 +132684,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "95695": {
-    "city": "MIDTOWN WOODLAND",
+    "city": "WOODLAND",
     "state": "CA"
   },
   "95696": {
-    "city": "CERNON",
+    "city": "VACAVILLE",
     "state": "CA"
   },
   "95697": {
@@ -132728,7 +132728,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "95715": {
-    "city": "VPO EMIGRANT GAP 2",
+    "city": "EMIGRANT GAP",
     "state": "CA"
   },
   "95717": {
@@ -132784,11 +132784,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "95757": {
-    "city": "ELK GROVE LAGUNA CARRIER ANX",
+    "city": "ELK GROVE",
     "state": "CA"
   },
   "95758": {
-    "city": "ELK GROVE LAGUNA CARRIER ANX",
+    "city": "ELK GROVE",
     "state": "CA"
   },
   "95759": {
@@ -132808,171 +132808,171 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "95776": {
-    "city": "MIDTOWN WOODLAND",
+    "city": "WOODLAND",
     "state": "CA"
   },
   "95798": {
-    "city": "INDUSTRIAL WEST SACRAMENTO",
+    "city": "WEST SACRAMENTO",
     "state": "CA"
   },
   "95811": {
-    "city": "SACRAMENTO CA SDC",
+    "city": "SACRAMENTO",
     "state": "CA"
   },
   "95812": {
-    "city": "DOWNTOWN PLAZA",
+    "city": "SACRAMENTO",
     "state": "CA"
   },
   "95813": {
-    "city": "SACRAMENTO CA SDC",
+    "city": "SACRAMENTO",
     "state": "CA"
   },
   "95814": {
-    "city": "SACRAMENTO CA SDC",
+    "city": "SACRAMENTO",
     "state": "CA"
   },
   "95815": {
-    "city": "SACRAMENTO CA SDC",
+    "city": "SACRAMENTO",
     "state": "CA"
   },
   "95816": {
-    "city": "FORT SUTTER",
+    "city": "SACRAMENTO",
     "state": "CA"
   },
   "95817": {
-    "city": "OAK PARK",
+    "city": "SACRAMENTO",
     "state": "CA"
   },
   "95818": {
-    "city": "BROADWAY",
+    "city": "SACRAMENTO",
     "state": "CA"
   },
   "95819": {
-    "city": "CAMELLIA",
+    "city": "SACRAMENTO",
     "state": "CA"
   },
   "95820": {
-    "city": "COLONIAL",
+    "city": "SACRAMENTO",
     "state": "CA"
   },
   "95821": {
-    "city": "TOWN AND COUNTRY",
+    "city": "SACRAMENTO",
     "state": "CA"
   },
   "95822": {
-    "city": "LAND PARK",
+    "city": "SACRAMENTO",
     "state": "CA"
   },
   "95823": {
-    "city": "PARKWAY",
+    "city": "SACRAMENTO",
     "state": "CA"
   },
   "95824": {
-    "city": "COLONIAL",
+    "city": "SACRAMENTO",
     "state": "CA"
   },
   "95825": {
-    "city": "ARDEN",
+    "city": "SACRAMENTO",
     "state": "CA"
   },
   "95826": {
-    "city": "PERKINS",
+    "city": "SACRAMENTO",
     "state": "CA"
   },
   "95827": {
-    "city": "PERKINS",
+    "city": "SACRAMENTO",
     "state": "CA"
   },
   "95828": {
-    "city": "FLORIN",
+    "city": "SACRAMENTO",
     "state": "CA"
   },
   "95829": {
-    "city": "FLORIN",
+    "city": "SACRAMENTO",
     "state": "CA"
   },
   "95830": {
-    "city": "FLORIN",
+    "city": "SACRAMENTO",
     "state": "CA"
   },
   "95831": {
-    "city": "LAND PARK",
+    "city": "SACRAMENTO",
     "state": "CA"
   },
   "95832": {
-    "city": "PARKWAY",
+    "city": "SACRAMENTO",
     "state": "CA"
   },
   "95833": {
-    "city": "SACRAMENTO CA SDC",
+    "city": "SACRAMENTO",
     "state": "CA"
   },
   "95834": {
-    "city": "NORTH NATOMAS",
+    "city": "SACRAMENTO",
     "state": "CA"
   },
   "95835": {
-    "city": "SACRAMENTO CA SDC",
+    "city": "SACRAMENTO",
     "state": "CA"
   },
   "95836": {
-    "city": "SACRAMENTO CA SDC",
+    "city": "SACRAMENTO",
     "state": "CA"
   },
   "95837": {
-    "city": "SACRAMENTO CA SDC",
+    "city": "SACRAMENTO",
     "state": "CA"
   },
   "95838": {
-    "city": "DEL PASO HEIGHTS",
+    "city": "SACRAMENTO",
     "state": "CA"
   },
   "95841": {
-    "city": "FOOTHILL FARMS",
+    "city": "SACRAMENTO",
     "state": "CA"
   },
   "95842": {
-    "city": "ELKHORN CARRIER ANNEX",
+    "city": "SACRAMENTO",
     "state": "CA"
   },
   "95843": {
-    "city": "ELKHORN CARRIER ANNEX",
+    "city": "SACRAMENTO",
     "state": "CA"
   },
   "95851": {
-    "city": "SACRAMENTO CA SDC",
+    "city": "SACRAMENTO",
     "state": "CA"
   },
   "95852": {
-    "city": "SACRAMENTO CA SDC",
+    "city": "SACRAMENTO",
     "state": "CA"
   },
   "95853": {
-    "city": "SACRAMENTO CA SDC",
+    "city": "SACRAMENTO",
     "state": "CA"
   },
   "95860": {
-    "city": "CENTRE",
+    "city": "SACRAMENTO",
     "state": "CA"
   },
   "95864": {
-    "city": "ARDEN",
+    "city": "SACRAMENTO",
     "state": "CA"
   },
   "95865": {
-    "city": "ARDEN",
+    "city": "SACRAMENTO",
     "state": "CA"
   },
   "95866": {
-    "city": "ARDEN",
+    "city": "SACRAMENTO",
     "state": "CA"
   },
   "95899": {
-    "city": "SACRAMENTO CA SDC",
+    "city": "SACRAMENTO",
     "state": "CA"
   },
   "95901": {
-    "city": "CPU GOLD EAGLE MKT",
+    "city": "MARYSVILLE",
     "state": "CA"
   },
   "95903": {
@@ -133124,7 +133124,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "95951": {
-    "city": "MIDTOWN CHICO",
+    "city": "CHICO",
     "state": "CA"
   },
   "95953": {
@@ -133172,11 +133172,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "95965": {
-    "city": "CPU PINES HARDWARE",
+    "city": "OROVILLE",
     "state": "CA"
   },
   "95966": {
-    "city": "OPHIR",
+    "city": "OROVILLE",
     "state": "CA"
   },
   "95967": {
@@ -133196,7 +133196,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "95971": {
-    "city": "CPU FEATHER RIVER COLLEGE",
+    "city": "QUINCY",
     "state": "CA"
   },
   "95972": {
@@ -133272,7 +133272,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "96001": {
-    "city": "DOWNTOWN REDDING",
+    "city": "REDDING",
     "state": "CA"
   },
   "96002": {
@@ -133520,7 +133520,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "96079": {
-    "city": "PROJECT CITY",
+    "city": "SHASTA LAKE",
     "state": "CA"
   },
   "96080": {
@@ -133548,7 +133548,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "96089": {
-    "city": "SUMMIT CITY",
+    "city": "SHASTA LAKE",
     "state": "CA"
   },
   "96090": {
@@ -133584,7 +133584,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "96099": {
-    "city": "DOWNTOWN REDDING",
+    "city": "REDDING",
     "state": "CA"
   },
   "96101": {
@@ -133672,7 +133672,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "96124": {
-    "city": "SATTLEY",
+    "city": "CALPINE",
     "state": "CA"
   },
   "96125": {
@@ -133684,7 +133684,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "96127": {
-    "city": "EAGLE",
+    "city": "SUSANVILLE",
     "state": "CA"
   },
   "96128": {
@@ -133692,7 +133692,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "96130": {
-    "city": "EAGLE",
+    "city": "SUSANVILLE",
     "state": "CA"
   },
   "96132": {
@@ -133756,11 +133756,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "96155": {
-    "city": "MEYERS",
+    "city": "SOUTH LAKE TAHOE",
     "state": "CA"
   },
   "96158": {
-    "city": "TAHOE VALLEY",
+    "city": "SOUTH LAKE TAHOE",
     "state": "CA"
   },
   "96160": {
@@ -133772,7 +133772,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CA"
   },
   "96162": {
-    "city": "DONNER",
+    "city": "TRUCKEE",
     "state": "CA"
   },
   "96701": {
@@ -133796,7 +133796,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "HI"
   },
   "96707": {
-    "city": "BARBERS POINT",
+    "city": "KAPOLEI",
     "state": "HI"
   },
   "96708": {
@@ -133848,7 +133848,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "HI"
   },
   "96721": {
-    "city": "DOWNTOWN HILO",
+    "city": "HILO",
     "state": "HI"
   },
   "96722": {
@@ -134088,7 +134088,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "HI"
   },
   "96788": {
-    "city": "PUKALANI",
+    "city": "MAKAWAO",
     "state": "HI"
   },
   "96789": {
@@ -134104,7 +134104,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "HI"
   },
   "96792": {
-    "city": "NANAKULI",
+    "city": "WAIANAE",
     "state": "HI"
   },
   "96793": {
@@ -134128,79 +134128,79 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "AS"
   },
   "96801": {
-    "city": "DOWNTOWN HONOLULU",
+    "city": "HONOLULU",
     "state": "HI"
   },
   "96802": {
-    "city": "DOWNTOWN HONOLULU",
+    "city": "HONOLULU",
     "state": "HI"
   },
   "96803": {
-    "city": "DOWNTOWN HONOLULU",
+    "city": "HONOLULU",
     "state": "HI"
   },
   "96804": {
-    "city": "DOWNTOWN HONOLULU",
+    "city": "HONOLULU",
     "state": "HI"
   },
   "96805": {
-    "city": "DOWNTOWN HONOLULU",
+    "city": "HONOLULU",
     "state": "HI"
   },
   "96806": {
-    "city": "DOWNTOWN HONOLULU",
+    "city": "HONOLULU",
     "state": "HI"
   },
   "96807": {
-    "city": "DOWNTOWN HONOLULU",
+    "city": "HONOLULU",
     "state": "HI"
   },
   "96808": {
-    "city": "DOWNTOWN HONOLULU",
+    "city": "HONOLULU",
     "state": "HI"
   },
   "96809": {
-    "city": "DOWNTOWN HONOLULU",
+    "city": "HONOLULU",
     "state": "HI"
   },
   "96810": {
-    "city": "DOWNTOWN HONOLULU",
+    "city": "HONOLULU",
     "state": "HI"
   },
   "96811": {
-    "city": "DOWNTOWN HONOLULU",
+    "city": "HONOLULU",
     "state": "HI"
   },
   "96812": {
-    "city": "DOWNTOWN HONOLULU",
+    "city": "HONOLULU",
     "state": "HI"
   },
   "96813": {
-    "city": "DOWNTOWN HONOLULU",
+    "city": "HONOLULU",
     "state": "HI"
   },
   "96814": {
-    "city": "DOWNTOWN HONOLULU",
+    "city": "HONOLULU",
     "state": "HI"
   },
   "96815": {
-    "city": "WAIKIKI",
+    "city": "HONOLULU",
     "state": "HI"
   },
   "96816": {
-    "city": "WAIALAE KAHALA",
+    "city": "HONOLULU",
     "state": "HI"
   },
   "96817": {
-    "city": "KAPALAMA",
+    "city": "HONOLULU",
     "state": "HI"
   },
   "96818": {
-    "city": "MAIN OFFICE CARRIERS",
+    "city": "HONOLULU",
     "state": "HI"
   },
   "96819": {
-    "city": "SAND ISLAND CARRIER ANNEX",
+    "city": "HONOLULU",
     "state": "HI"
   },
   "96820": {
@@ -134208,43 +134208,43 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "HI"
   },
   "96821": {
-    "city": "HAWAII KAI",
+    "city": "HONOLULU",
     "state": "HI"
   },
   "96822": {
-    "city": "MAKIKI",
+    "city": "HONOLULU",
     "state": "HI"
   },
   "96823": {
-    "city": "MAKIKI",
+    "city": "HONOLULU",
     "state": "HI"
   },
   "96824": {
-    "city": "AINA HAINA",
+    "city": "HONOLULU",
     "state": "HI"
   },
   "96825": {
-    "city": "HAWAII KAI",
+    "city": "HONOLULU",
     "state": "HI"
   },
   "96826": {
-    "city": "MAKIKI",
+    "city": "HONOLULU",
     "state": "HI"
   },
   "96828": {
-    "city": "MOILIILI",
+    "city": "HONOLULU",
     "state": "HI"
   },
   "96830": {
-    "city": "WAIKIKI",
+    "city": "HONOLULU",
     "state": "HI"
   },
   "96836": {
-    "city": "CPU EATON SQUARE",
+    "city": "HONOLULU",
     "state": "HI"
   },
   "96837": {
-    "city": "UPTOWN",
+    "city": "HONOLULU",
     "state": "HI"
   },
   "96838": {
@@ -134252,11 +134252,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "HI"
   },
   "96839": {
-    "city": "CPU MANOA",
+    "city": "HONOLULU",
     "state": "HI"
   },
   "96850": {
-    "city": "DOWNTOWN HONOLULU",
+    "city": "HONOLULU",
     "state": "HI"
   },
   "96910": {
@@ -134264,7 +134264,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "GU"
   },
   "96912": {
-    "city": "CPU DEDEDO NEW",
+    "city": "DEDEDO",
     "state": "GU"
   },
   "96913": {
@@ -134280,7 +134280,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "GU"
   },
   "96917": {
-    "city": "INARAJAN",
+    "city": "SANTA RITA",
     "state": "GU"
   },
   "96921": {
@@ -134288,7 +134288,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "GU"
   },
   "96923": {
-    "city": "CPU UNIV OF GUAM",
+    "city": "MANGILAO",
     "state": "GU"
   },
   "96928": {
@@ -134296,7 +134296,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "GU"
   },
   "96929": {
-    "city": "ANDERSEN AFB",
+    "city": "YIGO",
     "state": "GU"
   },
   "96931": {
@@ -134308,7 +134308,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "GU"
   },
   "96940": {
-    "city": "PALAU",
+    "city": "KOROR",
     "state": "PW"
   },
   "96941": {
@@ -134328,7 +134328,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "FM"
   },
   "96950": {
-    "city": "CPU CAPITOL HILL",
+    "city": "SAIPAN",
     "state": "MP"
   },
   "96951": {
@@ -134352,7 +134352,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "OR"
   },
   "97003": {
-    "city": "BEAVERTON OR S&DC",
+    "city": "PORTLAND",
     "state": "OR"
   },
   "97004": {
@@ -134364,11 +134364,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "OR"
   },
   "97006": {
-    "city": "ALOHA",
+    "city": "BEAVERTON",
     "state": "OR"
   },
   "97007": {
-    "city": "ALOHA",
+    "city": "BEAVERTON",
     "state": "OR"
   },
   "97008": {
@@ -134440,7 +134440,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "OR"
   },
   "97027": {
-    "city": "CLACKAMAS DCU",
+    "city": "CLACKAMAS",
     "state": "OR"
   },
   "97028": {
@@ -134496,7 +134496,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "OR"
   },
   "97041": {
-    "city": "HOOD RIVER ANNEX",
+    "city": "HOOD RIVER",
     "state": "OR"
   },
   "97042": {
@@ -134596,7 +134596,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "OR"
   },
   "97078": {
-    "city": "ALOHA",
+    "city": "BEAVERTON",
     "state": "OR"
   },
   "97080": {
@@ -134604,7 +134604,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "OR"
   },
   "97086": {
-    "city": "CLACKAMAS DCU",
+    "city": "CLACKAMAS",
     "state": "OR"
   },
   "97089": {
@@ -134692,7 +134692,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "OR"
   },
   "97124": {
-    "city": "HILLSBORO DCU",
+    "city": "HILLSBORO",
     "state": "OR"
   },
   "97125": {
@@ -134720,7 +134720,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "OR"
   },
   "97133": {
-    "city": "BEAVERTON OR S&DC",
+    "city": "PORTLAND",
     "state": "OR"
   },
   "97134": {
@@ -134740,7 +134740,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "OR"
   },
   "97138": {
-    "city": "GEARHART",
+    "city": "SEASIDE",
     "state": "OR"
   },
   "97140": {
@@ -134752,7 +134752,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "OR"
   },
   "97143": {
-    "city": "NETARTS",
+    "city": "TILLAMOOK",
     "state": "OR"
   },
   "97144": {
@@ -134780,31 +134780,31 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "OR"
   },
   "97201": {
-    "city": "SOUTHWEST PORTLAND",
+    "city": "PORTLAND",
     "state": "OR"
   },
   "97202": {
-    "city": "SELLWOOD DCU",
+    "city": "PORTLAND",
     "state": "OR"
   },
   "97203": {
-    "city": "SAINT JOHNS",
+    "city": "PORTLAND",
     "state": "OR"
   },
   "97204": {
-    "city": "WATERFRONT",
+    "city": "PORTLAND",
     "state": "OR"
   },
   "97205": {
-    "city": "WATERFRONT",
+    "city": "PORTLAND",
     "state": "OR"
   },
   "97206": {
-    "city": "CRESTON",
+    "city": "PORTLAND",
     "state": "OR"
   },
   "97207": {
-    "city": "WATERFRONT",
+    "city": "PORTLAND",
     "state": "OR"
   },
   "97208": {
@@ -134812,75 +134812,75 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "OR"
   },
   "97209": {
-    "city": "RIVER DISTRICT",
+    "city": "PORTLAND",
     "state": "OR"
   },
   "97210": {
-    "city": "RIVER DISTRICT",
+    "city": "PORTLAND",
     "state": "OR"
   },
   "97211": {
-    "city": "PIEDMONT",
+    "city": "PORTLAND",
     "state": "OR"
   },
   "97212": {
-    "city": "HOLLADAY PARK",
+    "city": "PORTLAND",
     "state": "OR"
   },
   "97213": {
-    "city": "ROSE CITY PARK",
+    "city": "PORTLAND",
     "state": "OR"
   },
   "97214": {
-    "city": "EAST PORTLAND",
+    "city": "PORTLAND",
     "state": "OR"
   },
   "97215": {
-    "city": "LENTS DCU",
+    "city": "PORTLAND",
     "state": "OR"
   },
   "97216": {
-    "city": "MIDWAY",
+    "city": "PORTLAND",
     "state": "OR"
   },
   "97217": {
-    "city": "KENTON",
+    "city": "PORTLAND",
     "state": "OR"
   },
   "97218": {
-    "city": "ROSE CITY PARK",
+    "city": "PORTLAND",
     "state": "OR"
   },
   "97219": {
-    "city": "MULTNOMAH",
+    "city": "PORTLAND",
     "state": "OR"
   },
   "97220": {
-    "city": "PARKROSE",
+    "city": "PORTLAND",
     "state": "OR"
   },
   "97221": {
-    "city": "WEST SLOPE",
+    "city": "PORTLAND",
     "state": "OR"
   },
   "97222": {
-    "city": "OAK GROVE",
+    "city": "PORTLAND",
     "state": "OR"
   },
   "97223": {
-    "city": "TIGARD",
+    "city": "PORTLAND",
     "state": "OR"
   },
   "97224": {
-    "city": "TIGARD",
+    "city": "PORTLAND",
     "state": "OR"
   },
   "97225": {
-    "city": "WEST SLOPE",
+    "city": "PORTLAND",
     "state": "OR"
   },
   "97227": {
-    "city": "HOLLADAY PARK",
+    "city": "PORTLAND",
     "state": "OR"
   },
   "97228": {
@@ -134888,127 +134888,127 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "OR"
   },
   "97229": {
-    "city": "BEAVERTON OR S&DC",
+    "city": "PORTLAND",
     "state": "OR"
   },
   "97230": {
-    "city": "PARKROSE",
+    "city": "PORTLAND",
     "state": "OR"
   },
   "97231": {
-    "city": "SAINT JOHNS",
+    "city": "PORTLAND",
     "state": "OR"
   },
   "97232": {
-    "city": "EAST PORTLAND",
+    "city": "PORTLAND",
     "state": "OR"
   },
   "97233": {
-    "city": "PARKROSE",
+    "city": "PORTLAND",
     "state": "OR"
   },
   "97236": {
-    "city": "LENTS DCU",
+    "city": "PORTLAND",
     "state": "OR"
   },
   "97238": {
-    "city": "BIG RIVER",
+    "city": "PORTLAND",
     "state": "OR"
   },
   "97239": {
-    "city": "MULTNOMAH",
+    "city": "PORTLAND",
     "state": "OR"
   },
   "97240": {
-    "city": "CENTRAL",
+    "city": "PORTLAND",
     "state": "OR"
   },
   "97242": {
-    "city": "BROOKLYN",
+    "city": "PORTLAND",
     "state": "OR"
   },
   "97266": {
-    "city": "LENTS DCU",
+    "city": "PORTLAND",
     "state": "OR"
   },
   "97267": {
-    "city": "OAK GROVE",
+    "city": "PORTLAND",
     "state": "OR"
   },
   "97268": {
-    "city": "OAK GROVE",
+    "city": "PORTLAND",
     "state": "OR"
   },
   "97269": {
-    "city": "MILWAUKIE",
+    "city": "PORTLAND",
     "state": "OR"
   },
   "97280": {
-    "city": "MULTNOMAH",
+    "city": "PORTLAND",
     "state": "OR"
   },
   "97281": {
-    "city": "TIGARD",
+    "city": "PORTLAND",
     "state": "OR"
   },
   "97282": {
-    "city": "SELLWOOD",
+    "city": "PORTLAND",
     "state": "OR"
   },
   "97283": {
-    "city": "SAINT JOHNS",
+    "city": "PORTLAND",
     "state": "OR"
   },
   "97286": {
-    "city": "CRESTON",
+    "city": "PORTLAND",
     "state": "OR"
   },
   "97290": {
-    "city": "LENTS AT EASTPORT",
+    "city": "PORTLAND",
     "state": "OR"
   },
   "97292": {
-    "city": "MIDWAY",
+    "city": "PORTLAND",
     "state": "OR"
   },
   "97293": {
-    "city": "EAST PORTLAND",
+    "city": "PORTLAND",
     "state": "OR"
   },
   "97294": {
-    "city": "PARKROSE",
+    "city": "PORTLAND",
     "state": "OR"
   },
   "97296": {
-    "city": "RIVER DISTRICT",
+    "city": "PORTLAND",
     "state": "OR"
   },
   "97298": {
-    "city": "WEST SLOPE",
+    "city": "PORTLAND",
     "state": "OR"
   },
   "97301": {
-    "city": "SALEM OR S&DC",
+    "city": "SALEM",
     "state": "OR"
   },
   "97302": {
-    "city": "SALEM OR S&DC",
+    "city": "SALEM",
     "state": "OR"
   },
   "97303": {
-    "city": "HOLLYWOOD",
+    "city": "SALEM",
     "state": "OR"
   },
   "97304": {
-    "city": "SALEM OR S&DC",
+    "city": "SALEM",
     "state": "OR"
   },
   "97305": {
-    "city": "BROOKS",
+    "city": "SALEM",
     "state": "OR"
   },
   "97306": {
-    "city": "SALEM OR S&DC",
+    "city": "SALEM",
     "state": "OR"
   },
   "97307": {
@@ -135016,15 +135016,15 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "OR"
   },
   "97308": {
-    "city": "PRINGLE PARK",
+    "city": "SALEM",
     "state": "OR"
   },
   "97309": {
-    "city": "SALEM OR S&DC",
+    "city": "SALEM",
     "state": "OR"
   },
   "97317": {
-    "city": "SALEM OR S&DC",
+    "city": "SALEM",
     "state": "OR"
   },
   "97321": {
@@ -135244,7 +135244,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "OR"
   },
   "97392": {
-    "city": "SALEM OR S&DC",
+    "city": "SALEM",
     "state": "OR"
   },
   "97394": {
@@ -135256,23 +135256,23 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "OR"
   },
   "97401": {
-    "city": "EUGENE MAIN OFC CARRIER ANX",
+    "city": "EUGENE",
     "state": "OR"
   },
   "97402": {
-    "city": "WESTSIDE",
+    "city": "EUGENE",
     "state": "OR"
   },
   "97403": {
-    "city": "DOWNTOWN EUGENE",
+    "city": "EUGENE",
     "state": "OR"
   },
   "97404": {
-    "city": "RIVER ROAD",
+    "city": "EUGENE",
     "state": "OR"
   },
   "97405": {
-    "city": "SOUTHSIDE",
+    "city": "EUGENE",
     "state": "OR"
   },
   "97406": {
@@ -135284,7 +135284,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "OR"
   },
   "97408": {
-    "city": "COBURG",
+    "city": "EUGENE",
     "state": "OR"
   },
   "97409": {
@@ -135328,7 +135328,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "OR"
   },
   "97420": {
-    "city": "CHARLESTON",
+    "city": "COOS BAY",
     "state": "OR"
   },
   "97423": {
@@ -135384,7 +135384,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "OR"
   },
   "97440": {
-    "city": "DOWNTOWN EUGENE",
+    "city": "EUGENE",
     "state": "OR"
   },
   "97441": {
@@ -135504,7 +135504,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "OR"
   },
   "97475": {
-    "city": "EUGENE OR S&DC",
+    "city": "SPRINGFIELD",
     "state": "OR"
   },
   "97476": {
@@ -135516,7 +135516,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "OR"
   },
   "97478": {
-    "city": "SPRINGFIELD DCU",
+    "city": "SPRINGFIELD",
     "state": "OR"
   },
   "97479": {
@@ -135604,7 +135604,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "OR"
   },
   "97504": {
-    "city": "MEDFORD OR S&DC",
+    "city": "MEDFORD",
     "state": "OR"
   },
   "97520": {
@@ -135628,7 +135628,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "OR"
   },
   "97526": {
-    "city": "GRANTS PASS DCU",
+    "city": "GRANTS PASS",
     "state": "OR"
   },
   "97527": {
@@ -135788,27 +135788,27 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "OR"
   },
   "97701": {
-    "city": "BEND DCU",
+    "city": "BEND",
     "state": "OR"
   },
   "97702": {
-    "city": "BEND DCU",
+    "city": "BEND",
     "state": "OR"
   },
   "97703": {
-    "city": "BEND OR S&DC",
+    "city": "BEND",
     "state": "OR"
   },
   "97707": {
-    "city": "SUNRIVER",
+    "city": "BEND",
     "state": "OR"
   },
   "97708": {
-    "city": "BEND OR S&DC",
+    "city": "BEND",
     "state": "OR"
   },
   "97709": {
-    "city": "DOWNTOWN BEND",
+    "city": "BEND",
     "state": "OR"
   },
   "97710": {
@@ -135820,7 +135820,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "OR"
   },
   "97712": {
-    "city": "BEND OR S&DC",
+    "city": "BEND",
     "state": "OR"
   },
   "97720": {
@@ -136108,7 +136108,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "OR"
   },
   "97880": {
-    "city": "DALE",
+    "city": "UKIAH",
     "state": "OR"
   },
   "97882": {
@@ -136204,27 +136204,27 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "WA"
   },
   "98003": {
-    "city": "TWIN LAKES AUBURN",
+    "city": "FEDERAL WAY",
     "state": "WA"
   },
   "98004": {
-    "city": "BELLEVUE WAY CARRIER ANNEX",
+    "city": "BELLEVUE",
     "state": "WA"
   },
   "98005": {
-    "city": "BELLEVUE CARRIER ANNEX",
+    "city": "BELLEVUE",
     "state": "WA"
   },
   "98006": {
-    "city": "BELLEVUE CARRIER ANNEX",
+    "city": "BELLEVUE",
     "state": "WA"
   },
   "98007": {
-    "city": "CROSSROADS",
+    "city": "BELLEVUE",
     "state": "WA"
   },
   "98008": {
-    "city": "CROSSROADS",
+    "city": "BELLEVUE",
     "state": "WA"
   },
   "98009": {
@@ -136240,7 +136240,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "WA"
   },
   "98012": {
-    "city": "EVERETT WA S&DC",
+    "city": "EVERETT",
     "state": "WA"
   },
   "98013": {
@@ -136252,7 +136252,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "WA"
   },
   "98015": {
-    "city": "MIDLAKES",
+    "city": "BELLEVUE",
     "state": "WA"
   },
   "98019": {
@@ -136264,7 +136264,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "WA"
   },
   "98021": {
-    "city": "EVERETT WA S&DC",
+    "city": "EVERETT",
     "state": "WA"
   },
   "98022": {
@@ -136272,7 +136272,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "WA"
   },
   "98023": {
-    "city": "TWIN LAKES AUBURN",
+    "city": "FEDERAL WAY",
     "state": "WA"
   },
   "98024": {
@@ -136284,7 +136284,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "WA"
   },
   "98026": {
-    "city": "PERRINVILLE",
+    "city": "EDMONDS",
     "state": "WA"
   },
   "98027": {
@@ -136320,23 +136320,23 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "WA"
   },
   "98035": {
-    "city": "DOWNTOWN KENT",
+    "city": "KENT",
     "state": "WA"
   },
   "98036": {
-    "city": "ALDERWOOD MANOR",
+    "city": "LYNNWOOD",
     "state": "WA"
   },
   "98037": {
-    "city": "EVERETT WA S&DC",
+    "city": "EVERETT",
     "state": "WA"
   },
   "98038": {
-    "city": "COVINGTON BRANCH",
+    "city": "COVINGTON",
     "state": "WA"
   },
   "98039": {
-    "city": "BELLEVUE WAY CARRIER ANNEX",
+    "city": "BELLEVUE",
     "state": "WA"
   },
   "98040": {
@@ -136348,7 +136348,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "WA"
   },
   "98042": {
-    "city": "COVINGTON BRANCH",
+    "city": "COVINGTON",
     "state": "WA"
   },
   "98043": {
@@ -136388,11 +136388,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "WA"
   },
   "98056": {
-    "city": "HIGHLANDS",
+    "city": "RENTON",
     "state": "WA"
   },
   "98057": {
-    "city": "DOWNTOWN RENTON",
+    "city": "RENTON",
     "state": "WA"
   },
   "98058": {
@@ -136400,7 +136400,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "WA"
   },
   "98059": {
-    "city": "HIGHLANDS",
+    "city": "RENTON",
     "state": "WA"
   },
   "98061": {
@@ -136424,7 +136424,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "WA"
   },
   "98068": {
-    "city": "SNOQUALMIE PASS NPU",
+    "city": "SNOQUALMIE PASS",
     "state": "WA"
   },
   "98070": {
@@ -136464,11 +136464,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "WA"
   },
   "98087": {
-    "city": "EVERETT WA S&DC",
+    "city": "EVERETT",
     "state": "WA"
   },
   "98089": {
-    "city": "MIDWAY",
+    "city": "KENT",
     "state": "WA"
   },
   "98092": {
@@ -136476,95 +136476,95 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "WA"
   },
   "98093": {
-    "city": "TWIN LAKES AUBURN",
+    "city": "FEDERAL WAY",
     "state": "WA"
   },
   "98101": {
-    "city": "MIDTOWN",
+    "city": "SEATTLE",
     "state": "WA"
   },
   "98102": {
-    "city": "BROADWAY",
+    "city": "SEATTLE",
     "state": "WA"
   },
   "98103": {
-    "city": "WALLINGFORD",
+    "city": "SEATTLE",
     "state": "WA"
   },
   "98104": {
-    "city": "SEATTLE CARRIER ANNEX",
+    "city": "SEATTLE",
     "state": "WA"
   },
   "98105": {
-    "city": "UNIVERSITY",
+    "city": "SEATTLE",
     "state": "WA"
   },
   "98106": {
-    "city": "WESTWOOD",
+    "city": "SEATTLE",
     "state": "WA"
   },
   "98107": {
-    "city": "BALLARD CARRIER ANNEX",
+    "city": "SEATTLE",
     "state": "WA"
   },
   "98108": {
-    "city": "GEORGETOWN",
+    "city": "SEATTLE",
     "state": "WA"
   },
   "98109": {
-    "city": "BALLARD CARRIER ANNEX",
+    "city": "SEATTLE",
     "state": "WA"
   },
   "98110": {
-    "city": "BAINBRIDGE IS",
+    "city": "BAINBRIDGE ISLAND",
     "state": "WA"
   },
   "98111": {
-    "city": "MIDTOWN",
+    "city": "SEATTLE",
     "state": "WA"
   },
   "98112": {
-    "city": "SEATTLE CARRIER ANNEX",
+    "city": "SEATTLE",
     "state": "WA"
   },
   "98113": {
-    "city": "GREENWOOD",
+    "city": "SEATTLE",
     "state": "WA"
   },
   "98114": {
-    "city": "INTERNATIONAL",
+    "city": "SEATTLE",
     "state": "WA"
   },
   "98115": {
-    "city": "LAKE CITY",
+    "city": "SEATTLE",
     "state": "WA"
   },
   "98116": {
-    "city": "WEST SEATTLE",
+    "city": "SEATTLE",
     "state": "WA"
   },
   "98117": {
-    "city": "BALLARD CARRIER ANNEX",
+    "city": "SEATTLE",
     "state": "WA"
   },
   "98118": {
-    "city": "COLUMBIA",
+    "city": "SEATTLE",
     "state": "WA"
   },
   "98119": {
-    "city": "INTERBAY CARRIER ANNEX",
+    "city": "SEATTLE",
     "state": "WA"
   },
   "98121": {
-    "city": "SEATTLE CARRIER ANNEX",
+    "city": "SEATTLE",
     "state": "WA"
   },
   "98122": {
-    "city": "BROADWAY",
+    "city": "SEATTLE",
     "state": "WA"
   },
   "98124": {
-    "city": "TERMINAL",
+    "city": "SEATTLE",
     "state": "WA"
   },
   "98125": {
@@ -136572,47 +136572,47 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "WA"
   },
   "98126": {
-    "city": "WESTWOOD",
+    "city": "SEATTLE",
     "state": "WA"
   },
   "98127": {
-    "city": "BALLARD",
+    "city": "SEATTLE",
     "state": "WA"
   },
   "98133": {
-    "city": "BITTER LAKE",
+    "city": "SEATTLE",
     "state": "WA"
   },
   "98134": {
-    "city": "GEORGETOWN",
+    "city": "SEATTLE",
     "state": "WA"
   },
   "98136": {
-    "city": "WESTWOOD",
+    "city": "SEATTLE",
     "state": "WA"
   },
   "98138": {
-    "city": "TUKWILA NEW",
+    "city": "TUKWILA",
     "state": "WA"
   },
   "98139": {
-    "city": "MAGNOLIA",
+    "city": "SEATTLE",
     "state": "WA"
   },
   "98141": {
-    "city": "CPU BELLTOWN POSTAL 111",
+    "city": "SEATTLE",
     "state": "WA"
   },
   "98144": {
-    "city": "TERMINAL",
+    "city": "SEATTLE",
     "state": "WA"
   },
   "98145": {
-    "city": "UNIVERSITY",
+    "city": "SEATTLE",
     "state": "WA"
   },
   "98146": {
-    "city": "WESTWOOD",
+    "city": "SEATTLE",
     "state": "WA"
   },
   "98148": {
@@ -136620,7 +136620,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "WA"
   },
   "98154": {
-    "city": "SEATTLE CARRIER ANNEX",
+    "city": "SEATTLE",
     "state": "WA"
   },
   "98155": {
@@ -136628,23 +136628,23 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "WA"
   },
   "98158": {
-    "city": "RIVERTON HEIGHTS",
+    "city": "SEATAC",
     "state": "WA"
   },
   "98160": {
-    "city": "CPU BEACH HOUSE GREETINGS",
+    "city": "SHORELINE",
     "state": "WA"
   },
   "98161": {
-    "city": "MIDTOWN",
+    "city": "SEATTLE",
     "state": "WA"
   },
   "98164": {
-    "city": "SEATTLE CARRIER ANNEX",
+    "city": "SEATTLE",
     "state": "WA"
   },
   "98165": {
-    "city": "LAKE CITY",
+    "city": "SEATTLE",
     "state": "WA"
   },
   "98166": {
@@ -136652,31 +136652,31 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "WA"
   },
   "98168": {
-    "city": "RIVERTON HEIGHTS",
+    "city": "SEATAC",
     "state": "WA"
   },
   "98174": {
-    "city": "SEATTLE CARRIER ANNEX",
+    "city": "SEATTLE",
     "state": "WA"
   },
   "98175": {
-    "city": "NORTHGATE",
+    "city": "SEATTLE",
     "state": "WA"
   },
   "98177": {
-    "city": "BITTER LAKE",
+    "city": "SEATTLE",
     "state": "WA"
   },
   "98178": {
-    "city": "SKYWAY",
+    "city": "SEATTLE",
     "state": "WA"
   },
   "98188": {
-    "city": "RIVERTON HEIGHTS",
+    "city": "SEATAC",
     "state": "WA"
   },
   "98194": {
-    "city": "PIONEER SQUARE",
+    "city": "SEATTLE",
     "state": "WA"
   },
   "98198": {
@@ -136684,7 +136684,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "WA"
   },
   "98199": {
-    "city": "INTERBAY CARRIER ANNEX",
+    "city": "SEATTLE",
     "state": "WA"
   },
   "98201": {
@@ -136696,7 +136696,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "WA"
   },
   "98204": {
-    "city": "EVERETT WA S&DC",
+    "city": "EVERETT",
     "state": "WA"
   },
   "98206": {
@@ -136704,7 +136704,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "WA"
   },
   "98208": {
-    "city": "EVERETT WA S&DC",
+    "city": "EVERETT",
     "state": "WA"
   },
   "98213": {
@@ -136736,7 +136736,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "WA"
   },
   "98226": {
-    "city": "MOUNT BAKER",
+    "city": "BELLINGHAM",
     "state": "WA"
   },
   "98227": {
@@ -136744,11 +136744,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "WA"
   },
   "98228": {
-    "city": "MOUNT BAKER",
+    "city": "BELLINGHAM",
     "state": "WA"
   },
   "98229": {
-    "city": "CPU YORKYS MARKET ALABAMA ST",
+    "city": "BELLINGHAM",
     "state": "WA"
   },
   "98230": {
@@ -136800,7 +136800,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "WA"
   },
   "98244": {
-    "city": "CPU GLACIER",
+    "city": "DEMING",
     "state": "WA"
   },
   "98245": {
@@ -136820,7 +136820,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "WA"
   },
   "98250": {
-    "city": "CPU ROCHE HARBOR",
+    "city": "FRIDAY HARBOR",
     "state": "WA"
   },
   "98251": {
@@ -136888,7 +136888,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "WA"
   },
   "98271": {
-    "city": "MARYSVILLE CARRIER ANNEX",
+    "city": "MARYSVILLE",
     "state": "WA"
   },
   "98272": {
@@ -136904,7 +136904,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "WA"
   },
   "98275": {
-    "city": "EVERETT WA S&DC",
+    "city": "EVERETT",
     "state": "WA"
   },
   "98276": {
@@ -136936,7 +136936,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "WA"
   },
   "98284": {
-    "city": "BURLINGTON CARRIER ANNEX",
+    "city": "BURLINGTON",
     "state": "WA"
   },
   "98286": {
@@ -136996,19 +136996,19 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "WA"
   },
   "98310": {
-    "city": "SHERIDAN PARK",
+    "city": "BREMERTON",
     "state": "WA"
   },
   "98311": {
-    "city": "SHERIDAN PARK",
+    "city": "BREMERTON",
     "state": "WA"
   },
   "98312": {
-    "city": "WEST HILLS",
+    "city": "BREMERTON",
     "state": "WA"
   },
   "98315": {
-    "city": "BANGOR SUBMARINE BASE",
+    "city": "SILVERDALE",
     "state": "WA"
   },
   "98320": {
@@ -137200,15 +137200,15 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "WA"
   },
   "98373": {
-    "city": "SOUTH HILL",
+    "city": "PUYALLUP",
     "state": "WA"
   },
   "98374": {
-    "city": "SOUTH HILL",
+    "city": "PUYALLUP",
     "state": "WA"
   },
   "98375": {
-    "city": "SOUTH HILL",
+    "city": "PUYALLUP",
     "state": "WA"
   },
   "98376": {
@@ -137248,7 +137248,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "WA"
   },
   "98387": {
-    "city": "BETHEL",
+    "city": "SPANAWAY",
     "state": "WA"
   },
   "98388": {
@@ -137284,79 +137284,79 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "WA"
   },
   "98401": {
-    "city": "DOWNTOWN TACOMA",
+    "city": "TACOMA",
     "state": "WA"
   },
   "98402": {
-    "city": "DOWNTOWN TACOMA",
+    "city": "TACOMA",
     "state": "WA"
   },
   "98403": {
-    "city": "DOWNTOWN TACOMA",
+    "city": "TACOMA",
     "state": "WA"
   },
   "98404": {
-    "city": "TCCF EAST",
+    "city": "TACOMA",
     "state": "WA"
   },
   "98405": {
-    "city": "TCCF EAST",
+    "city": "TACOMA",
     "state": "WA"
   },
   "98406": {
-    "city": "UNIVERSITY PLACE",
+    "city": "TACOMA",
     "state": "WA"
   },
   "98407": {
-    "city": "PROCTOR",
+    "city": "TACOMA",
     "state": "WA"
   },
   "98408": {
-    "city": "TCCF EAST",
+    "city": "TACOMA",
     "state": "WA"
   },
   "98409": {
-    "city": "TCCF EAST",
+    "city": "TACOMA",
     "state": "WA"
   },
   "98411": {
-    "city": "EVERGREEN",
+    "city": "TACOMA",
     "state": "WA"
   },
   "98415": {
-    "city": "MARTIN LUTHER KING JR",
+    "city": "TACOMA",
     "state": "WA"
   },
   "98417": {
-    "city": "PROCTOR",
+    "city": "TACOMA",
     "state": "WA"
   },
   "98418": {
-    "city": "LINCOLN",
+    "city": "TACOMA",
     "state": "WA"
   },
   "98419": {
-    "city": "LINCOLN",
+    "city": "TACOMA",
     "state": "WA"
   },
   "98421": {
-    "city": "FIFE CARRIER ANNEX",
+    "city": "FIFE",
     "state": "WA"
   },
   "98422": {
-    "city": "FIFE CARRIER ANNEX",
+    "city": "FIFE",
     "state": "WA"
   },
   "98424": {
-    "city": "FIFE CARRIER ANNEX",
+    "city": "FIFE",
     "state": "WA"
   },
   "98433": {
-    "city": "FORT LEWIS",
+    "city": "JOINT BASE LEWIS MCCHORD",
     "state": "WA"
   },
   "98438": {
-    "city": "MCCHORD AFB",
+    "city": "JOINT BASE LEWIS MCCHORD",
     "state": "WA"
   },
   "98439": {
@@ -137364,43 +137364,43 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "WA"
   },
   "98443": {
-    "city": "TCCF EAST",
+    "city": "TACOMA",
     "state": "WA"
   },
   "98444": {
-    "city": "PARKLAND",
+    "city": "TACOMA",
     "state": "WA"
   },
   "98445": {
-    "city": "PARKLAND",
+    "city": "TACOMA",
     "state": "WA"
   },
   "98446": {
-    "city": "PARKLAND",
+    "city": "TACOMA",
     "state": "WA"
   },
   "98448": {
-    "city": "PARKLAND",
+    "city": "TACOMA",
     "state": "WA"
   },
   "98464": {
-    "city": "UNIVERSITY PLACE",
+    "city": "TACOMA",
     "state": "WA"
   },
   "98465": {
-    "city": "UNIVERSITY PLACE",
+    "city": "TACOMA",
     "state": "WA"
   },
   "98466": {
-    "city": "UNIVERSITY PLACE",
+    "city": "TACOMA",
     "state": "WA"
   },
   "98467": {
-    "city": "UNIVERSITY PLACE",
+    "city": "TACOMA",
     "state": "WA"
   },
   "98490": {
-    "city": "SOUTH TACOMA",
+    "city": "TACOMA",
     "state": "WA"
   },
   "98496": {
@@ -137416,7 +137416,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "WA"
   },
   "98501": {
-    "city": "CPU SAFEWAY 7",
+    "city": "TUMWATER",
     "state": "WA"
   },
   "98502": {
@@ -137436,7 +137436,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "WA"
   },
   "98508": {
-    "city": "WESTSIDE OLYMPIA",
+    "city": "OLYMPIA",
     "state": "WA"
   },
   "98509": {
@@ -137448,7 +137448,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "WA"
   },
   "98512": {
-    "city": "OLYMPIA WA S&DC",
+    "city": "TUMWATER",
     "state": "WA"
   },
   "98513": {
@@ -137640,7 +137640,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "WA"
   },
   "98579": {
-    "city": "OLYMPIA WA S&DC",
+    "city": "TUMWATER",
     "state": "WA"
   },
   "98580": {
@@ -137680,7 +137680,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "WA"
   },
   "98589": {
-    "city": "CENTRALIA CARRIER ANNEX",
+    "city": "CENTRALIA",
     "state": "WA"
   },
   "98590": {
@@ -137880,35 +137880,35 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "WA"
   },
   "98660": {
-    "city": "VANCOUVER WA SDC",
+    "city": "VANCOUVER",
     "state": "WA"
   },
   "98661": {
-    "city": "VANCOUVER WA SDC",
+    "city": "VANCOUVER",
     "state": "WA"
   },
   "98662": {
-    "city": "EAST VANCOUVER DCU",
+    "city": "VANCOUVER",
     "state": "WA"
   },
   "98663": {
-    "city": "VANCOUVER WA SDC",
+    "city": "VANCOUVER",
     "state": "WA"
   },
   "98664": {
-    "city": "EAST VANCOUVER DCU",
+    "city": "VANCOUVER",
     "state": "WA"
   },
   "98665": {
-    "city": "CPU KATHLEENS HALLMARK",
+    "city": "VANCOUVER",
     "state": "WA"
   },
   "98666": {
-    "city": "DOWNTOWN VANCOUVER",
+    "city": "VANCOUVER",
     "state": "WA"
   },
   "98668": {
-    "city": "VANCOUVER WA SDC",
+    "city": "VANCOUVER",
     "state": "WA"
   },
   "98670": {
@@ -137936,35 +137936,35 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "WA"
   },
   "98682": {
-    "city": "EAST VANCOUVER DCU",
+    "city": "VANCOUVER",
     "state": "WA"
   },
   "98683": {
-    "city": "EAST VANCOUVER DCU",
+    "city": "VANCOUVER",
     "state": "WA"
   },
   "98684": {
-    "city": "EAST VANCOUVER DCU",
+    "city": "VANCOUVER",
     "state": "WA"
   },
   "98685": {
-    "city": "VANCOUVER WA SDC",
+    "city": "VANCOUVER",
     "state": "WA"
   },
   "98686": {
-    "city": "VANCOUVER WA SDC",
+    "city": "VANCOUVER",
     "state": "WA"
   },
   "98687": {
-    "city": "CASCADE PARK",
+    "city": "VANCOUVER",
     "state": "WA"
   },
   "98801": {
-    "city": "WENATCHEECARRIER ANNEX",
+    "city": "WENATCHEE",
     "state": "WA"
   },
   "98802": {
-    "city": "WENATCHEECARRIER ANNEX",
+    "city": "WENATCHEE",
     "state": "WA"
   },
   "98807": {
@@ -138156,15 +138156,15 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "WA"
   },
   "98904": {
-    "city": "CPU GLEED",
+    "city": "YAKIMA",
     "state": "WA"
   },
   "98907": {
-    "city": "CENTRAL",
+    "city": "YAKIMA",
     "state": "WA"
   },
   "98908": {
-    "city": "CPU WIDE HOLLOW",
+    "city": "YAKIMA",
     "state": "WA"
   },
   "98909": {
@@ -138324,7 +138324,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "WA"
   },
   "99016": {
-    "city": "GREENACRES",
+    "city": "SPOKANE VALLEY",
     "state": "WA"
   },
   "99017": {
@@ -138396,7 +138396,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "WA"
   },
   "99037": {
-    "city": "VERADALE",
+    "city": "SPOKANE VALLEY",
     "state": "WA"
   },
   "99039": {
@@ -138644,7 +138644,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "WA"
   },
   "99174": {
-    "city": "STEPTOE DPOBU",
+    "city": "COLFAX",
     "state": "WA"
   },
   "99176": {
@@ -138668,23 +138668,23 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "WA"
   },
   "99201": {
-    "city": "CPU PAULSEN CENTER",
+    "city": "SPOKANE",
     "state": "WA"
   },
   "99202": {
-    "city": "METRO CARRIER ANNEX",
+    "city": "SPOKANE VALLEY",
     "state": "WA"
   },
   "99203": {
-    "city": "MANITO",
+    "city": "SPOKANE",
     "state": "WA"
   },
   "99204": {
-    "city": "METRO CARRIER ANNEX",
+    "city": "SPOKANE VALLEY",
     "state": "WA"
   },
   "99205": {
-    "city": "SHADLE GARLAND",
+    "city": "SPOKANE",
     "state": "WA"
   },
   "99206": {
@@ -138692,31 +138692,31 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "WA"
   },
   "99207": {
-    "city": "HAYS PARK",
+    "city": "SPOKANE",
     "state": "WA"
   },
   "99208": {
-    "city": "NORTHPOINTE",
+    "city": "SPOKANE",
     "state": "WA"
   },
   "99209": {
-    "city": "SHADLE GARLAND",
+    "city": "SPOKANE",
     "state": "WA"
   },
   "99210": {
-    "city": "RIVERSIDE",
+    "city": "SPOKANE",
     "state": "WA"
   },
   "99211": {
-    "city": "PARKWATER",
+    "city": "SPOKANE VALLEY",
     "state": "WA"
   },
   "99212": {
-    "city": "METRO CARRIER ANNEX",
+    "city": "SPOKANE VALLEY",
     "state": "WA"
   },
   "99213": {
-    "city": "DISHMAN",
+    "city": "SPOKANE VALLEY",
     "state": "WA"
   },
   "99214": {
@@ -138724,7 +138724,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "WA"
   },
   "99215": {
-    "city": "TRENTWOOD",
+    "city": "SPOKANE VALLEY",
     "state": "WA"
   },
   "99216": {
@@ -138732,39 +138732,39 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "WA"
   },
   "99217": {
-    "city": "HILLYARD",
+    "city": "SPOKANE",
     "state": "WA"
   },
   "99218": {
-    "city": "NORTHPOINTE",
+    "city": "SPOKANE",
     "state": "WA"
   },
   "99219": {
-    "city": "SUNSET HILL",
+    "city": "SPOKANE",
     "state": "WA"
   },
   "99220": {
-    "city": "LIBERTY PARK",
+    "city": "SPOKANE",
     "state": "WA"
   },
   "99223": {
-    "city": "REGAL",
+    "city": "SPOKANE",
     "state": "WA"
   },
   "99224": {
-    "city": "SUNSET HILL",
+    "city": "SPOKANE",
     "state": "WA"
   },
   "99228": {
-    "city": "CPU ROSAUERS #129",
+    "city": "SPOKANE",
     "state": "WA"
   },
   "99301": {
-    "city": "DOWNTOWN PASCO",
+    "city": "PASCO",
     "state": "WA"
   },
   "99302": {
-    "city": "PASCO WA S&DC",
+    "city": "PASCO",
     "state": "WA"
   },
   "99320": {
@@ -138816,11 +138816,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "WA"
   },
   "99337": {
-    "city": "PASCO WA S&DC",
+    "city": "PASCO",
     "state": "WA"
   },
   "99338": {
-    "city": "PASCO WA S&DC",
+    "city": "PASCO",
     "state": "WA"
   },
   "99341": {
@@ -138860,15 +138860,15 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "WA"
   },
   "99352": {
-    "city": "PASCO WA S&DC",
+    "city": "PASCO",
     "state": "WA"
   },
   "99353": {
-    "city": "PASCO WA S&DC",
+    "city": "PASCO",
     "state": "WA"
   },
   "99354": {
-    "city": "PASCO WA S&DC",
+    "city": "PASCO",
     "state": "WA"
   },
   "99356": {
@@ -138916,99 +138916,99 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "WA"
   },
   "99501": {
-    "city": "EASTCHESTER",
+    "city": "ANCHORAGE",
     "state": "AK"
   },
   "99502": {
-    "city": "SAND LAKE",
+    "city": "ANCHORAGE",
     "state": "AK"
   },
   "99503": {
-    "city": "MIDTOWN",
+    "city": "ANCHORAGE",
     "state": "AK"
   },
   "99504": {
-    "city": "MULDOON",
+    "city": "ANCHORAGE",
     "state": "AK"
   },
   "99505": {
-    "city": "FORT RICHARDSON",
+    "city": "JBER",
     "state": "AK"
   },
   "99506": {
-    "city": "ELMENDORF AFB",
+    "city": "JBER",
     "state": "AK"
   },
   "99507": {
-    "city": "LAKE OTIS",
+    "city": "ANCHORAGE",
     "state": "AK"
   },
   "99508": {
-    "city": "RUSSIAN JACK",
+    "city": "ANCHORAGE",
     "state": "AK"
   },
   "99509": {
-    "city": "SPENARD",
+    "city": "ANCHORAGE",
     "state": "AK"
   },
   "99510": {
-    "city": "EASTCHESTER",
+    "city": "ANCHORAGE",
     "state": "AK"
   },
   "99511": {
-    "city": "HUFFMAN",
+    "city": "ANCHORAGE",
     "state": "AK"
   },
   "99514": {
-    "city": "RUSSIAN JACK",
+    "city": "ANCHORAGE",
     "state": "AK"
   },
   "99515": {
-    "city": "HUFFMAN",
+    "city": "ANCHORAGE",
     "state": "AK"
   },
   "99516": {
-    "city": "HUFFMAN",
+    "city": "ANCHORAGE",
     "state": "AK"
   },
   "99517": {
-    "city": "SPENARD",
+    "city": "ANCHORAGE",
     "state": "AK"
   },
   "99518": {
-    "city": "SAND LAKE",
+    "city": "ANCHORAGE",
     "state": "AK"
   },
   "99519": {
-    "city": "ANCHORAGE MAIN OFFICE",
+    "city": "ANCHORAGE",
     "state": "AK"
   },
   "99520": {
-    "city": "EASTCHESTER",
+    "city": "ANCHORAGE",
     "state": "AK"
   },
   "99521": {
-    "city": "MULDOON",
+    "city": "ANCHORAGE",
     "state": "AK"
   },
   "99522": {
-    "city": "SAND LAKE",
+    "city": "ANCHORAGE",
     "state": "AK"
   },
   "99523": {
-    "city": "LAKE OTIS",
+    "city": "ANCHORAGE",
     "state": "AK"
   },
   "99524": {
-    "city": "MIDTOWN",
+    "city": "ANCHORAGE",
     "state": "AK"
   },
   "99540": {
-    "city": "HUFFMAN",
+    "city": "ANCHORAGE",
     "state": "AK"
   },
   "99546": {
-    "city": "CPU ADAK",
+    "city": "ADAK",
     "state": "AK"
   },
   "99547": {
@@ -139176,7 +139176,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "AK"
   },
   "99603": {
-    "city": "HALIBUT COVE",
+    "city": "HOMER",
     "state": "AK"
   },
   "99604": {
@@ -139220,7 +139220,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "AK"
   },
   "99614": {
-    "city": "ANCHORAGE MAIN OFFICE",
+    "city": "ANCHORAGE",
     "state": "AK"
   },
   "99615": {
@@ -139236,7 +139236,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "AK"
   },
   "99622": {
-    "city": "ANCHORAGE MAIN OFFICE",
+    "city": "ANCHORAGE",
     "state": "AK"
   },
   "99623": {
@@ -139260,7 +139260,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "AK"
   },
   "99629": {
-    "city": "CPU MEADOW LAKES",
+    "city": "WASILLA",
     "state": "AK"
   },
   "99630": {
@@ -139336,7 +139336,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "AK"
   },
   "99652": {
-    "city": "CPU BIG LAKE",
+    "city": "BIG LAKE",
     "state": "AK"
   },
   "99653": {
@@ -139344,7 +139344,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "AK"
   },
   "99654": {
-    "city": "WASILLA ANNEX",
+    "city": "WASILLA",
     "state": "AK"
   },
   "99656": {
@@ -139412,7 +139412,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "AK"
   },
   "99674": {
-    "city": "CHICKALOON",
+    "city": "SUTTON",
     "state": "AK"
   },
   "99675": {
@@ -139460,7 +139460,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "AK"
   },
   "99687": {
-    "city": "CPU BRENTWOOD",
+    "city": "WASILLA",
     "state": "AK"
   },
   "99688": {
@@ -139484,7 +139484,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "AK"
   },
   "99693": {
-    "city": "CPU WHITTIER",
+    "city": "WHITTIER",
     "state": "AK"
   },
   "99694": {
@@ -139492,7 +139492,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "AK"
   },
   "99701": {
-    "city": "COLLEGE",
+    "city": "FAIRBANKS",
     "state": "AK"
   },
   "99702": {
@@ -139500,7 +139500,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "AK"
   },
   "99703": {
-    "city": "FAIRBANKS MAIN OFFICE",
+    "city": "FAIRBANKS",
     "state": "AK"
   },
   "99704": {
@@ -139512,31 +139512,31 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "AK"
   },
   "99706": {
-    "city": "FAIRBANKS MAIN OFFICE",
+    "city": "FAIRBANKS",
     "state": "AK"
   },
   "99707": {
-    "city": "FAIRBANKS DOWNTOWN STA",
+    "city": "FAIRBANKS",
     "state": "AK"
   },
   "99708": {
-    "city": "COLLEGE",
+    "city": "FAIRBANKS",
     "state": "AK"
   },
   "99709": {
-    "city": "CPU COLDFOOT",
+    "city": "FAIRBANKS",
     "state": "AK"
   },
   "99710": {
-    "city": "CPU STEESE",
+    "city": "FAIRBANKS",
     "state": "AK"
   },
   "99711": {
-    "city": "CPU BADGER",
+    "city": "NORTH POLE",
     "state": "AK"
   },
   "99712": {
-    "city": "FAIRBANKS MAIN OFFICE",
+    "city": "FAIRBANKS",
     "state": "AK"
   },
   "99714": {
@@ -139544,7 +139544,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "AK"
   },
   "99716": {
-    "city": "CPU TWO RIVERS",
+    "city": "FAIRBANKS",
     "state": "AK"
   },
   "99720": {
@@ -139588,7 +139588,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "AK"
   },
   "99731": {
-    "city": "CPU FORT GREELY",
+    "city": "FORT GREELY",
     "state": "AK"
   },
   "99732": {
@@ -139600,7 +139600,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "AK"
   },
   "99734": {
-    "city": "CPU PRUDHOE BAY",
+    "city": "PRUDHOE BAY",
     "state": "AK"
   },
   "99736": {
@@ -139796,15 +139796,15 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "AK"
   },
   "99801": {
-    "city": "FEDERAL STATION",
+    "city": "JUNEAU",
     "state": "AK"
   },
   "99802": {
-    "city": "FEDERAL STATION",
+    "city": "JUNEAU",
     "state": "AK"
   },
   "99803": {
-    "city": "MENDENHALL",
+    "city": "JUNEAU",
     "state": "AK"
   },
   "99820": {
@@ -139812,7 +139812,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "AK"
   },
   "99821": {
-    "city": "AUKE BAY",
+    "city": "JUNEAU",
     "state": "AK"
   },
   "99824": {
@@ -139868,7 +139868,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "AK"
   },
   "99918": {
-    "city": "CPU COFFMAN COVE",
+    "city": "COFFMAN COVE",
     "state": "AK"
   },
   "99919": {
@@ -139908,23 +139908,23 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "AK"
   },
   "00801": {
-    "city": "CHARLOTTE AMALIE",
+    "city": "ST THOMAS",
     "state": "VI"
   },
   "00802": {
-    "city": "CHARLOTTE AMALIE",
+    "city": "ST THOMAS",
     "state": "VI"
   },
   "00803": {
-    "city": "VETERANS ANNEX",
+    "city": "ST THOMAS",
     "state": "VI"
   },
   "00804": {
-    "city": "EMANCIPATION GARDENS",
+    "city": "ST THOMAS",
     "state": "VI"
   },
   "00805": {
-    "city": "EAST END",
+    "city": "ST THOMAS",
     "state": "VI"
   },
   "00820": {
@@ -139936,23 +139936,23 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "VI"
   },
   "00822": {
-    "city": "DOWNTOWN",
+    "city": "CHRISTIANSTED",
     "state": "VI"
   },
   "00823": {
-    "city": "SUNNY ISLE",
+    "city": "CHRISTIANSTED",
     "state": "VI"
   },
   "00824": {
-    "city": "GALLOWS BAY",
+    "city": "CHRISTIANSTED",
     "state": "VI"
   },
   "00830": {
-    "city": "CRUZ BAY",
+    "city": "ST JOHN",
     "state": "VI"
   },
   "00831": {
-    "city": "CRUZ BAY",
+    "city": "ST JOHN",
     "state": "VI"
   },
   "00840": {
@@ -140016,7 +140016,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MA"
   },
   "01014": {
-    "city": "CHICOPEE CENTER",
+    "city": "CHICOPEE",
     "state": "MA"
   },
   "01020": {
@@ -140232,7 +140232,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MA"
   },
   "01097": {
-    "city": "WORONOCO NPU",
+    "city": "RUSSELL",
     "state": "MA"
   },
   "01098": {
@@ -140240,23 +140240,23 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MA"
   },
   "01101": {
-    "city": "SPRINGFIELD MA S&DC",
+    "city": "SPRINGFIELD",
     "state": "MA"
   },
   "01102": {
-    "city": "SPRINGFIELD MA S&DC",
+    "city": "SPRINGFIELD",
     "state": "MA"
   },
   "01103": {
-    "city": "COLONIAL STATION",
+    "city": "SPRINGFIELD",
     "state": "MA"
   },
   "01104": {
-    "city": "SPRINGFIELD MA S&DC",
+    "city": "SPRINGFIELD",
     "state": "MA"
   },
   "01105": {
-    "city": "SPRINGFIELD MA S&DC",
+    "city": "SPRINGFIELD",
     "state": "MA"
   },
   "01106": {
@@ -140264,19 +140264,19 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MA"
   },
   "01107": {
-    "city": "BRIGHTWOOD",
+    "city": "SPRINGFIELD",
     "state": "MA"
   },
   "01108": {
-    "city": "FOREST PARK",
+    "city": "SPRINGFIELD",
     "state": "MA"
   },
   "01109": {
-    "city": "SPRINGFIELD MA S&DC",
+    "city": "SPRINGFIELD",
     "state": "MA"
   },
   "01115": {
-    "city": "TOWER SQUARE",
+    "city": "SPRINGFIELD",
     "state": "MA"
   },
   "01116": {
@@ -140288,7 +140288,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MA"
   },
   "01119": {
-    "city": "SPRINGFIELD MA S&DC",
+    "city": "SPRINGFIELD",
     "state": "MA"
   },
   "01128": {
@@ -140296,15 +140296,15 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MA"
   },
   "01129": {
-    "city": "SPRINGFIELD MA S&DC",
+    "city": "SPRINGFIELD",
     "state": "MA"
   },
   "01138": {
-    "city": "FOREST PARK",
+    "city": "SPRINGFIELD",
     "state": "MA"
   },
   "01139": {
-    "city": "MASON SQUARE",
+    "city": "SPRINGFIELD",
     "state": "MA"
   },
   "01151": {
@@ -140444,7 +140444,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MA"
   },
   "01301": {
-    "city": "GREENFIELD ANNEX",
+    "city": "GREENFIELD",
     "state": "MA"
   },
   "01302": {
@@ -140844,11 +140844,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MA"
   },
   "01602": {
-    "city": "WEST SIDE",
+    "city": "WORCESTER",
     "state": "MA"
   },
   "01603": {
-    "city": "WEBSTER SQUARE",
+    "city": "WORCESTER",
     "state": "MA"
   },
   "01604": {
@@ -140856,15 +140856,15 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MA"
   },
   "01605": {
-    "city": "LINCOLN MALL",
+    "city": "WORCESTER",
     "state": "MA"
   },
   "01606": {
-    "city": "GREENDALE",
+    "city": "WORCESTER",
     "state": "MA"
   },
   "01607": {
-    "city": "QUINSIGAMOND VILLAGE",
+    "city": "WORCESTER",
     "state": "MA"
   },
   "01608": {
@@ -140884,7 +140884,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MA"
   },
   "01612": {
-    "city": "CPU PAXTON",
+    "city": "PAXTON",
     "state": "MA"
   },
   "01613": {
@@ -140904,15 +140904,15 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MA"
   },
   "01703": {
-    "city": "FRAMINGHAM CENTER",
+    "city": "FRAMINGHAM",
     "state": "MA"
   },
   "01704": {
-    "city": "FRAMINGHAM SOUTH",
+    "city": "FRAMINGHAM",
     "state": "MA"
   },
   "01705": {
-    "city": "SAXONVILLE",
+    "city": "FRAMINGHAM",
     "state": "MA"
   },
   "01718": {
@@ -141012,7 +141012,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MA"
   },
   "01778": {
-    "city": "COCHITUATE",
+    "city": "WAYLAND",
     "state": "MA"
   },
   "01784": {
@@ -141020,7 +141020,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MA"
   },
   "01801": {
-    "city": "WOBURN CENTER",
+    "city": "WOBURN",
     "state": "MA"
   },
   "01803": {
@@ -141040,7 +141040,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MA"
   },
   "01824": {
-    "city": "BILLERICA DDC",
+    "city": "BILLERICA",
     "state": "MA"
   },
   "01826": {
@@ -141052,7 +141052,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MA"
   },
   "01830": {
-    "city": "BRADFORD",
+    "city": "HAVERHILL",
     "state": "MA"
   },
   "01831": {
@@ -141060,7 +141060,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MA"
   },
   "01832": {
-    "city": "BRADFORD",
+    "city": "HAVERHILL",
     "state": "MA"
   },
   "01833": {
@@ -141072,7 +141072,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MA"
   },
   "01835": {
-    "city": "BRADFORD",
+    "city": "HAVERHILL",
     "state": "MA"
   },
   "01840": {
@@ -141092,7 +141092,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MA"
   },
   "01844": {
-    "city": "CPU HOWE STREET SUPERETTE",
+    "city": "METHUEN",
     "state": "MA"
   },
   "01845": {
@@ -141104,11 +141104,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MA"
   },
   "01851": {
-    "city": "HIGHLANDS",
+    "city": "LOWELL",
     "state": "MA"
   },
   "01852": {
-    "city": "BILLERICA DDC",
+    "city": "BILLERICA",
     "state": "MA"
   },
   "01853": {
@@ -141124,7 +141124,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MA"
   },
   "01862": {
-    "city": "BILLERICA DDC",
+    "city": "BILLERICA",
     "state": "MA"
   },
   "01863": {
@@ -141156,7 +141156,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MA"
   },
   "01880": {
-    "city": "GREENWOOD",
+    "city": "WAKEFIELD",
     "state": "MA"
   },
   "01885": {
@@ -141164,7 +141164,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MA"
   },
   "01886": {
-    "city": "FORGE VILLAGE",
+    "city": "WESTFORD",
     "state": "MA"
   },
   "01887": {
@@ -141172,7 +141172,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MA"
   },
   "01888": {
-    "city": "WOBURN MA S&DC",
+    "city": "WOBURN",
     "state": "MA"
   },
   "01890": {
@@ -141192,7 +141192,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MA"
   },
   "01904": {
-    "city": "EAST LYNN",
+    "city": "LYNN",
     "state": "MA"
   },
   "01905": {
@@ -141276,11 +141276,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MA"
   },
   "01951": {
-    "city": "NEWBURYPORT CARRIER ANNEX",
+    "city": "NEWBURYPORT",
     "state": "MA"
   },
   "01952": {
-    "city": "NEWBURYPORT CARRIER ANNEX",
+    "city": "NEWBURYPORT",
     "state": "MA"
   },
   "01960": {
@@ -141296,7 +141296,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MA"
   },
   "01966": {
-    "city": "PIGEON COVE",
+    "city": "ROCKPORT",
     "state": "MA"
   },
   "01969": {
@@ -141308,7 +141308,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MA"
   },
   "01971": {
-    "city": "EAST INDIA SQUARE MALL",
+    "city": "SALEM",
     "state": "MA"
   },
   "01982": {
@@ -141328,7 +141328,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MA"
   },
   "02018": {
-    "city": "ACCORD",
+    "city": "HINGHAM",
     "state": "MA"
   },
   "02019": {
@@ -141372,7 +141372,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MA"
   },
   "02040": {
-    "city": "GREENBUSH",
+    "city": "SCITUATE",
     "state": "MA"
   },
   "02041": {
@@ -141384,7 +141384,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MA"
   },
   "02045": {
-    "city": "ALLERTON",
+    "city": "HULL",
     "state": "MA"
   },
   "02047": {
@@ -141408,7 +141408,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MA"
   },
   "02053": {
-    "city": "MEDWAY CARRIERS",
+    "city": "BELLINGHAM",
     "state": "MA"
   },
   "02054": {
@@ -141416,7 +141416,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MA"
   },
   "02055": {
-    "city": "NORTH SCITUATE",
+    "city": "SCITUATE",
     "state": "MA"
   },
   "02056": {
@@ -141428,7 +141428,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MA"
   },
   "02060": {
-    "city": "NORTH SCITUATE",
+    "city": "SCITUATE",
     "state": "MA"
   },
   "02061": {
@@ -141468,7 +141468,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MA"
   },
   "02090": {
-    "city": "ISLINGTON",
+    "city": "WESTWOOD",
     "state": "MA"
   },
   "02093": {
@@ -141476,47 +141476,47 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MA"
   },
   "02108": {
-    "city": "JOHN FITZGERALD KENNEDY",
+    "city": "BOSTON",
     "state": "MA"
   },
   "02109": {
-    "city": "FORT POINT",
+    "city": "BOSTON",
     "state": "MA"
   },
   "02110": {
-    "city": "FORT POINT",
+    "city": "BOSTON",
     "state": "MA"
   },
   "02111": {
-    "city": "FORT POINT",
+    "city": "BOSTON",
     "state": "MA"
   },
   "02112": {
-    "city": "LAFAYETTE",
+    "city": "BOSTON",
     "state": "MA"
   },
   "02113": {
-    "city": "HANOVER STREET",
+    "city": "BOSTON",
     "state": "MA"
   },
   "02114": {
-    "city": "CHARLES STREET",
+    "city": "BOSTON",
     "state": "MA"
   },
   "02115": {
-    "city": "FENWAY CARRIER ANNEX",
+    "city": "BOSTON",
     "state": "MA"
   },
   "02116": {
-    "city": "BACK BAY",
+    "city": "BOSTON",
     "state": "MA"
   },
   "02117": {
-    "city": "BACK BAY",
+    "city": "BOSTON",
     "state": "MA"
   },
   "02118": {
-    "city": "CATHEDRAL",
+    "city": "BOSTON",
     "state": "MA"
   },
   "02119": {
@@ -141524,23 +141524,23 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MA"
   },
   "02120": {
-    "city": "MISSION HILL",
+    "city": "ROXBURY CROSSING",
     "state": "MA"
   },
   "02121": {
-    "city": "GROVE HALL",
+    "city": "DORCHESTER",
     "state": "MA"
   },
   "02122": {
-    "city": "FIELDS CORNER",
+    "city": "DORCHESTER",
     "state": "MA"
   },
   "02123": {
-    "city": "ASTOR",
+    "city": "BOSTON",
     "state": "MA"
   },
   "02124": {
-    "city": "CODMAN SQUARE",
+    "city": "DORCHESTER CENTER",
     "state": "MA"
   },
   "02125": {
@@ -141556,7 +141556,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MA"
   },
   "02128": {
-    "city": "CHELSEA CARRIER ANNEX",
+    "city": "CHELSEA",
     "state": "MA"
   },
   "02129": {
@@ -141576,11 +141576,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MA"
   },
   "02133": {
-    "city": "STATE HOUSE",
+    "city": "BOSTON",
     "state": "MA"
   },
   "02134": {
-    "city": "ALLSTON CARRIER SECTION",
+    "city": "BOSTON",
     "state": "MA"
   },
   "02135": {
@@ -141592,11 +141592,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MA"
   },
   "02137": {
-    "city": "READVILLE",
+    "city": "HYDE PARK",
     "state": "MA"
   },
   "02138": {
-    "city": "PORTER SQUARE CARRIER ANNEX",
+    "city": "SOMERVILLE",
     "state": "MA"
   },
   "02139": {
@@ -141604,7 +141604,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MA"
   },
   "02140": {
-    "city": "PORTER SQUARE",
+    "city": "CAMBRIDGE",
     "state": "MA"
   },
   "02141": {
@@ -141616,15 +141616,15 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MA"
   },
   "02143": {
-    "city": "CHELSEA CARRIER ANNEX",
+    "city": "CHELSEA",
     "state": "MA"
   },
   "02144": {
-    "city": "CHELSEA CARRIER ANNEX",
+    "city": "CHELSEA",
     "state": "MA"
   },
   "02145": {
-    "city": "CHELSEA CARRIER ANNEX",
+    "city": "CHELSEA",
     "state": "MA"
   },
   "02148": {
@@ -141632,7 +141632,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MA"
   },
   "02149": {
-    "city": "CHELSEA CARRIER ANNEX",
+    "city": "CHELSEA",
     "state": "MA"
   },
   "02150": {
@@ -141644,11 +141644,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MA"
   },
   "02152": {
-    "city": "CHELSEA CARRIER ANNEX",
+    "city": "CHELSEA",
     "state": "MA"
   },
   "02153": {
-    "city": "TUFTS UNIVERSITY",
+    "city": "MEDFORD",
     "state": "MA"
   },
   "02155": {
@@ -141656,7 +141656,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MA"
   },
   "02156": {
-    "city": "WEST MEDFORD",
+    "city": "MEDFORD",
     "state": "MA"
   },
   "02163": {
@@ -141668,11 +141668,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MA"
   },
   "02170": {
-    "city": "WOLLASTON",
+    "city": "QUINCY",
     "state": "MA"
   },
   "02171": {
-    "city": "NORTH QUINCY",
+    "city": "QUINCY",
     "state": "MA"
   },
   "02176": {
@@ -141684,7 +141684,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MA"
   },
   "02184": {
-    "city": "BOSTON MA S&DC",
+    "city": "BRAINTREE",
     "state": "MA"
   },
   "02185": {
@@ -141696,55 +141696,55 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MA"
   },
   "02187": {
-    "city": "MILTON VILLAGE",
+    "city": "MILTON",
     "state": "MA"
   },
   "02188": {
-    "city": "BOSTON MA S&DC",
+    "city": "BRAINTREE",
     "state": "MA"
   },
   "02189": {
-    "city": "BOSTON MA S&DC",
+    "city": "BRAINTREE",
     "state": "MA"
   },
   "02190": {
-    "city": "BOSTON MA S&DC",
+    "city": "BRAINTREE",
     "state": "MA"
   },
   "02191": {
-    "city": "BOSTON MA S&DC",
+    "city": "BRAINTREE",
     "state": "MA"
   },
   "02196": {
-    "city": "MILK STREET",
+    "city": "BOSTON",
     "state": "MA"
   },
   "02199": {
-    "city": "PRUDENTIAL CENTER",
+    "city": "BOSTON",
     "state": "MA"
   },
   "02203": {
-    "city": "JOHN FITZGERALD KENNEDY",
+    "city": "BOSTON",
     "state": "MA"
   },
   "02205": {
-    "city": "FORT POINT",
+    "city": "BOSTON",
     "state": "MA"
   },
   "02210": {
-    "city": "FORT POINT",
+    "city": "BOSTON",
     "state": "MA"
   },
   "02215": {
-    "city": "KENMORE",
+    "city": "BOSTON",
     "state": "MA"
   },
   "02222": {
-    "city": "JOHN FITZGERALD KENNEDY",
+    "city": "BOSTON",
     "state": "MA"
   },
   "02238": {
-    "city": "HARVARD SQUARE",
+    "city": "CAMBRIDGE",
     "state": "MA"
   },
   "02269": {
@@ -141752,35 +141752,35 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MA"
   },
   "02283": {
-    "city": "FORT POINT",
+    "city": "BOSTON",
     "state": "MA"
   },
   "02284": {
-    "city": "FORT POINT",
+    "city": "BOSTON",
     "state": "MA"
   },
   "02298": {
-    "city": "FORT POINT",
+    "city": "BOSTON",
     "state": "MA"
   },
   "02301": {
-    "city": "BROCKTON MA SDC",
+    "city": "BROCKTON",
     "state": "MA"
   },
   "02302": {
-    "city": "BROCKTON MA SDC",
+    "city": "BROCKTON",
     "state": "MA"
   },
   "02303": {
-    "city": "BROCKTON MA SDC",
+    "city": "BROCKTON",
     "state": "MA"
   },
   "02304": {
-    "city": "CAMPELLO",
+    "city": "BROCKTON",
     "state": "MA"
   },
   "02305": {
-    "city": "MONTELLO",
+    "city": "BROCKTON",
     "state": "MA"
   },
   "02322": {
@@ -141840,7 +141840,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MA"
   },
   "02346": {
-    "city": "LAKEVILLE CARRIERS",
+    "city": "LAKEVILLE",
     "state": "MA"
   },
   "02347": {
@@ -141872,15 +141872,15 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MA"
   },
   "02360": {
-    "city": "PLYMOUTH ANNEX",
+    "city": "PLYMOUTH",
     "state": "MA"
   },
   "02361": {
-    "city": "CENTER",
+    "city": "PLYMOUTH",
     "state": "MA"
   },
   "02362": {
-    "city": "NORTH PLYMOUTH",
+    "city": "PLYMOUTH",
     "state": "MA"
   },
   "02364": {
@@ -141936,19 +141936,19 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MA"
   },
   "02447": {
-    "city": "BROOKLINE VILLAGE",
+    "city": "BROOKLINE",
     "state": "MA"
   },
   "02451": {
-    "city": "WALTHAM CARRIER ANNEX",
+    "city": "WALTHAM",
     "state": "MA"
   },
   "02452": {
-    "city": "WALTHAM CARRIER ANNEX",
+    "city": "WALTHAM",
     "state": "MA"
   },
   "02453": {
-    "city": "WALTHAM CARRIER ANNEX",
+    "city": "WALTHAM",
     "state": "MA"
   },
   "02454": {
@@ -141956,15 +141956,15 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MA"
   },
   "02455": {
-    "city": "NORTH WALTHAM",
+    "city": "WALTHAM",
     "state": "MA"
   },
   "02456": {
-    "city": "NEW TOWN",
+    "city": "WATERTOWN",
     "state": "MA"
   },
   "02457": {
-    "city": "BABSON PARK",
+    "city": "WELLESLEY HILLS",
     "state": "MA"
   },
   "02458": {
@@ -141988,7 +141988,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MA"
   },
   "02464": {
-    "city": "NEWTON CENTER CARRIER ANNEX",
+    "city": "NEWTON CENTER",
     "state": "MA"
   },
   "02465": {
@@ -142008,11 +142008,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MA"
   },
   "02471": {
-    "city": "NEW TOWN",
+    "city": "WATERTOWN",
     "state": "MA"
   },
   "02472": {
-    "city": "WATERTOWN ANNEX",
+    "city": "WALTHAM",
     "state": "MA"
   },
   "02474": {
@@ -142032,7 +142032,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MA"
   },
   "02479": {
-    "city": "WAVERLEY",
+    "city": "BELMONT",
     "state": "MA"
   },
   "02481": {
@@ -142056,11 +142056,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MA"
   },
   "02495": {
-    "city": "NONANTUM",
+    "city": "NEWTON",
     "state": "MA"
   },
   "02532": {
-    "city": "BOURNE",
+    "city": "BUZZARDS BAY",
     "state": "MA"
   },
   "02534": {
@@ -142168,7 +142168,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MA"
   },
   "02584": {
-    "city": "NANTUCKET STATION 1",
+    "city": "NANTUCKET",
     "state": "MA"
   },
   "02601": {
@@ -142364,7 +142364,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MA"
   },
   "02720": {
-    "city": "HIGHLAND",
+    "city": "FALL RIVER",
     "state": "MA"
   },
   "02721": {
@@ -142380,7 +142380,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MA"
   },
   "02724": {
-    "city": "SOUTH",
+    "city": "FALL RIVER",
     "state": "MA"
   },
   "02725": {
@@ -142420,11 +142420,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MA"
   },
   "02745": {
-    "city": "MOUNT PLEASANT",
+    "city": "NEW BEDFORD",
     "state": "MA"
   },
   "02746": {
-    "city": "MOUNT PLEASANT",
+    "city": "NEW BEDFORD",
     "state": "MA"
   },
   "02747": {
@@ -142492,7 +142492,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "MA"
   },
   "02790": {
-    "city": "CENTRAL VILLAGE",
+    "city": "WESTPORT",
     "state": "MA"
   },
   "02791": {
@@ -142616,11 +142616,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "RI"
   },
   "02840": {
-    "city": "BROADWAY",
+    "city": "NEWPORT",
     "state": "RI"
   },
   "02841": {
-    "city": "NETC STATION",
+    "city": "NEWPORT",
     "state": "RI"
   },
   "02842": {
@@ -142644,7 +142644,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "RI"
   },
   "02861": {
-    "city": "DARLINGTON",
+    "city": "PAWTUCKET",
     "state": "RI"
   },
   "02862": {
@@ -142724,19 +142724,19 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "RI"
   },
   "02887": {
-    "city": "APPONAUG",
+    "city": "WARWICK",
     "state": "RI"
   },
   "02888": {
-    "city": "PILGRIM",
+    "city": "WARWICK",
     "state": "RI"
   },
   "02889": {
-    "city": "CONIMICUT",
+    "city": "WARWICK",
     "state": "RI"
   },
   "02891": {
-    "city": "HIGH ST",
+    "city": "WESTERLY",
     "state": "RI"
   },
   "02892": {
@@ -142752,7 +142752,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "RI"
   },
   "02895": {
-    "city": "WALNUT HILL",
+    "city": "WOONSOCKET",
     "state": "RI"
   },
   "02896": {
@@ -142764,35 +142764,35 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "RI"
   },
   "02901": {
-    "city": "ANNEX FINANCE",
+    "city": "PROVIDENCE",
     "state": "RI"
   },
   "02903": {
-    "city": "CORLISS PARK STATION",
+    "city": "PROVIDENCE",
     "state": "RI"
   },
   "02904": {
-    "city": "CORLISS PARK STATION",
+    "city": "PROVIDENCE",
     "state": "RI"
   },
   "02905": {
-    "city": "ELMWOOD",
+    "city": "PROVIDENCE",
     "state": "RI"
   },
   "02906": {
-    "city": "CORLISS PARK STATION",
+    "city": "PROVIDENCE",
     "state": "RI"
   },
   "02907": {
-    "city": "ELMWOOD",
+    "city": "PROVIDENCE",
     "state": "RI"
   },
   "02908": {
-    "city": "CORLISS PARK STATION",
+    "city": "PROVIDENCE",
     "state": "RI"
   },
   "02909": {
-    "city": "OLNEYVILLE",
+    "city": "PROVIDENCE",
     "state": "RI"
   },
   "02910": {
@@ -142800,11 +142800,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "RI"
   },
   "02911": {
-    "city": "CENTREDALE",
+    "city": "NORTH PROVIDENCE",
     "state": "RI"
   },
   "02914": {
-    "city": "EAST PROVIDENCE FINANCE UNIT",
+    "city": "EAST PROVIDENCE",
     "state": "RI"
   },
   "02915": {
@@ -142824,7 +142824,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "RI"
   },
   "02920": {
-    "city": "GARDEN CITY",
+    "city": "CRANSTON",
     "state": "RI"
   },
   "02921": {
@@ -142924,7 +142924,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NH"
   },
   "03057": {
-    "city": "MILFORD ANNEX",
+    "city": "MILFORD",
     "state": "NH"
   },
   "03060": {
@@ -142988,23 +142988,23 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NH"
   },
   "03101": {
-    "city": "MANCHESTER SOUTH",
+    "city": "MANCHESTER",
     "state": "NH"
   },
   "03102": {
-    "city": "MANCHESTER WEST",
+    "city": "GOFFSTOWN",
     "state": "NH"
   },
   "03103": {
-    "city": "MANCHESTER SOUTH",
+    "city": "MANCHESTER",
     "state": "NH"
   },
   "03104": {
-    "city": "MANCHESTER SOUTH",
+    "city": "MANCHESTER",
     "state": "NH"
   },
   "03105": {
-    "city": "DOWNTOWN",
+    "city": "MANCHESTER",
     "state": "NH"
   },
   "03106": {
@@ -143016,7 +143016,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NH"
   },
   "03109": {
-    "city": "MANCHESTER SOUTH",
+    "city": "MANCHESTER",
     "state": "NH"
   },
   "03110": {
@@ -143024,7 +143024,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NH"
   },
   "03215": {
-    "city": "CPU WATERVILLE VALLEY",
+    "city": "WATERVILLE VALLEY",
     "state": "NH"
   },
   "03216": {
@@ -143132,7 +143132,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NH"
   },
   "03247": {
-    "city": "GILFORD DPOBU",
+    "city": "GILFORD",
     "state": "NH"
   },
   "03249": {
@@ -143216,7 +143216,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NH"
   },
   "03275": {
-    "city": "SUNCOOK",
+    "city": "PEMBROKE",
     "state": "NH"
   },
   "03276": {
@@ -143280,15 +143280,15 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NH"
   },
   "03303": {
-    "city": "CONCORD ANNEX",
+    "city": "CONCORD",
     "state": "NH"
   },
   "03304": {
-    "city": "BOW DPOBU",
+    "city": "BOW",
     "state": "NH"
   },
   "03307": {
-    "city": "CONCORD ANNEX",
+    "city": "CONCORD",
     "state": "NH"
   },
   "03431": {
@@ -143444,7 +143444,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NH"
   },
   "03586": {
-    "city": "SUGAR HILL NPU",
+    "city": "SUGAR HILL",
     "state": "NH"
   },
   "03588": {
@@ -143616,15 +143616,15 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NH"
   },
   "03801": {
-    "city": "PORTSMOUTH NH SDC",
+    "city": "PORTSMOUTH",
     "state": "NH"
   },
   "03802": {
-    "city": "PORTSMOUTH DPOBU",
+    "city": "PORTSMOUTH",
     "state": "NH"
   },
   "03804": {
-    "city": "PORTSMOUTH NAVAL SHIPYARD",
+    "city": "PORTSMOUTH",
     "state": "NH"
   },
   "03809": {
@@ -143728,7 +143728,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NH"
   },
   "03839": {
-    "city": "GONIC",
+    "city": "ROCHESTER",
     "state": "NH"
   },
   "03840": {
@@ -143740,7 +143740,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NH"
   },
   "03842": {
-    "city": "PORTSMOUTH NH SDC",
+    "city": "PORTSMOUTH",
     "state": "NH"
   },
   "03843": {
@@ -143848,7 +143848,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NH"
   },
   "03870": {
-    "city": "PORTSMOUTH NH SDC",
+    "city": "PORTSMOUTH",
     "state": "NH"
   },
   "03871": {
@@ -143864,7 +143864,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NH"
   },
   "03874": {
-    "city": "PORTSMOUTH NH SDC",
+    "city": "PORTSMOUTH",
     "state": "NH"
   },
   "03875": {
@@ -143888,7 +143888,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NH"
   },
   "03885": {
-    "city": "PORTSMOUTH NH SDC",
+    "city": "PORTSMOUTH",
     "state": "NH"
   },
   "03886": {
@@ -143948,7 +143948,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "ME"
   },
   "03909": {
-    "city": "PORTSMOUTH NH SDC",
+    "city": "PORTSMOUTH",
     "state": "NH"
   },
   "03910": {
@@ -144000,7 +144000,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "ME"
   },
   "04014": {
-    "city": "CAPE PORPOISE DPOBU",
+    "city": "KENNEBUNKPORT",
     "state": "ME"
   },
   "04015": {
@@ -144136,7 +144136,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "ME"
   },
   "04064": {
-    "city": "INDUSTRIAL PARK ANNEX",
+    "city": "SACO",
     "state": "ME"
   },
   "04066": {
@@ -144160,7 +144160,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "ME"
   },
   "04072": {
-    "city": "INDUSTRIAL PARK ANNEX",
+    "city": "SACO",
     "state": "ME"
   },
   "04073": {
@@ -144168,7 +144168,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "ME"
   },
   "04074": {
-    "city": "SOUTHERN MAINE CARRIER UNIT",
+    "city": "SCARBOROUGH",
     "state": "ME"
   },
   "04076": {
@@ -144224,7 +144224,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "ME"
   },
   "04092": {
-    "city": "PORTLAND ME SDC",
+    "city": "PORTLAND",
     "state": "ME"
   },
   "04093": {
@@ -144252,31 +144252,31 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "ME"
   },
   "04101": {
-    "city": "DOWNTOWN STATION",
+    "city": "PORTLAND",
     "state": "ME"
   },
   "04102": {
-    "city": "PORTLAND ME SDC",
+    "city": "PORTLAND",
     "state": "ME"
   },
   "04103": {
-    "city": "PORTLAND ME SDC",
+    "city": "PORTLAND",
     "state": "ME"
   },
   "04104": {
-    "city": "PORTLAND ME SDC",
+    "city": "PORTLAND",
     "state": "ME"
   },
   "04105": {
-    "city": "CPU SHAWS",
+    "city": "FALMOUTH",
     "state": "ME"
   },
   "04106": {
-    "city": "SOUTHERN MAINE CARRIER UNIT",
+    "city": "SCARBOROUGH",
     "state": "ME"
   },
   "04107": {
-    "city": "PORTLAND ME SDC",
+    "city": "PORTLAND",
     "state": "ME"
   },
   "04108": {
@@ -144284,11 +144284,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "ME"
   },
   "04110": {
-    "city": "PORTLAND ME SDC",
+    "city": "PORTLAND",
     "state": "ME"
   },
   "04112": {
-    "city": "DOWNTOWN STATION",
+    "city": "PORTLAND",
     "state": "ME"
   },
   "04116": {
@@ -144304,7 +144304,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "ME"
   },
   "04212": {
-    "city": "GREAT FALLS",
+    "city": "AUBURN",
     "state": "ME"
   },
   "04216": {
@@ -144352,7 +144352,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "ME"
   },
   "04228": {
-    "city": "VPO LIVERMORE FALLS",
+    "city": "LIVERMORE FALLS",
     "state": "ME"
   },
   "04230": {
@@ -144388,7 +144388,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "ME"
   },
   "04241": {
-    "city": "SOUTH LEWISTON",
+    "city": "LEWISTON",
     "state": "ME"
   },
   "04243": {
@@ -144508,7 +144508,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "ME"
   },
   "04287": {
-    "city": "BOWDOIN DPOBU",
+    "city": "BOWDOIN",
     "state": "ME"
   },
   "04288": {
@@ -144544,7 +144544,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "ME"
   },
   "04338": {
-    "city": "WATER STREET",
+    "city": "AUGUSTA",
     "state": "ME"
   },
   "04341": {
@@ -144632,7 +144632,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "ME"
   },
   "04401": {
-    "city": "EASTERN MAINE CARRIER ANNEX",
+    "city": "HAMPDEN",
     "state": "ME"
   },
   "04402": {
@@ -144924,7 +144924,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "ME"
   },
   "04548": {
-    "city": "CPU MAC MAHAN",
+    "city": "MAC MAHAN",
     "state": "ME"
   },
   "04551": {
@@ -145108,7 +145108,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "ME"
   },
   "04645": {
-    "city": "CPU ISLE AU HAUT",
+    "city": "ISLE AU HAUT",
     "state": "ME"
   },
   "04646": {
@@ -145500,7 +145500,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "ME"
   },
   "04915": {
-    "city": "AMERICAN LEGION DPOBU",
+    "city": "BELFAST",
     "state": "ME"
   },
   "04917": {
@@ -145756,7 +145756,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "ME"
   },
   "05001": {
-    "city": "LYMAN DPOBU",
+    "city": "WHITE RIVER JUNCTION",
     "state": "VT"
   },
   "05030": {
@@ -146088,11 +146088,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "VT"
   },
   "05303": {
-    "city": "WEST BRATTLEBORO",
+    "city": "BRATTLEBORO",
     "state": "VT"
   },
   "05304": {
-    "city": "NORTH BRATTLEBORO",
+    "city": "BRATTLEBORO",
     "state": "VT"
   },
   "05340": {
@@ -146180,7 +146180,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "VT"
   },
   "05401": {
-    "city": "BURLINGTON ANNEX",
+    "city": "BURLINGTON",
     "state": "VT"
   },
   "05402": {
@@ -146188,7 +146188,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "VT"
   },
   "05403": {
-    "city": "BURLINGTON ANNEX",
+    "city": "BURLINGTON",
     "state": "VT"
   },
   "05404": {
@@ -146196,7 +146196,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "VT"
   },
   "05406": {
-    "city": "BURLINGTON CHAMPLAIN",
+    "city": "BURLINGTON",
     "state": "VT"
   },
   "05407": {
@@ -146204,7 +146204,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "VT"
   },
   "05408": {
-    "city": "NORTH BURLINGTON",
+    "city": "BURLINGTON",
     "state": "VT"
   },
   "05440": {
@@ -146260,7 +146260,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "VT"
   },
   "05453": {
-    "city": "PEARL STREET",
+    "city": "ESSEX JUNCTION",
     "state": "VT"
   },
   "05454": {
@@ -146412,7 +146412,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "VT"
   },
   "05602": {
-    "city": "MONTPELIER CARRIER ANNEX",
+    "city": "BERLIN",
     "state": "VT"
   },
   "05640": {
@@ -146500,7 +146500,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "VT"
   },
   "05667": {
-    "city": "MONTPELIER CARRIER ANNEX",
+    "city": "BERLIN",
     "state": "VT"
   },
   "05669": {
@@ -146556,7 +146556,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "VT"
   },
   "05701": {
-    "city": "CPU CIRCLE K",
+    "city": "RUTLAND",
     "state": "VT"
   },
   "05702": {
@@ -146688,7 +146688,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "VT"
   },
   "05766": {
-    "city": "VPO RIPTON",
+    "city": "RIPTON",
     "state": "VT"
   },
   "05767": {
@@ -147048,7 +147048,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CT"
   },
   "06040": {
-    "city": "BUCKLAND",
+    "city": "MANCHESTER",
     "state": "CT"
   },
   "06042": {
@@ -147104,7 +147104,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CT"
   },
   "06063": {
-    "city": "PLEASANT VALLEY",
+    "city": "BARKHAMSTED",
     "state": "CT"
   },
   "06064": {
@@ -147116,7 +147116,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CT"
   },
   "06066": {
-    "city": "TALCOTTVILLE",
+    "city": "VERNON ROCKVILLE",
     "state": "CT"
   },
   "06067": {
@@ -147148,7 +147148,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CT"
   },
   "06074": {
-    "city": "BISSELL",
+    "city": "SOUTH WINDSOR",
     "state": "CT"
   },
   "06075": {
@@ -147212,7 +147212,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CT"
   },
   "06094": {
-    "city": "WINSTED NPU",
+    "city": "WINSTED",
     "state": "CT"
   },
   "06095": {
@@ -147220,7 +147220,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CT"
   },
   "06096": {
-    "city": "BRADLEY AIRPORT",
+    "city": "WINDSOR LOCKS",
     "state": "CT"
   },
   "06098": {
@@ -147232,7 +147232,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CT"
   },
   "06103": {
-    "city": "OLD STATE HOUSE CARRIER SEC",
+    "city": "HARTFORD",
     "state": "CT"
   },
   "06104": {
@@ -147240,27 +147240,27 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CT"
   },
   "06105": {
-    "city": "SHIELD STREET",
+    "city": "WEST HARTFORD",
     "state": "CT"
   },
   "06106": {
-    "city": "WASHINGTON STREET",
+    "city": "HARTFORD",
     "state": "CT"
   },
   "06107": {
-    "city": "SHIELD STREET",
+    "city": "WEST HARTFORD",
     "state": "CT"
   },
   "06108": {
-    "city": "MURPHY RD CARRIER ANNEX",
+    "city": "HARTFORD",
     "state": "CT"
   },
   "06109": {
-    "city": "MURPHY RD CARRIER ANNEX",
+    "city": "HARTFORD",
     "state": "CT"
   },
   "06110": {
-    "city": "SHIELD STREET",
+    "city": "WEST HARTFORD",
     "state": "CT"
   },
   "06111": {
@@ -147268,11 +147268,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CT"
   },
   "06112": {
-    "city": "WASHINGTON STREET",
+    "city": "HARTFORD",
     "state": "CT"
   },
   "06114": {
-    "city": "MURPHY RD CARRIER ANNEX",
+    "city": "HARTFORD",
     "state": "CT"
   },
   "06115": {
@@ -147280,27 +147280,27 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CT"
   },
   "06117": {
-    "city": "BISHOPS CORNER",
+    "city": "WEST HARTFORD",
     "state": "CT"
   },
   "06118": {
-    "city": "SILVER LANE",
+    "city": "EAST HARTFORD",
     "state": "CT"
   },
   "06119": {
-    "city": "SHIELD STREET",
+    "city": "WEST HARTFORD",
     "state": "CT"
   },
   "06120": {
-    "city": "WASHINGTON STREET",
+    "city": "HARTFORD",
     "state": "CT"
   },
   "06123": {
-    "city": "OLD STATE HOUSE",
+    "city": "HARTFORD",
     "state": "CT"
   },
   "06126": {
-    "city": "WASHINGTON STREET",
+    "city": "HARTFORD",
     "state": "CT"
   },
   "06127": {
@@ -147320,27 +147320,27 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CT"
   },
   "06132": {
-    "city": "BLUE HILLS",
+    "city": "HARTFORD",
     "state": "CT"
   },
   "06133": {
-    "city": "SHIELD STREET",
+    "city": "WEST HARTFORD",
     "state": "CT"
   },
   "06134": {
-    "city": "BARRY SQUARE",
+    "city": "HARTFORD",
     "state": "CT"
   },
   "06137": {
-    "city": "BISHOPS CORNER",
+    "city": "WEST HARTFORD",
     "state": "CT"
   },
   "06138": {
-    "city": "SILVER LANE",
+    "city": "EAST HARTFORD",
     "state": "CT"
   },
   "06140": {
-    "city": "UNITY PLAZA",
+    "city": "HARTFORD",
     "state": "CT"
   },
   "06141": {
@@ -147556,7 +147556,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CT"
   },
   "06338": {
-    "city": "CPU MASHANTUCKET",
+    "city": "MASHANTUCKET",
     "state": "CT"
   },
   "06339": {
@@ -147564,11 +147564,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CT"
   },
   "06340": {
-    "city": "BOROUGH",
+    "city": "GROTON",
     "state": "CT"
   },
   "06349": {
-    "city": "GROTON NAVAL BASE",
+    "city": "GROTON",
     "state": "CT"
   },
   "06350": {
@@ -147604,7 +147604,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CT"
   },
   "06365": {
-    "city": "ROSE CITY CARRIER ANNEX",
+    "city": "NORWICH",
     "state": "CT"
   },
   "06370": {
@@ -147736,7 +147736,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CT"
   },
   "06419": {
-    "city": "CPU KILLINGWORTH",
+    "city": "KILLINGWORTH",
     "state": "CT"
   },
   "06420": {
@@ -147784,7 +147784,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CT"
   },
   "06443": {
-    "city": "GUILFORD/MADISON CAR ANNEX",
+    "city": "GUILFORD",
     "state": "CT"
   },
   "06444": {
@@ -147800,7 +147800,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CT"
   },
   "06451": {
-    "city": "WALLINGFORD CT S&DC",
+    "city": "WALLINGFORD",
     "state": "CT"
   },
   "06455": {
@@ -147816,7 +147816,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CT"
   },
   "06460": {
-    "city": "DEVON",
+    "city": "MILFORD",
     "state": "CT"
   },
   "06461": {
@@ -147860,7 +147860,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CT"
   },
   "06478": {
-    "city": "CPU HAYNES MATERIAL",
+    "city": "OXFORD",
     "state": "CT"
   },
   "06479": {
@@ -147884,7 +147884,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CT"
   },
   "06484": {
-    "city": "HUNTINGTON",
+    "city": "SHELTON",
     "state": "CT"
   },
   "06487": {
@@ -147900,7 +147900,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CT"
   },
   "06491": {
-    "city": "STEVENSON",
+    "city": "MONROE",
     "state": "CT"
   },
   "06492": {
@@ -147960,7 +147960,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CT"
   },
   "06513": {
-    "city": "FAIR HAVEN",
+    "city": "NEW HAVEN",
     "state": "CT"
   },
   "06514": {
@@ -147968,11 +147968,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CT"
   },
   "06515": {
-    "city": "WESTVILLE",
+    "city": "NEW HAVEN",
     "state": "CT"
   },
   "06516": {
-    "city": "ALLINGTOWN",
+    "city": "WEST HAVEN",
     "state": "CT"
   },
   "06517": {
@@ -147980,15 +147980,15 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CT"
   },
   "06518": {
-    "city": "MOUNT CARMEL",
+    "city": "HAMDEN",
     "state": "CT"
   },
   "06519": {
-    "city": "KILBY",
+    "city": "NEW HAVEN",
     "state": "CT"
   },
   "06520": {
-    "city": "YALE",
+    "city": "NEW HAVEN",
     "state": "CT"
   },
   "06521": {
@@ -148000,7 +148000,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CT"
   },
   "06525": {
-    "city": "AMITY RETAIL STORE",
+    "city": "NEW HAVEN",
     "state": "CT"
   },
   "06530": {
@@ -148032,31 +148032,31 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CT"
   },
   "06601": {
-    "city": "BRIDGEPORT CT S&DC",
+    "city": "BRIDGEPORT",
     "state": "CT"
   },
   "06604": {
-    "city": "BRIDGEPORT CT S&DC",
+    "city": "BRIDGEPORT",
     "state": "CT"
   },
   "06605": {
-    "city": "BRIDGEPORT CT S&DC",
+    "city": "BRIDGEPORT",
     "state": "CT"
   },
   "06606": {
-    "city": "BAYVIEW",
+    "city": "BRIDGEPORT",
     "state": "CT"
   },
   "06607": {
-    "city": "BRIDGEPORT CT S&DC",
+    "city": "BRIDGEPORT",
     "state": "CT"
   },
   "06608": {
-    "city": "BRIDGEPORT CT S&DC",
+    "city": "BRIDGEPORT",
     "state": "CT"
   },
   "06610": {
-    "city": "BAYVIEW",
+    "city": "BRIDGEPORT",
     "state": "CT"
   },
   "06611": {
@@ -148080,15 +148080,15 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CT"
   },
   "06703": {
-    "city": "LAKEWOOD",
+    "city": "WATERBURY",
     "state": "CT"
   },
   "06704": {
-    "city": "PLAZA",
+    "city": "WATERBURY",
     "state": "CT"
   },
   "06705": {
-    "city": "EAST END",
+    "city": "WATERBURY",
     "state": "CT"
   },
   "06706": {
@@ -148100,7 +148100,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CT"
   },
   "06710": {
-    "city": "PLAZA",
+    "city": "WATERBURY",
     "state": "CT"
   },
   "06712": {
@@ -148108,7 +148108,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CT"
   },
   "06716": {
-    "city": "LAKEWOOD",
+    "city": "WATERBURY",
     "state": "CT"
   },
   "06720": {
@@ -148184,7 +148184,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CT"
   },
   "06763": {
-    "city": "MORRIS CARRIERS",
+    "city": "THOMASTON",
     "state": "CT"
   },
   "06770": {
@@ -148284,7 +148284,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CT"
   },
   "06812": {
-    "city": "CANDLEWOOD ISLE DPOBU",
+    "city": "NEW FAIRFIELD",
     "state": "CT"
   },
   "06813": {
@@ -148296,11 +148296,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CT"
   },
   "06824": {
-    "city": "COMMERCE",
+    "city": "FAIRFIELD",
     "state": "CT"
   },
   "06825": {
-    "city": "COMMERCE",
+    "city": "FAIRFIELD",
     "state": "CT"
   },
   "06829": {
@@ -148316,7 +148316,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CT"
   },
   "06836": {
-    "city": "DOWNTOWN GREENWICH",
+    "city": "GREENWICH",
     "state": "CT"
   },
   "06838": {
@@ -148332,11 +148332,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CT"
   },
   "06851": {
-    "city": "BELDEN",
+    "city": "NORWALK",
     "state": "CT"
   },
   "06852": {
-    "city": "BELDEN",
+    "city": "NORWALK",
     "state": "CT"
   },
   "06853": {
@@ -148376,7 +148376,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CT"
   },
   "06880": {
-    "city": "SAUGATUCK DPOBU",
+    "city": "WESTPORT",
     "state": "CT"
   },
   "06881": {
@@ -148392,7 +148392,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CT"
   },
   "06896": {
-    "city": "WEST REDDING",
+    "city": "REDDING",
     "state": "CT"
   },
   "06897": {
@@ -148400,39 +148400,39 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "CT"
   },
   "06901": {
-    "city": "WEST AVE CARRIER UNIT",
+    "city": "STAMFORD",
     "state": "CT"
   },
   "06902": {
-    "city": "WEST AVE CARRIER UNIT",
+    "city": "STAMFORD",
     "state": "CT"
   },
   "06903": {
-    "city": "STAMFORD CT SDC",
+    "city": "STAMFORD",
     "state": "CT"
   },
   "06904": {
-    "city": "SUMMER ATLANTIC",
+    "city": "STAMFORD",
     "state": "CT"
   },
   "06905": {
-    "city": "BULLS HEAD",
+    "city": "STAMFORD",
     "state": "CT"
   },
   "06906": {
-    "city": "GLENBROOK",
+    "city": "STAMFORD",
     "state": "CT"
   },
   "06907": {
-    "city": "STAMFORD CT SDC",
+    "city": "STAMFORD",
     "state": "CT"
   },
   "06911": {
-    "city": "WEST AVE",
+    "city": "STAMFORD",
     "state": "CT"
   },
   "06912": {
-    "city": "STAMFORD CT SDC",
+    "city": "STAMFORD",
     "state": "CT"
   },
   "07001": {
@@ -148460,7 +148460,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NJ"
   },
   "07007": {
-    "city": "WEST CALDWELL",
+    "city": "CALDWELL",
     "state": "NJ"
   },
   "07008": {
@@ -148472,7 +148472,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NJ"
   },
   "07010": {
-    "city": "CLIFF PARK",
+    "city": "CLIFFSIDE PARK",
     "state": "NJ"
   },
   "07011": {
@@ -148480,7 +148480,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NJ"
   },
   "07012": {
-    "city": "ALLWOOD",
+    "city": "CLIFTON",
     "state": "NJ"
   },
   "07013": {
@@ -148492,7 +148492,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NJ"
   },
   "07015": {
-    "city": "MAIN AVENUE",
+    "city": "CLIFTON",
     "state": "NJ"
   },
   "07016": {
@@ -148508,7 +148508,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NJ"
   },
   "07019": {
-    "city": "AMPERE",
+    "city": "EAST ORANGE",
     "state": "NJ"
   },
   "07020": {
@@ -148572,7 +148572,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NJ"
   },
   "07036": {
-    "city": "GRASSELLI",
+    "city": "LINDEN",
     "state": "NJ"
   },
   "07039": {
@@ -148580,7 +148580,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NJ"
   },
   "07040": {
-    "city": "MAPLECREST",
+    "city": "MAPLEWOOD",
     "state": "NJ"
   },
   "07041": {
@@ -148592,7 +148592,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NJ"
   },
   "07043": {
-    "city": "MEMORIAL",
+    "city": "MONTCLAIR",
     "state": "NJ"
   },
   "07044": {
@@ -148644,7 +148644,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NJ"
   },
   "07060": {
-    "city": "MUHLENBERG",
+    "city": "PLAINFIELD",
     "state": "NJ"
   },
   "07061": {
@@ -148652,11 +148652,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NJ"
   },
   "07062": {
-    "city": "NETHERWOOD",
+    "city": "PLAINFIELD",
     "state": "NJ"
   },
   "07063": {
-    "city": "MUHLENBERG",
+    "city": "PLAINFIELD",
     "state": "NJ"
   },
   "07064": {
@@ -148736,7 +148736,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NJ"
   },
   "07083": {
-    "city": "CHESTNUT",
+    "city": "UNION",
     "state": "NJ"
   },
   "07086": {
@@ -148744,7 +148744,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NJ"
   },
   "07087": {
-    "city": "BERGENLINE",
+    "city": "UNION CITY",
     "state": "NJ"
   },
   "07088": {
@@ -148764,7 +148764,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NJ"
   },
   "07093": {
-    "city": "GUTTENBERG",
+    "city": "WEST NEW YORK",
     "state": "NJ"
   },
   "07094": {
@@ -148776,39 +148776,39 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NJ"
   },
   "07096": {
-    "city": "MEADOWS",
+    "city": "SECAUCUS",
     "state": "NJ"
   },
   "07101": {
-    "city": "NEWARK NJ S&DC",
+    "city": "NEWARK",
     "state": "NJ"
   },
   "07102": {
-    "city": "MIDTOWN",
+    "city": "NEWARK",
     "state": "NJ"
   },
   "07103": {
-    "city": "SPRINGFIELD AVE",
+    "city": "NEWARK",
     "state": "NJ"
   },
   "07104": {
-    "city": "BELLEVILLE ANNEX",
+    "city": "BELLEVILLE",
     "state": "NJ"
   },
   "07105": {
-    "city": "IRONBOUND",
+    "city": "NEWARK",
     "state": "NJ"
   },
   "07106": {
-    "city": "VAILSBURG",
+    "city": "NEWARK",
     "state": "NJ"
   },
   "07107": {
-    "city": "ROSEVILLE",
+    "city": "NEWARK",
     "state": "NJ"
   },
   "07108": {
-    "city": "SPRINGFIELD AVE",
+    "city": "NEWARK",
     "state": "NJ"
   },
   "07109": {
@@ -148816,7 +148816,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NJ"
   },
   "07110": {
-    "city": "BELLEVILLE ANNEX",
+    "city": "BELLEVILLE",
     "state": "NJ"
   },
   "07111": {
@@ -148824,11 +148824,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NJ"
   },
   "07112": {
-    "city": "SOUTH",
+    "city": "NEWARK",
     "state": "NJ"
   },
   "07114": {
-    "city": "SOUTH",
+    "city": "NEWARK",
     "state": "NJ"
   },
   "07201": {
@@ -148836,7 +148836,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NJ"
   },
   "07202": {
-    "city": "BAYWAY",
+    "city": "ELIZABETH",
     "state": "NJ"
   },
   "07203": {
@@ -148852,7 +148852,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NJ"
   },
   "07206": {
-    "city": "BAYWAY",
+    "city": "ELIZABETH",
     "state": "NJ"
   },
   "07207": {
@@ -148872,23 +148872,23 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NJ"
   },
   "07304": {
-    "city": "BERGEN NORTH",
+    "city": "JERSEY CITY",
     "state": "NJ"
   },
   "07305": {
-    "city": "BERGEN SOUTH",
+    "city": "JERSEY CITY",
     "state": "NJ"
   },
   "07306": {
-    "city": "JOURNAL SQUARE",
+    "city": "JERSEY CITY",
     "state": "NJ"
   },
   "07307": {
-    "city": "HUDSON CITY",
+    "city": "JERSEY CITY",
     "state": "NJ"
   },
   "07308": {
-    "city": "FIVE CORNERS",
+    "city": "JERSEY CITY",
     "state": "NJ"
   },
   "07310": {
@@ -148976,7 +148976,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NJ"
   },
   "07438": {
-    "city": "JEFFERSON",
+    "city": "OAK RIDGE",
     "state": "NJ"
   },
   "07439": {
@@ -148996,7 +148996,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NJ"
   },
   "07446": {
-    "city": "MAHWAH CARRIER ANNEX",
+    "city": "MAHWAH",
     "state": "NJ"
   },
   "07450": {
@@ -149020,7 +149020,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NJ"
   },
   "07458": {
-    "city": "MAHWAH CARRIER ANNEX",
+    "city": "MAHWAH",
     "state": "NJ"
   },
   "07460": {
@@ -149048,7 +149048,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NJ"
   },
   "07474": {
-    "city": "PACKANACK LAKE",
+    "city": "WAYNE",
     "state": "NJ"
   },
   "07480": {
@@ -149060,11 +149060,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NJ"
   },
   "07495": {
-    "city": "MAHWAH CARRIER ANNEX",
+    "city": "MAHWAH",
     "state": "NJ"
   },
   "07501": {
-    "city": "PATERSON NJ SDC",
+    "city": "PATERSON",
     "state": "NJ"
   },
   "07502": {
@@ -149072,15 +149072,15 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NJ"
   },
   "07503": {
-    "city": "SOUTH PATERSON",
+    "city": "PATERSON",
     "state": "NJ"
   },
   "07504": {
-    "city": "PATERSON NJ SDC",
+    "city": "PATERSON",
     "state": "NJ"
   },
   "07505": {
-    "city": "PATERSON NJ SDC",
+    "city": "PATERSON",
     "state": "NJ"
   },
   "07506": {
@@ -149096,7 +149096,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NJ"
   },
   "07509": {
-    "city": "PATERSON NJ SDC",
+    "city": "PATERSON",
     "state": "NJ"
   },
   "07511": {
@@ -149108,23 +149108,23 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NJ"
   },
   "07513": {
-    "city": "PATERSON NJ SDC",
+    "city": "PATERSON",
     "state": "NJ"
   },
   "07514": {
-    "city": "PATERSON NJ SDC",
+    "city": "PATERSON",
     "state": "NJ"
   },
   "07522": {
-    "city": "PATERSON NJ SDC",
+    "city": "PATERSON",
     "state": "NJ"
   },
   "07524": {
-    "city": "PATERSON NJ SDC",
+    "city": "PATERSON",
     "state": "NJ"
   },
   "07533": {
-    "city": "SOUTH PATERSON",
+    "city": "PATERSON",
     "state": "NJ"
   },
   "07538": {
@@ -149132,11 +149132,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NJ"
   },
   "07543": {
-    "city": "PARK",
+    "city": "PATERSON",
     "state": "NJ"
   },
   "07544": {
-    "city": "PATERSON NJ SDC",
+    "city": "PATERSON",
     "state": "NJ"
   },
   "07601": {
@@ -149204,7 +149204,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NJ"
   },
   "07632": {
-    "city": "ENGLEWOOD ANNEX",
+    "city": "ENGLEWOOD",
     "state": "NJ"
   },
   "07640": {
@@ -149272,7 +149272,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NJ"
   },
   "07661": {
-    "city": "NEW BRIDGE LANDING",
+    "city": "RIVER EDGE",
     "state": "NJ"
   },
   "07662": {
@@ -149364,7 +149364,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NJ"
   },
   "07726": {
-    "city": "ENGLISHTOWN",
+    "city": "MANALAPAN",
     "state": "NJ"
   },
   "07727": {
@@ -149412,7 +149412,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NJ"
   },
   "07740": {
-    "city": "BROADWAY",
+    "city": "LONG BRANCH",
     "state": "NJ"
   },
   "07746": {
@@ -149432,7 +149432,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NJ"
   },
   "07751": {
-    "city": "ENGLISHTOWN",
+    "city": "MANALAPAN",
     "state": "NJ"
   },
   "07752": {
@@ -149484,7 +149484,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NJ"
   },
   "07801": {
-    "city": "DOVER ANNEX",
+    "city": "DOVER",
     "state": "NJ"
   },
   "07802": {
@@ -149492,7 +149492,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NJ"
   },
   "07803": {
-    "city": "DOVER ANNEX",
+    "city": "DOVER",
     "state": "NJ"
   },
   "07820": {
@@ -149640,11 +149640,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NJ"
   },
   "07866": {
-    "city": "DOVER ANNEX",
+    "city": "DOVER",
     "state": "NJ"
   },
   "07869": {
-    "city": "DOVER ANNEX",
+    "city": "DOVER",
     "state": "NJ"
   },
   "07870": {
@@ -149688,7 +149688,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NJ"
   },
   "07885": {
-    "city": "DOVER ANNEX",
+    "city": "DOVER",
     "state": "NJ"
   },
   "07901": {
@@ -149792,7 +149792,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NJ"
   },
   "07963": {
-    "city": "MORRIS ST",
+    "city": "MORRISTOWN",
     "state": "NJ"
   },
   "07970": {
@@ -149932,11 +149932,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NJ"
   },
   "08030": {
-    "city": "CAMDEN CARRIER ANNEX",
+    "city": "CAMDEN",
     "state": "NJ"
   },
   "08031": {
-    "city": "CAMDEN CARRIER ANNEX",
+    "city": "CAMDEN",
     "state": "NJ"
   },
   "08032": {
@@ -149952,7 +149952,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NJ"
   },
   "08035": {
-    "city": "CAMDEN CARRIER ANNEX",
+    "city": "CAMDEN",
     "state": "NJ"
   },
   "08036": {
@@ -150020,7 +150020,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NJ"
   },
   "08055": {
-    "city": "CPU MEDFORD LAKES",
+    "city": "MEDFORD",
     "state": "NJ"
   },
   "08056": {
@@ -150032,7 +150032,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NJ"
   },
   "08059": {
-    "city": "CAMDEN CARRIER ANNEX",
+    "city": "CAMDEN",
     "state": "NJ"
   },
   "08060": {
@@ -150136,11 +150136,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NJ"
   },
   "08087": {
-    "city": "LITTLE EGG HARBOR",
+    "city": "LITTLE EGG HARBOR TWP",
     "state": "NJ"
   },
   "08088": {
-    "city": "VINCENTOWN",
+    "city": "SOUTHAMPTON",
     "state": "NJ"
   },
   "08089": {
@@ -150152,7 +150152,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NJ"
   },
   "08091": {
-    "city": "CLEMENTON CARRIER ANNEX",
+    "city": "CLEMENTON",
     "state": "NJ"
   },
   "08092": {
@@ -150160,7 +150160,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NJ"
   },
   "08093": {
-    "city": "CAMDEN CARRIER ANNEX",
+    "city": "CAMDEN",
     "state": "NJ"
   },
   "08094": {
@@ -150192,19 +150192,19 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NJ"
   },
   "08102": {
-    "city": "CAMDEN CARRIER ANNEX",
+    "city": "CAMDEN",
     "state": "NJ"
   },
   "08103": {
-    "city": "CAMDEN CARRIER ANNEX",
+    "city": "CAMDEN",
     "state": "NJ"
   },
   "08104": {
-    "city": "CAMDEN CARRIER ANNEX",
+    "city": "CAMDEN",
     "state": "NJ"
   },
   "08105": {
-    "city": "CAMDEN CARRIER ANNEX",
+    "city": "CAMDEN",
     "state": "NJ"
   },
   "08106": {
@@ -150212,19 +150212,19 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NJ"
   },
   "08107": {
-    "city": "CAMDEN CARRIER ANNEX",
+    "city": "CAMDEN",
     "state": "NJ"
   },
   "08108": {
-    "city": "CAMDEN CARRIER ANNEX",
+    "city": "CAMDEN",
     "state": "NJ"
   },
   "08109": {
-    "city": "CAMDEN CARRIER ANNEX",
+    "city": "CAMDEN",
     "state": "NJ"
   },
   "08110": {
-    "city": "CAMDEN CARRIER ANNEX",
+    "city": "CAMDEN",
     "state": "NJ"
   },
   "08201": {
@@ -150236,7 +150236,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NJ"
   },
   "08203": {
-    "city": "ATLANTIC CITY CARRIER ANNEX",
+    "city": "ATLANTIC CITY",
     "state": "NJ"
   },
   "08204": {
@@ -150244,7 +150244,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NJ"
   },
   "08205": {
-    "city": "EGG HARBOR TOWNSHIP NJ SDC",
+    "city": "EGG HARBOR TOWNSHIP",
     "state": "NJ"
   },
   "08210": {
@@ -150296,11 +150296,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NJ"
   },
   "08225": {
-    "city": "EGG HARBOR TOWNSHIP NJ SDC",
+    "city": "EGG HARBOR TOWNSHIP",
     "state": "NJ"
   },
   "08226": {
-    "city": "CPU CITY OF OCEAN CITY",
+    "city": "OCEAN CITY",
     "state": "NJ"
   },
   "08230": {
@@ -150312,11 +150312,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NJ"
   },
   "08232": {
-    "city": "EGG HARBOR TOWNSHIP NJ SDC",
+    "city": "EGG HARBOR TOWNSHIP",
     "state": "NJ"
   },
   "08234": {
-    "city": "EGG HARBOR TOWNSHIP NJ SDC",
+    "city": "EGG HARBOR TOWNSHIP",
     "state": "NJ"
   },
   "08240": {
@@ -150324,7 +150324,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NJ"
   },
   "08241": {
-    "city": "EGG HARBOR TOWNSHIP NJ SDC",
+    "city": "EGG HARBOR TOWNSHIP",
     "state": "NJ"
   },
   "08242": {
@@ -150516,19 +150516,19 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NJ"
   },
   "08360": {
-    "city": "VINELAND NJ S&DC",
+    "city": "VINELAND",
     "state": "NJ"
   },
   "08361": {
-    "city": "VINELAND NJ S&DC",
+    "city": "VINELAND",
     "state": "NJ"
   },
   "08362": {
-    "city": "SOUTH VINELAND",
+    "city": "VINELAND",
     "state": "NJ"
   },
   "08401": {
-    "city": "ATLANTIC CITY CARRIER ANNEX",
+    "city": "ATLANTIC CITY",
     "state": "NJ"
   },
   "08402": {
@@ -150544,7 +150544,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NJ"
   },
   "08406": {
-    "city": "ATLANTIC CITY CARRIER ANNEX",
+    "city": "ATLANTIC CITY",
     "state": "NJ"
   },
   "08501": {
@@ -150580,7 +150580,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NJ"
   },
   "08515": {
-    "city": "CROSSWICKS",
+    "city": "CHESTERFIELD",
     "state": "NJ"
   },
   "08518": {
@@ -150620,7 +150620,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NJ"
   },
   "08535": {
-    "city": "PERRINEVILLE",
+    "city": "MILLSTONE TOWNSHIP",
     "state": "NJ"
   },
   "08536": {
@@ -150632,7 +150632,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NJ"
   },
   "08542": {
-    "city": "PALMER SQUARE",
+    "city": "PRINCETON",
     "state": "NJ"
   },
   "08543": {
@@ -150688,55 +150688,55 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NJ"
   },
   "08601": {
-    "city": "DOWNTOWN",
+    "city": "TRENTON",
     "state": "NJ"
   },
   "08602": {
-    "city": "DOWNTOWN",
+    "city": "TRENTON",
     "state": "NJ"
   },
   "08603": {
-    "city": "DOWNTOWN",
+    "city": "TRENTON",
     "state": "NJ"
   },
   "08604": {
-    "city": "DOWNTOWN",
+    "city": "TRENTON",
     "state": "NJ"
   },
   "08605": {
-    "city": "DOWNTOWN",
+    "city": "TRENTON",
     "state": "NJ"
   },
   "08606": {
-    "city": "DOWNTOWN",
+    "city": "TRENTON",
     "state": "NJ"
   },
   "08607": {
-    "city": "DOWNTOWN",
+    "city": "TRENTON",
     "state": "NJ"
   },
   "08608": {
-    "city": "DOWNTOWN",
+    "city": "TRENTON",
     "state": "NJ"
   },
   "08609": {
-    "city": "DOWNTOWN",
+    "city": "TRENTON",
     "state": "NJ"
   },
   "08610": {
-    "city": "INDEPENDENCE",
+    "city": "TRENTON",
     "state": "NJ"
   },
   "08611": {
-    "city": "DOWNTOWN",
+    "city": "TRENTON",
     "state": "NJ"
   },
   "08618": {
-    "city": "DOWNTOWN",
+    "city": "TRENTON",
     "state": "NJ"
   },
   "08619": {
-    "city": "MERCERVILLE",
+    "city": "TRENTON",
     "state": "NJ"
   },
   "08620": {
@@ -150748,27 +150748,27 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NJ"
   },
   "08628": {
-    "city": "CIRCLE",
+    "city": "TRENTON",
     "state": "NJ"
   },
   "08629": {
-    "city": "TRENTON CARRIER ANNEX",
+    "city": "TRENTON",
     "state": "NJ"
   },
   "08638": {
-    "city": "CIRCLE",
+    "city": "TRENTON",
     "state": "NJ"
   },
   "08640": {
-    "city": "FORT DIX",
+    "city": "JOINT BASE MDL",
     "state": "NJ"
   },
   "08641": {
-    "city": "FORT DIX",
+    "city": "JOINT BASE MDL",
     "state": "NJ"
   },
   "08648": {
-    "city": "CIRCLE",
+    "city": "TRENTON",
     "state": "NJ"
   },
   "08650": {
@@ -150776,7 +150776,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NJ"
   },
   "08690": {
-    "city": "MERCERVILLE",
+    "city": "TRENTON",
     "state": "NJ"
   },
   "08691": {
@@ -150880,7 +150880,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NJ"
   },
   "08756": {
-    "city": "HOLIDAY CITY",
+    "city": "TOMS RIVER",
     "state": "NJ"
   },
   "08757": {
@@ -150940,7 +150940,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NJ"
   },
   "08817": {
-    "city": "KILMER NJ S&DC",
+    "city": "EDISON",
     "state": "NJ"
   },
   "08818": {
@@ -150948,7 +150948,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NJ"
   },
   "08820": {
-    "city": "KILMER NJ S&DC",
+    "city": "EDISON",
     "state": "NJ"
   },
   "08821": {
@@ -151016,11 +151016,11 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NJ"
   },
   "08837": {
-    "city": "KILMER NJ S&DC",
+    "city": "EDISON",
     "state": "NJ"
   },
   "08840": {
-    "city": "BRAINY BORO",
+    "city": "METUCHEN",
     "state": "NJ"
   },
   "08844": {
@@ -151028,7 +151028,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NJ"
   },
   "08846": {
-    "city": "KILMER NJ S&DC",
+    "city": "EDISON",
     "state": "NJ"
   },
   "08848": {
@@ -151056,7 +151056,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NJ"
   },
   "08857": {
-    "city": "KILMER NJ S&DC",
+    "city": "EDISON",
     "state": "NJ"
   },
   "08858": {
@@ -151064,7 +151064,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NJ"
   },
   "08859": {
-    "city": "ERNSTON",
+    "city": "PARLIN",
     "state": "NJ"
   },
   "08861": {
@@ -151108,19 +151108,19 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NJ"
   },
   "08873": {
-    "city": "KILMER NJ S&DC",
+    "city": "EDISON",
     "state": "NJ"
   },
   "08875": {
-    "city": "EAST MILLSTONE",
+    "city": "SOMERSET",
     "state": "NJ"
   },
   "08876": {
-    "city": "NORTH BRANCH",
+    "city": "BRANCHBURG",
     "state": "NJ"
   },
   "08879": {
-    "city": "LAURENCE HARBOR",
+    "city": "SOUTH AMBOY",
     "state": "NJ"
   },
   "08880": {
@@ -151132,7 +151132,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NJ"
   },
   "08884": {
-    "city": "KILMER NJ S&DC",
+    "city": "EDISON",
     "state": "NJ"
   },
   "08885": {
@@ -151160,15 +151160,15 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NJ"
   },
   "08901": {
-    "city": "KILMER NJ S&DC",
+    "city": "EDISON",
     "state": "NJ"
   },
   "08902": {
-    "city": "KILMER NJ S&DC",
+    "city": "EDISON",
     "state": "NJ"
   },
   "08903": {
-    "city": "HANDY STREET",
+    "city": "NEW BRUNSWICK",
     "state": "NJ"
   },
   "08904": {
@@ -151176,7 +151176,7 @@ export const zipCodeDatabase: Record<string, ZipCodeData> = {
     "state": "NJ"
   },
   "08906": {
-    "city": "KILMER NJ S&DC",
+    "city": "EDISON",
     "state": "NJ"
   }
 };
