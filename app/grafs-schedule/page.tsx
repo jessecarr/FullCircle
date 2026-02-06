@@ -466,6 +466,15 @@ export default function GrafsSchedulePage() {
                   const isEditing = editingDateId === date.id
                   const isSelected = selectedDateIds.has(date.id)
 
+                  // Calculate cutoff date (2 days before delivery at noon CST)
+                  const cutoffDate = new Date(year, month - 1, day)
+                  cutoffDate.setDate(cutoffDate.getDate() - 2)
+                  const cutoffStr = cutoffDate.toLocaleDateString('en-US', {
+                    weekday: 'short',
+                    month: 'short',
+                    day: 'numeric'
+                  })
+
                   return (
                     <div
                       key={date.id}
@@ -523,6 +532,11 @@ export default function GrafsSchedulePage() {
                               )}
                               {isPast && (
                                 <span className="text-xs text-muted-foreground">PAST</span>
+                              )}
+                              {!isPast && (
+                                <div className="text-xs text-muted-foreground">
+                                  Order cutoff: {cutoffStr} at 12:00 PM CST
+                                </div>
                               )}
                             </>
                           )}
