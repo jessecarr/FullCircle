@@ -17,6 +17,7 @@ import { Printer, Search } from 'lucide-react'
 import { PrintSubmitDialog } from '@/components/ui/print-submit-dialog'
 import { COMPANY_LOGO_BASE64 } from '@/lib/imageConstants'
 import { useFormValidation, isNotEmpty } from '@/hooks/useFormValidation'
+import { getGrafsDeliveryDate } from '@/lib/grafsUtils'
 
 interface SpecialOrderFormProps {
   initialData?: SpecialOrderFormType
@@ -536,59 +537,7 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
             })
 
           if (grafsItems.length > 0) {
-            // Get all scheduled delivery dates
-            const today = new Date()
-            today.setHours(0, 0, 0, 0)
-            const todayStr = today.toISOString().split('T')[0]
-            
-            const { data: deliveryDates } = await supabase
-              .from('grafs_delivery_schedule')
-              .select('delivery_date')
-              .gte('delivery_date', todayStr)
-              .order('delivery_date', { ascending: true })
-
-            let targetDeliveryDate: string | null = null
-
-            if (deliveryDates && deliveryDates.length > 0) {
-              // Find the first delivery date where we haven't passed the cutoff (2 days before)
-              let foundValidDate = false
-              
-              for (let i = 0; i < deliveryDates.length; i++) {
-                const deliveryDateStr = deliveryDates[i].delivery_date
-                const [year, month, day] = deliveryDateStr.split('-').map(Number)
-                const deliveryDate = new Date(year, month - 1, day)
-                
-                // Calculate cutoff date (2 days before delivery)
-                const cutoffDate = new Date(deliveryDate)
-                cutoffDate.setDate(cutoffDate.getDate() - 2)
-                cutoffDate.setHours(0, 0, 0, 0)
-                
-                // If today is before or on the cutoff date, this delivery is valid
-                if (today <= cutoffDate) {
-                  targetDeliveryDate = deliveryDateStr
-                  foundValidDate = true
-                  break
-                }
-              }
-              
-              // If no valid date found (all are past cutoff), use the last one or create new
-              if (!foundValidDate) {
-                const lastDeliveryStr = deliveryDates[deliveryDates.length - 1].delivery_date
-                const [year, month, day] = lastDeliveryStr.split('-').map(Number)
-                const lastDelivery = new Date(year, month - 1, day)
-                
-                // Auto-generate next date (14 days after last scheduled date)
-                const nextDate = new Date(lastDelivery.getTime() + 14 * 24 * 60 * 60 * 1000)
-                const nextDateStr = nextDate.toISOString().split('T')[0]
-                
-                // Insert the new date into schedule
-                await supabase
-                  .from('grafs_delivery_schedule')
-                  .insert({ delivery_date: nextDateStr })
-                
-                targetDeliveryDate = nextDateStr
-              }
-            }
+            const targetDeliveryDate = await getGrafsDeliveryDate(supabase)
 
             if (targetDeliveryDate) {
               // Create tracking records for each Graf item
