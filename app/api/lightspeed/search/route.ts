@@ -45,6 +45,21 @@ export async function GET(request: NextRequest) {
       }
     }
 
+    // Check-digit fallback: label printers append a check digit to system SKUs.
+    // e.g. "210000006512" → printed barcode "2100000065127". Strip last digit and retry.
+    if (results.length === 0 && isNumeric && q.length > 6) {
+      const stripped = q.slice(0, -1)
+      const { data: checkDigitData } = await supabaseAdmin
+        .from('lightspeed_items')
+        .select('item_id, system_sku, description, manufacturer_sku, upc, qoh')
+        .or(`system_sku.eq.${stripped},upc.eq.${stripped}`)
+        .limit(5)
+
+      if (checkDigitData && checkDigitData.length > 0) {
+        results = checkDigitData
+      }
+    }
+
     // Fallback to Lightspeed API if Supabase has no results (table may not be populated yet)
     if (results.length === 0) {
       console.log('[Search] No Supabase results, falling back to Lightspeed API...')

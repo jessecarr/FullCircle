@@ -441,7 +441,13 @@ export default function OrderingPage() {
 
   const getDisplayedRecommendations = () => {
     if (!result) return []
-    let items = [...result.data]
+    // Dedup by itemID to prevent duplicate key errors
+    const seen = new Set<string>()
+    let items = result.data.filter(r => {
+      if (seen.has(r.itemID)) return false
+      seen.add(r.itemID)
+      return true
+    })
 
     if (filterUrgent) {
       items = items.filter(r => r.monthsOfStockLeft < 1 && r.recommendedOrderQty > 0)

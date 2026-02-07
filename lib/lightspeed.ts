@@ -682,6 +682,7 @@ export async function analyzeItemsFromSupabase(
         for (const item of bySku) {
           if (!matchedInputIds.has(item.item_id)) {
             itemsFromDb.push(item)
+            matchedInputIds.add(item.item_id)
             matchedInputIds.add(item.system_sku)
           }
         }
@@ -701,7 +702,58 @@ export async function analyzeItemsFromSupabase(
         for (const item of byUpc) {
           if (!matchedInputIds.has(item.item_id)) {
             itemsFromDb.push(item)
+            matchedInputIds.add(item.item_id)
             matchedInputIds.add(item.upc)
+          }
+        }
+      }
+    }
+
+    // Check-digit fallback: label printers append a UPC check digit to system SKUs.
+    // e.g. system_sku "210000006512" prints as barcode "2100000065127".
+    // Strip the last digit and retry against system_sku and upc.
+    const checkDigitUnmatched = batch.filter(id => !matchedInputIds.has(id)).filter(id => id.length > 6)
+    if (checkDigitUnmatched.length > 0) {
+      const stripped = checkDigitUnmatched.map(id => id.slice(0, -1))
+      const strippedToOriginal = new Map(checkDigitUnmatched.map((orig, i) => [stripped[i], orig]))
+
+      const { data: byStrippedSku, error: err4 } = await supabase
+        .from('lightspeed_items')
+        .select('item_id, system_sku, description, manufacturer_sku, upc, default_cost, retail_price, qoh')
+        .in('system_sku', stripped)
+
+      if (err4) console.error('[LS] Supabase check-digit sku query error:', err4)
+      if (byStrippedSku) {
+        for (const item of byStrippedSku) {
+          if (!matchedInputIds.has(item.item_id)) {
+            itemsFromDb.push(item)
+            matchedInputIds.add(item.item_id)
+            const origValue = strippedToOriginal.get(item.system_sku)
+            if (origValue) matchedInputIds.add(origValue)
+          }
+        }
+      }
+
+      // Also try stripped values against UPC
+      const stillMissing = checkDigitUnmatched.filter(id => !matchedInputIds.has(id))
+      if (stillMissing.length > 0) {
+        const strippedMissing = stillMissing.map(id => id.slice(0, -1))
+        const strippedToOrigMissing = new Map(stillMissing.map((orig, i) => [strippedMissing[i], orig]))
+
+        const { data: byStrippedUpc, error: err5 } = await supabase
+          .from('lightspeed_items')
+          .select('item_id, system_sku, description, manufacturer_sku, upc, default_cost, retail_price, qoh')
+          .in('upc', strippedMissing)
+
+        if (err5) console.error('[LS] Supabase check-digit upc query error:', err5)
+        if (byStrippedUpc) {
+          for (const item of byStrippedUpc) {
+            if (!matchedInputIds.has(item.item_id)) {
+              itemsFromDb.push(item)
+              matchedInputIds.add(item.item_id)
+              const origValue = strippedToOrigMissing.get(item.upc)
+              if (origValue) matchedInputIds.add(origValue)
+            }
           }
         }
       }
