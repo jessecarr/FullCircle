@@ -687,6 +687,25 @@ export async function analyzeItemsFromSupabase(
         }
       }
     }
+
+    // For still unmatched, try UPC (barcode scanners produce UPCs)
+    const stillUnmatched = batch.filter(id => !matchedInputIds.has(id))
+    if (stillUnmatched.length > 0) {
+      const { data: byUpc, error: err3 } = await supabase
+        .from('lightspeed_items')
+        .select('item_id, system_sku, description, manufacturer_sku, upc, default_cost, retail_price, qoh')
+        .in('upc', stillUnmatched)
+
+      if (err3) console.error('[LS] Supabase upc query error:', err3)
+      if (byUpc) {
+        for (const item of byUpc) {
+          if (!matchedInputIds.has(item.item_id)) {
+            itemsFromDb.push(item)
+            matchedInputIds.add(item.upc)
+          }
+        }
+      }
+    }
   }
 
   console.log(`[LS] Got ${itemsFromDb.length}/${itemIds.length} items from Supabase`)
@@ -695,6 +714,7 @@ export async function analyzeItemsFromSupabase(
   const foundIds = new Set([
     ...itemsFromDb.map(item => item.item_id),
     ...itemsFromDb.map(item => item.system_sku),
+    ...itemsFromDb.map(item => item.upc),
   ])
   const missingIds = itemIds.filter(id => !foundIds.has(id))
 
