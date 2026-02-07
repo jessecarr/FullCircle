@@ -135,6 +135,35 @@ export interface OrderRecommendation {
   notes: string[]
 }
 
+export async function searchItems(query: string): Promise<Array<{ itemID: string; description: string; systemSku: string; manufacturerSku: string; upc: string; currentQty: number }>> {
+  await ensureToken()
+  const q = encodeURIComponent(`~,${query}`)
+  const relParam = encodeURIComponent('["ItemShops"]')
+  // Search by description OR manufacturerSku OR upc OR systemSku
+  const url = `${BASE_URL}/Item.json?limit=20&load_relations=${relParam}&or=description=${q}|manufacturerSku=${q}|upc=${q}|systemSku=${q}&archived=false`
+  const data = await apiGet(url)
+
+  if (!data.Item) return []
+  const items: LightspeedItem[] = Array.isArray(data.Item) ? data.Item : [data.Item]
+
+  return items.map(item => {
+    let currentQty = 0
+    if (item.ItemShops?.ItemShop) {
+      const shops = Array.isArray(item.ItemShops.ItemShop) ? item.ItemShops.ItemShop : [item.ItemShops.ItemShop]
+      const mainShop = shops.find(s => s.shopID === '1')
+      if (mainShop) currentQty = parseFloat(mainShop.qoh || '0')
+    }
+    return {
+      itemID: item.itemID,
+      description: item.description,
+      systemSku: item.systemSku,
+      manufacturerSku: item.manufacturerSku || '',
+      upc: item.upc || '',
+      currentQty,
+    }
+  })
+}
+
 async function getItemsWithInventory(itemIds: string[]): Promise<LightspeedItem[]> {
   await ensureToken()
   const items: LightspeedItem[] = []
@@ -147,12 +176,19 @@ async function getItemsWithInventory(itemIds: string[]): Promise<LightspeedItem[
       const data = await apiGet(url)
       if (data.Item) {
         items.push(data.Item)
+      } else {
+        // Log first few failures to help diagnose
+        if (items.length === 0 && i < 3) {
+          console.warn(`[LS] Item ${id}: no Item key in response. Status may be error. Keys: ${JSON.stringify(Object.keys(data || {}))}, sample: ${JSON.stringify(data).substring(0, 200)}`)
+        }
       }
-    } catch (e) {
-      console.error(`[LS] Failed to fetch item ${id}:`, e)
+    } catch (e: any) {
+      if (i < 3) {
+        console.error(`[LS] Failed to fetch item ${id}: ${e?.message || e}`)
+      }
     }
-    if (i % 50 === 0 && i > 0) {
-      console.log(`[LS] Fetched ${i}/${itemIds.length} items...`)
+    if ((i + 1) % 20 === 0 || i === itemIds.length - 1) {
+      console.log(`[LS] Progress: ${i + 1}/${itemIds.length} IDs processed, ${items.length} items found`)
     }
     await new Promise(r => setTimeout(r, 300))
   }
@@ -359,6 +395,74 @@ export async function syncInventoryLog(
   return { totalLines, totalPages }
 }
 
+// --------------- Sync Items: Lightspeed → Supabase ---------------
+
+export async function syncItems(
+  onBatch: (records: { item_id: string; system_sku: string; description: string; manufacturer_sku: string; upc: string; default_cost: number; avg_cost: number; retail_price: number; qoh: number; archived: boolean; updated_at: string }[]) => Promise<void>,
+): Promise<{ totalItems: number; totalPages: number }> {
+  await ensureToken()
+
+  const relParam = encodeURIComponent('["ItemShops"]')
+  let url = `${BASE_URL}/Item.json?limit=100&load_relations=${relParam}&archived=false`
+
+  let totalItems = 0
+  let totalPages = 0
+
+  while (url) {
+    const data = await apiGet(url)
+    totalPages++
+
+    const items = data.Item
+    if (items) {
+      const arr: LightspeedItem[] = Array.isArray(items) ? items : [items]
+      const records = arr
+        .filter((item: any) => item.itemID && item.itemID !== '0')
+        .map((item: any) => {
+          let qoh = 0
+          if (item.ItemShops?.ItemShop) {
+            const shops = Array.isArray(item.ItemShops.ItemShop) ? item.ItemShops.ItemShop : [item.ItemShops.ItemShop]
+            const mainShop = shops.find((s: any) => s.shopID === '1')
+            if (mainShop) qoh = parseFloat(mainShop.qoh || '0')
+          }
+
+          return {
+            item_id: item.itemID,
+            system_sku: item.systemSku || '',
+            description: item.description || '',
+            manufacturer_sku: item.manufacturerSku || '',
+            upc: item.upc || '',
+            default_cost: parseFloat(item.defaultCost || '0'),
+            avg_cost: parseFloat(item.avgCost || '0'),
+            retail_price: 0,
+            qoh,
+            archived: item.archived === 'true',
+            updated_at: new Date().toISOString(),
+          }
+        })
+
+      if (records.length > 0) {
+        await onBatch(records)
+        totalItems += records.length
+      }
+    }
+
+    const nextUrl = data['@attributes']?.next
+    if (nextUrl && nextUrl !== '') {
+      url = nextUrl
+      await new Promise(r => setTimeout(r, 500))
+    } else {
+      break
+    }
+
+    if (totalPages % 10 === 0) {
+      console.log(`[LS Sync] Items: ${totalPages} pages, ${totalItems} items`)
+    }
+  }
+
+  console.log(`[LS Sync] Items complete: ${totalPages} pages, ${totalItems} items`)
+  return { totalItems, totalPages }
+}
+
 // --------------- Smart Analysis (InventoryLog-backed) ---------------
 
 // Reasons that represent actual customer sales
@@ -541,18 +645,102 @@ export async function analyzeItemsFromSupabase(
 ): Promise<OrderRecommendation[]> {
   console.log(`[LS] Starting inventory-log-backed analysis for ${itemIds.length} items`)
 
-  // Step 1: Fetch items with real-time inventory from Lightspeed
-  console.log('[LS] Step 1: Fetching items with inventory from Lightspeed...')
-  const items = await getItemsWithInventory(itemIds)
-  const actualItemIds = items.map(item => item.itemID)
-  console.log(`[LS] Got ${items.length} items. Sample CSV ID: ${itemIds[0]}, Actual ID: ${actualItemIds[0]}`)
+  // Step 1: Fetch item details — try Supabase first (by item_id AND system_sku), fall back to API
+  console.log('[LS] Step 1: Fetching item details from Supabase...')
+  const PAGE_SIZE = 1000
+  type ItemRecord = { item_id: string; system_sku: string; description: string; manufacturer_sku: string; upc: string; default_cost: number; retail_price: number; qoh: number }
+  const itemsFromDb: ItemRecord[] = []
+  const matchedInputIds = new Set<string>()
+
+  for (let i = 0; i < itemIds.length; i += PAGE_SIZE) {
+    const batch = itemIds.slice(i, i + PAGE_SIZE)
+
+    // Try matching by item_id first
+    const { data: byId, error: err1 } = await supabase
+      .from('lightspeed_items')
+      .select('item_id, system_sku, description, manufacturer_sku, upc, default_cost, retail_price, qoh')
+      .in('item_id', batch)
+
+    if (err1) console.error('[LS] Supabase item_id query error:', err1)
+    if (byId) {
+      for (const item of byId) {
+        itemsFromDb.push(item)
+        matchedInputIds.add(item.item_id)
+      }
+    }
+
+    // For unmatched IDs, also try system_sku (CSV often contains system SKUs)
+    const unmatchedBatch = batch.filter(id => !matchedInputIds.has(id))
+    if (unmatchedBatch.length > 0) {
+      const { data: bySku, error: err2 } = await supabase
+        .from('lightspeed_items')
+        .select('item_id, system_sku, description, manufacturer_sku, upc, default_cost, retail_price, qoh')
+        .in('system_sku', unmatchedBatch)
+
+      if (err2) console.error('[LS] Supabase system_sku query error:', err2)
+      if (bySku) {
+        for (const item of bySku) {
+          if (!matchedInputIds.has(item.item_id)) {
+            itemsFromDb.push(item)
+            matchedInputIds.add(item.system_sku)
+          }
+        }
+      }
+    }
+  }
+
+  console.log(`[LS] Got ${itemsFromDb.length}/${itemIds.length} items from Supabase`)
+
+  // Find missing items and fetch from Lightspeed API as fallback
+  const foundIds = new Set([
+    ...itemsFromDb.map(item => item.item_id),
+    ...itemsFromDb.map(item => item.system_sku),
+  ])
+  const missingIds = itemIds.filter(id => !foundIds.has(id))
+
+  if (missingIds.length > 0) {
+    console.log(`[LS] ${missingIds.length} items not in Supabase — fetching from Lightspeed API...`)
+    const apiItems = await getItemsWithInventory(missingIds)
+
+    for (const item of apiItems) {
+      let qoh = 0
+      if (item.ItemShops?.ItemShop) {
+        const shops = Array.isArray(item.ItemShops.ItemShop) ? item.ItemShops.ItemShop : [item.ItemShops.ItemShop]
+        const mainShop = shops.find(s => s.shopID === '1')
+        if (mainShop) qoh = parseFloat(mainShop.qoh || '0')
+      }
+
+      const record: ItemRecord = {
+        item_id: item.itemID,
+        system_sku: item.systemSku || '',
+        description: item.description || '',
+        manufacturer_sku: item.manufacturerSku || '',
+        upc: item.upc || '',
+        default_cost: parseFloat(item.defaultCost || '0'),
+        retail_price: 0,
+        qoh,
+      }
+      itemsFromDb.push(record)
+
+      // Backfill into lightspeed_items for future lookups
+      await supabase
+        .from('lightspeed_items')
+        .upsert({
+          ...record,
+          avg_cost: parseFloat(item.avgCost || '0'),
+          archived: item.archived === 'true',
+          updated_at: new Date().toISOString(),
+        }, { onConflict: 'item_id' })
+    }
+    console.log(`[LS] Fetched ${apiItems.length} items from API and backfilled into Supabase`)
+  }
+
+  const actualItemIds = itemsFromDb.map(item => item.item_id)
 
   // Step 2: Query all inventory log entries from Supabase for these items (shop 1 only)
-  // Paginate to avoid PostgREST row limit (default 1000)
   console.log('[LS] Step 2: Querying inventory log from Supabase...')
   const logsByItem: Record<string, InventoryLogEntry[]> = {}
   let totalLogRows = 0
-  const PAGE_SIZE = 1000
   let from = 0
 
   while (true) {
@@ -587,32 +775,15 @@ export async function analyzeItemsFromSupabase(
   console.log('[LS] Step 3: Building recommendations with stock-reconstructed averages...')
   const recommendations: OrderRecommendation[] = []
 
-  for (const item of items) {
-    let currentQty = 0
-    if (item.ItemShops?.ItemShop) {
-      const shops = Array.isArray(item.ItemShops.ItemShop)
-        ? item.ItemShops.ItemShop
-        : [item.ItemShops.ItemShop]
-      const mainShop = shops.find(s => s.shopID === '1')
-      if (mainShop) {
-        currentQty = parseFloat(mainShop.qoh || '0')
-      }
-    }
-
-    const itemLogs = logsByItem[item.itemID] || []
+  for (const item of itemsFromDb) {
+    const currentQty = item.qoh || 0
+    const itemLogs = logsByItem[item.item_id] || []
     const { avgMonthlySales, seasonalFactor, hotItem, recentVsAvgRatio } = analyzeItemHistory(itemLogs, currentQty)
 
     const monthsOfStockLeft = avgMonthlySales > 0 ? currentQty / avgMonthlySales : currentQty > 0 ? 999 : 0
     const targetStock = Math.ceil(avgMonthlySales * 1)
     const recommendedOrderQty = Math.max(0, targetStock - currentQty)
-    const defaultCost = parseFloat(item.defaultCost || '0')
-
-    let retailPrice = 0
-    if (item.Prices?.ItemPrice) {
-      const prices = Array.isArray(item.Prices.ItemPrice) ? item.Prices.ItemPrice : [item.Prices.ItemPrice]
-      const defaultPrice = prices.find(p => p.useType === 'Default')
-      if (defaultPrice) retailPrice = parseFloat(defaultPrice.amount || '0')
-    }
+    const defaultCost = item.default_cost || 0
 
     // Generate notes
     const notes: string[] = []
@@ -631,17 +802,17 @@ export async function analyzeItemsFromSupabase(
     }
 
     recommendations.push({
-      itemID: item.itemID,
-      systemSku: item.systemSku,
-      description: item.description,
-      manufacturerSku: item.manufacturerSku || '',
+      itemID: item.item_id,
+      systemSku: item.system_sku || '',
+      description: item.description || '',
+      manufacturerSku: item.manufacturer_sku || '',
       upc: item.upc || '',
       currentQty,
       avgMonthlySales: Math.round(avgMonthlySales * 10) / 10,
       monthsOfStockLeft: Math.round(monthsOfStockLeft * 10) / 10,
       recommendedOrderQty,
       defaultCost,
-      retailPrice,
+      retailPrice: item.retail_price || 0,
       estimatedOrderCost: Math.round(recommendedOrderQty * defaultCost * 100) / 100,
       notes,
     })
