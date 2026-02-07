@@ -698,7 +698,7 @@ export async function analyzeItemsFromSupabase(
   ])
   const missingIds = itemIds.filter(id => !foundIds.has(id))
 
-  if (missingIds.length > 0) {
+  if (missingIds.length > 0 && process.env.LIGHTSPEED_ACCESS_TOKEN && process.env.LIGHTSPEED_ACCOUNT_ID) {
     console.log(`[LS] ${missingIds.length} items not in Supabase — fetching from Lightspeed API...`)
     const apiItems = await getItemsWithInventory(missingIds)
 

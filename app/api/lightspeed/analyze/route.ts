@@ -13,13 +13,6 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    if (!process.env.LIGHTSPEED_ACCESS_TOKEN || !process.env.LIGHTSPEED_ACCOUNT_ID) {
-      return NextResponse.json(
-        { error: 'Lightspeed API credentials not configured' },
-        { status: 500 }
-      )
-    }
-
     const recommendations: OrderRecommendation[] = await analyzeItemsFromSupabase(itemIds, supabaseAdmin)
 
     return NextResponse.json({
