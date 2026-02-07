@@ -7,7 +7,7 @@ import { Header } from '@/components/Header'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
-import { Upload, FileText, Loader2, AlertTriangle, CheckCircle, Package, DollarSign, TrendingUp, ShoppingCart, RefreshCw, Database } from 'lucide-react'
+import { Upload, FileText, Loader2, AlertTriangle, CheckCircle, Package, DollarSign, TrendingUp, ShoppingCart, RefreshCw, Database, MessageSquareWarning, X } from 'lucide-react'
 
 interface OrderRecommendation {
   itemID: string
@@ -17,12 +17,12 @@ interface OrderRecommendation {
   upc: string
   currentQty: number
   avgMonthlySales: number
-  monthsOutOfStock: number
   monthsOfStockLeft: number
   recommendedOrderQty: number
   defaultCost: number
   retailPrice: number
   estimatedOrderCost: number
+  notes: string[]
 }
 
 interface AnalysisResult {
@@ -35,7 +35,7 @@ interface AnalysisResult {
   }
 }
 
-type SortField = 'description' | 'currentQty' | 'avgMonthlySales' | 'monthsOutOfStock' | 'monthsOfStockLeft' | 'recommendedOrderQty' | 'estimatedOrderCost'
+type SortField = 'description' | 'currentQty' | 'avgMonthlySales' | 'monthsOfStockLeft' | 'recommendedOrderQty' | 'estimatedOrderCost'
 type SortDirection = 'asc' | 'desc'
 
 export default function OrderingPage() {
@@ -52,6 +52,7 @@ export default function OrderingPage() {
   const [sortDirection, setSortDirection] = useState<SortDirection>('asc')
   const [filterUrgent, setFilterUrgent] = useState(false)
   const [editedQtys, setEditedQtys] = useState<Record<string, number>>({})
+  const [activeNotes, setActiveNotes] = useState<{ item: string; notes: string[] } | null>(null)
   const [syncing, setSyncing] = useState(false)
   const [syncStatus, setSyncStatus] = useState<{ lastSync: any; totalRecords: number } | null>(null)
   const [syncMessage, setSyncMessage] = useState('')
@@ -503,10 +504,10 @@ export default function OrderingPage() {
 
             {/* Results Table */}
             <Card className="border-slate-700 bg-slate-800/50 overflow-hidden">
-              <div className="overflow-x-auto">
+              <div className="overflow-x-auto max-h-[70vh] overflow-y-auto">
                 <table className="w-full text-sm">
-                  <thead>
-                    <tr className="border-b border-slate-700 bg-slate-900/50">
+                  <thead className="sticky top-0 z-10">
+                    <tr className="border-b border-slate-700 bg-slate-900">
                       <th className="text-left p-3 text-slate-400 font-medium">Status</th>
                       <th
                         className="text-left p-3 text-slate-400 font-medium cursor-pointer hover:text-white"
@@ -529,12 +530,6 @@ export default function OrderingPage() {
                       </th>
                       <th
                         className="text-right p-3 text-slate-400 font-medium cursor-pointer hover:text-white"
-                        onClick={() => handleSort('monthsOutOfStock')}
-                      >
-                        Mo. OOS {sortField === 'monthsOutOfStock' && (sortDirection === 'asc' ? '↑' : '↓')}
-                      </th>
-                      <th
-                        className="text-right p-3 text-slate-400 font-medium cursor-pointer hover:text-white"
                         onClick={() => handleSort('monthsOfStockLeft')}
                       >
                         Mo. Left {sortField === 'monthsOfStockLeft' && (sortDirection === 'asc' ? '↑' : '↓')}
@@ -545,6 +540,7 @@ export default function OrderingPage() {
                       >
                         Suggested {sortField === 'recommendedOrderQty' && (sortDirection === 'asc' ? '↑' : '↓')}
                       </th>
+                      <th className="text-center p-3 text-slate-400 font-medium">Notes</th>
                       <th className="text-right p-3 text-slate-400 font-medium">
                         Order Qty
                       </th>
@@ -587,11 +583,23 @@ export default function OrderingPage() {
                           </td>
                           <td className="p-3 text-right text-slate-300">{item.currentQty}</td>
                           <td className="p-3 text-right text-slate-300">{item.avgMonthlySales}</td>
-                          <td className="p-3 text-right text-slate-400">{item.monthsOutOfStock || 0}</td>
                           <td className={`p-3 text-right font-medium ${getStatusColor(item.monthsOfStockLeft)}`}>
                             {item.monthsOfStockLeft >= 999 ? '∞' : item.monthsOfStockLeft}
                           </td>
                           <td className="p-3 text-right text-slate-400">{item.recommendedOrderQty}</td>
+                          <td className="p-3 text-center">
+                            {item.notes && item.notes.length > 0 ? (
+                              <button
+                                onClick={() => setActiveNotes({ item: item.description, notes: item.notes })}
+                                className="text-amber-400 hover:text-amber-300 transition-colors"
+                                title="View notes"
+                              >
+                                <MessageSquareWarning className="h-4 w-4 inline" />
+                              </button>
+                            ) : (
+                              <span className="text-slate-600">—</span>
+                            )}
+                          </td>
                           <td className="p-3 text-right">
                             <input
                               type="number"
@@ -611,6 +619,28 @@ export default function OrderingPage() {
                 </table>
               </div>
             </Card>
+
+            {/* Notes Dialog */}
+            {activeNotes && (
+              <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm" onClick={() => setActiveNotes(null)}>
+                <div className="bg-slate-800 border border-slate-600 rounded-lg shadow-xl max-w-md w-full mx-4 p-0" onClick={(e) => e.stopPropagation()}>
+                  <div className="flex items-center justify-between p-4 border-b border-slate-700">
+                    <h3 className="text-white font-semibold text-sm truncate pr-4">{activeNotes.item}</h3>
+                    <button onClick={() => setActiveNotes(null)} className="text-slate-400 hover:text-white">
+                      <X className="h-4 w-4" />
+                    </button>
+                  </div>
+                  <div className="p-4 space-y-3">
+                    {activeNotes.notes.map((note, i) => (
+                      <div key={i} className="flex gap-2 text-sm">
+                        <MessageSquareWarning className="h-4 w-4 text-amber-400 shrink-0 mt-0.5" />
+                        <p className="text-slate-300">{note}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            )}
           </>
         )}
       </main>

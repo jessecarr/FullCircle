@@ -127,12 +127,12 @@ export interface OrderRecommendation {
   upc: string
   currentQty: number
   avgMonthlySales: number
-  monthsOutOfStock: number
   monthsOfStockLeft: number
   recommendedOrderQty: number
   defaultCost: number
   retailPrice: number
   estimatedOrderCost: number
+  notes: string[]
 }
 
 async function getItemsWithInventory(itemIds: string[]): Promise<LightspeedItem[]> {
@@ -378,8 +378,8 @@ interface InventoryLogEntry {
 function analyzeItemHistory(
   logs: InventoryLogEntry[],
   currentQOH: number = 0
-): { avgMonthlySales: number; totalSold: number; outOfStockMonths: number } {
-  if (logs.length === 0) return { avgMonthlySales: 0, totalSold: 0, outOfStockMonths: 0 }
+): { avgMonthlySales: number; totalSold: number; outOfStockMonths: number; seasonalFactor: number; hotItem: boolean; recentVsAvgRatio: number } {
+  if (logs.length === 0) return { avgMonthlySales: 0, totalSold: 0, outOfStockMonths: 0, seasonalFactor: 1, hotItem: false, recentVsAvgRatio: 1 }
 
   const sorted = [...logs].sort((a, b) =>
     new Date(a.create_time).getTime() - new Date(b.create_time).getTime()
@@ -427,10 +427,10 @@ function analyzeItemHistory(
   const outOfStockMonths = Math.round((outOfStockDays / 30.44) * 10) / 10
   const totalSold = salesEvents.reduce((sum, s) => sum + s.qty, 0)
 
-  if (totalSold === 0) return { avgMonthlySales: 0, totalSold: 0, outOfStockMonths }
+  if (totalSold === 0) return { avgMonthlySales: 0, totalSold: 0, outOfStockMonths, seasonalFactor: 1, hotItem: false, recentVsAvgRatio: 1 }
 
   if (totalDays < 1) {
-    return { avgMonthlySales: totalSold, totalSold, outOfStockMonths: 0 }
+    return { avgMonthlySales: totalSold, totalSold, outOfStockMonths: 0, seasonalFactor: 1, hotItem: false, recentVsAvgRatio: 1 }
   }
 
   // --- RECENT WEIGHTED TREND ---
@@ -515,6 +515,13 @@ function analyzeItemHistory(
     }
   }
 
+  // --- HOT ITEM DETECTION ---
+  // Compare last 3 months rate vs 6-12 month rate — if recent is 1.5x+ higher, it's trending hot
+  const last3moRate = sales0to3 / Math.min(3, totalMonths)
+  const older6to12Rate = totalMonths > 6 && sales6to12 > 0 ? sales6to12 / Math.min(6, Math.max(0, totalMonths - 6)) : recentRate
+  const recentVsAvgRatio = older6to12Rate > 0 ? last3moRate / older6to12Rate : 1
+  const hotItem = recentVsAvgRatio >= 1.5 && sales0to3 >= 3
+
   // --- FINAL ADJUSTED RATE ---
   const avgMonthlySales = recentRate * seasonalFactor
 
@@ -522,6 +529,9 @@ function analyzeItemHistory(
     avgMonthlySales,
     totalSold,
     outOfStockMonths,
+    seasonalFactor,
+    hotItem,
+    recentVsAvgRatio: Math.round(recentVsAvgRatio * 100) / 100,
   }
 }
 
@@ -590,7 +600,7 @@ export async function analyzeItemsFromSupabase(
     }
 
     const itemLogs = logsByItem[item.itemID] || []
-    const { avgMonthlySales, outOfStockMonths } = analyzeItemHistory(itemLogs, currentQty)
+    const { avgMonthlySales, seasonalFactor, hotItem, recentVsAvgRatio } = analyzeItemHistory(itemLogs, currentQty)
 
     const monthsOfStockLeft = avgMonthlySales > 0 ? currentQty / avgMonthlySales : currentQty > 0 ? 999 : 0
     const targetStock = Math.ceil(avgMonthlySales * 1)
@@ -604,6 +614,22 @@ export async function analyzeItemsFromSupabase(
       if (defaultPrice) retailPrice = parseFloat(defaultPrice.amount || '0')
     }
 
+    // Generate notes
+    const notes: string[] = []
+    if (seasonalFactor >= 1.2) {
+      const pct = Math.round((seasonalFactor - 1) * 100)
+      notes.push(`Seasonal bump: this item typically sells ~${pct}% more this time of year. Suggested quantity is adjusted upward.`)
+    } else if (seasonalFactor <= 0.8) {
+      const pct = Math.round((1 - seasonalFactor) * 100)
+      notes.push(`Seasonal dip: this item typically sells ~${pct}% less this time of year. Suggested quantity is adjusted downward.`)
+    }
+    if (hotItem) {
+      notes.push(`Hot seller: recent sales are ${recentVsAvgRatio}x higher than the prior trend. Consider ordering extra to keep up with demand.`)
+    }
+    if (avgMonthlySales > 0 && monthsOfStockLeft < 0.5 && currentQty > 0) {
+      notes.push(`At current sell rate, stock will run out before your next 2-week order window.`)
+    }
+
     recommendations.push({
       itemID: item.itemID,
       systemSku: item.systemSku,
@@ -612,12 +638,12 @@ export async function analyzeItemsFromSupabase(
       upc: item.upc || '',
       currentQty,
       avgMonthlySales: Math.round(avgMonthlySales * 10) / 10,
-      monthsOutOfStock: outOfStockMonths,
       monthsOfStockLeft: Math.round(monthsOfStockLeft * 10) / 10,
       recommendedOrderQty,
       defaultCost,
       retailPrice,
       estimatedOrderCost: Math.round(recommendedOrderQty * defaultCost * 100) / 100,
+      notes,
     })
   }
 
