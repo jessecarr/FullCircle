@@ -29,7 +29,8 @@ import {
   Truck,
   Archive,
   Clock,
-  BarChart3
+  BarChart3,
+  ShoppingCart
 } from 'lucide-react'
 
 interface NavItem {
@@ -55,7 +56,8 @@ const navItems: NavItem[] = [
   
   // Graf & Sons
   { title: "Graf's Schedule", href: '/grafs-schedule', icon: Calendar },
-  { title: "Graf's Arriving", href: '/grafs-arriving', icon: Truck, separator: true },
+  { title: "Graf's Arriving", href: '/grafs-arriving', icon: Truck },
+  { title: 'Order Recommendations', href: '/ordering', icon: ShoppingCart, separator: true },
   
   // Admin & Settings
   { title: 'Time Sheets', href: '/timesheet', icon: Clock },
