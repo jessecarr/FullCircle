@@ -12,20 +12,17 @@ export async function GET() {
       return NextResponse.json({ error: error.message }, { status: 400 })
     }
 
-    // Fetch is_active status from employees table
-    const { data: employees } = await supabaseAdmin
-      .from('employees')
-      .select('id, is_active')
-
-    const employeeMap = new Map(employees?.map(e => [e.id, e.is_active]) || [])
-
-    const users = data.users.map(user => ({
-      id: user.id,
-      email: user.email || '',
-      created_at: user.created_at,
-      user_metadata: user.user_metadata || {},
-      is_active: employeeMap.get(user.id) ?? true
-    }))
+    const users = data.users.map(user => {
+      const rawUser = user as any
+      return {
+        id: user.id,
+        email: user.email || '',
+        created_at: user.created_at,
+        user_metadata: user.user_metadata || {},
+        is_active: !rawUser.banned_until || new Date(rawUser.banned_until) <= new Date(),
+        show_on_timesheet: user.app_metadata?.show_on_timesheet !== false
+      }
+    })
 
     return NextResponse.json({ users })
   } catch (error) {
@@ -39,9 +36,9 @@ export async function POST(request: Request) {
   const supabaseAdmin = createAdminClient()
 
   try {
-    const { email, password, name, role } = await request.json()
+    const { email, password, name, role, show_on_timesheet } = await request.json()
 
-    // Create user in Supabase Auth
+    // Create user in Supabase Auth with metadata
     const { data, error } = await supabaseAdmin.auth.admin.createUser({
       email,
       password,
@@ -49,36 +46,14 @@ export async function POST(request: Request) {
       user_metadata: {
         name,
         role
+      },
+      app_metadata: {
+        show_on_timesheet: show_on_timesheet !== false
       }
     })
 
     if (error) {
       return NextResponse.json({ error: error.message }, { status: 400 })
-    }
-
-    // Also create employee record in employees table
-    if (data.user) {
-      const { error: employeeError } = await supabaseAdmin
-        .from('employees')
-        .upsert({
-          id: data.user.id,
-          email: email.toLowerCase(),
-          password_hash: 'auth_managed', // Placeholder - actual auth is handled by Supabase Auth
-          name: name || email.split('@')[0],
-          role: role || 'employee',
-          is_active: true,
-          created_at: new Date().toISOString(),
-          updated_at: new Date().toISOString()
-        }, { onConflict: 'id' })
-
-      if (employeeError) {
-        console.error('Failed to create employee record:', employeeError)
-        return NextResponse.json({ 
-          success: true, 
-          data,
-          warning: `User created in auth but failed to create employee record: ${employeeError.message}` 
-        })
-      }
     }
 
     return NextResponse.json({ success: true, data })
@@ -93,7 +68,7 @@ export async function PUT(request: Request) {
   const supabaseAdmin = createAdminClient()
 
   try {
-    const { userId, role, name, password, is_active } = await request.json()
+    const { userId, role, name, password, is_active, show_on_timesheet } = await request.json()
 
     // Get current user metadata to preserve other fields
     const { data: currentUser } = await supabaseAdmin.auth.admin.getUserById(userId)
@@ -110,45 +85,34 @@ export async function PUT(request: Request) {
         updateData.name = name
       }
 
-      // Update user metadata first
-      const { data: metadataResult, error: metadataError } = await supabaseAdmin.auth.admin.updateUserById(userId, {
-        user_metadata: updateData
-      })
+      // Build the auth update payload
+      const authUpdate: any = {
+        user_metadata: updateData,
+        app_metadata: {
+          ...currentUser.user.app_metadata,
+          show_on_timesheet: show_on_timesheet !== false
+        }
+      }
 
-      if (metadataError) {
-        return NextResponse.json({ error: metadataError.message }, { status: 400 })
+      // Handle ban/unban for active status
+      if (is_active === false) {
+        authUpdate.ban_duration = '876600h' // ~100 years
+      } else {
+        authUpdate.ban_duration = 'none'
       }
 
       // Update password if provided
       if (password && password.trim() !== '') {
-        const { data: passwordResult, error: passwordError } = await supabaseAdmin.auth.admin.updateUserById(userId, {
-          password: password
-        })
-
-        if (passwordError) {
-          return NextResponse.json({ error: passwordError.message }, { status: 400 })
-        }
+        authUpdate.password = password
       }
 
-      // Also update employee record in employees table
-      const { error: employeeError } = await supabaseAdmin
-        .from('employees')
-        .upsert({
-          id: userId,
-          email: currentUser.user.email?.toLowerCase() || '',
-          password_hash: 'auth_managed', // Placeholder - actual auth is handled by Supabase Auth
-          name: updateData.name || currentUser.user.email?.split('@')[0] || 'Unknown',
-          role: role || 'employee',
-          is_active: is_active !== undefined ? is_active : true,
-          created_at: new Date().toISOString(),
-          updated_at: new Date().toISOString()
-        }, { onConflict: 'id' })
+      const { data: updateResult, error: updateError } = await supabaseAdmin.auth.admin.updateUserById(userId, authUpdate)
 
-      if (employeeError) {
-        console.error('Failed to update employee record:', employeeError)
+      if (updateError) {
+        return NextResponse.json({ error: updateError.message }, { status: 400 })
       }
 
-      return NextResponse.json({ success: true, data: metadataResult })
+      return NextResponse.json({ success: true, data: updateResult })
     } else {
       return NextResponse.json({ error: 'User not found' }, { status: 404 })
     }
@@ -169,19 +133,6 @@ export async function DELETE(request: Request) {
 
     if (error) {
       return NextResponse.json({ error: error.message }, { status: 400 })
-    }
-
-    // Also deactivate employee record (soft delete)
-    const { error: employeeError } = await supabaseAdmin
-      .from('employees')
-      .update({ 
-        is_active: false,
-        updated_at: new Date().toISOString()
-      })
-      .eq('id', userId)
-
-    if (employeeError) {
-      console.error('Failed to deactivate employee record:', employeeError)
     }
 
     return NextResponse.json({ success: true })

@@ -29,6 +29,7 @@ interface NewUser {
   name: string
   role: 'admin' | 'manager' | 'employee'
   is_active: boolean
+  show_on_timesheet: boolean
 }
 
 interface AuthUser {
@@ -41,6 +42,7 @@ interface AuthUser {
     employee_id?: string
   }
   is_active?: boolean
+  show_on_timesheet?: boolean
 }
 
 export default function UserManagementPage() {
@@ -54,7 +56,8 @@ export default function UserManagementPage() {
     password: '',
     name: '',
     role: 'employee',
-    is_active: true
+    is_active: true,
+    show_on_timesheet: true
   })
   const [editingUser, setEditingUser] = useState<AuthUser | null>(null)
   const [editRole, setEditRole] = useState<'admin' | 'manager' | 'employee'>('employee')
@@ -64,6 +67,7 @@ export default function UserManagementPage() {
   const [showEditPassword, setShowEditPassword] = useState(false)
   const [showConfirmPassword, setShowConfirmPassword] = useState(false)
   const [editIsActive, setEditIsActive] = useState(true)
+  const [editShowOnTimesheet, setEditShowOnTimesheet] = useState(true)
   const [showEditDialog, setShowEditDialog] = useState(false)
   const [deleteUser, setDeleteUser] = useState<AuthUser | null>(null)
   const [showDeleteDialog, setShowDeleteDialog] = useState(false)
@@ -110,7 +114,8 @@ export default function UserManagementPage() {
           password: newUser.password,
           name: newUser.name,
           role: newUser.role,
-          is_active: newUser.is_active
+          is_active: newUser.is_active,
+          show_on_timesheet: newUser.show_on_timesheet
         })
       })
       
@@ -140,7 +145,8 @@ export default function UserManagementPage() {
         password: '',
         name: '',
         role: 'employee',
-        is_active: true
+        is_active: true,
+        show_on_timesheet: true
       })
 
       // Refresh users list
@@ -181,7 +187,8 @@ export default function UserManagementPage() {
           role: editRole,
           name: editName || undefined,
           password: editPassword || undefined,
-          is_active: editIsActive
+          is_active: editIsActive,
+          show_on_timesheet: editShowOnTimesheet
         })
       })
       
@@ -347,7 +354,20 @@ export default function UserManagementPage() {
                   className="h-5 w-5 rounded border-gray-400 text-blue-600 focus:ring-blue-500 cursor-pointer"
                 />
                 <Label htmlFor="is_active" className="cursor-pointer">
-                  Active Employee (shows in timesheet dropdown)
+                  Active (can log in to the website)
+                </Label>
+              </div>
+
+              <div className="flex items-center space-x-3">
+                <input
+                  type="checkbox"
+                  id="show_on_timesheet"
+                  checked={newUser.show_on_timesheet}
+                  onChange={(e) => setNewUser({ ...newUser, show_on_timesheet: e.target.checked })}
+                  className="h-5 w-5 rounded border-gray-400 text-blue-600 focus:ring-blue-500 cursor-pointer"
+                />
+                <Label htmlFor="show_on_timesheet" className="cursor-pointer">
+                  Show on Timesheet page
                 </Label>
               </div>
 
@@ -401,6 +421,11 @@ export default function UserManagementPage() {
                         }`}>
                           {authUser.is_active !== false ? 'Active' : 'Inactive'}
                         </span>
+                        {authUser.show_on_timesheet !== false && (
+                          <span className="inline-block px-2 py-1 text-sm rounded bg-purple-100 text-purple-800 font-semibold uppercase">
+                            Timesheet
+                          </span>
+                        )}
                         <span className="inline-block px-2 py-1 text-sm rounded bg-blue-100 text-blue-800 font-semibold uppercase">
                           {authUser.user_metadata?.role || 'No role'}
                         </span>
@@ -416,6 +441,7 @@ export default function UserManagementPage() {
                             setShowEditPassword(false)
                             setShowConfirmPassword(false)
                             setEditIsActive(authUser.is_active !== false)
+                            setEditShowOnTimesheet(authUser.show_on_timesheet !== false)
                             setShowEditDialog(true)
                           }}
                           className="flex items-center gap-2 group-hover:bg-accent"
@@ -554,7 +580,19 @@ export default function UserManagementPage() {
                 className="h-5 w-5 rounded border-gray-400 text-blue-600 focus:ring-blue-500 cursor-pointer"
               />
               <Label htmlFor="editIsActive" className="cursor-pointer">
-                Active Employee (shows in timesheet dropdown)
+                Active (can log in to the website)
+              </Label>
+            </div>
+            <div className="flex items-center space-x-3">
+              <input
+                type="checkbox"
+                id="editShowOnTimesheet"
+                checked={editShowOnTimesheet}
+                onChange={(e) => setEditShowOnTimesheet(e.target.checked)}
+                className="h-5 w-5 rounded border-gray-400 text-blue-600 focus:ring-blue-500 cursor-pointer"
+              />
+              <Label htmlFor="editShowOnTimesheet" className="cursor-pointer">
+                Show on Timesheet page
               </Label>
             </div>
           </div>
