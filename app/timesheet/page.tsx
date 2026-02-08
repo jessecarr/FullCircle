@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState, useCallback } from 'react'
+import { useEffect, useState, useCallback, useRef } from 'react'
 import { useRouter } from 'next/navigation'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
@@ -78,9 +78,10 @@ function getPayPeriodDates(date: Date): PayPeriod {
   // Base date: December 29, 2025 (Monday) - first pay period containing Jan 1, 2026
   const baseDate = new Date(2025, 11, 29) // Month is 0-indexed, so 11 = December
   
-  // Calculate difference in days
-  const diffTime = date.getTime() - baseDate.getTime()
-  const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24))
+  // Calculate difference in days using UTC to avoid DST issues
+  const dateUTC = Date.UTC(date.getFullYear(), date.getMonth(), date.getDate())
+  const baseUTC = Date.UTC(baseDate.getFullYear(), baseDate.getMonth(), baseDate.getDate())
+  const diffDays = Math.floor((dateUTC - baseUTC) / (1000 * 60 * 60 * 24))
   const periodNumber = Math.floor(diffDays / 14)
   
   const periodStart = new Date(baseDate)
@@ -206,6 +207,7 @@ export default function TimesheetPage() {
   const [viewAllWeeks, setViewAllWeeks] = useState<WeekData[]>([])
   
   const isAdmin = userRole === 'admin'
+  const initialLoadRef = useRef(true)
   
   // Fetch employees (for admin) or current employee (for non-admin)
   useEffect(() => {
@@ -271,7 +273,12 @@ export default function TimesheetPage() {
   }, [selectedEmployee, payPeriod, isAdmin])
   
   useEffect(() => {
-    fetchTimesheets()
+    if (initialLoadRef.current) {
+      fetchTimesheets()
+      initialLoadRef.current = false
+    } else {
+      fetchTimesheets(true)
+    }
   }, [fetchTimesheets])
   
   // Calculate weeks data when timesheets change
