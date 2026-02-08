@@ -64,6 +64,14 @@ function formatDateString(d: Date): string {
   return `${year}-${month}-${day}`
 }
 
+// Format decimal hours as "Xh Ym" (e.g. 5.5 -> "5h 30m")
+function formatHoursMinutes(hours: number): string {
+  if (!hours || hours === 0) return '0h 0m'
+  const h = Math.floor(hours)
+  const m = Math.round((hours - h) * 60)
+  return `${h}h ${m}m`
+}
+
 // Helper function to get pay period dates
 // First pay period of 2026 starts Dec 29, 2025 (Monday of week containing Jan 1, 2026)
 function getPayPeriodDates(date: Date): PayPeriod {
@@ -237,10 +245,10 @@ export default function TimesheetPage() {
   }, [loading, user, isAdmin])
   
   // Fetch timesheets when employee or pay period changes
-  const fetchTimesheets = useCallback(async () => {
+  const fetchTimesheets = useCallback(async (silent = false) => {
     if (!selectedEmployee) return
     
-    setIsLoading(true)
+    if (!silent) setIsLoading(true)
     try {
       const params = new URLSearchParams({
         employee_id: selectedEmployee.id,
@@ -258,7 +266,7 @@ export default function TimesheetPage() {
     } catch (err) {
       console.error('Failed to fetch timesheets:', err)
     } finally {
-      setIsLoading(false)
+      if (!silent) setIsLoading(false)
     }
   }, [selectedEmployee, payPeriod, isAdmin])
   
@@ -316,7 +324,7 @@ export default function TimesheetPage() {
           isClockedOut: action === 'clock_out',
           timeIn: action === 'clock_in' ? new Date().toISOString() : clockStatus.timeIn
         })
-        fetchTimesheets()
+        fetchTimesheets(true)
       } else {
         toast({
           title: 'Error',
@@ -399,7 +407,7 @@ export default function TimesheetPage() {
       
       if (data.success) {
         toast({ title: 'Cleared', description: `${field === 'time_in' ? 'Time In' : 'Time Out'} cleared` })
-        fetchTimesheets()
+        fetchTimesheets(true)
       } else {
         toast({ title: 'Error', description: data.error, variant: 'destructive' })
       }
@@ -462,7 +470,7 @@ export default function TimesheetPage() {
       
       if (data.success) {
         toast({ title: 'Saved', description: 'Times updated successfully' })
-        fetchTimesheets()
+        fetchTimesheets(true)
       } else {
         toast({ title: 'Error', description: data.error, variant: 'destructive' })
       }
@@ -518,7 +526,7 @@ export default function TimesheetPage() {
       
       if (data.success) {
         toast({ title: 'Saved', description: 'PTO updated successfully' })
-        fetchTimesheets()
+        fetchTimesheets(true)
       } else {
         toast({ title: 'Error', description: data.error, variant: 'destructive' })
       }
@@ -565,7 +573,7 @@ export default function TimesheetPage() {
       
       if (data.success) {
         toast({ title: 'Cleared', description: 'PTO cleared' })
-        fetchTimesheets()
+        fetchTimesheets(true)
       } else {
         toast({ title: 'Error', description: data.error, variant: 'destructive' })
       }
@@ -615,7 +623,7 @@ export default function TimesheetPage() {
       
       if (data.success) {
         toast({ title: 'Saved', description: 'Holiday updated successfully' })
-        fetchTimesheets()
+        fetchTimesheets(true)
       } else {
         toast({ title: 'Error', description: data.error, variant: 'destructive' })
       }
@@ -662,7 +670,7 @@ export default function TimesheetPage() {
       
       if (data.success) {
         toast({ title: 'Cleared', description: 'Holiday cleared' })
-        fetchTimesheets()
+        fetchTimesheets(true)
       } else {
         toast({ title: 'Error', description: data.error, variant: 'destructive' })
       }
@@ -739,7 +747,7 @@ export default function TimesheetPage() {
       }
       
       toast({ title: 'Success', description: `Updated ${bulkSelectedDates.length} entries` })
-      fetchTimesheets()
+      fetchTimesheets(true)
       setBulkSelectMode(null)
       setBulkSelectedDates([])
     } catch (err) {
@@ -783,7 +791,7 @@ export default function TimesheetPage() {
       }
       
       toast({ title: 'Success', description: `Cleared ${bulkSelectedDates.length} entries` })
-      fetchTimesheets()
+      fetchTimesheets(true)
       setBulkSelectMode(null)
       setBulkSelectedDates([])
     } catch (err) {
@@ -822,7 +830,7 @@ export default function TimesheetPage() {
       }
       
       toast({ title: 'Success', description: `Set PTO for ${bulkSelectedDates.length} days` })
-      fetchTimesheets()
+      fetchTimesheets(true)
       setBulkSelectMode(null)
       setBulkSelectedDates([])
       setShowBulkPTOModal(false)
@@ -864,7 +872,7 @@ export default function TimesheetPage() {
       }
       
       toast({ title: 'Success', description: `Cleared PTO for ${bulkSelectedDates.length} days` })
-      fetchTimesheets()
+      fetchTimesheets(true)
       setBulkSelectMode(null)
       setBulkSelectedDates([])
     } catch (err) {
@@ -911,7 +919,7 @@ export default function TimesheetPage() {
       }
       
       toast({ title: 'Success', description: 'Filled Tue-Sat with 9am-5pm' })
-      fetchTimesheets()
+      fetchTimesheets(true)
     } catch (err) {
       toast({ title: 'Error', description: 'Failed to fill times', variant: 'destructive' })
     }
@@ -1012,7 +1020,7 @@ export default function TimesheetPage() {
       
       if (data.success) {
         toast({ title: 'Saved', description: 'Timesheet updated successfully' })
-        fetchTimesheets()
+        fetchTimesheets(true)
       } else {
         toast({ title: 'Error', description: data.error, variant: 'destructive' })
       }
@@ -1063,14 +1071,6 @@ export default function TimesheetPage() {
     total: acc.total + week.totals.total
   }), { regular: 0, overtime: 0, pto: 0, holiday: 0, total: 0 })
 
-  // View All functionality - get last completed pay period
-  const getLastPayPeriod = (): PayPeriod => {
-    const today = new Date()
-    const currentPeriod = getPayPeriodDates(today)
-    // Go to previous pay period (the last completed one)
-    return navigatePayPeriod(currentPeriod.start, 'prev')
-  }
-
   // Fetch timesheets for View All dialog
   const fetchViewAllTimesheets = async (employeeId: string, period: PayPeriod) => {
     try {
@@ -1095,11 +1095,11 @@ export default function TimesheetPage() {
   }
 
   const handleOpenViewAll = () => {
-    const lastPeriod = getLastPayPeriod()
-    setViewAllPayPeriod(lastPeriod)
+    const currentPeriod = getPayPeriodDates(new Date())
+    setViewAllPayPeriod(currentPeriod)
     setViewAllEmployeeIndex(0)
     if (employees.length > 0) {
-      fetchViewAllTimesheets(employees[0].id, lastPeriod)
+      fetchViewAllTimesheets(employees[0].id, currentPeriod)
     }
     setShowViewAllDialog(true)
   }
@@ -1486,7 +1486,7 @@ export default function TimesheetPage() {
                                     className={isAdmin ? 'cursor-pointer hover:bg-muted px-2 py-1 rounded' : ''}
                                     onClick={() => handleStartEdit(day.date, 'regular_hours', day.timesheet?.regular_hours || 0)}
                                   >
-                                    {day.timesheet?.regular_hours || '-'}
+                                    {day.timesheet?.regular_hours ? formatHoursMinutes(day.timesheet.regular_hours) : '-'}
                                     {isAdmin && <Edit2 className="h-3 w-3 inline ml-1 opacity-30 print:hidden" />}
                                   </span>
                                 )}
@@ -1516,7 +1516,7 @@ export default function TimesheetPage() {
                                     className={isAdmin ? 'cursor-pointer hover:bg-muted px-2 py-1 rounded' : ''}
                                     onClick={() => handleStartEdit(day.date, 'overtime_hours', day.timesheet?.overtime_hours || 0)}
                                   >
-                                    {day.timesheet?.overtime_hours || '-'}
+                                    {day.timesheet?.overtime_hours ? formatHoursMinutes(day.timesheet.overtime_hours) : '-'}
                                     {isAdmin && <Edit2 className="h-3 w-3 inline ml-1 opacity-30 print:hidden" />}
                                   </span>
                                 )}
@@ -1533,7 +1533,7 @@ export default function TimesheetPage() {
                                       className="h-4 w-4 rounded border-slate-600 print:hidden"
                                     />
                                   )}
-                                  <span>{day.timesheet?.pto_hours || '-'}</span>
+                                  <span>{day.timesheet?.pto_hours ? formatHoursMinutes(day.timesheet.pto_hours) : '-'}</span>
                                   {isAdmin && (
                                     <span className="print:hidden flex items-center gap-1">
                                       <button
@@ -1561,7 +1561,7 @@ export default function TimesheetPage() {
                               <td className="px-5 py-4 text-center border border-slate-600 text-slate-200 text-xl">
                                 <div className="flex items-center justify-center gap-1">
                                   <div className="flex flex-col items-center">
-                                    <span>{day.timesheet?.holiday_hours || '-'}</span>
+                                    <span>{day.timesheet?.holiday_hours ? formatHoursMinutes(day.timesheet.holiday_hours) : '-'}</span>
                                     {day.timesheet?.holiday_name && (
                                       <span className="text-xs text-white truncate max-w-[80px]" title={day.timesheet.holiday_name}>
                                         {day.timesheet.holiday_name}
@@ -1596,10 +1596,10 @@ export default function TimesheetPage() {
                           {/* Weekly Totals Row */}
                           <tr style={{ backgroundColor: '#334155' }}>
                             <td colSpan={4} className="px-5 py-4 text-right border border-slate-600 font-semibold text-white text-xl">TOTALS</td>
-                            <td className="px-5 py-4 text-center border border-slate-600 font-semibold text-white text-xl">{week.totals.regular.toFixed(2)}</td>
-                            <td className="px-5 py-4 text-center border border-slate-600 font-semibold text-white text-xl">{week.totals.overtime.toFixed(2)}</td>
-                            <td className="px-5 py-4 text-center border border-slate-600 font-semibold text-white text-xl">{week.totals.pto.toFixed(2)}</td>
-                            <td className="px-5 py-4 text-center border border-slate-600 font-semibold text-white text-xl">{week.totals.holiday.toFixed(2)}</td>
+                            <td className="px-5 py-4 text-center border border-slate-600 font-semibold text-white text-xl">{formatHoursMinutes(week.totals.regular)}</td>
+                            <td className="px-5 py-4 text-center border border-slate-600 font-semibold text-white text-xl">{formatHoursMinutes(week.totals.overtime)}</td>
+                            <td className="px-5 py-4 text-center border border-slate-600 font-semibold text-white text-xl">{formatHoursMinutes(week.totals.pto)}</td>
+                            <td className="px-5 py-4 text-center border border-slate-600 font-semibold text-white text-xl">{formatHoursMinutes(week.totals.holiday)}</td>
                           </tr>
                         </tbody>
                       </table>
@@ -1609,7 +1609,7 @@ export default function TimesheetPage() {
                     <div className="flex justify-end p-4 print:hidden">
                       <div className="border rounded-md p-3 bg-muted/30">
                         <span className="font-semibold">WEEKLY TOTAL: </span>
-                        <span className="text-lg font-bold">{week.totals.total.toFixed(2)} hrs</span>
+                        <span className="text-lg font-bold">{formatHoursMinutes(week.totals.total)}</span>
                       </div>
                     </div>
                   </CardContent>
@@ -1635,11 +1635,11 @@ export default function TimesheetPage() {
                       </thead>
                       <tbody>
                         <tr className="font-bold text-2xl">
-                          <td className="p-4 text-center text-slate-200">{payPeriodTotals.regular.toFixed(2)}</td>
-                          <td className="p-4 text-center text-slate-200">{payPeriodTotals.overtime.toFixed(2)}</td>
-                          <td className="p-4 text-center text-slate-200">{payPeriodTotals.pto.toFixed(2)}</td>
-                          <td className="p-4 text-center text-slate-200">{payPeriodTotals.holiday.toFixed(2)}</td>
-                          <td className="p-4 text-center text-blue-400">{payPeriodTotals.total.toFixed(2)}</td>
+                          <td className="p-4 text-center text-slate-200">{formatHoursMinutes(payPeriodTotals.regular)}</td>
+                          <td className="p-4 text-center text-slate-200">{formatHoursMinutes(payPeriodTotals.overtime)}</td>
+                          <td className="p-4 text-center text-slate-200">{formatHoursMinutes(payPeriodTotals.pto)}</td>
+                          <td className="p-4 text-center text-slate-200">{formatHoursMinutes(payPeriodTotals.holiday)}</td>
+                          <td className="p-4 text-center text-blue-400">{formatHoursMinutes(payPeriodTotals.total)}</td>
                         </tr>
                       </tbody>
                     </table>
@@ -1880,19 +1880,19 @@ export default function TimesheetPage() {
                       <td style={{ border: '1px solid #000', padding: '3px', textAlign: 'center' }}>{formatDate(day.date)}</td>
                       <td style={{ border: '1px solid #000', padding: '3px', textAlign: 'center' }}>{formatTime(day.timesheet?.time_in) || '-'}</td>
                       <td style={{ border: '1px solid #000', padding: '3px', textAlign: 'center' }}>{formatTime(day.timesheet?.time_out) || '-'}</td>
-                      <td style={{ border: '1px solid #000', padding: '3px', textAlign: 'center' }}>{day.timesheet?.regular_hours || '-'}</td>
-                      <td style={{ border: '1px solid #000', padding: '3px', textAlign: 'center' }}>{day.timesheet?.overtime_hours || '-'}</td>
-                      <td style={{ border: '1px solid #000', padding: '3px', textAlign: 'center' }}>{day.timesheet?.pto_hours || '-'}</td>
-                      <td style={{ border: '1px solid #000', padding: '3px', textAlign: 'center' }}>{day.timesheet?.holiday_hours || '-'}</td>
+                      <td style={{ border: '1px solid #000', padding: '3px', textAlign: 'center' }}>{day.timesheet?.regular_hours ? formatHoursMinutes(day.timesheet.regular_hours) : '-'}</td>
+                      <td style={{ border: '1px solid #000', padding: '3px', textAlign: 'center' }}>{day.timesheet?.overtime_hours ? formatHoursMinutes(day.timesheet.overtime_hours) : '-'}</td>
+                      <td style={{ border: '1px solid #000', padding: '3px', textAlign: 'center' }}>{day.timesheet?.pto_hours ? formatHoursMinutes(day.timesheet.pto_hours) : '-'}</td>
+                      <td style={{ border: '1px solid #000', padding: '3px', textAlign: 'center' }}>{day.timesheet?.holiday_hours ? formatHoursMinutes(day.timesheet.holiday_hours) : '-'}</td>
                     </tr>
                   ))}
                   {/* Week Totals Row */}
                   <tr style={{ backgroundColor: '#ddd', fontWeight: 'bold' }}>
                     <td colSpan={4} style={{ border: '1px solid #000', padding: '3px', textAlign: 'right' }}>TOTALS</td>
-                    <td style={{ border: '1px solid #000', padding: '3px', textAlign: 'center' }}>{week.totals.regular.toFixed(2)}</td>
-                    <td style={{ border: '1px solid #000', padding: '3px', textAlign: 'center' }}>{week.totals.overtime.toFixed(2)}</td>
-                    <td style={{ border: '1px solid #000', padding: '3px', textAlign: 'center' }}>{week.totals.pto.toFixed(2)}</td>
-                    <td style={{ border: '1px solid #000', padding: '3px', textAlign: 'center' }}>{week.totals.holiday.toFixed(2)}</td>
+                    <td style={{ border: '1px solid #000', padding: '3px', textAlign: 'center' }}>{formatHoursMinutes(week.totals.regular)}</td>
+                    <td style={{ border: '1px solid #000', padding: '3px', textAlign: 'center' }}>{formatHoursMinutes(week.totals.overtime)}</td>
+                    <td style={{ border: '1px solid #000', padding: '3px', textAlign: 'center' }}>{formatHoursMinutes(week.totals.pto)}</td>
+                    <td style={{ border: '1px solid #000', padding: '3px', textAlign: 'center' }}>{formatHoursMinutes(week.totals.holiday)}</td>
                   </tr>
                 </tbody>
               </table>
@@ -1923,11 +1923,11 @@ export default function TimesheetPage() {
               </thead>
               <tbody>
                 <tr style={{ fontWeight: 'bold', fontSize: '14pt' }}>
-                  <td style={{ border: '1px solid #000', padding: '4px', textAlign: 'center' }}>{payPeriodTotals.regular.toFixed(2)}</td>
-                  <td style={{ border: '1px solid #000', padding: '4px', textAlign: 'center' }}>{payPeriodTotals.overtime.toFixed(2)}</td>
-                  <td style={{ border: '1px solid #000', padding: '4px', textAlign: 'center' }}>{payPeriodTotals.pto.toFixed(2)}</td>
-                  <td style={{ border: '1px solid #000', padding: '4px', textAlign: 'center' }}>{payPeriodTotals.holiday.toFixed(2)}</td>
-                  <td style={{ border: '1px solid #000', padding: '4px', textAlign: 'center' }}>{payPeriodTotals.total.toFixed(2)}</td>
+                  <td style={{ border: '1px solid #000', padding: '4px', textAlign: 'center' }}>{formatHoursMinutes(payPeriodTotals.regular)}</td>
+                  <td style={{ border: '1px solid #000', padding: '4px', textAlign: 'center' }}>{formatHoursMinutes(payPeriodTotals.overtime)}</td>
+                  <td style={{ border: '1px solid #000', padding: '4px', textAlign: 'center' }}>{formatHoursMinutes(payPeriodTotals.pto)}</td>
+                  <td style={{ border: '1px solid #000', padding: '4px', textAlign: 'center' }}>{formatHoursMinutes(payPeriodTotals.holiday)}</td>
+                  <td style={{ border: '1px solid #000', padding: '4px', textAlign: 'center' }}>{formatHoursMinutes(payPeriodTotals.total)}</td>
                 </tr>
               </tbody>
             </table>
@@ -2032,11 +2032,11 @@ export default function TimesheetPage() {
                   </thead>
                   <tbody>
                     <tr className="bg-slate-900 font-bold text-lg">
-                      <td className="px-4 py-3 text-center text-green-400 border-x border-slate-600">{viewAllTotals.regular.toFixed(2)}</td>
-                      <td className="px-4 py-3 text-center text-yellow-400 border-x border-slate-600">{viewAllTotals.overtime.toFixed(2)}</td>
-                      <td className="px-4 py-3 text-center text-purple-400 border-x border-slate-600">{viewAllTotals.pto.toFixed(2)}</td>
-                      <td className="px-4 py-3 text-center text-blue-400 border-x border-slate-600">{viewAllTotals.holiday.toFixed(2)}</td>
-                      <td className="px-4 py-3 text-center text-white border-x border-slate-600">{viewAllTotals.total.toFixed(2)}</td>
+                      <td className="px-4 py-3 text-center text-green-400 border-x border-slate-600">{formatHoursMinutes(viewAllTotals.regular)}</td>
+                      <td className="px-4 py-3 text-center text-yellow-400 border-x border-slate-600">{formatHoursMinutes(viewAllTotals.overtime)}</td>
+                      <td className="px-4 py-3 text-center text-purple-400 border-x border-slate-600">{formatHoursMinutes(viewAllTotals.pto)}</td>
+                      <td className="px-4 py-3 text-center text-blue-400 border-x border-slate-600">{formatHoursMinutes(viewAllTotals.holiday)}</td>
+                      <td className="px-4 py-3 text-center text-white border-x border-slate-600">{formatHoursMinutes(viewAllTotals.total)}</td>
                     </tr>
                   </tbody>
                 </table>
@@ -2079,26 +2079,26 @@ export default function TimesheetPage() {
                             {formatTime(day.timesheet?.time_out)}
                           </td>
                           <td className="px-3 py-2 text-center text-slate-200 border-x border-b border-slate-700">
-                            {day.timesheet?.regular_hours || '-'}
+                            {day.timesheet?.regular_hours ? formatHoursMinutes(day.timesheet.regular_hours) : '-'}
                           </td>
                           <td className="px-3 py-2 text-center text-slate-200 border-x border-b border-slate-700">
-                            {day.timesheet?.overtime_hours || '-'}
+                            {day.timesheet?.overtime_hours ? formatHoursMinutes(day.timesheet.overtime_hours) : '-'}
                           </td>
                           <td className="px-3 py-2 text-center text-slate-200 border-x border-b border-slate-700">
-                            {day.timesheet?.pto_hours || '-'}
+                            {day.timesheet?.pto_hours ? formatHoursMinutes(day.timesheet.pto_hours) : '-'}
                           </td>
                           <td className="px-3 py-2 text-center text-slate-200 border-x border-b border-slate-700">
-                            {day.timesheet?.holiday_hours || '-'}
+                            {day.timesheet?.holiday_hours ? formatHoursMinutes(day.timesheet.holiday_hours) : '-'}
                           </td>
                         </tr>
                       ))}
                       {/* Week Totals Row */}
                       <tr className="bg-slate-700 font-bold">
                         <td colSpan={4} className="px-3 py-2 text-right text-white border-x border-slate-600">WEEK TOTALS:</td>
-                        <td className="px-3 py-2 text-center text-white border-x border-slate-600">{week.totals.regular.toFixed(2)}</td>
-                        <td className="px-3 py-2 text-center text-white border-x border-slate-600">{week.totals.overtime.toFixed(2)}</td>
-                        <td className="px-3 py-2 text-center text-white border-x border-slate-600">{week.totals.pto.toFixed(2)}</td>
-                        <td className="px-3 py-2 text-center text-white border-x border-slate-600">{week.totals.holiday.toFixed(2)}</td>
+                        <td className="px-3 py-2 text-center text-white border-x border-slate-600">{formatHoursMinutes(week.totals.regular)}</td>
+                        <td className="px-3 py-2 text-center text-white border-x border-slate-600">{formatHoursMinutes(week.totals.overtime)}</td>
+                        <td className="px-3 py-2 text-center text-white border-x border-slate-600">{formatHoursMinutes(week.totals.pto)}</td>
+                        <td className="px-3 py-2 text-center text-white border-x border-slate-600">{formatHoursMinutes(week.totals.holiday)}</td>
                       </tr>
                     </tbody>
                   </table>

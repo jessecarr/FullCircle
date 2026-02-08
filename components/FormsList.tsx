@@ -117,8 +117,8 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger, on
     setActiveSearchQuery(searchQuery)
   }
 
-  const fetchAllItems = async () => {
-    setLoading(true)
+  const fetchAllItems = async (silent = false) => {
+    if (!silent) setLoading(true)
     try {
       let allItems: any[] = []
       const vendors = new Set<string>()
@@ -240,7 +240,7 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger, on
         variant: 'destructive',
       })
     } finally {
-      setLoading(false)
+      if (!silent) setLoading(false)
     }
   }
 
@@ -273,7 +273,7 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger, on
         description: 'Item moved to archive',
       })
 
-      fetchAllItems()
+      fetchAllItems(true)
     } catch (error) {
       toast({
         title: 'Error',
@@ -306,7 +306,7 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger, on
       setShowStatusDialog(false)
       setStatusUpdateItem(null)
       setNewStatus('')
-      fetchAllItems()
+      fetchAllItems(true)
     } catch (error) {
       toast({
         title: 'Error',
@@ -436,7 +436,7 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger, on
       setSelectedItems(new Set())
       setShowBulkStatusDialog(false)
       setBulkNewStatus('')
-      fetchAllItems()
+      fetchAllItems(true)
     } catch (error) {
       toast({
         title: 'Error',
@@ -486,7 +486,7 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger, on
       setSelectedItems(new Set())
       setShowBulkDeleteDialog(false)
       setBulkDeleteConfirmation('')
-      fetchAllItems()
+      fetchAllItems(true)
     } catch (error) {
       toast({
         title: 'Error',
