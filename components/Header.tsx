@@ -56,7 +56,7 @@ export function Header({ onTitleClick }: HeaderProps = {}) {
     <>
       <SideNav />
       <header className="page-header border-b shadow-sm">
-        <div className="container mx-auto px-4 py-4">
+        <div className="px-4 py-4">
           <div className="flex items-center justify-between">
             <h1 
               className="text-2xl font-bold text-foreground cursor-pointer hover:text-blue-400 transition-colors ml-14"
