@@ -1,5 +1,5 @@
-import { createClient } from '@supabase/supabase-js'
 import { NextResponse } from 'next/server'
+import { requireAuth, createAdminClient } from '@/lib/supabase/api'
 
 const FORM_TYPE_PREFIXES: Record<string, string> = {
   'special_order': 'SPC',
@@ -11,6 +11,9 @@ const FORM_TYPE_PREFIXES: Record<string, string> = {
 }
 
 export async function POST(request: Request) {
+  const auth = await requireAuth()
+  if (auth.error) return auth.error
+
   try {
     const body = await request.json()
     const { formType } = body
@@ -23,28 +26,7 @@ export async function POST(request: Request) {
     }
 
     const prefix = FORM_TYPE_PREFIXES[formType]
-
-    // Create supabase client with service role key for bypassing RLS
-    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
-    const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY
-
-    if (!supabaseUrl || !supabaseServiceKey) {
-      console.error('Missing Supabase credentials:', { 
-        hasUrl: !!supabaseUrl, 
-        hasServiceKey: !!supabaseServiceKey 
-      })
-      return NextResponse.json({ 
-        error: 'Server configuration error', 
-        details: 'Missing SUPABASE_SERVICE_ROLE_KEY environment variable' 
-      }, { status: 500 })
-    }
-
-    const supabaseAdmin = createClient(supabaseUrl, supabaseServiceKey, {
-      auth: {
-        autoRefreshToken: false,
-        persistSession: false
-      }
-    })
+    const supabaseAdmin = createAdminClient()
 
     // Use the database function for atomic order number generation
     const { data, error } = await supabaseAdmin.rpc('generate_order_number', {

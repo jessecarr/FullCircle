@@ -1,18 +1,11 @@
-import { createClient } from '@supabase/supabase-js'
 import { NextResponse } from 'next/server'
-
-const supabaseAdmin = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!,
-  {
-    auth: {
-      autoRefreshToken: false,
-      persistSession: false
-    }
-  }
-)
+import { requireAdmin, createAdminClient } from '@/lib/supabase/api'
 
 export async function POST() {
+  const auth = await requireAdmin()
+  if (auth.error) return auth.error
+  const supabaseAdmin = createAdminClient()
+
   try {
     console.log('Creating dummy data...')
 

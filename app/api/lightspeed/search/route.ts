@@ -1,8 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { supabaseAdmin } from '@/lib/supabase'
+import { requireAuth, createAdminClient } from '@/lib/supabase/api'
 import { searchItems } from '@/lib/lightspeed'
 
 export async function GET(request: NextRequest) {
+  const auth = await requireAuth()
+  if (auth.error) return auth.error
+  const supabaseAdmin = createAdminClient()
+
   const query = request.nextUrl.searchParams.get('q')
 
   if (!query || query.trim().length < 1) {

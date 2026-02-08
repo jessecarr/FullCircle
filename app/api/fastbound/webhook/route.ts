@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { supabase } from '@/lib/supabase'
+import { createAdminClient } from '@/lib/supabase/api'
 import { type FastBoundItem } from '@/lib/fastbound'
 
 // Webhook endpoint for FastBound to send events to
@@ -184,7 +184,8 @@ async function handleDispositionItemsEdited(payload: any) {
     if (item.price !== undefined) {
       const itemId = item.id || item.itemId
       if (itemId) {
-        await supabase
+        const supabaseAdmin = createAdminClient()
+        await supabaseAdmin
           .from('fastbound_inventory')
           .update({ price: item.price, updated_at: new Date().toISOString() })
           .eq('fastbound_item_id', itemId)
@@ -236,6 +237,7 @@ async function handleItemDeleted(payload: any) {
 // - acquire_Date (acquisition date)
 // - disposed (boolean for disposal status)
 async function upsertItems(items: any[], defaultStatus: string) {
+  const supabaseAdmin = createAdminClient()
   const mappedItems = items.map(item => ({
     fastbound_item_id: item.id,
     fastbound_acquisition_id: item.acquisitionContactId || null,
@@ -264,7 +266,7 @@ async function upsertItems(items: any[], defaultStatus: string) {
     }
   }))
 
-  const { error } = await supabase
+  const { error } = await supabaseAdmin
     .from('fastbound_inventory')
     .upsert(mappedItems, { 
       onConflict: 'fastbound_item_id',
@@ -281,13 +283,14 @@ async function upsertItems(items: any[], defaultStatus: string) {
 
 // Helper: Update item status
 async function updateItemStatus(fastboundItemId: string, status: string, extraData?: object) {
+  const supabaseAdmin = createAdminClient()
   const updateData: any = { 
     status, 
     updated_at: new Date().toISOString(),
     ...extraData
   }
 
-  const { error } = await supabase
+  const { error } = await supabaseAdmin
     .from('fastbound_inventory')
     .update(updateData)
     .eq('fastbound_item_id', fastboundItemId)

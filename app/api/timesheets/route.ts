@@ -1,25 +1,19 @@
-import { createClient } from '@supabase/supabase-js'
 import { NextResponse } from 'next/server'
-
-const supabaseAdmin = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!,
-  {
-    auth: {
-      autoRefreshToken: false,
-      persistSession: false
-    }
-  }
-)
+import { requireAuth, createAdminClient } from '@/lib/supabase/api'
 
 // GET - Fetch timesheets (filtered by employee_id for non-admins)
 export async function GET(request: Request) {
+  const auth = await requireAuth()
+  if (auth.error) return auth.error
+  const supabaseAdmin = createAdminClient()
+
   try {
     const { searchParams } = new URL(request.url)
     const employeeId = searchParams.get('employee_id')
     const payPeriodStart = searchParams.get('pay_period_start')
     const payPeriodEnd = searchParams.get('pay_period_end')
-    const isAdmin = searchParams.get('is_admin') === 'true'
+    // Verify admin role from JWT, not from client-sent query param
+    const isAdmin = auth.user!.user_metadata?.role === 'admin'
 
     let query = supabaseAdmin
       .from('timesheets')
@@ -29,6 +23,9 @@ export async function GET(request: Request) {
     // If not admin, only show their own timesheets
     if (!isAdmin && employeeId) {
       query = query.eq('employee_id', employeeId)
+    } else if (!isAdmin) {
+      // Non-admin without employee_id filter: force to own data
+      query = query.eq('employee_id', auth.user!.id)
     } else if (employeeId) {
       // Admin filtering by specific employee
       query = query.eq('employee_id', employeeId)
@@ -55,6 +52,10 @@ export async function GET(request: Request) {
 
 // POST - Create or update timesheet entry
 export async function POST(request: Request) {
+  const auth = await requireAuth()
+  if (auth.error) return auth.error
+  const supabaseAdmin = createAdminClient()
+
   try {
     const body = await request.json()
     const { employee_id, date, time_in, time_out, regular_hours, overtime_hours, pto_hours, holiday_hours, pay_period_start, pay_period_end, notes, pto_notes, holiday_name } = body
@@ -127,6 +128,13 @@ export async function POST(request: Request) {
 
 // PUT - Update timesheet entry (admin only for manual edits)
 export async function PUT(request: Request) {
+  const auth = await requireAuth()
+  if (auth.error) return auth.error
+  if (auth.user!.user_metadata?.role !== 'admin') {
+    return NextResponse.json({ error: 'Admin access required' }, { status: 403 })
+  }
+  const supabaseAdmin = createAdminClient()
+
   try {
     const body = await request.json()
     const { id, time_in, time_out, regular_hours, overtime_hours, pto_hours, holiday_hours, notes } = body
@@ -159,6 +167,13 @@ export async function PUT(request: Request) {
 
 // DELETE - Delete timesheet entry (admin only)
 export async function DELETE(request: Request) {
+  const auth = await requireAuth()
+  if (auth.error) return auth.error
+  if (auth.user!.user_metadata?.role !== 'admin') {
+    return NextResponse.json({ error: 'Admin access required' }, { status: 403 })
+  }
+  const supabaseAdmin = createAdminClient()
+
   try {
     const { id } = await request.json()
 

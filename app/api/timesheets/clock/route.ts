@@ -1,16 +1,5 @@
-import { createClient } from '@supabase/supabase-js'
 import { NextResponse } from 'next/server'
-
-const supabaseAdmin = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!,
-  {
-    auth: {
-      autoRefreshToken: false,
-      persistSession: false
-    }
-  }
-)
+import { requireAuth, createAdminClient } from '@/lib/supabase/api'
 
 // Helper to format date as YYYY-MM-DD
 function formatDateString(d: Date): string {
@@ -51,6 +40,7 @@ function calculateHours(timeIn: string, timeOut: string): number {
 
 // Helper to calculate regular and overtime hours for a week
 async function calculateWeeklyHours(employeeId: string, weekStart: Date, weekEnd: Date, currentDayHours: number): Promise<{ regular: number; overtime: number }> {
+  const supabaseAdmin = createAdminClient()
   // Get all timesheets for the week
   const { data: weekTimesheets } = await supabaseAdmin
     .from('timesheets')
@@ -93,6 +83,10 @@ function getWeekBoundaries(date: Date): { start: Date; end: Date } {
 
 // POST - Clock in or clock out
 export async function POST(request: Request) {
+  const auth = await requireAuth()
+  if (auth.error) return auth.error
+  const supabaseAdmin = createAdminClient()
+
   try {
     const { employee_id, action } = await request.json()
     
@@ -198,6 +192,10 @@ export async function POST(request: Request) {
 
 // GET - Get current clock status for employee
 export async function GET(request: Request) {
+  const auth = await requireAuth()
+  if (auth.error) return auth.error
+  const supabaseAdmin = createAdminClient()
+
   try {
     const { searchParams } = new URL(request.url)
     const employeeId = searchParams.get('employee_id')

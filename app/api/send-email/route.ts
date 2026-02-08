@@ -1,7 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server'
 import nodemailer from 'nodemailer'
+import { requireAuth } from '@/lib/supabase/api'
 
 export async function POST(request: NextRequest) {
+  const auth = await requireAuth()
+  if (auth.error) return auth.error
+
   try {
     const body = await request.json()
     const { to, subject, htmlContent, imageBase64, imageFilename } = body

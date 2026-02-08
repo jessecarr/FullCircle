@@ -32,11 +32,11 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const router = useRouter()
 
   useEffect(() => {
-    // Get initial session
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      setUser(session?.user ?? null)
-      if (session?.user) {
-        const metadata = session.user.user_metadata
+    // Get initial user (validates against Supabase servers, not just local storage)
+    supabase.auth.getUser().then(({ data: { user } }) => {
+      setUser(user ?? null)
+      if (user) {
+        const metadata = user.user_metadata
         setUserRole(metadata?.role || null)
         setUserName(metadata?.name || null)
         setEmployeeId(metadata?.employee_id || null)

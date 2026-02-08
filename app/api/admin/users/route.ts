@@ -1,18 +1,10 @@
-import { createClient } from '@supabase/supabase-js'
 import { NextResponse } from 'next/server'
-
-const supabaseAdmin = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!,
-  {
-    auth: {
-      autoRefreshToken: false,
-      persistSession: false
-    }
-  }
-)
+import { requireAdmin, createAdminClient } from '@/lib/supabase/api'
 
 export async function GET() {
+  const auth = await requireAdmin()
+  if (auth.error) return auth.error
+  const supabaseAdmin = createAdminClient()
   try {
     const { data, error } = await supabaseAdmin.auth.admin.listUsers()
     
@@ -42,6 +34,10 @@ export async function GET() {
 }
 
 export async function POST(request: Request) {
+  const auth = await requireAdmin()
+  if (auth.error) return auth.error
+  const supabaseAdmin = createAdminClient()
+
   try {
     const { email, password, name, role } = await request.json()
 
@@ -92,6 +88,10 @@ export async function POST(request: Request) {
 }
 
 export async function PUT(request: Request) {
+  const auth = await requireAdmin()
+  if (auth.error) return auth.error
+  const supabaseAdmin = createAdminClient()
+
   try {
     const { userId, role, name, password, is_active } = await request.json()
 
@@ -158,6 +158,10 @@ export async function PUT(request: Request) {
 }
 
 export async function DELETE(request: Request) {
+  const auth = await requireAdmin()
+  if (auth.error) return auth.error
+  const supabaseAdmin = createAdminClient()
+
   try {
     const { userId } = await request.json()
 

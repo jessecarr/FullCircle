@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server'
 import nodemailer from 'nodemailer'
+import { requireAuth } from '@/lib/supabase/api'
 
 interface PendingOrderData {
   orderNumber: string
@@ -13,6 +14,9 @@ interface PendingOrderData {
 }
 
 export async function POST(request: Request) {
+  const auth = await requireAuth()
+  if (auth.error) return auth.error
+
   try {
     const orderData: PendingOrderData = await request.json()
 

@@ -1,19 +1,12 @@
-import { createClient } from '@supabase/supabase-js'
 import { NextResponse } from 'next/server'
-
-const supabaseAdmin = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!,
-  {
-    auth: {
-      autoRefreshToken: false,
-      persistSession: false
-    }
-  }
-)
+import { requireAuth, createAdminClient } from '@/lib/supabase/api'
 
 // GET - Fetch all employees (for admin dropdown and employee list)
 export async function GET(request: Request) {
+  const auth = await requireAuth()
+  if (auth.error) return auth.error
+  const supabaseAdmin = createAdminClient()
+
   try {
     const { searchParams } = new URL(request.url)
     const email = searchParams.get('email')

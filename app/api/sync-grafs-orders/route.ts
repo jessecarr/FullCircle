@@ -1,18 +1,11 @@
-import { createClient } from '@supabase/supabase-js'
 import { NextResponse } from 'next/server'
-
-const supabaseAdmin = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!,
-  {
-    auth: {
-      autoRefreshToken: false,
-      persistSession: false
-    }
-  }
-)
+import { requireAuth, createAdminClient } from '@/lib/supabase/api'
 
 export async function POST(request: Request) {
+  const auth = await requireAuth()
+  if (auth.error) return auth.error
+  const supabaseAdmin = createAdminClient()
+
   try {
     const { action, deletedDate, newDate, changedDate } = await request.json()
 
@@ -98,6 +91,10 @@ export async function POST(request: Request) {
 
 // Update a single order's expected delivery date
 export async function PUT(request: Request) {
+  const auth = await requireAuth()
+  if (auth.error) return auth.error
+  const supabaseAdmin = createAdminClient()
+
   try {
     const { trackingId, newDate } = await request.json()
 

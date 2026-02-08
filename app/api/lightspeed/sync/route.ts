@@ -1,8 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { supabaseAdmin } from '@/lib/supabase'
+import { requireAuth, createAdminClient } from '@/lib/supabase/api'
 import { syncInventoryLog } from '@/lib/lightspeed'
 
 export async function POST(request: NextRequest) {
+  const auth = await requireAuth()
+  if (auth.error) return auth.error
+  const supabaseAdmin = createAdminClient()
+
   try {
     const { type = 'incremental' } = await request.json()
 
@@ -96,6 +100,10 @@ export async function POST(request: NextRequest) {
 }
 
 export async function GET() {
+  const auth = await requireAuth()
+  if (auth.error) return auth.error
+  const supabaseAdmin = createAdminClient()
+
   try {
     const { data: lastSync } = await supabaseAdmin
       .from('lightspeed_sync_status')

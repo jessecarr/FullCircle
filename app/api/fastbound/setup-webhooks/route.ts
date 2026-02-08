@@ -1,10 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { getFastBoundClient } from '@/lib/fastbound'
+import { requireAdmin } from '@/lib/supabase/api'
 
 // API to setup webhooks in FastBound
 // This registers your webhook URL with FastBound so they send events to your app
 
 export async function POST(request: NextRequest) {
+  const auth = await requireAdmin()
+  if (auth.error) return auth.error
   const apiKey = process.env.FASTBOUND_API_KEY
   const accountNumber = process.env.FASTBOUND_ACCOUNT_NUMBER
 
@@ -63,6 +66,8 @@ export async function POST(request: NextRequest) {
 
 // GET - List existing webhooks
 export async function GET() {
+  const auth = await requireAdmin()
+  if (auth.error) return auth.error
   const apiKey = process.env.FASTBOUND_API_KEY
   const accountNumber = process.env.FASTBOUND_ACCOUNT_NUMBER
 
@@ -92,6 +97,8 @@ export async function GET() {
 
 // DELETE - Remove a webhook
 export async function DELETE(request: NextRequest) {
+  const auth = await requireAdmin()
+  if (auth.error) return auth.error
   const apiKey = process.env.FASTBOUND_API_KEY
   const accountNumber = process.env.FASTBOUND_ACCOUNT_NUMBER
 

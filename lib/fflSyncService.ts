@@ -1,4 +1,4 @@
-import { supabase, supabaseAdmin } from './supabase'
+import { createAdminClient } from './supabase/api'
 import { FFLContact, FFLSyncResult } from './fflTypes'
 import { downloadAndParseATFDatabase, parseATFExcelBuffer } from './atfParser'
 
@@ -95,6 +95,7 @@ export class FFLSyncService {
 
         // Upsert batch - update on conflict with license_number
         // Use supabaseAdmin to bypass RLS for bulk import
+        const supabaseAdmin = createAdminClient()
         const { data, error } = await supabaseAdmin
           .from('ffl_contacts')
           .upsert(records, {
@@ -135,25 +136,26 @@ export class FFLSyncService {
     oldestRecord: string | null
     newestRecord: string | null
   }> {
-    const { count } = await supabase
+    const supabaseAdmin = createAdminClient()
+    const { count } = await supabaseAdmin
       .from('ffl_contacts')
       .select('*', { count: 'exact', head: true })
 
-    const { data: lastSynced } = await supabase
+    const { data: lastSynced } = await supabaseAdmin
       .from('ffl_contacts')
       .select('last_synced_at')
       .order('last_synced_at', { ascending: false })
       .limit(1)
       .single()
 
-    const { data: oldest } = await supabase
+    const { data: oldest } = await supabaseAdmin
       .from('ffl_contacts')
       .select('created_at')
       .order('created_at', { ascending: true })
       .limit(1)
       .single()
 
-    const { data: newest } = await supabase
+    const { data: newest } = await supabaseAdmin
       .from('ffl_contacts')
       .select('created_at')
       .order('created_at', { ascending: false })
@@ -185,7 +187,8 @@ export async function searchFFLContacts(
     return []
   }
 
-  // Use supabaseAdmin to bypass RLS for searches
+  // Use admin client to bypass RLS for searches
+  const supabaseAdmin = createAdminClient()
   let queryBuilder = supabaseAdmin
     .from('ffl_contacts')
     .select('*')
@@ -241,7 +244,8 @@ export async function searchFFLContacts(
 
 // Get a single FFL by license number
 export async function getFFLByLicenseNumber(licenseNumber: string): Promise<FFLContact | null> {
-  // Use supabaseAdmin to bypass RLS
+  // Use admin client to bypass RLS
+  const supabaseAdmin = createAdminClient()
   const { data, error } = await supabaseAdmin
     .from('ffl_contacts')
     .select('*')

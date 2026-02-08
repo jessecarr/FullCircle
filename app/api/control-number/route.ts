@@ -1,8 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { supabase } from '@/lib/supabase'
+import { requireAuth } from '@/lib/supabase/api'
+import { createAdminClient } from '@/lib/supabase/api'
 
 export async function GET(request: NextRequest) {
   try {
+    const auth = await requireAuth()
+    if (auth.error) return auth.error
+
     const { searchParams } = new URL(request.url)
     const controlNumber = searchParams.get('controlNumber')
 
@@ -10,7 +14,8 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({ error: 'Control number is required' }, { status: 400 })
     }
 
-    const { data, error } = await supabase
+    const supabaseAdmin = createAdminClient()
+    const { data, error } = await supabaseAdmin
       .from('fastbound_inventory')
       .select('*')
       .eq('control_number', controlNumber.toUpperCase())
@@ -18,7 +23,6 @@ export async function GET(request: NextRequest) {
 
     if (error) {
       if (error.code === 'PGRST116') {
-        // No rows returned
         return NextResponse.json({ error: 'Control number not found' }, { status: 404 })
       }
       return NextResponse.json({ error: error.message }, { status: 500 })

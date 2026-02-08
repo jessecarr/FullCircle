@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { FFLSyncService } from '@/lib/fflSyncService'
-import { supabaseAdmin } from '@/lib/supabase'
+import { requireAuth, createAdminClient } from '@/lib/supabase/api'
 
 // Rate limiting: track last upload time per user
 const uploadRateLimit = new Map<string, number>()
@@ -18,6 +18,7 @@ async function logAuditEvent(
   request: NextRequest
 ) {
   try {
+    const supabaseAdmin = createAdminClient()
     await supabaseAdmin.from('audit_logs').insert({
       action,
       resource_type: resourceType,
@@ -31,6 +32,9 @@ async function logAuditEvent(
 }
 
 export async function POST(request: NextRequest) {
+  const auth = await requireAuth()
+  if (auth.error) return auth.error
+
   try {
     // Rate limiting check using IP address
     const clientIp = request.headers.get('x-forwarded-for') || request.headers.get('x-real-ip') || 'anonymous'
@@ -144,6 +148,9 @@ export async function POST(request: NextRequest) {
 }
 
 export async function GET() {
+  const auth = await requireAuth()
+  if (auth.error) return auth.error
+
   try {
     const syncService = new FFLSyncService()
     const stats = await syncService.getSyncStats()

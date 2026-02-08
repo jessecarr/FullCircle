@@ -1,7 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { searchFFLContacts, getFFLByLicenseNumber } from '@/lib/fflSyncService'
+import { requireAuth } from '@/lib/supabase/api'
 
 export async function GET(request: NextRequest) {
+  const auth = await requireAuth()
+  if (auth.error) return auth.error
+
   try {
     const { searchParams } = new URL(request.url)
     const query = searchParams.get('q') || ''
@@ -41,6 +45,9 @@ export async function GET(request: NextRequest) {
 }
 
 export async function POST(request: NextRequest) {
+  const auth = await requireAuth()
+  if (auth.error) return auth.error
+
   try {
     const body = await request.json()
     const { licenseNumber } = body

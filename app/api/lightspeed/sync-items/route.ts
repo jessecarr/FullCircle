@@ -1,10 +1,14 @@
 import { NextResponse } from 'next/server'
-import { supabaseAdmin } from '@/lib/supabase'
+import { requireAuth, createAdminClient } from '@/lib/supabase/api'
 import { syncItems } from '@/lib/lightspeed'
 
 export const maxDuration = 300 // 5 minute timeout
 
 export async function POST() {
+  const auth = await requireAuth()
+  if (auth.error) return auth.error
+  const supabaseAdmin = createAdminClient()
+
   try {
     if (!process.env.LIGHTSPEED_ACCESS_TOKEN || !process.env.LIGHTSPEED_ACCOUNT_ID) {
       return NextResponse.json(
@@ -16,7 +20,7 @@ export async function POST() {
     console.log('[Sync-Items] Starting items catalog sync...')
     let totalItemsSynced = 0
 
-    await syncItems(async (records) => {
+    await syncItems(async (records: any[]) => {
       const { error } = await supabaseAdmin
         .from('lightspeed_items')
         .upsert(records, { onConflict: 'item_id' })

@@ -1,8 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { analyzeItemsFromSupabase, OrderRecommendation } from '@/lib/lightspeed'
-import { supabaseAdmin } from '@/lib/supabase'
+import { requireAuth, createAdminClient } from '@/lib/supabase/api'
 
 export async function POST(request: NextRequest) {
+  const auth = await requireAuth()
+  if (auth.error) return auth.error
+  const supabaseAdmin = createAdminClient()
+
   try {
     const { itemIds } = await request.json()
 

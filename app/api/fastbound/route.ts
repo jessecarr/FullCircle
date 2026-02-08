@@ -1,9 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { supabase } from '@/lib/supabase'
+import { requireAuth, createAdminClient } from '@/lib/supabase/api'
 import { getFastBoundClient, mapFastboundToForm, type FastBoundItem } from '@/lib/fastbound'
 
 // GET - Fetch items from FastBound
 export async function GET(request: NextRequest) {
+  const auth = await requireAuth()
+  if (auth.error) return auth.error
+
   const apiKey = process.env.FASTBOUND_API_KEY
   const accountNumber = process.env.FASTBOUND_ACCOUNT_NUMBER
 
@@ -43,6 +46,9 @@ export async function GET(request: NextRequest) {
 
 // POST - Sync FastBound items to Supabase OR handle webhook
 export async function POST(request: NextRequest) {
+  const auth = await requireAuth()
+  if (auth.error) return auth.error
+
   try {
     const body = await request.json()
     
@@ -197,7 +203,8 @@ async function upsertItemsToSupabase(items: any[]) {
     }
   }))
 
-  const { data, error } = await supabase
+  const supabaseAdmin = createAdminClient()
+  const { data, error } = await supabaseAdmin
     .from('fastbound_inventory')
     .upsert(mappedItems, { 
       onConflict: 'fastbound_item_id',
@@ -215,7 +222,8 @@ async function upsertItemsToSupabase(items: any[]) {
 
 // Helper: Update item status in Supabase
 async function updateItemStatus(fastboundItemId: string, status: string) {
-  const { error } = await supabase
+  const supabaseAdmin = createAdminClient()
+  const { error } = await supabaseAdmin
     .from('fastbound_inventory')
     .update({ status, updated_at: new Date().toISOString() })
     .eq('fastbound_item_id', fastboundItemId)
