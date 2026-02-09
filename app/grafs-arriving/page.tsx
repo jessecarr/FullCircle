@@ -553,7 +553,7 @@ export default function GrafsArrivingPage() {
   return (
     <div className="min-h-screen bg-background">
       <Header />
-      <main className="container mx-auto px-4 py-8">
+      <main className="zoom-slightly-out container mx-auto px-4 py-8">
 
 
         <div className="mb-8">

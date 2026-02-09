@@ -247,9 +247,9 @@ form, .form-container {
 }
 
 .landing-card:hover {
-  border-color: color-mix(in srgb, var(--primary) 50%, var(--border)) !important;
+  border-color: #0a84ff !important;
   transform: translateY(-1px) !important;
-  box-shadow: 0 4px 16px rgba(10, 132, 255, 0.1) !important;
+  box-shadow: 0 0 0 3px rgba(10, 132, 255, 0.4), 0 4px 20px rgba(10, 132, 255, 0.2) !important;
 }
 
 /* Page header - matches v0: bg-background/80 backdrop-blur-xl */
@@ -309,7 +309,7 @@ form, .form-container {
 /* Form field labels */
 label, .label, [class*="Label"] {
   font-weight: 500 !important;
-  color: var(--muted-foreground) !important;
+  color: #ffffff !important;
 }
 
 /* Form section headers */
@@ -338,9 +338,9 @@ label, .label, [class*="Label"] {
 }
 
 .view-all-form-card:hover {
-  border-color: color-mix(in srgb, var(--primary) 40%, var(--border)) !important;
+  border-color: #0a84ff !important;
   transform: translateY(-1px) !important;
-  box-shadow: 0 4px 16px rgba(10, 132, 255, 0.08) !important;
+  box-shadow: 0 0 0 3px rgba(10, 132, 255, 0.4), 0 4px 20px rgba(10, 132, 255, 0.2) !important;
 }
 
 [data-radix-dialog-title] {
@@ -666,8 +666,8 @@ button.field-error[role="combobox"] {
 }
 
 .dashboard-form-card:hover {
-  border-color: var(--border) !important;
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2) !important;
+  border-color: #0a84ff !important;
+  box-shadow: 0 0 0 3px rgba(10, 132, 255, 0.4), 0 8px 24px rgba(10, 132, 255, 0.2) !important;
   transform: translateY(-2px);
 }
 
@@ -688,9 +688,36 @@ button.field-error[role="combobox"] {
 }
 
 .quick-stat-card:hover {
-  border-color: rgba(59, 130, 246, 0.3) !important;
+  border-color: #0a84ff !important;
   background: #111d32 !important;
   transform: translateY(-1px);
+  box-shadow: 0 0 0 3px rgba(10, 132, 255, 0.4), 0 4px 20px rgba(10, 132, 255, 0.2) !important;
+}
+
+/* ================================================
+   PAGE ZOOM / SCALE
+   - Header: 125% (zoomed in look)
+   - Landing page content: 125% (zoomed in look)
+   - All other page content: 80% (zoomed out, see more)
+   ================================================ */
+header {
+  zoom: 1.25;
+}
+
+main {
+  zoom: 0.8;
+}
+
+main.landing-main {
+  zoom: 1.25;
+}
+
+main.zoom-extra-out {
+  zoom: 0.64;
+}
+
+main.zoom-slightly-out {
+  zoom: 0.72;
 }
 
 /* ================================================
