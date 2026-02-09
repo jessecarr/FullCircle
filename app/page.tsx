@@ -12,19 +12,11 @@ import { QuoteForm } from '@/components/forms/QuoteForm'
 import { FormsList } from '@/components/FormsList'
 import { FormViewDialog } from '@/components/FormViewDialog'
 import { Button } from '@/components/ui/button'
-import { ChevronDown, List, ArrowLeft, Printer } from 'lucide-react'
 import { useAuth } from '@/hooks/useAuth'
 import { useNavigationGuard } from '@/hooks/useNavigationGuard'
 import { Header } from '@/components/Header'
 import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu'
-import {
   AlertDialog,
-  AlertDialogAction,
   AlertDialogCancel,
   AlertDialogContent,
   AlertDialogDescription,
@@ -66,10 +58,6 @@ function HomeContent() {
   const [editingItem, setEditingItem] = useState<any>(null)
   const [viewingItem, setViewingItem] = useState<any>(null)
   const [refreshTrigger, setRefreshTrigger] = useState(0)
-  const [pendingFormSwitch, setPendingFormSwitch] = useState<string | null>(null)
-  const [showConfirmDialog, setShowConfirmDialog] = useState(false)
-  const [showDashboardDialog, setShowDashboardDialog] = useState(false)
-  const [showViewAllDialog, setShowViewAllDialog] = useState(false)
   const [allItems, setAllItems] = useState<any[]>([])
   const [currentViewIndex, setCurrentViewIndex] = useState(-1)
   const [showCompleteEmailPrompt, setShowCompleteEmailPrompt] = useState(false)
@@ -164,73 +152,6 @@ function HomeContent() {
     setViewMode('form')
   }
 
-  const handleFormSelect = (formType: string) => {
-    // Skip confirmation dialog if we're on the view all page (no form being edited)
-    if (viewMode === 'list') {
-      // Update URL and navigate
-      window.location.href = `/?tab=${formType}`
-      return
-    }
-    setPendingFormSwitch(formType)
-    setShowConfirmDialog(true)
-  }
-
-  const confirmFormSwitch = () => {
-    if (pendingFormSwitch) {
-      // Update URL and navigate - this ensures browser refresh works
-      window.location.href = `/?tab=${pendingFormSwitch}`
-      return
-    }
-    setShowConfirmDialog(false)
-    setPendingFormSwitch(null)
-  }
-
-  const cancelFormSwitch = () => {
-    setShowConfirmDialog(false)
-    setPendingFormSwitch(null)
-  }
-
-  const handleDashboardClick = () => {
-    console.log('Dashboard clicked, viewMode:', viewMode, 'editingItem:', editingItem);
-    // Always show dialog when on a form to prevent accidental navigation
-    if (viewMode === 'form') {
-      setShowDashboardDialog(true)
-    } else {
-      router.push('/landing')
-    }
-  }
-
-  const confirmDashboardNavigation = () => {
-    console.log('Confirming dashboard navigation');
-    setShowDashboardDialog(false)
-    router.push('/landing')
-  }
-
-  const cancelDashboardNavigation = () => {
-    setShowDashboardDialog(false)
-  }
-
-  const handleViewAllClick = () => {
-    console.log('View All clicked, viewMode:', viewMode, 'editingItem:', editingItem);
-    // Always show dialog when on a form to prevent accidental navigation
-    if (viewMode === 'form') {
-      setShowViewAllDialog(true)
-    } else {
-      // Update URL and navigate
-      window.location.href = '/?tab=view-all'
-    }
-  }
-
-  const confirmViewAllNavigation = () => {
-    console.log('Confirming view all navigation');
-    setShowViewAllDialog(false)
-    // Update URL and navigate
-    window.location.href = '/?tab=view-all'
-  }
-
-  const cancelViewAllNavigation = () => {
-    setShowViewAllDialog(false)
-  }
 
   const handleToggleItemCompleted = async (itemIndex: number, completed: boolean) => {
     if (!viewingItem || viewingItem._formType !== 'special_orders') return
@@ -492,7 +413,7 @@ function HomeContent() {
 
   return (
     <div className="min-h-screen bg-background">
-      <Header onTitleClick={handleDashboardClick} />
+      <Header />
 
       <main className="container mx-auto px-4 py-8">
         <Tabs value={activeTab} onValueChange={(value) => {
@@ -500,87 +421,6 @@ function HomeContent() {
           setViewMode('form')
           setEditingItem(null)
         }}>
-          <div className="flex items-center justify-between mb-6">
-            <Button
-              variant="outline"
-              onClick={handleDashboardClick}
-            >
-              <ArrowLeft className="h-4 w-4 mr-2" />
-              Return to Dashboard
-            </Button>
-
-            <div className="flex gap-2">
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <Button variant={viewMode === 'form' ? 'default' : 'outline'}>
-                    New Form
-                    <ChevronDown className="h-4 w-4 ml-2" />
-                  </Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent>
-                  <DropdownMenuItem 
-                    onClick={() => handleFormSelect('special-order')}
-                    className="cursor-pointer"
-                  >
-                    Special Order
-                  </DropdownMenuItem>
-                  <DropdownMenuItem 
-                    onClick={() => handleFormSelect('inbound-transfer')}
-                    className="cursor-pointer"
-                  >
-                    Inbound Transfer
-                  </DropdownMenuItem>
-                  <DropdownMenuItem 
-                    onClick={() => handleFormSelect('suppressor-approval')}
-                    className="cursor-pointer"
-                  >
-                    Suppressor Approval
-                  </DropdownMenuItem>
-                  <DropdownMenuItem 
-                    onClick={() => handleFormSelect('outbound-transfer')}
-                    className="cursor-pointer"
-                  >
-                    Outbound Transfer
-                  </DropdownMenuItem>
-                  <DropdownMenuItem 
-                    onClick={() => handleFormSelect('consignment')}
-                    className="cursor-pointer"
-                  >
-                    Consignment
-                  </DropdownMenuItem>
-                  <DropdownMenuItem 
-                    onClick={() => handleFormSelect('quote')}
-                    className="cursor-pointer"
-                  >
-                    Quote
-                  </DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
-              {viewMode === 'form' && (
-                <Button
-                  variant="outline"
-                  size="icon"
-                  onClick={() => {
-                    // Trigger print from the active form component
-                    const printButton = document.querySelector('[data-print-form]') as HTMLButtonElement
-                    if (printButton) {
-                      printButton.click()
-                    }
-                  }}
-                  title="Print Form"
-                >
-                  <Printer className="h-4 w-4" />
-                </Button>
-              )}
-              <Button
-                variant={viewMode === 'list' ? 'default' : 'outline'}
-                onClick={handleViewAllClick}
-              >
-                <List className="h-4 w-4 mr-2" />
-                View All
-              </Button>
-            </div>
-          </div>
 
           {viewMode === 'list' ? (
             <FormsList
@@ -659,103 +499,6 @@ function HomeContent() {
         onToggleItemCompleted={handleToggleItemCompleted}
       />
 
-      <AlertDialog open={showConfirmDialog} onOpenChange={setShowConfirmDialog}>
-        <AlertDialogContent>
-          <AlertDialogHeader>
-            <AlertDialogTitle>Switch Form?</AlertDialogTitle>
-            <AlertDialogDescription>
-              The current form will not be saved. Are you sure you want to continue?
-            </AlertDialogDescription>
-          </AlertDialogHeader>
-          <AlertDialogFooter>
-            <AlertDialogCancel onClick={cancelFormSwitch}>Cancel</AlertDialogCancel>
-            <Button 
-              onClick={confirmFormSwitch}
-              style={{
-                backgroundColor: '#1e40af',
-                borderColor: '#1e40af',
-                color: 'white'
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.backgroundColor = '#1d4ed8'
-                e.currentTarget.style.borderColor = '#1d4ed8'
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.backgroundColor = '#1e40af'
-                e.currentTarget.style.borderColor = '#1e40af'
-              }}
-            >
-              Continue
-            </Button>
-          </AlertDialogFooter>
-        </AlertDialogContent>
-      </AlertDialog>
-
-      {/* Dashboard Navigation Confirmation Dialog */}
-      <AlertDialog open={showDashboardDialog} onOpenChange={setShowDashboardDialog}>
-        <AlertDialogContent>
-          <AlertDialogHeader>
-            <AlertDialogTitle>Return to Dashboard?</AlertDialogTitle>
-            <AlertDialogDescription>
-              The current form will not be saved. Are you sure you want to continue?
-            </AlertDialogDescription>
-          </AlertDialogHeader>
-          <AlertDialogFooter>
-            <AlertDialogCancel onClick={cancelDashboardNavigation}>Cancel</AlertDialogCancel>
-            <Button 
-              onClick={confirmDashboardNavigation}
-              style={{
-                backgroundColor: '#1e40af',
-                borderColor: '#1e40af',
-                color: 'white'
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.backgroundColor = '#1d4ed8'
-                e.currentTarget.style.borderColor = '#1d4ed8'
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.backgroundColor = '#1e40af'
-                e.currentTarget.style.borderColor = '#1e40af'
-              }}
-            >
-              Continue
-            </Button>
-          </AlertDialogFooter>
-        </AlertDialogContent>
-      </AlertDialog>
-
-      {/* View All Navigation Confirmation Dialog */}
-      <AlertDialog open={showViewAllDialog} onOpenChange={setShowViewAllDialog}>
-        <AlertDialogContent>
-          <AlertDialogHeader>
-            <AlertDialogTitle>View All Forms?</AlertDialogTitle>
-            <AlertDialogDescription>
-              The current form will not be saved. Are you sure you want to continue?
-            </AlertDialogDescription>
-          </AlertDialogHeader>
-          <AlertDialogFooter>
-            <AlertDialogCancel onClick={cancelViewAllNavigation}>Cancel</AlertDialogCancel>
-            <Button 
-              onClick={confirmViewAllNavigation}
-              style={{
-                backgroundColor: '#1e40af',
-                borderColor: '#1e40af',
-                color: 'white'
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.backgroundColor = '#1d4ed8'
-                e.currentTarget.style.borderColor = '#1d4ed8'
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.backgroundColor = '#1e40af'
-                e.currentTarget.style.borderColor = '#1e40af'
-              }}
-            >
-              Continue
-            </Button>
-          </AlertDialogFooter>
-        </AlertDialogContent>
-      </AlertDialog>
 
       {/* Order Complete Email Prompt Dialog */}
       <AlertDialog open={showCompleteEmailPrompt} onOpenChange={setShowCompleteEmailPrompt}>

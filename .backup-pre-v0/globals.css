@@ -27,26 +27,26 @@
 }
 
 :root {
-  --background: #080d17;
-  --foreground: #edf2f9;
-  --card: #0c1527;
-  --card-foreground: #edf2f9;
-  --popover: #0c1527;
-  --popover-foreground: #edf2f9;
-  --primary: #0a84ff;
+  --background: transparent;
+  --foreground: #ffffff;
+  --card: #111827;
+  --card-foreground: #ffffff;
+  --popover: #162032;
+  --popover-foreground: #ffffff;
+  --primary: #3b82f6;
   --primary-foreground: #ffffff;
-  --secondary: #191f2e;
-  --secondary-foreground: #e0e7f0;
-  --muted: #191f2e;
-  --muted-foreground: #758399;
-  --accent: #10b77f;
+  --secondary: #1c2a3e;
+  --secondary-foreground: #ffffff;
+  --muted: #1c2a3e;
+  --muted-foreground: #a3a3a3;
+  --accent: #3b82f6;
   --accent-foreground: #ffffff;
-  --destructive: #e02d3c;
+  --destructive: #ef4444;
   --destructive-foreground: #ffffff;
-  --border: #212a38;
-  --input: #212a38;
-  --ring: #0a84ff;
-  --radius: 0.75rem;
+  --border: #253550;
+  --input: #111827;
+  --ring: #3b82f6;
+  --radius: 0.5rem;
 }
 
 /* Enable dark mode for this application */
@@ -60,10 +60,24 @@ html {
 }
 
 body {
-  background-color: var(--background) !important;
-  color: var(--foreground) !important;
+  background: #0b1929 !important;
+  color: #ffffff !important;
   overflow-x: hidden;
-  font-family: var(--font-inter), system-ui, sans-serif;
+}
+
+/* Subtle background gradient overlay */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(ellipse at 50% 0%, rgba(59, 130, 246, 0.07) 0%, transparent 70%),
+    radial-gradient(ellipse at 80% 50%, rgba(59, 130, 246, 0.03) 0%, transparent 60%);
+  pointer-events: none;
+  z-index: -1;
 }
 
 /* Delete button styling - red background for destructive action */
@@ -290,36 +304,40 @@ form, .form-container {
   box-shadow: 0 10px 20px rgba(59, 130, 246, 0.25) !important;
 }
 
-/* Page header - matches v0: bg-background/80 backdrop-blur-xl */
+/* Page header - clean dark navy */
 .page-header {
-  background-color: color-mix(in srgb, var(--background) 80%, transparent) !important;
-  backdrop-filter: blur(24px) !important;
+  background: rgba(11, 25, 41, 0.97) !important;
+  backdrop-filter: blur(10px) !important;
   border: none !important;
   box-shadow: none !important;
 }
 
-/* User dropdown menu content - matching v0: bg-card border-border */
+/* User dropdown menu content */
 .user-dropdown-menu {
-  background-color: var(--card) !important;
-  border: 1px solid var(--border) !important;
-  color: var(--foreground) !important;
+  background-color: rgba(15, 23, 42, 0.97) !important;
+  border: 1px solid rgba(30, 41, 59, 0.8) !important;
+  color: #ffffff !important;
+  backdrop-filter: blur(10px) !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5) !important;
   z-index: 99999 !important;
 }
 
 .user-dropdown-menu [data-radix-dropdown-menu-item]:hover {
-  background-color: var(--secondary) !important;
-  color: var(--foreground) !important;
+  background-color: rgba(59, 130, 246, 0.15) !important;
+  color: #ffffff !important;
 }
 
 .user-dropdown-menu [data-radix-dropdown-menu-separator] {
-  background-color: var(--border) !important;
+  background-color: rgba(30, 41, 59, 0.8) !important;
 }
 
 /* Global dropdown menu theme - apply to all dropdowns */
 [data-radix-dropdown-menu-content] {
-  background-color: var(--card) !important;
-  border: 1px solid var(--border) !important;
-  color: var(--foreground) !important;
+  background-color: rgba(17, 24, 39, 0.95) !important;
+  border: 1px solid rgba(59, 130, 246, 0.3) !important;
+  color: #ffffff !important;
+  backdrop-filter: blur(10px) !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.8) !important;
   z-index: 99999 !important;
 }
 
@@ -778,26 +796,28 @@ button.field-error[role="combobox"] {
   background-color: rgba(239, 68, 68, 0.05) !important;
 }
 
-/* Dashboard form cards - matching v0: hover:border-border hover:shadow-lg hover:-translate-y-0.5 */
+/* Dashboard form cards - hover effects */
 .dashboard-form-card {
-  transition: all 0.3s ease !important;
+  transition: all 0.2s ease !important;
 }
 
 .dashboard-form-card:hover {
-  border-color: var(--border) !important;
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2) !important;
-  transform: translateY(-2px);
+  border-color: rgba(59, 130, 246, 0.3) !important;
+  background: #111d32 !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4) !important;
+  transform: translateY(-1px);
 }
 
-/* Header nav buttons - matching v0: hover:bg-secondary */
+/* Header nav buttons - no styling by default, show rounded border on hover */
 .header-nav-btn {
   background: transparent !important;
-  border: none !important;
-  transition: all 0.15s ease !important;
+  border: 1px solid transparent !important;
+  transition: all 0.2s ease !important;
 }
 
 .header-nav-btn:hover {
-  background-color: var(--secondary) !important;
+  border: 1px solid rgba(71, 85, 105, 0.6) !important;
+  background-color: rgba(30, 41, 59, 0.5) !important;
 }
 
 /* Quick Stats cards on landing page */

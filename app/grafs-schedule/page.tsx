@@ -26,7 +26,6 @@ import {
   DialogFooter,
 } from '@/components/ui/dialog'
 import { Calendar } from '@/components/ui/calendar'
-import { PageNavigation } from '@/components/PageNavigation'
 
 interface DeliveryDate {
   id: string
@@ -361,7 +360,7 @@ export default function GrafsSchedulePage() {
     <div className="min-h-screen bg-background">
       <Header />
       <main className="container mx-auto px-4 py-8">
-        <PageNavigation backButtonText="Back to Dashboard" />
+
 
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-foreground mb-2">Graf & Sons Delivery Schedule</h1>

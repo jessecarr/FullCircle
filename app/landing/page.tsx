@@ -2,12 +2,20 @@
 
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { useAuth } from '@/hooks/useAuth'
 import { Header } from '@/components/Header'
 import { supabase } from '@/lib/supabase'
-import { FileText, Users, ArrowRight, Package, Shield, List, Settings, Archive, Truck, Calendar } from 'lucide-react'
+import { Card, CardContent } from '@/components/ui/card'
+import { 
+  FileText, 
+  ShoppingCart, 
+  ArrowDownToLine, 
+  ArrowUpFromLine, 
+  Shield,
+  Handshake,
+  LayoutGrid,
+  Clock
+} from 'lucide-react'
 
 export default function LandingPage() {
   const { user, loading, userRole } = useAuth()
@@ -37,75 +45,122 @@ export default function LandingPage() {
     }
   }, [user])
 
-  // Base form options available to all users
-  const baseFormOptions = [
+  const getGreeting = () => {
+    const cstTime = new Date(new Date().toLocaleString('en-US', { timeZone: 'America/Chicago' }))
+    const hour = cstTime.getHours()
+    if (hour < 12) return 'Good morning'
+    if (hour < 17) return 'Good afternoon'
+    return 'Good evening'
+  }
+
+  const formCards = [
     {
-      title: 'Special Order Form',
-      description: 'Create and manage special customer orders',
-      icon: FileText,
+      title: 'Special Order',
+      description: 'Create a new special order request for customers',
+      icon: ShoppingCart,
       href: '/?tab=special-order',
-      color: 'bg-blue-500',
-      hoverColor: 'hover:bg-blue-600'
+      accentColor: 'text-blue-400',
+      glowColor: 'bg-blue-500/10',
     },
     {
       title: 'Inbound Transfer',
-      description: 'Process incoming firearm transfers',
-      icon: Package,
+      description: 'Log incoming firearm transfers to your FFL',
+      icon: ArrowDownToLine,
       href: '/?tab=inbound-transfer',
-      color: 'bg-purple-500',
-      hoverColor: 'hover:bg-purple-600'
+      accentColor: 'text-emerald-400',
+      glowColor: 'bg-emerald-500/10',
     },
     {
       title: 'Outbound Transfer',
-      description: 'Process outgoing firearm transfers',
-      icon: Package,
+      description: 'Process outbound transfers and dispositions',
+      icon: ArrowUpFromLine,
       href: '/?tab=outbound-transfer',
-      color: 'bg-orange-500',
-      hoverColor: 'hover:bg-orange-600'
+      accentColor: 'text-orange-400',
+      glowColor: 'bg-orange-500/10',
     },
     {
       title: 'Suppressor Approval',
-      description: 'Manage NFA suppressor applications',
+      description: 'Track NFA item approvals and Form 4 status',
       icon: Shield,
       href: '/?tab=suppressor-approval',
-      color: 'bg-red-500',
-      hoverColor: 'hover:bg-red-600'
+      accentColor: 'text-purple-400',
+      glowColor: 'bg-purple-500/10',
     },
     {
       title: 'Consignment',
-      description: 'Manage consignment sales and inventory',
-      icon: FileText,
+      description: 'Manage consignment agreements and items',
+      icon: Handshake,
       href: '/?tab=consignment',
-      color: 'bg-teal-500',
-      hoverColor: 'hover:bg-teal-600'
+      accentColor: 'text-teal-400',
+      glowColor: 'bg-teal-500/10',
     },
     {
       title: 'Quote',
-      description: 'Create quotes for customers',
+      description: 'Generate customer quotes and estimates',
       icon: FileText,
       href: '/?tab=quote',
-      color: 'bg-cyan-500',
-      hoverColor: 'hover:bg-cyan-600'
+      accentColor: 'text-cyan-400',
+      glowColor: 'bg-cyan-500/10',
     },
     {
       title: 'View All Forms',
-      description: 'Browse and manage all submitted forms',
-      icon: List,
+      description: 'Browse and search through all submitted forms',
+      icon: LayoutGrid,
       href: '/?tab=view-all',
-      color: 'bg-green-500',
-      hoverColor: 'hover:bg-green-600'
-    }
+      accentColor: 'text-rose-400',
+      glowColor: 'bg-rose-500/10',
+    },
   ]
 
-  // Settings card removed - accessible via user dropdown for admins only
-  const formOptions = baseFormOptions
+  const quickStats = [
+    {
+      label: 'Active Special Orders',
+      value: activeOrdersCount.toString(),
+      change: 'View all orders',
+      changeType: 'neutral' as const,
+      icon: ShoppingCart,
+      accentColor: 'text-blue-400',
+      iconBg: 'bg-blue-500/10',
+      href: '/?tab=view-all',
+    },
+    {
+      label: 'Pending Transfers',
+      value: '—',
+      change: 'Inbound & outbound',
+      changeType: 'neutral' as const,
+      icon: ArrowDownToLine,
+      accentColor: 'text-emerald-400',
+      iconBg: 'bg-emerald-500/10',
+      href: '/?tab=view-all',
+    },
+    {
+      label: 'NFA Items Pending',
+      value: '—',
+      change: 'Awaiting approval',
+      changeType: 'neutral' as const,
+      icon: Shield,
+      accentColor: 'text-purple-400',
+      iconBg: 'bg-purple-500/10',
+      href: '/?tab=view-all',
+    },
+    {
+      label: 'Open Quotes',
+      value: '—',
+      change: 'Active estimates',
+      changeType: 'neutral' as const,
+      icon: Clock,
+      accentColor: 'text-orange-400',
+      iconBg: 'bg-orange-500/10',
+      href: '/?tab=view-all',
+    },
+  ]
 
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto"></div>
-          <p className="mt-2 text-muted-foreground">Loading...</p>
+          <p className="mt-2 text-muted-foreground text-sm">Loading...</p>
         </div>
       </div>
     )
@@ -115,166 +170,125 @@ export default function LandingPage() {
     return null
   }
 
+  const displayName = user?.user_metadata?.name || user?.email?.split('@')[0] || 'User'
+
   return (
-    <div className="min-h-screen bg-background">
+    <div className="flex min-h-screen flex-col">
       <Header />
 
-      {/* Main Content */}
-      <main className="landing-page max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
-        <div className="px-4 py-6 sm:px-0">
+      <main className="flex-1 px-4 py-8 lg:px-8">
+        <div className="mx-auto max-w-7xl flex flex-col gap-10">
           {/* Welcome Section */}
-          <div className="mb-8">
-            <h2 className="text-3xl font-bold text-foreground">
-              Welcome back, {user?.user_metadata?.name || user?.email}!
-            </h2>
-            <p className="mt-2 text-muted-foreground">
-              What would you like to do today?
-            </p>
-          </div>
-
-          {/* Form Options Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {formOptions.map((option, index) => {
-              const Icon = option.icon
-              return (
-                <Card 
-                  key={index}
-                  className="hover:shadow-lg transition-shadow cursor-pointer group landing-card h-full flex flex-col"
-                  onClick={() => router.push(option.href)}
-                >
-                  <CardHeader className="flex flex-row items-center space-y-0 pb-4">
-                    <div className={`p-3 rounded-lg ${option.color} ${option.hoverColor} transition-colors mr-3`}>
-                      <Icon className="h-6 w-6 text-white" />
-                    </div>
-                    <div className="flex-1">
-                      <CardTitle className="text-2xl">{option.title}</CardTitle>
-                    </div>
-                  </CardHeader>
-                  <CardContent className="flex-1 flex flex-col">
-                    <CardDescription className="text-sm mb-4">
-                      {option.description}
-                    </CardDescription>
-                    <div className="mt-auto">
-                      <Button 
-                        variant="ghost" 
-                        size="sm" 
-                        className="group-hover:bg-accent w-full justify-between"
-                      >
-                        <span style={{ fontSize: '1.25rem', lineHeight: '1.4' }}>Open Form</span>
-                        <ArrowRight className="h-4 w-4 ml-2 group-hover:translate-x-1 transition-transform" />
-                      </Button>
-                    </div>
-                  </CardContent>
-                </Card>
-              )
-            })}
-          </div>
-
-          {/* Separator */}
-          <div className="my-10 border-t border-slate-700/50"></div>
-
-          {/* Management Tools Section */}
-          <div>
-            <h3 className="text-xl font-semibold text-foreground mb-4">Management Tools</h3>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {/* Deleted Forms Archive */}
-              <Card 
-                className="hover:shadow-lg transition-shadow cursor-pointer group landing-card"
-                onClick={() => router.push('/archive')}
+          <section aria-label="Welcome">
+            <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+              <div>
+                <h1 className="text-2xl font-semibold tracking-tight text-foreground lg:text-3xl">
+                  {getGreeting()}, {displayName}
+                </h1>
+                <p className="mt-1 text-sm text-muted-foreground leading-relaxed">
+                  Here&apos;s an overview of your FullCircle dashboard
+                </p>
+              </div>
+              <span className="w-fit rounded-md border px-2.5 py-0.5 text-xs font-semibold transition-colors"
+                style={{
+                  borderColor: 'color-mix(in srgb, var(--primary) 20%, transparent)',
+                  backgroundColor: 'color-mix(in srgb, var(--primary) 10%, transparent)',
+                  color: 'var(--primary)',
+                }}
               >
-                <CardHeader className="flex flex-row items-center space-y-0 pb-2">
-                  <div className="p-3 rounded-lg bg-slate-500 hover:bg-slate-600 transition-colors mr-3">
-                    <Archive className="h-6 w-6 text-white" />
-                  </div>
-                  <div className="flex-1">
-                    <CardTitle className="text-lg">Deleted Forms</CardTitle>
-                  </div>
-                </CardHeader>
-                <CardContent>
-                  <CardDescription className="text-sm mb-3">
-                    View and restore deleted forms from archive
-                  </CardDescription>
-                  <Button variant="ghost" size="sm" className="group-hover:bg-accent w-full justify-between">
-                    <span>Open Archive</span>
-                    <ArrowRight className="h-4 w-4 ml-2 group-hover:translate-x-1 transition-transform" />
-                  </Button>
-                </CardContent>
-              </Card>
-
-              {/* Graf's Delivery Schedule */}
-              <Card 
-                className="hover:shadow-lg transition-shadow cursor-pointer group landing-card"
-                onClick={() => router.push('/grafs-schedule')}
-              >
-                <CardHeader className="flex flex-row items-center space-y-0 pb-2">
-                  <div className="p-3 rounded-lg bg-blue-500 hover:bg-blue-600 transition-colors mr-3">
-                    <Calendar className="h-6 w-6 text-white" />
-                  </div>
-                  <div className="flex-1">
-                    <CardTitle className="text-lg">Graf's Schedule</CardTitle>
-                  </div>
-                </CardHeader>
-                <CardContent>
-                  <CardDescription className="text-sm mb-3">
-                    Manage Graf & Sons delivery dates
-                  </CardDescription>
-                  <Button variant="ghost" size="sm" className="group-hover:bg-accent w-full justify-between">
-                    <span>Open Schedule</span>
-                    <ArrowRight className="h-4 w-4 ml-2 group-hover:translate-x-1 transition-transform" />
-                  </Button>
-                </CardContent>
-              </Card>
-
-              {/* Graf's Arriving Orders */}
-              <Card 
-                className="hover:shadow-lg transition-shadow cursor-pointer group landing-card"
-                onClick={() => router.push('/grafs-arriving')}
-              >
-                <CardHeader className="flex flex-row items-center space-y-0 pb-2">
-                  <div className="p-3 rounded-lg bg-green-500 hover:bg-green-600 transition-colors mr-3">
-                    <Truck className="h-6 w-6 text-white" />
-                  </div>
-                  <div className="flex-1">
-                    <CardTitle className="text-lg">Graf's Arriving</CardTitle>
-                  </div>
-                </CardHeader>
-                <CardContent>
-                  <CardDescription className="text-sm mb-3">
-                    Track orders arriving from Graf & Sons
-                  </CardDescription>
-                  <Button variant="ghost" size="sm" className="group-hover:bg-accent w-full justify-between">
-                    <span>View Orders</span>
-                    <ArrowRight className="h-4 w-4 ml-2 group-hover:translate-x-1 transition-transform" />
-                  </Button>
-                </CardContent>
-              </Card>
+                FFL Dealer
+              </span>
             </div>
-          </div>
+          </section>
 
-          {/* Separator */}
-          <div className="my-10 border-t border-slate-700/50"></div>
+          {/* Forms Section */}
+          <section aria-label="Forms">
+            <div className="mb-4 flex items-center gap-2">
+              <h2 className="text-base font-semibold text-foreground">Forms</h2>
+              <span className="text-xs text-muted-foreground">({formCards.length} available)</span>
+            </div>
+            <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+              {formCards.map((card) => {
+                const Icon = card.icon
+                return (
+                  <button
+                    key={card.title}
+                    onClick={() => router.push(card.href)}
+                    className="dashboard-form-card group block text-left rounded-lg outline-none"
+                  >
+                    <Card className="h-full border-border/50 bg-card transition-all duration-300 hover:border-border hover:shadow-lg hover:shadow-black/20 hover:-translate-y-0.5">
+                      <CardContent className="flex items-start gap-4 p-5">
+                        <div className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-lg transition-colors duration-300 ${card.glowColor}`}>
+                          <span className={card.accentColor}>
+                            <Icon className="h-5 w-5" />
+                          </span>
+                        </div>
+                        <div className="min-w-0">
+                          <h3 className="text-sm font-semibold text-foreground group-hover:text-foreground/90">
+                            {card.title}
+                          </h3>
+                          <p className="mt-1 text-xs text-muted-foreground leading-relaxed">
+                            {card.description}
+                          </p>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </button>
+                )
+              })}
+            </div>
+          </section>
 
           {/* Quick Stats */}
-          <div>
-            <h3 className="quick-stats-header text-xl font-semibold text-foreground mb-4">Quick Stats</h3>
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-              <Card 
-                className="quick-stats-card hover:shadow-lg transition-all cursor-pointer group landing-card"
-                onClick={() => router.push('/?tab=view-all')}
-              >
-                <CardContent className="p-4">
-                  <div className="text-2xl font-bold text-primary group-hover:scale-105 transition-transform">{activeOrdersCount}</div>
-                  <p className="text-sm group-hover:text-blue-400 transition-colors" style={{color: '#ffffff'}}>Active Special Orders</p>
-                  <div className="mt-2 flex items-center text-xs text-muted-foreground group-hover:text-blue-400 transition-colors">
-                    <span>View All</span>
-                    <ArrowRight className="h-3 w-3 ml-1 group-hover:translate-x-1 transition-transform" />
-                  </div>
-                </CardContent>
-              </Card>
+          <section aria-label="Quick statistics">
+            <h2 className="mb-4 text-base font-semibold text-foreground">Quick Stats</h2>
+            <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+              {quickStats.map((stat) => {
+                const Icon = stat.icon
+                return (
+                  <button
+                    key={stat.label}
+                    onClick={() => router.push(stat.href)}
+                    className="text-left"
+                  >
+                    <Card className="border-border/50 bg-card">
+                      <CardContent className="p-5">
+                        <div className="flex items-center justify-between">
+                          <span className="text-xs font-medium text-muted-foreground uppercase tracking-wider">
+                            {stat.label}
+                          </span>
+                          <div className={`flex h-8 w-8 items-center justify-center rounded-md ${stat.iconBg}`}>
+                            <span className={stat.accentColor}>
+                              <Icon className="h-5 w-5" />
+                            </span>
+                          </div>
+                        </div>
+                        <div className="mt-3">
+                          <p className="text-2xl font-bold text-foreground tracking-tight">
+                            {stat.value}
+                          </p>
+                          {stat.change && (
+                            <p className="mt-1 text-xs text-muted-foreground">
+                              {stat.change}
+                            </p>
+                          )}
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </button>
+                )
+              })}
             </div>
-          </div>
+          </section>
         </div>
       </main>
+
+      <footer className="border-t px-4 py-6 lg:px-8" style={{ borderColor: 'color-mix(in srgb, var(--border) 50%, transparent)' }}>
+        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-2 sm:flex-row">
+          <p className="text-xs text-muted-foreground">Full Circle Forms</p>
+          <p className="text-xs text-muted-foreground">Secure FFL Operations Dashboard</p>
+        </div>
+      </footer>
     </div>
   )
 }

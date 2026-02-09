@@ -21,7 +21,6 @@ import { supabase } from '@/lib/supabase'
 import { useAuth } from '@/hooks/useAuth'
 import { Header } from '@/components/Header'
 import { ArrowLeft, Search, Edit, Trash2, User, Phone, Mail, MapPin, CreditCard, X } from 'lucide-react'
-import { PageNavigation } from '@/components/PageNavigation'
 
 interface Customer {
   id: string
@@ -357,7 +356,7 @@ export default function CustomersPage() {
       <Header />
 
       <main className="container mx-auto py-8 px-4">
-        <PageNavigation backButtonText="Back to Dashboard" />
+
         <div className="mb-8 flex items-center justify-between">
           <div>
             <h1 className="text-3xl font-bold">Customer Management</h1>
