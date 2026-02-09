@@ -1171,7 +1171,7 @@ export default function TimesheetPage() {
         <Header />
       </div>
 
-      <main className="landing-page max-w-7xl mx-auto py-6 sm:px-6 lg:px-8 print:hidden">
+      <main className="zoom-extra-out landing-page max-w-7xl mx-auto py-6 sm:px-6 lg:px-8 print:hidden">
         <div className="px-4 py-6 sm:px-0">
 
 
@@ -1944,7 +1944,7 @@ export default function TimesheetPage() {
       {/* View All Dialog */}
       {showViewAllDialog && viewAllPayPeriod && employees.length > 0 && (
         <div className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4">
-          <div className="bg-slate-900 border border-slate-600 rounded-lg max-w-5xl w-full max-h-[90vh] overflow-y-auto">
+          <div className="bg-slate-900 border border-slate-600 rounded-lg max-w-5xl w-full max-h-[90vh] overflow-y-auto" style={{ zoom: 0.75 }}>
             {/* Header with close button */}
             <div className="sticky top-0 bg-slate-800 border-b border-slate-600 p-4 flex items-center justify-between">
               <h2 className="text-2xl font-bold text-white flex items-center gap-2">

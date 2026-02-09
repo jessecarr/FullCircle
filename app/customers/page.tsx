@@ -355,7 +355,7 @@ export default function CustomersPage() {
     <div className="min-h-screen bg-background">
       <Header />
 
-      <main className="container mx-auto py-8 px-4">
+      <main className="zoom-slightly-out container mx-auto py-8 px-4">
 
         <div className="mb-8 flex items-center justify-between">
           <div>

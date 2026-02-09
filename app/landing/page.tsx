@@ -176,7 +176,7 @@ export default function LandingPage() {
     <div className="flex min-h-screen flex-col">
       <Header />
 
-      <main className="flex-1 px-4 py-8 lg:px-8">
+      <main className="landing-main flex-1 px-4 py-8 lg:px-8">
         <div className="mx-auto max-w-7xl flex flex-col gap-10">
           {/* Welcome Section */}
           <section aria-label="Welcome">
@@ -216,7 +216,7 @@ export default function LandingPage() {
                     onClick={() => router.push(card.href)}
                     className="dashboard-form-card group block text-left rounded-lg outline-none"
                   >
-                    <Card className="h-full border-border/50 bg-card transition-all duration-300 hover:border-border hover:shadow-lg hover:shadow-black/20 hover:-translate-y-0.5">
+                    <Card className="h-full border-border/50 bg-card transition-all duration-300">
                       <CardContent className="flex items-start gap-4 p-5">
                         <div className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-lg transition-colors duration-300 ${card.glowColor}`}>
                           <span className={card.accentColor}>
