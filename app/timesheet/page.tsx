@@ -9,7 +9,6 @@ import { Label } from '@/components/ui/label'
 import { useToast } from '@/components/ui/use-toast'
 import { useAuth } from '@/hooks/useAuth'
 import { Header } from '@/components/Header'
-import { PageNavigation } from '@/components/PageNavigation'
 import { Clock, Play, Square, ChevronLeft, ChevronRight, Users, Calendar, Edit2, Save, X, BarChart3, Printer, Eye } from 'lucide-react'
 import Link from 'next/link'
 import { Timesheet } from '@/lib/supabase'
@@ -1174,7 +1173,7 @@ export default function TimesheetPage() {
 
       <main className="landing-page max-w-7xl mx-auto py-6 sm:px-6 lg:px-8 print:hidden">
         <div className="px-4 py-6 sm:px-0">
-          <PageNavigation backButtonText="Return to Dashboard" />
+
 
           {/* Page Header */}
           <div className="mb-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 print:hidden">

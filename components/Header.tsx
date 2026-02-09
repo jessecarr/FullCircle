@@ -2,8 +2,9 @@
 
 import { useState } from 'react'
 import { useAuth } from '@/hooks/useAuth'
+import { useNavigationGuard } from '@/hooks/useNavigationGuard'
 import { Button } from '@/components/ui/button'
-import { LogOut, User, Settings, Menu, Bell } from 'lucide-react'
+import { LogOut, User, Settings, Menu, Bell, ChevronDown } from 'lucide-react'
 import { SideNav } from './SideNav'
 import {
   DropdownMenu,
@@ -13,7 +14,16 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
-import { useRouter } from 'next/navigation'
+import {
+  AlertDialog,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from '@/components/ui/alert-dialog'
+import { useRouter, usePathname, useSearchParams } from 'next/navigation'
 
 interface HeaderProps {
   onTitleClick?: () => void
@@ -22,13 +32,57 @@ interface HeaderProps {
 export function Header({ onTitleClick }: HeaderProps = {}) {
   const [sideNavOpen, setSideNavOpen] = useState(false)
   const { user, signOut, loading, userRole } = useAuth()
+  const { isFormActive } = useNavigationGuard()
   const router = useRouter()
-  
+  const pathname = usePathname()
+  const searchParams = useSearchParams()
+
+  const isDashboard = pathname === '/landing'
+  const isViewAll = pathname === '/' && searchParams.get('tab') === 'view-all'
+
+  // Navigation guard state
+  const [navDialogOpen, setNavDialogOpen] = useState(false)
+  const [navDialogTitle, setNavDialogTitle] = useState('')
+  const [pendingNavUrl, setPendingNavUrl] = useState<string | null>(null)
+  const [pendingNavMethod, setPendingNavMethod] = useState<'push' | 'href'>('href')
+
+  const guardedNavigate = (url: string, title: string, method: 'push' | 'href' = 'href') => {
+    if (isFormActive) {
+      setPendingNavUrl(url)
+      setNavDialogTitle(title)
+      setPendingNavMethod(method)
+      setNavDialogOpen(true)
+    } else {
+      if (method === 'push') {
+        router.push(url)
+      } else {
+        window.location.href = url
+      }
+    }
+  }
+
+  const confirmNavigation = () => {
+    setNavDialogOpen(false)
+    if (pendingNavUrl) {
+      if (pendingNavMethod === 'push') {
+        router.push(pendingNavUrl)
+      } else {
+        window.location.href = pendingNavUrl
+      }
+    }
+    setPendingNavUrl(null)
+  }
+
+  const cancelNavigation = () => {
+    setNavDialogOpen(false)
+    setPendingNavUrl(null)
+  }
+
   const handleTitleClick = () => {
     if (onTitleClick) {
       onTitleClick()
     } else {
-      router.push('/landing')
+      guardedNavigate('/landing', 'Return to Dashboard?', 'push')
     }
   }
 
@@ -84,14 +138,51 @@ export function Header({ onTitleClick }: HeaderProps = {}) {
           {/* Center: Nav Links */}
           <nav className="hidden items-center gap-1 md:flex" aria-label="Main navigation">
             <button
-              onClick={() => router.push('/landing')}
-              className="header-nav-btn rounded-md px-3 py-2 text-sm font-medium text-foreground transition-colors"
+              onClick={() => guardedNavigate('/landing', 'Return to Dashboard?', 'push')}
+              className={`header-nav-btn rounded-md px-3 py-2 text-sm font-medium transition-colors ${
+                isDashboard ? 'text-foreground' : 'text-muted-foreground hover:text-foreground'
+              }`}
             >
               Dashboard
             </button>
+
+            {/* New Form Dropdown */}
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <button
+                  className="header-nav-btn rounded-md px-3 py-2 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground inline-flex items-center gap-1"
+                >
+                  New Form
+                  <ChevronDown className="h-3.5 w-3.5" />
+                </button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="user-dropdown-menu w-48">
+                <DropdownMenuItem onClick={() => guardedNavigate('/?tab=special-order', 'Switch Form?')} className="cursor-pointer text-foreground hover:bg-secondary">
+                  Special Order
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={() => guardedNavigate('/?tab=inbound-transfer', 'Switch Form?')} className="cursor-pointer text-foreground hover:bg-secondary">
+                  Inbound Transfer
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={() => guardedNavigate('/?tab=suppressor-approval', 'Switch Form?')} className="cursor-pointer text-foreground hover:bg-secondary">
+                  Suppressor Approval
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={() => guardedNavigate('/?tab=outbound-transfer', 'Switch Form?')} className="cursor-pointer text-foreground hover:bg-secondary">
+                  Outbound Transfer
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={() => guardedNavigate('/?tab=consignment', 'Switch Form?')} className="cursor-pointer text-foreground hover:bg-secondary">
+                  Consignment
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={() => guardedNavigate('/?tab=quote', 'Switch Form?')} className="cursor-pointer text-foreground hover:bg-secondary">
+                  Quote
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+
             <button
-              onClick={() => router.push('/?tab=view-all')}
-              className="header-nav-btn rounded-md px-3 py-2 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+              onClick={() => guardedNavigate('/?tab=view-all', 'View All Forms?')}
+              className={`header-nav-btn rounded-md px-3 py-2 text-sm font-medium transition-colors ${
+                isViewAll ? 'text-foreground' : 'text-muted-foreground hover:text-foreground'
+              }`}
             >
               View All Forms
             </button>
@@ -155,6 +246,38 @@ export function Header({ onTitleClick }: HeaderProps = {}) {
           </div>
         </div>
       </header>
+      {/* Navigation Guard Confirmation Dialog */}
+      <AlertDialog open={navDialogOpen} onOpenChange={setNavDialogOpen}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>{navDialogTitle}</AlertDialogTitle>
+            <AlertDialogDescription>
+              The current form will not be saved. Are you sure you want to continue?
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel onClick={cancelNavigation}>Cancel</AlertDialogCancel>
+            <Button 
+              onClick={confirmNavigation}
+              style={{
+                backgroundColor: '#1e40af',
+                borderColor: '#1e40af',
+                color: 'white'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = '#1d4ed8'
+                e.currentTarget.style.borderColor = '#1d4ed8'
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = '#1e40af'
+                e.currentTarget.style.borderColor = '#1e40af'
+              }}
+            >
+              Continue
+            </Button>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </>
   )
 }

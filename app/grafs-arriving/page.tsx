@@ -25,7 +25,6 @@ import {
   DialogTitle,
   DialogFooter,
 } from '@/components/ui/dialog'
-import { PageNavigation } from '@/components/PageNavigation'
 
 interface GrafsOrder {
   id: string
@@ -555,7 +554,7 @@ export default function GrafsArrivingPage() {
     <div className="min-h-screen bg-background">
       <Header />
       <main className="container mx-auto px-4 py-8">
-        <PageNavigation backButtonText="Back to Dashboard" />
+
 
         <div className="mb-8">
           <div className="flex items-center justify-between flex-wrap gap-4">
