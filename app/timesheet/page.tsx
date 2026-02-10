@@ -1856,17 +1856,7 @@ export default function TimesheetPage() {
               </h2>
               
               {/* Week Table - narrow columns */}
-              <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '11pt', tableLayout: 'fixed' }}>
-                <colgroup>
-                  <col style={{ width: '8%' }} />
-                  <col style={{ width: '12%' }} />
-                  <col style={{ width: '12%' }} />
-                  <col style={{ width: '12%' }} />
-                  <col style={{ width: '14%' }} />
-                  <col style={{ width: '14%' }} />
-                  <col style={{ width: '14%' }} />
-                  <col style={{ width: '14%' }} />
-                </colgroup>
+              <table style={{ borderCollapse: 'collapse', fontSize: '11pt' }}>
                 <thead>
                   <tr style={{ backgroundColor: '#eee' }}>
                     <th style={{ border: '1px solid #000', padding: '3px', textAlign: 'center' }}>DAY</th>
@@ -1880,7 +1870,7 @@ export default function TimesheetPage() {
                   </tr>
                 </thead>
                 <tbody>
-                  {week.days.map((day) => (
+                  {week.days.filter(day => !['SUN', 'MON'].includes(day.dayName)).map((day) => (
                     <tr key={day.date}>
                       <td style={{ border: '1px solid #000', padding: '3px', textAlign: 'center' }}>{day.dayName.substring(0, 3).toUpperCase()}</td>
                       <td style={{ border: '1px solid #000', padding: '3px', textAlign: 'center' }}>{formatDate(day.date)}</td>
@@ -1910,14 +1900,7 @@ export default function TimesheetPage() {
             <h2 style={{ fontSize: '14pt', fontWeight: 'bold', textAlign: 'center', textDecoration: 'underline', margin: '0 0 4px 0' }}>
               Pay Period Totals
             </h2>
-            <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '12pt', tableLayout: 'fixed' }}>
-              <colgroup>
-                <col style={{ width: '20%' }} />
-                <col style={{ width: '20%' }} />
-                <col style={{ width: '20%' }} />
-                <col style={{ width: '20%' }} />
-                <col style={{ width: '20%' }} />
-              </colgroup>
+            <table style={{ borderCollapse: 'collapse', fontSize: '12pt' }}>
               <thead>
                 <tr style={{ backgroundColor: '#eee' }}>
                   <th style={{ border: '1px solid #000', padding: '4px', textAlign: 'center' }}>REG. HOURS</th>

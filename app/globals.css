@@ -563,35 +563,41 @@ button svg {
 
 /* Print Styles for Timesheet */
 @media print {
-  /* Page setup - landscape */
   @page {
-    size: landscape;
-    margin: 0.2in;
+    size: portrait;
+    margin: 0.3in;
   }
   
-  /* Hide gradient background */
   body::before {
     display: none !important;
   }
   
-  /* Reset body styles for print */
-  body {
+  html, body {
     background: white !important;
+    color: black !important;
+    color-scheme: light !important;
+  }
+  
+  /* Force ALL text black in print section */
+  .print-only-section,
+  .print-only-section * {
     color: black !important;
   }
   
-  /* Show the print-only-section - NO SCALING, natural sizing */
+  /* Scale to 80% and prevent page breaks */
   .print-only-section {
     display: block !important;
     background: white !important;
-    color: black !important;
     padding: 0 !important;
     margin: 0 !important;
+    zoom: 0.8;
+    page-break-inside: avoid;
   }
   
-  /* Compact table columns */
+  /* Auto-size columns to content instead of forcing fixed widths */
   .print-only-section table {
-    table-layout: fixed !important;
+    table-layout: auto !important;
+    margin: 0 auto !important;
   }
 }
 
