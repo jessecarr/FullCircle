@@ -802,8 +802,8 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger, on
       </Card>
 
       {/* Filters */}
-      <Card>
-        <CardContent className="p-4">
+      <Card className="overflow-visible">
+        <CardContent className="p-4 overflow-visible">
           <div className="flex flex-wrap gap-6">
             {/* Form Type Filter */}
             <div className="flex flex-col space-y-2 relative" ref={formTypeRef}>
@@ -856,7 +856,7 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger, on
                 <ChevronDown className="h-4 w-4" />
               </Button>
               {showStatusDropdown && (
-                <div className="absolute top-full mt-1 w-[200px] bg-[rgba(17,24,39,0.95)] border border-[rgba(59,130,246,0.3)] rounded-md shadow-lg z-50 p-2 max-h-[300px] overflow-y-auto backdrop-blur-[10px]">
+                <div className="absolute top-full mt-1 w-[200px] bg-[rgba(17,24,39,0.95)] border border-[rgba(59,130,246,0.3)] rounded-md shadow-lg z-50 p-2 backdrop-blur-[10px]" style={{ maxHeight: 'calc(7 * 40px + 16px)', overflowY: 'auto' }}>
                   <label
                     className="flex items-center gap-2 p-2 hover:bg-[rgba(59,130,246,0.2)] cursor-pointer rounded text-white border-b border-[rgba(59,130,246,0.2)] mb-1"
                   >
