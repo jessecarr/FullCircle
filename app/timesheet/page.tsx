@@ -1870,7 +1870,7 @@ export default function TimesheetPage() {
                   </tr>
                 </thead>
                 <tbody>
-                  {week.days.filter(day => !['SUN', 'MON'].includes(day.dayName)).map((day) => (
+                  {week.days.map((day) => (
                     <tr key={day.date}>
                       <td style={{ border: '1px solid #000', padding: '3px', textAlign: 'center' }}>{day.dayName.substring(0, 3).toUpperCase()}</td>
                       <td style={{ border: '1px solid #000', padding: '3px', textAlign: 'center' }}>{formatDate(day.date)}</td>
