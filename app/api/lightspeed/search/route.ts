@@ -49,6 +49,20 @@ export async function GET(request: NextRequest) {
       }
     }
 
+    // Check-digit fallback: if numeric barcode scan didn't match, strip last digit and retry
+    if (results.length === 0 && isNumeric && q.length > 6) {
+      const stripped = q.slice(0, -1)
+      const { data: strippedData } = await supabaseAdmin
+        .from('lightspeed_items')
+        .select('item_id, system_sku, description, manufacturer_sku, upc, qoh')
+        .or(`system_sku.eq.${stripped},upc.eq.${stripped}`)
+        .limit(5)
+
+      if (strippedData && strippedData.length > 0) {
+        results = strippedData
+      }
+    }
+
     // Fallback to Lightspeed API if Supabase has no results (table may not be populated yet)
     if (results.length === 0) {
       console.log('[Search] No Supabase results, falling back to Lightspeed API...')

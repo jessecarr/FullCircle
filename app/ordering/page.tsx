@@ -7,7 +7,7 @@ import { Header } from '@/components/Header'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
-import { Upload, FileText, Loader2, AlertTriangle, CheckCircle, Package, DollarSign, TrendingUp, ShoppingCart, RefreshCw, Database, MessageSquareWarning, X, Search, Trash2, Plus } from 'lucide-react'
+import { Upload, FileText, Loader2, AlertTriangle, CheckCircle, Package, DollarSign, TrendingUp, ShoppingCart, RefreshCw, Database, MessageSquareWarning, X, Search, Trash2, Plus, ScanBarcode } from 'lucide-react'
 
 interface SearchResult {
   itemID: string
@@ -72,6 +72,9 @@ export default function OrderingPage() {
   const searchRef = useRef<HTMLDivElement>(null)
   const searchInputRef = useRef<HTMLInputElement>(null)
   const searchTimerRef = useRef<NodeJS.Timeout | null>(null)
+  const [scanMode, setScanMode] = useState(false)
+  const [scannedItems, setScannedItems] = useState<string[]>([])
+  const [analyzingScanned, setAnalyzingScanned] = useState(false)
   const [syncing, setSyncing] = useState(false)
   const [syncingItems, setSyncingItems] = useState(false)
   const [syncStatus, setSyncStatus] = useState<{ lastSync: any; totalRecords: number } | null>(null)
@@ -238,6 +241,7 @@ export default function OrderingPage() {
   // --- SEARCH ---
   const handleSearchChange = (value: string) => {
     setSearchQuery(value)
+    if (scanMode) return
     setSearchHighlight(0)
     if (searchTimerRef.current) clearTimeout(searchTimerRef.current)
     if (value.trim().length < 2) {
@@ -307,6 +311,19 @@ export default function OrderingPage() {
   }
 
   const handleSearchKeyDown = (e: React.KeyboardEvent) => {
+    if (scanMode && e.key === 'Enter') {
+      e.preventDefault()
+      const value = searchQuery.trim()
+      if (value.length > 0) {
+        setScannedItems(prev => {
+          if (prev.includes(value)) return prev
+          return [...prev, value]
+        })
+        setSearchQuery('')
+      }
+      return
+    }
+
     if (!searchOpen || searchResults.length === 0) return
     if (e.key === 'ArrowDown') {
       e.preventDefault()
@@ -319,6 +336,58 @@ export default function OrderingPage() {
       handleAddItem(searchResults[searchHighlight])
     } else if (e.key === 'Escape') {
       setSearchOpen(false)
+    }
+  }
+
+  // --- SCAN MODE ---
+  const handleRemoveScanned = (value: string) => {
+    setScannedItems(prev => prev.filter(v => v !== value))
+  }
+
+  const handleAnalyzeScanned = async () => {
+    if (scannedItems.length === 0) return
+    setAnalyzingScanned(true)
+    setError('')
+    setProgress(`Analyzing ${scannedItems.length} scanned items...`)
+
+    try {
+      const resp = await fetch('/api/lightspeed/analyze', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ itemIds: scannedItems }),
+      })
+      const data = await resp.json()
+      if (!resp.ok) throw new Error(data.error || 'Analysis failed')
+
+      setResult(prev => {
+        if (!prev) return data
+
+        const existingIds = new Set(prev.data.map((r: OrderRecommendation) => r.itemID))
+        const newItems = data.data.filter((r: OrderRecommendation) => !existingIds.has(r.itemID))
+        if (newItems.length === 0) {
+          setError('All scanned items are already in the table.')
+          return prev
+        }
+
+        const merged = [...prev.data, ...newItems]
+        return {
+          data: merged,
+          summary: {
+            totalItems: merged.length,
+            itemsNeedingReorder: merged.filter((r: OrderRecommendation) => r.recommendedOrderQty > 0).length,
+            urgentItems: merged.filter((r: OrderRecommendation) => r.monthsOfStockLeft < 1 && r.recommendedOrderQty > 0).length,
+            totalEstimatedCost: Math.round(merged.reduce((s: number, r: OrderRecommendation) => s + r.estimatedOrderCost, 0) * 100) / 100,
+          },
+        }
+      })
+
+      setScannedItems([])
+      setProgress('')
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Failed to analyze scanned items')
+      setProgress('')
+    } finally {
+      setAnalyzingScanned(false)
     }
   }
 
@@ -369,7 +438,12 @@ export default function OrderingPage() {
 
   const getDisplayedRecommendations = () => {
     if (!result) return []
-    let items = [...result.data]
+    const seen = new Set<string>()
+    let items = result.data.filter(r => {
+      if (seen.has(r.itemID)) return false
+      seen.add(r.itemID)
+      return true
+    })
 
     if (filterUrgent) {
       items = items.filter(r => r.monthsOfStockLeft < 1 && r.recommendedOrderQty > 0)
@@ -707,24 +781,51 @@ export default function OrderingPage() {
           </div>
 
           {/* Add Item Search — always visible */}
-          <div ref={searchRef} className="relative max-w-lg">
+          <div ref={searchRef} className="relative max-w-xl">
+            <div className="flex items-center gap-3 mb-2">
+              <label className="flex items-center gap-2 cursor-pointer select-none">
+                <input
+                  type="checkbox"
+                  checked={scanMode}
+                  onChange={(e) => {
+                    setScanMode(e.target.checked)
+                    setSearchQuery('')
+                    setSearchResults([])
+                    setSearchOpen(false)
+                    if (e.target.checked) searchInputRef.current?.focus()
+                  }}
+                  className="rounded border-slate-500 bg-slate-900 text-blue-500 focus:ring-blue-500 focus:ring-offset-0"
+                />
+                <ScanBarcode className="h-4 w-4 text-slate-400" />
+                <span className="text-sm text-slate-300">Scan Mode</span>
+              </label>
+              {scanMode && scannedItems.length > 0 && (
+                <span className="text-xs text-emerald-400 font-medium">{scannedItems.length} scanned</span>
+              )}
+            </div>
             <div className="relative">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
+              {scanMode ? (
+                <ScanBarcode className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-emerald-400" />
+              ) : (
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
+              )}
               <input
                 ref={searchInputRef}
                 type="text"
                 value={searchQuery}
                 onChange={(e) => handleSearchChange(e.target.value)}
                 onKeyDown={handleSearchKeyDown}
-                onFocus={() => { if (searchResults.length > 0) setSearchOpen(true) }}
-                placeholder="Add item by name, SKU, UPC, or ID..."
-                className="w-full bg-slate-900 border border-slate-600 rounded-md pl-9 pr-10 py-2 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-blue-500"
+                onFocus={() => { if (!scanMode && searchResults.length > 0) setSearchOpen(true) }}
+                placeholder={scanMode ? "Scan barcode... (press Enter or scan next)" : "Add item by name, SKU, UPC, or ID..."}
+                className={`w-full bg-slate-900 border rounded-md pl-9 pr-10 py-2 text-sm text-white placeholder-slate-500 focus:outline-none ${
+                  scanMode ? 'border-emerald-600 focus:border-emerald-400' : 'border-slate-600 focus:border-blue-500'
+                }`}
               />
-              {(searchLoading || addingItem) && (
+              {(searchLoading || addingItem) && !scanMode && (
                 <Loader2 className="absolute right-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400 animate-spin" />
               )}
             </div>
-            {searchOpen && (
+            {searchOpen && !scanMode && (
               <div className="absolute top-full left-0 right-0 mt-1 bg-slate-800 border border-slate-600 rounded-md shadow-xl z-50 max-h-72 overflow-y-auto">
                 {searchLoading && searchResults.length === 0 ? (
                   <div className="p-3 text-sm text-slate-400 flex items-center gap-2">
@@ -756,6 +857,56 @@ export default function OrderingPage() {
                     </button>
                   ))
                 )}
+              </div>
+            )}
+
+            {/* Scanned Items List */}
+            {scanMode && scannedItems.length > 0 && (
+              <div className="mt-3 bg-slate-900 border border-emerald-600/50 rounded-md p-3">
+                <div className="flex items-center justify-between mb-2">
+                  <span className="text-sm font-medium text-emerald-400">
+                    <ScanBarcode className="h-4 w-4 inline mr-1" />
+                    {scannedItems.length} item{scannedItems.length !== 1 ? 's' : ''} scanned
+                  </span>
+                  <div className="flex items-center gap-2">
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => setScannedItems([])}
+                      className="border-slate-600 text-slate-400 hover:bg-slate-700 text-xs h-7 px-2"
+                    >
+                      Clear All
+                    </Button>
+                    <Button
+                      size="sm"
+                      onClick={handleAnalyzeScanned}
+                      disabled={analyzingScanned}
+                      className="bg-emerald-600 hover:bg-emerald-700 text-white text-xs h-7 px-3"
+                    >
+                      {analyzingScanned ? (
+                        <><Loader2 className="h-3 w-3 mr-1 animate-spin" /> Analyzing...</>
+                      ) : (
+                        <><CheckCircle className="h-3 w-3 mr-1" /> Done Scanning — Analyze All</>
+                      )}
+                    </Button>
+                  </div>
+                </div>
+                <div className="flex flex-wrap gap-1.5 max-h-32 overflow-y-auto">
+                  {scannedItems.map((val, idx) => (
+                    <span
+                      key={`${val}-${idx}`}
+                      className="inline-flex items-center gap-1 bg-slate-800 border border-slate-700 rounded px-2 py-0.5 text-xs text-slate-300"
+                    >
+                      {val}
+                      <button
+                        onClick={() => handleRemoveScanned(val)}
+                        className="text-slate-500 hover:text-red-400 ml-0.5"
+                      >
+                        <X className="h-3 w-3" />
+                      </button>
+                    </span>
+                  ))}
+                </div>
               </div>
             )}
           </div>
