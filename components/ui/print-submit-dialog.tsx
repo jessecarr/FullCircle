@@ -1,15 +1,15 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Button } from '@/components/ui/button'
-import { Printer, Mail, ArrowLeft } from 'lucide-react'
+import { Printer, Mail, ArrowLeft, Loader2, CheckCircle2 } from 'lucide-react'
 
 interface PrintSubmitDialogProps {
   open: boolean
   onOpenChange: (open: boolean) => void
   onPrint: () => void
   onSubmit: () => void
-  onEmail?: () => void
+  onEmail?: () => Promise<boolean>
   isEditing?: boolean
   loading?: boolean
   emailLoading?: boolean
@@ -30,13 +30,35 @@ export function PrintSubmitDialog({
   customerName = ''
 }: PrintSubmitDialogProps) {
   const [showEmailConfirm, setShowEmailConfirm] = useState(false)
+  const [emailSuccess, setEmailSuccess] = useState(false)
+  
+  // Reset states when dialog closes or opens
+  useEffect(() => {
+    if (!open) {
+      setShowEmailConfirm(false)
+      setEmailSuccess(false)
+    }
+  }, [open])
   
   if (!open) return null
   
-  // Reset email confirm state when dialog closes
   const handleClose = () => {
     setShowEmailConfirm(false)
+    setEmailSuccess(false)
     onOpenChange(false)
+  }
+
+  const handleSendEmail = async () => {
+    if (onEmail) {
+      const success = await onEmail()
+      if (success) {
+        setEmailSuccess(true)
+        setTimeout(() => {
+          setEmailSuccess(false)
+          setShowEmailConfirm(false)
+        }, 1500)
+      }
+    }
   }
 
   return (
@@ -73,60 +95,92 @@ export function PrintSubmitDialog({
         {showEmailConfirm ? (
           // Email Confirmation View
           <>
-            <div style={{ marginBottom: '24px' }}>
-              <h3 style={{ 
-                fontSize: '20px', 
-                fontWeight: '600', 
-                color: '#ffffff',
-                margin: '0 0 12px 0',
-                display: 'flex',
-                alignItems: 'center',
-                gap: '8px'
-              }}>
-                <Mail className="h-5 w-5" />
-                Send Email Confirmation
-              </h3>
-              <p style={{ 
-                fontSize: '16px', 
-                color: '#9ca3af',
-                margin: 0,
-                lineHeight: '1.5'
-              }}>
-                Are you sure you want to send this form to <strong style={{ color: '#ffffff' }}>{customerName || 'the customer'}</strong> at <strong style={{ color: '#ffffff' }}>{customerEmail}</strong>?
-              </p>
-            </div>
-            
-            <div style={{ display: 'flex', gap: '12px', flexDirection: 'column' }}>
-              <Button
-                onClick={() => {
-                  if (onEmail) onEmail()
-                }}
-                disabled={emailLoading}
-                style={{
-                  width: '100%',
-                  backgroundColor: 'rgba(59, 130, 246, 0.8)',
-                  borderColor: 'rgba(59, 130, 246, 0.8)'
-                }}
-              >
-                <Mail className="h-4 w-4 mr-2" />
-                {emailLoading ? 'Sending...' : 'Send Email'}
-              </Button>
-              
-              <Button
-                variant="ghost"
-                onClick={() => setShowEmailConfirm(false)}
-                disabled={emailLoading}
-                style={{
-                  width: '100%',
-                  backgroundColor: 'transparent',
+            {emailSuccess ? (
+              // Success State
+              <div style={{ textAlign: 'center', padding: '16px 0' }}>
+                <CheckCircle2 style={{ width: '48px', height: '48px', color: '#22c55e', margin: '0 auto 16px' }} />
+                <h3 style={{ 
+                  fontSize: '20px', 
+                  fontWeight: '600', 
+                  color: '#22c55e',
+                  margin: '0 0 8px 0'
+                }}>
+                  Email Sent Successfully!
+                </h3>
+                <p style={{ 
+                  fontSize: '14px', 
                   color: '#9ca3af',
-                  border: '1px solid rgba(59, 130, 246, 0.3)'
-                }}
-              >
-                <ArrowLeft className="h-4 w-4 mr-2" />
-                Back
-              </Button>
-            </div>
+                  margin: 0
+                }}>
+                  Sent to {customerEmail}
+                </p>
+              </div>
+            ) : (
+              // Confirmation Prompt
+              <>
+                <div style={{ marginBottom: '24px' }}>
+                  <h3 style={{ 
+                    fontSize: '20px', 
+                    fontWeight: '600', 
+                    color: '#ffffff',
+                    margin: '0 0 12px 0',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '8px'
+                  }}>
+                    <Mail className="h-5 w-5" />
+                    Send Email Confirmation
+                  </h3>
+                  <p style={{ 
+                    fontSize: '16px', 
+                    color: '#9ca3af',
+                    margin: 0,
+                    lineHeight: '1.5'
+                  }}>
+                    Are you sure you want to send this form to <strong style={{ color: '#ffffff' }}>{customerName || 'the customer'}</strong> at <strong style={{ color: '#ffffff' }}>{customerEmail}</strong>?
+                  </p>
+                </div>
+                
+                <div style={{ display: 'flex', gap: '12px', flexDirection: 'column' }}>
+                  <Button
+                    onClick={handleSendEmail}
+                    disabled={emailLoading}
+                    style={{
+                      width: '100%',
+                      backgroundColor: 'rgba(59, 130, 246, 0.8)',
+                      borderColor: 'rgba(59, 130, 246, 0.8)'
+                    }}
+                  >
+                    {emailLoading ? (
+                      <>
+                        <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                        Sending...
+                      </>
+                    ) : (
+                      <>
+                        <Mail className="h-4 w-4 mr-2" />
+                        Send Email
+                      </>
+                    )}
+                  </Button>
+                  
+                  <Button
+                    variant="ghost"
+                    onClick={() => setShowEmailConfirm(false)}
+                    disabled={emailLoading}
+                    style={{
+                      width: '100%',
+                      backgroundColor: 'transparent',
+                      color: '#9ca3af',
+                      border: '1px solid rgba(59, 130, 246, 0.3)'
+                    }}
+                  >
+                    <ArrowLeft className="h-4 w-4 mr-2" />
+                    Back
+                  </Button>
+                </div>
+              </>
+            )}
           </>
         ) : (
           // Main View

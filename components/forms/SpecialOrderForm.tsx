@@ -1175,14 +1175,14 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
     }
   };
 
-  const handleEmail = async () => {
+  const handleEmail = async (): Promise<boolean> => {
     if (!formData.customer_email) {
       toast({
         title: 'No Email Available',
         description: 'Please enter a customer email address before sending.',
         variant: 'destructive',
       });
-      return;
+      return false;
     }
 
     setEmailLoading(true);
@@ -1206,12 +1206,14 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
           title: 'Email Sent',
           description: result.message,
         });
+        return true;
       } else {
         toast({
           title: 'Email Failed',
           description: result.message,
           variant: 'destructive',
         });
+        return false;
       }
     } catch (error) {
       toast({
@@ -1219,6 +1221,7 @@ export function SpecialOrderForm({ initialData, onSuccess, onCancel }: SpecialOr
         description: error instanceof Error ? error.message : 'Failed to send email',
         variant: 'destructive',
       });
+      return false;
     } finally {
       setEmailLoading(false);
     }
