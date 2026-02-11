@@ -277,7 +277,6 @@ export default function FastBoundSearch({
               style={{
                 padding: '12px 16px',
                 cursor: 'pointer',
-                borderBottom: index < results.length - 1 ? '1px solid rgba(59, 130, 246, 0.2)' : 'none',
                 userSelect: 'none',
                 borderRadius: '0.5rem',
                 marginBottom: index < results.length - 1 ? '8px' : '0',
@@ -289,9 +288,10 @@ export default function FastBoundSearch({
                 boxShadow: index === highlightedIndex || hoveredIndex === index
                   ? '0 10px 20px rgba(59, 130, 246, 0.25), 0 8px 32px rgba(0, 0, 0, 0.8)'
                   : '0 8px 32px rgba(0, 0, 0, 0.8)',
-                border: index === highlightedIndex || hoveredIndex === index 
-                  ? '2px solid rgba(59, 130, 246, 0.6)' 
-                  : '1px solid rgba(59, 130, 246, 0.3)',
+                borderTop: index === highlightedIndex || hoveredIndex === index ? '2px solid rgba(59, 130, 246, 0.6)' : '1px solid rgba(59, 130, 246, 0.3)',
+                borderRight: index === highlightedIndex || hoveredIndex === index ? '2px solid rgba(59, 130, 246, 0.6)' : '1px solid rgba(59, 130, 246, 0.3)',
+                borderLeft: index === highlightedIndex || hoveredIndex === index ? '2px solid rgba(59, 130, 246, 0.6)' : '1px solid rgba(59, 130, 246, 0.3)',
+                borderBottom: index === highlightedIndex || hoveredIndex === index ? '2px solid rgba(59, 130, 246, 0.6)' : '1px solid rgba(59, 130, 246, 0.3)',
               }}
               onMouseEnter={() => setHoveredIndex(index)}
               onMouseLeave={() => setHoveredIndex(null)}

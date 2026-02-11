@@ -1884,30 +1884,39 @@ function downloadOutboundTransferPDF(data: any) {
 async function generateImage(htmlContent: string, filename: string) {
   console.log('generateImage called with content length:', htmlContent.length)
   
-  // Create container with explicit styling
-  const container = document.createElement('div')
-  container.style.position = 'absolute'
-  container.style.left = '-9999px'
-  container.style.top = '0'
-  container.style.width = '800px'
-  container.style.backgroundColor = '#ffffff'
-  container.style.padding = '40px'
-  container.style.fontFamily = 'Arial, sans-serif'
-  container.innerHTML = htmlContent
-  document.body.appendChild(container)
+  // Use iframe to completely isolate from page CSS (prevents html2canvas color() parsing errors)
+  const iframe = document.createElement('iframe')
+  iframe.style.position = 'absolute'
+  iframe.style.left = '-9999px'
+  iframe.style.top = '0'
+  iframe.style.width = '880px'
+  iframe.style.height = '1200px'
+  iframe.style.border = 'none'
+  document.body.appendChild(iframe)
+
+  const iframeDoc = iframe.contentDocument || iframe.contentWindow?.document
+  if (!iframeDoc) {
+    document.body.removeChild(iframe)
+    throw new Error('Failed to create iframe document')
+  }
+
+  iframeDoc.open()
+  iframeDoc.write(`<!DOCTYPE html><html><head><style>* { margin: 0; padding: 0; box-sizing: border-box; } body { background: #ffffff; color: #000000; font-family: Arial, sans-serif; padding: 40px; }</style></head><body>${htmlContent}</body></html>`)
+  iframeDoc.close()
 
   // Wait for content to render
-  await new Promise(resolve => setTimeout(resolve, 100))
+  await new Promise(resolve => setTimeout(resolve, 200))
 
   try {
-    // Dynamic import html2canvas
     const html2canvas = (await import('html2canvas')).default
     
-    const canvas = await html2canvas(container, {
+    const canvas = await html2canvas(iframeDoc.body, {
       backgroundColor: '#ffffff',
       scale: 2,
       useCORS: true,
-      logging: false
+      logging: false,
+      windowWidth: 800,
+      windowHeight: 1200
     })
     
     // Convert to blob and download
@@ -1924,7 +1933,7 @@ async function generateImage(htmlContent: string, filename: string) {
       }
     }, 'image/jpeg', 0.95)
   } finally {
-    document.body.removeChild(container)
+    document.body.removeChild(iframe)
   }
 }
 
@@ -1933,36 +1942,46 @@ export async function generateFormImageBase64(data: any, formType: string): Prom
   const content = getFormHTMLContent(data, formType)
   console.log('Generated HTML content length:', content.length)
   
-  // Create container with explicit styling
-  const container = document.createElement('div')
-  container.style.position = 'absolute'
-  container.style.left = '-9999px'
-  container.style.top = '0'
-  container.style.width = '800px'
-  container.style.backgroundColor = '#ffffff'
-  container.style.padding = '40px'
-  container.style.fontFamily = 'Arial, sans-serif'
-  container.innerHTML = content
-  document.body.appendChild(container)
+  // Use iframe to completely isolate from page CSS (prevents html2canvas color() parsing errors)
+  const iframe = document.createElement('iframe')
+  iframe.style.position = 'absolute'
+  iframe.style.left = '-9999px'
+  iframe.style.top = '0'
+  iframe.style.width = '880px'
+  iframe.style.height = '1200px'
+  iframe.style.border = 'none'
+  document.body.appendChild(iframe)
+
+  const iframeDoc = iframe.contentDocument || iframe.contentWindow?.document
+  if (!iframeDoc) {
+    document.body.removeChild(iframe)
+    throw new Error('Failed to create iframe document')
+  }
+
+  iframeDoc.open()
+  iframeDoc.write(`<!DOCTYPE html><html><head><style>* { margin: 0; padding: 0; box-sizing: border-box; } body { background: #ffffff; color: #000000; font-family: Arial, sans-serif; padding: 40px; }</style></head><body>${content}</body></html>`)
+  iframeDoc.close()
 
   // Wait for content to render
-  await new Promise(resolve => setTimeout(resolve, 100))
+  await new Promise(resolve => setTimeout(resolve, 200))
 
   try {
     const html2canvas = (await import('html2canvas')).default
     
-    const canvas = await html2canvas(container, {
+    const canvas = await html2canvas(iframeDoc.body, {
       backgroundColor: '#ffffff',
       scale: 2,
       useCORS: true,
-      logging: false
+      logging: false,
+      windowWidth: 800,
+      windowHeight: 1200
     })
     
     // Convert to base64
     const base64 = canvas.toDataURL('image/jpeg', 0.95).split(',')[1]
     return base64
   } finally {
-    document.body.removeChild(container)
+    document.body.removeChild(iframe)
   }
 }
 
