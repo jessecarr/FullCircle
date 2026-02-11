@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { Button } from '@/components/ui/button'
-import { Edit, X, ChevronLeft, ChevronRight, User, Package, FileText, Truck, Printer, Mail, Check, Circle } from 'lucide-react'
+import { Edit, X, ChevronLeft, ChevronRight, User, Package, FileText, Truck, Printer, Mail, Check, Circle, Loader2, CheckCircle2, ArrowLeft } from 'lucide-react'
 
 interface FormViewDialogProps {
   open: boolean
@@ -12,7 +12,7 @@ interface FormViewDialogProps {
   formType?: string
   onEdit?: () => void
   onPrint?: () => void
-  onEmail?: () => void
+  onEmail?: () => Promise<boolean>
   onPrevious?: () => void
   onNext?: () => void
   hasPrevious?: boolean
@@ -20,6 +20,7 @@ interface FormViewDialogProps {
   currentIndex?: number
   totalCount?: number
   onToggleItemCompleted?: (itemIndex: number, completed: boolean) => void
+  onStatusUpdate?: () => void
 }
 
 const formatPhoneNumber = (phone: string): string => {
@@ -43,10 +44,22 @@ const formatStatus = (status: string): string => {
   return status.charAt(0).toUpperCase() + status.slice(1).replace(/_/g, ' ')
 }
 
-export function FormViewDialog({ open, onOpenChange, data, title, formType, onEdit, onPrint, onEmail, onPrevious, onNext, hasPrevious, hasNext, currentIndex, totalCount, onToggleItemCompleted }: FormViewDialogProps) {
+export function FormViewDialog({ open, onOpenChange, data, title, formType, onEdit, onPrint, onEmail, onPrevious, onNext, hasPrevious, hasNext, currentIndex, totalCount, onToggleItemCompleted, onStatusUpdate }: FormViewDialogProps) {
+  const [showEmailConfirm, setShowEmailConfirm] = useState(false)
+  const [emailLoading, setEmailLoading] = useState(false)
+  const [emailSuccess, setEmailSuccess] = useState(false)
+
+  useEffect(() => {
+    if (!open) {
+      setShowEmailConfirm(false)
+      setEmailLoading(false)
+      setEmailSuccess(false)
+    }
+  }, [open])
+
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (!open) return
+      if (!open || showEmailConfirm) return
       
       if (e.key === 'Escape') {
         onOpenChange(false)
@@ -64,7 +77,29 @@ export function FormViewDialog({ open, onOpenChange, data, title, formType, onEd
     return () => {
       document.removeEventListener('keydown', handleKeyDown)
     }
-  }, [open, onOpenChange, hasPrevious, hasNext, onPrevious, onNext])
+  }, [open, onOpenChange, hasPrevious, hasNext, onPrevious, onNext, showEmailConfirm])
+
+  const handleEmailClick = () => {
+    if (!data?.customer_email) return
+    setShowEmailConfirm(true)
+  }
+
+  const handleSendEmail = async () => {
+    if (!onEmail) return
+    setEmailLoading(true)
+    try {
+      const success = await onEmail()
+      if (success) {
+        setEmailSuccess(true)
+        setTimeout(() => {
+          setEmailSuccess(false)
+          setShowEmailConfirm(false)
+        }, 1500)
+      }
+    } finally {
+      setEmailLoading(false)
+    }
+  }
 
   if (!data) return null
 
@@ -512,10 +547,23 @@ export function FormViewDialog({ open, onOpenChange, data, title, formType, onEd
                   Print
                 </Button>
               )}
-              {onEmail && (
-                <Button variant="outline" size="sm" onClick={onEmail}>
+              {onEmail && data.customer_email && (
+                <Button variant="outline" size="sm" onClick={handleEmailClick}>
                   <Mail className="h-4 w-4 mr-2" />
                   Email
+                </Button>
+              )}
+              {onStatusUpdate && (
+                <Button
+                  size="sm"
+                  onClick={onStatusUpdate}
+                  style={{
+                    backgroundColor: '#1e40af',
+                    borderColor: '#1e40af',
+                    color: '#dbeafe'
+                  }}
+                >
+                  Update Status
                 </Button>
               )}
             </div>
@@ -550,6 +598,113 @@ export function FormViewDialog({ open, onOpenChange, data, title, formType, onEd
         </div>
       </div>
 
+      {/* Email Confirmation Overlay */}
+      {showEmailConfirm && (
+        <div
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            backgroundColor: 'rgba(10, 10, 10, 0.9)',
+            zIndex: 9999999,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            padding: '20px'
+          }}
+          onClick={(e) => {
+            e.stopPropagation()
+            if (!emailLoading && !emailSuccess) {
+              setShowEmailConfirm(false)
+            }
+          }}
+        >
+          <div
+            style={{
+              backgroundColor: 'rgba(17, 24, 39, 0.98)',
+              padding: '32px',
+              borderRadius: '12px',
+              boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.8)',
+              backdropFilter: 'blur(10px)',
+              maxWidth: '480px',
+              width: '100%',
+              border: '2px solid rgba(59, 130, 246, 0.3)'
+            }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            {emailSuccess ? (
+              <div style={{ textAlign: 'center', padding: '16px 0' }}>
+                <CheckCircle2 style={{ width: '48px', height: '48px', color: '#22c55e', margin: '0 auto 16px' }} />
+                <h3 style={{ fontSize: '20px', fontWeight: '600', color: '#22c55e', margin: '0 0 8px 0' }}>
+                  Email Sent Successfully!
+                </h3>
+                <p style={{ fontSize: '14px', color: '#9ca3af', margin: 0 }}>
+                  Sent to {data.customer_email}
+                </p>
+              </div>
+            ) : (
+              <>
+                <div style={{ marginBottom: '24px' }}>
+                  <h3 style={{
+                    fontSize: '20px',
+                    fontWeight: '600',
+                    color: '#ffffff',
+                    margin: '0 0 12px 0',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '8px'
+                  }}>
+                    <Mail className="h-5 w-5" />
+                    Send Email Confirmation
+                  </h3>
+                  <p style={{ fontSize: '16px', color: '#9ca3af', margin: 0, lineHeight: '1.5' }}>
+                    Are you sure you want to send this form to <strong style={{ color: '#ffffff' }}>{data.customer_name || 'the customer'}</strong> at <strong style={{ color: '#ffffff' }}>{data.customer_email}</strong>?
+                  </p>
+                </div>
+                <div style={{ display: 'flex', gap: '12px', flexDirection: 'column' }}>
+                  <Button
+                    onClick={handleSendEmail}
+                    disabled={emailLoading}
+                    style={{
+                      width: '100%',
+                      backgroundColor: 'rgba(59, 130, 246, 0.8)',
+                      borderColor: 'rgba(59, 130, 246, 0.8)'
+                    }}
+                  >
+                    {emailLoading ? (
+                      <>
+                        <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                        Sending...
+                      </>
+                    ) : (
+                      <>
+                        <Mail className="h-4 w-4 mr-2" />
+                        Send Email
+                      </>
+                    )}
+                  </Button>
+                  <Button
+                    variant="ghost"
+                    onClick={() => setShowEmailConfirm(false)}
+                    disabled={emailLoading}
+                    style={{
+                      width: '100%',
+                      backgroundColor: 'transparent',
+                      color: '#9ca3af',
+                      border: '1px solid rgba(59, 130, 246, 0.3)'
+                    }}
+                  >
+                    <ArrowLeft className="h-4 w-4 mr-2" />
+                    Back
+                  </Button>
+                </div>
+              </>
+            )}
+          </div>
+        </div>
+      )}
     </div>
   )
 }

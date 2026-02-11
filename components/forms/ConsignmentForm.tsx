@@ -475,7 +475,8 @@ export function ConsignmentForm({ initialData, onSuccess, onCancel }: Consignmen
             license_expiration: formData.license_expiration,
             product_lines: productLines,
             total_price: totalAmount,
-            special_requests: formData.special_requests
+            special_requests: formData.special_requests,
+            status: 'pending_consignment'
           }])
 
         if (error) {

@@ -12,6 +12,7 @@ import { QuoteForm } from '@/components/forms/QuoteForm'
 import { FormsList } from '@/components/FormsList'
 import { FormViewDialog } from '@/components/FormViewDialog'
 import { Button } from '@/components/ui/button'
+import { supabase } from '@/lib/supabase'
 import { useAuth } from '@/hooks/useAuth'
 import { useNavigationGuard } from '@/hooks/useNavigationGuard'
 import { Header } from '@/components/Header'
@@ -24,6 +25,13 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from '@/components/ui/alert-dialog'
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select'
 function HomeContent() {
   const { user, loading } = useAuth()
   const { setFormActive } = useNavigationGuard()
@@ -63,6 +71,11 @@ function HomeContent() {
   const [showCompleteEmailPrompt, setShowCompleteEmailPrompt] = useState(false)
   const [orderToEmail, setOrderToEmail] = useState<any>(null)
   const [isSendingEmail, setIsSendingEmail] = useState(false)
+  const [showViewStatusDialog, setShowViewStatusDialog] = useState(false)
+  const [viewNewStatus, setViewNewStatus] = useState('')
+
+  const ALL_STATUSES = ['backorder', 'cancelled', 'completed', 'layaway', 'ordered', 'partially_received', 'pending', 'pending_consignment', 'quote', 'received']
+  const formatStatusLabel = (status: string) => status.split('_').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ')
 
   const handleFormSuccess = () => {
     setRefreshTrigger(prev => prev + 1)
@@ -118,20 +131,10 @@ function HomeContent() {
     printForm(viewingItem, viewingItem._formType)
   }
 
-  const handleViewEmailClick = async () => {
-    if (!viewingItem) return
+  const handleViewEmailClick = async (): Promise<boolean> => {
+    if (!viewingItem) return false
     const customerEmail = viewingItem.customer_email
-    if (!customerEmail) {
-      alert('No customer email address on file.')
-      return
-    }
-    
-    // Use browser confirm dialog since we're already in a modal
-    const confirmed = window.confirm(
-      `Send this form to ${viewingItem.customer_name || 'the customer'} at ${customerEmail}?`
-    )
-    
-    if (!confirmed) return
+    if (!customerEmail) return false
     
     try {
       const { sendFormEmail } = await import('@/lib/emailUtils')
@@ -141,9 +144,9 @@ function HomeContent() {
         formType: viewingItem._formType,
         formData: viewingItem,
       })
-      alert(result.success ? result.message : `Failed: ${result.message}`)
+      return result.success
     } catch (error) {
-      alert('Failed to send email: ' + (error instanceof Error ? error.message : 'Unknown error'))
+      return false
     }
   }
 
@@ -152,13 +155,34 @@ function HomeContent() {
     setViewMode('form')
   }
 
+  const handleViewStatusUpdate = async () => {
+    if (!viewingItem || !viewNewStatus) return
+    try {
+      const { error } = await supabase
+        .from(viewingItem._formType)
+        .update({ status: viewNewStatus })
+        .eq('id', viewingItem.id)
+      if (error) throw error
+      
+      const updatedItem = { ...viewingItem, status: viewNewStatus }
+      setViewingItem(updatedItem)
+      const updatedAllItems = allItems.map(item =>
+        item.id === viewingItem.id && item._formType === viewingItem._formType ? updatedItem : item
+      )
+      setAllItems(updatedAllItems)
+      setRefreshTrigger(prev => prev + 1)
+      setShowViewStatusDialog(false)
+      setViewNewStatus('')
+    } catch (error) {
+      console.error('Failed to update status:', error)
+    }
+  }
+
 
   const handleToggleItemCompleted = async (itemIndex: number, completed: boolean) => {
     if (!viewingItem || viewingItem._formType !== 'special_orders') return
     
     try {
-      const { supabase } = await import('@/lib/supabase')
-      
       // Update the product_lines array with the new completed status
       const updatedProductLines = [...(viewingItem.product_lines || [])]
       if (updatedProductLines[itemIndex]) {
@@ -497,7 +521,54 @@ function HomeContent() {
         currentIndex={currentViewIndex}
         totalCount={allItems.length}
         onToggleItemCompleted={handleToggleItemCompleted}
+        onStatusUpdate={() => {
+          setViewNewStatus(viewingItem?.status || '')
+          setShowViewStatusDialog(true)
+        }}
       />
+
+      {/* View Dialog Status Update */}
+      <AlertDialog open={showViewStatusDialog} onOpenChange={setShowViewStatusDialog}>
+        <AlertDialogContent className="z-[9999999]" overlayClassName="z-[9999998]">
+          <AlertDialogHeader>
+            <AlertDialogTitle>Update Status</AlertDialogTitle>
+            <AlertDialogDescription>
+              Select a new status for this form.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <div className="py-4">
+            <select
+              value={viewNewStatus}
+              onChange={(e) => setViewNewStatus(e.target.value)}
+              className="flex h-10 w-full items-center justify-between rounded-md border border-[rgba(59,130,246,0.4)] bg-[rgba(59,130,246,0.2)] px-3 py-2 text-sm text-white ring-offset-background focus:outline-none focus:ring-2 focus:ring-[rgba(59,130,246,0.6)] backdrop-blur-[5px]"
+            >
+              <option value="" disabled>Select status</option>
+              {ALL_STATUSES.map(status => (
+                <option key={status} value={status} style={{ backgroundColor: '#1a2744', color: '#ffffff' }}>
+                  {formatStatusLabel(status)}
+                </option>
+              ))}
+            </select>
+          </div>
+          <AlertDialogFooter>
+            <AlertDialogCancel onClick={() => {
+              setShowViewStatusDialog(false)
+              setViewNewStatus('')
+            }}>Cancel</AlertDialogCancel>
+            <Button
+              onClick={handleViewStatusUpdate}
+              disabled={!viewNewStatus}
+              style={{
+                backgroundColor: '#1e40af',
+                borderColor: '#1e40af',
+                color: 'white'
+              }}
+            >
+              Update
+            </Button>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
 
 
       {/* Order Complete Email Prompt Dialog */}

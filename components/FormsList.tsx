@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from 'react'
 import { supabase } from '@/lib/supabase'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
-import { Eye, Edit, Trash2, Printer, Download, RefreshCw, ChevronDown, Search, X, ArrowUpDown, Mail } from 'lucide-react'
+import { Eye, Edit, Trash2, Printer, Download, RefreshCw, ChevronDown, Search, X, ArrowUpDown, Mail, Loader2, CheckCircle2, ArrowLeft } from 'lucide-react'
 import { Input } from '@/components/ui/input'
 import { useToast } from '@/components/ui/use-toast'
 import { Label } from '@/components/ui/label'
@@ -25,7 +25,6 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from '@/components/ui/alert-dialog'
-import { EmailConfirmDialog } from '@/components/ui/email-confirm-dialog'
 
 interface FormsListProps {
   tableName?: 'special_orders' | 'inbound_transfers' | 'suppressor_approvals' | 'outbound_transfers' | 'consignment_forms'
@@ -48,7 +47,7 @@ const FORM_TYPE_LABELS: Record<FormType, string> = {
   quotes: 'Quote',
 }
 
-const ALL_STATUSES = ['backorder', 'cancelled', 'completed', 'layaway', 'ordered', 'partially_received', 'pending', 'quote', 'received']
+const ALL_STATUSES = ['backorder', 'cancelled', 'completed', 'layaway', 'ordered', 'partially_received', 'pending', 'pending_consignment', 'quote', 'received']
 
 export function FormsList({ tableName, title, onEdit, onView, refreshTrigger, onItemsChange }: FormsListProps) {
   const [items, setItems] = useState<any[]>([])
@@ -75,6 +74,7 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger, on
   const [emailItem, setEmailItem] = useState<any>(null)
   const [showEmailDialog, setShowEmailDialog] = useState(false)
   const [emailLoading, setEmailLoading] = useState(false)
+  const [emailSuccess, setEmailSuccess] = useState(false)
   const [selectedItems, setSelectedItems] = useState<Set<string>>(new Set())
   const [showBulkStatusDialog, setShowBulkStatusDialog] = useState(false)
   const [bulkNewStatus, setBulkNewStatus] = useState('')
@@ -82,6 +82,9 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger, on
   const [bulkDeleteConfirmation, setBulkDeleteConfirmation] = useState('')
   const [bulkActionLoading, setBulkActionLoading] = useState(false)
   const [showBulkEmailDialog, setShowBulkEmailDialog] = useState(false)
+  const [bulkEmailSending, setBulkEmailSending] = useState(false)
+  const [bulkEmailSuccess, setBulkEmailSuccess] = useState(false)
+  const [bulkEmailResultMessage, setBulkEmailResultMessage] = useState('')
   const [itemsPerPage, setItemsPerPage] = useState(25)
   const [currentPage, setCurrentPage] = useState(1)
   const sortRef = useRef<HTMLDivElement>(null)
@@ -116,6 +119,8 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger, on
   const handleSearch = () => {
     setActiveSearchQuery(searchQuery)
   }
+
+  const searchInputRef = useRef<HTMLInputElement>(null)
 
   const fetchAllItems = async (silent = false) => {
     if (!silent) setLoading(true)
@@ -244,8 +249,15 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger, on
     }
   }
 
+  const isInitialLoad = useRef(true)
+
   useEffect(() => {
-    fetchAllItems()
+    if (isInitialLoad.current) {
+      fetchAllItems()
+      isInitialLoad.current = false
+    } else {
+      fetchAllItems(true)
+    }
   }, [selectedFormTypes, selectedStatuses, selectedVendors, activeSearchQuery, applyFiltersToSearch, refreshTrigger])
 
   const handleDelete = (item: any) => {
@@ -360,7 +372,13 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger, on
       })
 
       if (result.success) {
+        setEmailSuccess(true)
         toast({ title: 'Email Sent', description: result.message })
+        setTimeout(() => {
+          setEmailSuccess(false)
+          setShowEmailDialog(false)
+          setEmailItem(null)
+        }, 1500)
       } else {
         toast({ title: 'Email Failed', description: result.message, variant: 'destructive' })
       }
@@ -368,8 +386,6 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger, on
       toast({ title: 'Email Failed', description: error instanceof Error ? error.message : 'Failed to send email', variant: 'destructive' })
     } finally {
       setEmailLoading(false)
-      setShowEmailDialog(false)
-      setEmailItem(null)
     }
   }
 
@@ -389,12 +405,24 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger, on
     })
   }
 
+  const getPaginatedItems = () => {
+    return sortItems(items).slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage)
+  }
+
   const toggleSelectAll = () => {
-    if (selectedItems.size === items.length) {
-      setSelectedItems(new Set())
-    } else {
-      setSelectedItems(new Set(items.map(getItemKey)))
-    }
+    const pageItems = getPaginatedItems()
+    const pageKeys = pageItems.map(getItemKey)
+    const allPageSelected = pageKeys.every(key => selectedItems.has(key))
+    
+    setSelectedItems(prev => {
+      const newSet = new Set(prev)
+      if (allPageSelected) {
+        pageKeys.forEach(key => newSet.delete(key))
+      } else {
+        pageKeys.forEach(key => newSet.add(key))
+      }
+      return newSet
+    })
   }
 
   const getSelectedItemObjects = () => {
@@ -558,8 +586,7 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger, on
     const selectedObjects = getSelectedItemObjects()
     const itemsWithEmail = selectedObjects.filter(item => item.customer_email)
     
-    setShowBulkEmailDialog(false)
-    setBulkActionLoading(true)
+    setBulkEmailSending(true)
     const { sendFormEmail } = await import('@/lib/emailUtils')
     
     let successCount = 0
@@ -583,13 +610,19 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger, on
       }
     }
     
-    setBulkActionLoading(false)
+    setBulkEmailSending(false)
     
     if (successCount > 0) {
-      toast({
-        title: 'Emails Sent',
-        description: `Successfully sent ${successCount} email(s)${failCount > 0 ? `, ${failCount} failed` : ''}`,
-      })
+      const msg = `Successfully sent ${successCount} email(s)${failCount > 0 ? `, ${failCount} failed` : ''}`
+      setBulkEmailResultMessage(msg)
+      setBulkEmailSuccess(true)
+      toast({ title: 'Emails Sent', description: msg })
+      setTimeout(() => {
+        setBulkEmailSuccess(false)
+        setBulkEmailResultMessage('')
+        setShowBulkEmailDialog(false)
+        setSelectedItems(new Set())
+      }, 1500)
     } else {
       toast({
         title: 'Email Failed',
@@ -728,6 +761,7 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger, on
       case 'received': return 'bg-green-100 text-green-800'
       case 'completed': return 'bg-gray-100 text-gray-800'
       case 'cancelled': return 'bg-red-100 text-red-800'
+      case 'pending_consignment': return 'bg-amber-100 text-amber-800'
       default: return 'bg-gray-100 text-gray-800'
     }
   }
@@ -758,14 +792,13 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger, on
           <div className="flex items-center gap-4">
             <div className="flex-1 relative">
               <Input
+                ref={searchInputRef}
                 type="text"
                 placeholder="Search forms by customer name, phone, SKU, description, vendor, serial number..."
                 value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                onKeyDown={(e) => {
-                  if (e.key === 'Enter') {
-                    handleSearch()
-                  }
+                onChange={(e) => {
+                  setSearchQuery(e.target.value)
+                  setActiveSearchQuery(e.target.value)
                 }}
                 className="pl-4 pr-10"
               />
@@ -1024,10 +1057,25 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger, on
 
       {/* Results Count, Pagination & Bulk Actions */}
       <div className="flex items-center justify-between flex-wrap gap-4">
-        <p className="text-base text-muted-foreground">
-          Showing {Math.min((currentPage - 1) * itemsPerPage + 1, items.length)}-{Math.min(currentPage * itemsPerPage, items.length)} of {items.length} form{items.length !== 1 ? 's' : ''}
-          {selectedItems.size > 0 && ` (${selectedItems.size} selected)`}
-        </p>
+        <div className="flex items-center gap-4">
+          {items.length > 0 && (
+            <label className="flex items-center gap-2 cursor-pointer select-none">
+              <input
+                type="checkbox"
+                checked={getPaginatedItems().length > 0 && getPaginatedItems().every(item => selectedItems.has(getItemKey(item)))}
+                onChange={toggleSelectAll}
+                className="h-5 w-5 rounded border-gray-300 text-primary focus:ring-primary cursor-pointer"
+              />
+              <span className="text-sm text-muted-foreground">
+                {getPaginatedItems().every(item => selectedItems.has(getItemKey(item))) ? 'Deselect All' : 'Select All'}
+              </span>
+            </label>
+          )}
+          <p className="text-base text-muted-foreground">
+            Showing {Math.min((currentPage - 1) * itemsPerPage + 1, items.length)}-{Math.min(currentPage * itemsPerPage, items.length)} of {items.length} form{items.length !== 1 ? 's' : ''}
+            {selectedItems.size > 0 && ` (${selectedItems.size} selected)`}
+          </p>
+        </div>
         <div className="flex items-center gap-4">
           <div className="flex items-center gap-2">
             <Label className="text-sm text-muted-foreground">Show:</Label>
@@ -1044,16 +1092,6 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger, on
               </SelectContent>
             </Select>
           </div>
-          {items.length > 0 && (
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={toggleSelectAll}
-              className="styled-button"
-            >
-              {selectedItems.size === items.length ? 'Deselect All' : 'Select All'}
-            </Button>
-          )}
         </div>
       </div>
 
@@ -1297,18 +1335,18 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger, on
             </AlertDialogDescription>
           </AlertDialogHeader>
           <div className="py-4">
-            <Select value={newStatus} onValueChange={setNewStatus}>
-              <SelectTrigger className="w-full">
-                <SelectValue placeholder="Select status" />
-              </SelectTrigger>
-              <SelectContent>
-                {ALL_STATUSES.map(status => (
-                  <SelectItem key={status} value={status}>
-                    {formatStatus(status)}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
+            <select
+              value={newStatus}
+              onChange={(e) => setNewStatus(e.target.value)}
+              className="flex h-10 w-full items-center justify-between rounded-md border border-[rgba(59,130,246,0.4)] bg-[rgba(59,130,246,0.2)] px-3 py-2 text-sm text-white ring-offset-background focus:outline-none focus:ring-2 focus:ring-[rgba(59,130,246,0.6)] backdrop-blur-[5px]"
+            >
+              <option value="" disabled>Select status</option>
+              {ALL_STATUSES.map(status => (
+                <option key={status} value={status} style={{ backgroundColor: '#1a2744', color: '#ffffff' }}>
+                  {formatStatus(status)}
+                </option>
+              ))}
+            </select>
           </div>
           <AlertDialogFooter>
             <AlertDialogCancel onClick={() => {
@@ -1422,17 +1460,116 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger, on
       </AlertDialog>
 
       {/* Email Confirmation Dialog */}
-      <EmailConfirmDialog
-        open={showEmailDialog}
-        onOpenChange={(open) => {
-          setShowEmailDialog(open)
-          if (!open) setEmailItem(null)
-        }}
-        customerEmail={emailItem?.customer_email || ''}
-        customerName={emailItem?.customer_name}
-        onConfirm={handleEmailConfirm}
-        loading={emailLoading}
-      />
+      {showEmailDialog && (
+        <div
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            backgroundColor: 'rgba(10, 10, 10, 0.9)',
+            zIndex: 999999,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            padding: '20px'
+          }}
+          onClick={() => {
+            if (!emailLoading && !emailSuccess) {
+              setShowEmailDialog(false)
+              setEmailItem(null)
+            }
+          }}
+        >
+          <div
+            style={{
+              backgroundColor: 'rgba(17, 24, 39, 0.98)',
+              padding: '32px',
+              borderRadius: '12px',
+              boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.8)',
+              backdropFilter: 'blur(10px)',
+              maxWidth: '480px',
+              width: '100%',
+              border: '2px solid rgba(59, 130, 246, 0.3)',
+              position: 'relative'
+            }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            {emailSuccess ? (
+              <div style={{ textAlign: 'center', padding: '16px 0' }}>
+                <CheckCircle2 style={{ width: '48px', height: '48px', color: '#22c55e', margin: '0 auto 16px' }} />
+                <h3 style={{ fontSize: '20px', fontWeight: '600', color: '#22c55e', margin: '0 0 8px 0' }}>
+                  Email Sent Successfully!
+                </h3>
+                <p style={{ fontSize: '14px', color: '#9ca3af', margin: 0 }}>
+                  Sent to {emailItem?.customer_email}
+                </p>
+              </div>
+            ) : (
+              <>
+                <div style={{ marginBottom: '24px' }}>
+                  <h3 style={{
+                    fontSize: '20px',
+                    fontWeight: '600',
+                    color: '#ffffff',
+                    margin: '0 0 12px 0',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '8px'
+                  }}>
+                    <Mail className="h-5 w-5" />
+                    Send Email Confirmation
+                  </h3>
+                  <p style={{ fontSize: '16px', color: '#9ca3af', margin: 0, lineHeight: '1.5' }}>
+                    Are you sure you want to send this form to <strong style={{ color: '#ffffff' }}>{emailItem?.customer_name || 'the customer'}</strong> at <strong style={{ color: '#ffffff' }}>{emailItem?.customer_email}</strong>?
+                  </p>
+                </div>
+                <div style={{ display: 'flex', gap: '12px', flexDirection: 'column' }}>
+                  <Button
+                    onClick={handleEmailConfirm}
+                    disabled={emailLoading}
+                    style={{
+                      width: '100%',
+                      backgroundColor: 'rgba(59, 130, 246, 0.8)',
+                      borderColor: 'rgba(59, 130, 246, 0.8)'
+                    }}
+                  >
+                    {emailLoading ? (
+                      <>
+                        <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                        Sending...
+                      </>
+                    ) : (
+                      <>
+                        <Mail className="h-4 w-4 mr-2" />
+                        Send Email
+                      </>
+                    )}
+                  </Button>
+                  <Button
+                    variant="ghost"
+                    onClick={() => {
+                      setShowEmailDialog(false)
+                      setEmailItem(null)
+                    }}
+                    disabled={emailLoading}
+                    style={{
+                      width: '100%',
+                      backgroundColor: 'transparent',
+                      color: '#9ca3af',
+                      border: '1px solid rgba(59, 130, 246, 0.3)'
+                    }}
+                  >
+                    <ArrowLeft className="h-4 w-4 mr-2" />
+                    Back
+                  </Button>
+                </div>
+              </>
+            )}
+          </div>
+        </div>
+      )}
 
       {/* Bulk Status Update Dialog */}
       <AlertDialog open={showBulkStatusDialog} onOpenChange={setShowBulkStatusDialog}>
@@ -1444,18 +1581,18 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger, on
             </AlertDialogDescription>
           </AlertDialogHeader>
           <div className="py-4">
-            <Select value={bulkNewStatus} onValueChange={setBulkNewStatus}>
-              <SelectTrigger className="w-full">
-                <SelectValue placeholder="Select status" />
-              </SelectTrigger>
-              <SelectContent>
-                {ALL_STATUSES.map(status => (
-                  <SelectItem key={status} value={status}>
-                    {formatStatus(status)}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
+            <select
+              value={bulkNewStatus}
+              onChange={(e) => setBulkNewStatus(e.target.value)}
+              className="flex h-10 w-full items-center justify-between rounded-md border border-[rgba(59,130,246,0.4)] bg-[rgba(59,130,246,0.2)] px-3 py-2 text-sm text-white ring-offset-background focus:outline-none focus:ring-2 focus:ring-[rgba(59,130,246,0.6)] backdrop-blur-[5px]"
+            >
+              <option value="" disabled>Select status</option>
+              {ALL_STATUSES.map(status => (
+                <option key={status} value={status} style={{ backgroundColor: '#1a2744', color: '#ffffff' }}>
+                  {formatStatus(status)}
+                </option>
+              ))}
+            </select>
           </div>
           <AlertDialogFooter>
             <AlertDialogCancel onClick={() => {
@@ -1555,44 +1692,112 @@ export function FormsList({ tableName, title, onEdit, onView, refreshTrigger, on
       </AlertDialog>
 
       {/* Bulk Email Confirmation Dialog */}
-      <AlertDialog open={showBulkEmailDialog} onOpenChange={setShowBulkEmailDialog}>
-        <AlertDialogContent style={{
-          backgroundColor: 'rgba(17, 24, 39, 0.98)',
-          border: '2px solid rgba(59, 130, 246, 0.3)',
-          boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.8)',
-          backdropFilter: 'blur(10px)'
-        }}>
-          <AlertDialogHeader>
-            <AlertDialogTitle style={{ color: '#ffffff' }}>Send Emails?</AlertDialogTitle>
-            <AlertDialogDescription style={{ color: '#9ca3af' }}>
-              Are you sure you want to send emails to {getSelectedItemObjects().filter(item => item.customer_email).length} customer(s)?
-            </AlertDialogDescription>
-          </AlertDialogHeader>
-          <AlertDialogFooter>
-            <AlertDialogCancel 
-              onClick={() => setShowBulkEmailDialog(false)}
-              style={{
-                backgroundColor: 'rgba(59, 130, 246, 0.1)',
-                border: '1px solid rgba(59, 130, 246, 0.3)',
-                color: '#ffffff'
-              }}
-            >
-              Cancel
-            </AlertDialogCancel>
-            <Button 
-              onClick={handleBulkEmailConfirm}
-              disabled={bulkActionLoading}
-              style={{
-                backgroundColor: '#1e40af',
-                borderColor: '#1e40af',
-                color: 'white'
-              }}
-            >
-              {bulkActionLoading ? 'Sending...' : 'Send Emails'}
-            </Button>
-          </AlertDialogFooter>
-        </AlertDialogContent>
-      </AlertDialog>
+      {showBulkEmailDialog && (
+        <div
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            backgroundColor: 'rgba(10, 10, 10, 0.9)',
+            zIndex: 999999,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            padding: '20px'
+          }}
+          onClick={() => {
+            if (!bulkEmailSending && !bulkEmailSuccess) {
+              setShowBulkEmailDialog(false)
+            }
+          }}
+        >
+          <div
+            style={{
+              backgroundColor: 'rgba(17, 24, 39, 0.98)',
+              padding: '32px',
+              borderRadius: '12px',
+              boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.8)',
+              backdropFilter: 'blur(10px)',
+              maxWidth: '480px',
+              width: '100%',
+              border: '2px solid rgba(59, 130, 246, 0.3)',
+              position: 'relative'
+            }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            {bulkEmailSuccess ? (
+              <div style={{ textAlign: 'center', padding: '16px 0' }}>
+                <CheckCircle2 style={{ width: '48px', height: '48px', color: '#22c55e', margin: '0 auto 16px' }} />
+                <h3 style={{ fontSize: '20px', fontWeight: '600', color: '#22c55e', margin: '0 0 8px 0' }}>
+                  Emails Sent Successfully!
+                </h3>
+                <p style={{ fontSize: '14px', color: '#9ca3af', margin: 0 }}>
+                  {bulkEmailResultMessage}
+                </p>
+              </div>
+            ) : (
+              <>
+                <div style={{ marginBottom: '24px' }}>
+                  <h3 style={{
+                    fontSize: '20px',
+                    fontWeight: '600',
+                    color: '#ffffff',
+                    margin: '0 0 12px 0',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '8px'
+                  }}>
+                    <Mail className="h-5 w-5" />
+                    Send Bulk Emails
+                  </h3>
+                  <p style={{ fontSize: '16px', color: '#9ca3af', margin: 0, lineHeight: '1.5' }}>
+                    Are you sure you want to send emails to <strong style={{ color: '#ffffff' }}>{getSelectedItemObjects().filter(item => item.customer_email).length} customer(s)</strong>?
+                  </p>
+                </div>
+                <div style={{ display: 'flex', gap: '12px', flexDirection: 'column' }}>
+                  <Button
+                    onClick={handleBulkEmailConfirm}
+                    disabled={bulkEmailSending}
+                    style={{
+                      width: '100%',
+                      backgroundColor: 'rgba(59, 130, 246, 0.8)',
+                      borderColor: 'rgba(59, 130, 246, 0.8)'
+                    }}
+                  >
+                    {bulkEmailSending ? (
+                      <>
+                        <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                        Sending...
+                      </>
+                    ) : (
+                      <>
+                        <Mail className="h-4 w-4 mr-2" />
+                        Send Emails
+                      </>
+                    )}
+                  </Button>
+                  <Button
+                    variant="ghost"
+                    onClick={() => setShowBulkEmailDialog(false)}
+                    disabled={bulkEmailSending}
+                    style={{
+                      width: '100%',
+                      backgroundColor: 'transparent',
+                      color: '#9ca3af',
+                      border: '1px solid rgba(59, 130, 246, 0.3)'
+                    }}
+                  >
+                    <ArrowLeft className="h-4 w-4 mr-2" />
+                    Back
+                  </Button>
+                </div>
+              </>
+            )}
+          </div>
+        </div>
+      )}
     </div>
   )
 }
