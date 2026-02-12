@@ -32,6 +32,7 @@ export default function FFLSearch({
   const [searchByFFL, setSearchByFFL] = useState(true) // Default ON for FFL number search
   const searchRef = useRef<HTMLDivElement>(null)
   const debounceRef = useRef<NodeJS.Timeout | null>(null)
+  const abortControllerRef = useRef<AbortController | null>(null)
 
   // Auto-format FFL number input: X-XX-XXXXX format
   const formatFFLInput = (value: string): string => {
@@ -97,11 +98,21 @@ export default function FFLSearch({
   const performSearch = async (searchQuery: string) => {
     if (!searchQuery.trim()) return
 
+    // Abort any in-flight request so stale responses don't overwrite newer results
+    if (abortControllerRef.current) {
+      abortControllerRef.current.abort()
+    }
+    const controller = new AbortController()
+    abortControllerRef.current = controller
+
     setIsSearching(true)
     setNoResults(false)
 
     try {
-      const response = await fetch(`/api/ffl/search?q=${encodeURIComponent(searchQuery)}&limit=10`)
+      const response = await fetch(
+        `/api/ffl/search?q=${encodeURIComponent(searchQuery)}&limit=10`,
+        { signal: controller.signal }
+      )
       const data = await response.json()
 
       if (data.success) {
@@ -113,11 +124,14 @@ export default function FFLSearch({
         setNoResults(true)
       }
     } catch (error) {
+      if ((error as Error).name === 'AbortError') return
       console.error('FFL search error:', error)
       setResults([])
       setNoResults(true)
     } finally {
-      setIsSearching(false)
+      if (!controller.signal.aborted) {
+        setIsSearching(false)
+      }
     }
   }
 
