@@ -20,9 +20,12 @@ export async function downloadATFDatabase(): Promise<ArrayBuffer> {
 // Helper to find column index by partial header match
 function findColumnIndex(headers: string[], ...searchTerms: string[]): number {
   for (const term of searchTerms) {
-    const index = headers.findIndex(h => 
-      h && h.toString().toLowerCase().includes(term.toLowerCase())
-    )
+    const normalizedTerm = term.toLowerCase().replace(/[_\s]+/g, ' ')
+    const index = headers.findIndex(h => {
+      if (!h) return false
+      const normalizedHeader = h.toString().toLowerCase().replace(/[_\s]+/g, ' ')
+      return normalizedHeader.includes(normalizedTerm)
+    })
     if (index !== -1) return index
   }
   return -1

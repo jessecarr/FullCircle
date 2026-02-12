@@ -10,6 +10,7 @@ import { useToast } from '@/components/ui/use-toast'
 import { useAuth } from '@/hooks/useAuth'
 import { Header } from '@/components/Header'
 import { supabase } from '@/lib/supabase'
+import { uploadFFLFile } from '@/app/actions/ffl-upload'
 import { Settings, Users, FileText, Package, ArrowRight, ArrowLeft, User, Shield, Database, RefreshCw, Upload, Building2, Lock, AlertTriangle, Truck, Archive, Clock, BarChart3 } from 'lucide-react'
 
 export default function SettingsPage() {
@@ -68,6 +69,12 @@ export default function SettingsPage() {
       const response = await fetch('/api/ffl/sync', {
         method: 'POST'
       })
+
+      if (!response.ok) {
+        const text = await response.text()
+        throw new Error(text || `Server error: ${response.status}`)
+      }
+
       const data = await response.json()
 
       if (data.success) {
@@ -190,23 +197,19 @@ export default function SettingsPage() {
     }
   }
 
-  // Process the actual file upload
+  // Process the actual file upload via server action
   const processFileUpload = async (file: File) => {
     setIsSyncing(true)
     toast({
       title: 'Uploading FFL File',
-      description: 'Processing uploaded file...'
+      description: 'Processing uploaded file. This may take a few minutes...'
     })
 
     try {
       const formData = new FormData()
       formData.append('file', file)
 
-      const response = await fetch('/api/ffl/sync', {
-        method: 'POST',
-        body: formData
-      })
-      const data = await response.json()
+      const data = await uploadFFLFile(formData)
 
       if (data.success) {
         toast({
