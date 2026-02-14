@@ -89,7 +89,10 @@ export default function OrderingPage() {
     }
   }, [user, loading, router])
 
-  // Fetch sync status on load and trigger background auto-sync if needed
+  // Track if background sync has been triggered this session
+  const backgroundSyncTriggeredRef = useRef(false)
+
+  // Fetch sync status on load
   useEffect(() => {
     if (user) {
       // Fetch inventory log sync status
@@ -98,31 +101,18 @@ export default function OrderingPage() {
         .then(data => setSyncStatus(data))
         .catch(() => {})
 
-      // Fetch items sync status and auto-sync if stale
+      // Fetch items sync status
       fetch('/api/lightspeed/sync-items')
         .then(r => r.json())
-        .then(data => {
-          setItemSyncStatus(data)
-          
-          // Auto-sync in background if last sync was more than 30 minutes ago
-          const lastSyncTime = data.lastSync?.completed_at
-          if (lastSyncTime) {
-            const minutesSinceSync = (Date.now() - new Date(lastSyncTime).getTime()) / (1000 * 60)
-            if (minutesSinceSync > 30) {
-              runBackgroundSync()
-            }
-          } else {
-            // No previous sync, don't auto-sync full catalog (too slow)
-            // User should manually trigger first full sync
-          }
-        })
+        .then(data => setItemSyncStatus(data))
         .catch(() => {})
     }
   }, [user])
 
   // Background sync function - runs silently, updates data when complete
   const runBackgroundSync = useCallback(async () => {
-    if (backgroundSyncing) return
+    // Don't run background sync if manual sync is in progress
+    if (backgroundSyncing || syncing || syncingItems) return
     setBackgroundSyncing(true)
     
     try {
@@ -169,7 +159,21 @@ export default function OrderingPage() {
     } finally {
       setBackgroundSyncing(false)
     }
-  }, [backgroundSyncing])
+  }, [backgroundSyncing, syncing, syncingItems])
+
+  // Trigger background sync if data is stale (separate effect to avoid closure issues)
+  useEffect(() => {
+    if (!user || backgroundSyncTriggeredRef.current || syncing || syncingItems || backgroundSyncing) return
+    
+    const lastSyncTime = itemSyncStatus?.lastSync?.completed_at
+    if (lastSyncTime) {
+      const minutesSinceSync = (Date.now() - new Date(lastSyncTime).getTime()) / (1000 * 60)
+      if (minutesSinceSync > 30) {
+        backgroundSyncTriggeredRef.current = true
+        runBackgroundSync()
+      }
+    }
+  }, [user, itemSyncStatus, syncing, syncingItems, backgroundSyncing, runBackgroundSync])
 
   // Re-analyze items after background sync completes
   const reanalyzeItems = async (itemIds: string[]) => {
@@ -200,6 +204,7 @@ export default function OrderingPage() {
   }
 
   const handleSync = useCallback(async (type: 'full' | 'incremental') => {
+    if (syncing) return // Prevent double-clicks
     setSyncing(true)
     setSyncMessage(type === 'full' ? 'Running full sync of all inventory history... This may take several minutes.' : 'Syncing new inventory data...')
 
@@ -210,26 +215,38 @@ export default function OrderingPage() {
         body: JSON.stringify({ type }),
       })
 
-      const data = await resp.json()
+      let data
+      try {
+        data = await resp.json()
+      } catch (parseErr) {
+        console.error('Failed to parse sync response:', parseErr)
+        throw new Error('Invalid response from server')
+      }
 
       if (!resp.ok) {
         throw new Error(data.error || 'Sync failed')
       }
 
-      setSyncMessage(`Sync complete! ${data.totalRecords} inventory log entries ${type === 'full' ? 'imported' : 'added'}.`)
+      setSyncMessage(`Sync complete! ${data.totalRecords || 0} inventory log entries ${type === 'full' ? 'imported' : 'added'}.`)
 
       // Refresh sync status
-      const statusResp = await fetch('/api/lightspeed/sync')
-      const statusData = await statusResp.json()
-      setSyncStatus(statusData)
+      try {
+        const statusResp = await fetch('/api/lightspeed/sync')
+        const statusData = await statusResp.json()
+        setSyncStatus(statusData)
+      } catch (statusErr) {
+        console.error('Failed to refresh sync status:', statusErr)
+      }
     } catch (err) {
+      console.error('Sync error:', err)
       setSyncMessage(`Sync failed: ${err instanceof Error ? err.message : 'Unknown error'}`)
     } finally {
       setSyncing(false)
     }
-  }, [])
+  }, [syncing])
 
   const handleSyncItems = useCallback(async (type: 'full' | 'incremental' = 'incremental') => {
+    if (syncingItems) return // Prevent double-clicks
     setSyncingItems(true)
     setSyncMessage(type === 'full' 
       ? 'Running full item catalog sync... This may take several minutes.' 
@@ -242,24 +259,35 @@ export default function OrderingPage() {
         body: JSON.stringify({ type }),
       })
 
-      const data = await resp.json()
+      let data
+      try {
+        data = await resp.json()
+      } catch (parseErr) {
+        console.error('Failed to parse items sync response:', parseErr)
+        throw new Error('Invalid response from server')
+      }
 
       if (!resp.ok) {
         throw new Error(data.error || 'Items sync failed')
       }
 
-      setSyncMessage(`Item catalog sync complete! ${data.totalItemsSynced} items ${data.syncType === 'incremental' ? 'updated' : 'imported'}.`)
+      setSyncMessage(`Item catalog sync complete! ${data.totalItemsSynced || 0} items ${data.syncType === 'incremental' ? 'updated' : 'imported'}.`)
 
       // Refresh item sync status
-      const statusResp = await fetch('/api/lightspeed/sync-items')
-      const statusData = await statusResp.json()
-      setItemSyncStatus(statusData)
+      try {
+        const statusResp = await fetch('/api/lightspeed/sync-items')
+        const statusData = await statusResp.json()
+        setItemSyncStatus(statusData)
+      } catch (statusErr) {
+        console.error('Failed to refresh items sync status:', statusErr)
+      }
     } catch (err) {
+      console.error('Items sync error:', err)
       setSyncMessage(`Items sync failed: ${err instanceof Error ? err.message : 'Unknown error'}`)
     } finally {
       setSyncingItems(false)
     }
-  }, [])
+  }, [syncingItems])
 
   const handleFileUpload = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     const selectedFile = e.target.files?.[0]

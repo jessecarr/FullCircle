@@ -2,6 +2,8 @@ import { NextRequest, NextResponse } from 'next/server'
 import { requireAuth, createAdminClient } from '@/lib/supabase/api'
 import { syncInventoryLog } from '@/lib/lightspeed'
 
+export const maxDuration = 300 // 5 minute timeout
+
 export async function POST(request: NextRequest) {
   const auth = await requireAuth()
   if (auth.error) return auth.error
@@ -25,6 +27,7 @@ export async function POST(request: NextRequest) {
         .from('lightspeed_sync_status')
         .select('last_sale_timestamp')
         .not('completed_at', 'is', null)
+        .not('last_sale_timestamp', 'is', null)
         .order('completed_at', { ascending: false })
         .limit(1)
         .single()

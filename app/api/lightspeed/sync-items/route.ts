@@ -32,6 +32,7 @@ export async function POST(request: NextRequest) {
       const { data: lastSync } = await supabaseAdmin
         .from('lightspeed_items_sync_status')
         .select('last_item_timestamp')
+        .not('last_item_timestamp', 'is', null)
         .order('completed_at', { ascending: false })
         .limit(1)
         .single()
