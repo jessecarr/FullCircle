@@ -78,7 +78,10 @@ export default function OrderingPage() {
   const [syncing, setSyncing] = useState(false)
   const [syncingItems, setSyncingItems] = useState(false)
   const [syncStatus, setSyncStatus] = useState<{ lastSync: any; totalRecords: number } | null>(null)
+  const [itemSyncStatus, setItemSyncStatus] = useState<{ lastSync: any; totalItems: number } | null>(null)
   const [syncMessage, setSyncMessage] = useState('')
+  const [backgroundSyncing, setBackgroundSyncing] = useState(false)
+  const pendingAnalysisRef = useRef<string[] | null>(null)
 
   useEffect(() => {
     if (!loading && !user) {
@@ -86,15 +89,115 @@ export default function OrderingPage() {
     }
   }, [user, loading, router])
 
-  // Fetch sync status on load
+  // Fetch sync status on load and trigger background auto-sync if needed
   useEffect(() => {
     if (user) {
+      // Fetch inventory log sync status
       fetch('/api/lightspeed/sync')
         .then(r => r.json())
         .then(data => setSyncStatus(data))
         .catch(() => {})
+
+      // Fetch items sync status and auto-sync if stale
+      fetch('/api/lightspeed/sync-items')
+        .then(r => r.json())
+        .then(data => {
+          setItemSyncStatus(data)
+          
+          // Auto-sync in background if last sync was more than 30 minutes ago
+          const lastSyncTime = data.lastSync?.completed_at
+          if (lastSyncTime) {
+            const minutesSinceSync = (Date.now() - new Date(lastSyncTime).getTime()) / (1000 * 60)
+            if (minutesSinceSync > 30) {
+              runBackgroundSync()
+            }
+          } else {
+            // No previous sync, don't auto-sync full catalog (too slow)
+            // User should manually trigger first full sync
+          }
+        })
+        .catch(() => {})
     }
   }, [user])
+
+  // Background sync function - runs silently, updates data when complete
+  const runBackgroundSync = useCallback(async () => {
+    if (backgroundSyncing) return
+    setBackgroundSyncing(true)
+    
+    try {
+      // Run both syncs in parallel
+      const [itemsResp, inventoryResp] = await Promise.all([
+        fetch('/api/lightspeed/sync-items', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ type: 'incremental' }),
+        }),
+        fetch('/api/lightspeed/sync', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ type: 'incremental' }),
+        }),
+      ])
+
+      const itemsData = await itemsResp.json()
+      const inventoryData = await inventoryResp.json()
+
+      // Update sync statuses
+      const [itemStatusResp, invStatusResp] = await Promise.all([
+        fetch('/api/lightspeed/sync-items'),
+        fetch('/api/lightspeed/sync'),
+      ])
+      
+      const itemStatusData = await itemStatusResp.json()
+      const invStatusData = await invStatusResp.json()
+      
+      setItemSyncStatus(itemStatusData)
+      setSyncStatus(invStatusData)
+
+      // If there's pending analysis data, re-run the analysis with fresh data
+      if (pendingAnalysisRef.current && pendingAnalysisRef.current.length > 0) {
+        const totalUpdated = (itemsData.totalItemsSynced || 0) + (inventoryData.totalRecords || 0)
+        if (totalUpdated > 0) {
+          setSyncMessage(`Background sync complete: ${itemsData.totalItemsSynced || 0} items, ${inventoryData.totalRecords || 0} inventory entries updated. Refreshing analysis...`)
+          // Re-analyze with the same items
+          await reanalyzeItems(pendingAnalysisRef.current)
+        }
+      }
+    } catch (err) {
+      console.error('Background sync error:', err)
+    } finally {
+      setBackgroundSyncing(false)
+    }
+  }, [backgroundSyncing])
+
+  // Re-analyze items after background sync completes
+  const reanalyzeItems = async (itemIds: string[]) => {
+    try {
+      const resp = await fetch('/api/lightspeed/analyze', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ itemIds }),
+      })
+
+      const data = await resp.json()
+
+      if (data.success && data.recommendations) {
+        setResult({
+          data: data.recommendations,
+          summary: {
+            totalItems: data.recommendations.length,
+            itemsNeedingReorder: data.recommendations.filter((r: OrderRecommendation) => r.recommendedOrderQty > 0).length,
+            urgentItems: data.recommendations.filter((r: OrderRecommendation) => r.monthsOfStockLeft < 1).length,
+            totalEstimatedCost: data.recommendations.reduce((sum: number, r: OrderRecommendation) => sum + r.estimatedOrderCost, 0),
+          },
+        })
+        setSyncMessage('Analysis refreshed with latest data!')
+      }
+    } catch (err) {
+      console.error('Re-analysis error:', err)
+    }
+  }
 
   const handleSync = useCallback(async (type: 'full' | 'incremental') => {
     setSyncing(true)
@@ -126,13 +229,17 @@ export default function OrderingPage() {
     }
   }, [])
 
-  const handleSyncItems = useCallback(async () => {
+  const handleSyncItems = useCallback(async (type: 'full' | 'incremental' = 'incremental') => {
     setSyncingItems(true)
-    setSyncMessage('Syncing item catalog from Lightspeed... This may take a few minutes.')
+    setSyncMessage(type === 'full' 
+      ? 'Running full item catalog sync... This may take several minutes.' 
+      : 'Syncing updated items from Lightspeed...')
 
     try {
       const resp = await fetch('/api/lightspeed/sync-items', {
         method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ type }),
       })
 
       const data = await resp.json()
@@ -141,7 +248,12 @@ export default function OrderingPage() {
         throw new Error(data.error || 'Items sync failed')
       }
 
-      setSyncMessage(`Item catalog sync complete! ${data.totalItemsSynced} items imported. Search will now use local data.`)
+      setSyncMessage(`Item catalog sync complete! ${data.totalItemsSynced} items ${data.syncType === 'incremental' ? 'updated' : 'imported'}.`)
+
+      // Refresh item sync status
+      const statusResp = await fetch('/api/lightspeed/sync-items')
+      const statusData = await statusResp.json()
+      setItemSyncStatus(statusData)
     } catch (err) {
       setSyncMessage(`Items sync failed: ${err instanceof Error ? err.message : 'Unknown error'}`)
     } finally {
@@ -217,6 +329,8 @@ export default function OrderingPage() {
 
       setResult(data)
       setProgress('')
+      // Store item IDs for potential re-analysis after background sync
+      pendingAnalysisRef.current = parsedIds
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to analyze items')
       setProgress('')
@@ -381,6 +495,8 @@ export default function OrderingPage() {
         }
       })
 
+      // Update pending analysis ref with all current item IDs
+      pendingAnalysisRef.current = result?.data?.map((r: OrderRecommendation) => r.itemID) || scannedItems
       setScannedItems([])
       setProgress('')
     } catch (err) {
@@ -586,7 +702,7 @@ export default function OrderingPage() {
                   {syncing ? 'Syncing...' : 'Update Sales Data'}
                 </Button>
                 <Button
-                  onClick={handleSyncItems}
+                  onClick={() => handleSyncItems('incremental')}
                   disabled={syncing || syncingItems}
                   variant="outline"
                   size="sm"
@@ -597,14 +713,20 @@ export default function OrderingPage() {
                 </Button>
               </div>
             </div>
+            {backgroundSyncing && !syncMessage && (
+              <div className="mt-4 p-3 rounded-md text-sm flex items-center gap-2 bg-slate-700/50 border border-slate-600 text-slate-300">
+                <Loader2 className="h-4 w-4 animate-spin" />
+                Syncing latest data in background...
+              </div>
+            )}
             {syncMessage && (
               <div className={`mt-4 p-3 rounded-md text-sm flex items-center gap-2 ${
                 syncMessage.includes('failed') ? 'bg-red-500/10 border border-red-500/20 text-red-300' :
-                syncMessage.includes('complete') ? 'bg-green-500/10 border border-green-500/20 text-green-300' :
+                syncMessage.includes('complete') || syncMessage.includes('refreshed') ? 'bg-green-500/10 border border-green-500/20 text-green-300' :
                 'bg-blue-500/10 border border-blue-500/20 text-blue-300'
               }`}>
                 {syncMessage.includes('failed') ? <AlertTriangle className="h-4 w-4" /> :
-                 syncMessage.includes('complete') ? <CheckCircle className="h-4 w-4" /> :
+                 syncMessage.includes('complete') || syncMessage.includes('refreshed') ? <CheckCircle className="h-4 w-4" /> :
                  <Loader2 className="h-4 w-4 animate-spin" />}
                 {syncMessage}
               </div>

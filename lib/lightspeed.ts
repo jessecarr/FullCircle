@@ -399,11 +399,21 @@ export async function syncInventoryLog(
 
 export async function syncItems(
   onBatch: (records: { item_id: string; system_sku: string; description: string; manufacturer_sku: string; upc: string; default_cost: number; avg_cost: number; retail_price: number; qoh: number; archived: boolean; updated_at: string }[]) => Promise<void>,
-): Promise<{ totalItems: number; totalPages: number }> {
+  sinceTimestamp?: string
+): Promise<{ totalItems: number; totalPages: number; latestTimestamp: string | null }> {
   await ensureToken()
 
   const relParam = encodeURIComponent('["ItemShops"]')
   let url = `${BASE_URL}/Item.json?limit=100&load_relations=${relParam}&archived=false`
+  
+  // Add timeStamp filter for incremental sync
+  if (sinceTimestamp) {
+    const dateFilter = encodeURIComponent(`>,${sinceTimestamp}`)
+    url += `&timeStamp=${dateFilter}`
+    console.log(`[LS Sync] Incremental items sync since: ${sinceTimestamp}`)
+  }
+  
+  let latestTimestamp: string | null = null
 
   let totalItems = 0
   let totalPages = 0
@@ -423,6 +433,11 @@ export async function syncItems(
             const shops = Array.isArray(item.ItemShops.ItemShop) ? item.ItemShops.ItemShop : [item.ItemShops.ItemShop]
             const mainShop = shops.find((s: any) => s.shopID === '1')
             if (mainShop) qoh = parseFloat(mainShop.qoh || '0')
+          }
+
+          // Track latest timestamp for next incremental sync
+          if (item.timeStamp && (!latestTimestamp || item.timeStamp > latestTimestamp)) {
+            latestTimestamp = item.timeStamp
           }
 
           return {
@@ -460,7 +475,7 @@ export async function syncItems(
   }
 
   console.log(`[LS Sync] Items complete: ${totalPages} pages, ${totalItems} items`)
-  return { totalItems, totalPages }
+  return { totalItems, totalPages, latestTimestamp }
 }
 
 // --------------- Smart Analysis (InventoryLog-backed) ---------------
