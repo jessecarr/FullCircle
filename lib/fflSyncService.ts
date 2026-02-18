@@ -203,13 +203,17 @@ export async function searchFFLContacts(
     
     if (parts.length === 3) {
       // Shortened format: X-XX-XXXXX (region-district-sequence)
-      // Full format is: X-XX-XXX-XX-XX-XXXXX (region-district-county-type-exp-sequence)
+      // Full format is: X-XX-X-X-XX-XXXX (region-district-county-type-exp-sequence)
       // Search where first part matches region, second matches district, last matches sequence
       const [region, district, sequence] = parts
       
-      // Build pattern: region-district%-%-%-%-sequence
-      // This matches: 1-59-???-??-??-32325 when searching for 1-59-32325
-      const pattern = `${region}-${district}%-%-%-${sequence}`
+      // Build pattern: region-district-%-%-%-sequence (with wildcards for middle parts)
+      // Also try matching sequence without leading zeros
+      const sequenceNoLeadingZeros = sequence.replace(/^0+/, '')
+      
+      // Build pattern that matches the full format
+      // Example: 9-82-02660 should match 9-82-5-7-7D-2660
+      const pattern = `${region}-${district}-%-%-%-${sequenceNoLeadingZeros}`
       queryBuilder = queryBuilder.ilike('license_number', pattern)
     } else {
       // Full or partial FFL number match using ilike

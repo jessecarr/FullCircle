@@ -85,7 +85,7 @@ export default function FFLSearch({
     }
 
     debounceRef.current = setTimeout(async () => {
-      await performSearch(query)
+      await performSearch(query, searchByFFL)
     }, 300)
 
     return () => {
@@ -93,9 +93,9 @@ export default function FFLSearch({
         clearTimeout(debounceRef.current)
       }
     }
-  }, [query])
+  }, [query, searchByFFL])
 
-  const performSearch = async (searchQuery: string) => {
+  const performSearch = async (searchQuery: string, isFFLSearch: boolean) => {
     if (!searchQuery.trim()) return
 
     // Abort any in-flight request so stale responses don't overwrite newer results
@@ -109,8 +109,9 @@ export default function FFLSearch({
     setNoResults(false)
 
     try {
+      const searchType = isFFLSearch ? 'ffl' : 'name'
       const response = await fetch(
-        `/api/ffl/search?q=${encodeURIComponent(searchQuery)}&limit=10`,
+        `/api/ffl/search?q=${encodeURIComponent(searchQuery)}&type=${searchType}&limit=10`,
         { signal: controller.signal }
       )
       const data = await response.json()
