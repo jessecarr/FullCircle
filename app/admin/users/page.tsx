@@ -213,7 +213,7 @@ export default function UserManagementPage() {
       console.error('Error updating user:', error)
       toast({
         title: 'Error',
-        description: 'Failed to update user',
+        description: error instanceof Error ? error.message : 'Failed to update user',
         variant: 'destructive',
       })
     }

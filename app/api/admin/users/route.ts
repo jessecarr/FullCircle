@@ -97,18 +97,24 @@ export async function PUT(request: Request) {
       // Handle ban/unban for active status
       if (is_active === false) {
         authUpdate.ban_duration = '876600h' // ~100 years
-      } else {
-        authUpdate.ban_duration = 'none'
+      } else if (is_active === true) {
+        // Only unban if explicitly setting to active - use empty string to clear ban
+        authUpdate.ban_duration = '0h'
       }
+      // If is_active is undefined, don't change ban status
 
       // Update password if provided
       if (password && password.trim() !== '') {
         authUpdate.password = password
+        console.log('[Admin Users] Updating password for user:', userId)
       }
 
+      console.log('[Admin Users] Updating user with payload:', JSON.stringify({ ...authUpdate, password: authUpdate.password ? '[REDACTED]' : undefined }))
+      
       const { data: updateResult, error: updateError } = await supabaseAdmin.auth.admin.updateUserById(userId, authUpdate)
 
       if (updateError) {
+        console.error('[Admin Users] Supabase update error:', updateError)
         return NextResponse.json({ error: updateError.message }, { status: 400 })
       }
 
@@ -117,7 +123,9 @@ export async function PUT(request: Request) {
       return NextResponse.json({ error: 'User not found' }, { status: 404 })
     }
   } catch (error) {
-    return NextResponse.json({ error: 'Failed to update user' }, { status: 500 })
+    console.error('User update error:', error)
+    const errorMessage = error instanceof Error ? error.message : 'Failed to update user'
+    return NextResponse.json({ error: errorMessage }, { status: 500 })
   }
 }
 
