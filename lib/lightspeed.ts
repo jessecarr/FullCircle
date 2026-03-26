@@ -478,6 +478,74 @@ export async function syncItems(
   return { totalItems, totalPages, latestTimestamp }
 }
 
+// --------------- Sync ItemShop (QOH updates): Lightspeed → Supabase ---------------
+// This syncs QOH changes from inventory adjustments, reconciliations, etc.
+// ItemShop records have their own timeStamp that updates when QOH changes
+
+export async function syncItemShopQOH(
+  onBatch: (records: { item_id: string; qoh: number }[]) => Promise<void>,
+  sinceTimestamp?: string
+): Promise<{ totalRecords: number; totalPages: number; latestTimestamp: string | null }> {
+  await ensureToken()
+
+  // Only sync shop 1 (main shop) - filter by shopID
+  let url = `${BASE_URL}/ItemShop.json?limit=100&shopID=1`
+  
+  // Add timeStamp filter for incremental sync
+  if (sinceTimestamp) {
+    const dateFilter = encodeURIComponent(`>,${sinceTimestamp}`)
+    url += `&timeStamp=${dateFilter}`
+    console.log(`[LS Sync] Incremental ItemShop QOH sync since: ${sinceTimestamp}`)
+  }
+  
+  let latestTimestamp: string | null = null
+  let totalRecords = 0
+  let totalPages = 0
+
+  while (url) {
+    const data = await apiGet(url)
+    totalPages++
+
+    const itemShops = data.ItemShop
+    if (itemShops) {
+      const arr = Array.isArray(itemShops) ? itemShops : [itemShops]
+      const records = arr
+        .filter((is: any) => is.itemID && is.itemID !== '0')
+        .map((is: any) => {
+          // Track latest timestamp for next incremental sync
+          if (is.timeStamp && (!latestTimestamp || is.timeStamp > latestTimestamp)) {
+            latestTimestamp = is.timeStamp
+          }
+
+          return {
+            item_id: is.itemID,
+            qoh: parseFloat(is.qoh || '0'),
+          }
+        })
+
+      if (records.length > 0) {
+        await onBatch(records)
+        totalRecords += records.length
+      }
+    }
+
+    const nextUrl = data['@attributes']?.next
+    if (nextUrl && nextUrl !== '') {
+      url = nextUrl
+      await new Promise(r => setTimeout(r, 500)) // Rate limit protection
+    } else {
+      break
+    }
+
+    if (totalPages % 10 === 0) {
+      console.log(`[LS Sync] ItemShop QOH: ${totalPages} pages, ${totalRecords} records`)
+    }
+  }
+
+  console.log(`[LS Sync] ItemShop QOH complete: ${totalPages} pages, ${totalRecords} records`)
+  return { totalRecords, totalPages, latestTimestamp }
+}
+
 // --------------- Smart Analysis (InventoryLog-backed) ---------------
 
 // Reasons that represent actual customer sales

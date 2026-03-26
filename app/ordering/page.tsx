@@ -77,6 +77,7 @@ export default function OrderingPage() {
   const [analyzingScanned, setAnalyzingScanned] = useState(false)
   const [syncing, setSyncing] = useState(false)
   const [syncingItems, setSyncingItems] = useState(false)
+  const [syncingQOH, setSyncingQOH] = useState(false)
   const [syncStatus, setSyncStatus] = useState<{ lastSync: any; totalRecords: number } | null>(null)
   const [itemSyncStatus, setItemSyncStatus] = useState<{ lastSync: any; totalItems: number } | null>(null)
   const [syncMessage, setSyncMessage] = useState('')
@@ -116,8 +117,8 @@ export default function OrderingPage() {
     setBackgroundSyncing(true)
     
     try {
-      // Run both syncs in parallel
-      const [itemsResp, inventoryResp] = await Promise.all([
+      // Run all three syncs in parallel: items, inventory log, and QOH updates
+      const [itemsResp, inventoryResp, qohResp] = await Promise.all([
         fetch('/api/lightspeed/sync-items', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -128,10 +129,16 @@ export default function OrderingPage() {
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ type: 'incremental' }),
         }),
+        fetch('/api/lightspeed/sync-qoh', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ type: 'incremental' }),
+        }),
       ])
 
       const itemsData = await itemsResp.json()
       const inventoryData = await inventoryResp.json()
+      const qohData = await qohResp.json()
 
       // Update sync statuses
       const [itemStatusResp, invStatusResp] = await Promise.all([
@@ -147,9 +154,9 @@ export default function OrderingPage() {
 
       // If there's pending analysis data, re-run the analysis with fresh data
       if (pendingAnalysisRef.current && pendingAnalysisRef.current.length > 0) {
-        const totalUpdated = (itemsData.totalItemsSynced || 0) + (inventoryData.totalRecords || 0)
+        const totalUpdated = (itemsData.totalItemsSynced || 0) + (inventoryData.totalRecords || 0) + (qohData.totalRecords || 0)
         if (totalUpdated > 0) {
-          setSyncMessage(`Background sync complete: ${itemsData.totalItemsSynced || 0} items, ${inventoryData.totalRecords || 0} inventory entries updated. Refreshing analysis...`)
+          setSyncMessage(`Background sync complete: ${itemsData.totalItemsSynced || 0} items, ${inventoryData.totalRecords || 0} inventory entries, ${qohData.totalRecords || 0} QOH updates. Refreshing analysis...`)
           // Re-analyze with the same items
           await reanalyzeItems(pendingAnalysisRef.current)
         }
@@ -288,6 +295,72 @@ export default function OrderingPage() {
       setSyncingItems(false)
     }
   }, [syncingItems])
+
+  const handleSyncAll = useCallback(async (type: 'full' | 'incremental' = 'incremental') => {
+    if (syncing || syncingItems || syncingQOH) return // Prevent double-clicks
+    setSyncing(true)
+    setSyncingItems(true)
+    setSyncingQOH(true)
+    setSyncMessage(type === 'full' 
+      ? 'Running full sync of all data... This may take several minutes.' 
+      : 'Syncing all data from Lightspeed...')
+
+    try {
+      // Run all three syncs in parallel
+      const [salesResp, itemsResp, qohResp] = await Promise.all([
+        fetch('/api/lightspeed/sync', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ type }),
+        }),
+        fetch('/api/lightspeed/sync-items', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ type }),
+        }),
+        fetch('/api/lightspeed/sync-qoh', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ type }),
+        }),
+      ])
+
+      const salesData = await salesResp.json()
+      const itemsData = await itemsResp.json()
+      const qohData = await qohResp.json()
+
+      // Check for errors
+      const errors: string[] = []
+      if (!salesResp.ok) errors.push(`Sales: ${salesData.error || 'failed'}`)
+      if (!itemsResp.ok) errors.push(`Items: ${itemsData.error || 'failed'}`)
+      if (!qohResp.ok) errors.push(`QOH: ${qohData.error || 'failed'}`)
+
+      if (errors.length > 0) {
+        throw new Error(errors.join(', '))
+      }
+
+      setSyncMessage(`Sync complete! ${itemsData.totalItemsSynced || 0} items, ${salesData.totalRecords || 0} sales entries, ${qohData.totalRecords || 0} inventory updates.`)
+
+      // Refresh sync statuses
+      const [itemStatusResp, invStatusResp] = await Promise.all([
+        fetch('/api/lightspeed/sync-items'),
+        fetch('/api/lightspeed/sync'),
+      ])
+      
+      const itemStatusData = await itemStatusResp.json()
+      const invStatusData = await invStatusResp.json()
+      
+      setItemSyncStatus(itemStatusData)
+      setSyncStatus(invStatusData)
+    } catch (err) {
+      console.error('Sync all error:', err)
+      setSyncMessage(`Sync failed: ${err instanceof Error ? err.message : 'Unknown error'}`)
+    } finally {
+      setSyncing(false)
+      setSyncingItems(false)
+      setSyncingQOH(false)
+    }
+  }, [syncing, syncingItems, syncingQOH])
 
   const handleFileUpload = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     const selectedFile = e.target.files?.[0]
@@ -708,36 +781,26 @@ export default function OrderingPage() {
               </div>
               <div className="flex gap-2 flex-wrap">
                 <Button
-                  onClick={() => handleSync('full')}
-                  disabled={syncing || syncingItems}
-                  variant="outline"
-                  size="sm"
-                  className="border-slate-600 text-slate-300 hover:bg-slate-700"
-                >
-                  {syncing ? <Loader2 className="h-4 w-4 mr-2 animate-spin" /> : <Database className="h-4 w-4 mr-2" />}
-                  Full Sync
-                </Button>
-                <Button
-                  onClick={() => handleSync('incremental')}
-                  disabled={syncing || syncingItems}
+                  onClick={() => handleSyncAll('incremental')}
+                  disabled={syncing || syncingItems || syncingQOH}
                   style={{
-                    background: syncing ? undefined : 'linear-gradient(135deg, #3b82f6 0%, #2563eb 50%, #1d4ed8 100%)',
+                    background: (syncing || syncingItems || syncingQOH) ? undefined : 'linear-gradient(135deg, #3b82f6 0%, #2563eb 50%, #1d4ed8 100%)',
                     color: 'white',
                   }}
                   size="sm"
                 >
-                  {syncing ? <Loader2 className="h-4 w-4 mr-2 animate-spin" /> : <RefreshCw className="h-4 w-4 mr-2" />}
-                  {syncing ? 'Syncing...' : 'Update Sales Data'}
+                  {(syncing || syncingItems || syncingQOH) ? <Loader2 className="h-4 w-4 mr-2 animate-spin" /> : <RefreshCw className="h-4 w-4 mr-2" />}
+                  {(syncing || syncingItems || syncingQOH) ? 'Syncing...' : 'Sync All Data'}
                 </Button>
                 <Button
-                  onClick={() => handleSyncItems('incremental')}
-                  disabled={syncing || syncingItems}
+                  onClick={() => handleSyncAll('full')}
+                  disabled={syncing || syncingItems || syncingQOH}
                   variant="outline"
                   size="sm"
                   className="border-slate-600 text-slate-300 hover:bg-slate-700"
                 >
-                  {syncingItems ? <Loader2 className="h-4 w-4 mr-2 animate-spin" /> : <Package className="h-4 w-4 mr-2" />}
-                  {syncingItems ? 'Syncing Items...' : 'Sync Item Catalog'}
+                  {(syncing || syncingItems || syncingQOH) ? <Loader2 className="h-4 w-4 mr-2 animate-spin" /> : <Database className="h-4 w-4 mr-2" />}
+                  Full Sync
                 </Button>
               </div>
             </div>
