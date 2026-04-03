@@ -60,6 +60,30 @@ export async function POST(request: Request) {
     const body = await request.json()
     const { employee_id, date, time_in, time_out, regular_hours, overtime_hours, pto_hours, holiday_hours, pay_period_start, pay_period_end, notes, pto_notes, holiday_name } = body
 
+    // Ensure employee exists in employees table (sync from auth if needed)
+    const { data: existingEmployee } = await supabaseAdmin
+      .from('employees')
+      .select('id')
+      .eq('id', employee_id)
+      .single()
+
+    if (!existingEmployee) {
+      // Employee not in table, sync from auth
+      const { data: authUser } = await supabaseAdmin.auth.admin.getUserById(employee_id)
+      if (authUser?.user) {
+        await supabaseAdmin.from('employees').upsert({
+          id: authUser.user.id,
+          email: authUser.user.email?.toLowerCase() || '',
+          password_hash: 'auth_managed',
+          name: authUser.user.user_metadata?.name || authUser.user.email?.split('@')[0] || 'Unknown',
+          role: authUser.user.user_metadata?.role || 'employee',
+          is_active: true,
+          created_at: authUser.user.created_at || new Date().toISOString(),
+          updated_at: new Date().toISOString()
+        }, { onConflict: 'id' })
+      }
+    }
+
     // Check if entry already exists for this employee and date
     const { data: existing } = await supabaseAdmin
       .from('timesheets')

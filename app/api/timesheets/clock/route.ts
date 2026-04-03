@@ -94,6 +94,30 @@ export async function POST(request: Request) {
     const today = now.toISOString().split('T')[0]
     const payPeriod = getPayPeriodDates(now)
 
+    // Ensure employee exists in employees table (sync from auth if needed)
+    const { data: existingEmployee } = await supabaseAdmin
+      .from('employees')
+      .select('id')
+      .eq('id', employee_id)
+      .single()
+
+    if (!existingEmployee) {
+      // Employee not in table, sync from auth
+      const { data: authUser } = await supabaseAdmin.auth.admin.getUserById(employee_id)
+      if (authUser?.user) {
+        await supabaseAdmin.from('employees').upsert({
+          id: authUser.user.id,
+          email: authUser.user.email?.toLowerCase() || '',
+          password_hash: 'auth_managed',
+          name: authUser.user.user_metadata?.name || authUser.user.email?.split('@')[0] || 'Unknown',
+          role: authUser.user.user_metadata?.role || 'employee',
+          is_active: true,
+          created_at: authUser.user.created_at || new Date().toISOString(),
+          updated_at: new Date().toISOString()
+        }, { onConflict: 'id' })
+      }
+    }
+
     // Check if there's already a timesheet entry for today
     const { data: existing } = await supabaseAdmin
       .from('timesheets')
