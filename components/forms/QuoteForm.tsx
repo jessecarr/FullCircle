@@ -7,6 +7,7 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
+import { Checkbox } from '@/components/ui/checkbox'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { supabase } from '@/lib/supabase'
 import { useToast } from '@/components/ui/use-toast'
@@ -33,6 +34,7 @@ interface ProductLine {
   unit_price: number
   total_price: number
   completed: boolean
+  taxable: boolean
 }
 
 export function QuoteForm({ initialData, onSuccess, onCancel }: QuoteFormProps) {
@@ -53,6 +55,7 @@ export function QuoteForm({ initialData, onSuccess, onCancel }: QuoteFormProps) 
         unit_price: line.unit_price || 0,
         total_price: line.total_price || 0,
         completed: line.completed || false,
+        taxable: line.taxable !== undefined ? line.taxable : true,
       }))
     }
     // Otherwise, create a single empty line for new orders
@@ -64,6 +67,7 @@ export function QuoteForm({ initialData, onSuccess, onCancel }: QuoteFormProps) 
       unit_price: 0,
       total_price: 0,
       completed: false,
+      taxable: true,
     }]
   })
   const [rowHeights, setRowHeights] = useState<{[key: number]: string}>({})
@@ -239,7 +243,8 @@ export function QuoteForm({ initialData, onSuccess, onCancel }: QuoteFormProps) 
       quantity: 1,
       unit_price: 0,
       total_price: 0,
-      completed: false
+      completed: false,
+      taxable: true
     }])
   }
 
@@ -262,7 +267,8 @@ export function QuoteForm({ initialData, onSuccess, onCancel }: QuoteFormProps) 
       quantity: 1,
       unit_price: 0,
       total_price: 0,
-      completed: false
+      completed: false,
+      taxable: true
     }
     setProductLines(updated)
   }
@@ -602,8 +608,8 @@ export function QuoteForm({ initialData, onSuccess, onCancel }: QuoteFormProps) 
     
     // Calculate totals
     const subtotal = productLines.reduce((acc, line) => acc + line.total_price, 0);
-    const tax = subtotal * 0.0795;
-    const total = subtotal * 1.0795;
+    const tax = productLines.reduce((acc, line) => acc + (line.taxable ? line.total_price * 0.0795 : 0), 0);
+    const total = subtotal + tax;
 
     // Format payment for display
     const formatPayment = (payment: string) => {
@@ -948,12 +954,13 @@ export function QuoteForm({ initialData, onSuccess, onCancel }: QuoteFormProps) 
             <table class="print-table">
               <thead>
                 <tr>
-                  <th style="width: 15%">SKU</th>
-                  <th style="width: 35%">Description</th>
-                  <th style="width: 15%">Vendor</th>
-                  <th style="width: 10%">Qty</th>
-                  <th style="width: 15%">Unit Price</th>
-                  <th style="width: 10%">Total</th>
+                  <th style="width: 13%">SKU</th>
+                  <th style="width: 32%">Description</th>
+                  <th style="width: 13%">Vendor</th>
+                  <th style="width: 8%">Qty</th>
+                  <th style="width: 12%">Unit Price</th>
+                  <th style="width: 12%">Total</th>
+                  <th style="width: 10%">Tax</th>
                 </tr>
               </thead>
               <tbody>
@@ -965,6 +972,7 @@ export function QuoteForm({ initialData, onSuccess, onCancel }: QuoteFormProps) 
                     <td>${line.quantity || 0}</td>
                     <td>$${(line.unit_price || 0).toFixed(2)}</td>
                     <td>$${((line.unit_price || 0) * (line.quantity || 0)).toFixed(2)}</td>
+                    <td>${line.taxable ? 'Yes' : 'No'}</td>
                   </tr>
                 `).join('')}
               </tbody>
@@ -977,7 +985,7 @@ export function QuoteForm({ initialData, onSuccess, onCancel }: QuoteFormProps) 
               </div>
               <div class="print-total-row">
                 <span style="font-weight: bold">Tax (7.95%):</span>
-                <span>$${(subtotal * 0.0795).toFixed(2)}</span>
+                <span>$${tax.toFixed(2)}</span>
               </div>
               <div class="print-total-row final">
                 <span>Total:</span>
@@ -1047,12 +1055,13 @@ export function QuoteForm({ initialData, onSuccess, onCancel }: QuoteFormProps) 
             <table class="print-table">
               <thead>
                 <tr>
-                  <th style="width: 15%">SKU</th>
-                  <th style="width: 35%">Description</th>
-                  <th style="width: 15%">Vendor</th>
-                  <th style="width: 10%">Qty</th>
-                  <th style="width: 15%">Unit Price</th>
-                  <th style="width: 10%">Total</th>
+                  <th style="width: 13%">SKU</th>
+                  <th style="width: 32%">Description</th>
+                  <th style="width: 13%">Vendor</th>
+                  <th style="width: 8%">Qty</th>
+                  <th style="width: 12%">Unit Price</th>
+                  <th style="width: 12%">Total</th>
+                  <th style="width: 10%">Tax</th>
                 </tr>
               </thead>
               <tbody>
@@ -1064,6 +1073,7 @@ export function QuoteForm({ initialData, onSuccess, onCancel }: QuoteFormProps) 
                     <td>${line.quantity || 0}</td>
                     <td>$${(line.unit_price || 0).toFixed(2)}</td>
                     <td>$${((line.unit_price || 0) * (line.quantity || 0)).toFixed(2)}</td>
+                    <td>${line.taxable ? 'Yes' : 'No'}</td>
                   </tr>
                 `).join('')}
               </tbody>
@@ -1076,7 +1086,7 @@ export function QuoteForm({ initialData, onSuccess, onCancel }: QuoteFormProps) 
               </div>
               <div class="print-total-row">
                 <span style="font-weight: bold">Tax (7.95%):</span>
-                <span>$${(subtotal * 0.0795).toFixed(2)}</span>
+                <span>$${tax.toFixed(2)}</span>
               </div>
               <div class="print-total-row final">
                 <span>Total:</span>
@@ -1182,10 +1192,12 @@ export function QuoteForm({ initialData, onSuccess, onCancel }: QuoteFormProps) 
     setEmailLoading(true);
     try {
       const { sendFormEmail } = await import('@/lib/emailUtils');
+      const subtotal = productLines.reduce((acc, line) => acc + line.total_price, 0);
+      const tax = productLines.reduce((acc, line) => acc + (line.taxable ? line.total_price * 0.0795 : 0), 0);
       const formDataForEmail = {
         ...formData,
         product_lines: productLines,
-        total_price: productLines.reduce((acc, line) => acc + line.total_price, 0) * 1.0795,
+        total_price: subtotal + tax,
       };
 
       const result = await sendFormEmail({
@@ -1461,18 +1473,19 @@ export function QuoteForm({ initialData, onSuccess, onCancel }: QuoteFormProps) 
 
           <div className="border rounded-lg p-6 mb-6">
             <h3 className="text-xl underline font-bold mb-4">Items</h3>
-            <div className="grid grid-cols-14 gap-4 items-end mb-2">
+            <div className="grid grid-cols-14 gap-4 items-center mb-4">
               <div className="col-span-2"><Label className="text-lg">SKU *</Label></div>
               <div className="col-span-4"><Label className="text-lg">Description *</Label></div>
-              <div className="col-span-1"><Label className="text-lg">Qty *</Label></div>
-              <div className="col-span-1"><Label className="text-lg">Price *</Label></div>
-              <div className="col-span-1"><Label className="text-lg">Total *</Label></div>
+              <div className="col-span-1"><Label className="text-lg">Qty</Label></div>
+              <div className="col-span-1"><Label className="text-lg">Unit $</Label></div>
+              <div className="col-span-1"><Label className="text-lg">Total $</Label></div>
               <div className="col-span-2"><Label className="text-lg">Vendor *</Label></div>
-              <div className="col-span-3"><Label className="text-lg"></Label></div> {/* Actions */}
+              <div className="col-span-1"><Label className="text-lg">Tax</Label></div>
+              <div className="col-span-2"><Label className="text-lg"></Label></div> {/* Actions */}
             </div>
             
             {productLines.map((line, index) => (
-              <div key={index} className="grid grid-cols-14 gap-4 items-center mb-2">
+              <div key={index} className="grid grid-cols-14 gap-4 items-start mb-2">
                 <div className="col-span-2 field-error-wrapper">
                   {hasError(`sku-${index}`) && <span className="field-error-tooltip">Required</span>}
                   <Textarea
@@ -1620,7 +1633,16 @@ export function QuoteForm({ initialData, onSuccess, onCancel }: QuoteFormProps) 
                   />
                 </div>
 
-                <div className="col-span-3 flex gap-2 justify-end">
+                <div className="col-span-1 flex items-center justify-center" style={{ height: isClient ? (rowHeights[index] || '48px') : '48px' }}>
+                  <Checkbox
+                    id={`taxable-${index}`}
+                    checked={line.taxable}
+                    onCheckedChange={(checked: boolean) => updateProductLine(index, 'taxable', checked === true)}
+                    className="h-5 w-5"
+                  />
+                </div>
+
+                <div className="col-span-2 flex gap-2 justify-end">
                   <Button
                     type="button"
                     variant="outline"
@@ -1660,11 +1682,11 @@ export function QuoteForm({ initialData, onSuccess, onCancel }: QuoteFormProps) 
                 </div>
                 <div className="flex justify-between text-lg">
                   <span className="font-semibold">Tax (7.95%):</span>
-                  <span>${(productLines.reduce((acc, line) => acc + line.total_price, 0) * 0.0795).toFixed(2)}</span>
+                  <span>${(productLines.reduce((acc, line) => acc + (line.taxable ? line.total_price * 0.0795 : 0), 0)).toFixed(2)}</span>
                 </div>
                 <div className="flex justify-between text-xl font-bold border-t pt-2">
                   <span>Total:</span>
-                  <span>${(productLines.reduce((acc, line) => acc + line.total_price, 0) * 1.0795).toFixed(2)}</span>
+                  <span>${(productLines.reduce((acc, line) => acc + line.total_price, 0) + productLines.reduce((acc, line) => acc + (line.taxable ? line.total_price * 0.0795 : 0), 0)).toFixed(2)}</span>
                 </div>
               </div>
             </div>

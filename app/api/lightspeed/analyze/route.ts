@@ -9,6 +9,7 @@ export async function POST(request: NextRequest) {
 
   try {
     const { itemIds } = await request.json()
+    console.log('[API] Received itemIds:', itemIds?.length, 'first few:', itemIds?.slice(0, 5))
 
     if (!itemIds || !Array.isArray(itemIds) || itemIds.length === 0) {
       return NextResponse.json(
@@ -18,6 +19,7 @@ export async function POST(request: NextRequest) {
     }
 
     const recommendations: OrderRecommendation[] = await analyzeItemsFromSupabase(itemIds, supabaseAdmin)
+    console.log('[API] Got recommendations:', recommendations.length)
 
     return NextResponse.json({
       success: true,

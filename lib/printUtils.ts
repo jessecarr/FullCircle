@@ -12,6 +12,7 @@ interface ProductLine {
   model?: string
   serial_number?: string
   order_type?: string
+  taxable?: boolean
 }
 
 const formatPhoneNumber = (phone: string): string => {
@@ -2265,8 +2266,8 @@ function getConsignmentContent(data: any): string {
 function getQuoteContent(data: any): string {
   const productLines: ProductLine[] = data.product_lines || []
   const subtotal = productLines.reduce((acc, line) => acc + (line.total_price || 0), 0)
-  const tax = subtotal * 0.0795
-  const total = subtotal * 1.0795
+  const tax = productLines.reduce((acc, line) => acc + (line.taxable !== false ? (line.total_price || 0) * 0.0795 : 0), 0)
+  const total = subtotal + tax
 
   return `
     <div style="font-family: Arial, sans-serif; padding: 20px; max-width: 800px; margin: 0 auto; color: #000; background-color: #fff;">
@@ -2323,8 +2324,8 @@ function getQuoteContent(data: any): string {
 export function printQuote(data: any) {
   const productLines: ProductLine[] = data.product_lines || []
   const subtotal = productLines.reduce((acc, line) => acc + (line.total_price || 0), 0)
-  const tax = subtotal * 0.0795
-  const total = subtotal * 1.0795
+  const tax = productLines.reduce((acc, line) => acc + (line.taxable !== false ? (line.total_price || 0) * 0.0795 : 0), 0)
+  const total = subtotal + tax
 
   const itemCount = productLines.length
   let scaleFactor = 1.0
@@ -2696,8 +2697,8 @@ export function printQuote(data: any) {
 function downloadQuotePDF(data: any) {
   const productLines: ProductLine[] = data.product_lines || []
   const subtotal = productLines.reduce((acc, line) => acc + (line.total_price || 0), 0)
-  const tax = subtotal * 0.0795
-  const total = subtotal * 1.0795
+  const tax = productLines.reduce((acc, line) => acc + (line.taxable !== false ? (line.total_price || 0) * 0.0795 : 0), 0)
+  const total = subtotal + tax
 
   const content = `
     <div style="font-family: Arial, sans-serif; padding: 20px; max-width: 800px; margin: 0 auto; color: #000; background-color: #fff;">

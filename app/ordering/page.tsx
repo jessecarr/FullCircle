@@ -419,6 +419,7 @@ export default function OrderingPage() {
       const resp = await fetch('/api/lightspeed/analyze', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
         body: JSON.stringify({ itemIds: parsedIds, monthsBack: 12 }),
       })
 

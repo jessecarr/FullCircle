@@ -54,6 +54,8 @@ export async function requireAuth() {
     error,
   } = await supabase.auth.getUser()
 
+  console.log('[requireAuth] user:', user?.email, 'error:', error?.message)
+
   if (error || !user) {
     return {
       user: null,
