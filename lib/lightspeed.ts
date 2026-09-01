@@ -739,17 +739,25 @@ export async function analyzeItemsFromSupabase(
     const batch = itemIds.slice(i, i + PAGE_SIZE)
 
     // Try matching by item_id first
-    const { data: byId, error: err1 } = await supabase
-      .from('lightspeed_items')
-      .select('item_id, system_sku, description, manufacturer_sku, upc, default_cost, retail_price, qoh')
-      .in('item_id', batch)
+    try {
+      const { data: byId, error: err1 } = await supabase
+        .from('lightspeed_items')
+        .select('item_id, system_sku, description, manufacturer_sku, upc, default_cost, retail_price, qoh')
+        .in('item_id', batch)
 
-    if (err1) console.error('[LS] Supabase item_id query error:', err1)
-    if (byId) {
-      for (const item of byId) {
-        itemsFromDb.push(item)
-        matchedInputIds.add(item.item_id)
+      if (err1) {
+        console.error('[LS] Supabase item_id query error:', err1)
+        throw new Error(`Database query failed: ${err1.message}`)
       }
+      if (byId) {
+        for (const item of byId) {
+          itemsFromDb.push(item)
+          matchedInputIds.add(item.item_id)
+        }
+      }
+    } catch (err) {
+      console.error('[LS] Fatal error querying items by ID:', err)
+      throw new Error(`Failed to query items: ${err instanceof Error ? err.message : 'Unknown error'}`)
     }
 
     // For unmatched IDs, also try system_sku (CSV often contains system SKUs)
@@ -899,29 +907,34 @@ export async function analyzeItemsFromSupabase(
   let from = 0
 
   while (true) {
-    const { data: page, error } = await supabase
-      .from('lightspeed_inventory_log')
-      .select('item_id, qoh_change, reason, create_time')
-      .in('item_id', actualItemIds)
-      .eq('shop_id', '1')
-      .order('create_time', { ascending: true })
-      .range(from, from + PAGE_SIZE - 1)
+    try {
+      const { data: page, error } = await supabase
+        .from('lightspeed_inventory_log')
+        .select('item_id, qoh_change, reason, create_time')
+        .in('item_id', actualItemIds)
+        .eq('shop_id', '1')
+        .order('create_time', { ascending: true })
+        .range(from, from + PAGE_SIZE - 1)
 
-    if (error) {
-      console.error('[LS] Supabase query error:', error)
-      throw new Error('Failed to query inventory log from Supabase')
+      if (error) {
+        console.error('[LS] Supabase inventory log query error:', error)
+        throw new Error(`Failed to query inventory log: ${error.message}`)
+      }
+
+      if (!page || page.length === 0) break
+
+      for (const log of page) {
+        if (!logsByItem[log.item_id]) logsByItem[log.item_id] = []
+        logsByItem[log.item_id].push(log)
+      }
+      totalLogRows += page.length
+
+      if (page.length < PAGE_SIZE) break
+      from += PAGE_SIZE
+    } catch (err) {
+      console.error('[LS] Fatal error querying inventory log:', err)
+      throw new Error(`Failed to query inventory history: ${err instanceof Error ? err.message : 'Unknown error'}`)
     }
-
-    if (!page || page.length === 0) break
-
-    for (const log of page) {
-      if (!logsByItem[log.item_id]) logsByItem[log.item_id] = []
-      logsByItem[log.item_id].push(log)
-    }
-    totalLogRows += page.length
-
-    if (page.length < PAGE_SIZE) break
-    from += PAGE_SIZE
   }
 
   console.log(`[LS] Found ${totalLogRows} inventory log entries across ${Object.keys(logsByItem).length} items`)

@@ -2,6 +2,10 @@ import { NextRequest, NextResponse } from 'next/server'
 import { analyzeItemsFromSupabase, OrderRecommendation } from '@/lib/lightspeed'
 import { requireAuth, createAdminClient } from '@/lib/supabase/api'
 
+// Increase body size limit to handle large arrays of item IDs
+export const maxDuration = 300 // 5 minutes for long-running analysis
+export const dynamic = 'force-dynamic'
+
 export async function POST(request: NextRequest) {
   const auth = await requireAuth()
   if (auth.error) return auth.error

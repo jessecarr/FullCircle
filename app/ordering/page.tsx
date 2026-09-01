@@ -423,6 +423,13 @@ export default function OrderingPage() {
         body: JSON.stringify({ itemIds: parsedIds, monthsBack: 12 }),
       })
 
+      // Check if response is JSON before parsing
+      const contentType = resp.headers.get('content-type')
+      if (!contentType || !contentType.includes('application/json')) {
+        const text = await resp.text()
+        throw new Error(`Server returned non-JSON response (${resp.status}): ${text.substring(0, 200)}`)
+      }
+
       const data = await resp.json()
 
       if (!resp.ok) {
@@ -496,6 +503,14 @@ export default function OrderingPage() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ itemIds: [item.itemID] }),
       })
+      
+      // Check if response is JSON before parsing
+      const contentType = resp.headers.get('content-type')
+      if (!contentType || !contentType.includes('application/json')) {
+        const text = await resp.text()
+        throw new Error(`Server returned non-JSON response (${resp.status}): ${text.substring(0, 200)}`)
+      }
+      
       const data = await resp.json()
       if (!resp.ok) throw new Error(data.error || 'Failed to analyze item')
       if (data.data && data.data.length > 0) {
@@ -572,6 +587,14 @@ export default function OrderingPage() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ itemIds: scannedItems }),
       })
+      
+      // Check if response is JSON before parsing
+      const contentType = resp.headers.get('content-type')
+      if (!contentType || !contentType.includes('application/json')) {
+        const text = await resp.text()
+        throw new Error(`Server returned non-JSON response (${resp.status}): ${text.substring(0, 200)}`)
+      }
+      
       const data = await resp.json()
       if (!resp.ok) throw new Error(data.error || 'Analysis failed')
 
