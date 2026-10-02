@@ -5,7 +5,7 @@ const publicDir = path.join(__dirname, '..', 'public');
 const libDir = path.join(__dirname, '..', 'lib');
 
 const logo = fs.readFileSync(path.join(publicDir, 'company-logo.png')).toString('base64');
-const ffl = fs.readFileSync(path.join(publicDir, 'company-ffl.png')).toString('base64');
+const ffl = fs.readFileSync(path.join(publicDir, 'company-ffl.jpg')).toString('base64');
 
 const content = `// Auto-generated image constants - DO NOT EDIT
 // Generated from public/company-logo.png and public/company-ffl.png
@@ -13,7 +13,7 @@ const content = `// Auto-generated image constants - DO NOT EDIT
 
 export const COMPANY_LOGO_BASE64 = 'data:image/png;base64,${logo}';
 
-export const COMPANY_FFL_BASE64 = 'data:image/png;base64,${ffl}';
+export const COMPANY_FFL_BASE64 = 'data:image/jpeg;base64,${ffl}';
 `;
 
 fs.writeFileSync(path.join(libDir, 'imageConstants.ts'), content);

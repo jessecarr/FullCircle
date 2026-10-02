@@ -791,7 +791,7 @@ export function OutboundTransferForm({ initialData, onSuccess, onCancel }: Outbo
         <div class="section-title">Disposition</div>
         <div class="form-field" style="max-width: 250px;">
           <label>Disposition Date</label>
-          <div class="input-box">${formData.disposition_date ? new Date(formData.disposition_date).toLocaleDateString() : ''}</div>
+          <div class="input-box">${formData.disposition_date ? (() => { const [year, month, day] = formData.disposition_date.split('-'); return `${month}/${day}/${year}`; })() : ''}</div>
         </div>
       </div>
     `
