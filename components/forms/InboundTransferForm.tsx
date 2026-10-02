@@ -798,7 +798,7 @@ export function InboundTransferForm({ initialData, onSuccess, onCancel }: Specia
                 </div>
                 <div class="print-field">
                   <div class="print-label">DL Expiration:</div>
-                  <div class="print-value" style="min-width: 100px; border-bottom: 1px solid #000;">${formData.license_expiration || '\u00A0'}</div>
+                  <div class="print-value" style="min-width: 100px; border-bottom: 1px solid #000;">${formData.license_expiration ? (() => { const [year, month, day] = formData.license_expiration.split('-'); return `${month}/${day}/${year}`; })() : '\u00A0'}</div>
                 </div>
                 ${formData.customer_street ? `
                   <div class="print-field">
@@ -890,7 +890,7 @@ export function InboundTransferForm({ initialData, onSuccess, onCancel }: Specia
             </div>
             <div class="print-field">
               <div class="print-label">DL Expiration:</div>
-              <div class="print-value" style="min-width: 100px; border-bottom: 1px solid #000;">${formData.license_expiration || '\u00A0'}</div>
+              <div class="print-value" style="min-width: 100px; border-bottom: 1px solid #000;">${formData.license_expiration ? (() => { const [year, month, day] = formData.license_expiration.split('-'); return `${month}/${day}/${year}`; })() : '\u00A0'}</div>
             </div>
             ${formData.customer_street ? `
               <div class="print-field">

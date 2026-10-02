@@ -679,7 +679,7 @@ export function OutboundTransferForm({ initialData, onSuccess, onCancel }: Outbo
                 </div>
                 <div class="form-field half">
                   <label>License Expiration</label>
-                  <div class="input-box">${formData.license_expiration ? new Date(formData.license_expiration).toLocaleDateString() : ''}</div>
+                  <div class="input-box">${formData.license_expiration ? (() => { const [year, month, day] = formData.license_expiration.split('-'); return `${month}/${day}/${year}`; })() : ''}</div>
                 </div>
               </div>
             </div>
