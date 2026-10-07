@@ -905,7 +905,7 @@ export function OutboundTransferForm({ initialData, onSuccess, onCancel }: Outbo
           .copy-type {
             font-size: 12px;
             font-weight: 600;
-            color: #555;
+            color: #000;
             background: #f5f5f5;
             display: inline-block;
             padding: 4px 12px;
@@ -913,7 +913,7 @@ export function OutboundTransferForm({ initialData, onSuccess, onCancel }: Outbo
           }
           
           .section-box {
-            border: 1px solid #e0e0e0;
+            border: 1px solid #000;
             border-radius: 6px;
             padding: 12px 14px;
             margin-bottom: 12px;
@@ -926,16 +926,16 @@ export function OutboundTransferForm({ initialData, onSuccess, onCancel }: Outbo
             color: #111;
             margin-bottom: 10px;
             padding-bottom: 6px;
-            border-bottom: 1px solid #ddd;
+            border-bottom: 1px solid #000;
           }
           
           .subsection-title {
             font-size: 11px;
             font-weight: 600;
-            color: #444;
+            color: #000;
             margin: 12px 0 8px 0;
             padding-top: 8px;
-            border-top: 1px dashed #ddd;
+            border-top: 1px dashed #000;
           }
           
           .form-grid {
@@ -959,14 +959,14 @@ export function OutboundTransferForm({ initialData, onSuccess, onCancel }: Outbo
           .form-field label {
             font-size: 9px;
             font-weight: 600;
-            color: #555;
+            color: #000;
             text-transform: uppercase;
             letter-spacing: 0.3px;
           }
           
           .input-box {
             background: white;
-            border: 1px solid #d0d0d0;
+            border: 1px solid #000;
             border-radius: 4px;
             padding: 6px 8px;
             font-size: 11px;
@@ -1002,7 +1002,7 @@ export function OutboundTransferForm({ initialData, onSuccess, onCancel }: Outbo
           
           .items-table th,
           .items-table td {
-            border: 1px solid #d0d0d0;
+            border: 1px solid #000;
             padding: 8px 10px;
             text-align: left;
           }
@@ -1013,7 +1013,7 @@ export function OutboundTransferForm({ initialData, onSuccess, onCancel }: Outbo
             font-size: 9px;
             text-transform: uppercase;
             letter-spacing: 0.3px;
-            color: #444;
+            color: #000;
           }
           
           .items-table td {
@@ -1054,7 +1054,7 @@ export function OutboundTransferForm({ initialData, onSuccess, onCancel }: Outbo
           .ffl-image-container {
             text-align: center;
             padding: 20px;
-            border: 2px dashed #ddd;
+            border: 2px dashed #000;
             border-radius: 8px;
             margin: 20px 0;
             min-height: 400px;

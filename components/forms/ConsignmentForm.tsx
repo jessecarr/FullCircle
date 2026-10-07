@@ -565,7 +565,7 @@ export function ConsignmentForm({ initialData, onSuccess, onCancel }: Consignmen
             font-size: 14px;
             font-weight: bold;
             margin-bottom: 6px;
-            border-bottom: 1px solid #ccc;
+            border-bottom: 1px solid #000;
             padding-bottom: 3px;
           }
           

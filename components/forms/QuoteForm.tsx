@@ -734,7 +734,7 @@ export function QuoteForm({ initialData, onSuccess, onCancel }: QuoteFormProps) 
             font-size: 14px;
             font-weight: bold;
             margin-bottom: 6px;
-            border-bottom: 1px solid #ccc;
+            border-bottom: 1px solid #000;
             padding-bottom: 3px;
           }
           
