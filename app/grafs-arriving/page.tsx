@@ -8,7 +8,7 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { supabase } from '@/lib/supabase'
 import { useToast } from '@/components/ui/use-toast'
-import { Package, Calendar, AlertCircle, Truck, ArrowLeft, Download, Eye, ChevronLeft, ChevronRight, X, Check } from 'lucide-react'
+import { Package, Calendar, AlertCircle, Truck, ArrowLeft, Download, Eye, ChevronLeft, ChevronRight, X, Check, Printer } from 'lucide-react'
 import {
   AlertDialog,
   AlertDialogCancel,
@@ -456,6 +456,67 @@ export default function GrafsArrivingPage() {
     }
   }
 
+  const handlePrintOrder = async (order: GrafsOrder) => {
+    try {
+      let fullOrder = order.fullOrderData
+      if (!fullOrder) {
+        const { data, error } = await supabase
+          .from('special_orders')
+          .select('*')
+          .eq('id', order.special_order_id)
+          .single()
+        if (error) throw error
+        fullOrder = data
+      }
+      const { printForm } = await import('@/lib/printUtils')
+      printForm(fullOrder, 'special_orders')
+    } catch (error) {
+      console.error('Error printing order:', error)
+      toast({
+        title: 'Error',
+        description: 'Failed to print order',
+        variant: 'destructive',
+      })
+    }
+  }
+
+  const handleBulkPrint = async () => {
+    if (selectedIds.size === 0) return
+
+    try {
+      // Deduplicate by special_order_id so multi-item orders print only once
+      const selectedOrders = orders.filter(o => selectedIds.has(o.id))
+      const uniqueSpecialOrderIds = [...new Set(selectedOrders.map(o => o.special_order_id))]
+
+      const { data: fullOrders, error } = await supabase
+        .from('special_orders')
+        .select('*')
+        .in('id', uniqueSpecialOrderIds)
+
+      if (error) throw error
+      if (!fullOrders || fullOrders.length === 0) return
+
+      const { printForm } = await import('@/lib/printUtils')
+      fullOrders.forEach((o, i) => {
+        setTimeout(() => {
+          printForm(o, 'special_orders')
+        }, i * 500)
+      })
+
+      toast({
+        title: 'Printing',
+        description: `Printing ${fullOrders.length} order(s)...`,
+      })
+    } catch (error) {
+      console.error('Error bulk printing:', error)
+      toast({
+        title: 'Error',
+        description: 'Failed to print orders',
+        variant: 'destructive',
+      })
+    }
+  }
+
   const parseLocalDate = (dateStr: string) => {
     // Parse date string as local date to avoid timezone issues
     const [year, month, day] = dateStr.split('-').map(Number)
@@ -592,12 +653,22 @@ export default function GrafsArrivingPage() {
               </span>
             </div>
             {selectedIds.size > 0 && (
-              <Button 
-                size="sm" 
-                onClick={() => setBulkMarkDialogOpen(true)}
-              >
-                Mark {selectedIds.size} as Arrived
-              </Button>
+              <div className="flex gap-2">
+                <Button 
+                  size="sm" 
+                  variant="outline"
+                  onClick={handleBulkPrint}
+                >
+                  <Printer className="h-4 w-4 mr-1" />
+                  Print Selected
+                </Button>
+                <Button 
+                  size="sm" 
+                  onClick={() => setBulkMarkDialogOpen(true)}
+                >
+                  Mark {selectedIds.size} as Arrived
+                </Button>
+              </div>
             )}
           </div>
         )}
@@ -715,6 +786,14 @@ export default function GrafsArrivingPage() {
                                 </div>
                               </div>
                               <div className="flex gap-2" onClick={(e) => e.stopPropagation()}>
+                                <Button
+                                  size="sm"
+                                  variant="outline"
+                                  onClick={() => handlePrintOrder(order)}
+                                >
+                                  <Printer className="h-4 w-4 mr-1" />
+                                  Print
+                                </Button>
                                 <Button
                                   size="sm"
                                   variant="outline"
@@ -839,8 +918,21 @@ export default function GrafsArrivingPage() {
                   </div>
                 </div>
 
+                {/* Customer Address */}
+                {viewingOrder.fullOrderData && viewingOrder.fullOrderData.customer_street && (
+                  <div>
+                    <div className="text-sm text-muted-foreground">Address</div>
+                    <div className="font-medium">
+                      {viewingOrder.fullOrderData.customer_street}
+                      {viewingOrder.fullOrderData.customer_city && `, ${viewingOrder.fullOrderData.customer_city}`}
+                      {viewingOrder.fullOrderData.customer_state && ` ${viewingOrder.fullOrderData.customer_state}`}
+                      {viewingOrder.fullOrderData.customer_zip && ` ${viewingOrder.fullOrderData.customer_zip}`}
+                    </div>
+                  </div>
+                )}
+
                 {/* Order Info */}
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                   <div>
                     <div className="text-sm text-muted-foreground">Expected Delivery</div>
                     <div className="font-medium">
@@ -853,7 +945,7 @@ export default function GrafsArrivingPage() {
                     </div>
                   </div>
                   <div>
-                    <div className="text-sm text-muted-foreground">Status</div>
+                    <div className="text-sm text-muted-foreground">Delivery Status</div>
                     <div className="font-medium">
                       {isOverdue(viewingOrder.expected_delivery_date) ? (
                         <span className="text-red-400">OVERDUE</span>
@@ -864,7 +956,25 @@ export default function GrafsArrivingPage() {
                       )}
                     </div>
                   </div>
+                  <div>
+                    <div className="text-sm text-muted-foreground">Order Status</div>
+                    <div className="font-medium capitalize">{viewingOrder.fullOrderData?.status || viewingOrder.order_status || 'N/A'}</div>
+                  </div>
+                  <div>
+                    <div className="text-sm text-muted-foreground">Payment Method</div>
+                    <div className="font-medium capitalize">{(viewingOrder.fullOrderData?.payment || viewingOrder.payment || '')?.replace(/_/g, ' ') || 'N/A'}</div>
+                  </div>
                 </div>
+
+                {/* Delivery Method */}
+                {viewingOrder.fullOrderData?.delivery_method && (
+                  <div>
+                    <div className="text-sm text-muted-foreground">Delivery Method</div>
+                    <div className="font-medium">
+                      {viewingOrder.fullOrderData.delivery_method === 'in_store_pickup' ? 'In-Store Pickup' : 'Ship to Customer'}
+                    </div>
+                  </div>
+                )}
 
                 {/* Product Lines */}
                 <div>
@@ -877,16 +987,18 @@ export default function GrafsArrivingPage() {
                           <th className="text-left p-2 text-sm">SKU</th>
                           <th className="text-left p-2 text-sm">Vendor</th>
                           <th className="text-right p-2 text-sm">Qty</th>
-                          <th className="text-right p-2 text-sm">Price</th>
+                          <th className="text-right p-2 text-sm">Unit Price</th>
+                          <th className="text-right p-2 text-sm">Total</th>
                         </tr>
                       </thead>
                       <tbody>
-                        {viewingOrder.product_lines?.map((line: any, idx: number) => (
+                        {(viewingOrder.fullOrderData?.product_lines || viewingOrder.product_lines)?.map((line: any, idx: number) => (
                           <tr key={idx} className={`border-t border-slate-700 ${idx === viewingOrder.product_line_index ? 'bg-blue-500/20' : ''}`}>
                             <td className="p-2 text-sm">{line.description || 'N/A'}</td>
                             <td className="p-2 text-sm">{line.sku || 'N/A'}</td>
                             <td className="p-2 text-sm">{line.vendor_name || line.vendor || 'N/A'}</td>
                             <td className="p-2 text-sm text-right">{line.quantity || 1}</td>
+                            <td className="p-2 text-sm text-right">${(line.unit_price || 0).toFixed(2)}</td>
                             <td className="p-2 text-sm text-right">${(line.total_price || 0).toFixed(2)}</td>
                           </tr>
                         ))}
@@ -898,16 +1010,36 @@ export default function GrafsArrivingPage() {
                   </p>
                 </div>
 
-                {/* Full Order Data if available */}
-                {viewingOrder.fullOrderData && (
-                  <div className="grid grid-cols-2 gap-4">
-                    <div>
-                      <div className="text-sm text-muted-foreground">Order Status</div>
-                      <div className="font-medium capitalize">{viewingOrder.fullOrderData.status || 'N/A'}</div>
+                {/* Order Totals */}
+                {(() => {
+                  const lines = viewingOrder.fullOrderData?.product_lines || viewingOrder.product_lines || []
+                  const subtotal = lines.reduce((acc: number, line: any) => acc + (line.total_price || 0), 0)
+                  const tax = subtotal * 0.0795
+                  const total = subtotal + tax
+                  return (
+                    <div className="bg-slate-800/50 border border-slate-700 rounded-lg p-4">
+                      <div className="flex justify-between mb-1 text-sm">
+                        <span className="font-medium">Subtotal:</span>
+                        <span>${subtotal.toFixed(2)}</span>
+                      </div>
+                      <div className="flex justify-between mb-1 text-sm">
+                        <span className="font-medium">Tax (7.95%):</span>
+                        <span>${tax.toFixed(2)}</span>
+                      </div>
+                      <div className="flex justify-between text-base font-bold border-t border-slate-600 pt-2 mt-2">
+                        <span>Total:</span>
+                        <span>${total.toFixed(2)}</span>
+                      </div>
                     </div>
-                    <div>
-                      <div className="text-sm text-muted-foreground">Payment Method</div>
-                      <div className="font-medium capitalize">{viewingOrder.fullOrderData.payment?.replace('_', ' ') || 'N/A'}</div>
+                  )
+                })()}
+
+                {/* Special Requests */}
+                {viewingOrder.fullOrderData?.special_requests && (
+                  <div>
+                    <div className="text-sm text-muted-foreground">Special Requests</div>
+                    <div className="font-medium bg-slate-800/50 border border-slate-700 rounded-lg p-3 mt-1">
+                      {viewingOrder.fullOrderData.special_requests}
                     </div>
                   </div>
                 )}
@@ -916,6 +1048,17 @@ export default function GrafsArrivingPage() {
 
             <DialogFooter>
               <Button variant="outline" onClick={closeViewer}>Close</Button>
+              <Button 
+                variant="outline"
+                onClick={() => {
+                  if (viewingOrder) {
+                    handlePrintOrder(viewingOrder)
+                  }
+                }}
+              >
+                <Printer className="h-4 w-4 mr-2" />
+                Print
+              </Button>
               <Button 
                 className="bg-blue-600 hover:bg-blue-700 text-white"
                 onClick={() => {
